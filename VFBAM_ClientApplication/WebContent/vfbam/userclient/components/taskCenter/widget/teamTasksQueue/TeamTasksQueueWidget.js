@@ -18,7 +18,10 @@ require([
             var contentBox = domGeom.getContentBox(dojo.byId("app_taskCenter_mainContainer"));
             var realHeight=contentBox.h-52;
             var currentHeightStyle=""+realHeight +"px";
-            var styletxt="height:"+currentHeightStyle+"; width: 99%;"
+            var styletxt="height:"+currentHeightStyle+"; width: 99%;";
+            if(dojo.isChrome){
+                styletxt="height:"+currentHeightStyle+"; width: 10px;";
+            }
             this.application_operationPanelContainer = new idx.layout.MoveableTabContainer({
                 style:styletxt
             });
@@ -68,9 +71,12 @@ require([
                     });
                     that.application_operationPanelContainer.startup();
                     var intervalID =setInterval(function(){
+                        if(dojo.isChrome) {
+                            dojo.setStyle(that.application_operationPanelContainer.domNode, 'width', '99%');
+                        }
                         that.application_operationPanelContainer.resize();
                         window.clearInterval(intervalID);
-                    },1000);
+                    },300);
                     if(that.containerInitFinishCounterFuc){
                         that.containerInitFinishCounterFuc();
                     }
