@@ -1,0 +1,4 @@
+PDF:mozilla-pdf.js-26d57a5 //http://mozilla.github.io/pdf.js/
+ODT,ODP,ODS:ViewerJS-0.2.1 //http://viewerjs.org/
+JPG:Zoomer //http://formstone.it/
+Sourceode：syntaxhighlighter_3.0.83 //http://alexgorbatchev.com/SyntaxHighlighter/download/

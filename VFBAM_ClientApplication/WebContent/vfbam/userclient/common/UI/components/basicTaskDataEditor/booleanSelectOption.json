@@ -1,0 +1,9 @@
+{
+    identifier:"abbreviation",
+    label: "label",
+    items: [
+        {name:"&nbsp;", label:"&nbsp;",abbreviation:"-"},
+        {name:"是", label:"是",abbreviation:"true"},
+        {name:"否", label:"否",abbreviation:"false"}
+    ]
+} 

@@ -1,0 +1,25 @@
+<table width="100%;" border="0">
+    <tr>
+        <td style="padding-left: 8px;padding-top: 5px;">
+            <div>
+                <i class="icon-tags"></i><span data-dojo-type="idx.form.Link" style="padding-right: 8px;" data-dojo-attach-point="showActivityCommentLink" data-dojo-attach-event="onClick:getActivityComments"> 活动备注</span>
+                <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+                <i class="icon-tag" style="padding-left: 5px;"></i><span data-dojo-type="idx.form.Link"  style="padding-right: 5px;" data-dojo-attach-point="showTaskCommentLink" data-dojo-attach-event="onClick:getTaskComments"> 当前任务备注</span>
+            </div>
+        </td>
+        <td style="padding-right: 5px;padding-top: 5px;" align="right">
+            <i class="icon-comment-alt"></i> <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="addCommentLink" style="padding-right: 5px;color:#00649D;" label="添加备注">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="app_headerDivLine"></div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div style="overflow: auto;" data-dojo-attach-point="commentsListContainer">
+            </div>
+        </td>
+    </tr>
+</table>

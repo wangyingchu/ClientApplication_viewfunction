@@ -1,0 +1,31 @@
+<div>
+    <div data-dojo-attach-point="containerNode">
+        <table width="100%" border="0" style="background-color: #f0f0f0;padding-right:15px;padding-top:10px;padding-bottom:10px;">
+            <tr>
+                <td width="50" style="display: inline;padding-left: 10px;" data-dojo-attach-point="facePhotoContainer" align="right">
+                    <span><img src="" width="48px" height="48px" class="app_photoBorder" data-dojo-attach-point="senderFacePhoto"/></span>
+                </td>
+                <td align="left"  width="90%" style="vertical-align:middle ;padding-left: 5px; font-size: 1.1em; color: #00475B; font-weight:bold;" data-dojo-attach-point="messageTitleTextContainer">
+                    <span data-dojo-attach-point="messageTitleTxt"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="padding:5px;padding-left: 15px;font-size: 0.9em;color: #777777;">
+                        <div style="padding-bottom: 3px;">
+                            <i class="icon-signout"></i> 发送人:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="messageSenderTxt"></span>
+                            <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;padding-left: 5px;">|</span>
+                            <i class="icon-signin"></i> 接收人:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="messageReceiversTxt"></span>
+                        </div>
+                        <div>
+                            <i class="icon-time"></i> 发送时间:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="messageSentDateTxt"></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="app_headerDivLine" style="padding-top: 2px;"></div>
+        <div style="height: 3px;"></div>
+        <div style="height: 400px; overflow: auto;" data-dojo-attach-point="messageContentTxt"></div>
+    </div>
+</div>

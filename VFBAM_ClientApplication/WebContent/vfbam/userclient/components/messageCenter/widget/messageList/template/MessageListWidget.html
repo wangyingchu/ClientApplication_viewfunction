@@ -1,0 +1,33 @@
+<div>
+    <table width="100%" border="0">
+        <tr>
+            <td width="400" style="display: inline">
+                <span style="font-size: 1.3em;padding-right: 20px;color: #888888;"><span data-dojo-attach-point="messageListTypeContainer"><i class="icon-comments"></i> 消息</span></span>
+                <span style="font-size: 0.8em;color: #888888;" data-dojo-attach-point="searchLabel">搜索：</span>
+                <select dojoType="idx.form.Select" data-dojo-attach-point="queryTypeSelect" style="width:130px;"
+		        	store="new dojo.data.ItemFileReadStore({url:'vfbam/userclient/components/messageCenter/widget/messageList/searchOptions.json'})">
+		        </select>
+		        <span style="width:260px;" data-dojo-attach-point="searchInputArea">
+		        	<span dojoType="dijit.form.TextBox" value="" style="width:250px;" data-dojo-attach-point="queryTextInput"></span>
+                	<span dojoType="idx.form.DatePicker" value="" style="width:248px;" data-dojo-attach-point="queryDateInput"></span>
+		        </span> 
+                <span class="searchBarButton" data-dojo-attach-point="searchButtonArea">
+                	<div dojoType="dijit.form.Button" data-dojo-attach-point="queryDateButton" data-dojo-attach-event="onClick:doQueryMessage"><i class="icon-search"></i> 搜索</div>
+               	</span>	                
+            </td>
+            <td width="150" align="right">
+                <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:getPreviousPageMessage" data-dojo-attach-point="previousPageButton"> <i class="icon-chevron-sign-left icon-large icon-border"></i></span>
+                <span style="width: 20px;">&nbsp;</span>
+                <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:getNextPageMessage" data-dojo-attach-point="nextPageButton"> <i class="icon-chevron-sign-right  icon-large icon-border"></i></span>
+                <span style="font-style: italic; font-size: 0.9em; padding-left: 5px;"><span data-dojo-attach-point="itemsPageInfoArea"><span data-dojo-attach-point="currentMessageListPageNumber"></span>/<span data-dojo-attach-point="totalMessageListPageNumber"></span></span> 总计: <span data-dojo-attach-point="messageTotalNumber">1000</span></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" >
+                <div class="app_headerDivLine"></div>
+            </td>
+        </tr>
+    </table>
+    <div data-dojo-attach-point="messageMagazineViewListContainer" style="min-height: 50px; overflow: auto;">
+    </div> 
+</div>

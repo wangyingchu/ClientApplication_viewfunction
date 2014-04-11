@@ -1,0 +1,29 @@
+<div>
+    <div data-dojo-attach-point="containerNode">
+        <table  width="100%" border="0" style="background-color: #f0f0f0;padding-right:15px;padding-top:10px;padding-bottom:10px;">
+            <tr>
+                <td align="right" style="padding-right:5px;padding-left:15px;width: 80px;font-size: 1.1em;color: #666666; font-weight: bold;"><i class="icon-comment-alt"></i> 消息标题:</td>
+                <td><input dojoType="dijit.form.TextBox" style="width:620px;" data-dojo-attach-point="messageTitle"></input></td>
+            </tr>
+            <tr><td style="height: 3px;"></td><td></td></tr>
+            <tr>
+                <td align="right" style="padding-right:5px;padding-left:15px;width: 90px;font-size: 1.1em;color: #666666; font-weight: bold;"><i class="icon-plus"></i> 添加接收人:</td>
+                <td>               
+	                <input dojoType="dijit.form.FilteringSelect" style="width:503px;"  data-dojo-props="required:false" data-dojo-attach-point="messageReceiverFilter" disabled></input>
+					<button dojoType="dijit.form.Button" placement="primary" data-dojo-attach-point="addReceiverButton" data-dojo-attach-event="onClick:addReceiver"><i class="icon-plus"></i> 添加接收人</button>  
+                </td>
+            </tr>            
+             <tr>
+                <td style="height:10px;"> </td>
+                <td></td>
+            </tr>            
+            <tr>
+                <td align="right" style="padding-right:5px;padding-left:15px;width: 90px;font-size: 1.1em;color: #666666; font-weight: bold;height: 25px;"><i class="icon-signin"></i> 接收人列表:</td>
+                <td data-dojo-attach-point="messageReceiversDisplay"></td>
+            </tr>
+        </table>
+        <div style="height: 5px;"></div>
+        <div class="dijitEditor" data-dojo-type="dijit.Editor" data-dojo-props="
+    plugins:['undo','redo','|','bold','italic','underline','strikethrough','subscript','superscript','|', 'indent', 'outdent', 'justifyLeft', 'justifyCenter', 'justifyRight','|','insertOrderedList', 'insertUnorderedList','|','insertHorizontalRule'],extraPlugins:['foreColor', 'hiliteColor','print']" data-dojo-attach-point="messageContentEditor" style="font-size: 0.75em;"></div>
+    </div>
+</div>

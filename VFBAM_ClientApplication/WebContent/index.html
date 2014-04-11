@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%; margin: 0; padding: 0" lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="NO-CACHE">
+    <meta http-equiv="Pragma" content="NO-CACHE">
+    <meta http-equiv="Expires" content="-1">
+    <title>Viewfunction 业务活动协同处理平台</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <!--application bootstrap libs -->
+    <script type="text/javascript" src="vfbam/config/appConfig.js"></script>
+    <!--dojo style muse load before idx style -->
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dojo/resources/dojo.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dijit/themes/dijit.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dijit/icons/commonIcons.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dijit/icons/editorIcons.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dojox/grid/resources/Grid.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dojox/layout/resources/ResizeHandle.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dojox/form/resources/TriStateCheckBox.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dojox/calendar/themes/claro/Calendar.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dojox/editor/plugins/resources/css/TextColor.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/gridx/resources/basic.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/gridx/resources/Gridx.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/gridx/resources/pagination.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/gridx/resources/select.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/gridx/resources/sort.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/gridx/resources/claro/Gridx.css'/>
+    <!--idx style-->
+    <link rel='stylesheet' type='text/css' href='ibmjs/idx/themes/oneui/oneui.css'/>
+    <!--application style -->
+    <link rel='stylesheet' type='text/css' href='vfbam/userclient/css/global.css'/>
+    <link rel='stylesheet' type='text/css' href='vfbam/userclient/css/application.css'/>
+    <link rel='stylesheet' type='text/css' href='vfbam/userclient/css/font-awesome/css/font-awesome.min.css'/>
+    <script language="javascript" type="text/javascript" src="dojo_1.8.4/dojo/dojo.js"></script>
+    <script language="javascript" type="text/javascript" src="app/util/Interface.js"></script>
+    <script language="javascript" type="text/javascript" src="app/ApplicationBaseFunctionImpl.js"></script>
+    <script type="text/javascript" id="postDojo">
+        var dXHRGet = null;
+        var iDialogs = null;
+        function getParamFromUrl(name){
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+            if (results == null) {
+                return null;
+            }else {
+                return results[1];
+            }
+        }
+        function preParse(modules) {
+            //check user login info
+            //check UserLoginId
+            var userLoginName=getParamFromUrl("participantId");
+            if(!userLoginName){
+                window.location.href="login.html";
+            }else{
+                //checkUser login authentication
+                var resturl=PARTICIPANT_SERVICE_ROOT+"participantAuthenticateService/participantLoginVerify/"+APPLICATION_ID+"/"+userLoginName;
+                var syncFlag=true;
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                    window.location.href="login.html";
+                };
+                var loadCallback=function(data){
+                    if(!data.loginAuthenticateResult){
+                        window.location.href="login.html";
+                    }else{
+                        setupUserLoginInfo(userLoginName);
+                    }
+                };
+                Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
+                dXHRGet = modules["dojo/_base/xhr"] ? modules["dojo/_base/xhr"].get : dojo.xhrGet;
+                iDialogs = modules["idx/dialogs"];
+            }
+        }
+        //Application enterpoint after all modules are loaded
+        function postParse(modules){
+            dojo.byId("idx_app_AppMarquee_0_AppName").innerHTML="<i class='icon-tags icon-large'></i> Viewfunction 业务活动协同处理平台 ";
+            dojo.byId("idx_app_WorkspaceTab_0_titleNode").innerHTML="<i class='icon-envelope'></i> 信息中心";
+            dojo.byId("idx_app_WorkspaceTab_1_titleNode").innerHTML="<i class='icon-tasks'></i> 我的工作";
+            dojo.byId("idx_app_WorkspaceTab_2_titleNode").innerHTML="<i class='icon-calendar'></i> 工作日程表";
+            dojo.byId("idx_app_WorkspaceTab_3_titleNode").innerHTML="<i class='icon-copy'></i> 文档中心";
+            var imgTag="<img src='/ParticipantManagementService/ws/participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+Application.AttributeContext.getAttribute(USER_PROFILE).userId+"/' class='app_userLoginPhotoBorder'/>&nbsp;"
+            dojo.byId("idx_form_DropDownLink_0_link").innerHTML=imgTag+Application.AttributeContext.getAttribute(USER_PROFILE).displayName;
+            var titleTxt=Application.AttributeContext.getAttribute(USER_PROFILE).displayName+"("+Application.AttributeContext.getAttribute(USER_PROFILE).title+") :"+Application.AttributeContext.getAttribute(USER_PROFILE).description;
+            dojo.byId("idx_form_DropDownLink_0_link").title=titleTxt;
+        }
+        dojoRequireModules(modules, [], dojoConfig.async, preParse,postParse);
+        var docwin = null;
+        function onAbout() {
+            if(docwin != null )docwin.close();
+            docwin=window.open('http://www.viewfunction.com','vfbamwebsite');
+            docwin.focus();
+            return false;
+        }
+        var APP_USERLOGIN_PARTICIPANTINFO_REFRESH_EVENT="APP_USERLOGIN_PARTICIPANTINFO_REFRESH_EVENT";
+        function refreshUserLoginUIData(data){
+            var timestamp=""+new Date().getTime();
+            var imgTag="<img src='/ParticipantManagementService/ws/participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+Application.AttributeContext.getAttribute(USER_PROFILE).userId+"/?timestamp="+timestamp+"' class='app_userLoginPhotoBorder'/>&nbsp;"
+            dojo.byId("idx_form_DropDownLink_0_link").innerHTML=imgTag+Application.AttributeContext.getAttribute(USER_PROFILE).displayName;
+            var titleTxt=Application.AttributeContext.getAttribute(USER_PROFILE).displayName+"("+Application.AttributeContext.getAttribute(USER_PROFILE).title+") :"+Application.AttributeContext.getAttribute(USER_PROFILE).description;
+            dojo.byId("idx_form_DropDownLink_0_link").title=titleTxt;
+        }
+        function setupUserLoginInfo(userLoginName){
+            var resturl=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/detailInfo/"+APPLICATION_ID+"/"+userLoginName+"/";
+            var syncFlag=true;
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback=function(data){
+                if(data!=null){
+                    Application.AttributeContext.setAttribute(USER_PROFILE,data);
+                    Application.MessageUtil.listenToMessageTopic(APP_USERLOGIN_PARTICIPANTINFO_REFRESH_EVENT,refreshUserLoginUIData);
+                }
+            };
+            Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
+        }
+        function logoutUser(){
+            var messageTxt="<b>请确认是否注销当前登录的用户</b>";
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            var confirmButtonAction=function(){
+                var userLogoutData={};
+                userLogoutData.participantID=userId;
+                userLogoutData.participantScope=APPLICATION_ID;
+                var userLogoutDataContent=dojo.toJson(userLogoutData);
+                var resturl=PARTICIPANT_SERVICE_ROOT+"participantAuthenticateService/participantLogout/";
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback=function(data){
+                    if(data.logoutAuthenticateResult){
+                        window.location.href="login.html";
+                    }
+                };
+                Application.WebServiceUtil.postJSONData(resturl,userLogoutDataContent,loadCallback,errorCallback);
+            }
+            UI.showConfirmDialog({
+                message:messageTxt,
+                confirmButtonLabel:"<i class='icon-power-off'></i> 注销",
+                cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+                confirmButtonAction:confirmButtonAction
+            });
+        }
+        function editUserProfile(){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            require(["idx/oneui/Dialog"], function(Dialog){
+                var participantProfileEditor=new vfbam.userclient.common.UI.components.participantProfile.ParticipantProfileEditorWidget({participantId:userId});
+                var editParticipantProfileButton=new dijit.form.Button({
+                    label: "<i class='icon-save'></i> 更新用户信息",
+                    onClick: function(){
+                        participantProfileEditor.updateUserProfile();
+                    }
+                });
+                var actionButtone=[];
+                actionButtone.push(editParticipantProfileButton);
+                var	dialog = new Dialog({
+                    style:"width:610px;",
+                    title: "<i class='icon-user'></i> 用户信息",
+                    content: "",
+                    buttons:actionButtone,
+                    closeButtonLabel: "<i class='icon-remove'></i> 取消"
+                });
+                dojo.place(participantProfileEditor.containerNode, dialog.containerNode);
+                dialog.show();
+            });
+        }
+        function resetUserPassword(){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            require(["idx/oneui/Dialog"], function(Dialog){
+                var participantPasswordResetWidget=new vfbam.userclient.common.UI.components.participantProfile.ParticipantPasswordResetWidget({participantId:userId});
+                var editParticipantProfileButton=new dijit.form.Button({
+                    label: "<i class='icon-save'></i> 重置密码",
+                    onClick: function(){
+                        participantPasswordResetWidget.updateParticipantPassword();
+                    }
+                });
+                var actionButtone=[];
+                actionButtone.push(editParticipantProfileButton);
+                var	dialog = new Dialog({
+                    style:"width:610px;",
+                    title: "<i class='icon-user'></i> 重置用户登录密码",
+                    content: "",
+                    buttons:actionButtone,
+                    closeButtonLabel: "<i class='icon-remove'></i> 取消"
+                });
+                dojo.place(participantPasswordResetWidget.containerNode, dialog.containerNode);
+                dialog.connect(participantPasswordResetWidget, "doCloseContainerDialog", "hide");
+                dialog.show();
+            });
+        }
+    </script>
+</head>
+
+<body id="idxExampleBody" style="width: 100%; height: 100%; margin: 0; padding: 0">
+<script type="text/javascript">applyThemeToBody();</script>
+<div dojoType="idx.app.A11yPrologue"></div>
+<div style="width: 100%; height: 100%; margin: 0; padding: 0" dojoType="idx.app.AppFrame">
+    <div dojoType="idx.app.AppMarquee" region="marquee"
+         appName=" Viewfunction 业务活动协同处理平台xxxxxxxxxxxxxxxxxxxx " vendorName="Viewfunction &#0174;"
+         vendorLogo="images/vendorLogoWhite.png">
+        <!-- WHATEVER CONTENT YOU WANT CAN GO HERE FOR THE MARQUEE -->
+           <span class="linkMenu" dojoType="idx.form.DropDownLink"
+                 label="登录用户名称" title="登录用户名称">
+                  <div dojoType="dijit.Menu">
+                      <div dojoType="dijit.MenuItem"
+                           onClick="editUserProfile()"
+                           label="设置用户信息">
+                      </div>
+                      <div dojoType="dijit.MenuItem"
+                           onClick="resetUserPassword()"
+                           label="重置登录密码">
+                      </div>
+                  </div>
+           </span>
+        <span>|</span>
+        <span dojoType="idx.form.Link" onClick="return onAbout()">关于</span>
+        <span>|</span>
+        <span dojoType="idx.form.Link" onClick="logoutUser()"> 注销</span>
+    </div>
+    <div id="app_TabMenuLauncher" dojoType="idx.app.TabMenuLauncher"
+         defaultWorkspaceTypeID="MESSAGE_CENTER" stateCookieName="idx.app.launcher">
+        <div dojoType="idx.app.WorkspaceType"
+             workspaceTypeID="MESSAGE_CENTER"
+             urlTemplate="vfbam/userclient/components/messageCenter/messageCenter.html"
+             mixinArgs="{workspaceTypeName: '信息中心'}">
+        </div>
+        <div dojoType="idx.app.WorkspaceType"
+             workspaceTypeID="TASK_CENTER"
+             urlTemplate="vfbam/userclient/components/taskCenter/taskCenter.html"
+             mixinArgs="{workspaceTypeName: '我的工作'}">
+        </div>
+        <div dojoType="idx.app.WorkspaceType"
+             workspaceTypeID="CALENDAR_CENTER"
+             urlTemplate="vfbam/userclient/components/calendarCenter/calendarCenter.html"
+             mixinArgs="{workspaceTypeName: '工作日程表'}">
+        </div>
+        <div dojoType="idx.app.WorkspaceType"
+             workspaceTypeID="DOCUMENT_CENTER"
+             urlTemplate="vfbam/userclient/components/documentCenter/documentCenter.html"
+             mixinArgs="{workspaceTypeName: '文档中心'}">
+        </div>
+        <div dojoType="idx.app.WorkspaceType"
+             workspaceTypeID="TASK_DETAIL"
+             urlTemplate="vfbam/userclient/components/taskDetails/taskDetails.html"
+             mixinArgs="{workspaceTypeName: '任务',maxOpen:5,initialOpen:0}">
+        </div>
+        <div dojoType="idx.app.WorkspaceType"
+             workspaceTypeID="EXTERNAL_RESOURCE"
+             urlTemplate="vfbam/userclient/components/externalResource/externalResource.html"
+             mixinArgs="{workspaceTypeName: '外部资源',maxOpen:5,initialOpen:0}">
+        </div>
+    </div>
+</div>
+<div id="app_messageToaster_container"
+     data-dojo-type="idx.oneui.messaging.Toaster"
+     data-dojo-props="style:'z-index:99999', persistMessages:false, messageTimeout:2500">
+</div>
+</body>
+</html>

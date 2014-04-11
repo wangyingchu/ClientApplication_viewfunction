@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<title>Zoomer Demo</title>
+		<!--[if LTE IE 8]>
+			<link href="../demo.ie.css" rel="stylesheet" type="text/css" media="all" />
+		<![endif]-->
+		<script src="../jquery.1.10.2.min.js"></script>
+		<link href="../jquery.fs.zoomer.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="../jquery.fs.zoomer.js"></script>
+		<style>
+			.zoomer_wrapper { 
+				border: 1px solid #ddd; 
+				border-radius: 3px; 
+				height: 500px; 
+				margin: 10px 0; 
+				overflow: hidden; 
+				width: 100%;				
+			}
+		</style>
+
+		<script>
+			$(document).ready(function() {
+				$(".zoomer_basic").zoomer();
+				$(window).on("resize", function(e) {
+					$(".zoomer_wrapper").zoomer("resize");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="zoomer_wrapper zoomer_basic">
+			<img src="33676_306202_983765.jpg" />
+		</div>
+	</body>
+</html>

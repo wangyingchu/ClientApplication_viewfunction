@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>xmlReader</title>
+    <link rel="stylesheet" type="text/css" href="XMLDisplay.css"/>
+    <script type="text/javascript" charset="utf-8" src="XMLDisplay.js"></script>
+</head>
+<body>
+<div id="XMLHolder"></div>
+<script>
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r!=null){
+            return unescape(r[2]);
+        }
+        return null; //返回参数值
+    }
+    var fileName=getUrlParam("fileName");
+    if(fileName){
+        LoadXML("XMLHolder",fileName);
+    }
+    </script>
+</body>
+</html>

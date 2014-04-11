@@ -1,0 +1,55 @@
+<table width="100%" border="0">
+    <tr>
+        <td>
+            <span style="font-size: 1.0em; font-weight: bold;color: #444444;padding-right: 20px;"><i class="icon-tasks"></i> 我的工作</span>
+            <div data-dojo-type="idx.form.DropDownSelect" label="<i class='icon-retweet'></i> 启动业务活动">
+                <div data-dojo-type="idx.widget.MenuDialog">
+                    <div id="app_taskCenter_activityLauncherContainer"></div>
+                </div>
+            </div>
+        </td>
+        <td align="right"><i class="icon-cog"></i> <span data-dojo-type="idx.form.Link">我的工作设置</span></td>
+    </tr>
+    <tr>
+        <td colspan="2" >
+            <div class="app_headerDivLine"></div>
+        </td>
+    </tr>
+</table>
+
+<div dojoType="idx.layout.BorderContainer" id="app_taskCenter_mainContainer" style="width: 100%; height: 94%;" gutters="false" liveSplitters="true" onPanelClose="onToolsDockClose" onPanelOpen="onToolsDockOpen" onDragEnd="onToolsDockResize">
+    <div dojoType="dijit.layout.ContentPane" region="left" splitter="true" style="width: 250px;">
+        <table width="100%" border="0">
+            <tr>
+                <td>
+                    <span style="font-size: 0.8em;color: #888888;">显示：</span>
+                    <button dojoType="dijit.form.DropDownButton" placement="secondary" id="app_taskCenter_helpWidgetSwitcher">
+                        <span>我的同事</span>
+                        <div dojoType="dijit.Menu">
+                            <div dojoType="dijit.MenuItem" onClick="showParticipentList">我的同事</div>
+                            <div dojoType="dijit.MenuItem" onClick="showDocumentList">我的文档</div>
+                        </div>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div><div class="app_headerDivLine"></div></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div id="app_taskCenter_helpWidget_participantList"></div>
+
+                    <div id="app_taskCenter_helpWidget_documentList"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div dojoType="dijit.layout.BorderContainer" region="center" gutters="false">
+        <div id="app_taskCenter_myTasksContainer"></div>
+        <div id="app_taskCenter_teamTasksQueueContainer"></div>
+    </div>
+</div>
+<script type="text/javascript" src="vfbam/userclient/components/taskCenter/taskCenter.js"></script>

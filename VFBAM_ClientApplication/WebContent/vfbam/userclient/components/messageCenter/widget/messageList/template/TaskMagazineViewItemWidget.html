@@ -1,0 +1,30 @@
+<div class="app_magazineView_item app_unselectable" data-dojo-attach-point="messageItemRootContainer">
+    <div style="height: 3px;"></div>
+    <table width="100%" height="50px" border="0" class="app_headerDivLine">
+        <tr>
+            <td>
+                <div style="padding-left: 10px;">
+                    <span data-dojo-attach-point="operationLink"></span>
+                    <span style="font-size: 1.0em; font-weight: bold;" data-dojo-attach-point="taskName"></span>&nbsp;<span>-</span>
+                    <span style="font-size: 0.9em;" data-dojo-attach-point="activityName"></span>&nbsp;
+                    <span style="font-style: italic;">(<span data-dojo-attach-point="activityId">157</span>)</span>
+                </div>
+
+            </td>
+            <td align="right" style="width: 180px;padding-right: 5px;">
+                <span style="font-size: 0.8em;" ><i class="icon-time"></i> 到期时间:</span>
+                <span style="font-size: 0.8em; font-weight: bold;" data-dojo-attach-point="taskDueDate"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="app_magazineView_textOverflow" style="padding-left: 10px;font-size: 0.8em;" data-dojo-attach-point="taskDescription">
+                </div>
+            </td>
+            <td align="right" style="min-width: 80px;padding-right: 5px;">
+                <span style="font-size: 0.8em;" ><i class="icon-group" data-dojo-attach-point="readMessageButton"></i> 任务角色:</span>
+                <span style="font-size: 0.8em; font-weight: bold;" data-dojo-attach-point="taskRole"></span>
+            </td>
+        </tr>
+    </table>
+</div>

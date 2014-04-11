@@ -1,0 +1,58 @@
+<div style="width: 100%;height: 100%;">
+    <table width="100%" border="0">
+        <tr>
+            <td><span style="font-size: 1.0em; font-weight: bold;color: #444444;"><i class="icon-tag"></i> 任务详细信息</span></td>
+            <td align="right"></td>
+        </tr>
+        <tr>
+            <td colspan="2" >
+                <div class="app_headerDivLine"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="height: 3px;">
+                <div></div>
+            </td>
+        </tr>
+    </table>
+    <div data-dojo-attach-point="taskToolbarContainer"></div>
+    <table width="100%" border="0" style="padding-left:5px;">
+        <tr>
+            <td style="padding-right: 20px;vertical-align:top;" class="app_contentDivLine_right" data-dojo-attach-point="taskPropertiesContainer">
+                <div style="height: 10px;"></div>
+                <table width="100%" border="0">
+                    <tr>
+                        <td width="100" style="display: inline;">
+                            <span style="font-size: 0.9em;color: #888888;font-weight: bold;"><i class="icon-reorder"></i> 任务业务活动数据：</span>
+                        </td>
+                        <td width=150" align="right">
+                            <i class="icon-undo" style="cursor: pointer;" data-dojo-attach-event="onclick:resetTaskData"></i>
+                            <span style="width: 110px;font-size: 0.9em; color: #888888;">&nbsp;撤销未保存数据变更</span>
+                        </td>
+                    </tr>
+                </table>
+                <div style="height: 12px;"></div>
+                <div data-dojo-attach-point="taskDataEditorContainer"></div>
+            </td>
+            <td align="left" style="width: 320px; vertical-align:top;padding-left: 10px;">
+                <div style="height: 5px;"></div>
+                <span style="font-size: 0.9em;color: #888888;padding-left: 5px;font-weight: bold;">显示：</span>
+                <button dojoType="dijit.form.DropDownButton" placement="secondary" data-dojo-attach-point="taskSupportDataWidgetSwitchButton">
+                    <span>活动附件</span>
+                    <div dojoType="dijit.Menu">
+                        <div dojoType="dijit.MenuItem" data-dojo-attach-event="onClick:showAttachment">活动附件</div>
+                        <div dojoType="dijit.MenuItem" data-dojo-attach-event="onClick:showParticipant">活动参与人</div>
+                        <div dojoType="dijit.MenuItem" data-dojo-attach-event="onClick:showComment">活动备注</div>
+                        <div dojoType="dijit.MenuItem" data-dojo-attach-event="onClick:showHistory">活动历史记录</div>
+                    </div>
+                </button>
+                <div style="height: 1px;"></div>
+                <div class="app_headerDivLine"></div>
+                <div data-dojo-attach-point="taskSupportDataContainer_document"></div>
+                <div data-dojo-attach-point="taskSupportDataContainer_participant"></div>
+                <div data-dojo-attach-point="taskSupportDataContainer_comment"></div>
+                <div data-dojo-attach-point="taskSupportDataContainer_history"></div>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,203 @@
+/*  theme color(dark to light):#00475B #007698 #3391AD #66ADC1 #87E5FF */
+.oneui div.idxAppFrameHeader{
+    background: #005E7A;
+}
+.oneui .idxAppMarquee .idxLinkDerived, .oneui .idxAppMarquee .idxDropDownLinkAnchor {
+    font-weight: bold;
+}
+.oneui div.idxTabMenuDock{
+    background: #00475B;
+}
+.oneui .idxAppFrameMarquee div.idxAppMarqueeRight{
+    background: #00475B;
+    border-left: 0px;
+}
+.oneui div.idxTabMenuDockTabs {
+    background-color: #00475B;
+}
+.oneui .dijitTabContainerTop-tabs .dijitTabContent {
+    border-radius: 0 0 0 0;
+}
+.oneui div.idxWorkspaceTabTitle{
+    font-size: 1.05em;
+}
+.oneui .dijitTabContainerTop-tabs .dijitTabChecked {
+    border-top: 2px solid #3391AD;
+}
+.oneui .dijitTabContainerTop-tabs .dijitTabHover {
+    border-top: 2px solid #66ADC1;
+}
+.oneui div.idxWorkspaceTab {
+    background: #3391AD;
+    height: 48px;
+}
+.oneui div.idxTabMenuDock{
+    height: 48px;
+}
+.oneui div.idxWorkspaceTab:hover {
+    background: #66ADC1;
+}
+.oneui div.idxWorkspaceTabSelected:hover {
+    background: #FCFCFC;
+}
+.oneui div.idxWorkspaceTabSelected{
+    background: #FCFCFC;
+}
+.oneui div.idxTabMenuLauncherContentStack {
+    background-color: #FCFCFC;
+}
+.oneui .dijitButton .dijitButtonNode,
+.oneui .dijitDropDownButton .dijitButtonNode,
+.oneui .dijitComboButton .dijitButtonNode,
+.oneui .dijitToggleButton .dijitButtonNode{
+    /*
+    background-color: #F09000;
+    background-image: none;
+    border: 0px solid #666666;
+    color: #000000;
+    font-weight: normal;
+    padding: 6px 10px;
+    */
+    border-radius: 0px 0px 0px 0px;
+}
+.oneui .idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorLogo {
+    /*    right: 5px;  top: 10px;   */
+}
+.idxAppMarqueeRight{
+   /* width:110px;*/
+}
+.oneui .searchBarButton .dijitButton .dijitButtonNode {
+    min-width: 30px;
+    border-radius: 0px 10px 10px 0px;
+}
+.oneui .dijitTabContainerTop-dijitContentPane,
+.oneui .dijitTabContainerLeft-dijitContentPane,
+.oneui .dijitTabContainerBottom-dijitContentPane,
+.oneui .dijitTabContainerRight-dijitContentPane,
+.oneui .dijitAccordionContainer-dijitContentPane {
+    background-color: #FCFCFC;
+}
+.oneui .dijitTab {
+    background-color: #FCFCFC;
+}
+.oneui .dijitTabContainerLeft-tabs .dijitTabContent {
+    border-radius: 0px 0px 0px 0px;
+    /*
+    max-width: 20px;*/
+}
+.oneui .dijitLayoutContainer .dijitSplitterV {
+    width: 4px;
+}
+.oneui .gridxHeaderRow .gridxCell {
+    color: #444444;
+    font-size: 0.9em;
+   /*
+    padding: 13px 7px; */
+}
+.oneui .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable {
+    background-color: #66ADC1;
+    color: #f0f0f0;
+}
+/*
+modify and override below css file for .oneui .gridxRow .gridxCell
+home/wangychu/Dev_Workspace/VFBPM_Dev/VFBAMClient_idx/WebContent/ibmjs/idx/themes/oneui/idx/gridx/basic.css
+*/
+.oneui .gridxRow .gridxCell {
+    font-size: 0.9em;
+}
+.oneui .dijitCalendar{
+    border: 2px solid rgba(3, 3, 3, 0.4);
+    border-radius: 0px 0px 0px 0px;
+    box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0.2);
+}
+.claro .dojoxCalendarMatrixView .dojoxCalendarGridTable td.dojoxCalendarToday {
+    background-color: #66ADC1;
+    color: #ffffff;
+}
+.claro .dojoxCalendarMatrixView .dojoxCalendarGridTable .dojoxCalendarWeekend {
+    background-color: #e5f2fe;
+    color: #759dc0;
+}
+.oneui .idxDialog {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0px solid #fefefe;
+    border-top: 8px solid #3391AD;
+    border-radius: 0px 0px 0px 0px;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+}
+.oneui .idxDialog .dijitDialogInstruction {
+    margin: 0px 0px 10px;
+}
+.oneui .dijitDialog {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0px;
+    border-top: 8px solid #3391AD;
+    border-radius: 0px 0px 0px 0px;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+}
+.oneui .dijitDialogTitleBar{
+    padding: 15px 0;
+}
+.oneui .dijitTitlePaneContentInner{
+    padding: 0px;
+}
+.oneui .dijitTitlePaneTitle{
+    border-top: 5px solid #3391AD;
+    background-color: #fefefe;
+}
+/* hover over or select a MenuItem */
+.oneui .dijitMenuTable .dijitMenuItemHover,
+.oneui .dijitMenuTable .dijitMenuItemActive,
+.oneui .dijitMenuTable .dijitMenuItemFocused{
+    color: #ffffff;
+    background: #66ADC1;
+}
+.appDynamicPageTabText{
+    font-style:italic;
+    font-size: 1.1em;
+    text-decoration:underline;
+}
+.oneui .dijitTooltipContainer {
+    background-color: #FFFFFF;
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    border: 0px solid #999999;
+    border-top: 6px solid #3391AD;
+    border-radius: 0px 0px 0px 0px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.oneui .idxButtonDerived.idxButtonSpecial .dijitButtonNode, .oneui .dijitButton.idxButtonSpecial .dijitButtonNode, .oneui .dijitToggleButton.idxButtonSpecial .dijitButtonNode, .oneui .dijitDropDownButton.idxButtonSpecial .dijitButtonNode, .oneui .dijitComboButton.idxButtonSpecial .dijitButtonNode {
+    background-color: #008ABF;
+    background-image: -moz-linear-gradient(center top , #008ABF, #00475B);
+    border: 1px solid #0A5F8E;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.claro .dojoxCalendarColumnView .dojoxCalendarEvent .startTime {
+    background-color: #007698;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -moz-border-top-right-radius: 0px;
+    -moz-border-top-left-radius: 0px;
+}
+.claro .dojoxCalendarColumnView .dojoxCalendarEvent.Hovered .startTime {
+    background-color: #3391AD;
+}
+
+.dijitCalendar .Highlighted {
+    /*background-color: #fff0b4 !important; */
+}
+.dijitCalendar .Highlighted .dijitCalendarDateLabel {
+    color: #FFFFFF;
+
+    background-color: #66ADC1;
+    border: 1px solid #66ADC1;
+}
+
+.nonModal_underlay {
+    display:none
+}
