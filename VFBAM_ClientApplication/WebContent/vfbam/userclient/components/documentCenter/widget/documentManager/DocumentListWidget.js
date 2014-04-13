@@ -19,6 +19,12 @@ require([
         participantId:null,
         roleName:null,
 
+
+
+        currentFolderPath:null,
+        parentFolderPath:null,
+        currentFolderName:null,
+
         postCreate: function(){
             this.documentsFolderPathArray=[];
             this.currentDocumentsArray=[];
@@ -67,7 +73,7 @@ require([
                 */
                 if(data){
 
-                    /*
+
                     that.currentFolderPath=data.folderPath;
                     that.parentFolderPath=data.parentFolderPath;
                     that.currentFolderName=data.folderName;
@@ -84,26 +90,86 @@ require([
                             currentDocument["documentCreator"]=documentItem.documentCreator;
                             currentDocument["documentLastUpdatePerson"]=documentItem.documentLastUpdatePerson;
                             currentDocument["version"]=documentItem.version;
-                            currentDocument["childDocumentNumber"]=documentItem.childDocumentNumber;
-                            currentDocument["documentFolderPath"]=documentItem.documentFolderPath;
+                            currentDocument["childrenNumber"]=documentItem.childDocumentNumber;
+                            currentDocument["documentSize"]=documentItem.documentSize;
+                            var documentCreator=documentItem.documentCreator;
+                            if(documentCreator){
+                                var creatorParticipant={};
+                                creatorParticipant.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentCreator.userId;
+                                creatorParticipant.participantName=documentCreator.displayName;
+                                creatorParticipant.participantId=documentCreator.userId;
+                                creatorParticipant.participantTitle=documentCreator.title;
+                                creatorParticipant.participantDesc=documentCreator.description;
+                                creatorParticipant.participantAddress=documentCreator.address;
+                                creatorParticipant.participantPhone=documentCreator.fixedPhone;
+                                creatorParticipant.participantEmail=documentCreator.emailAddress;
+                                currentDocument["documentCreator"]=creatorParticipant;
+                            }
+                            var documentLastUpdater=documentItem.documentLastUpdatePerson;
+                            if(documentLastUpdater){
+                                var updateParticipant={};
+                                updateParticipant.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentLastUpdater.userId;
+                                updateParticipant.participantName=documentLastUpdater.displayName;
+                                updateParticipant.participantId=documentLastUpdater.userId;
+                                updateParticipant.participantTitle=documentLastUpdater.title;
+                                updateParticipant.participantDesc=documentLastUpdater.description;
+                                updateParticipant.participantAddress=documentLastUpdater.address;
+                                updateParticipant.participantPhone=documentLastUpdater.fixedPhone;
+                                updateParticipant.participantEmail=documentLastUpdater.emailAddress;
+                                currentDocument["documentLastUpdatePerson"]=updateParticipant;
+                            }
                             documentsArray.push(currentDocument);
                         });
                         if(documentsArray.length>0){
-                            that._renderDocumentsList(documentsArray);
+                            that.renderDocumentsList(documentsArray);
                         }else{
-                            that._renderDocumentsList([]);
-                            if(that.containerInitFinishCounterFuc){
-                                that.containerInitFinishCounterFuc();
-                            }
+                            that.renderDocumentsList([]);
                         }
                     }
-                    */
-
-
                 }
             };
 
-            //Application.WebServiceUtil.postJSONData(resturl,folderQueryContent,loadCallback,errorCallback);
+            if( this.documentsOwnerType=="PARTICIPANT") {
+                Application.WebServiceUtil.postJSONData(resturl, folderQueryContent, loadCallback, errorCallback);
+            }else{
+
+
+
+
+
+
+                var documentsList=this.getDocumentsList("/");
+                this.documentsFolderPathArray.push("子目录1");
+                this.documentsFolderPathArray.push("子目录2");
+                this.documentsFolderPathArray.push("子目录3");
+                this.documentsFolderPathArray.push("子目录4");
+                this.documentsFolderPathArray.push("子目录5");
+                this.documentsFolderPathArray.push("子目录6");
+
+
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+                this.documentsFolderPathArray.push("子目录6");
+
+
+                this.renderDocumentsList(documentsList);
+
+
+
+
+
+
+
+            }
 
 
 
@@ -112,31 +178,6 @@ require([
 
 
 
-
-            var documentsList=this.getDocumentsList("/");
-            this.documentsFolderPathArray.push("子目录1");
-            this.documentsFolderPathArray.push("子目录2");
-            this.documentsFolderPathArray.push("子目录3");
-            this.documentsFolderPathArray.push("子目录4");
-            this.documentsFolderPathArray.push("子目录5");
-            this.documentsFolderPathArray.push("子目录6");
-
-
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-            this.documentsFolderPathArray.push("子目录6");
-
-
-            this.renderDocumentsList(documentsList);
         },
         getDocumentsList:function(folderPath){
             var documentsArray=[];

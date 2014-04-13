@@ -10,7 +10,7 @@ require([
         doubleClickEventConnectionHandler:null,
         postCreate: function(){
             this.documentName.innerHTML=this.documentInfo.documentName;
-            this.documentTypeIcon.src=this.getFileTypeIcon(this.documentInfo.documentType);
+            this.documentTypeIcon.src=DocumentHandleUtil.getFileTypeIcon(this.documentInfo.documentType,this.documentInfo.isFolder,this.documentInfo.documentName);
             var dateDisplayFormat={datePattern: "yyyy-MM-dd", selector: "date"};
             var timeDisplayFormat={datePattern: "HH:MM", selector: "time"};
             this.createDate.innerHTML=dojo.date.locale.format(this.documentInfo.documentCreateDate,dateDisplayFormat)+" "+
@@ -57,33 +57,6 @@ require([
             domClass.add(this.documentItemRootContainer, "app_magazineView_item_selected");
             this.currentSelectedDocumentItemArray.push(this);
             this.documentPreviewWidget.renderDocumentPreview(this.documentInfo);
-        },
-        getFileTypeIcon:function(fileType){
-            if(fileType=="PDF"){
-                return "vfbam/userclient/css/image/fileType/pdf.png"
-            }
-            if(fileType=="PPT"){
-                return "vfbam/userclient/css/image/fileType/ppt.png"
-            }
-            if(fileType=="XLS"){
-                return "vfbam/userclient/css/image/fileType/xls.png"
-            }
-            if(fileType=="TXT"){
-                return "vfbam/userclient/css/image/fileType/txt.png"
-            }
-            if(fileType=="FOLDER"){
-                return "vfbam/userclient/css/image/fileType/folder16.png"
-            }
-            if(fileType=="DOC"){
-                return "vfbam/userclient/css/image/fileType/doc.png"
-            }
-            if(fileType=="JPG"){
-                return "vfbam/userclient/css/image/fileType/graphic16.gif"
-            }
-            if(fileType=="MP3"){
-                return "vfbam/userclient/css/image/fileType/audio.gif"
-            }
-            return "vfbam/userclient/css/image/fileType/default16.png"
         },
         destroy:function(){
             dojo.disconnect(this.clickEventConnectionHandler);
