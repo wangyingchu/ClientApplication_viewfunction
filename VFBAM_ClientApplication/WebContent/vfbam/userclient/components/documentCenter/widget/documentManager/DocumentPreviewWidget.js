@@ -20,8 +20,17 @@ require([
                 this.documentSizeTxt.innerHTML="子文件数量";
                 this.documentSizeText.innerHTML= documentInfo.childrenNumber;
             }else{
+                var num;
+                var fileSize;
+                if(documentInfo.documentSize>1024000){
+                    num = new Number(documentInfo.documentSize/1024000);
+                    fileSize=num.toFixed(2)+" MB";
+                }else{
+                    num = new Number(documentInfo.documentSize/1024);
+                    fileSize=num.toFixed(0)+" KB";
+                }
                 this.documentSizeTxt.innerHTML="文件大小";
-                this.documentSizeText.innerHTML= documentInfo.documentSize;
+                this.documentSizeText.innerHTML=fileSize;
             }
             this.documentVersionText.innerHTML="v "+ documentInfo.version;
 
@@ -38,7 +47,7 @@ require([
             }else{
                 dojo.style(this.creatorRootContainer,"display","none");
             }
-            if(documentInfo.documentCreateDate&&documentInfo.documentCreateDate.getTime()!=0){
+            if(documentInfo.documentCreateDate&documentInfo.documentCreateDate.getTime()!=0){
                 this.documentCreateDateText.innerHTML= dojo.date.locale.format(documentInfo.documentCreateDate);
                 dojo.style(this.creatorDateRootContainer,"display","");
             }else{
@@ -63,8 +72,9 @@ require([
                     dojo.style(this.lastUpdatePersonRootContainer,"display","none");
                     dojo.style(this.lastUpdateDateRootContainer,"display","none");
                 }
-            this.documentPreviewPicture.src=DocumentHandleUtil.getPreviewPicURL(documentInfo.documentType,documentInfo.isFolder);
+
             }
+            this.documentPreviewPicture.src=DocumentHandleUtil.getPreviewPicURL(documentInfo.documentType,documentInfo.isFolder);
         },
         renderInitInfo:function(){
             if(this.creatorNamecardWidget){

@@ -19,10 +19,10 @@ require([
                 		var num;
                 		if(fileArray[0].size>1024000){
                 			num = new Number(fileArray[0].size/1024000);                			
-                			fileSize=num.toFixed(2)+"MB";
+                			fileSize=num.toFixed(2)+" MB";
                 		}else{
                 			num = new Number(fileArray[0].size/1024); 
-                			fileSize=num.toFixed(0)+"KB";
+                			fileSize=num.toFixed(0)+" KB";
                 		}
                 		that.selectedFileInfo.innerHTML=fileArray[0].name+" ("+fileSize+")";                		
                 		if(fileArray[0].size>1024000){

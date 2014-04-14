@@ -12,19 +12,13 @@ require([
         addNewFolderDropDown:null,
         currentSelectedDocumentItemArray:null,
         alreadyLoad:null,
-
-
         activitySpaceName:null,
         documentsOwnerType:null,
         participantId:null,
         roleName:null,
-
-
-
         currentFolderPath:null,
         parentFolderPath:null,
         currentFolderName:null,
-
         postCreate: function(){
             this.documentsFolderPathArray=[];
             this.currentDocumentsArray=[];
@@ -32,12 +26,8 @@ require([
             this.alreadyLoad=false;
         },
         initRender:function(){
-
             this.activitySpaceName=this.documentsInitData.activitySpaceName;
             this.documentsOwnerType=this.documentsInitData.documentsOwnerType;
-
-
-
             var resturl="";
             var folderQueryContent="";
             if( this.documentsOwnerType=="PARTICIPANT"){
@@ -53,9 +43,9 @@ require([
             if( this.documentsOwnerType=="ROLE"){
                 this.roleName=this.documentsInitData.roleName;
             }
-            if( this.documentsOwnerType=="APPLICATIONSPACE"){}
+            if( this.documentsOwnerType=="APPLICATIONSPACE"){
 
-
+            }
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };
@@ -72,8 +62,6 @@ require([
                 timer.start();
                 */
                 if(data){
-
-
                     that.currentFolderPath=data.folderPath;
                     that.parentFolderPath=data.parentFolderPath;
                     that.currentFolderName=data.folderName;
@@ -128,16 +116,9 @@ require([
                     }
                 }
             };
-
             if( this.documentsOwnerType=="PARTICIPANT") {
                 Application.WebServiceUtil.postJSONData(resturl, folderQueryContent, loadCallback, errorCallback);
             }else{
-
-
-
-
-
-
                 var documentsList=this.getDocumentsList("/");
                 this.documentsFolderPathArray.push("子目录1");
                 this.documentsFolderPathArray.push("子目录2");
@@ -145,8 +126,6 @@ require([
                 this.documentsFolderPathArray.push("子目录4");
                 this.documentsFolderPathArray.push("子目录5");
                 this.documentsFolderPathArray.push("子目录6");
-
-
                 this.documentsFolderPathArray.push("子目录6");
                 this.documentsFolderPathArray.push("子目录6");
                 this.documentsFolderPathArray.push("子目录6");
@@ -159,25 +138,8 @@ require([
                 this.documentsFolderPathArray.push("子目录6");
                 this.documentsFolderPathArray.push("子目录6");
                 this.documentsFolderPathArray.push("子目录6");
-
-
                 this.renderDocumentsList(documentsList);
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
-
         },
         getDocumentsList:function(folderPath){
             var documentsArray=[];
@@ -522,7 +484,7 @@ require([
             dojo.forEach(documentList,function(currentDocument){
                 var currentDocumentInfoWidget=new vfbam.userclient.components.documentCenter.widget.documentManager.DocumentDetailInfoWidget(
                     {documentInfo:currentDocument,documentListWidget:this,currentSelectedDocumentItemArray:this.currentSelectedDocumentItemArray,
-                     documentPreviewWidget:this.documentPreviewWidget});
+                     documentPreviewWidget:this.documentPreviewWidget,documentsOwnerType:this.documentsOwnerType});
                 this.currentDocumentsArray.push(currentDocumentInfoWidget);
                 this.documentsListContainer.appendChild(currentDocumentInfoWidget.domNode);
 
