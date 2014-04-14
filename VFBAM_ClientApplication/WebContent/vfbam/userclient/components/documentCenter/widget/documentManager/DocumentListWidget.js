@@ -42,9 +42,21 @@ require([
             }
             if( this.documentsOwnerType=="ROLE"){
                 this.roleName=this.documentsInitData.roleName;
+                var roleFolderQueryObj={};
+                roleFolderQueryObj.activitySpaceName=this.activitySpaceName;
+                roleFolderQueryObj.roleName=this.roleName;
+                roleFolderQueryObj.parentFolderPath="/";
+                roleFolderQueryObj.folderName="";
+                folderQueryContent=dojo.toJson(roleFolderQueryObj);
+                resturl=CONTENT_SERVICE_ROOT+"roleFolder/";
             }
-            if( this.documentsOwnerType=="APPLICATIONSPACE"){
-
+            if(this.documentsOwnerType=="APPLICATIONSPACE"){
+                var applicationSpaceFolderQueryObj={};
+                applicationSpaceFolderQueryObj.activitySpaceName=this.activitySpaceName;
+                applicationSpaceFolderQueryObj.parentFolderPath="/";
+                applicationSpaceFolderQueryObj.folderName="";
+                folderQueryContent=dojo.toJson(applicationSpaceFolderQueryObj);
+                resturl=CONTENT_SERVICE_ROOT+"applicationSpaceFolder/";
             }
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
@@ -116,7 +128,10 @@ require([
                     }
                 }
             };
-            if( this.documentsOwnerType=="PARTICIPANT") {
+            Application.WebServiceUtil.postJSONData(resturl, folderQueryContent, loadCallback, errorCallback);
+
+            /*
+            if(this.documentsOwnerType=="PARTICIPANT"||this.documentsOwnerType=="APPLICATIONSPACE") {
                 Application.WebServiceUtil.postJSONData(resturl, folderQueryContent, loadCallback, errorCallback);
             }else{
                 var documentsList=this.getDocumentsList("/");
@@ -140,6 +155,7 @@ require([
                 this.documentsFolderPathArray.push("子目录6");
                 this.renderDocumentsList(documentsList);
             }
+            */
         },
         getDocumentsList:function(folderPath){
             var documentsArray=[];
@@ -458,7 +474,7 @@ require([
                 that._cleanDirtyItemData();
                 that._renderDocumentsList(documentList);
                 timer.stop();
-            }
+            };
             timer.start();
         },
         _renderDocumentsList:function(documentList){
