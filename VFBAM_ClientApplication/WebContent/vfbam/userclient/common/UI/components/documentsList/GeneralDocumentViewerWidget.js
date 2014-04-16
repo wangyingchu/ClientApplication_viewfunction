@@ -17,9 +17,7 @@ require([
             this.realDocumentViewerContainer.width=iFrameContentWidth+"px";
             this.realDocumentViewerContainer.height=this.iFrameContentHeight+"px";
             this.serverTempDocumentName=this.tempDocumentName;
-
-            console.log(this.documentMetaInfo);
-
+            //console.log(this.documentMetaInfo);
             var previewTempFileGenerateObj={};
             previewTempFileGenerateObj.documentsOwnerType=this.documentMetaInfo.documentsOwnerType;
             previewTempFileGenerateObj.activitySpaceName=APPLICATION_ID;
@@ -56,8 +54,8 @@ require([
                 previewTempFileGenerateObj.convertOperation="ADDPOSTFIX->.odp";
                 this.serverTempDocumentName=this.tempDocumentName+".odp";
             }
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             if(this.documentMetaInfo.documentsOwnerType=="PARTICIPANT"){
-                var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
                 previewTempFileGenerateObj.participantFileInfo={};
                 previewTempFileGenerateObj.participantFileInfo.activitySpaceName=APPLICATION_ID;
                 previewTempFileGenerateObj.participantFileInfo.participantName=userId;
@@ -71,6 +69,21 @@ require([
                 previewTempFileGenerateObj.activityTypeFileInfo.activityId=this.documentMetaInfo.taskItemData.activityId;
                 previewTempFileGenerateObj.activityTypeFileInfo.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
                 previewTempFileGenerateObj.activityTypeFileInfo.fileName=this.documentMetaInfo.documentInfo.documentName;
+            }
+            if(this.documentMetaInfo.documentsOwnerType=="APPLICATIONSPACE"){
+                previewTempFileGenerateObj.applicationSpaceFileInfo={};
+                previewTempFileGenerateObj.applicationSpaceFileInfo.activitySpaceName=APPLICATION_ID;
+                previewTempFileGenerateObj.applicationSpaceFileInfo.participantName=userId;
+                previewTempFileGenerateObj.applicationSpaceFileInfo.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
+                previewTempFileGenerateObj.applicationSpaceFileInfo.fileName=this.documentMetaInfo.documentInfo.documentName;
+            }
+            if(this.documentMetaInfo.documentsOwnerType=="ROLE"){
+                previewTempFileGenerateObj.roleFileInfo={};
+                previewTempFileGenerateObj.roleFileInfo.activitySpaceName=APPLICATION_ID;
+                previewTempFileGenerateObj.roleFileInfo.participantName=userId;
+                previewTempFileGenerateObj.roleFileInfo.roleName=this.documentMetaInfo.roleName;
+                previewTempFileGenerateObj.roleFileInfo.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
+                previewTempFileGenerateObj.roleFileInfo.fileName=this.documentMetaInfo.documentInfo.documentName;
             }
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);

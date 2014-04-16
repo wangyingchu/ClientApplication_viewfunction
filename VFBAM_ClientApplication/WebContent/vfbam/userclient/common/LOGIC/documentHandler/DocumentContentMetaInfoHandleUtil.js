@@ -210,7 +210,12 @@ var DocumentHandleUtil=(function(){
             }
             return "vfbam/userclient/css/image/fileType/default.png"
         },
-
+        isThumbnailable:function(fileType,fileName){
+            if(fileType.match("image")){
+                return true;
+            }
+            return false;
+        },
         getPreviewPicURL:function(fileType,isFolder){
             if(isFolder){
                 return "vfbam/userclient/css/image/fileType/fileTypePreview/folderDocument.png";

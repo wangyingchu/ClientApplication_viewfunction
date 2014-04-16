@@ -10,6 +10,12 @@ require([
         doubleClickEventConnectionHandler:null,
         postCreate: function(){
             this.documentName.innerHTML=this.documentInfo.documentName;
+            if(DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)||this.documentInfo.isFolder){
+                dojo.style(this.documentName,{"color": "#00475B"});
+                dojo.style(this.documentName,{"cursor": "pointer"});
+            }else{
+                dojo.style(this.documentName,{"color": "#444444"});
+            }
             this.documentTypeIcon.src=DocumentHandleUtil.getFileTypeIcon(this.documentInfo.documentType,this.documentInfo.isFolder,this.documentInfo.documentName);
             var dateDisplayFormat={datePattern: "yyyy-MM-dd", selector: "date"};
             var timeDisplayFormat={datePattern: "HH:MM", selector: "time"};
@@ -17,6 +23,7 @@ require([
                 dojo.date.locale.format(this.documentInfo.documentCreateDate,timeDisplayFormat);
             this.documentVersion.innerHTML=this.documentInfo.version;
             if(this.documentInfo.isFolder){
+                dojo.style(this.openFolderButton,{"display": "inline"});
                 dojo.style(this.previewDocumentButton,{"display": "none"});
                 dojo.style(this.downloadDocumentButton,{"display": "none"});
                 dojo.style(this.updateDocumentButton,{"display": "none"});
@@ -45,18 +52,29 @@ require([
         lockDocument:function(){
             console.log("lockDocument");
         },
+        addChildDocument:function(){
+            console.log("addChildDocument");
+        },
         downloadDocument:function(){
             if(this.documentsOwnerType=="PARTICIPANT"){
                 Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT,{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType});
             }
         },
         previewDocument:function(){
-            if(DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)){
-                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType});
+            if(this.documentInfo.isFolder){
+                var currentFolderPath=this.documentInfo.documentFolderPath;
+                var subFolderName=this.documentInfo.documentName;
+                this.documentListWidget.goToSubFolderByPath(currentFolderPath,subFolderName);
+            }else{
+                if(DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)){
+                    if(this.documentsOwnerType=="ROLE"){
+                        Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentInfo,
+                            documentsOwnerType:this.documentsOwnerType,roleName:this.documentListWidget.roleName});
+                    }else{
+                        Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType});
+                    }
+                }
             }
-        },
-        addChildDocument:function(){
-            console.log("addChildDocument");
         },
         selectDocumentItem:function(){
             if(this.currentSelectedDocumentItemArray&&this.currentSelectedDocumentItemArray.length>0){
@@ -65,7 +83,18 @@ require([
             }
             domClass.add(this.documentItemRootContainer, "app_magazineView_item_selected");
             this.currentSelectedDocumentItemArray.push(this);
-            this.documentPreviewWidget.renderDocumentPreview(this.documentInfo);
+            var previewFileExtraInfo={};
+            if(this.documentListWidget.parentFolderPath=="/"){
+                previewFileExtraInfo["parentFolderPath"]=this.documentListWidget.parentFolderPath+ this.documentListWidget.currentFolderName;
+            }else{
+                previewFileExtraInfo["parentFolderPath"]=this.documentListWidget.parentFolderPath+"/"+ this.documentListWidget.currentFolderName;
+            }
+            if(this.documentsOwnerType=="ROLE"){
+                previewFileExtraInfo["roleName"]=this.documentListWidget.roleName;
+                this.documentPreviewWidget.renderDocumentPreview(this.documentInfo,this.documentsOwnerType,previewFileExtraInfo);
+            }else{
+                this.documentPreviewWidget.renderDocumentPreview(this.documentInfo,this.documentsOwnerType,previewFileExtraInfo);
+            }
         },
         destroy:function(){
             dojo.disconnect(this.clickEventConnectionHandler);

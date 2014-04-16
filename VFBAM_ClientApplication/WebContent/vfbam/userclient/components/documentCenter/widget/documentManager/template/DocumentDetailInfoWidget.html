@@ -3,12 +3,13 @@
         <tr>
             <td>
                 <img src="" width="16px" height="16px" style="vertical-align:middle;" data-dojo-attach-point="documentTypeIcon"/>
-                <span style="font-weight: bold;padding-right: 5px;" data-dojo-attach-point="documentName"></span>
+                <span style="font-weight: bold;padding-right: 5px;" data-dojo-attach-point="documentName" data-dojo-attach-event="onclick:previewDocument"></span>
                 <span style="font-size: 0.9em;font-style: italic;" data-dojo-attach-point="folderChildrenNumber"></span>
                 <span style="font-size: 0.9em;font-style: italic;padding-right: 5px;"><i class="icon-time"></i> <span data-dojo-attach-point="createDate"></span></span>
                 <span style="font-size: 0.9em;color: #ce0000;padding-right: 5px;"><i class="icon-code-fork"></i> v<span data-dojo-attach-point="documentVersion"></span></span>
             </td>
             <td align="right">
+                <span data-dojo-attach-point="openFolderButton" data-dojo-attach-event="onclick:previewDocument"  style="display: none;"><i class="icon-folder-open icon-border" style="cursor: pointer;"></i></span>
                 <span data-dojo-attach-point="addNewChildDocumentButton" data-dojo-attach-event="onclick:addChildDocument" style="display: none;"><i class="icon-file icon-border" style="cursor: pointer;padding-left:3px; padding-right: 3px;"></i></span>
                 <span data-dojo-attach-point="previewDocumentButton" data-dojo-attach-event="onclick:previewDocument"><i class="icon-eye-open icon-border" style="cursor: pointer;"></i></span>
                 <span style="padding-right: 5px;"></span>

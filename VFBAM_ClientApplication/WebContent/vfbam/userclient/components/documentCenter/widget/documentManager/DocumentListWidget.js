@@ -26,6 +26,9 @@ require([
             this.alreadyLoad=false;
         },
         initRender:function(){
+            this.renderFolderDocumentsList("/","");
+        },
+        renderFolderDocumentsList:function(parentFolderPath,folderName){
             this.activitySpaceName=this.documentsInitData.activitySpaceName;
             this.documentsOwnerType=this.documentsInitData.documentsOwnerType;
             var resturl="";
@@ -35,8 +38,8 @@ require([
                 var participantFolderQueryObj={};
                 participantFolderQueryObj.activitySpaceName=this.activitySpaceName;
                 participantFolderQueryObj.participantName=this.participantId;
-                participantFolderQueryObj.parentFolderPath="/";
-                participantFolderQueryObj.folderName="";
+                participantFolderQueryObj.parentFolderPath=parentFolderPath;
+                participantFolderQueryObj.folderName=folderName;
                 folderQueryContent=dojo.toJson(participantFolderQueryObj);
                 resturl=CONTENT_SERVICE_ROOT+"participantPersonalFolder/";
             }
@@ -45,16 +48,16 @@ require([
                 var roleFolderQueryObj={};
                 roleFolderQueryObj.activitySpaceName=this.activitySpaceName;
                 roleFolderQueryObj.roleName=this.roleName;
-                roleFolderQueryObj.parentFolderPath="/";
-                roleFolderQueryObj.folderName="";
+                roleFolderQueryObj.parentFolderPath=parentFolderPath;
+                roleFolderQueryObj.folderName=folderName;
                 folderQueryContent=dojo.toJson(roleFolderQueryObj);
                 resturl=CONTENT_SERVICE_ROOT+"roleFolder/";
             }
             if(this.documentsOwnerType=="APPLICATIONSPACE"){
                 var applicationSpaceFolderQueryObj={};
                 applicationSpaceFolderQueryObj.activitySpaceName=this.activitySpaceName;
-                applicationSpaceFolderQueryObj.parentFolderPath="/";
-                applicationSpaceFolderQueryObj.folderName="";
+                applicationSpaceFolderQueryObj.parentFolderPath=parentFolderPath;
+                applicationSpaceFolderQueryObj.folderName=folderName;
                 folderQueryContent=dojo.toJson(applicationSpaceFolderQueryObj);
                 resturl=CONTENT_SERVICE_ROOT+"applicationSpaceFolder/";
             }
@@ -63,16 +66,13 @@ require([
             };
             var that=this;
             var loadCallback=function(data){
-                /*
+                that.currentFolderName=folderName;
                 var timer = new dojox.timing.Timer(200);
                 timer.onTick = function(){
-                    if(hideProgressDialog){
-                        UI.hideProgressDialog();
-                    }
+                    UI.hideProgressDialog();
                     timer.stop();
                 };
                 timer.start();
-                */
                 if(data){
                     that.currentFolderPath=data.folderPath;
                     that.parentFolderPath=data.parentFolderPath;
@@ -121,363 +121,19 @@ require([
                             documentsArray.push(currentDocument);
                         });
                         if(documentsArray.length>0){
-                            that.renderDocumentsList(documentsArray);
+                            that._renderDocumentsList(documentsArray);
                         }else{
-                            that.renderDocumentsList([]);
+                            that._renderDocumentsList([]);
                         }
                     }
                 }
             };
-            Application.WebServiceUtil.postJSONData(resturl, folderQueryContent, loadCallback, errorCallback);
-
-            /*
-            if(this.documentsOwnerType=="PARTICIPANT"||this.documentsOwnerType=="APPLICATIONSPACE") {
-                Application.WebServiceUtil.postJSONData(resturl, folderQueryContent, loadCallback, errorCallback);
-            }else{
-                var documentsList=this.getDocumentsList("/");
-                this.documentsFolderPathArray.push("子目录1");
-                this.documentsFolderPathArray.push("子目录2");
-                this.documentsFolderPathArray.push("子目录3");
-                this.documentsFolderPathArray.push("子目录4");
-                this.documentsFolderPathArray.push("子目录5");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.documentsFolderPathArray.push("子目录6");
-                this.renderDocumentsList(documentsList);
-            }
-            */
-        },
-        getDocumentsList:function(folderPath){
-            var documentsArray=[];
-            var documentInfo1={};
-            documentInfo1["documentName"]="Initial pass through ICMHC capitalization.pdf";
-            documentInfo1["documentCreateDate"]=new Date();
-            var participant1={};
-            participant1.participantPhotoPath="images/86479729_.jpg";
-            participant1.participantName="同事A";
-            participant1.participantId="user1";
-            participant1.participantTitle="IT部经理";
-            participant1.participantDesc="员工详细工作职责介绍";
-            participant1.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant1.participantPhone="0951-4567823";
-            participant1.participantEmail="mail1@viewfunction.com";
-            documentInfo1["documentCreator"]=participant1;
-            documentInfo1["documentLastUpdateDate"]=new Date();
-            documentInfo1["documentLastUpdatePerson"]=participant1;
-            documentInfo1["isFolder"]=false;
-            documentInfo1["version"]="1.0";
-            documentInfo1["documentType"]="PDF";
-            documentInfo1["documentFolderPath"]=folderPath;
-            documentInfo1["documentSize"]="530 KB";
-            documentsArray.push(documentInfo1);
-
-            var documentInfo2={}
-            documentInfo2["documentName"]="One UI Compliance in Case Builder.ppt";
-            documentInfo2["documentCreateDate"]=new Date();
-            var participant2={};
-            participant2.participantPhotoPath="images/86530525_.jpg";
-            participant2.participantName="领导C";
-            participant2.participantId="user2";
-            participant2.participantTitle="IT部经理.12345";
-            participant2.participantDesc="员工详细工作职责介绍";
-            participant2.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant2.participantPhone="13411223345";
-            participant2.participantEmail="mail2@viewfunction.com";
-            documentInfo2["documentCreator"]=participant2;
-            documentInfo2["documentLastUpdateDate"]=new Date();
-            documentInfo2["documentLastUpdatePerson"]=participant1;
-            documentInfo2["isFolder"]=false;
-            documentInfo2["version"]="1.4";
-            documentInfo2["documentType"]="PPT";
-            documentInfo2["documentFolderPath"]=folderPath;
-            documentInfo2["documentSize"]="53010 KB";
-            documentsArray.push(documentInfo2);
-
-            var documentInfo3={}
-            documentInfo3["documentName"]="careplanSection.xls";
-            documentInfo3["documentCreateDate"]=new Date();
-            var participant3={};
-            participant3.participantPhotoPath="images/87569996_.jpg";
-            participant3.participantName="同事B";
-            participant3.participantId="user3";
-            participant3.participantTitle="IT部经理.12345";
-            participant3.participantDesc="员工详细工作职责介绍";
-            participant3.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant3.participantPhone="13677885534";
-            participant3.participantEmail="mail3@viewfunction.com";
-            documentInfo3["documentCreator"]=participant3;
-            documentInfo3["documentLastUpdateDate"]=new Date();
-            documentInfo3["documentLastUpdatePerson"]=participant2;
-            documentInfo3["isFolder"]=false;
-            documentInfo3["version"]="1.0";
-            documentInfo3["documentType"]="XLS";
-            documentInfo3["documentFolderPath"]=folderPath;
-            documentInfo3["documentSize"]="53011 KB";
-            documentsArray.push(documentInfo3);
-
-            var documentInfo4={}
-            documentInfo4["documentName"]="Sys config.txt";
-            documentInfo4["documentCreateDate"]=new Date();
-            var participant4={};
-            participant4.participantPhotoPath="images/118946479_.jpg";
-            participant4.participantName="同事C";
-            participant4.participantId="user4";
-            participant4.participantTitle="IT部经理.12345";
-            participant4.participantDesc="员工详细工作职责介绍";
-            participant4.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant4.participantPhone="15966783456";
-            participant4.participantEmail="mail4@viewfunction.com";
-            documentInfo4["documentCreator"]=participant4;
-            documentInfo4["documentLastUpdateDate"]=new Date();
-            documentInfo4["documentLastUpdatePerson"]=participant3;
-            documentInfo4["isFolder"]=false;
-            documentInfo4["version"]="0.2";
-            documentInfo4["documentType"]="TXT";
-            documentInfo4["documentFolderPath"]=folderPath;
-            documentInfo4["documentSize"]="53012 KB";
-            documentsArray.push(documentInfo4);
-            var documentInfo5={}
-            documentInfo5["documentName"]="图像子目录";
-            documentInfo5["documentCreateDate"]=new Date();
-            var participant5={};
-            participant5.participantPhotoPath="images/86479729_.jpg";
-            participant5.participantName="同事A";
-            participant5.participantId="user1";
-            participant5.participantTitle="IT部经理";
-            participant5.participantDesc="员工详细工作职责介绍";
-            participant5.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant5.participantPhone="0951-4567823";
-            participant5.participantEmail="mail1@viewfunction.com";
-            documentInfo5["documentCreator"]=participant5;
-            documentInfo5["documentLastUpdateDate"]=new Date();
-            documentInfo5["documentLastUpdatePerson"]=participant4;
-            documentInfo5["isFolder"]=true;
-            documentInfo5["version"]="1.1";
-            documentInfo5["childrenNumber"]=16;
-            documentInfo5["documentType"]="FOLDER";
-            documentInfo5["documentFolderPath"]=folderPath;
-            documentInfo5["documentSize"]="53013 KB";
-            documentsArray.push(documentInfo5);
-            var documentInfo6={}
-            documentInfo6["documentName"]="system design.doc";
-            documentInfo6["documentCreateDate"]=new Date();
-            var participant6={};
-            participant6.participantPhotoPath="images/86479729_.jpg";
-            participant6.participantName="同事A";
-            participant6.participantId="user1";
-            participant6.participantTitle="IT部经理";
-            participant6.participantDesc="员工详细工作职责介绍";
-            participant6.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant6.participantPhone="0951-4567823";
-            participant6.participantEmail="mail1@viewfunction.com";
-            documentInfo6["documentCreator"]=participant6;
-            documentInfo6["documentLastUpdateDate"]=new Date();
-            documentInfo6["documentLastUpdatePerson"]=participant5;
-            documentInfo6["isFolder"]=false;
-            documentInfo6["version"]="1.3";
-            documentInfo6["documentType"]="DOC";
-            documentInfo6["documentFolderPath"]=folderPath;
-            documentInfo6["documentSize"]="53014 KB";
-            documentsArray.push(documentInfo6);
-            var documentInfo7={}
-            documentInfo7["documentName"]="screenshot.jpg";
-            documentInfo7["documentCreateDate"]=new Date();
-            var participant7={};
-            participant7.participantPhotoPath="images/86479729_.jpg";
-            participant7.participantName="同事A";
-            participant7.participantId="user1";
-            participant7.participantTitle="IT部经理";
-            participant7.participantDesc="员工详细工作职责介绍";
-            participant7.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant7.participantPhone="0951-4567823";
-            participant7.participantEmail="mail1@viewfunction.com";
-            documentInfo7["documentCreator"]=participant7;
-            documentInfo7["documentLastUpdateDate"]=new Date();
-            documentInfo7["documentLastUpdatePerson"]=participant2;
-            documentInfo7["isFolder"]=false;
-            documentInfo7["version"]="1.0";
-            documentInfo7["documentType"]="JPG";
-            documentInfo7["documentFolderPath"]=folderPath;
-            documentInfo7["documentSize"]="53015 KB";
-            documentsArray.push(documentInfo7);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            var participant8={};
-            participant8.participantPhotoPath="images/86479729_.jpg";
-            participant8.participantName="同事A";
-            participant8.participantId="user1";
-            participant8.participantTitle="IT部经理";
-            participant8.participantDesc="员工详细工作职责介绍";
-            participant8.participantAddress="北京市海淀区东北旺西路8号中关村软件园28号 100096";
-            participant8.participantPhone="0951-4567823";
-            participant8.participantEmail="mail1@viewfunction.com";
-            documentInfo8["documentCreator"]=participant8;
-            documentInfo8["documentLastUpdateDate"]=new Date();
-            documentInfo8["documentLastUpdatePerson"]=participant1;
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]="1.2";
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="53014 KB";
-            documentsArray.push(documentInfo8);
-
-
-            /*
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="53013 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="53012 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="53011 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo1["documentSize"]="530 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5300 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5309 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5308 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5307 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5306 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5305 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5304 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5303 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5302 KB";
-            documentsArray.push(documentInfo8);
-            var documentInfo8={}
-            documentInfo8["documentName"]="meeting record.mp3";
-            documentInfo8["documentCreateDate"]=new Date();
-            documentInfo8["isFolder"]=false;
-            documentInfo8["version"]=1.2;
-            documentInfo8["documentType"]="MP3";
-            documentInfo8["documentFolderPath"]=folderPath;
-            documentInfo8["documentSize"]="5301 KB";
-            documentsArray.push(documentInfo8);
-            */
-
-
-            return documentsArray;
-        },
-        renderDocumentsList:function(documentList){
             this.alreadyLoad=true;
             UI.showProgressDialog("查询数据");
-            var that=this;
-            var timer = new dojox.timing.Timer(500);
-            timer.onTick = function(){
-                that._cleanDirtyItemData();
-                that._renderDocumentsList(documentList);
-                timer.stop();
-            };
-            timer.start();
+            Application.WebServiceUtil.postJSONData(resturl, folderQueryContent, loadCallback, errorCallback);
         },
         _renderDocumentsList:function(documentList){
+            this._cleanDirtyItemData();
             dojo.empty(this.folderListBbreadcrumb);
             dojo.forEach(this.documentsFolderPathArray,function(documentsFolderName,idx){
                 var divChar=dojo.create("i", {className:"icon-chevron-right",style:"font-size: 0.8em;color: #666666;"});
@@ -526,25 +182,41 @@ require([
         },
         renderRootFolder:function(){
             this.documentsFolderPathArray.splice(0,this.documentsFolderPathArray.length);
-            var documentsList=this.getDocumentsList("/");
-            this.renderDocumentsList(documentsList);
+            this.renderFolderDocumentsList("/","");
+        },
+        goToSubFolderByPath:function(currentFolderPath,subFolderName){
+            var currentFolderPathDepth=this.documentsFolderPathArray.length;
+            this.documentsFolderPathArray.splice(0,currentFolderPathDepth);
+            var currentFolderPathNameArray=currentFolderPath.split("/");
+            dojo.forEach(currentFolderPathNameArray,function(folderName,idx){
+                if(folderName!=""){
+                    this.documentsFolderPathArray.push(folderName);
+                }
+            },this);
+            this.documentsFolderPathArray.push(subFolderName);
+            var parentFolderPath=currentFolderPath;
+            var subFolderName=subFolderName;
+            this.renderFolderDocumentsList(parentFolderPath,subFolderName);
         },
         renderSubFolder:function(folderDeep){
             var needRemoveNumber=this.documentsFolderPathArray.length- folderDeep;
             this.documentsFolderPathArray.splice(folderDeep+1,needRemoveNumber);
-            var folderPath=this.getFolderPath();
-            var documentsList=this.getDocumentsList(folderPath);
-            this.renderDocumentsList(documentsList);
+            var parentFolderPath=this.getParentFolderPath();
+            var subFolderName=this.documentsFolderPathArray[folderDeep];
+            this.renderFolderDocumentsList(parentFolderPath,subFolderName);
         },
-        refreshCurrentFolder:function(){
-            console.log("refreshCurrentFolder");
-        },
-        getFolderPath:function(){
+        getParentFolderPath:function(){
             var folderPath="/";
-            dojo.forEach(this.documentsFolderPathArray,function(folderName){
-                folderPath=folderPath+  folderName+"/";
+            var folderLength=this.documentsFolderPathArray.length-1;
+            dojo.forEach(this.documentsFolderPathArray,function(folderName,idx){
+                if(idx<folderLength){
+                    folderPath=folderPath+folderName+"/";
+                }
             });
             return folderPath;
+        },
+        refreshCurrentFolder:function(){
+            this.renderFolderDocumentsList(this.parentFolderPath,this.currentFolderName);
         },
         setAddNewFolderMenuDialog:function(addNewFolderMenuDialog){
             this.addNewFolderMenuDialog= addNewFolderMenuDialog
@@ -553,10 +225,46 @@ require([
             this.addNewFolderDropDown= addNewDocumentDropDown
         },
         addFolder:function(folderName){
+            if(folderName.match("/")){
+                UI.showToasterMessage({
+                    type:"error",
+                    message:"文件夹名称中不能包含字符 ' <b>/</b> '"
+                });
+                return;
+            }
             if(this._checkFolderName(folderName)){
                 //do add folder on server side
                 this.addNewFolderMenuDialog.close();
                 this.addNewFolderDropDown.clearInput();
+
+                var that=this;
+                var callback=function(){
+                    that.refreshCurrentFolder();
+                };
+                if(this.documentsOwnerType=="PARTICIPANT"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var addParticipantFolderObj={};
+                    addParticipantFolderObj.activitySpaceName=APPLICATION_ID;
+                    addParticipantFolderObj.participantName=userId;
+                    addParticipantFolderObj.parentFolderPath=this.currentFolderPath;
+                    addParticipantFolderObj.folderName=folderName;
+                    Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT,{newFolderInfo:addParticipantFolderObj,folderType:this.documentsOwnerType,callback:callback});
+                }
+                if(this.documentsOwnerType=="APPLICATIONSPACE"){
+                    var addApplicationSpaceFolderObj={};
+                    addApplicationSpaceFolderObj.activitySpaceName=APPLICATION_ID;
+                    addApplicationSpaceFolderObj.parentFolderPath=this.currentFolderPath;
+                    addApplicationSpaceFolderObj.folderName=folderName;
+                    Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT,{newFolderInfo:addApplicationSpaceFolderObj,folderType:this.documentsOwnerType,callback:callback});
+                }
+                if(this.documentsOwnerType=="ROLE"){
+                    var addRoleFolderObj={};
+                    addRoleFolderObj.activitySpaceName=APPLICATION_ID;
+                    addRoleFolderObj.roleName=this.roleName;
+                    addRoleFolderObj.parentFolderPath=this.currentFolderPath;
+                    addRoleFolderObj.folderName=folderName;
+                    Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT,{newFolderInfo:addRoleFolderObj,folderType:this.documentsOwnerType,callback:callback});
+                }
             }else{
                 UI.showToasterMessage({
                     type:"error",
@@ -581,7 +289,6 @@ require([
             });
             this.currentDocumentsArray=[];
             this.currentSelectedDocumentItemArray.splice(0, this.currentSelectedDocumentItemArray.length);
-            UI.hideProgressDialog();
         },
         _endOfCode: function(){}
     });

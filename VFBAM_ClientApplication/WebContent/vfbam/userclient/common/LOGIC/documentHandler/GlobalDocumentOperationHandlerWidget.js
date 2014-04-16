@@ -122,6 +122,16 @@ require([
                 addFolderContent=dojo.toJson(newActivityFolderObj);
                 resturl=CONTENT_SERVICE_ROOT+"addBusinessActivityFolder/";
             }
+            if(folderType=="APPLICATIONSPACE"){
+                var newFolderInfo=data.newFolderInfo;
+                addFolderContent=dojo.toJson(newFolderInfo);
+                resturl=CONTENT_SERVICE_ROOT+"addApplicationSpaceFolder/";
+            }
+            if(folderType=="ROLE"){
+                var newFolderInfo=data.newFolderInfo;
+                addFolderContent=dojo.toJson(newFolderInfo);
+                resturl=CONTENT_SERVICE_ROOT+"addRoleFolder/";
+            }
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };
