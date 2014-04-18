@@ -20,6 +20,13 @@ require([
                 metaDataContent.activityId=activityId;
                 pathToUploadServerService=CONTENT_SERVICE_ROOT+"businessActivityFile/addFile/"+APPLICATION_ID+"/";
             }
+            if(this.documentListWidget.documentsOwnerType=="APPLICATIONSPACE"){
+                pathToUploadServerService=CONTENT_SERVICE_ROOT+"applicationSpaceFile/addFile/"+APPLICATION_ID+"/"+ userId+"/";
+            }
+            if(this.documentListWidget.documentsOwnerType=="ROLE"){
+                var roleName=this.documentListWidget.documentsInitData.roleName;
+                pathToUploadServerService=CONTENT_SERVICE_ROOT+"roleFile/addFile/"+APPLICATION_ID+"/"+ roleName+"/"+ userId+"/";
+            }
             var that=this;
             var documentFormIdValue="documentForm"+new Date().getTime();
             this.form.id=documentFormIdValue;

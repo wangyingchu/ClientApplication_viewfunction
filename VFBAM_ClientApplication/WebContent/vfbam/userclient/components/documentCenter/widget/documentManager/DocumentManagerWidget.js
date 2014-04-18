@@ -22,7 +22,7 @@ require([
             }
             this.documentPreviewWidget=new vfbam.userclient.components.documentCenter.widget.documentManager.DocumentPreviewWidget({},this.documentsPreviewContainer);
             this.documentsListWidget=new vfbam.userclient.components.documentCenter.widget.documentManager.DocumentListWidget({
-                documentPreviewWidget:this.documentPreviewWidget,containerElementHeight:realHeight,documentsInitData:this.documentManagerInitData},this.documentsListContainer);
+                documentPreviewWidget:this.documentPreviewWidget,containerElementHeight:realHeight,documentsInitData:this.documentManagerInitData,documentManager:this},this.documentsListContainer);
             this.addNewFolderMenuDialog=new idx.widget.MenuDialog();
             this.addNewFolderDropDown=new vfbam.userclient.common.UI.components.documentsList.AddNewFolderWidget({documentListWidget:this.documentsListWidget});
             dojo.place(this.addNewFolderDropDown.domNode, this.addNewFolderMenuDialog.containerNode);
@@ -33,6 +33,18 @@ require([
             this.addDocumentLink.set("dropDown",this.addNewDocumentDropDown);
 
             new vfbam.userclient.components.documentCenter.widget.documentManager.DocumentSearchWidget({},this.documentsSearchDialog);
+        },
+        disableAddDocumentsElements:function(){
+            this.addFolderLink.set("disabled","disabled");
+            dojo.style(this.addFolderLink.domNode,"color","#CCCCCC");
+            this.addDocumentLink.set("disabled","disabled");
+            dojo.style(this.addDocumentLink.domNode,"color","#CCCCCC");
+        },
+        enableAddDocumentsElements:function(){
+            this.addFolderLink.set("disabled",false);
+            dojo.style(this.addFolderLink.domNode,"color","#00649D");
+            this.addDocumentLink.set("disabled",false);
+            dojo.style(this.addDocumentLink.domNode,"color","#00649D");
         },
         loadDocuments: function(){
             if(!this.documentsListWidget.alreadyLoad){

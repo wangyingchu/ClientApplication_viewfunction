@@ -24,13 +24,13 @@ require([
             this.currentDocumentsArray=[];
             this.currentSelectedDocumentItemArray=[];
             this.alreadyLoad=false;
+            this.documentsOwnerType=this.documentsInitData.documentsOwnerType;
         },
         initRender:function(){
             this.renderFolderDocumentsList("/","");
         },
         renderFolderDocumentsList:function(parentFolderPath,folderName){
             this.activitySpaceName=this.documentsInitData.activitySpaceName;
-            this.documentsOwnerType=this.documentsInitData.documentsOwnerType;
             var resturl="";
             var folderQueryContent="";
             if( this.documentsOwnerType=="PARTICIPANT"){
@@ -77,6 +77,12 @@ require([
                     that.currentFolderPath=data.folderPath;
                     that.parentFolderPath=data.parentFolderPath;
                     that.currentFolderName=data.folderName;
+                    var isParentFolderLocked=data.folderLocked;
+                    if(isParentFolderLocked){
+                        that.documentManager.disableAddDocumentsElements();
+                    }else{
+                        that.documentManager.enableAddDocumentsElements();
+                    }
                     if(data.childContentList){
                         var documentsArray=[];
                         dojo.forEach(data.childContentList,function(documentItem){
@@ -92,6 +98,8 @@ require([
                             currentDocument["version"]=documentItem.version;
                             currentDocument["childrenNumber"]=documentItem.childDocumentNumber;
                             currentDocument["documentSize"]=documentItem.documentSize;
+                            currentDocument["isDocumentLocked"]=documentItem.locked;
+                            currentDocument["isLinkDocument"]=documentItem.linked;
                             var documentCreator=documentItem.documentCreator;
                             if(documentCreator){
                                 var creatorParticipant={};
@@ -182,6 +190,7 @@ require([
         },
         renderRootFolder:function(){
             this.documentsFolderPathArray.splice(0,this.documentsFolderPathArray.length);
+            this.documentManager.enableAddDocumentsElements();
             this.renderFolderDocumentsList("/","");
         },
         goToSubFolderByPath:function(currentFolderPath,subFolderName){
@@ -289,6 +298,15 @@ require([
             });
             this.currentDocumentsArray=[];
             this.currentSelectedDocumentItemArray.splice(0, this.currentSelectedDocumentItemArray.length);
+        },
+        checkExistingFileName:function(fileName){
+            var checkResult=false;
+            dojo.forEach(this.currentDocumentsArray,function(currentDocument){
+                if((!currentDocument.documentInfo.isFolder)&&currentDocument.documentInfo.documentName==fileName){
+                    checkResult= true;
+                }
+            },this);
+            return checkResult;
         },
         _endOfCode: function(){}
     });

@@ -8,6 +8,7 @@ require([
         widgetsInTemplate: true,
         clickEventConnectionHandler:null,
         doubleClickEventConnectionHandler:null,
+        isCurrentDocumentLocked:null,
         postCreate: function(){
             this.documentName.innerHTML=this.documentInfo.documentName;
             if(DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)||this.documentInfo.isFolder){
@@ -19,15 +20,29 @@ require([
             this.documentTypeIcon.src=DocumentHandleUtil.getFileTypeIcon(this.documentInfo.documentType,this.documentInfo.isFolder,this.documentInfo.documentName);
             var dateDisplayFormat={datePattern: "yyyy-MM-dd", selector: "date"};
             var timeDisplayFormat={datePattern: "HH:MM", selector: "time"};
-            this.createDate.innerHTML=dojo.date.locale.format(this.documentInfo.documentCreateDate,dateDisplayFormat)+" "+
-                dojo.date.locale.format(this.documentInfo.documentCreateDate,timeDisplayFormat);
+            if(this.documentInfo.isFolder){
+                dojo.style(this.createDateContainer,{"display": "none"});
+            }else{
+                this.createDate.innerHTML=dojo.date.locale.format(this.documentInfo.documentCreateDate,dateDisplayFormat)+" "+
+                    dojo.date.locale.format(this.documentInfo.documentCreateDate,timeDisplayFormat);
+            }
+            if(this.documentInfo.isDocumentLocked){
+                this.isCurrentDocumentLocked=true;
+            }else{
+                this.isCurrentDocumentLocked=false;
+            }
+            this._setDocumentLockStatusUIElement();
+            if(this.documentInfo.isFolder){
+                dojo.style(this.openFolderButton,{"display": "inline"});
+                dojo.style(this.previewDocumentButton,{"display": "none"});
+                dojo.style(this.downloadDocumentButton,{"display": "none"});
+                this.folderChildrenNumber.innerHTML="("+this.documentInfo.childrenNumber+")";
+            }
             this.documentVersion.innerHTML=this.documentInfo.version;
             if(this.documentInfo.isFolder){
                 dojo.style(this.openFolderButton,{"display": "inline"});
                 dojo.style(this.previewDocumentButton,{"display": "none"});
                 dojo.style(this.downloadDocumentButton,{"display": "none"});
-                dojo.style(this.updateDocumentButton,{"display": "none"});
-                dojo.style(this.addNewChildDocumentButton,{"display": "inline"});
                 this.folderChildrenNumber.innerHTML="("+this.documentInfo.childrenNumber+")";
             }
             if(!DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)){
@@ -42,7 +57,10 @@ require([
                 that.documentListWidget.refreshCurrentFolder();
             };
             this.documentInfo["callback"]= documentDeleteCallback;
-            if(this.documentListWidget.documentsOwnerType=="PARTICIPANT"){
+            if(this.documentsOwnerType=="ROLE"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DELETEDOCUMENT_EVENT,{documentInfo:this.documentInfo,
+                    documentsOwnerType:this.documentsOwnerType,roleName:this.documentListWidget.roleName});
+            }else{
                 Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DELETEDOCUMENT_EVENT,{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType});
             }
         },
@@ -50,13 +68,49 @@ require([
             console.log("updateDocument");
         },
         lockDocument:function(){
-            console.log("lockDocument");
+            var that=this;
+            var documentDeleteCallback=function(){
+                UI.showToasterMessage({
+                    type:"info",
+                    message:"锁定操作成功"
+                });
+                that.isCurrentDocumentLocked=true;
+                that._setDocumentLockStatusUIElement();
+            };
+            this.documentInfo["callback"]= documentDeleteCallback;
+            if(this.documentsOwnerType=="ROLE"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT,{documentInfo:this.documentInfo,
+                    documentsOwnerType:this.documentsOwnerType,roleName:this.documentListWidget.roleName});
+            }else{
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT,{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType});
+            }
+        },
+        unLockDocument:function(){
+            var that=this;
+            var documentDeleteCallback=function(){
+                UI.showToasterMessage({
+                    type:"info",
+                    message:"解锁操作成功"
+                });
+                that.isCurrentDocumentLocked=false;
+                that._setDocumentLockStatusUIElement();
+            };
+            this.documentInfo["callback"]= documentDeleteCallback;
+            if(this.documentsOwnerType=="ROLE"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT,{documentInfo:this.documentInfo,
+                    documentsOwnerType:this.documentsOwnerType,roleName:this.documentListWidget.roleName});
+            }else{
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT,{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType});
+            }
         },
         addChildDocument:function(){
             console.log("addChildDocument");
         },
         downloadDocument:function(){
-            if(this.documentsOwnerType=="PARTICIPANT"){
+            if(this.documentsOwnerType=="ROLE"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT,{documentInfo:this.documentInfo,
+                    documentsOwnerType:this.documentsOwnerType,roleName:this.documentListWidget.roleName});
+            }else{
                 Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT,{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType});
             }
         },
@@ -94,6 +148,33 @@ require([
                 this.documentPreviewWidget.renderDocumentPreview(this.documentInfo,this.documentsOwnerType,previewFileExtraInfo);
             }else{
                 this.documentPreviewWidget.renderDocumentPreview(this.documentInfo,this.documentsOwnerType,previewFileExtraInfo);
+            }
+        },
+        _setDocumentLockStatusUIElement:function(){
+            dojo.style(this.documentUnlockButton,{"display": "none"});
+            dojo.style(this.documentLockButton,{"display": "none"});
+            dojo.style(this.deleteDocumentButton,{"display": "none"});
+            dojo.style(this.deleteDocumentButtonDisabled,{"display": "none"});
+            dojo.style(this.updateDocumentButton,{"display": "none"});
+            dojo.style(this.updateDocumentButtonDisabled,{"display": "none"});
+            dojo.style(this.addNewChildDocumentButton,{"display": "none"});
+            dojo.style(this.addNewChildDocumentButtonDisabled,{"display": "none"});
+            if(this.isCurrentDocumentLocked){
+                dojo.style(this.documentUnlockButton,{"display": "inline"});
+                dojo.style(this.deleteDocumentButtonDisabled,{"display": "inline"});
+                if(this.documentInfo.isFolder){
+                    dojo.style(this.addNewChildDocumentButtonDisabled,{"display": "inline"});
+                }else{
+                    dojo.style(this.updateDocumentButtonDisabled,{"display": "inline"});
+                }
+            }else{
+                dojo.style(this.documentLockButton,{"display": "inline"});
+                dojo.style(this.deleteDocumentButton,{"display": "inline"});
+                if(this.documentInfo.isFolder){
+                    dojo.style(this.addNewChildDocumentButton,{"display": "inline"});
+                }else{
+                    dojo.style(this.updateDocumentButton,{"display": "inline"});
+                }
             }
         },
         destroy:function(){

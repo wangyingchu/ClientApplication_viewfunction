@@ -47,7 +47,7 @@ require([
             }else{
                 dojo.style(this.creatorRootContainer,"display","none");
             }
-            if(documentInfo.documentCreateDate&documentInfo.documentCreateDate.getTime()!=0){
+            if(documentInfo.documentCreateDate&documentInfo.documentCreateDate.getTime()){
                 this.documentCreateDateText.innerHTML= dojo.date.locale.format(documentInfo.documentCreateDate);
                 dojo.style(this.creatorDateRootContainer,"display","");
             }else{

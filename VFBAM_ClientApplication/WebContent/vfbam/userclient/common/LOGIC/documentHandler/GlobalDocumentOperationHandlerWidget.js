@@ -8,6 +8,8 @@ require([
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT,dojo.hitch(this,this.addFolder));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT,dojo.hitch(this,this.downloadDocument));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,dojo.hitch(this,this.previewDocument));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT,dojo.hitch(this,this.lockDocument));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT,dojo.hitch(this,this.unlockDocument));
         },
         deleteDocument:function(data){
             var confirmationLabel;
@@ -40,6 +42,182 @@ require([
                     deleteFileInfoContent=dojo.toJson(deleteActivityFolderObj);
                     resturl=CONTENT_SERVICE_ROOT+"businessActivityFileFile/deleteFile/";
                 }
+                if(data.documentsOwnerType=="APPLICATIONSPACE"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"applicationSpaceFile/deleteFile/";
+                }
+                if(data.documentsOwnerType=="ROLE"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.roleName=data.roleName;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"roleFile/deleteFile/";
+                }
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback=function(resultData){
+                    if(resultData.operationResult){
+                        if(data.documentInfo.callback){
+                            data.documentInfo.callback();
+                        }
+                    }else{
+                        UI.showToasterMessage({
+                            type:"error",
+                            message:resultData.resultReason
+                        });
+                    }
+                };
+                Application.WebServiceUtil.postJSONData(resturl,deleteFileInfoContent,loadCallback,errorCallback);
+            };
+            UI.showConfirmDialog({
+                message:confirmationLabel,
+                confirmButtonLabel:"<i class='icon-trash'></i> 删除",
+                cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+                confirmButtonAction:confirmButtonAction
+            });
+        },
+        lockDocument:function(data){
+            var confirmationLabel;
+            if(!data.documentInfo.isFolder){
+                confirmationLabel= "请确认是否锁定文件 '<b>"+data.documentInfo.documentName+"</b>' ?";
+            }else{
+                confirmationLabel= "请确认是否锁定目录 '<b>"+data.documentInfo.documentName+"</b>' ?锁定目录将禁止在该目录中创建或删除文件和子目录";
+            }
+            var confirmButtonAction=function(){
+                var resturl="";
+                var deleteFileInfoContent="";
+                if(data.documentsOwnerType=="PARTICIPANT"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"participantPersonalFile/lockFile/";
+                }
+                /*
+                if(data.documentsOwnerType=="ACTIVITY"){
+                    var taskItemData=data.taskItemData;
+                    var deleteActivityFolderObj={};
+                    deleteActivityFolderObj.activitySpaceName=APPLICATION_ID;
+                    deleteActivityFolderObj.activityName=taskItemData.activityName;
+                    deleteActivityFolderObj.activityId=taskItemData.activityId;
+                    deleteActivityFolderObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteActivityFolderObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteActivityFolderObj);
+                    resturl=CONTENT_SERVICE_ROOT+"businessActivityFileFile/lockFile/";
+                }
+                */
+                if(data.documentsOwnerType=="APPLICATIONSPACE"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"applicationSpaceFile/lockFile/";
+                }
+                if(data.documentsOwnerType=="ROLE"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.roleName=data.roleName;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"roleFile/lockFile/";
+                }
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback=function(resultData){
+                    if(resultData.operationResult){
+                        if(data.documentInfo.callback){
+                            data.documentInfo.callback();
+                        }
+                    }else{
+                        UI.showToasterMessage({
+                            type:"error",
+                            message:resultData.resultReason
+                        });
+                    }
+                };
+                Application.WebServiceUtil.postJSONData(resturl,deleteFileInfoContent,loadCallback,errorCallback);
+            };
+            UI.showConfirmDialog({
+                message:confirmationLabel,
+                confirmButtonLabel:"<i class='icon-lock'></i> 锁定",
+                cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+                confirmButtonAction:confirmButtonAction
+            });
+        },
+        unlockDocument:function(data){
+            var confirmationLabel;
+            if(!data.documentInfo.isFolder){
+                confirmationLabel= "请确认是否解锁文件 '<b>"+data.documentInfo.documentName+"</b>' ?";
+            }else{
+                confirmationLabel= "请确认是否解锁目录 '<b>"+data.documentInfo.documentName+"</b>' ?解锁目录将允许在该目录中创建或删除文件和子目录";
+            }
+            var confirmButtonAction=function(){
+                var resturl="";
+                var deleteFileInfoContent="";
+                if(data.documentsOwnerType=="PARTICIPANT"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"participantPersonalFile/unlockFile/";
+                }
+                /*
+                if(data.documentsOwnerType=="ACTIVITY"){
+                    var taskItemData=data.taskItemData;
+                    var deleteActivityFolderObj={};
+                    deleteActivityFolderObj.activitySpaceName=APPLICATION_ID;
+                    deleteActivityFolderObj.activityName=taskItemData.activityName;
+                    deleteActivityFolderObj.activityId=taskItemData.activityId;
+                    deleteActivityFolderObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteActivityFolderObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteActivityFolderObj);
+                    resturl=CONTENT_SERVICE_ROOT+"businessActivityFileFile/deleteFile/";
+                }*/
+                if(data.documentsOwnerType=="APPLICATIONSPACE"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"applicationSpaceFile/unlockFile/";
+                }
+                if(data.documentsOwnerType=="ROLE"){
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var deleteFileObj={};
+                    deleteFileObj.activitySpaceName=APPLICATION_ID;
+                    deleteFileObj.participantName=userId;
+                    deleteFileObj.roleName=data.roleName;
+                    deleteFileObj.parentFolderPath=data.documentInfo.documentFolderPath;
+                    deleteFileObj.fileName=data.documentInfo.documentName;
+                    deleteFileInfoContent=dojo.toJson(deleteFileObj);
+                    resturl=CONTENT_SERVICE_ROOT+"roleFile/unlockFile/";
+                }
                 var errorCallback= function(data){
                     UI.showSystemErrorMessage(data);
                 };
@@ -59,7 +237,7 @@ require([
             }
             UI.showConfirmDialog({
                 message:confirmationLabel,
-                confirmButtonLabel:"<i class='icon-trash'></i> 删除",
+                confirmButtonLabel:"<i class='icon-unlock'></i> 解锁",
                 cancelButtonLabel:"<i class='icon-remove'></i> 取消",
                 confirmButtonAction:confirmButtonAction
             });
@@ -97,6 +275,32 @@ require([
                 var activitySpaceName=encodeURIComponent(APPLICATION_ID);
                 var fullLocation=location+"?documentFolderPath="+documentFolderPath+"&documentName="+documentName+"&activitySpaceName="+activitySpaceName+"&activityType="+activityType+
                     "&activityId="+activityId+"&browserType="+browserType;
+                var iframe = Iframe.create(downloadIframeName);
+                Iframe.setSrc(iframe, fullLocation, false);
+            }
+            if(data.documentsOwnerType=="APPLICATIONSPACE"){
+                var location=CONTENT_SERVICE_ROOT+"applicationSpaceFile/downloadFile/";
+                var downloadIframeName = "Iframe_"+new Date().getTime();
+                var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                var documentFolderPath=encodeURIComponent(data.documentInfo.documentFolderPath);
+                var documentName=encodeURIComponent(data.documentInfo.documentName);
+                var participantName=encodeURIComponent(userId);
+                var activitySpaceName=encodeURIComponent(APPLICATION_ID);
+                var fullLocation=location+"?documentFolderPath="+documentFolderPath+"&documentName="+documentName+"&activitySpaceName="+activitySpaceName+"&participantName="+participantName+"&browserType="+browserType;
+                var iframe = Iframe.create(downloadIframeName);
+                Iframe.setSrc(iframe, fullLocation, false);
+            }
+            if(data.documentsOwnerType=="ROLE"){
+                var location=CONTENT_SERVICE_ROOT+"roleFile/downloadFile/";
+                var downloadIframeName = "Iframe_"+new Date().getTime();
+                var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                var documentFolderPath=encodeURIComponent(data.documentInfo.documentFolderPath);
+                var documentName=encodeURIComponent(data.documentInfo.documentName);
+                var participantName=encodeURIComponent(userId);
+                var activitySpaceName=encodeURIComponent(APPLICATION_ID);
+                var roleName=encodeURIComponent(data.roleName);
+                var fullLocation=location+"?documentFolderPath="+documentFolderPath+"&documentName="+documentName+"&activitySpaceName="+activitySpaceName+
+                    "&participantName="+participantName+"&browserType="+browserType+"&roleName="+roleName;
                 var iframe = Iframe.create(downloadIframeName);
                 Iframe.setSrc(iframe, fullLocation, false);
             }
