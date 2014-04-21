@@ -1,17 +1,24 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
     "dojo/text!vfbam/userclient/components/documentCenter/widget/documentManager/template/DocumentPreviewWidget.html",
-    "dojo/dom-class"
-],function(lang,declare, _Widget, _Templated, template,domClass){
+    "dijit/popup"
+],function(lang,declare, _Widget, _Templated, template,popup){
     declare("vfbam.userclient.components.documentCenter.widget.documentManager.DocumentPreviewWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
         creatorNamecardWidget:null,
         lastUpdatePersonNamecardWidget:null,
+        documentTagsInfoList:null,
+        addNewTagMenuDialog:null,
+        addNewTagDropDown:null,
+        documentDetailInfo:null,
+        documentInfo:null,
         postCreate: function(){
+            this.documentTagsInfoList=[];
             this.renderInitInfo();
         },
         renderDocumentPreview:function(documentInfo,documentsOwnerType,documentExtalInfo){
+            this.documentInfo=documentInfo;
             dojo.style(this.previewContainer,"display","");
             dojo.style(this.initInfoContainer,"display","none");
             this.documentNameText.innerHTML= documentInfo.documentName;
@@ -78,6 +85,55 @@ require([
             }else{
                 this.documentPreviewPicture.src=DocumentHandleUtil.getPreviewPicURL(documentInfo.documentType,documentInfo.isFolder);
             }
+            dojo.empty(this.documentTagsContainer);
+            dojo.forEach(this.documentTagsInfoList,function(documentTag){
+                documentTag.destroy();
+            });
+            if(documentInfo.isFolder){
+                dojo.style(this.documentTagsRootContainer,"display","none");
+            }else{
+                dojo.style(this.documentTagsRootContainer,"display","");
+                if(documentInfo.documentTags){
+                    this.renderDocumentTag(documentInfo.documentTags);
+                }
+
+                this.addNewTagMenuDialog=new idx.widget.MenuDialog();
+                this.addNewTagDropDown=new vfbam.userclient.common.UI.components.documentsList.AddNewTagWidget({documentPreviewer:this});
+                dojo.place(this.addNewTagDropDown.domNode, this.addNewTagMenuDialog.containerNode);
+                this.addTagLink.set("dropDown",this.addNewTagMenuDialog);
+            }
+        },
+        renderDocumentTag:function(documentTags){
+            dojo.empty(this.documentTagsContainer);
+            dojo.forEach(this.documentTagsInfoList,function(documentTag){
+                documentTag.destroy();
+            });
+            var that=this;
+            dojo.forEach(documentTags,function(tagName){
+                var tagInfoWidget=new vfbam.userclient.components.documentCenter.widget.documentManager.DocumentTagInfoWidget({tagName:tagName,documentPreviewer:that});
+                that.documentTagsContainer.appendChild(tagInfoWidget.domNode);
+                that.documentTagsInfoList.push(tagInfoWidget);
+            });
+        },
+        removeDocumentTag:function(tagValue){
+            var that=this;
+            var callbackFunction=function(newTags){
+                that.documentInfo.documentTags=newTags;
+                that.renderDocumentTag(newTags);
+            };
+            Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_REMOVETAG_EVENT,{tag:tagValue,
+                documentMetaInfo:this.documentDetailInfo,callback:callbackFunction});
+        },
+        addDocumentTag:function(tagValue){
+            var that=this;
+            var callbackFunction=function(newTags){
+                that.documentInfo.documentTags=newTags;
+                that.renderDocumentTag(newTags);
+            };
+            Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_ADDTAG_EVENT,{
+                tag:tagValue,documentMetaInfo:this.documentDetailInfo,callback:callbackFunction
+            });
+            popup.close(this.addNewTagMenuDialog);
         },
         renderInitInfo:function(){
             if(this.creatorNamecardWidget){
@@ -127,6 +183,7 @@ require([
                 previewTempFileGenerateObj.roleFileInfo.parentFolderPath=documentExtalInfo.parentFolderPath;
                 previewTempFileGenerateObj.roleFileInfo.fileName=documentInfo.documentName;
             }
+            this.documentDetailInfo=previewTempFileGenerateObj;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };

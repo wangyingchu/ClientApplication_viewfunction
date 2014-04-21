@@ -100,6 +100,7 @@ require([
                             currentDocument["documentSize"]=documentItem.documentSize;
                             currentDocument["isDocumentLocked"]=documentItem.locked;
                             currentDocument["isLinkDocument"]=documentItem.linked;
+                            currentDocument["documentTags"]=documentItem.documentTags;
                             var documentCreator=documentItem.documentCreator;
                             if(documentCreator){
                                 var creatorParticipant={};

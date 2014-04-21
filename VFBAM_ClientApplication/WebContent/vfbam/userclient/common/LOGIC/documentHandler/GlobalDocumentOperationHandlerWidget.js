@@ -10,6 +10,8 @@ require([
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,dojo.hitch(this,this.previewDocument));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT,dojo.hitch(this,this.lockDocument));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT,dojo.hitch(this,this.unlockDocument));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_ADDTAG_EVENT,dojo.hitch(this,this.addDocumentTag));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_REMOVETAG_EVENT,dojo.hitch(this,this.removeDocumentTag));
         },
         deleteDocument:function(data){
             var confirmationLabel;
@@ -234,7 +236,7 @@ require([
                     }
                 };
                 Application.WebServiceUtil.postJSONData(resturl,deleteFileInfoContent,loadCallback,errorCallback);
-            }
+            };
             UI.showConfirmDialog({
                 message:confirmationLabel,
                 confirmButtonLabel:"<i class='icon-unlock'></i> 解锁",
@@ -377,6 +379,73 @@ require([
             };
             dojo.connect(dialog,"hide",deletePreviewFileCallBack);
             dialog.show();
+        },
+        addDocumentTag:function(data){
+            var fileTagOperationObj = {};
+            fileTagOperationObj.documentsOwnerType = data.documentMetaInfo.documentsOwnerType;
+            fileTagOperationObj.activitySpaceName = APPLICATION_ID;
+            fileTagOperationObj.tagValue = data.tag;
+            if (data.documentMetaInfo.documentsOwnerType == "PARTICIPANT") {
+                fileTagOperationObj.participantFileInfo = data.documentMetaInfo.participantFileInfo;
+            }
+            if (data.documentMetaInfo.documentsOwnerType == "ACTIVITY") {
+                fileTagOperationObj.activityTypeFileInfo = data.documentMetaInfo.activityTypeFileInfo;
+            }
+            if (data.documentMetaInfo.documentsOwnerType == "APPLICATIONSPACE") {
+                fileTagOperationObj.applicationSpaceFileInfo = data.documentMetaInfo.applicationSpaceFileInfo;
+            }
+            if (data.documentMetaInfo.documentsOwnerType == "ROLE") {
+                fileTagOperationObj.roleFileInfo = data.documentMetaInfo.roleFileInfo;
+            }
+            var errorCallback = function (data) {
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback = function (resultData) {
+                if(data.callback){
+                    data.callback(resultData);
+                }
+            };
+            var fileTagOperationObjContent = dojo.toJson(fileTagOperationObj);
+            var resturl = CONTENT_SERVICE_ROOT + "addFileTag/";
+            Application.WebServiceUtil.postJSONData(resturl, fileTagOperationObjContent, loadCallback, errorCallback);
+        },
+        removeDocumentTag:function(data){
+            var confirmationLabel= "请确认是否删除文件标签 '<b>"+data.tag+"</b>' ?";
+            var confirmButtonAction=function() {
+                var fileTagOperationObj = {};
+                fileTagOperationObj.documentsOwnerType = data.documentMetaInfo.documentsOwnerType;
+                fileTagOperationObj.activitySpaceName = APPLICATION_ID;
+                fileTagOperationObj.tagValue = data.tag;
+                if (data.documentMetaInfo.documentsOwnerType == "PARTICIPANT") {
+                    fileTagOperationObj.participantFileInfo = data.documentMetaInfo.participantFileInfo;
+                }
+                if (data.documentMetaInfo.documentsOwnerType == "ACTIVITY") {
+                    fileTagOperationObj.activityTypeFileInfo = data.documentMetaInfo.activityTypeFileInfo;
+                }
+                if (data.documentMetaInfo.documentsOwnerType == "APPLICATIONSPACE") {
+                    fileTagOperationObj.applicationSpaceFileInfo = data.documentMetaInfo.applicationSpaceFileInfo;
+                }
+                if (data.documentMetaInfo.documentsOwnerType == "ROLE") {
+                    fileTagOperationObj.roleFileInfo = data.documentMetaInfo.roleFileInfo;
+                }
+                var errorCallback = function (data) {
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback = function (resultData) {
+                    if(data.callback){
+                        data.callback(resultData);
+                    }
+                };
+                var fileTagOperationObjContent = dojo.toJson(fileTagOperationObj);
+                var resturl = CONTENT_SERVICE_ROOT + "removeFileTag/";
+                Application.WebServiceUtil.deleteJSONData(resturl, fileTagOperationObjContent, loadCallback, errorCallback);
+            };
+            UI.showConfirmDialog({
+                message:confirmationLabel,
+                confirmButtonLabel:"<i class='icon-trash'></i> 删除",
+                cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+                confirmButtonAction:confirmButtonAction
+            });
         },
         _endOfCode: function(){}
     });

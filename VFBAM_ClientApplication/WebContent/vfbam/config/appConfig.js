@@ -31,7 +31,8 @@ var APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPER
 var APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT";
-
+var APP_GLOBAL_DOCUMENTOPERATION_ADDTAG_EVENT="APP_GLOBAL_DOCUMENTOPERATION_ADDTAG_EVENT";
+var APP_GLOBAL_DOCUMENTOPERATION_REMOVETAG_EVENT="APP_GLOBAL_DOCUMENTOPERATION_REMOVETAG_EVENT";
 var APP_GLOBAL_TASKCENTER_DISPLAYTASK_EVENT="APP_GLOBAL_TASKCENTER_DISPLAYTASK_EVENT";
 var APP_GLOBAL_TASKCENTER_HANDLETASK_EVENT="APP_GLOBAL_TASKCENTER_HANDLETASK_EVENT";
 var APP_GLOBAL_TASKCENTER_ACCEPTTASK_EVENT="APP_GLOBAL_TASKCENTER_ACCEPTTASK_EVENT";
@@ -214,6 +215,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.documentsList.AddNewFolderWidget",
     "vfbam.userclient.common.UI.components.documentsList.AddNewDocumentWidget",
     "vfbam.userclient.common.UI.components.documentsList.GeneralDocumentViewerWidget",
+    "vfbam.userclient.common.UI.components.documentsList.AddNewTagWidget",
 
     "vfbam.userclient.common.UI.components.commentsList.CommentsListWidget",
     "vfbam.userclient.common.UI.components.commentsList.CommentInfoWidget",
@@ -260,6 +262,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.components.documentCenter.widget.documentManager.DocumentDetailInfoWidget",
     "vfbam.userclient.components.documentCenter.widget.documentManager.DocumentPreviewWidget",
     "vfbam.userclient.components.documentCenter.widget.documentManager.DocumentSearchWidget",
+    "vfbam.userclient.components.documentCenter.widget.documentManager.DocumentTagInfoWidget",
 
     "vfbam.userclient.components.externalResource.widget.ExternalResourceDynamicPageWidget",
 
