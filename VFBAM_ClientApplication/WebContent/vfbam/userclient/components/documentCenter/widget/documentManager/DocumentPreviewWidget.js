@@ -19,6 +19,7 @@ require([
         },
         renderDocumentPreview:function(documentInfo,documentsOwnerType,documentExtalInfo){
             this.documentInfo=documentInfo;
+            this.buildDocumentDetailInfo(documentInfo,documentsOwnerType,documentExtalInfo);
             dojo.style(this.previewContainer,"display","");
             dojo.style(this.initInfoContainer,"display","none");
             this.documentNameText.innerHTML= documentInfo.documentName;
@@ -96,7 +97,6 @@ require([
                 if(documentInfo.documentTags){
                     this.renderDocumentTag(documentInfo.documentTags);
                 }
-
                 this.addNewTagMenuDialog=new idx.widget.MenuDialog();
                 this.addNewTagDropDown=new vfbam.userclient.common.UI.components.documentsList.AddNewTagWidget({documentPreviewer:this});
                 dojo.place(this.addNewTagDropDown.domNode, this.addNewTagMenuDialog.containerNode);
@@ -147,6 +147,22 @@ require([
         },
         renderPreviewPicture:function(documentInfo,documentsOwnerType,documentExtalInfo){
             this.documentPreviewPicture.src="vfbam/userclient/css/image/loading.gif";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(resultData){
+                if(resultData.generateResult){
+                    var previewFilePath=resultData.previewFileLocation+resultData.previewFileName+"&timestamp="+new Date().getTime();
+                    that.documentPreviewPicture.src=previewFilePath;
+                }else{
+                }
+            };
+            var previewTempFileGenerateInfoContent=dojo.toJson(this.documentDetailInfo);
+            var resturl=CONTENT_SERVICE_ROOT+"generateThumbnailFile/";
+            Application.WebServiceUtil.postJSONData(resturl,previewTempFileGenerateInfoContent,loadCallback,errorCallback);
+        },
+        buildDocumentDetailInfo:function(documentInfo,documentsOwnerType,documentExtalInfo){
             var previewTempFileGenerateObj={};
             previewTempFileGenerateObj.documentsOwnerType=documentsOwnerType;
             previewTempFileGenerateObj.activitySpaceName=APPLICATION_ID;
@@ -159,15 +175,15 @@ require([
                 previewTempFileGenerateObj.participantFileInfo.fileName=documentInfo.documentName;
             }
             /*
-            if(documentsOwnerType=="ACTIVITY"){
-                previewTempFileGenerateObj.activityTypeFileInfo={};
-                previewTempFileGenerateObj.activityTypeFileInfo.activitySpaceName=APPLICATION_ID;
-                previewTempFileGenerateObj.activityTypeFileInfo.activityName=this.documentMetaInfo.taskItemData.activityName;
-                previewTempFileGenerateObj.activityTypeFileInfo.activityId=this.documentMetaInfo.taskItemData.activityId;
-                previewTempFileGenerateObj.activityTypeFileInfo.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
-                previewTempFileGenerateObj.activityTypeFileInfo.fileName=documentInfo.documentName;
-            }
-            */
+             if(documentsOwnerType=="ACTIVITY"){
+             previewTempFileGenerateObj.activityTypeFileInfo={};
+             previewTempFileGenerateObj.activityTypeFileInfo.activitySpaceName=APPLICATION_ID;
+             previewTempFileGenerateObj.activityTypeFileInfo.activityName=this.documentMetaInfo.taskItemData.activityName;
+             previewTempFileGenerateObj.activityTypeFileInfo.activityId=this.documentMetaInfo.taskItemData.activityId;
+             previewTempFileGenerateObj.activityTypeFileInfo.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
+             previewTempFileGenerateObj.activityTypeFileInfo.fileName=documentInfo.documentName;
+             }
+             */
             if(documentsOwnerType=="APPLICATIONSPACE"){
                 previewTempFileGenerateObj.applicationSpaceFileInfo={};
                 previewTempFileGenerateObj.applicationSpaceFileInfo.activitySpaceName=APPLICATION_ID;
@@ -184,20 +200,6 @@ require([
                 previewTempFileGenerateObj.roleFileInfo.fileName=documentInfo.documentName;
             }
             this.documentDetailInfo=previewTempFileGenerateObj;
-            var errorCallback= function(data){
-                UI.showSystemErrorMessage(data);
-            };
-            var that=this;
-            var loadCallback=function(resultData){
-                if(resultData.generateResult){
-                    var previewFilePath=resultData.previewFileLocation+resultData.previewFileName+"&timestamp="+new Date().getTime();
-                    that.documentPreviewPicture.src=previewFilePath;
-                }else{
-                }
-            };
-            var previewTempFileGenerateInfoContent=dojo.toJson(previewTempFileGenerateObj);
-            var resturl=CONTENT_SERVICE_ROOT+"generateThumbnailFile/";
-            Application.WebServiceUtil.postJSONData(resturl,previewTempFileGenerateInfoContent,loadCallback,errorCallback);
         },
         _endOfCode: function(){}
     });
