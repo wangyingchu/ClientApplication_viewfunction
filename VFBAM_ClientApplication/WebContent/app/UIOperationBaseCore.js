@@ -105,7 +105,7 @@ var UI=(function(){
                 loadingDlg.hide();
             }
         },
-        openDynamicPage:function(dynamicPageType,dynamicPageLabel,dynamicPageUniqueId,pageTitle,pagePayload){
+        openDynamicPage:function(dynamicPageType,dynamicPageLabel,dynamicPageUniqueId,pageTitle,pagePayload,staticPageStyle){
             if(dynamicPageUniqueId) {
                 if(!dynamicPageUniqueIdMap[dynamicPageType]){
                     dynamicPageUniqueIdMap[dynamicPageType]={};
@@ -129,7 +129,13 @@ var UI=(function(){
                 }
                 var currentWorkspaceUIID=currentWorkspace.id.replace("idx_app_Workspace_", "");
                 var workSpaceTabId="idx_app_WorkspaceTab_"+currentWorkspaceUIID+"_titleNode";
-                dojo.byId(workSpaceTabId).innerHTML="<span class='appDynamicPageTabText'>"+pageTitle+"</span>";
+                if(staticPageStyle){
+                    dojo.byId(workSpaceTabId).innerHTML="<span>"+pageTitle+"</span>";
+                }else{
+                    dojo.byId(workSpaceTabId).innerHTML="<span class='appDynamicPageTabText'>"+pageTitle+"</span>";
+                }
+
+
                 /*
                 var workspaceTabContainerId="idx_app_WorkspaceTab_"+ currentWorkspaceUIID;
                 require(["dojo/dom-class"],

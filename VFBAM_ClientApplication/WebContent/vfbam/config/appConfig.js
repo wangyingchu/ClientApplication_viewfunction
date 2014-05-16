@@ -1,6 +1,14 @@
 //business configuration data
 var APPLICATION_ID="viewfunction_inc";
 
+var APPLICATION_ROLEBASE_ACCESS_MATRIX={};
+APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[{
+    workspaceType:"ACTIVITIES_STATISTIC",
+    workspaceTitle:"工作进度统计",
+    dynamicPageTitle:"<i class='icon-bar-chart'></i> 工作进度统计",
+    pageUniqueId:"ACTIVITIES_STATISTIC_UID"
+}];
+
 var PARTICIPANT_SERVICE_ROOT="/ParticipantManagementService/ws/";
 var USER_TYPE_PARTICIPANT="PARTICIPANT";
 var USER_TYPE_ROLE="ROLE";
@@ -22,9 +30,7 @@ var USER_PROFILE="USER_PROFILE";
 var USER_APP_INFO_ROLE="USER_APP_INFO_ROLE";
 
 //Global Application Event Definition
-
 var APP_GLOBAL_MESSAGECENTER_CREATEMESSAGE_EVENT="APP_GLOBAL_MESSAGECENTER_CREATEMESSAGE_EVENT";
-
 var APP_GLOBAL_DOCUMENTOPERATION_DELETEDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_DELETEDOCUMENT_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT="APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT";
@@ -100,7 +106,6 @@ var idx_aliases = [
             return match.substr(4);
         }
     ],
-
     ["dijit/robot", "internal/dijit/robot"],
     ["dijit/robotx", "internal/dijit/robotx"],
     ["dojo/robot", "internal/dojo/robot"],
@@ -238,6 +243,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.LOGIC.taskHandler.GlobalTaskOperationHandlerWidget",
     "vfbam.userclient.common.LOGIC.documentHandler.GlobalDocumentOperationHandlerWidget",
     "vfbam.userclient.common.LOGIC.documentHandler.DocumentContentMetaInfoHandleUtil",
+    "vfbam.userclient.common.LOGIC.authorityHandler.GlobalAuthorityOperationHandlerWidget",
 
     "vfbam.userclient.components.messageCenter.widget.messageList.MessageListWidget",
     "vfbam.userclient.components.messageCenter.widget.messagePreview.MessagePreviewWidget",

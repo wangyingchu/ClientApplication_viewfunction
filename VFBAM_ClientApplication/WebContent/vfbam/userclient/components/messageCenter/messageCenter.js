@@ -273,3 +273,4 @@ function deleteMessage(messageData){
 var GLOBAL_TASK_OPERATION_HANDLER=new vfbam.userclient.common.LOGIC.taskHandler.GlobalTaskOperationHandlerWidget();
 var globalCreateMessageListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_MESSAGECENTER_CREATEMESSAGE_EVENT,createMessage);
 var globalDocumentOperationHandlerWidget=new vfbam.userclient.common.LOGIC.documentHandler.GlobalDocumentOperationHandlerWidget();
+var globalAuthorityOperationHandlerWidget=new vfbam.userclient.common.LOGIC.authorityHandler.GlobalAuthorityOperationHandlerWidget();
