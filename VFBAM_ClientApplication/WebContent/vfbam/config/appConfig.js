@@ -7,7 +7,13 @@ APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[{
     workspaceTitle:"工作进度统计",
     dynamicPageTitle:"<i class='icon-bar-chart'></i> 工作进度统计",
     pageUniqueId:"ACTIVITIES_STATISTIC_UID"
-}];
+},{
+    workspaceType:"USER_MANAGEMENT",
+    workspaceTitle:"用户管理",
+    dynamicPageTitle:"<i class='icon-user'></i> 用户管理",
+    pageUniqueId:"ACTIVITIES_STATISTIC_UID"
+}
+];
 
 var PARTICIPANT_SERVICE_ROOT="/ParticipantManagementService/ws/";
 var USER_TYPE_PARTICIPANT="PARTICIPANT";
