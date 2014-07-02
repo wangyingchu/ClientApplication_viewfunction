@@ -7,13 +7,18 @@ APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[{
     workspaceTitle:"工作进度统计",
     dynamicPageTitle:"<i class='icon-bar-chart'></i> 工作进度统计",
     pageUniqueId:"ACTIVITIES_STATISTIC_UID"
-},{
-    workspaceType:"USER_MANAGEMENT",
-    workspaceTitle:"用户管理",
-    dynamicPageTitle:"<i class='icon-user'></i> 用户管理",
-    pageUniqueId:"ACTIVITIES_STATISTIC_UID"
-}
+    },{
+        workspaceType:"USER_MANAGEMENT",
+        workspaceTitle:"用户管理",
+        dynamicPageTitle:"<i class='icon-user'></i> 用户管理",
+        pageUniqueId:"ACTIVITIES_STATISTIC_UID"
+    }
 ];
+var APPLICATION_ROLE_DISPLAYNAME_MAP={};
+APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_SUPERVISER"]="系统管理员";
+APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_NORMALUSER"]="普通用户";
+
+
 
 var PARTICIPANT_SERVICE_ROOT="/ParticipantManagementService/ws/";
 var USER_TYPE_PARTICIPANT="PARTICIPANT";
@@ -244,6 +249,8 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantProfileEditorWidget",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantFacePhotoUploaderWidget",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantPasswordResetWidget",
+    "vfbam.userclient.common.UI.components.participantDetailInfo.ParticipantDetailInfoWidget",
+    "vfbam.userclient.common.UI.components.participantProfile.NewParticipantEditorWidget",
 
     "vfbam.userclient.common.LOGIC.notificationHandler.NotificationHandlerWidget",
     "vfbam.userclient.common.LOGIC.taskHandler.GlobalTaskOperationHandlerWidget",
@@ -277,6 +284,10 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.components.documentCenter.widget.documentManager.DocumentTagInfoWidget",
 
     "vfbam.userclient.components.externalResource.widget.ExternalResourceDynamicPageWidget",
+
+    "vfbam.userclient.components.userManagement.widget.userPreview.UserPreviewWidget",
+    "vfbam.userclient.components.userManagement.widget.userList.UserListWidget",
+    "vfbam.userclient.components.userManagement.widget.userList.UserBasicInfoMagazineViewItemWidget",
 
     "app.util.Interface",
     "app.ApplicationBaseFunctionImpl",

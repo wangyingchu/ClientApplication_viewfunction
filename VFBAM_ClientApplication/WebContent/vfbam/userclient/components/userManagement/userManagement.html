@@ -13,39 +13,68 @@
 <table width="100%" border="0" style="height: 92%;">
     <tr>
         <td width="150" style="background-color: #FBFBFB;" valign="top">
-            <div  style="padding-left: 5px;padding-top:9px;padding-bottom:2px;">
+            <div  style="padding-left: 5px;padding-top:5px;padding-bottom:2px;">
                 <button dojoType="dijit.form.Button" placement="primary" onClick="refreshUserList"><i class="icon-refresh"></i> 刷新用户列表</button>
             </div>
             <div><div class="app_headerDivLine"></div></div>
-            <div style="min-height: 400px;">
+            <div style="min-height: 400px;background-color: #FAFAFA;">
                 <div style="padding-left: 20px;padding-bottom: 5px;padding-top:10px;font-size: 1.2em;">
                     <i class="icon-comments"></i>
-                    <span data-dojo-type="idx.form.Link" onClick="loadMessages" id="app_messageCenter_loadMessagesLinkContainer">
-                        <span> 消息<span id="app_messageCenter_newMessageCount">(0)</span></span>
+                    <span data-dojo-type="idx.form.Link" onClick="loadMessages" id="app_userManagement_loadMessagesLinkContainer">
+                        <span> 消息<span id="app_userManagement_newMessageCount">(0)</span></span>
                     </span>
                 </div>
                 <div style="padding-left: 20px;padding-bottom: 5px;font-size: 1.2em;font-weight: normal;" >
                     <i class="icon-info-sign"></i>
-                    <span data-dojo-type="idx.form.Link"  onClick="loadNotifications" id="app_messageCenter_loadNotificationsLinkContainer">
-                        <span> 通知<span id="app_messageCenter_newNotificationCount">(0)</span></span>
+                    <span data-dojo-type="idx.form.Link"  onClick="loadNotifications" id="app_userManagement_loadNotificationsLinkContainer">
+                        <span> 通知<span id="app_userManagement_newNotificationCount">(0)</span></span>
                     </span>
                 </div>
                 <div style="padding-left: 20px;font-size: 1.2em;font-weight: normal;" >
                     <i class="icon-tag"></i>
-                    <span data-dojo-type="idx.form.Link"  onClick="loadTasks" id="app_messageCenter_loadTasksLinkContainer">
-                        <span> 工作<span id="app_messageCenter_newTaskCount">(0)</span></span>
+                    <span data-dojo-type="idx.form.Link"  onClick="loadTasks" id="app_userManagement_loadTasksLinkContainer">
+                        <span> 工作<span id="app_userManagement_newTaskCount">(0)</span></span>
                     </span>
                 </div>
             </div>
         </td>
         <td style="vertical-align:top;padding-left: 10px;">
-            <div dojoType="dijit.layout.ContentPane" region="bottom" title="Bottom Region" splitter="true" style="min-height: 320px;" id="app_messageCenter_myMessagesContainer">
+            <div>
+                <div style="padding-left: 5px;padding-top:5px;">
+                    <button dojoType="dijit.form.Button" onClick="loadAddNewUserBasicInfoDialog" placement="secondary"><i class="icon-plus-sign"></i> 创建用户</button>
+                    <span id="app_userManagement_disableUserButton"></span>
+                    <span id="app_userManagement_activeUserButton"></span>
+                    <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                    <span id="app_userManagement_basicInfoButton"></span>
+                    <span id="app_userManagement_profileInfoButton"></span>
+                </div>
+            </div>
+
+            <div dojoType="dijit.layout.ContentPane" region="bottom" title="Bottom Region" splitter="true" style="min-height: 320px;" id="app_userManagement_participantInfoContainer">
                 <div dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="true">
                     <div dojoType="dijit.layout.ContentPane" region="center" class="app_contentBorderLine">
-                        <div id="app_messageCenter_messageListContainer"></div>
+                        <div>
+                            <div>
+                                <span style="font-size: 0.8em;color: #888888;" data-dojo-attach-point="searchLabel">搜索：</span>
+                                <select dojoType="idx.form.Select" data-dojo-attach-point="queryTypeSelect" style="width:120px;"
+                                        store="new dojo.data.ItemFileReadStore({url:'vfbam/userclient/components/messageCenter/widget/messageList/searchOptions.json'})">
+                                </select>
+                                <span style="width:260px;" data-dojo-attach-point="searchInputArea">
+                                    <span dojoType="dijit.form.TextBox" value="" style="width:250px;" data-dojo-attach-point="queryTextInput"></span>
+                                </span>
+                                <span class="searchBarButton" data-dojo-attach-point="searchButtonArea">
+                	                <div dojoType="dijit.form.Button" data-dojo-attach-point="queryDateButton" data-dojo-attach-event="onClick:doQueryMessage"><i class="icon-search"></i> 搜索</div>
+               	                </span>
+                            </div>
+                            <div class="app_headerDivLine"></div>
+                        </div>
+                        <div style="overflow: auto;" id="app_userManagement_userListWarper">
+                            <div id="app_userManagement_participantListContainer">
+                            </div>
+                        </div>
                     </div>
-                    <div dojoType="dijit.layout.ContentPane" region="trailing" style="width: 350px;" splitter="true" class="app_contentBorderLine">
-                        <div id="app_messageCenter_messagePreviewContainer"></div>
+                    <div dojoType="dijit.layout.ContentPane" region="trailing" style="width: 400px;" splitter="true" class="app_contentBorderLine">
+                        <div id="app_userManagement_participantPreviewContainer"></div>
                     </div>
                 </div>
             </div>

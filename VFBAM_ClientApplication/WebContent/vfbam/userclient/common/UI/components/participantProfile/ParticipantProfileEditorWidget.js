@@ -10,8 +10,13 @@ require([
         	if(this.participantId){
         		this.facePhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.participantId;
         		this.participantFacePhoto.src=this.facePhotoPath;         		
-        		this.updateUsetFacePhotoButton.set("label",'<i class="icon-picture"></i> 更新头像');        		
-        		var userProfileData=Application.AttributeContext.getAttribute(USER_PROFILE);        		
+        		this.updateUsetFacePhotoButton.set("label",'<i class="icon-picture"></i> 更新头像');
+                var userProfileData;
+                if(this.participantProfile){
+                    userProfileData=this.participantProfile;
+                }else{
+                    userProfileData=Application.AttributeContext.getAttribute(USER_PROFILE);
+                }
         		this.displayNameField.set("value",dojo.trim(userProfileData.displayName));
         		this.userIdField.set("value",dojo.trim(userProfileData.userId));
         		this.titleField.set("value",dojo.trim(userProfileData.title));
@@ -82,13 +87,18 @@ require([
         	    UI.hideProgressDialog();
         	    UI.showSystemErrorMessage(data);
         	};
+            var that=this;
         	var loadCallback=function(data){
         	    UI.hideProgressDialog(); 
         	    if(data){
         	    	UI.showToasterMessage({type:"success",message:"用户信息更新成功"});
-        	    	Application.AttributeContext.setAttribute(USER_PROFILE,data);      	    	
-        	    	Application.MessageUtil.publishMessage(APP_USERLOGIN_PARTICIPANTINFO_REFRESH_EVENT,{});
-        	    }
+                    if(that.callback){
+                        that.callback(data);
+                    }else{
+                        Application.AttributeContext.setAttribute(USER_PROFILE,data);
+                        Application.MessageUtil.publishMessage(APP_USERLOGIN_PARTICIPANTINFO_REFRESH_EVENT,{});
+                    }
+                }
         	};
         	UI.showProgressDialog("更新用户信息");
         	Application.WebServiceUtil.postJSONData(resturl,userProfileDataContent,loadCallback,errorCallback);        	

@@ -9,7 +9,7 @@ require([
             var addtionalWorkspaceTypesForCurrentUser=APPLICATION_ROLEBASE_ACCESS_MATRIX[currentUserRoleType];
             if(addtionalWorkspaceTypesForCurrentUser){
                 dojo.forEach(addtionalWorkspaceTypesForCurrentUser,function(workspaceType){
-                    console.log(workspaceType);
+                    //console.log(workspaceType);
 
                     var dynamicPageId=UI.openDynamicPage(workspaceType.workspaceType, workspaceType.workspaceTitle,  workspaceType.pageUniqueId,workspaceType.dynamicPageTitle,{},true);
                     /*
