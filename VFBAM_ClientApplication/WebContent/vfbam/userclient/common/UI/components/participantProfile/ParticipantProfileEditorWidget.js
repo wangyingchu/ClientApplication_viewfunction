@@ -8,7 +8,8 @@ require([
         facePhotoPath:null,
         postCreate: function(){
         	if(this.participantId){
-        		this.facePhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.participantId;
+                var dateTimeStamp=""+new Date().getTime();
+        		this.facePhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.participantId+"?timestamp="+dateTimeStamp;
         		this.participantFacePhoto.src=this.facePhotoPath;         		
         		this.updateUsetFacePhotoButton.set("label",'<i class="icon-picture"></i> 更新头像');
                 var userProfileData;
@@ -28,7 +29,9 @@ require([
         			this.fixedPhoneField.set("value",userProfileData.fixedPhone);
         		}        		
         		this.addressField.set("value",dojo.trim(userProfileData.address));
-        		this.postalCodeField.set("value",dojo.trim(userProfileData.postalCode));
+                if(userProfileData.postalCode!="000000"){
+                    this.postalCodeField.set("value",dojo.trim(userProfileData.postalCode));
+                }
         		this.descriptionField.set("value",dojo.trim(userProfileData.description));         		
         	}	
         },
@@ -104,7 +107,7 @@ require([
         	Application.WebServiceUtil.postJSONData(resturl,userProfileDataContent,loadCallback,errorCallback);        	
         }, 
         updateUserFacePhoto:function(){
-        	var userPhotoUploadWidget=new vfbam.userclient.common.UI.components.participantProfile.ParticipantFacePhotoUploaderWidget({participantId:this.participantId,participantProfileEditor:this});
+        	var userPhotoUploadWidget=new vfbam.userclient.common.UI.components.participantProfile.ParticipantFacePhotoUploaderWidget({participantId:this.participantId,participantProfileEditor:this,callback:this.updatePhotoCallback});
 			var dialogStyle="width:500px;";			
 			var	dialog = new Dialog({						
 				style:dialogStyle,

@@ -12,9 +12,9 @@ require([
         userBasicInfoConnectionHandler:null,
         userProfileConnectionHandler:null,
         postCreate: function(){
-            //console.log(this.userDetailInfo);
+            var dateTimeStamp=""+new Date().getTime();
             this.userFacePhoto.src=
-                PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.userDetailInfo.userId;
+                PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.userDetailInfo.userId+"?timestamp="+dateTimeStamp;
             this.userName.innerHTML=this.userDetailInfo.displayName;
             this.userId.innerHTML=this.userDetailInfo.userId;
 
@@ -24,7 +24,9 @@ require([
             }else{
                 this.userRole.innerHTML="";
             }
-            this.userPhoneNumber.innerHTML=this.userDetailInfo.fixedPhone;
+            if(this.userDetailInfo.fixedPhone&&this.userDetailInfo.fixedPhone!="0"){
+                this.userPhoneNumber.innerHTML=this.userDetailInfo.fixedPhone;
+            }
             this.userEmailLink.href="mailto:"+this.userDetailInfo.emailAddress;
             this.userEMailLabel.innerHTML=this.userDetailInfo.emailAddress;
             if(this.userDetailInfo.activeUser){
@@ -68,9 +70,14 @@ require([
         setupUserInfo:function(userInfo){
             this.userDetailInfo=userInfo;
             this.userName.innerHTML=this.userDetailInfo.displayName;
-            this.userPhoneNumber.innerHTML=this.userDetailInfo.fixedPhone;
+            if(this.userDetailInfo.fixedPhone!=0){
+                this.userPhoneNumber.innerHTML=this.userDetailInfo.fixedPhone;
+            }
             this.userEmailLink.href="mailto:"+this.userDetailInfo.emailAddress;
             this.userEMailLabel.innerHTML=this.userDetailInfo.emailAddress;
+            var dateTimeStamp=""+new Date().getTime();
+            this.userFacePhoto.src=
+                PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.userDetailInfo.userId+"?timestamp="+dateTimeStamp;
             if(userInfo.activeUser){
                 this.userDetailInfo.activeUser=true;
                 dojo.style(this.disabledUserIcon,"display","none");
@@ -84,6 +91,12 @@ require([
                 dojo.style(this.disableUserButton,"display","none");
                 dojo.style(this.enableUserButton,"display","");
             }
+            Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_USERINFOSELECTED_EVENT,{userDetailInfo:this.userDetailInfo,selectedUserInfoWidget:this});
+        },
+        reloadUserPhoto:function(){
+            var dateTimeStamp=""+new Date().getTime();
+            this.userFacePhoto.src=
+                PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.userDetailInfo.userId+"?timestamp="+dateTimeStamp;
             Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_USERINFOSELECTED_EVENT,{userDetailInfo:this.userDetailInfo,selectedUserInfoWidget:this});
         },
         destroy:function(){

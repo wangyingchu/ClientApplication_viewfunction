@@ -19,9 +19,11 @@ require([
             }else{
                 dojo.style(this.previewPrompt,"display","");
                 dojo.style(this.previewContent,"display","none");
+                return;
             }
+            var dateTimeStamp=""+new Date().getTime();
             this.userFacePhoto.src=
-                PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+userDetailInfo.userId;
+                PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+userDetailInfo.userId+"?timestamp="+dateTimeStamp;
             this.userName.innerHTML=userDetailInfo.displayName;
             this.userId.innerHTML=userDetailInfo.userId;
 
@@ -54,12 +56,12 @@ require([
             }else{
                 this.emailAddress.innerHTML="";
             }
-            if(userDetailInfo.mobilePhone){
+            if(userDetailInfo.mobilePhone&&userDetailInfo.mobilePhone!="0"){
                 this.mobilePhone.innerHTML=userDetailInfo.mobilePhone;
             }else{
                 this.mobilePhone.innerHTML="";
             }
-            if(userDetailInfo.fixedPhone){
+            if(userDetailInfo.fixedPhone&&userDetailInfo.fixedPhone!="0"){
                 this.fixedPhone.innerHTML=userDetailInfo.fixedPhone;
             }else{
                 this.fixedPhone.innerHTML="";
@@ -69,7 +71,7 @@ require([
             }else{
                 this.address.innerHTML="";
             }
-            if(userDetailInfo.postalCode){
+            if(userDetailInfo.postalCode&&userDetailInfo.postalCode!="000000"){
                 this.postalCode.innerHTML=userDetailInfo.postalCode;
             }else{
                 this.postalCode.innerHTML="";

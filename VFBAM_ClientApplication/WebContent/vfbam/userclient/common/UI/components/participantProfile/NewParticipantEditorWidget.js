@@ -7,39 +7,6 @@ require([
         widgetsInTemplate: true,
         facePhotoPath:null,
         postCreate: function(){
-            if(this.participantId){
-                //this.facePhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.participantId;
-                //this.participantFacePhoto.src=this.facePhotoPath;
-                //this.updateUsetFacePhotoButton.set("label",'<i class="icon-picture"></i> 更新头像');
-                /*
-                var userProfileData;
-                if(this.participantProfile){
-                    userProfileData=this.participantProfile;
-                }else{
-                    userProfileData=Application.AttributeContext.getAttribute(USER_PROFILE);
-                }
-                this.displayNameField.set("value",dojo.trim(userProfileData.displayName));
-                this.userIdField.set("value",dojo.trim(userProfileData.userId));
-                this.titleField.set("value",dojo.trim(userProfileData.title));
-                this.emailAddressField.set("value",dojo.trim(userProfileData.emailAddress));
-                if(userProfileData.mobilePhone!="0"){
-                    this.mobilePhoneField.set("value",userProfileData.mobilePhone);
-                }
-                if(userProfileData.fixedPhone!="0"){
-                    this.fixedPhoneField.set("value",userProfileData.fixedPhone);
-                }
-                this.addressField.set("value",dojo.trim(userProfileData.address));
-                this.postalCodeField.set("value",dojo.trim(userProfileData.postalCode));
-                this.descriptionField.set("value",dojo.trim(userProfileData.description));
-                */
-            }
-
-
-
-
-
-
-
         },
         addNewUser:function(){
             var validationResult=true;
@@ -50,6 +17,11 @@ require([
             if(!this.userIdField.isValid()){
                 UI.showToasterMessage({type:"warning",message:"请输入用户登录ID"});
                 validationResult=false;
+            }
+            var isRepeatedUserId=this.userListWidget.checkDuplicatedUserById(this.userIdField.get("value"));
+            if(isRepeatedUserId){
+                UI.showToasterMessage({type:"warning",message:"该用户登录ID在系统中已存在"});
+                return false;
             }
             if(!this.emailAddressField.isValid()){
                 UI.showToasterMessage({type:"warning",message:"请输入格式正确的电子邮件地址"});
@@ -70,7 +42,7 @@ require([
             if(!validationResult){
                 return;
             }
-            var messageTxt="<b>请确认是否添加用户</b>";
+            var messageTxt="请确认是否添加用户 <b>"+this.displayNameField.get("value")+" - "+this.userIdField.get("value")+"</b> .";
             var that=this;
             var confirmButtonAction=function(){
                 that._doAddUserProfile();
@@ -112,11 +84,13 @@ require([
                         Application.AttributeContext.setAttribute(USER_PROFILE,data);
                         Application.MessageUtil.publishMessage(APP_USERLOGIN_PARTICIPANTINFO_REFRESH_EVENT,{});
                     }
+                    that.doCloseContainerDialog();
                 }
             };
             UI.showProgressDialog("添加用户");
             Application.WebServiceUtil.postJSONData(resturl,userProfileDataContent,loadCallback,errorCallback);
         },
+        doCloseContainerDialog:function(){},
         _endOfCode: function(){}
     });
 });

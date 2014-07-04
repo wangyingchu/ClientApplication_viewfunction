@@ -18,22 +18,24 @@
             </div>
             <div><div class="app_headerDivLine"></div></div>
             <div style="min-height: 400px;background-color: #FAFAFA;">
+
                 <div style="padding-left: 20px;padding-bottom: 5px;padding-top:10px;font-size: 1.2em;">
-                    <i class="icon-comments"></i>
-                    <span data-dojo-type="idx.form.Link" onClick="loadMessages" id="app_userManagement_loadMessagesLinkContainer">
-                        <span> 消息<span id="app_userManagement_newMessageCount">(0)</span></span>
+                    <i class="icon-user"></i>
+                    <span data-dojo-type="idx.form.Link" onClick="filterAllUser" id="app_userManagement_allUserFilterContainer" class="app_messageCenter_selectedMessageType">
+                        <span> 全部用户<span id="app_userManagement_allUserCount">(0)</span></span>
                     </span>
                 </div>
+
                 <div style="padding-left: 20px;padding-bottom: 5px;font-size: 1.2em;font-weight: normal;" >
-                    <i class="icon-info-sign"></i>
-                    <span data-dojo-type="idx.form.Link"  onClick="loadNotifications" id="app_userManagement_loadNotificationsLinkContainer">
-                        <span> 通知<span id="app_userManagement_newNotificationCount">(0)</span></span>
+                    <i class="icon-male"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterNormalUser" id="app_userManagement_normalUserFilterContainer">
+                        <span>普通用户<span id="app_userManagement_normalUserCount">(0)</span></span>
                     </span>
                 </div>
                 <div style="padding-left: 20px;font-size: 1.2em;font-weight: normal;" >
-                    <i class="icon-tag"></i>
-                    <span data-dojo-type="idx.form.Link"  onClick="loadTasks" id="app_userManagement_loadTasksLinkContainer">
-                        <span> 工作<span id="app_userManagement_newTaskCount">(0)</span></span>
+                    <i class="icon-shield"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterSuperviser" id="app_userManagement_superviserContainer">
+                        <span> 系统管理员<span id="app_userManagement_superviserCount">(0)</span></span>
                     </span>
                 </div>
             </div>
@@ -56,14 +58,10 @@
                         <div>
                             <div>
                                 <span style="font-size: 0.8em;color: #888888;" data-dojo-attach-point="searchLabel">搜索：</span>
-                                <select dojoType="idx.form.Select" data-dojo-attach-point="queryTypeSelect" style="width:120px;"
-                                        store="new dojo.data.ItemFileReadStore({url:'vfbam/userclient/components/messageCenter/widget/messageList/searchOptions.json'})">
-                                </select>
-                                <span style="width:260px;" data-dojo-attach-point="searchInputArea">
-                                    <span dojoType="dijit.form.TextBox" value="" style="width:250px;" data-dojo-attach-point="queryTextInput"></span>
-                                </span>
+                                <span id="app_userManagement_userFilterPropertyTypeSelect"></span>
+                                <span id="app_userManagement_userFilterPropertyValueTextInput"></span>
                                 <span class="searchBarButton" data-dojo-attach-point="searchButtonArea">
-                	                <div dojoType="dijit.form.Button" data-dojo-attach-point="queryDateButton" data-dojo-attach-event="onClick:doQueryMessage"><i class="icon-search"></i> 搜索</div>
+                	                <div dojoType="dijit.form.Button" data-dojo-attach-point="userFilterDateButton" onClick="doFilterUserList"><i class="icon-search"></i> 搜索</div>
                	                </span>
                             </div>
                             <div class="app_headerDivLine"></div>

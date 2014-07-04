@@ -9,10 +9,12 @@ require([
         fileUploader:null,
         postCreate: function(){
         	var pathToUploadServerService=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/updateFacePhoto/"+APPLICATION_ID+"/"+this.participantId;
-        	var that=this;
-    		this.fileUploader = new dojox.form.Uploader({
+            var that=this;
+            var documentFormIdValue="photoForm"+new Date().getTime();
+            this.form.id=documentFormIdValue;
+            this.fileUploader = new dojox.form.Uploader({
                 label: '<i class="icon-picture"></i> 选择图像文件',
-                onChange:function(fileArray){                	
+                onChange:function(fileArray){
                 	if(fileArray.length>0){ 
                 		domStyle.set(that.selectedFileInfoContainer,"visibility","visible");                		
                 		var fileSize;
@@ -63,6 +65,9 @@ require([
         	this.doCloseContainerDialog();
         	UI.showToasterMessage({type:"success",message:"用户头像图片更新成功"});
         	this.participantProfileEditor.reloadUserFacePhoto();
+            if(this.callback){
+                this.callback(data);
+            }
         },  
         _endOfCode: function(){}
     });
