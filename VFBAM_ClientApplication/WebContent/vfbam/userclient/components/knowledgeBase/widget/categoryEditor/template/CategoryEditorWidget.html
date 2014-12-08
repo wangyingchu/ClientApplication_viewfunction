@@ -1,0 +1,38 @@
+<div>
+    <div data-dojo-attach-point="containerNode" style="width: 940px;">
+        <table width="100%" border="0">
+            <tr>
+                <td style="width:300px;">
+                    <span style="font-size: 1.0em; font-weight: bold;color: #444444;"><i class="icon-sitemap"></i> 知识分类列表</span>
+                    <span style="padding-left: 105px;">
+                        <i class="icon-plus-sign-alt"></i> <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="addFirstLevelCategoryLink" style="color:#00649D;" label="添加一级分类"></span>
+                    </span>
+                </td>
+                <td>
+                    <span style="font-size: 1.0em; font-weight: bold;color: #444444;padding-left: 8px;"><i class="icon-list"></i> 分类基本属性</span>
+                    <span style="padding-left: 440px;">
+                        <i class="icon-edit"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:updateBasicProperties">更新基本属性</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:300px;">
+                    <div class="app_headerDivLine"></div>
+                    <div>
+                        <div style="width:300px;height:530px;overflow: auto; background-color: #f8f8f8;">
+                            <div style="height: 10px;">&nbsp;</div>
+                            <div data-dojo-attach-point="categoryTreeContainer"></div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="app_headerDivLine"></div>
+                    <div>
+                        <div data-dojo-attach-point="categoryInfoContainer">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

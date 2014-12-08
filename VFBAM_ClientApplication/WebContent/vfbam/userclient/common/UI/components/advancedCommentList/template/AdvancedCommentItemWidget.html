@@ -1,0 +1,26 @@
+<table width="100%" border="0" style="padding-top: 5px;">
+    <tr>
+        <td style="width: 10px;vertical-align:top;" data-dojo-attach-point="topHeadSpacingTd"></td>
+        <td style="width: 20px;vertical-align:top;">
+            <img src="" width="20px" height="20px" class="app_photoBorder_thin" data-dojo-attach-point="commentCreatorPhoto"/>
+        </td>
+        <td align="left" style="padding-left:5px;">
+            <div style="font-size: 0.9em;font-weight: bold;color:#00475B;">
+                <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="commentCreatorName">
+                </span>: <span style="color: #333333;font-weight: normal;" data-dojo-attach-point="commentContentTxt"></span>
+            </div>
+            <div style="font-size: 0.8em; color:#777777;">创建时间: <span data-dojo-attach-point="commentCreateDate"></span></div>
+        </td>
+        <td align="right" width="40px" style="padding-right: 5px; min-width:30px;vertical-align:top;">
+            <i class="icon-trash" style="color:#444444;cursor: pointer;" data-dojo-attach-point="deleteCommentButton"  data-dojo-attach-event="onclick:deleteComment"></i>
+            <i class="icon-trash" style="color:#AAAAAA;" data-dojo-attach-point="disabledDeleteCommentButton"></i>
+            <span style="padding-right: 3px;padding-left: 3px;font-size: 0.7em; color:#888888;">|</span>
+            <i class="icon-reply" style="cursor: pointer;" data-dojo-attach-point="replyCommentDropDownContainer"></i>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="app_headerDivLine_thin" style="border-color:#AAAAAA;border-style:dotted;"  data-dojo-attach-point="manyChildCommentDiv"></div>
+        </td>
+    </tr>
+</table>

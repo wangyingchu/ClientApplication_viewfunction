@@ -1,0 +1,43 @@
+<div data-dojo-attach-point="containerNode">
+    <div style="height: 200px;">
+        <div style="font-size: 0.9em;color: #666666;height: 15px; padding-top: 0px;"><span data-dojo-attach-point="addItemPrompt"><i class="icon-camera"></i> 请选择需要添加的素材文件</span><span style="display: none;" data-dojo-attach-point="addSuccessPrompt"><i class="icon-ok"></i> 添加素材文件成功</span></div>
+        <div class="app_headerDivLine"></div>
+        <div style="height:5px;"></div>
+        <div data-dojo-attach-point="knowItemUploaderContainer">
+            <form method="post" data-dojo-attach-point="form" enctype="multipart/form-data">
+                <input data-dojo-attach-point="fileUploaderNode"/>
+            </form>
+        </div>
+        <div data-dojo-attach-point="uploadedKnowledgeItemInfoContainer" style="display: none;">
+            <div>
+                <table width="100%" border="0" style="padding-top: 5px;">
+                    <tr>
+                        <td width="152" style="display: inline;">
+                            <span><img src="" width="150px" height="150px" class="app_photoBorder" data-dojo-attach-point="thubmnailPic"/></span>
+                        </td>
+                        <td width="20" style="display: inline;" align="center">
+                        </td>
+                        <td  width="420" align="left" style="vertical-align:top;">
+                            <div style=" text-align:right;">
+                                <span><i style="color:#26A251;" class="icon-pushpin"></i> <span style="color: #05386b;"><span data-dojo-attach-point="knowledgeTagSwitcherContainer"></span></span></span>
+                                <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                                <span  style="padding-right: 10px;"><i style="color:#00475B;" class="icon-archive"></i> <span style="color: #05386b;"><span data-dojo-attach-point="knowledgeProjectsSwitcherContainer"></span></span></span>
+                            </div>
+                            <div class="app_headerDivLine"></div>
+                            <div style="height:5px;"></div>
+                            <div style="background-color: #eeeeee;padding: 5px;font-size: 0.9em;color: #777777;">
+                                <div style="padding-bottom: 3px;"><i class="icon-comment"></i> 素材描述:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="knowledgeTitleTxt"></span><span style="padding-left: 5px;"><span data-dojo-attach-point="updateDescLinkContainer"></span></span></div>
+                                <div style="padding-bottom: 3px;"><i class="icon-file-alt"></i> 素材名称:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentNameText"></span></div>
+                                <div style="padding-bottom: 3px;"><i class="icon-hdd"></i> 素材大小:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentSizeText"></span></div>
+                                <div style="padding-bottom: 3px;"><i class="icon-sort-by-order"></i> 素材序号:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentSequenceText"></span></div>
+                                <div style="padding-bottom: 3px;"><i class="icon-file"></i> 文件类型:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentTypeText"></span></div>
+                                <div style="padding-bottom: 3px;"><i class="icon-signout"></i> 发布人:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentPublisherText"></span></div>
+                                <div style="padding-bottom: 3px;" data-dojo-attach-point="creatorDateRootContainer"><i class="icon-time"></i> 发布时间:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentCreateDateText"></span></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

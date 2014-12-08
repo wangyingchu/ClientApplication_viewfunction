@@ -1,0 +1,8 @@
+{
+    identifier:"abbreviation",
+    label: "label",
+    items: [
+        {name:"企业名称", label:"企业名称",abbreviation:"displayName"},
+        {name:"企业编号", label:"企业编号",abbreviation:"userId"}
+    ]
+} 

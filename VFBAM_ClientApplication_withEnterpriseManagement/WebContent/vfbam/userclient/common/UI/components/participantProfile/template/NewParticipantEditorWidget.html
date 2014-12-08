@@ -1,0 +1,60 @@
+<div>
+    <div data-dojo-attach-point="containerNode">
+        <table width="100%">
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr style="padding-bottom:20px;">
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:110px;"><i class='icon-male'></i> 用户名称 :<span style="color:#CE0000;font-size: 1.1em;">*</span></td>
+                            <td align="left"><input dojoType="dijit.form.ValidationTextBox" required="true" missingMessage="请输入用户名称" style="width:300px;" data-dojo-attach-point="displayNameField"></input></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class='icon-user'></i> 用户登录ID :<span style="color:#CE0000;font-size: 1.1em;">*</span></td>
+                            <td align="left"><input dojoType="dijit.form.ValidationTextBox" required="true" missingMessage="请输入用户登录ID" style="width:300px;" data-dojo-attach-point="userIdField"></input></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class='icon-ticket'></i> 用户头衔 :</td>
+                            <td align="left"><input dojoType="dijit.form.TextBox" style="width:300px;" data-dojo-attach-point="titleField"></input></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-envelope-alt"></i> 电子邮件 :</td>
+                            <td align="left"><input dojoType="dijit.form.ValidationTextBox" regExp="(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)" invalidMessage="请输入电子邮件格式的地址" style="width:300px;" data-dojo-attach-point="emailAddressField"></input></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-mobile-phone"></i> 移动电话 :</td>
+                            <td align="left"><input dojoType="dijit.form.ValidationTextBox" regExp="^0?\d{11}$" invalidMessage="请输入格式正确的移动电话号码" style="width:300px;" data-dojo-attach-point="mobilePhoneField"></input></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-phone"></i> 固定电话 :</td>
+                            <td align="left"><input dojoType="dijit.form.ValidationTextBox" regExp="(^([0\+]\d{2,3}-)?(\d{3,4}-)?\d{7,12}(-\d{1,10})?)" invalidMessage="请输入格式正确的固定电话号码" style="width:300px;" data-dojo-attach-point="fixedPhoneField"></input></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-building"></i> 地址 :</td>
+                            <td align="left"><input dojoType="dijit.form.TextBox" style="width:300px;" data-dojo-attach-point="addressField"></input></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-barcode"></i> 邮政编码 :</td>
+                            <td align="left"><input dojoType="dijit.form.ValidationTextBox" regExp="([1-9]\d{5}(?!\d))" invalidMessage="请输入格式正确的邮政编码" style="width:300px;" data-dojo-attach-point="postalCodeField"></input></td>
+                        </tr>
+                        <tr>
+                            <td valign="top" align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-comment"></i> 用户信息描述 :</td>
+                            <td align="left"><input dojoType="dijit.form.Textarea" style="font-size: 1.0em;width:302px; min-height:80px;color:#444444" data-dojo-attach-point="descriptionField"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><div class="app_headerDivLine"></div></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class='icon-group'></i> 用户类型 :</td>
+                            <td align="left"><select dojoType="idx.form.Select" data-dojo-attach-point="roleTypeSelect" style="width:300px;"
+                                                     store="new dojo.data.ItemFileReadStore({url:'vfbam/userclient/common/UI/components/participantProfile/userTypeOptions.json'})">
+                            </select></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

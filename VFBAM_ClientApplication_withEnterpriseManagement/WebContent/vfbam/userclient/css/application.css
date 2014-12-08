@@ -1,0 +1,149 @@
+td.header {
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+}
+.dijitRtl td.header, .dijitRtl th.header, .dijitRtl td.field {
+    text-align: right;
+}
+td.field {
+    text-align: left;
+    padding: 10px;
+}
+table.fieldTable {
+    margin: 5px;
+}
+.app_headerDivLine{
+    border-width:0px;
+    border-bottom-width: 1px;
+    border-bottom-color: #dddddd;
+    border-style:solid;
+    padding-top: 5px;
+}
+.app_headerDivLine_thin{
+    border-width:0px;
+    border-bottom-width: 1px;
+    border-bottom-color: #aaaaaa;
+    border-style:solid;
+    padding-top:2px;
+}
+.app_headerDivLine_thin_light{
+    border-width:0px;
+    border-bottom-width: 1px;
+    border-bottom-color: #dfdfdf;
+    border-style:solid;
+    padding-top:2px;
+}
+.app_contentDivLine_right{
+    border-width:0px;
+    border-right-width: 1px;
+    border-right-color: #dddddd;
+    border-style:solid;
+}
+.app_contentBorderLine{
+    border-width: 1px;
+    border-color: #dddddd;
+    border-style:solid;
+}
+.app_photoBorder{
+    border-width: 4px;
+    border-color: #dddddd;
+    border-style:solid;
+}
+.app_photoBorder_thin{
+    border-width: 2px;
+    border-color: #dddddd;
+    border-style:solid;
+}
+.app_magazineView_textOverflow{
+    display:block;/*内联对象需加*/
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.app_magazineView_item{
+   color: #333333;
+   cursor: default;
+}
+.app_magazineView_item:hover{
+    background-color: #66ADC1;
+    color: #f0f0f0;
+}
+.app_magazineView_item_odd{
+
+}
+.app_magazineView_item_even{
+    background-color: #f0f0f0;
+}
+.app_magazineView_item_selected{
+    background-color: #3391AD;
+    color: #ffffff;
+}
+.app_magazineView_item_subject{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.app_magazineView_item_abstract{
+    font-size: 0.9em;
+}
+.app_magazineView_item_alreadyRead{
+    font-weight: normal;
+}
+.app_messageCenter_selectedMessageType{
+    font-weight: bold;
+}
+.app_unselectable {
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    -moz-user-select: -moz-none;
+}
+.app_dataEditorBorderLine{
+    border-style: none none solid;
+    border-width: 0 0 1px;
+    padding: 5px 10px;
+    text-align: left;
+}
+.app_taskCenter_activityLauncher_header{
+    border-bottom: 1px solid #ededed; background-color: #fafafa;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+
+}
+.app_taskCenter_activityLauncher_search { margin: 5px 0px 0px 0px }
+.app_taskCenter_activityLauncher_search .dijitTextBox { border: 1px solid #e3e3e3; width: 100%; -moz-border-radius: 12px; border-radius: 12px; }
+.app_taskCenter_activityLauncher_search .dijitTextBox .dijitInputContainer { background: transparent; }
+.app_taskCenter_activityLauncher_search .dijitButton { position: relative; width: 0px; }
+.oneui .app_taskCenter_activityLauncher_search .dijitButton .dijitButtonNode {position: relative; left: -32px; top: -1px; background-image: url('image/search_messages.png'); background-color: transparent; border: 0px; padding: 0px; width: 14px; height: 14px; min-width: 0px; box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; }
+.app_taskCenter_activityLauncher_search .dijitButton.dijitIcon { height: 14px; width: 14px; border: 0px; }
+
+.app_baseTaskDataField_item_even{
+    background-color: #f8f8f8;
+}
+.app_userLoginPhotoBorder{
+    border-width: 1px;
+    border-color: #dddddd;
+    border-style:solid;
+    width:13px;
+    height:13px;   
+    vertical-align:middle;
+}
+
+.app_userSelectionPhotoBorder{
+    border-width: 1px;
+    border-color: #dddddd;
+    border-style:solid;
+    width:32px;
+    height:32px;   
+    vertical-align:middle;
+}

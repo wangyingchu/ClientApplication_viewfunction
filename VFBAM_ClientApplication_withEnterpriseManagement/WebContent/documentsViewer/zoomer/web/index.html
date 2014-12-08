@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<title>Zoomer Demo</title>
+		<!--[if LTE IE 8]>
+			<link href="../demo.ie.css" rel="stylesheet" type="text/css" media="all" />
+		<![endif]-->
+		<script src="../jquery.1.10.2.min.js"></script>
+		<link href="../jquery.fs.zoomer.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="../jquery.fs.zoomer.js"></script>
+		<style>
+			.zoomer_wrapper { 
+				border: 1px solid #ddd; 
+				border-radius: 3px; 
+				
+				margin: 10px 0; 
+				overflow: hidden; 
+				width: 100%;				
+			}
+		</style>
+
+		<script>
+			function getUrlParam(name){
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+				var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+				if (r!=null){
+					return unescape(r[2]); 
+				} 
+				return null; //返回参数值
+			} 
+
+			$(document).ready(function() {
+				var viewerHeight=getUrlParam("viewerHeight");
+				var fileName=getUrlParam("fileName");
+				if(viewerHeight){
+					$("#zoomerContainer").css("height",""+viewerHeight+"px");
+				}			
+				if(fileName){
+					$("#zoomerPicture").attr("src",fileName);
+				}					
+				$(".zoomer_basic").zoomer();
+				$(window).on("resize", function(e) {
+					$(".zoomer_wrapper").zoomer("resize");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="zoomerContainer" class="zoomer_wrapper zoomer_basic" style="height: 500px;">
+			<img id="zoomerPicture" src="zoomer-bg-dark.png" />
+		</div>
+	</body>
+</html>

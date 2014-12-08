@@ -33,6 +33,16 @@ var VFBAM_CORE_SERVICE_ROOT="/VFBAM_ServiceApplication/ws/";
 var ACTIVITY_SERVICE_ROOT=VFBAM_CORE_SERVICE_ROOT+"activityManagementService/";
 var USERMANAGEMENTSERVICE_ROOT=VFBAM_CORE_SERVICE_ROOT+"userManagementService/";
 var CONTENT_SERVICE_ROOT=VFBAM_CORE_SERVICE_ROOT+"contentManagementService/";
+var COMMENT_SERVICE_ROOT=VFBAM_CORE_SERVICE_ROOT+"commentManagementService/";
+
+//Addon model service definition start
+var QINHE_KNOWLEDGEBASE_SERVICE_ROOT="/KnowledgeBaseService/ws/";
+var KNOWLEDGE_CATEGORY_SERVICE_ROOT=QINHE_KNOWLEDGEBASE_SERVICE_ROOT+"categoryManagementService/";
+var KNOWLEDGE_OPERATION_SERVICE_ROOT=QINHE_KNOWLEDGEBASE_SERVICE_ROOT+"knowledgeOperationService/";
+var KNOWLEDGE_DISPLAY_PREVIEW_BASELOCATION="/KnowledgeBaseService/knowledge_fileStorage/STORAGES_BASE_NODE/";
+var KNOWLEDGE_DISPLAY_PREVIEW_THUMBNAIL_FOLDER="/thumbnail/";
+//Addon model service definition end
+var KNOWLEDGE_CONTENTSEARCH_ROOT="/KCSearch/rest/KCSEARCHREST/";
 
 //application context attributes
 var USER_PROFILE="USER_PROFILE";
@@ -43,9 +53,12 @@ var APP_GLOBAL_MESSAGECENTER_CREATEMESSAGE_EVENT="APP_GLOBAL_MESSAGECENTER_CREAT
 var APP_GLOBAL_DOCUMENTOPERATION_DELETEDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_DELETEDOCUMENT_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT="APP_GLOBAL_DOCUMENTOPERATION_ADDFOLDER_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADDOCUMENT_EVENT";
+var APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADHISTORYDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADHISTORYDOCUMENT_EVENT";
+var APP_GLOBAL_DOCUMENTOPERATION_UPDATEDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_UPDATEDOCUMENT_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_LOCKDOCUMENT_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT="APP_GLOBAL_DOCUMENTOPERATION_UNLOCKDOCUMENT_EVENT";
+var APP_GLOBAL_DOCUMENTOPERATION_SHOWDOCUMENTDETAIL_EVENT="APP_GLOBAL_DOCUMENTOPERATION_SHOWDOCUMENTDETAIL_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_ADDTAG_EVENT="APP_GLOBAL_DOCUMENTOPERATION_ADDTAG_EVENT";
 var APP_GLOBAL_DOCUMENTOPERATION_REMOVETAG_EVENT="APP_GLOBAL_DOCUMENTOPERATION_REMOVETAG_EVENT";
 var APP_GLOBAL_TASKCENTER_DISPLAYTASK_EVENT="APP_GLOBAL_TASKCENTER_DISPLAYTASK_EVENT";
@@ -162,7 +175,8 @@ var modules = [	"dojo.parser",
     "dijit.form.DropDownButton",
     "dijit.form.FilteringSelect",
     "dojox.form.Uploader",
-    
+    "dijit.form.RadioButton",
+    "dijit.Tree",
     "dijit.form.DateTextBox",
     "dijit.form.TimeTextBox",
     "dijit.form.ValidationTextBox",
@@ -210,7 +224,6 @@ var modules = [	"dojo.parser",
     "idx.layout.TitlePane",
     "idx.form.DropDownSelect",
     "idx.form.DropDownLink",
-    "idx.grid.PropertyGrid",
     "idx.form.DropDownSelect",
     "idx.widget.MenuDialog",
     "idx.data.JsonStore",
@@ -230,10 +243,21 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.documentsList.AddNewDocumentWidget",
     "vfbam.userclient.common.UI.components.documentsList.GeneralDocumentViewerWidget",
     "vfbam.userclient.common.UI.components.documentsList.AddNewTagWidget",
+    "vfbam.userclient.common.UI.components.documentsList.TaskDocumentsListWidget",
+    "vfbam.userclient.common.UI.components.documentsList.AdvancedDocumentInfoWidget",
+    "vfbam.userclient.common.UI.components.documentsList.UpdateDocumentWidget",
+    "vfbam.userclient.common.UI.components.documentsList.DocumentDetailInfoWidget",
+    "vfbam.userclient.common.UI.components.documentsList.DocumentVersionHistoryListWidget",
+    "vfbam.userclient.common.UI.components.documentsList.DocumentVersionInfoItemWidget",
+    "vfbam.userclient.common.UI.components.documentsList.DocumentCommentsWidget",
 
     "vfbam.userclient.common.UI.components.commentsList.CommentsListWidget",
     "vfbam.userclient.common.UI.components.commentsList.CommentInfoWidget",
     "vfbam.userclient.common.UI.components.commentsList.CommentEditorWidget",
+
+    "vfbam.userclient.common.UI.components.advancedCommentList.AdvancedCommentsListWidget",
+    "vfbam.userclient.common.UI.components.advancedCommentList.AdvancedCommentItemWidget",
+
     "vfbam.userclient.common.UI.components.basicTaskDataEditor.BasicTaskDataEditorWidget",
     "vfbam.userclient.common.UI.components.basicTaskToolbar.BasicTaskToolbarWidget",
     "vfbam.userclient.common.UI.components.basicTaskDataEditor.BasicTaskDataFieldWidget",
@@ -286,6 +310,51 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.components.userManagement.widget.userPreview.UserPreviewWidget",
     "vfbam.userclient.components.userManagement.widget.userList.UserListWidget",
     "vfbam.userclient.components.userManagement.widget.userList.UserBasicInfoMagazineViewItemWidget",
+
+    "vfbam.userclient.components.knowledgeBase.widget.categoryEditor.CategoryEditorWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.categoryEditor.CategoryTreeWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.categoryEditor.CategoryInfoWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.categoryEditor.AddCategoryPropertyWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.categoryEditor.RemoveCategoryPropertyWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.categoryEditor.PropertyItemForDeleteWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.categoryEditor.AddCategoryWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.AdvancedSearchWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategorySelectorWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategoryItemSelectorWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategoryItemInfoWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.SelectedCategoryTagWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.SaveSelectedCategoriesWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.SavedCategorySearchItemWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.SavedCategorySearchInfoWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationBarWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationListWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationItemWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeCollectionDisplayWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.CollectionMainDisplayItemWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.CollectionSecondaryDisplayItemWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeQueryHistoryListWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeQueryHistoryItemWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemDetailDisplayWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.GeneralKnowledgeViewerWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemMetaInfoWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.ItemRecommendedKnowledgeWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagEditorWidget",
+    "vfbam.userclient.components.knowledgeBase.util.KnowledgeBaseDataHandleUtil",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionListWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.RecommendedKnowledgeIconWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionInfoWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemsWallWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemWallDisplayWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.SavedCategorySearchLinkListWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.SavedCategorySearchLinkWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeCollectionDetailDisplayWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeCollectionMetaInfoWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemOverviewDisplayWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagSelectorWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.UpdateKnowledgeDescriptionWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.AddNewKnowledgeItemWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.AddNewKnowledgeCollectionWidget",
 
     "app.util.Interface",
     "app.ApplicationBaseFunctionImpl",

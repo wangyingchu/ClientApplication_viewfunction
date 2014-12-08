@@ -1,0 +1,57 @@
+<div>
+    <table width="100%" border="0">
+        <tr>
+            <td width="400" style="display: inline;">
+                <span style="font-size: 1.3em;padding-right: 10px;color: #888888;"><i class="icon-eye-open"></i> 用户预览</span>
+            </td>
+            <td width="250" align="right">
+                <span class="dijitButton" data-dojo-attach-point="disableUserButtonContainer" style="display:none;">
+                    <span class="dijitButtonNode" data-dojo-attach-point="disableUserButton"><i class="icon-remove-sign"></i> 禁用用户</span>
+                </span>
+                <span class="dijitButton" data-dojo-attach-point="enableUserButtonContainer"  style="display:none;">
+                    <span class="dijitButtonNode" data-dojo-attach-point="enableUserButton"><i class="icon-ok-sign"></i> 启用用户</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" >
+                <div class="app_headerDivLine" style="padding-top: 12px;"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div data-dojo-attach-point="previewPrompt" style="padding: 10px; font-size: 0.8em;font-style: italic;color: #444444;">用户预览... </div>
+                <div data-dojo-attach-point="previewContent">
+                    <table width="100%" border="0">
+                        <tr>
+                            <td width="70">
+                                <span><img src="" width="64px" height="64px" class="app_photoBorder" data-dojo-attach-point="userFacePhoto"/></span>
+                            </td>
+                            <td align="left" style="vertical-align:middle ;padding-left: 8px; " data-dojo-attach-point="messageTitleTextContainer">
+                                <div>
+                                    <span data-dojo-attach-point="userName" style="font-size: 1.1em; color: #444444; font-weight:bold;"></span>
+                                    <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">-</span>
+                                    <span data-dojo-attach-point="userId" style="font-size: 0.9em; color: #444444;"></span>
+                                </div>
+                                <div style="padding-top: 10px;">
+                                    <span style="font-size: 0.9em; font-weight:bold;color: #666666;" data-dojo-attach-point="userRole"></span>
+                                    <span style="padding-left: 5px;font-size: 0.8em;color: #CE0000;" data-dojo-attach-point="disabledUserIcon"><i class="icon-remove-sign icon-large"></i> 已禁用用户</span>
+                                    <span style="padding-left: 5px;font-size: 0.8em; color: #26A251;" data-dojo-attach-point="activeUserIcon"><i class="icon-ok-sign icon-large"></i> 活动用户</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="background-color: #eeeeee;padding: 5px;font-size: 0.9em;color: #777777;" data-dojo-attach-point="messagePropertyContainer">
+                        <div style="padding-bottom: 3px;"><i class="icon-ticket"></i> 用户头衔:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="title"></span></div>
+                        <div style="padding-bottom: 3px;padding-top: 3px;"><i class="icon-envelope-alt"></i> 电子邮件:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="emailAddress"></span></div>
+                        <div style="padding-bottom: 3px;padding-top: 3px;"><i class="icon-mobile-phone"></i> 移动电话:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="mobilePhone"></span></div>
+                        <div style="padding-bottom: 3px;padding-top: 3px;"><i class="icon-phone"></i> 固定电话:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="fixedPhone"></span></div>
+                        <div style="padding-bottom: 3px;padding-top: 3px;"><i class="icon-building"></i> 地址:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="address"></span></div>
+                        <div style="padding-bottom: 3px;padding-top: 3px;"><i class="icon-barcode"></i> 邮政编码:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="postalCode"></span></div>
+                        <div style="padding-bottom: 3px;padding-top: 3px;"><i class="icon-comment"></i> 用户信息描述:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="description"></span></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

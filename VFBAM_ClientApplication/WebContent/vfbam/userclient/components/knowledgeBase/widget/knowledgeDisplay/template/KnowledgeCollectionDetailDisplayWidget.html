@@ -1,0 +1,33 @@
+<div>
+    <div style="padding-left: 10px;padding-top: 10px;">
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <div style="width: 100%">
+                        <span style="font-size: 0.9em;color: #888888;padding-left: 5px;"><i class="icon-eye-open"></i> 专辑内容：</span>
+                        <span style="font-size: 1.2em;">
+                            <span data-dojo-type="idx.form.Link" data-dojo-attach-point="previousPageButton" data-dojo-attach-event="onClick:showPreviewPage"> <i class="icon-chevron-sign-left"></i></span>
+                            <span data-dojo-type="idx.form.Link" data-dojo-attach-point="nextPageButton" data-dojo-attach-event="onClick:showNextPage"> <i style="padding-left: 5px;padding-right: 5px;" class="icon-chevron-sign-right"></i></span>
+                            <span style="font-size: 0.7em;color: #888888;padding-left: 5px;"><span><span data-dojo-attach-point="currentPage"></span>/<span data-dojo-attach-point="totalPage"></span></span> 总计: <span data-dojo-attach-point="totalItems"></span></span>
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <div style=" text-align:right;display:inline-block;float: right;">
+                        <span><i style="color:#26A251;" class="icon-pushpin"></i> <span style="color: #05386b;"><span data-dojo-attach-point="knowledgeTagSwitcherContainer">分类标签</span></span></span>
+                        <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                        <span><i style="color:#CE0000;" class="icon-heart"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:collectKnowledgeCollection">收藏</span></span>
+                        <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                        <span style="padding-right: 5px;"><i style="color:#00475B;" class="icon-archive"></i> <span style="color: #05386b;"><span data-dojo-attach-point="knowledgeProjectsSwitcherContainer">相似专辑</span></span></span>
+                        <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                        <span style="padding-right: 5px;"><i style="color:#555555;" class="icon-list"></i> <span data-dojo-type="idx.form.Link">专辑属性</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="padding-left: 5px;padding-right: 5px;padding-top: 5px;">
+        <div style="border-width:0px;border-top-width:0px; border-top-width: 2px; border-top-color: #DDDDDD; border-style:solid;min-width: 200px;"/>
+        <div data-dojo-attach-point="collectionContentWidgetContainer" style="width: 100%;text-align:center;margin:0 auto;height: 500px;overflow: auto;"></div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+{
+    identifier:"abbreviation",
+    label: "label",
+    items: [
+        {name:"发送时间", label:"发送时间",abbreviation:"SENTDATE"},
+        {name:"标题", label:"标题",abbreviation:"SUBJECT"},
+        {name:"发送人", label:"发送人",abbreviation:"SENDER"}
+
+    ]
+} 

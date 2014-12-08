@@ -1,0 +1,14 @@
+<div data-dojo-attach-point="addFolderDialog" style="background-color: #FFFFFF;">
+    <div style="width: 500px;padding: 10px;">
+        <div style="font-size: 0.8em;color: #888888;height: 15px; padding-top: 0px;">请输入新备注内容:</div>
+        <div class="app_headerDivLine"></div>
+        <div style="padding-top: 5px;">
+            <textarea data-dojo-type="dijit.form.Textarea" style="width:100%;min-height:100px;max-height:100px;font-size: 1.0em;" data-dojo-attach-point="commentContentInput"></textarea>
+            <div style="padding-top: 3px;" class="app_headerDivLine_thin"></div>
+            <div align="right" style="padding-top: 5px;">
+                <button dojoType="dijit.form.Button" data-dojo-attach-point="addCommentButton" data-dojo-attach-event="onClick:doAddNewComment"><i class="icon-comment-alt"></i> 确定</button>
+                <button dojoType="dijit.form.Button" data-dojo-attach-point="cancelAddCommentButton" data-dojo-attach-event="onClick:cancelAddNewComment"><i class="icon-remove"></i> 取消</button>
+            </div>
+        </div>
+    </div>
+</div>

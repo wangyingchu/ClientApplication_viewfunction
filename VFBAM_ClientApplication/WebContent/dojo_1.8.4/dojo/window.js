@@ -105,7 +105,12 @@ define(["./_base/lang", "./sniff", "./_base/window", "./dom", "./dom-geometry", 
 				In IE 6, only the variable "window" can be used to connect events (others
 				may be only copies).
 				*/
-				doc.parentWindow.execScript("document._parentWindow = window;", "Javascript");
+                if(has("ie")<11){
+                    doc.parentWindow.execScript("document._parentWindow = window;", "Javascript");
+                }else{
+                    doc.parentWindow.eval("document._parentWindow = window;", "Javascript");
+                }
+
 				//to prevent memory leak, unset it after use
 				//another possibility is to add an onUnload handler which seems overkill to me (liucougar)
 				var win = doc._parentWindow;

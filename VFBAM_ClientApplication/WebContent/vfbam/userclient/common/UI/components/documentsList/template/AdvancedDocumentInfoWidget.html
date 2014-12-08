@@ -1,0 +1,35 @@
+<table width="100%" border="0" style="padding-top: 5px;">
+    <tr>
+        <td style="width: 18px;">
+            <img src="vfbam/userclient/css/image/fileType/pdf.png" width="16px" height="16px" data-dojo-attach-point="documentTypeIcon"/>
+        </td>
+        <td align="left" style="padding-left:3px;">
+            <div>
+                <span style="font-size: 0.9em;font-weight: bold;" data-dojo-attach-point="documentName"  data-dojo-attach-event="onclick:doViewDocumentElement"></span>
+            </div>
+            <div style="font-size: 0.8em; color:#555555;">
+                <span data-dojo-attach-point="modifyDateContainer">最后修改时间: <span data-dojo-attach-point="lastModifyDate"></span></span>
+                <span style="display: none;" data-dojo-attach-point="contentItemNumberContainer">包含内容数量: <span data-dojo-attach-point="contentItemNumber"></span></span>
+                <span style="padding-left: 4px;color:#777777;display: none;" data-dojo-attach-point="lockedDocumentPromptContainer">
+                    <i class="icon-lock"></i><span style="padding-left: 3px;">-</span>
+                    <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="documentLockerDropDown"></span>
+                </span>
+                <span style="padding-left: 4px;color:#777777;display: none;" data-dojo-attach-point="linkedDocumentPromptContainer"><i class="icon-link"></i></span>
+            </div>
+        </td>
+        <td align="right" width="60px" style="padding-right: 5px; min-width:30px;">
+            <i class="icon-download-alt" style="cursor: pointer;" data-dojo-attach-point="downloadDocumentButton" data-dojo-attach-event="onclick:doDownloadDocument"></i>
+            <span style="padding-right: 3px;"></span>
+            <i class="icon-trash" style="cursor: pointer;" data-dojo-attach-point="deleteDocumentButton" data-dojo-attach-event="onclick:doDeleteDocument"></i>
+            <i class="icon-trash" style="color:#AAAAAA;" data-dojo-attach-point="disabledDeleteDocumentButton"></i>
+            <span style="padding-right: 3px;padding-left: 3px;font-size: 0.7em; color:#888888;">|</span>
+            <i class="icon-caret-down" style="cursor: pointer;" data-dojo-attach-point="documentOperationListDropdownContainer"></i>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div style="height: 3px;"></div>
+            <div class="app_headerDivLine_thin"></div>
+        </td>
+    </tr>
+</table>

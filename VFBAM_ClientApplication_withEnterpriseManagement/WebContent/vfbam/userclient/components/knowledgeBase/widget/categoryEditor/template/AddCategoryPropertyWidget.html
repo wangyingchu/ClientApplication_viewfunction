@@ -1,0 +1,61 @@
+<div>
+    <div style="font-size: 0.8em;color: #666666;height: 15px;padding-left: 5px;padding-top:15px;padding-left: 10px;">
+        分类属性名称：
+    </div>
+    <div class="app_headerDivLine"></div>
+    <div style="padding-left: 10px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">
+        <input dojoType="dijit.form.TextBox" style="width: 350px;" data-dojo-attach-point="propertyNameDataInput">
+    </div>
+    <div style="font-size: 0.8em;color: #666666;height: 15px;padding-left: 5px;padding-top:10px;padding-left: 10px;">
+        分类属性值：
+    </div>
+    <div class="app_headerDivLine"></div>
+    <div style="font-size: 0.8em;color: #888888;height: 15px;padding-left: 5px;padding-top:10px;padding-left: 10px;">
+        选择分类属性类型：
+    </div>
+    <div style="width: 350px;padding-left: 15px;padding-right: 15px; padding-top: 8px; padding-bottom: 5px;font-size: 0.9em;color: #444444;">
+        <input type="radio" name="g1" dojoType="dijit.form.RadioButton" checked data-dojo-attach-event="onClick:showStringField" data-dojo-attach-point="stringFieldRadio">
+        <label style="padding-right: 10px;">字符</label>
+        <input type="radio" name="g1" dojoType="dijit.form.RadioButton" data-dojo-attach-event="onClick:showLongField"  data-dojo-attach-point="longFieldRadio">
+        <label style="padding-right: 10px;">整数</label>
+        <input type="radio" name="g1"  dojoType="dijit.form.RadioButton" data-dojo-attach-event="onClick:showDoubleField" data-dojo-attach-point="doubleFieldRadio">
+        <label style="padding-right: 10px;">小数</label>
+        <input type="radio" name="g1" dojoType="dijit.form.RadioButton" data-dojo-attach-event="onClick:showDateField" data-dojo-attach-point="dateFieldRadio">
+        <label style="padding-right: 10px;">日期</label>
+        <input type="radio" name="g1" dojoType="dijit.form.RadioButton" data-dojo-attach-event="onClick:showBooleanField" data-dojo-attach-point="booleanFieldRadio">
+        <label style="padding-right: 10px;">布尔值</label>
+        <input type="radio" name="g1" dojoType="dijit.form.RadioButton" data-dojo-attach-event="onClick:showBigNumberField" data-dojo-attach-point="bigNumberFieldRadio">
+        <label style="padding-right: 10px;">长数值</label>
+    </div>
+    <div style="padding-left: 10px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">
+        <span data-dojo-attach-point="addStringContainer">
+            <input dojoType="dijit.form.TextBox" style="width: 230px;" data-dojo-attach-point="stringDataInput">
+            <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:addStringData"><i class="icon-ok"></i> 添加</button>
+        </span>
+        <span data-dojo-attach-point="addLongContainer" style="display: none;">
+            <input dojoType="dijit.form.NumberTextBox" data-dojo-props="invalidMessage:'请输入整数格式的数据'" style="width: 230px;" data-dojo-attach-point="longDataInput">
+            <button dojoType="dijit.form.Button"  data-dojo-attach-event="onClick:addLongData"><i class="icon-ok"></i> 添加</button>
+        </span>
+        <span data-dojo-attach-point="addDoubleContainer" style="display: none;">
+            <input dojoType="dijit.form.NumberTextBox" data-dojo-props="invalidMessage:'请输入小数格式的数据'" style="width: 230px;" data-dojo-attach-point="doubleDataInput">
+            <button dojoType="dijit.form.Button"  data-dojo-attach-event="onClick:addDoubleData"><i class="icon-ok"></i> 添加</button>
+        </span>
+        <span data-dojo-attach-point="addDateContainer" style="display: none;">
+            <input dojoType="dijit.form.DateTextBox" style="width: 230px;" data-dojo-attach-point="dateDataInput">
+            <button dojoType="dijit.form.Button"  data-dojo-attach-event="onClick:addDateData"><i class="icon-ok"></i> 添加</button>
+        </span>
+        <span data-dojo-attach-point="addBooleanContainer" style="display: none;">
+            <span style="width: 230px;">
+                <input type="radio" name="g2" value="true" dojoType="dijit.form.RadioButton" checked data-dojo-attach-point="booleanDataInput_true">
+                <label style="padding-right: 10px;">是</label>
+                <input type="radio" name="g2" value="false" dojoType="dijit.form.RadioButton" data-dojo-attach-point="booleanDataInput_false">
+                <label style="padding-right: 10px;">否</label>
+            </span>
+            <button dojoType="dijit.form.Button"  data-dojo-attach-event="onClick:addBooleanData"><i class="icon-ok"></i> 添加</button>
+        </span>
+        <span data-dojo-attach-point="addBigNumberContainer" style="display: none;">
+            <input dojoType="dijit.form.NumberTextBox" data-dojo-props="invalidMessage:'请输入数字格式的数据'" style="width: 230px;" data-dojo-attach-point="bigNumberDataInput">
+            <button dojoType="dijit.form.Button"  data-dojo-attach-event="onClick:addBigNumberData"><i class="icon-ok"></i> 添加</button>
+        </span>
+    </div>
+</div>

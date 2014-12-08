@@ -1,0 +1,47 @@
+<div>
+    <div data-dojo-attach-point="containerNode">
+        <div style="padding-top:10px;padding-bottom:10px;padding-left:15px;color: #222; font-size: 1.5em; font-weight: normal; line-height: 1.2;"><i class="icon-cog"></i> 自定义搜索
+            <div class="app_headerDivLine"></div>
+        </div>
+
+        <table>
+            <tr>
+                <td style="height: 340px;width:450px;border-right:1px solid #CCCCCC;vertical-align: top;padding-left: 10px;padding-right: 5px;">
+                    <table width="100%">
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <div><span style="font-size: 0.8em;color: #888888;" >拼音缩写选择标签：</span><select data-dojo-attach-point="categoryTagFilterContainer"></select></div>
+                            </td>
+                            <td style="vertical-align: middle;text-align: right;">
+                                <i class="icon-th-list"></i> <span data-dojo-type="idx.form.Link"  data-dojo-attach-event="onClick:showCategorySelector">分类树选择标签</span>
+                                <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                                <i class="icon-refresh"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:clearSelectedCategories">重置搜索条件</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="app_headerDivLine"></div>
+                    <div style="height: 280px;vertical-align: top;overflow: auto;" data-dojo-attach-point="selectedTagContainer">
+                    </div>
+                    <div class="app_headerDivLine"></div>
+                    <div style="height: 10px;"></div>
+                    <div>
+                        <span dojoType="dijit.form.Button" data-dojo-attach-event="onClick:executeCategoriesSearch"><i class="icon-bolt"></i> 执行搜索</span>
+                        <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                        <span dojoType="dijit.form.Button" data-dojo-attach-event="onClick:closeCategoriesSearchDialog"><i class='icon-remove'></i> 关闭</span>
+                        <span style="color:#666666;font-size:0.8em;padding-left: 25px;padding-right: 5px;">|</span>
+                        <span dojoType="dijit.form.Button" data-dojo-attach-event="onClick:saveSelectedCategories"><i class="icon-save"></i> 保存搜索条件</span>
+                    </div>
+                </td>
+                <td style="height: 340px;width:500px;vertical-align: top;padding-left: 5px;padding-right: 5px;">
+                    <div style="height: 5px;"></div>
+                    <div><span style="color: #444444;font-size: 0.9em;font-weight: bold;">保存的自定义搜索条件</span></div>
+                    <div style="height:10px;"></div>
+                    <div class="app_headerDivLine"></div>
+                    <div data-dojo-attach-point="customizedSearchContainer" style="overflow: auto;height: 330px;">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="height: 20px;"></div>
+    </div>
+</div>

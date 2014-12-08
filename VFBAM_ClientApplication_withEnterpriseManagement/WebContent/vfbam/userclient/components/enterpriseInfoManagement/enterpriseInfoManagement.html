@@ -1,0 +1,105 @@
+<table width="100%" border="0">
+    <tr>
+        <td><span style="font-size: 1.0em; font-weight: bold;color: #444444;"><i class="icon-user"></i> 企业信息管理</span></td>
+        <td align="right"><i class="icon-cog"></i> <span data-dojo-type="idx.form.Link">企业信息管理设置</span></td>
+    </tr>
+    <tr>
+        <td colspan="2" >
+            <div class="app_headerDivLine"></div>
+        </td>
+    </tr>
+</table>
+
+<table width="100%" border="0" style="height: 92%;">
+    <tr>
+        <td width="150" style="background-color: #FBFBFB;" valign="top">
+            <div  style="padding-left: 5px;padding-top:5px;padding-bottom:2px;">
+                <button dojoType="dijit.form.Button" placement="primary" onClick="refreshUserList_ent"><i class="icon-refresh"></i> 刷新企业信息列表</button>
+            </div>
+            <div><div class="app_headerDivLine"></div></div>
+            <div style="min-height: 400px;background-color: #FAFAFA;">
+
+                <div style="padding-left: 20px;padding-bottom: 5px;padding-top:10px;font-size: 1.2em;">
+                    <i class="icon-user"></i>
+                    <span data-dojo-type="idx.form.Link" onClick="filterAllUser_ent" id="app_enterpriseManagement_allUserFilterContainer" class="app_messageCenter_selectedMessageType">
+                        <span> 全部企业<span id="app_enterpriseManagement_allUserCount">(0)</span></span>
+                    </span>
+                </div>
+
+                <div style="padding-left: 20px;padding-bottom: 5px;font-size: 1.2em;font-weight: normal;" >
+                    <i class="icon-male"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterNormalUser_ent" id="app_enterpriseManagement_normalUserFilterContainer">
+                        <span> 国内企业<span id="app_enterpriseManagement_normalUserCount">(0)</span></span>
+                    </span>
+                </div>
+                <div style="padding-left: 20px;font-size: 1.2em;font-weight: normal;" >
+                    <i class="icon-shield"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterSuperviser_ent" id="app_enterpriseManagement_superviserContainer">
+                        <span> 国外企业<span id="app_enterpriseManagement_superviserCount">(0)</span></span>
+                    </span>
+                </div>
+                <div class="app_headerDivLine" style="padding-top: 5px;padding-bottom: 5px;"></div>
+
+                <div style="padding-left: 20px;font-size: 1.2em;font-weight: normal;padding-top: 5px;" >
+                    <i class="icon-filter"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterIT_ent" id="app_enterpriseManagement_ITCompanyContainer">
+                        <span> IT类企业<span id="app_enterpriseManagement_ITCompanyCount">(-)</span></span>
+                    </span>
+                </div>
+
+                <div style="padding-left: 20px;font-size: 1.2em;font-weight: normal;padding-top: 5px;" >
+                    <i class="icon-filter"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterMaunul_ent" id="app_enterpriseManagement_ManunalCompanyContainer">
+                        <span> 制造类企业<span id="app_enterpriseManagement_ManunalCompanyCount">(-)</span></span>
+                    </span>
+                </div>
+
+                <div style="padding-left: 20px;font-size: 1.2em;font-weight: normal;padding-top: 5px;" >
+                    <i class="icon-filter"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filteFood_ent" id="app_enterpriseManagement_FoodCompanyContainer">
+                        <span> 食品加工类企业<span id="app_enterpriseManagement_FoodCompanyCount">(-)</span></span>
+                    </span>
+                </div>
+
+            </div>
+        </td>
+        <td style="vertical-align:top;padding-left: 10px;">
+            <div>
+                <div style="padding-left: 5px;padding-top:5px;">
+                    <button dojoType="dijit.form.Button" onClick="loadAddNewUserBasicInfoDialog_ent" placement="secondary"><i class="icon-plus-sign"></i> 添加企业信息</button>
+                    <span id="app_enterpriseManagement_disableUserButton"></span>
+                    <span id="app_enterpriseManagement_activeUserButton"></span>
+                    <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                    <span id="app_enterpriseManagement_basicInfoButton"></span>
+                    <span id="app_enterpriseManagement_profileInfoButton"></span>
+                </div>
+            </div>
+
+            <div dojoType="dijit.layout.ContentPane" region="bottom" title="Bottom Region" splitter="true" style="min-height: 320px;" id="app_enterpriseManagement_participantInfoContainer">
+                <div dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="true">
+                    <div dojoType="dijit.layout.ContentPane" region="center" class="app_contentBorderLine">
+                        <div>
+                            <div>
+                                <span style="font-size: 0.8em;color: #888888;" data-dojo-attach-point="searchLabel">搜索：</span>
+                                <span id="app_enterpriseManagement_userFilterPropertyTypeSelect"></span>
+                                <span id="app_enterpriseManagement_userFilterPropertyValueTextInput"></span>
+                                <span class="searchBarButton" data-dojo-attach-point="searchButtonArea">
+                	                <div dojoType="dijit.form.Button" data-dojo-attach-point="userFilterDateButton" onClick="doFilterUserList_ent"><i class="icon-search"></i> 搜索</div>
+               	                </span>
+                            </div>
+                            <div class="app_headerDivLine"></div>
+                        </div>
+                        <div style="overflow: auto;" id="app_enterpriseManagement_userListWarper">
+                            <div id="app_enterpriseManagement_participantListContainer">
+                            </div>
+                        </div>
+                    </div>
+                    <div dojoType="dijit.layout.ContentPane" region="trailing" style="width: 400px;" splitter="true" class="app_contentBorderLine">
+                        <div id="app_enterpriseManagement_participantPreviewContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript" src="vfbam/userclient/components/enterpriseInfoManagement/enterpriseInfoManagement.js"></script>

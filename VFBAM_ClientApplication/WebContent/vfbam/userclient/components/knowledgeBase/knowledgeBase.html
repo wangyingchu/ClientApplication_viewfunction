@@ -1,0 +1,82 @@
+<table width="100%" border="0" style="display:none;">
+    <tr>
+        <td><span style="font-size: 1.0em; font-weight: bold;color: #444444;"><i class="icon-book"></i> 知识中心</span></td>
+        <td align="right"><i class="icon-cog"></i> <span data-dojo-type="idx.form.Link" onClick="renderKnowledgeConfigDialog">知识中心设置</span></td>
+    </tr>
+    <tr>
+        <td colspan="2" >
+            <div class="app_headerDivLine"></div>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td style="width: 90%;">
+            <div style="padding-top: 5px;">
+                <span style="font-size: 0.8em;color:#888888;font-weight: bold;"><span  id="app_knowledgeBase_searchInputTypeSelect"></span></span>
+                <span id="app_knowledgeBase_searchInputTypeInput"></span>
+                <span class="searchBarButton">
+                    <div dojoType="dijit.form.Button" onClick="doKnowledgeInputValueSearch"><i class="icon-search"></i> 搜索</div>
+                </span>
+                <span>
+                    <span style="font-size: 1.0em;color: #888888;font-weight: bold;padding-left: 10px;"><i class="icon-globe"></i> 知识导航：</span>
+                    <span id="app_knowledgeBase_knowledgeNavigationBar">
+                    </span>
+                </span>
+            </div>
+        </td>
+        <td align="right" style="min-width: 200px;">
+            <span>
+                <i class="icon-cog"></i> <span data-dojo-type="idx.form.Link" onClick="switchShowAdvancedSearchPopup" id="app_knowledgeBase_advanceSearchDropdownLink">自定义搜索</span>
+                <span>
+                    <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                    <i class="icon-wrench"></i> <span data-dojo-type="idx.form.Link" onClick="renderKnowledgeConfigDialog">分类标签管理</span>
+                </span>
+            </span>
+        </td>
+    </tr>
+</table>
+<div class="app_headerDivLine"></div>
+
+<div dojoType="idx.layout.BorderContainer" id="app_knowledgeBase_mainContainer" style="width: 100%; height: 94%;" gutters="false" liveSplitters="true">
+    <div dojoType="dijit.layout.ContentPane" region="left" splitter="true" style="width: 120px; overflow: auto;">
+        <div style="height: 8px;"> </div>
+        <div><span style="font-size: 0.9em;color: #888888;"><i class="icon-archive"></i> 专辑：</span></div>
+        <div class="app_headerDivLine" style="max-width: 100px; border-width:0px; border-bottom-width: 2px; border-bottom-color: #DDDDDD; border-style:solid;"></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-thumbs-up"></i> <span data-dojo-type="idx.form.Link" onclick="showRecommendedCollection">推荐的专辑</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-star"></i> <span data-dojo-type="idx.form.Link" onclick="showPopCollection">热门专辑</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-time"></i> <span data-dojo-type="idx.form.Link" onclick="showLatestCollection">最新专辑</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-th"></i> <span data-dojo-type="idx.form.Link" onclick="showAllCollection">所有专辑</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-heart"></i> <span data-dojo-type="idx.form.Link" onclick="showFavoriteCollection">我收藏的专辑</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-plus-sign"></i> <span data-dojo-type="idx.form.Link" onclick="addNewCollection">添加专辑</span></div>
+
+        <div style="height: 15px;"> </div>
+        <div><span style="font-size: 0.9em;color: #888888;" ><i class="icon-camera"></i> 素材：</span></div>
+        <div class="app_headerDivLine" style="max-width: 100px; border-width:0px; border-bottom-width: 2px; border-bottom-color: #DDDDDD; border-style:solid;"></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-thumbs-up"></i> <span data-dojo-type="idx.form.Link" onclick="showRecommendedMaterial">推荐的素材</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-star"></i> <span data-dojo-type="idx.form.Link" onclick="showPopMaterial">热门素材</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-time"></i> <span data-dojo-type="idx.form.Link" onclick="showLatestMaterial">最新素材</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-th"></i> <span data-dojo-type="idx.form.Link" onclick="showAllMaterial">所有素材</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-heart"></i> <span data-dojo-type="idx.form.Link" onclick="showFavoriteMaterial">我收藏的素材</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-plus-sign"></i> <span data-dojo-type="idx.form.Link" onclick="addNewMaterial">添加素材</span></div>
+
+        <div style="height: 15px;"> </div>
+        <div><span style="font-size: 0.9em;color: #888888;" ><i class="icon-search"></i> 保存的搜索：</span></div>
+        <div class="app_headerDivLine" style="max-width: 100px; border-width:0px; border-bottom-width: 2px; border-bottom-color: #DDDDDD; border-style:solid;"></div>
+        <div id="app_knowledgeBase_savedCategorySearchListContainer"></div>
+
+        <div style="height: 15px;"> </div>
+        <div><span style="font-size: 0.9em;color: #888888;" ><i class="icon-eye-open"></i> 我关注的用户：</span></div>
+        <div class="app_headerDivLine" style="max-width: 100px; border-width:0px; border-bottom-width: 2px; border-bottom-color: #DDDDDD; border-style:solid;"></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-user"></i> <span data-dojo-type="idx.form.Link">用户A</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-user"></i> <span data-dojo-type="idx.form.Link">用户B</span></div>
+        <div  style="font-size: 0.9em;font-weight:bold;color: #888888;padding-top:6px;padding-left: 10px;"><i class="icon-user"></i> <span data-dojo-type="idx.form.Link">用户C</span></div>
+    </div>
+    <div dojoType="dijit.layout.BorderContainer" region="center" gutters="false" id="app_knowledgeBase_resultDisplayContainer">
+        <div dojoType="dijit.layout.ContentPane" region="center" class="app_contentBorderLine">
+            <div id="app_knowledgeBase_resultDisplayZone"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="vfbam/userclient/components/knowledgeBase/knowledgeBase.js"></script>

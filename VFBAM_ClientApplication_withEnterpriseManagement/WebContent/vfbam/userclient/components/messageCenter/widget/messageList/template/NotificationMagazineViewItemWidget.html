@@ -1,0 +1,28 @@
+<div class="app_magazineView_item app_unselectable" data-dojo-attach-point="messageItemRootContainer">
+    <div style="height: 3px;"></div>
+    <table width="100%" height="50px" border="0" class="app_headerDivLine">
+        <tr>
+            <td style="width:20px;" align="center">
+                <i class="icon-info icon-large" style="padding-right: 5px;color: #00475B" data-dojo-attach-point="newMessageIcon"></i>
+                <i class="icon-ok icon-large" style="padding-right: 5px;color: #26A251" data-dojo-attach-point="alreadyReadMessageIcon"></i>
+            </td>
+            <td>
+                <div class="app_magazineView_item_subject" data-dojo-attach-point="messageSubjectContainer">
+                    <i class="icon-bell-alt" style="color: #26A251;display:none;" data-dojo-attach-point="infoMessageIcon"></i>
+                    <i class="icon-exclamation-sign" style="color: #FAC126;display:none;" data-dojo-attach-point="warnMessageIcon"></i>
+                    <i class="icon-fire" style="color: #CE0000;display:none;" data-dojo-attach-point="errorMessageIcon"></i>
+                    <span data-dojo-attach-point="notificationSubject">
+                    </span>
+                </div>
+                <div class="app_magazineView_item_abstract app_magazineView_textOverflow" data-dojo-attach-point="notificationContent">
+                </div>
+            </td>
+            <td align="right" style="min-width: 80px;padding-right: 5px;">
+                <i class="icon-tablet icon-border" style="cursor: pointer;" data-dojo-attach-point="readNotificationButton"></i>
+                <i class="icon-share icon-border" style="cursor: pointer;" data-dojo-attach-point="handleNotificationButton"></i>
+                <span>&nbsp;</span>
+                <i class="icon-trash icon-border" style="cursor: pointer;" data-dojo-attach-point="deleteNotificationButton"></i>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,25 @@
+<div style="width: 100%;padding-top: 15px;">
+    <table style="width: 100%;padding-bottom: 3px;">
+        <tr>
+            <td style="padding-left: 10px;">
+                <div style="width:100%;text-align:left;">
+                    <span style="padding-left: 8px;">
+                         <i class="icon-camera"></i> <span data-dojo-attach-point="itemDescription" style="font-size: 1.2em; color: #555555; font-weight:bold;"></span>
+                    </span>
+                    <span style="font-size: 0.8em;color: #666666;padding-left: 8px;"><i class="icon-file-alt"></i> <span data-dojo-attach-point="itemFileName"></span></span>
+                    <span style="font-size: 0.8em;color: #666666;padding-left: 8px;"><i class="icon-hdd"></i> <span data-dojo-attach-point="itemFileSize"></span></span>
+                    <span style="font-size: 0.8em;color: #666666;padding-left: 8px;"><i class="icon-sort-by-order"></i> <span data-dojo-attach-point="itemSequenceNumber"></span></span>
+                    <span style="font-size: 0.8em;color: #666666;padding-left: 8px;"><i class="icon-file"></i> <span data-dojo-attach-point="itemFileType"></span></span>
+                </div>
+            </td>
+            <td style="padding-right: 10px;">
+                <div style=" text-align:right;">
+                    <span style="padding-right: 5px;"><i style="color:#00475B;" class="icon-resize-full"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:fullScreenPreview">全屏预览</span></span>
+                    <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                    <span style="padding-right: 5px;"><i style="color:#555555;" class="icon-external-link-sign"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showKnowledgeItemDetail">素材详情</span></span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div data-dojo-attach-point="previewContainer"></div>
+</div>

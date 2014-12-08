@@ -1,0 +1,55 @@
+<div>
+    <table width="100%" border="0">
+        <tr>
+            <td width="100" style="display: inline;">
+                <span style="font-size: 1.3em;padding-right: 10px;color: #888888;"><i class="icon-eye-open"></i> 预览</span>
+            </td>
+            <td width="250" align="right">
+                <span class="dijitButton" data-dojo-attach-point="messageControlButtonBar" style="display:none;">
+                    <span class="dijitButtonNode" data-dojo-attach-point="readMessageButton"><i class="icon-tablet"></i> 阅读</span><span class="dijitButtonNode" data-dojo-attach-point="replyMessageButton"><i class="icon-reply"></i> 回复</span><span class="dijitButtonNode" data-dojo-attach-point="deleteMessageButton"><i class="icon-trash"></i> 删除</span>
+                </span>
+                <span class="dijitButton" data-dojo-attach-point="notificationControlButtonBar"  style="display:none;">
+                    <span class="dijitButtonNode" data-dojo-attach-point="readNotificationButton"><i class="icon-tablet"></i> 阅读</span><span class="dijitButtonNode" data-dojo-attach-point="handleNotificationButton"><i class="icon-share"></i> 处理</span><span class="dijitButtonNode" data-dojo-attach-point="deleteNotificationButton"><i class="icon-trash"></i> 删除</span>
+                </span>
+                <span class="dijitButton" data-dojo-attach-point="taskControlButtonBar"  style="display:none;">
+                    <span class="dijitButtonNode" data-dojo-attach-point="handleTaskButton"><i class="icon-share"></i> 处理</span><span class="dijitButtonNode" data-dojo-attach-point="returnTaskButton"><i class="icon-download-alt"></i> 返还</span><span class="dijitButtonNode" data-dojo-attach-point="reasignTaskButton"><i class="icon-male"></i> 重新分配</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" >
+                <div class="app_headerDivLine" style="padding-top: 14px;"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div data-dojo-attach-point="previewPrompt" style="padding: 10px; font-size: 0.8em;font-style: italic;color: #444444;">信息预览... </div>
+                <div data-dojo-attach-point="previewContent">
+                    <table width="100%" border="0">
+                        <tr>
+                            <td width="70" style="display: inline;" data-dojo-attach-point="facePhotoContainer">
+                                <span><img src="" width="64px" height="64px" class="app_photoBorder" data-dojo-attach-point="senderFacePhoto"/></span>
+                            </td>
+                            <td width="20" style="display: inline;" align="center" data-dojo-attach-point="messageTypeContainer">
+                            </td>
+                            <td width="280" align="left" style="vertical-align:middle ;padding-left: 8px; font-size: 1.1em; color: #00475B; font-weight:bold;" data-dojo-attach-point="messageTitleTextContainer">
+                                <span data-dojo-attach-point="messageTitleTxt"></span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="background-color: #eeeeee;padding: 5px;font-size: 0.9em;color: #777777;display: none;" data-dojo-attach-point="messagePropertyContainer">
+                        <div style="padding-bottom: 3px;"><i class="icon-signout"></i> 发送人:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="messageSenderTxt"></span></div>
+                        <div style="padding-bottom: 3px;"><i class="icon-time"></i> 发送时间:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="messageSentDateTxt"></span></div>
+                        <div><i class="icon-signin"></i> 接收人:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="messageReceiversTxt"></span></div>
+                    </div>
+                    <div style="background-color: #eeeeee;padding: 5px;font-size: 0.9em;color: #777777;display: none;" data-dojo-attach-point="taskPropertyContainer">
+                        <div style="padding-bottom: 3px;"><i class="icon-tags"></i> 活动名称:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="taskActivityNameTxt"></span></div>
+                        <div style="padding-bottom: 3px;"><i class="icon-time"></i> 到期时间:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="taskDueDateTxt"></span></div>
+                        <div><i class="icon-group"></i> 任务角色:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="taskRoleTxt"></span></div>
+                    </div>
+                    <div style="padding-top: 15px; overflow: auto;height: 200px;" data-dojo-attach-point="messageContentTxt"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

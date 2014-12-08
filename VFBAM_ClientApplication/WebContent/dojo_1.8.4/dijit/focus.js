@@ -113,7 +113,12 @@ define([
 			var doc = has("ie") ? targetWindow.document.documentElement : targetWindow.document;
 			if(doc){
 				if(has("ie")){
-					targetWindow.document.body.attachEvent('onmousedown', mousedownListener);
+                    if(has("ie")<11) {
+                        targetWindow.document.body.attachEvent('onmousedown', mousedownListener);
+                    }else{
+                        targetWindow.document.body.addEventListener("mousedown",mousedownListener,false);
+                    }
+
 					var focusinListener = function(evt){
 						// IE reports that nodes like <body> have gotten focus, even though they have tabIndex=-1,
 						// ignore those events
@@ -129,12 +134,19 @@ define([
 							_this._onTouchNode(effectiveNode || evt.srcElement);
 						}
 					};
-					doc.attachEvent('onfocusin', focusinListener);
+                    if(has("ie")<11) {
+                        doc.attachEvent('onfocusin', focusinListener);
+                    }else{
+                        doc.addEventListener("focusin",focusinListener,false);
+                    }
 					var focusoutListener =  function(evt){
 						_this._onBlurNode(effectiveNode || evt.srcElement);
 					};
-					doc.attachEvent('onfocusout', focusoutListener);
-
+                    if(has("ie")<11) {
+                        doc.attachEvent('onfocusout', focusoutListener);
+                    }else{
+                        doc.addEventListener("focusout",focusoutListener,false);
+                    }
 					return {
 						remove: function(){
 							targetWindow.document.detachEvent('onmousedown', mousedownListener);

@@ -1,0 +1,21 @@
+<div style="width: 500px;" data-dojo-attach-point="containerNode">
+    <div style="background-color: #ffffff;padding: 5px;font-size: 0.9em;color: #777777;">
+        <table width="100%">
+            <tr>
+                <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:90px;"> 自定义搜索名称 :</td>
+                <td align="left"><input dojoType="dijit.form.TextBox" style="width:360px;" data-dojo-attach-point="customSearchNameField" ></input></td>
+            </tr>
+            <tr>
+                <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:90px;"> 自定义搜索描述  :</td>
+                <td align="left"><input dojoType="dijit.form.TextBox" style="width:360px;" data-dojo-attach-point="customSearchDescField"></input></td>
+            </tr>
+        </table>
+    </div>
+    <div class="app_headerDivLine"></div>
+    <div style="text-align: right;padding-bottom: 5px;padding-top: 5px;padding-right: 5px;">
+        <button dojoType="dijit.form.Button" data-dojo-attach-point="addCategoryButton" data-dojo-attach-event="onClick:doSaveSelectedCategory"><i class="icon-save"></i> 保存</button>
+        <span data-dojo-attach-point="cancelButtonContainer">
+            <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:doCloseContainerDialog"><i class="icon-remove"></i> 取消</button>
+        </span>
+    </div>
+</div>

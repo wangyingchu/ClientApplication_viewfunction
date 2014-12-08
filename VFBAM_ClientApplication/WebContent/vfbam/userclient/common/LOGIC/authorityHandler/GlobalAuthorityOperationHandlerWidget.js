@@ -9,8 +9,6 @@ require([
             var addtionalWorkspaceTypesForCurrentUser=APPLICATION_ROLEBASE_ACCESS_MATRIX[currentUserRoleType];
             if(addtionalWorkspaceTypesForCurrentUser){
                 dojo.forEach(addtionalWorkspaceTypesForCurrentUser,function(workspaceType){
-                    //console.log(workspaceType);
-
                     var dynamicPageId=UI.openDynamicPage(workspaceType.workspaceType, workspaceType.workspaceTitle,  workspaceType.pageUniqueId,workspaceType.dynamicPageTitle,{},true);
                     /*
                     if(dynamicPageId){
@@ -19,6 +17,8 @@ require([
                     */
                 });
             }
+            //add knowledge page for all kinds of user
+            UI.openDynamicPage("KNOWLEDGE_BASE","知识中心", "KNOWLEDGE_BASE_UID", "<i class='icon-book'></i> 知识中心",{},true);
         },
         _endOfCode: function(){}
     });

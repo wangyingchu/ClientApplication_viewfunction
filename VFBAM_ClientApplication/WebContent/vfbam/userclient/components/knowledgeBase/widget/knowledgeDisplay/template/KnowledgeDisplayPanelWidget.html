@@ -1,0 +1,38 @@
+<div>
+    <div style="padding-top:5px;padding-right: 20px;">
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: baseline;">
+                    <span style="padding-left: 15px;font-size: 0.9em;color: #888888;">
+                        <i class="icon-chevron-sign-left icon-2x" style="color:#457faa;padding-right: 5px;cursor: pointer;" data-dojo-attach-point="previewHistoryItemButton" data-dojo-attach-event="onclick:showPreviewKnowledgeContent"></i>
+                        <i class="icon-chevron-sign-left icon-2x" style="color:#DEDEDE;padding-right: 5px;" data-dojo-attach-point="previewHistoryItemButtonGrey"></i>
+                        <i class="icon-chevron-right" style="color:#457faa;padding-right: 8px;cursor: pointer;" data-dojo-attach-point="nextHistoryItemButton" data-dojo-attach-event="onclick:showNextKnowledgeContent"></i>
+                        <i class="icon-chevron-right" style="color:#DEDEDE;padding-right: 8px;" data-dojo-attach-point="nextHistoryItemButtonGrey"></i>
+                        <span data-dojo-attach-point="historyListBrowseDropdownContainer"></span>
+                    </span>
+                    <span style="padding-left:1px; font-size: 0.9em;color: #457faa;font-weight: bold; cursor: pointer;" data-dojo-attach-point="currentDisplayTitle" data-dojo-attach-event="onclick:refreshView"></span>
+                </td>
+                <td align="right">
+                    <span data-dojo-attach-point="pagingElementContainer">
+                        <!--
+                        <span style="font-style: italic; font-size: 0.7em; padding-left: 1px;color: #888888;"> 前一页</span>
+                        -->
+                        <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:getPreviousPageMessage" data-dojo-attach-point="previousPageButton"> <i class="icon-chevron-left icon-2x"></i></span>
+                        <span style="width: 20px;">&nbsp;</span>
+                        <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:getNextPageMessage" data-dojo-attach-point="nextPageButton"> <i class="icon-chevron-right icon-2x"></i></span>
+                        <!--
+                        <span style="font-style: italic; font-size: 0.7em; padding-left: 1px;color: #888888;"> 后一页</span>
+                        -->
+                        <span style="width: 10px;">&nbsp;</span>
+                        <span style="font-style: italic; font-size: 0.9em; padding-left: 5px;">
+                            <span ><span data-dojo-attach-point="currentPageNumber">0</span>/<span data-dojo-attach-point="totalPageNumber">0</span></span> 总计: <span data-dojo-attach-point="totalItemNumber">0</span></span>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="app_headerDivLine"></div>
+    <div style="overflow: auto;" data-dojo-attach-point="app_knowledgeBase_resultDisplayZone">
+        <div data-dojo-attach-point="app_knowledgeBase_contentDisplayContainer"></div>
+    </div>
+</div>

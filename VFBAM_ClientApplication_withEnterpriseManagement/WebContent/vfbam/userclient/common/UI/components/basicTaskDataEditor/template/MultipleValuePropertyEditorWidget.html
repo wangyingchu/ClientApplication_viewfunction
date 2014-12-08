@@ -1,0 +1,19 @@
+<div data-dojo-attach-point="containerNode">
+    <table width="100%">
+        <tr>
+            <td>
+                <span style="font-size: 0.9em;color: #666666;"><i class="icon-reorder "></i> <span data-dojo-attach-point="propertyTypeNoticeStr"></span>属性: <span data-dojo-attach-point="propertyName" style="font-weight: bold;color: #444444;"></span></span>
+            </td>
+            <td style="width:100px;">
+                <i class="icon-plus icon-border"></i>
+                <span data-dojo-type="idx.form.Link" style="padding-right: 5px;" data-dojo-attach-event="onClick:addPropertyValue"> 添加属性值</span>
+            </td>
+        </tr>
+    </table>
+    <div class="app_headerDivLine"></div>
+    <div style="height: 15px;"></div>
+    <div style="height:200px; overflow: auto;">
+        <table width="100%" data-dojo-attach-point="singleValueEditorContainer">
+        </table>
+    </div>
+</div>

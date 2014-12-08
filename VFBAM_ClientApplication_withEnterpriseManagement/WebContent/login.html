@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%; margin: 0; padding: 0" lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="NO-CACHE">
+    <meta http-equiv="Pragma" content="NO-CACHE">
+    <meta http-equiv="Expires" content="-1">
+    <title>Viewfunction 业务活动协同处理平台用户登录</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <!--application bootstrap libs -->
+    <script type="text/javascript" src="vfbam/config/loginConfig.js"></script>
+    <!--dojo style muse load before idx style -->
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dojo/resources/dojo.css'/>
+    <link rel='stylesheet' type='text/css' href='dojo_1.8.4/dijit/themes/dijit.css'/>
+    <!--idx style-->
+    <link rel='stylesheet' type='text/css' href='ibmjs/idx/themes/oneui/oneui.css'/>
+    <!--application style -->
+    <link rel='stylesheet' type='text/css' href='vfbam/userclient/css/global.css'/>
+    <link rel='stylesheet' type='text/css' href='vfbam/userclient/css/application.css'/>
+    <script language="javascript" type="text/javascript" src="dojo_1.8.4/dojo/dojo.js"></script>
+    <script language="javascript" type="text/javascript" src="app/util/Interface.js"></script>
+    <script language="javascript" type="text/javascript" src="app/ApplicationBaseFunctionImpl.js"></script>
+    <script type="text/javascript" id="postDojo">
+        var dXHRGet = null;
+        var iDialogs = null;
+        function preParse(modules) {
+            dXHRGet = modules["dojo/_base/xhr"] ? modules["dojo/_base/xhr"].get : dojo.xhrGet;
+            iDialogs = modules["idx/dialogs"];
+        }
+        //Application enterpoint after all modules are loaded
+        function postParse(modules){
+            dojo.byId("idx_app_AppMarquee_0_AppName").innerHTML="<i class='icon-tags icon-large'></i> Viewfunction 业务活动协同处理平台 ";
+            dojo.byId("idx_app_WorkspaceTab_0_titleNode").innerHTML="<i class='icon-key'></i> 用户登录";
+        }
+        dojoRequireModules(modules, [], dojoConfig.async, preParse,postParse);
+        var docwin = null;
+        function onAbout() {
+            if(docwin != null )docwin.close();
+            docwin=window.open('http://www.viewfunction.com','vfbamwebsite');
+            docwin.focus();
+            return false;
+        }
+    </script>
+</head>
+
+<body id="idxExampleBody" style="width: 100%; height: 100%; margin: 0; padding: 0">
+    <script type="text/javascript">applyThemeToBody();</script>
+    <div dojoType="idx.app.A11yPrologue"></div>
+    <div style="width: 100%; height: 100%; margin: 0; padding: 0" dojoType="idx.app.AppFrame">
+      <div dojoType="idx.app.AppMarquee" region="marquee"
+           appName=" Viewfunction 业务活动协同处理平台xxxxxxxxxxxxxxxxxxxx " vendorName="Viewfunction &#0174;"
+           vendorLogo="images/vendorLogoWhite.png">
+           <!-- WHATEVER CONTENT YOU WANT CAN GO HERE FOR THE MARQUEE -->
+           <span dojoType="idx.form.Link" onClick="return onAbout()">关于</span>
+      </div>
+      <div id="app_TabMenuLauncher" dojoType="idx.app.TabMenuLauncher"
+           defaultWorkspaceTypeID="MESSAGE_CENTER" stateCookieName="idx.app.launcher">
+          <div dojoType="idx.app.WorkspaceType"
+               workspaceTypeID="USER_LOGIN"
+               urlTemplate="vfbam/userclient/components/userLogin/userLogin.html"
+               mixinArgs="{workspaceTypeName: '用户登录'}">
+          </div>
+      </div>
+    </div>
+    <div id="app_messageToaster_container"
+         data-dojo-type="idx.oneui.messaging.Toaster"
+         data-dojo-props="style:'z-index:99999', persistMessages:false, messageTimeout:2500">
+    </div>
+</body>
+</html>

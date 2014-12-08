@@ -1,0 +1,21 @@
+<div data-dojo-type="idx.widget.MenuDialog" style="background-color: #FFFFFF;border-top:6px solid #3391AD;">
+    <div data-dojo-attach-point="containerNode" style="padding: 3px;width: 270px;">
+        <div>
+            <div style="font-size: 0.8em;color: #888888;height: 15px; padding-top: 0px;">请选择需要更新的文件:<span style="font-weight: bold;color: #444444;" data-dojo-attach-point="updateFileName"></span></div>
+            <div class="app_headerDivLine"></div>
+            <div style="height:10px;"></div>
+            <form method="post" data-dojo-attach-point="form" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td>
+                            <input data-dojo-attach-point="fileUploaderNode"/>
+                        </td>
+                        <td>
+                            <button dojoType="dijit.form.Button" data-dojo-attach-point="addReceiverButton" data-dojo-attach-event="onClick:doCloseContainerDialog"><i class="icon-remove"></i> 取消</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

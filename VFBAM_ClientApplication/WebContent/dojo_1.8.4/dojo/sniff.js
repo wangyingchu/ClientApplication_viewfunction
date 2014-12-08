@@ -42,11 +42,9 @@ define(["./has"], function(has){
 				//We really need to get away from this. Consider a sane isGecko approach for the future.
 				has.add("ff", parseFloat(dua.split("Firefox/")[1] || dua.split("Minefield/")[1]) || undefined);
 			}
-
 			// IE
 			if(document.all && !has("opera")){
 				var isIE = parseFloat(dav.split("MSIE ")[1]) || undefined;
-
 				//In cases where the page has an HTTP header or META tag with
 				//X-UA-Compatible, then it is in emulation mode.
 				//Make sure isIE reflects the desired version.
@@ -60,7 +58,12 @@ define(["./has"], function(has){
 
 				has.add("ie", isIE);
 			}
-
+            //for IE11 this part is hack on dojo 1.8.4
+            //dav value for IE11 is:5.0 (Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; rv:11.0) like Gecko
+            var ie11DetectFlag=dav.split("Trident");
+            if(ie11DetectFlag.length>0){
+                has.add("ie", document.documentMode);
+            }
 			// Wii
 			has.add("wii", typeof opera != "undefined" && opera.wiiremote);
 		}

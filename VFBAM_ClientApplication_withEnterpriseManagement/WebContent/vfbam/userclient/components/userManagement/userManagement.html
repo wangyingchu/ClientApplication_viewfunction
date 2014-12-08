@@ -1,0 +1,82 @@
+<table width="100%" border="0">
+    <tr>
+        <td><span style="font-size: 1.0em; font-weight: bold;color: #444444;"><i class="icon-user"></i> 用户管理</span></td>
+        <td align="right"><i class="icon-cog"></i> <span data-dojo-type="idx.form.Link">用户管理设置</span></td>
+    </tr>
+    <tr>
+        <td colspan="2" >
+            <div class="app_headerDivLine"></div>
+        </td>
+    </tr>
+</table>
+
+<table width="100%" border="0" style="height: 92%;">
+    <tr>
+        <td width="150" style="background-color: #FBFBFB;" valign="top">
+            <div  style="padding-left: 5px;padding-top:5px;padding-bottom:2px;">
+                <button dojoType="dijit.form.Button" placement="primary" onClick="refreshUserList"><i class="icon-refresh"></i> 刷新用户列表</button>
+            </div>
+            <div><div class="app_headerDivLine"></div></div>
+            <div style="min-height: 400px;background-color: #FAFAFA;">
+
+                <div style="padding-left: 20px;padding-bottom: 5px;padding-top:10px;font-size: 1.2em;">
+                    <i class="icon-user"></i>
+                    <span data-dojo-type="idx.form.Link" onClick="filterAllUser" id="app_userManagement_allUserFilterContainer" class="app_messageCenter_selectedMessageType">
+                        <span> 全部用户<span id="app_userManagement_allUserCount">(0)</span></span>
+                    </span>
+                </div>
+
+                <div style="padding-left: 20px;padding-bottom: 5px;font-size: 1.2em;font-weight: normal;" >
+                    <i class="icon-male"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterNormalUser" id="app_userManagement_normalUserFilterContainer">
+                        <span>普通用户<span id="app_userManagement_normalUserCount">(0)</span></span>
+                    </span>
+                </div>
+                <div style="padding-left: 20px;font-size: 1.2em;font-weight: normal;" >
+                    <i class="icon-shield"></i>
+                    <span data-dojo-type="idx.form.Link"  onClick="filterSuperviser" id="app_userManagement_superviserContainer">
+                        <span> 系统管理员<span id="app_userManagement_superviserCount">(0)</span></span>
+                    </span>
+                </div>
+            </div>
+        </td>
+        <td style="vertical-align:top;padding-left: 10px;">
+            <div>
+                <div style="padding-left: 5px;padding-top:5px;">
+                    <button dojoType="dijit.form.Button" onClick="loadAddNewUserBasicInfoDialog" placement="secondary"><i class="icon-plus-sign"></i> 创建用户</button>
+                    <span id="app_userManagement_disableUserButton"></span>
+                    <span id="app_userManagement_activeUserButton"></span>
+                    <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                    <span id="app_userManagement_basicInfoButton"></span>
+                    <span id="app_userManagement_profileInfoButton"></span>
+                </div>
+            </div>
+
+            <div dojoType="dijit.layout.ContentPane" region="bottom" title="Bottom Region" splitter="true" style="min-height: 320px;" id="app_userManagement_participantInfoContainer">
+                <div dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="true">
+                    <div dojoType="dijit.layout.ContentPane" region="center" class="app_contentBorderLine">
+                        <div>
+                            <div>
+                                <span style="font-size: 0.8em;color: #888888;" data-dojo-attach-point="searchLabel">搜索：</span>
+                                <span id="app_userManagement_userFilterPropertyTypeSelect"></span>
+                                <span id="app_userManagement_userFilterPropertyValueTextInput"></span>
+                                <span class="searchBarButton" data-dojo-attach-point="searchButtonArea">
+                	                <div dojoType="dijit.form.Button" data-dojo-attach-point="userFilterDateButton" onClick="doFilterUserList"><i class="icon-search"></i> 搜索</div>
+               	                </span>
+                            </div>
+                            <div class="app_headerDivLine"></div>
+                        </div>
+                        <div style="overflow: auto;" id="app_userManagement_userListWarper">
+                            <div id="app_userManagement_participantListContainer">
+                            </div>
+                        </div>
+                    </div>
+                    <div dojoType="dijit.layout.ContentPane" region="trailing" style="width: 400px;" splitter="true" class="app_contentBorderLine">
+                        <div id="app_userManagement_participantPreviewContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript" src="vfbam/userclient/components/userManagement/userManagement.js"></script>

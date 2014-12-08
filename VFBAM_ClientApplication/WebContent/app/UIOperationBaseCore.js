@@ -39,7 +39,8 @@ var UI=(function(){
             return implementationTech;
         },
         showToasterMessage:function(messageObject,actionResultObject){
-             var messageToaster=dijit.byId("app_messageToaster_container");
+            var messageToaster=dijit.byId("app_messageToaster_container");
+            dojo.style(messageToaster.toasterNode,"zIndex",1000);
             // toaster type ["success", "error", "warning", "info"];
             if(actionResultObject){
                 if(actionResultObject.result){

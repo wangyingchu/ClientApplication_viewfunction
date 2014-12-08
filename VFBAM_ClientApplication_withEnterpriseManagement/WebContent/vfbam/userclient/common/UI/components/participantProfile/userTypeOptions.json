@@ -1,0 +1,8 @@
+{
+    identifier:"abbreviation",
+    label: "label",
+    items: [
+        {name:"普通用户", label:"普通用户",abbreviation:"APPLICATION_NORMALUSER"},
+        {name:"系统管理员", label:"系统管理员",abbreviation:"APPLICATION_SUPERVISER"}
+    ]
+} 

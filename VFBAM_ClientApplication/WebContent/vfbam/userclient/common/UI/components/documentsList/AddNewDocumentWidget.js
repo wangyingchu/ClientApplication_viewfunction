@@ -18,7 +18,7 @@ require([
                 var activityId=this.documentListWidget.taskData.taskItemData.activityId;
                 metaDataContent.activityType=activityType;
                 metaDataContent.activityId=activityId;
-                pathToUploadServerService=CONTENT_SERVICE_ROOT+"businessActivityFile/addFile/"+APPLICATION_ID+"/";
+                pathToUploadServerService=CONTENT_SERVICE_ROOT+"businessActivityFile/addFile/"+APPLICATION_ID+"/"+ userId+"/";
             }
             if(this.documentListWidget.documentsOwnerType=="APPLICATIONSPACE"){
                 pathToUploadServerService=CONTENT_SERVICE_ROOT+"applicationSpaceFile/addFile/"+APPLICATION_ID+"/"+ userId+"/";

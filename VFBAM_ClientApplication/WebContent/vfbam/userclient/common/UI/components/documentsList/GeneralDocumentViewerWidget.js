@@ -14,6 +14,12 @@ require([
             }
             var iFrameContentWidth=documentViewerWidth-50;
             this.iFrameContentHeight=win.getBox().h-250;
+
+            if(this.documentMetaInfo.documentVersionNumber){
+                //fix history version preview sizing issue
+                this.iFrameContentHeight=win.getBox().h-260;
+            }
+
             this.realDocumentViewerContainer.width=iFrameContentWidth+"px";
             this.realDocumentViewerContainer.height=this.iFrameContentHeight+"px";
             this.serverTempDocumentName=this.tempDocumentName;
@@ -99,6 +105,9 @@ require([
             };
             var previewTempFileGenerateInfoContent=dojo.toJson(previewTempFileGenerateObj);
             var resturl=CONTENT_SERVICE_ROOT+"generatePerviewFile/";
+            if(this.documentMetaInfo.documentVersionNumber){
+                resturl=CONTENT_SERVICE_ROOT+"generateHistoryPerviewFile/"+this.documentMetaInfo.documentVersionNumber+"/";
+            }
             Application.WebServiceUtil.postJSONData(resturl,previewTempFileGenerateInfoContent,loadCallback,errorCallback);
         },
         loadRealDocumentViewer:function(fileLocation){

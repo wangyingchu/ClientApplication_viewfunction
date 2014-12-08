@@ -1,0 +1,33 @@
+<div style="width: 620px;" data-dojo-attach-point="containerNode">
+    <div style="background-color: #ffffff;padding: 5px;font-size: 0.9em;color: #777777;">
+        <table width="100%">
+            <tr style="padding-bottom:20px;display: none;">
+                <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类 ID :</td>
+                <td align="left"><input dojoType="dijit.form.TextBox"  style="width:500px;" data-dojo-attach-point="categoryIdField" readonly></input></td>
+            </tr>
+            <tr>
+                <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类中文名称 :</td>
+                <td align="left"><input dojoType="dijit.form.TextBox" style="width:500px;" data-dojo-attach-point="categoryName_cnField" ></input></td>
+            </tr>
+            <tr>
+                <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类英文名称 :</td>
+                <td align="left"><input dojoType="dijit.form.TextBox" style="width:500px;" data-dojo-attach-point="category_enField"></input></td>
+            </tr>
+            <tr style="padding-bottom:20px;">
+                <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类编码 :</td>
+                <td align="left"><input dojoType="dijit.form.TextBox"  style="width:500px;" data-dojo-attach-point="categoryCodeField"></input></td>
+            </tr>
+            <tr>
+                <td valign="top" align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类描述 :</td>
+                <td align="left"><input dojoType="dijit.form.Textarea" style="font-size: 1.0em;width:502px; min-height:80px;color:#444444" data-dojo-attach-point="categoryDescriptionField"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="app_headerDivLine"></div>
+    <div style="text-align: right;padding-bottom: 5px;padding-top: 5px;padding-right: 5px;">
+        <button dojoType="dijit.form.Button" data-dojo-attach-point="addCategoryButton" data-dojo-attach-event="onClick:doAddCategory"><i class="icon-plus-sign-alt"></i> 添加</button>
+        <span data-dojo-attach-point="cancelButtonContainer" style="display: none;">
+            <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:doCloseContainerDialog"><i class="icon-remove"></i> 取消</button>
+        </span>
+    </div>
+</div>

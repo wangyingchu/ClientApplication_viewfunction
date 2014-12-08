@@ -1,0 +1,39 @@
+<div style="height: 40px;"></div>
+<div style="margin-left: auto;margin-right: auto;width: 1000px;">
+    <table style="width: 800px;border:1px solid #dddddd;padding:20px;box-shadow:2px 2px 3px #aaaaaa;" >
+        <tr>
+            <td style="text-align:right;"><img src="vfbam/userclient/css/image/loginPic_cn.jpg" style="border-top:6px solid #00475B;"/>
+            </td>
+            <td style="padding-left: 20px;vertical-align:top;">
+                <div><img src="vfbam/userclient/css/image/loginTxt_cn.jpg" /></div>
+                <div><img src="vfbam/userclient/css/image/userLoginTxt_cn.png" /></div>
+                <div style="border-width:0px;border-bottom-width: 1px;border-bottom-color: #aaaaaa;border-style:solid;"></div>
+                <div style="height: 20px;"></div>
+                <table>
+                    <tr>
+                        <td style="text-align:right;font-size: 1em;font-weight: bold;">用户登录ID： </td><td><input dojoType="dijit.form.TextBox" style="width: 250px;" id="app_userLogin_userLoginName"/></td>
+                    </tr>
+                    <tr>
+                        <td><div style="height: 5px;"></div></td><td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;font-size: 1em;font-weight: bold;">用户密码： </td><td><input dojoType="dijit.form.TextBox" style="width: 250px;" type="password" id="app_userLogin_userPassword"/></td>
+                    </tr>
+                    <tr>
+                        <td><div style="height: 5px;"></div></td><td></td>
+                    </tr>
+                    <tr>
+                        <td><div style="height: 5px;"></div></td><td style="font-size: 0.9em;">
+                        <input id="app_userLogin_rememberUserInfo"/><span>记住我的登录信息</span>
+                        </td>
+                    </tr>
+                </table>
+                <div style="height: 15px;"></div>
+                <div style="border-width:0px;border-bottom-width: 1px;border-bottom-color: #aaaaaa;border-style:solid;"></div>
+                <div style="height: 15px;"></div>
+                <div style="text-align:right;padding-right:40px;"><button dojoType="dijit.form.Button" placement="primary" id="app_userLogin_loginButton" onClick="doUserLogin">登录系统</button></div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript" src="vfbam/userclient/components/userLogin/userLogin.js"></script>

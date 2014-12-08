@@ -1,0 +1,19 @@
+<div>
+	<div data-dojo-attach-point="containerNode" style="width:480px;">
+		<div>
+			<div style="padding-left:5px;">
+				<span style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;"><i class="icon-exclamation"></i> 请选择JPEG,PNG或GIF格式的图像文件。图像文件的大小必须小于1MB。</span>
+			</div>	 
+			<div style="height:10px;"></div>
+			<form method="post" data-dojo-attach-point="form" enctype="multipart/form-data" id="documentForm">
+		        <input data-dojo-attach-point="fileUploaderNode"/><div data-dojo-attach-point="uploadButtonNode"></div>
+		    </form>		    
+		    <div style="height:10px;"></div>
+		    <div style="height:20px;padding-left:10px;visibility:hidden;" data-dojo-attach-point="selectedFileInfoContainer">
+		    	<div><span style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;"><i class="icon-file-alt"></i> 已选择文件:</span>
+		    		<span data-dojo-attach-point="selectedFileInfo" style="font-size: 1.0em;font-weight:bold;color:#333333;"></span>
+		    	</div>		    
+		    </div>	      
+		</div>
+	</div>
+</div>

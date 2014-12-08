@@ -84,7 +84,7 @@ require([
                     dojo.style(this.taskSupportDataWidget_document.domNode,{"display": ""});
                 }else{
                     this.taskSupportDataWidget_document=new vfbam.userclient.common.UI.components.documentsList.
-                        DocumentsListWidget({documentsOwnerType:"ACTIVITY",taskData:this.dynamicPagePayload["APP_PAGE_DYNAMIC_DATA"]},this.taskSupportDataContainer_document);
+                        TaskDocumentsListWidget({documentsOwnerType:"ACTIVITY",taskData:this.dynamicPagePayload["APP_PAGE_DYNAMIC_DATA"]},this.taskSupportDataContainer_document);
                 }
             }
             if(supportWidgetType=="showParticipant"){

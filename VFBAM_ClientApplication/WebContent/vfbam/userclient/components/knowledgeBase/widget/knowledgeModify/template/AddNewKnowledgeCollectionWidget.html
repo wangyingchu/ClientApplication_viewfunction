@@ -1,0 +1,30 @@
+<div data-dojo-attach-point="containerNode">
+    <div style="height: 200px;">
+        <div style="font-size: 0.9em;color: #666666;height: 15px; padding-top: 0px;">
+            <span data-dojo-attach-point="addProjectTitlePrompt"><i class="icon-archive"></i> 请输入新专辑名称</span>
+            <span style="display: none;" data-dojo-attach-point="addKnowledgeItemsZipPrompt"><i class="icon-camera"></i> 请添加素材文件ZIP压缩包</span>
+        </div>
+        <div class="app_headerDivLine"></div>
+        <div style="height:5px;"></div>
+        <div data-dojo-attach-point="createCollectionInfoContainer">
+            <div>
+                <div style="padding-top: 5px;">
+                    <input dojoType="dijit.form.TextBox" style="width: 470px;" data-dojo-attach-point="collectionTitleInput">
+                    <button dojoType="dijit.form.Button" data-dojo-attach-point="addCollectionButton" data-dojo-attach-event="onClick:doAddNewCollection"><i class="icon-plus-sign"></i> 确认添加</button>
+                </div>
+            </div>
+        </div>
+        <div data-dojo-attach-point="uploadKnowledgeItemsContainer" style="display: none;">
+            <div>
+                <div data-dojo-attach-point="knowItemUploaderContainer">
+                    <div style="font-size: 0.9em;color: #666666;height: 15px; padding-top: 10px;padding-bottom:15px;padding-left: 5px;">
+                        <span style="padding-right: 10px;"><i class="icon-archive"></i> 专辑名称:</span><span style="font-size: 1.1em;color: #444444;font-weight: bold;" data-dojo-attach-point="currentCollectionTitle"></span>
+                    </div>
+                    <form method="post" data-dojo-attach-point="form" enctype="multipart/form-data">
+                        <input data-dojo-attach-point="fileUploaderNode"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

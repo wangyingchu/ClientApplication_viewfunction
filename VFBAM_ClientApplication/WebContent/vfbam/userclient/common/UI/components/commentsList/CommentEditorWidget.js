@@ -6,6 +6,9 @@ require([
         templateString: template,
         widgetsInTemplate: true,
         postCreate: function(){
+            if(this.commentEditorLabel){
+                this.commentEditorLabelText.innerHTML=this.commentEditorLabel;
+            }
         },
         doAddNewComment:function(){
             var newCommentValue=this.commentContentInput.get("value");

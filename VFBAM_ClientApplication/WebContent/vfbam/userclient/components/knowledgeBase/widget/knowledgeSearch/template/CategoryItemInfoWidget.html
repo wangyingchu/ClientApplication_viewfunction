@@ -1,0 +1,39 @@
+<div>
+    <div data-dojo-attach-point="containerNode">
+        <div>
+            <span style="font-size: 1.0em; font-weight: bold;color: #444444;padding-left: 8px;"><i class="icon-list"></i> 分类基本属性</span>
+        </div>
+        <div class="app_headerDivLine"></div>
+        <div style="background-color: #ffffff;padding: 5px;font-size: 0.9em;color: #777777;">
+            <table width="100%">
+                <tr>
+                    <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类中文名称 :</td>
+                    <td align="left" style="font-weight:bold;font-size: 1.0em;"><span data-dojo-attach-point="categoryName_cnField"></span> </td>
+                </tr>
+                <tr>
+                    <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类英文名称 :</td>
+                    <td align="left" style="font-weight:bold;font-size: 1.0em;"><span data-dojo-attach-point="category_enField"></span></td>
+                </tr>
+                <tr>
+                    <td align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类编码 :</td>
+                    <td align="left" style="font-weight:bold;font-size: 1.0em;"><span data-dojo-attach-point="categoryCodeField"></span></td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right" style="font-weight:bold;color:#666666;padding-right:10px;width:80px;"> 分类描述 :</td>
+                    <td align="left" style="font-weight:bold;font-size: 1.0em;"><span data-dojo-attach-point="categoryDescriptionField"></span></td>
+                </tr>
+            </table>
+        </div>
+        <div style="height: 20px;">&nbsp</div>
+        <div>
+            <span style="font-size: 1.0em; font-weight: bold;color: #444444;padding-left: 8px;"><i class="icon-list"></i> 分类业务属性</span>
+        </div>
+        <div style="height: 10px;">&nbsp</div>
+        <div style="height: 200px;overflow: auto;">
+            <div data-dojo-attach-point="propertiesGridContainer"></div>
+        </div>
+        <div style="text-align: right;">
+            <span dojoType="dijit.form.Button" data-dojo-attach-event="onClick:doCloseContainerDialog"><i class='icon-remove'></i> 关闭</span>
+        </div>
+    </div>
+</div>

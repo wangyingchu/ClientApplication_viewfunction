@@ -24,7 +24,7 @@ require([
         renderActivityTypesInfo:function(activityTypeDefineArray){
             var isOdd=true;
             if(activityTypeDefineArray.length<=3){
-                var currentField=new vfbam.userclient.common.UI.components.activityLauncher.ActivityTypeDefinitionWidget({activityTypeDefinitionData:activityTypeDefinition,isOdd:isOdd});
+                var currentField=new vfbam.userclient.common.UI.components.activityLauncher.ActivityTypeDefinitionWidget({activityTypeDefinitionData:activityTypeDefineArray,isOdd:isOdd});
                 this.activityTypeDefinitionsContainer.appendChild(currentField.domNode);
             }else{
                 var lineCount=parseInt(activityTypeDefineArray.length/3);

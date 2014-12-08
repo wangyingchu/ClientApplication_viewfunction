@@ -1,0 +1,35 @@
+<table width="450px;" border="0">
+<tr>
+<td style="width: 200px;vertical-align:top;">
+    <div class="app_contentBorderLine" style="min-height: 400px;" data-dojo-attach-point="myTaskListContainer">
+        <table width="100%" border="0">
+            <tr>
+                <td width="150" style="padding-top:8px;">
+                    <span style="font-size: 1.3em;padding-right: 10px;padding-left: 8px;color: #888888;"><i class="icon-reorder"></i> 我的任务列表</span>
+                </td>
+                <td width="250" align="right" style="padding-top: 8px;">
+                    <span>共有 <span style="font-weight: bold;color: #00475B;" data-dojo-attach-point="taskTotalNumber"></span> 项待办任务</span>
+                    <i class="icon-chevron-sign-left icon-large icon-border" style="display: none;"></i>
+                    <span style="width: 20px;">&nbsp;</span>
+                    <i class="icon-chevron-sign-right  icon-large icon-border"  style="display: none;"></i>
+                    <span style="width: 20px;">&nbsp;</span>
+                    <i class="icon-refresh" style="cursor: pointer;" data-dojo-attach-event="onclick:menualRefreshTaskList"></i>
+                    <span style="width: 20px;">&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" >
+                    <div class="app_headerDivLine"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="min-height: 600px;vertical-align:top;">
+                    <div data-dojo-attach-point="myTaskMagazineViewItemListContainer" style="height: 300px;overflow: auto;"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</td>
+
+</tr>
+</table>
