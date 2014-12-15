@@ -388,6 +388,7 @@ require([
             dialog.show();
         },
         addFolder:function(data){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             var folderType=data.folderType;
             var addFolderContent="";
             var resturl="";
@@ -405,6 +406,7 @@ require([
                 newActivityFolderObj.activityId=taskItemData.activityId;
                 newActivityFolderObj.parentFolderPath=newFolderInfo.parentFolderPath;
                 newActivityFolderObj.folderName=newFolderInfo.folderName;
+                newActivityFolderObj.folderCreator=userId;
                 addFolderContent=dojo.toJson(newActivityFolderObj);
                 resturl=CONTENT_SERVICE_ROOT+"addBusinessActivityFolder/";
             }

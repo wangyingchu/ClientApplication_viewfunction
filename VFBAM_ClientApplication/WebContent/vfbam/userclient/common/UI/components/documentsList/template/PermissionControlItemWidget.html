@@ -1,0 +1,22 @@
+<div style="padding: 2px; font-size:1.2em;color: #333333;">
+    <table style="width: 100%;">
+        <tr>
+            <td style="min-width: 50px;">
+                <span style="font-weight: bold;" data-dojo-attach-point="participantDisplayName" style="padding-right: 10px;"></span>
+            </td>
+            <td align="right">
+                <i class="icon-trash" style="cursor: pointer;padding-right: 5px;" data-dojo-attach-point="deleteConfigButton" data-dojo-attach-event="onclick:doDeleteConfig"></i>
+            </td>
+        </tr>
+    </table>
+    <div class="app_headerDivLine_thin" style="border-color:#CCCCCC;"></div>
+    <div style="padding-bottom: 0px;padding-top: 3px;">
+        <span data-dojo-attach-point="addContentPermissionCheckbox"></span><span style="padding-right: 10px;">添加内容</span>
+        <span data-dojo-attach-point="deleteContentPermissionCheckbox"></span><span style="padding-right: 10px;">删除内容</span>
+        <span data-dojo-attach-point="editContentPermissionCheckbox"></span><span style="padding-right: 10px;">编辑子文件</span>
+        <span data-dojo-attach-point="displayContentPermissionCheckbox"></span><span style="padding-right: 10px;">显示目录内容</span>
+    </div>
+    <div style="padding-bottom: 5px;padding-top: 3px;">
+        <span data-dojo-attach-point="configPermissionPermissionCheckbox"></span><span style="padding-right: 10px;">设定目录权限</span>
+    </div>
+</div>

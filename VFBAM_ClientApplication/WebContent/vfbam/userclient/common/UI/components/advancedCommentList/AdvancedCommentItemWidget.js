@@ -12,6 +12,9 @@ require([
         replyCommentDropdownButton:null,
         postCreate: function(){
             var commentDepthSpacingTDLength=""+this.commentDepth*25+"px";
+            if(this.commentDepth>0){
+                dojo.style(this.replyPrompt,"display","");
+            }
             dojo.style(this.topHeadSpacingTd,"width",commentDepthSpacingTDLength);
             var userFacePhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+ this.commentInfo.commentAuthor.userId;
             this.commentCreatorPhoto.src=userFacePhotoPath;

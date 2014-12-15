@@ -14,6 +14,7 @@ require([
         versionHistoryListDropDown:null,
         documentDetailInfo:null,
         documentInfo:null,
+        permissionControlPanel:null,
         postCreate: function(){
             this.documentTagsInfoList=[];
             var documentInfo=this.documentMetaInfo.documentInfo;
@@ -112,8 +113,13 @@ require([
             });
             if(documentInfo.isFolder){
                 dojo.style(this.documentTagsRootContainer,"display","none");
+                dojo.style(this.documentVersionInfoContainer,"display","none");
+                dojo.style(this.permissionControlContainer,"display","");
+                this.permissionControlPanel=new vfbam.userclient.common.UI.components.documentsList.DocumentPermissionControlWidget({documentMetaInfo:this.documentMetaInfo},this.permissionControlPanelContainer);
             }else{
                 dojo.style(this.documentTagsRootContainer,"display","");
+                dojo.style(this.documentVersionInfoContainer,"display","");
+                dojo.style(this.permissionControlContainer,"display","none");
                 if(documentInfo.documentTags){
                     this.renderDocumentTag(documentInfo.documentTags);
                 }
@@ -122,10 +128,12 @@ require([
                 dojo.place(this.addNewTagDropDown.domNode, this.addNewTagMenuDialog.containerNode);
                 this.addTagLink.set("dropDown",this.addNewTagMenuDialog);
             }
-            this.versionHistoryListMenuDialog=new idx.widget.MenuDialog();
-            this.versionHistoryListDropDown=new vfbam.userclient.common.UI.components.documentsList.DocumentVersionHistoryListWidget({documentMetaInfo:this.documentMetaInfo});
-            dojo.place(this.versionHistoryListDropDown.domNode, this.versionHistoryListMenuDialog.containerNode);
-            this.showVersionHistoryLink.set("dropDown",this.versionHistoryListMenuDialog);
+            if(!documentInfo.isFolder){
+                this.versionHistoryListMenuDialog=new idx.widget.MenuDialog();
+                this.versionHistoryListDropDown=new vfbam.userclient.common.UI.components.documentsList.DocumentVersionHistoryListWidget({documentMetaInfo:this.documentMetaInfo});
+                dojo.place(this.versionHistoryListDropDown.domNode, this.versionHistoryListMenuDialog.containerNode);
+                this.showVersionHistoryLink.set("dropDown",this.versionHistoryListMenuDialog);
+            }
         },
         renderDocumentTag:function(documentTags){
             dojo.empty(this.documentTagsContainer);
@@ -224,6 +232,9 @@ require([
             this.documentDetailInfo=previewTempFileGenerateObj;
         },
         destroy:function(){
+            if(this.permissionControlPanel){
+                this.permissionControlPanel.persistPermissionConfigChange();
+            }
             if(this.creatorNamecardWidget){
                 this.creatorNamecardWidget.destroy();
             }
@@ -241,6 +252,12 @@ require([
             }
             if(this.versionHistoryListDropDown){
                 this.versionHistoryListDropDown.destroy();
+            }
+            if(this.permissionControlPanel){
+                this.permissionControlPanel.destroy();
+            }
+            if(this.permissionControlPanel){
+                this.permissionControlPanel.destroy();
             }
             this.inherited("destroy",arguments);
         },

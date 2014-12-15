@@ -6,6 +6,8 @@
         <td align="left" style="padding-left:3px;">
             <div>
                 <span style="font-size: 0.9em;font-weight: bold;" data-dojo-attach-point="documentName"  data-dojo-attach-event="onclick:doViewDocumentElement"></span>
+
+                <span style="font-size: 0.9em;font-weight: bold;display: none;" data-dojo-attach-point="documentNamePrompt"></span>
             </div>
             <div style="font-size: 0.8em; color:#555555;">
                 <span data-dojo-attach-point="modifyDateContainer">最后修改时间: <span data-dojo-attach-point="lastModifyDate"></span></span>
@@ -23,7 +25,10 @@
             <i class="icon-trash" style="cursor: pointer;" data-dojo-attach-point="deleteDocumentButton" data-dojo-attach-event="onclick:doDeleteDocument"></i>
             <i class="icon-trash" style="color:#AAAAAA;" data-dojo-attach-point="disabledDeleteDocumentButton"></i>
             <span style="padding-right: 3px;padding-left: 3px;font-size: 0.7em; color:#888888;">|</span>
-            <i class="icon-caret-down" style="cursor: pointer;" data-dojo-attach-point="documentOperationListDropdownContainer"></i>
+            <span data-dojo-attach-point="documentOperationContainer">
+                <i class="icon-caret-down" style="cursor: pointer;" data-dojo-attach-point="documentOperationListDropdownContainer"></i>
+            </span>
+            <i class="icon-caret-down" style="display: none;color: #AAAAAA;padding-right: 3px;" data-dojo-attach-point="documentOperationPrompt"></i>
         </td>
     </tr>
     <tr>

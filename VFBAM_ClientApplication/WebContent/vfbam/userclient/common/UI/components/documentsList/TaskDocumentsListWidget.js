@@ -14,9 +14,16 @@ require([
         currentFolderPath:null,
         parentFolderPath:null,
         currentFolderName:null,
+        currentFolderDocumentsList:null,
+        currentFolderPermissions:null,
+        folderPermissionsInfoMap:null,
+        currentFolderCreator:null,
+        folderCreatorInfoMap:null,
         postCreate: function(){
             this.documentsFolderPathArray=[];
             this.currentDocumentsArray=[];
+            this.folderPermissionsInfoMap={};
+            this.folderCreatorInfoMap={};
             this.renderDocumentsList("/","",false);
             this.addNewFolderMenuDialog=new idx.widget.MenuDialog();
             this.addNewFolderDropDown=new vfbam.userclient.common.UI.components.documentsList.AddNewFolderWidget({documentListWidget:this});
@@ -40,7 +47,41 @@ require([
                 dojo.style(this.documentsListContainer,"height",currentHeightStyle);
             }
         },
+        setCurrentFolderMetaInfo:function(currentFolderPath,subFolderName){
+            this.currentFolderPermissions=null;
+            this.currentFolderCreator=null;
+            if(this.folderPermissionsInfoMap[currentFolderPath]){
+                this.currentFolderPermissions=this.folderPermissionsInfoMap[currentFolderPath];
+            }
+            if(this.folderCreatorInfoMap[currentFolderPath]){
+                this.currentFolderCreator=this.folderCreatorInfoMap[currentFolderPath];
+            }
+            if(this.currentFolderDocumentsList){
+                dojo.forEach(this.currentFolderDocumentsList,function(documentItem){
+                    if(documentItem.isFolder){
+                        if(documentItem.documentName==subFolderName){
+                            if(documentItem.documentPermissions){
+                                this.folderPermissionsInfoMap[currentFolderPath]=documentItem.documentPermissions;
+                                this.currentFolderPermissions=documentItem.documentPermissions;
+                            }
+                            if(documentItem.documentCreator){
+                                this.folderCreatorInfoMap[currentFolderPath]=documentItem.documentCreator;
+                                this.currentFolderCreator=documentItem.documentCreator;
+                            }
+                        }
+                    }
+                },this);
+            }
+        },
         renderDocumentsList:function(parentFolderPath,folderName,hideProgressDialog){
+            var currentFolderPath;
+            var lastCharOfParentFolderPath=parentFolderPath.charAt(parentFolderPath.length-1);
+            if(lastCharOfParentFolderPath=="/"){
+                currentFolderPath=parentFolderPath+folderName;
+            }else{
+                currentFolderPath=parentFolderPath+"/"+folderName;
+            }
+            this.setCurrentFolderMetaInfo(currentFolderPath,folderName);
             if(!this.documentsOwnerType){
                 return;
             }
@@ -106,12 +147,17 @@ require([
                             currentDocument["lockedBy"]=documentItem.lockedBy;
                             currentDocument["isLinked"]=documentItem.linked;
                             currentDocument["documentTags"]=documentItem.documentTags;
+                            if(documentItem.contentPermissions){
+                                currentDocument["documentPermissions"]=documentItem.contentPermissions;
+                            }
                             documentsArray.push(currentDocument);
                         });
                         if(documentsArray.length>0){
                             that._renderDocumentsList(documentsArray);
+                            that.currentFolderDocumentsList=documentsArray;
                         }else{
                             that._renderDocumentsList([]);
+                            that.currentFolderDocumentsList=[];
                             if(that.containerInitFinishCounterFuc){
                                 that.containerInitFinishCounterFuc();
                             }
@@ -150,6 +196,19 @@ require([
                 currentDocument.destroy();
             },this);
             this.currentDocumentsArray=[];
+
+            var currentFolderPermissionProperties=this.getPermissionControlProperties(this.currentFolderPermissions,this.currentFolderCreator);
+            if(currentFolderPermissionProperties.addContentPermission){
+                this.addFolderLink.set("disabled",false);
+                dojo.style(this.addFolderLink.domNode,"color","#00649D");
+                this.addDocumentLink.set("disabled",false);
+                dojo.style(this.addDocumentLink.domNode,"color","#00649D");
+            }else{
+                this.addFolderLink.set("disabled",true);
+                dojo.style(this.addFolderLink.domNode,"color","#CCCCCC");
+                this.addDocumentLink.set("disabled",true);
+                dojo.style(this.addDocumentLink.domNode,"color","#CCCCCC");
+            }
 
             dojo.empty(this.documentsListContainer);
             dojo.forEach(documentList,function(currentDocument){
@@ -214,7 +273,7 @@ require([
                 var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
                 var addParticipantFolderObj={};
                 addParticipantFolderObj.activitySpaceName=APPLICATION_ID;
-                addParticipantFolderObj.participantName=userId
+                addParticipantFolderObj.participantName=userId;
                 addParticipantFolderObj.parentFolderPath=this.currentFolderPath;
                 addParticipantFolderObj.folderName=folderName;
                 var that=this;
@@ -252,6 +311,85 @@ require([
                 }
             },this);
             return checkResult;
+        },
+        getPermissionControlProperties:function(documentPermissions,documentCreator){
+            var currentUserApplicationRoles=Application.AttributeContext.getAttribute(USER_PROFILE).userApplicationRoles;
+            var currentDocumentPermissions=documentPermissions;
+
+            var currentDisplayContentPermission=true;
+            var currentAddContentPermission=true;
+            var currentDeleteContentPermission=true;
+            var currentEditContentPermission=true;
+            var currentConfigPermissionPermission=true;
+
+            if(currentDocumentPermissions){
+                //set other user permission
+                dojo.forEach(currentDocumentPermissions,function(currentPermission){
+                    if(currentPermission.permissionScope=="OTHER"){
+                        currentDisplayContentPermission=currentPermission.displayContentPermission;
+                        currentAddContentPermission=currentPermission.addContentPermission;
+                        currentDeleteContentPermission=currentPermission.deleteContentPermission;
+                        currentEditContentPermission=currentPermission.editContentPermission;
+                        currentConfigPermissionPermission=currentPermission.configPermissionPermission;
+                    }
+                });
+                //set owner user permission
+                if(documentCreator){
+                    var documentOwnerId=documentCreator.userId;
+                    var currentUserId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    dojo.forEach(currentDocumentPermissions,function(currentPermission){
+                        if(currentPermission.permissionScope=="OWNER"){
+                            if(documentOwnerId==currentUserId){
+                                currentDisplayContentPermission=currentPermission.displayContentPermission;
+                                currentAddContentPermission=currentPermission.addContentPermission;
+                                currentDeleteContentPermission=currentPermission.deleteContentPermission;
+                                currentEditContentPermission=currentPermission.editContentPermission;
+                                currentConfigPermissionPermission=currentPermission.configPermissionPermission;
+                            }
+                        }
+                    });
+                }
+                //set role user permission
+                if(currentUserApplicationRoles){
+                    var groupCombinedDisplayContentPermission=false;
+                    var groupCombinedAddContentPermission=false;
+                    var groupCombinedDeleteContentPermission=false;
+                    var groupCombinedEditContentPermission=false;
+                    var groupCombinedConfigPermissionPermission=false;
+
+                    var hasMatchedRolePermissionConfig=false;
+                    dojo.forEach(currentUserApplicationRoles,function(userApplicationRole){
+                        var currentApplicationRoleName=userApplicationRole.roleName;
+                        dojo.forEach(currentDocumentPermissions,function(currentGroupPermission){
+                            if(currentGroupPermission.permissionScope=="GROUP"){
+                                if(currentGroupPermission.permissionParticipant==currentApplicationRoleName){
+                                    //matched, need set
+                                    hasMatchedRolePermissionConfig=true;
+                                    groupCombinedDisplayContentPermission=groupCombinedDisplayContentPermission||currentGroupPermission.displayContentPermission;
+                                    groupCombinedAddContentPermission=groupCombinedAddContentPermission||currentGroupPermission.addContentPermission;
+                                    groupCombinedDeleteContentPermission=groupCombinedDeleteContentPermission||currentGroupPermission.deleteContentPermission;
+                                    groupCombinedEditContentPermission=groupCombinedEditContentPermission||currentGroupPermission.editContentPermission;
+                                    groupCombinedConfigPermissionPermission=groupCombinedConfigPermissionPermission||currentGroupPermission.configPermissionPermission;
+                                }
+                            }
+                        });
+                    });
+                    if(hasMatchedRolePermissionConfig){
+                        currentDisplayContentPermission=groupCombinedDisplayContentPermission;
+                        currentAddContentPermission=groupCombinedAddContentPermission;
+                        currentDeleteContentPermission=groupCombinedDeleteContentPermission;
+                        currentEditContentPermission=groupCombinedEditContentPermission;
+                        currentConfigPermissionPermission=groupCombinedConfigPermissionPermission;
+                    }
+                }
+            }
+            var permissionPropertiesObj={};
+            permissionPropertiesObj["displayContentPermission"]=currentDisplayContentPermission;
+            permissionPropertiesObj["addContentPermission"]=currentAddContentPermission;
+            permissionPropertiesObj["deleteContentPermission"]=currentDeleteContentPermission;
+            permissionPropertiesObj["editContentPermission"]=currentEditContentPermission;
+            permissionPropertiesObj["configPermissionPermission"]=currentConfigPermissionPermission;
+            return permissionPropertiesObj;
         },
         destroy:function(){
             this.addNewFolderDropDown.destroy();

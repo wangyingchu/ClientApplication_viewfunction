@@ -18,7 +18,7 @@
         </table>
         <div style="background-color: #eeeeee;padding: 5px;font-size: 0.9em;color: #777777;height:155px;overflow: auto;">
             <div style="padding-bottom: 3px;"><i class="icon-hdd"></i> <span data-dojo-attach-point="documentSizeTxt"></span>:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="documentSizeText"></span></div>
-            <div style="padding-bottom: 3px;"><i class="icon-code-fork"></i> 当前版本:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="documentVersionText"></span>
+            <div style="padding-bottom: 3px;" data-dojo-attach-point="documentVersionInfoContainer"><i class="icon-code-fork"></i> 当前版本:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="documentVersionText"></span>
                 <span style="padding-left: 5px;color: #333333;display: inline-block">
                     <i class='icon-sort-by-order'></i>
                     <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="showVersionHistoryLink" style="padding-right: 5px;cursor: pointer;color:#00649D;" label="版本历史信息">
@@ -26,6 +26,9 @@
                 </span>
             </div>
             <div style="padding-bottom: 3px;" data-dojo-attach-point="creatorRootContainer"><i class="icon-signout"></i> 创建人:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;color:#00475B;" data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="documentCreatorText"></span></div>
+            <div style="padding-bottom: 3px;" data-dojo-attach-point="permissionControlContainer"><i class="icon-key"></i> 操作权限:
+                <div data-dojo-attach-point="permissionControlPanelContainer"></div>
+            </div>
             <div style="padding-bottom: 3px;" data-dojo-attach-point="creatorDateRootContainer"><i class="icon-time"></i> 创建时间:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="documentCreateDateText"></span></div>
             <div style="padding-bottom: 3px;" data-dojo-attach-point="lastUpdatePersonRootContainer"><i class="icon-signin"></i> 最后更新人:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;color:#00475B;" data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="documentLastUpdatePersonText"></span></div>
             <div style="padding-bottom: 3px;" data-dojo-attach-point="lastUpdateDateRootContainer"><i class="icon-time"></i> 最后更新时间:<span  style="color: #333333; font-size: 1.0em;padding-left: 5px;" data-dojo-attach-point="documentLastUpdateDateText"></span></div>

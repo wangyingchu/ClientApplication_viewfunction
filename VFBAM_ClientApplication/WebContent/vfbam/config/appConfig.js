@@ -250,6 +250,11 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.documentsList.DocumentVersionHistoryListWidget",
     "vfbam.userclient.common.UI.components.documentsList.DocumentVersionInfoItemWidget",
     "vfbam.userclient.common.UI.components.documentsList.DocumentCommentsWidget",
+    "vfbam.userclient.common.UI.components.documentsList.DocumentPermissionControlWidget",
+
+    "vfbam.userclient.common.UI.components.documentsList.PermissionControlItemWidget",
+    "vfbam.userclient.common.UI.components.documentsList.PermissionGroupSelectionItemWidget",
+    "vfbam.userclient.common.UI.components.documentsList.PermissionGroupSelectionListWidget",
 
     "vfbam.userclient.common.UI.components.commentsList.CommentsListWidget",
     "vfbam.userclient.common.UI.components.commentsList.CommentInfoWidget",

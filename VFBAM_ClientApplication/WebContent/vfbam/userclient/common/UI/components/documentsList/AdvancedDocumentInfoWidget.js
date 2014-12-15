@@ -19,6 +19,7 @@ require([
         lockerNamecardWidget:null,
         postCreate: function(){
             this.documentName.innerHTML=this.documentInfo.documentName;
+            this.documentNamePrompt.innerHTML=this.documentInfo.documentName;
             if(DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)||this.documentInfo.isFolder){
                 dojo.style(this.documentName,{"color": "#00475B"});
                 dojo.style(this.documentName,{"cursor": "pointer"});
@@ -68,14 +69,18 @@ require([
             var that=this;
             var previewMenuLabel;
             if(this.documentInfo.isFolder){
-                previewMenuLabel="<i class='icon-folder-open'></i>&nbsp;&nbsp;显示内容";
-                this.preview_menuItem = new dijit.MenuItem({
-                    label: previewMenuLabel,
-                    onClick: function(){
-                        that.doViewDocumentElement();
-                    }
-                });
-                this.menu_operationCollection.addChild(this.preview_menuItem);
+                var currentDocumentPermissions=this.documentInfo.documentPermissions;
+                var currentDocumentPermissionsObj=this.documentListWidget.getPermissionControlProperties(currentDocumentPermissions,this.documentInfo.documentCreator);
+                if(currentDocumentPermissionsObj.displayContentPermission){
+                    previewMenuLabel="<i class='icon-folder-open'></i>&nbsp;&nbsp;显示内容";
+                    this.preview_menuItem = new dijit.MenuItem({
+                        label: previewMenuLabel,
+                        onClick: function(){
+                            that.doViewDocumentElement();
+                        }
+                    });
+                    this.menu_operationCollection.addChild(this.preview_menuItem);
+                }
             }else{
                 previewMenuLabel="<i class='icon-eye-open'></i>&nbsp;&nbsp;预览文件";
                 if(DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)){
@@ -119,14 +124,6 @@ require([
                     this.menu_operationCollection.addChild(this.lock_menuItem);
                 }
                 if(!this.documentInfo.isLocked) {
-                    /*
-                    this.setTag_menuItem = new dijit.MenuItem({
-                        label: "<i class='icon-bookmark-empty'></i>&nbsp;&nbsp;&nbsp;编辑标签",
-                        onClick: function () {
-                        }
-                    });
-                    this.menu_operationCollection.addChild(this.setTag_menuItem);
-                    */
                     this.addComment_menuItem = new dijit.MenuItem({
                         label: "<i class='icon-comment-alt'></i>&nbsp;&nbsp;编辑备注",
                         onClick: function () {
@@ -143,6 +140,7 @@ require([
                 }
             });
             this.menu_operationCollection.addChild(this.detalInfo_menuItem_return);
+            this.setupPermissionControl();
         },
         doDeleteDocument:function(){
             var that=this;
@@ -242,8 +240,45 @@ require([
             dialog.show();
         },
         showDocumentElementDetail:function(){
+            var currentDocumentPermissions=this.documentInfo.documentPermissions;
+            var currentDocumentPermissionsObj=this.documentListWidget.getPermissionControlProperties(currentDocumentPermissions,this.documentInfo.documentCreator);
             Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_SHOWDOCUMENTDETAIL_EVENT,{documentInfo:this.documentInfo,
-                taskItemData:this.documentListWidget.taskData.taskItemData,documentsOwnerType:this.documentListWidget.documentsOwnerType});
+                taskItemData:this.documentListWidget.taskData.taskItemData,documentsOwnerType:this.documentListWidget.documentsOwnerType,
+                currentDocumentPermissions:currentDocumentPermissionsObj
+            });
+        },
+        setupPermissionControl:function(){
+            var currentParentFolderFolderPermissions=this.documentListWidget.currentFolderPermissions;
+            var currentDocumentPermissions=this.documentInfo.documentPermissions;
+            var currentParentFolderPermissionsObj=this.documentListWidget.getPermissionControlProperties(currentParentFolderFolderPermissions,this.documentInfo.documentCreator);
+            var currentDocumentPermissionsObj=this.documentListWidget.getPermissionControlProperties(currentDocumentPermissions,this.documentInfo.documentCreator);
+
+            if(currentParentFolderPermissionsObj.deleteContentPermission){
+                //can delete current document
+                dojo.style(this.deleteDocumentButton,{"display": ""});
+                dojo.style(this.disabledDeleteDocumentButton,{"display": "none"});
+            }else{
+                //can't delete current document
+                dojo.style(this.deleteDocumentButton,{"display": "none"});
+                dojo.style(this.disabledDeleteDocumentButton,{"display": ""});
+            }
+            if(this.documentInfo.isFolder){
+                if(currentDocumentPermissionsObj.displayContentPermission){
+                    dojo.style(this.documentName,{"display": ""});
+                    dojo.style(this.documentNamePrompt,{"display": "none"});
+                }else{
+                    dojo.style(this.documentName,{"display": "none"});
+                    dojo.style(this.documentNamePrompt,{"display": ""});
+                }
+            }else{
+                if(currentParentFolderPermissionsObj.editContentPermission){
+                    dojo.style(this.documentOperationContainer,{"display": ""});
+                    dojo.style(this.documentOperationPrompt,{"display": "none"});
+                }else{
+                    dojo.style(this.documentOperationContainer,{"display": "none"});
+                    dojo.style(this.documentOperationPrompt,{"display": ""});
+                }
+            }
         },
         destroy:function(){
             if(this.preview_menuItem){

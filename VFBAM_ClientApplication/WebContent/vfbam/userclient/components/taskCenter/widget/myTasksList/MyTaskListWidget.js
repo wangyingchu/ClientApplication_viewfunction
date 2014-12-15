@@ -17,6 +17,7 @@ require([
             var realTaskListContainerHeightStyle=""+realTaskListContainer +"px";
             dojo.style(this.myTaskMagazineViewItemListContainer,"height",realTaskListContainerHeightStyle);
             this.loadTaskItems();
+            this.loadUserApplicationRoles();
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_TASKDATAUPDATED_EVENT,dojo.hitch(this,"refreshUpdatedTaskData"));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT,dojo.hitch(this,"reloadTaskList"));
         },
@@ -26,8 +27,19 @@ require([
             timer.onTick = function(){
                 that._loadTaskItems();
                 timer.stop();
-            }
+            };
             timer.start();
+        },
+        loadUserApplicationRoles:function(){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            var resturl=ACTIVITY_SERVICE_ROOT+"participantRelatedRolesDetail/"+APPLICATION_ID+"/"+userId+"/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback=function(data){
+                Application.AttributeContext.getAttribute(USER_PROFILE).userApplicationRoles=data;
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
         },
         _loadTaskItems:function(){
             this._cleanDirtyItemData();
