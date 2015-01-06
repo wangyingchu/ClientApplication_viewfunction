@@ -1,0 +1,20 @@
+<div class="app_magazineView_item app_unselectable" data-dojo-attach-point="messageItemRootContainer">
+    <div style="height: 3px;"></div>
+    <table width="100%" height="40px" border="0" class="app_headerDivLine">
+        <tr>
+            <td>
+                <div>
+                    <span>
+                        <i class="icon-archive" style="color: #AAAAAA;padding-right: 10px;"></i><span data-dojo-attach-point="collectionName" style="font-weight: bold;"></span>
+                    </span>
+                    <span data-dojo-attach-point="messageContent" style="font-size: 0.9em;color: #888888;">
+                         <span data-dojo-attach-point="publisher"></span> 于 <span data-dojo-attach-point="publishDate"></span> 发布
+                    </span>
+                </div>
+            </td>
+            <td align="right" style="min-width: 80px;padding-right: 5px;font-size: 1.2em;font-weight: bold;">
+                <i class="icon-plus-sign icon-border" style="cursor: pointer;" data-dojo-attach-event="onclick:doAddItemToCollection"></i>
+            </td>
+        </tr>
+    </table>
+</div>

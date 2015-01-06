@@ -1,8 +1,0 @@
-{
-    identifier:"abbreviation",
-    label: "label",
-    items: [
-        {name:"国内企业", label:"国内企业",abbreviation:"APPLICATION_NORMALUSER"},
-        {name:"国外企业", label:"国外企业",abbreviation:"APPLICATION_SUPERVISER"}
-    ]
-} 

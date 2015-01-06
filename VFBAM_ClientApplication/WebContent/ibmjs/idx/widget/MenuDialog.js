@@ -381,7 +381,7 @@ define(["dojo/_base/declare",
 			this.inherited(arguments);
 
 			if(this._closeOnBlur){
-			    this.close();
+				this.close();
 			}
 		},
 

@@ -105,9 +105,23 @@ require([
             }else{
                 this.nextPageButton.set("disabled",false);
             }
-            this.currentPageNumber.innerHTML=pagingMetaData.currentPageNumber;
-            this.totalPageNumber.innerHTML=pagingMetaData.pageCount;
-            this.totalItemNumber.innerHTML=pagingMetaData.totalCount;
+            if(pagingMetaData.currentPageNumber===undefined){
+                this.currentPageNumber.innerHTML="-";
+                this.previousPageButton.set("disabled","disabled");
+                this.nextPageButton.set("disabled","disabled");
+            }else{
+                this.currentPageNumber.innerHTML=pagingMetaData.currentPageNumber;
+            }
+            if(pagingMetaData.pageCount===undefined){
+                this.totalPageNumber.innerHTML="-";
+            }else{
+                this.totalPageNumber.innerHTML=pagingMetaData.pageCount;
+            }
+            if(pagingMetaData.totalCount===undefined){
+                this.totalItemNumber.innerHTML="-";
+            }else{
+                this.totalItemNumber.innerHTML=pagingMetaData.totalCount;
+            }
         },
         _doLoadKnowledgeContentData:function(contentData){
             console.log(contentData);
@@ -340,7 +354,6 @@ require([
                             */
                         }
                         if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_RECOMMENDED){
-                            //here is mock logic,only display content collection
                             UI.showProgressDialog("查询数据");
                             var timer = new dojox.timing.Timer(300);
                             timer.onTick = function(){
@@ -348,9 +361,11 @@ require([
                                 collectionQueryObj.projectPageSize=5;
                                 collectionQueryObj.projectCurrentPageNumber=currentPageNumber;
                                 collectionQueryObj.docsNumberPerProject=20;
-
-                                var collectionQueryObjContent=dojo.toJson(collectionQueryObj);
-                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getCollections/";
+                                var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getRecommendedCollectionsByUserId/"+userId+"/";
+                                resturl=resturl+"?projectPageSize="+collectionQueryObj.projectPageSize+"&docsNumberPerProject="+collectionQueryObj.docsNumberPerProject+
+                                    "&projectCurrentPageNumber="+collectionQueryObj.projectCurrentPageNumber;
+                                var syncFlag=true;
                                 var errorCallback= function(data){
                                     UI.showSystemErrorMessage(data);
                                 };
@@ -365,7 +380,7 @@ require([
                                     that._setUpPagingElementInfo(data);
                                     UI.hideProgressDialog();
                                 };
-                                Application.WebServiceUtil.postJSONData(resturl,collectionQueryObjContent,loadCallback,errorCallback);
+                                Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
                                 timer.stop();
                             };
                             timer.start();
@@ -421,7 +436,6 @@ require([
                             timer.start();
                         }
                         if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_FAVORITE){
-                            //here is mock logic,only display content collection
                             UI.showProgressDialog("查询数据");
                             var timer = new dojox.timing.Timer(300);
                             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;

@@ -1,8 +1,9 @@
 <div data-dojo-attach-point="containerNode">
-    <div style="height: 200px;">
+    <div style="height: 150px;">
         <div style="font-size: 0.9em;color: #666666;height: 15px; padding-top: 0px;">
             <span data-dojo-attach-point="addProjectTitlePrompt"><i class="icon-archive"></i> 请输入新专辑名称</span>
             <span style="display: none;" data-dojo-attach-point="addKnowledgeItemsZipPrompt"><i class="icon-camera"></i> 请添加素材文件ZIP压缩包</span>
+            <span style="display: none;" data-dojo-attach-point="addCollectionSuccessfulPrompt"><i class="icon-archive"></i> 专辑添加成功</span>
         </div>
         <div class="app_headerDivLine"></div>
         <div style="height:5px;"></div>
@@ -18,11 +19,27 @@
             <div>
                 <div data-dojo-attach-point="knowItemUploaderContainer">
                     <div style="font-size: 0.9em;color: #666666;height: 15px; padding-top: 10px;padding-bottom:15px;padding-left: 5px;">
-                        <span style="padding-right: 10px;"><i class="icon-archive"></i> 专辑名称:</span><span style="font-size: 1.1em;color: #444444;font-weight: bold;" data-dojo-attach-point="currentCollectionTitle"></span>
+                        <span style="padding-right: 10px;"><i class="icon-archive"></i> 专辑名称:</span><span style="font-size: 1.2em;color: #444444;font-weight: bold;" data-dojo-attach-point="currentCollectionTitle"></span>
+                        <span style="padding-left: 5px;"><i class="icon-edit"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:_showProjectTags">编辑知识标签</span></span>
                     </div>
                     <form method="post" data-dojo-attach-point="form" enctype="multipart/form-data">
                         <input data-dojo-attach-point="fileUploaderNode"/>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div data-dojo-attach-point="createCollectionSuccessfulContainer" style="display: none;">
+            <div>
+                <div>
+                    <div style="font-size: 0.9em;color: #666666;height: 15px; padding-top: 10px;padding-bottom:15px;padding-left: 5px;">
+                        <span style="padding-right: 5px;"><i class="icon-archive"></i> 专辑:</span>
+                        <span style="font-size: 1.1em;color: #444444;font-weight: bold;" data-dojo-attach-point="newCreatedCollectionTitle"></span>
+                        <span style="padding-left: 5px;">添加成功.</span>
+                    </div>
+                    <div style="padding-top: 5px;">
+                        <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:_renderProjectContent"><i class="icon-camera"></i> 显示专辑知识素材内容</button>
+                        <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:_showProjectTags"><i class="icon-pushpin"></i> 编辑专辑知识标签</button>
+                    </div>
                 </div>
             </div>
         </div>

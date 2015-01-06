@@ -1,7 +1,7 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
-    "dojo/text!vfbam/userclient/components/knowledgeBase/widget/knowledgeModify/template/AddNewKnowledgeItemWidget.html","dojo/dom-style","dojo/io/iframe","dojo/has", "dojo/sniff"
-],function(lang,declare, _Widget, _Templated, template,domStyle,ioIframe,has,sniff){
+    "dojo/text!vfbam/userclient/components/knowledgeBase/widget/knowledgeModify/template/AddNewKnowledgeItemWidget.html","dojo/dom-style","dojo/io/iframe","dojo/has", "dojo/sniff","idx/oneui/Dialog"
+],function(lang,declare, _Widget, _Templated, template,domStyle,ioIframe,has,sniff,Dialog){
     declare("vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.AddNewKnowledgeItemWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
@@ -95,9 +95,12 @@ require([
                 jsonFormatTxt=jsonFormatTxt.replace("</pre>","");
                 this.knowledgeContentInfo = JSON.parse(jsonFormatTxt);
             }
+            //add new knowledgeItem to backend knowledge search engine.
+            KnowledgeBaseDataHandleUtil.addNewKnowledgeItemInSearchEngine(this.knowledgeContentInfo);
 
-            //var previewFileLocation=KNOWLEDGE_DISPLAY_PREVIEW_BASELOCATION+this.knowledgeContentInfo.bucketName+KNOWLEDGE_DISPLAY_PREVIEW_THUMBNAIL_FOLDER+this.knowledgeContentInfo.contentName;
-            var previewFileLocation=KnowledgeBaseDataHandleUtil.getPreviewThumbnailFileLocation(this.knowledgeContentInfo);
+            var previewFileLocation =KNOWLEDGE_OPERATION_SERVICE_ROOT+"getKnowledgeContentPreviewThumbnailFile/"+this.knowledgeContentInfo.bucketName+"/"+this.knowledgeContentInfo.contentName+"?contentMimeType="+
+                this.knowledgeContentInfo.contentMimeType;
+
             this.thubmnailPic.src=previewFileLocation;
             this.knowledgeTitleTxt.innerHTML=this.knowledgeContentInfo.contentDescription;
             this.documentNameText.innerHTML= this.knowledgeContentInfo.contentName;
@@ -188,11 +191,41 @@ require([
                     that.knowledgeTitleTxt.innerHTML=data.contentDescription;
                     UI.hideProgressDialog();
                     UI.showToasterMessage({type:"success",message:"更新素材描述信息成功"});
+                    //sync description update to backend knowledge search engine.
+                    KnowledgeBaseDataHandleUtil.syncKnowledgeItemInfoWithSearchEngine(data);
                 };
                 Application.WebServiceUtil.postJSONData(resturl,setNewDescObjectContent,loadCallback,errorCallback);
                 timer.stop();
             };
             timer.start();
+        },
+        showUpdatePreviewFileDialog:function(){
+            var that=this;
+            var	dialog = new Dialog({
+                style:"width:500px;height:230px;",
+                title: "<i class='icon-picture'></i> 更新素材 <b>"+this.knowledgeContentInfo.contentName +"</b> 预览文件",
+                content: "",
+                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+            });
+            var updateFinishCallback=function(){
+                var timeStamp=new Date().getTime();
+                var previewFileLocation =KNOWLEDGE_OPERATION_SERVICE_ROOT+"getKnowledgeContentPreviewThumbnailFile/"+that.knowledgeContentInfo.bucketName+"/"+that.knowledgeContentInfo.contentName+"?contentMimeType="+
+                    that.knowledgeContentInfo.contentMimeType+"&timestamp="+timeStamp;
+                that.thubmnailPic.src=previewFileLocation;
+                that.updatePreviewFileEditor.destroy();
+                dialog.hide();
+            };
+            this.updatePreviewFileEditor=new vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.UpdateKnowledgeItemPreviewFileWidget({
+                knowledgeContentInfo:this.knowledgeContentInfo,updateFinishCallback:updateFinishCallback
+            });
+            var closeDialogCallBack=function(){
+                if(that.updatePreviewFileEditor){
+                    that.updatePreviewFileEditor.destroy();
+                }
+            };
+            dojo.connect(dialog,"hide",closeDialogCallBack);
+            dojo.place(this.updatePreviewFileEditor.containerNode, dialog.containerNode);
+            dialog.show();
         },
         destroy:function(){
             if(this.updateKnowledgeDescriptionMenuDialog){this.updateKnowledgeDescriptionMenuDialog.destroy();}

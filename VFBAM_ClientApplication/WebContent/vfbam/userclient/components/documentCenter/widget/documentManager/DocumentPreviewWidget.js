@@ -1,8 +1,8 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
     "dojo/text!vfbam/userclient/components/documentCenter/widget/documentManager/template/DocumentPreviewWidget.html",
-    "dijit/popup"
-],function(lang,declare, _Widget, _Templated, template,popup){
+    "dijit/popup","idx/oneui/Dialog"
+],function(lang,declare, _Widget, _Templated, template,popup,Dialog){
     declare("vfbam.userclient.components.documentCenter.widget.documentManager.DocumentPreviewWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
@@ -13,12 +13,20 @@ require([
         addNewTagDropDown:null,
         documentDetailInfo:null,
         documentInfo:null,
+        versionHistoryListMenuDialog:null,
+        versionHistoryListDropDown:null,
+        addNewTagMenuDialog:null,
+        addNewTagDropDown:null,
+        documentsOwnerType:null,
+        documentExtalInfo:null,
         postCreate: function(){
             this.documentTagsInfoList=[];
             this.renderInitInfo();
         },
         renderDocumentPreview:function(documentInfo,documentsOwnerType,documentExtalInfo){
             this.documentInfo=documentInfo;
+            this.documentsOwnerType=documentsOwnerType;
+            this.documentExtalInfo=documentExtalInfo;
             this.buildDocumentDetailInfo(documentInfo,documentsOwnerType,documentExtalInfo);
             dojo.style(this.previewContainer,"display","");
             dojo.style(this.initInfoContainer,"display","none");
@@ -92,15 +100,45 @@ require([
             });
             if(documentInfo.isFolder){
                 dojo.style(this.documentTagsRootContainer,"display","none");
+                dojo.style(this.documentTypeRootContainer,"display","none");
+                dojo.style(this.documentVersionInfoContainer,"display","none");
+                dojo.style(this.documentCommentContainer,"display","none");
             }else{
                 dojo.style(this.documentTagsRootContainer,"display","");
+                dojo.style(this.documentTypeRootContainer,"display","");
+                dojo.style(this.documentVersionInfoContainer,"display","");
+                dojo.style(this.documentCommentContainer,"display","");
                 if(documentInfo.documentTags){
                     this.renderDocumentTag(documentInfo.documentTags);
                 }
+                if(this.addNewTagMenuDialog){
+                    this.addNewTagMenuDialog.destroy();
+                }
+                if(this.addNewTagDropDown){
+                    this.addNewTagDropDown.destroy();
+                }
+                this.documentTypeText.innerHTML=DocumentHandleUtil.getDocumentMainType(documentInfo);
                 this.addNewTagMenuDialog=new idx.widget.MenuDialog();
                 this.addNewTagDropDown=new vfbam.userclient.common.UI.components.documentsList.AddNewTagWidget({documentPreviewer:this});
                 dojo.place(this.addNewTagDropDown.domNode, this.addNewTagMenuDialog.containerNode);
                 this.addTagLink.set("dropDown",this.addNewTagMenuDialog);
+
+                var documentMetaInfo={};
+                documentMetaInfo.documentsOwnerType=documentsOwnerType;
+                documentMetaInfo.documentInfo=documentInfo;
+                if(documentExtalInfo.roleName){
+                    documentMetaInfo.roleName=documentExtalInfo.roleName;
+                }
+                if(this.versionHistoryListMenuDialog){
+                    this.versionHistoryListMenuDialog.destroy();
+                }
+                if(this.versionHistoryListDropDown){
+                    this.versionHistoryListDropDown.destroy();
+                }
+                this.versionHistoryListMenuDialog=new idx.widget.MenuDialog();
+                this.versionHistoryListDropDown=new vfbam.userclient.common.UI.components.documentsList.DocumentVersionHistoryListWidget({documentMetaInfo:documentMetaInfo,documentExtalInfo:documentExtalInfo});
+                dojo.place(this.versionHistoryListDropDown.domNode, this.versionHistoryListMenuDialog.containerNode);
+                this.showVersionHistoryLink.set("dropDown",this.versionHistoryListMenuDialog);
             }
         },
         renderDocumentTag:function(documentTags){
@@ -161,6 +199,56 @@ require([
             var previewTempFileGenerateInfoContent=dojo.toJson(this.documentDetailInfo);
             var resturl=CONTENT_SERVICE_ROOT+"generateThumbnailFile/";
             Application.WebServiceUtil.postJSONData(resturl,previewTempFileGenerateInfoContent,loadCallback,errorCallback);
+        },
+        showCommentsEditor:function(){
+            if(this.documentExtalInfo){
+                if(this.documentExtalInfo.roleName){
+                    this.documentInfo.roleName=this.documentExtalInfo.roleName;
+                }
+            }
+            var updateDocumentCommentWidget=new vfbam.userclient.common.UI.components.documentsList.DocumentCommentsWidget({
+                documentMetaInfo:{documentInfo:this.documentInfo,documentsOwnerType:this.documentsOwnerType
+                }
+            });
+            var	dialog = new Dialog({
+                style:"width:800px;height:490px;",
+                title: "<i class='icon-comment-alt'></i>&nbsp;&nbsp;文件备注",
+                content: "",
+                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+            });
+            var closeDialogCallBack=function(){
+                updateDocumentCommentWidget.destroy();
+            };
+            dojo.connect(dialog,"hide",closeDialogCallBack);
+            dojo.place(updateDocumentCommentWidget.containerNode, dialog.containerNode);
+
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            if(this.documentsOwnerType=="PARTICIPANT"){
+                var documentCommentsObj={};
+                documentCommentsObj.activitySpaceName=APPLICATION_ID;
+                documentCommentsObj.participantName=userId;
+                documentCommentsObj.parentFolderPath=this.documentInfo.documentFolderPath;
+                documentCommentsObj.fileName=this.documentInfo.documentName;
+                updateDocumentCommentWidget.loadCommentsList(documentCommentsObj,"PARTICIPANT_DOCUMENT");
+            }
+            if(this.documentsOwnerType=="APPLICATIONSPACE"){
+                var documentCommentsObj={};
+                documentCommentsObj.activitySpaceName=APPLICATION_ID;
+                documentCommentsObj.participantName=userId;
+                documentCommentsObj.parentFolderPath=this.documentInfo.documentFolderPath;
+                documentCommentsObj.fileName=this.documentInfo.documentName;
+                updateDocumentCommentWidget.loadCommentsList(documentCommentsObj,"APPLICATIONSPACE_DOCUMENT");
+            }
+            if(this.documentsOwnerType=="ROLE"){
+                var documentCommentsObj={};
+                documentCommentsObj.activitySpaceName=APPLICATION_ID;
+                documentCommentsObj.participantName=userId;
+                documentCommentsObj.parentFolderPath=this.documentInfo.documentFolderPath;
+                documentCommentsObj.fileName=this.documentInfo.documentName;
+                documentCommentsObj.roleName=this.documentExtalInfo.roleName;
+                updateDocumentCommentWidget.loadCommentsList(documentCommentsObj,"ROLE_DOCUMENT");
+            }
+            dialog.show();
         },
         buildDocumentDetailInfo:function(documentInfo,documentsOwnerType,documentExtalInfo){
             var previewTempFileGenerateObj={};

@@ -127,6 +127,19 @@ require([
                                 updateParticipant.participantEmail=documentLastUpdater.emailAddress;
                                 currentDocument["documentLastUpdatePerson"]=updateParticipant;
                             }
+                            var documentLocker=documentItem.documentLocker;
+                            if(documentLocker){
+                                var documentLockPerson={};
+                                documentLockPerson.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentLocker.userId;
+                                documentLockPerson.participantName=documentLocker.displayName;
+                                documentLockPerson.participantId=documentLocker.userId;
+                                documentLockPerson.participantTitle=documentLocker.title;
+                                documentLockPerson.participantDesc=documentLocker.description;
+                                documentLockPerson.participantAddress=documentLocker.address;
+                                documentLockPerson.participantPhone=documentLocker.fixedPhone;
+                                documentLockPerson.participantEmail=documentLocker.emailAddress;
+                                currentDocument["documentLockPerson"]=documentLockPerson;
+                            }
                             documentsArray.push(currentDocument);
                         });
                         if(documentsArray.length>0){

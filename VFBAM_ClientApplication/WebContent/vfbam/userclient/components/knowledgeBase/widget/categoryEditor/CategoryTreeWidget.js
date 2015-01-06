@@ -17,7 +17,7 @@ require([
             this.categoryTreeMetaData["identifier"]="categoryId";
             this.categoryTreeMetaData["label"]="categoryDisplayName_cn";
             this.categoryTreeMetaData["items"]=[];
-            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT";
+            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT_141215";
             this.loadCategoryTree();
             this.categorySelectedListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_UPDATECATEGORYDATA_EVENT,dojo.hitch(this,this.updateCategoryInfo));
         },
@@ -222,12 +222,36 @@ require([
                 UI.showToasterMessage({type:"success",message:"添加知识分类成功"});
                 that.addNewCategoryDialog.hide();
                 that.addCategoryInfo(data,parentNodeId);
+                KnowledgeBaseDataHandleUtil.addNeCategoryTagInSearchEngine(data);
             };
             Application.WebServiceUtil.postJSONData(resturl,newFirstLevelCategoryDataObjContent,loadCallback,errorCallback);
         },
         deleteCategory:function(categoryData){
             var that=this;
-            var messageTxt="请确认是否删除知识分类 <b>"+categoryData.name+"</b>? 确认删除后该分类和它包含的所有子分类都将永久性的从系统中删除。 ";
+            var subCategorys=categoryData.subCategorys;
+            if(subCategorys&&subCategorys.length>0){
+                UI.showToasterMessage({type:"error",message:"该知识分类下有子知识分类,无法执行删除操作"});
+                return;
+            }
+            var currentCategoryId=categoryData.id;
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"checkTagIsReferenced/"+currentCategoryId+"/";
+            var syncFlag=true;
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback=function(returnData){
+                var isReferenced=returnData.isReferenced;
+                if(isReferenced){
+                    UI.showToasterMessage({type:"error",message:"已有知识素材关联到该知识分类,无法执行删除操作"});
+                }else{
+                    that._confirmDeleteCategoryAction(categoryData);
+                }
+            };
+            Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
+        },
+        _confirmDeleteCategoryAction:function(categoryData){
+            var that=this;
+            var messageTxt="请确认是否删除知识分类 <b>"+categoryData.name+"</b>? 确认删除后该分类将永久性的从系统中删除。 ";
             var confirmButtonAction=function(){
                 that.doDeleteCategory(categoryData);
             };
@@ -260,6 +284,13 @@ require([
                     if(selectedCategoryData.id==id){
                         Application.MessageUtil.publishMessage(APP_KNOWLEDGEBASE_RESETCATEGORYEDITOR_EVENT,{categoryData:categoryData});
                     }
+                    var syncResturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"deleteTag/"+id+"/";
+                    var errorCallback= function(data){
+                        UI.showSystemErrorMessage(data);
+                    };
+                    var loadCallback=function(returnData){
+                    };
+                    Application.WebServiceUtil.deleteJSONData(syncResturl,"",loadCallback,errorCallback);
                 }
             };
             Application.WebServiceUtil.deleteJSONData(resturl,deleteCategoryDataObjContent,loadCallback,errorCallback);

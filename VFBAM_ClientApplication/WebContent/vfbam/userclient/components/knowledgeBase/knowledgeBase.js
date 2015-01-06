@@ -8,6 +8,7 @@ var APP_KNOWLEDGEBASE_ADDSAVEDSEARCH_EVENT="APP_KNOWLEDGEBASE_ADDSAVEDSEARCH_EVE
 var APP_KNOWLEDGEBASE_DELETESAVEDSEARCH_EVENT="APP_KNOWLEDGEBASE_DELETESAVEDSEARCH_EVENT";
 var APP_KNOWLEDGEBASE_UPDATECONTENTDISPLAYTITLE_EVENT="APP_KNOWLEDGEBASE_UPDATECONTENTDISPLAYTITLE_EVENT";
 var APP_KNOWLEDGEBASE_UPDATECONTENTBELONGEDCOLLECTION_EVENT="APP_KNOWLEDGEBASE_UPDATECONTENTBELONGEDCOLLECTION_EVENT";
+var APP_KNOWLEDGEBASE_UPDATECOLLECTIONKNOWLEDGECONTENT_EVENT="APP_KNOWLEDGEBASE_UPDATECOLLECTIONKNOWLEDGECONTENT_EVENT";
 
 //knowledge render logic
 var KNOWLEDGE_VIEW_TYPE="KNOWLEDGE_VIEW_TYPE";
@@ -43,6 +44,9 @@ var KNOWLEDGESEARCH_INPUTTYPE_COLLECTION_NAME="COLLECTION_NAME";
 var KNOWLEDGESEARCH_INPUTTYPE_MATERIAL_NAME="MATERIAL_NAME";
 var KNOWLEDGESEARCH_INPUTTYPE_MATERIAL_SEQUENCE="MATERIAL_SEQUENCE";
 var KNOWLEDGESEARCH_INPUTTYPE_TAG_VALUE="TAG_VALUE";
+
+//knowledge modification logic
+var KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM={};
 
 var knowledgeNavigateItemInfo=[];
 var item1={};
@@ -259,8 +263,8 @@ function renderKnowledgeConfigDialog(){
     require(["idx/oneui/Dialog"], function(Dialog){
         var messageEditor=new vfbam.userclient.components.knowledgeBase.widget.categoryEditor.CategoryEditorWidget();
         var	dialog = new Dialog({
-            style:"width:940px;height:700px;",
-            title: "<i class='icon-cog'></i> 知识分类管理",
+            style:"width:950px;height:710px;",
+            title: "<span style='font-size: 0.7em;'><i class='icon-cog'></i> 知识分类管理</span>",
             content: "",
             closeButtonLabel: "<i class='icon-remove'></i> 关闭"
         });
@@ -512,9 +516,9 @@ function addNewMaterial(){
 
 function addNewCollection(){
     require(["idx/oneui/Dialog"], function(Dialog){
-        var addKnowledgeCollectionEditor=new vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.AddNewKnowledgeCollectionWidget();
+        var addKnowledgeCollectionEditor=new vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.AddNewKnowledgeCollectionWidget({knowledgeDisplayPanelWidget:knowledgeDisplayPanelWidget});
         var	dialog = new Dialog({
-            style:"width:640px;height:340px;",
+            style:"width:640px;height:290px;",
             title: "<i class='icon-plus-sign'></i> 添加专辑",
             content: "",
             closeButtonLabel: "<i class='icon-remove'></i> 关闭"

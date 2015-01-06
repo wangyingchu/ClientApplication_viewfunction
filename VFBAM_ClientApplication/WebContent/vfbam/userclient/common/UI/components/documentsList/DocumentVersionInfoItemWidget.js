@@ -9,7 +9,6 @@ require([
         postCreate: function(){
             this.versionNumber.innerHTML="v "+this.documentVersionInfo.versionNumber;
             this.versionUpdateDate.innerHTML= dojo.date.locale.format(new Date(this.documentVersionInfo.versionCreatedDate));
-
             var versionUpdatePersion=this.documentVersionInfo.documentContent.documentLastUpdatePerson;
             var documentLastModifiedParticipantInfo={};
             documentLastModifiedParticipantInfo.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+ versionUpdatePersion.userId;
@@ -30,11 +29,37 @@ require([
                 Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
                     taskItemData:this.documentMetaInfo.taskItemData,documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
             }
+            if(this.documentMetaInfo.documentsOwnerType=="PARTICIPANT"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
+                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
+            }
+            if(this.documentMetaInfo.documentsOwnerType=="APPLICATIONSPACE"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
+                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
+            }
+            if(this.documentMetaInfo.documentsOwnerType=="ROLE"){
+                this.documentMetaInfo.documentInfo.roleName=this.documentMetaInfo.roleName;
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
+                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
+            }
         },
         downloadVersionDocument:function(){
             if(this.documentMetaInfo.documentsOwnerType=="ACTIVITY"){
                 Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADHISTORYDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
                     taskItemData:this.documentMetaInfo.taskItemData,documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
+            }
+            if(this.documentMetaInfo.documentsOwnerType=="PARTICIPANT"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADHISTORYDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
+                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
+            }
+            if(this.documentMetaInfo.documentsOwnerType=="APPLICATIONSPACE"){
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADHISTORYDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
+                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
+            }
+            if(this.documentMetaInfo.documentsOwnerType=="ROLE"){
+                this.documentMetaInfo.documentInfo.roleName=this.documentMetaInfo.roleName;
+                Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_DOWNLOADHISTORYDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
+                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
             }
         },
         destroy:function(){

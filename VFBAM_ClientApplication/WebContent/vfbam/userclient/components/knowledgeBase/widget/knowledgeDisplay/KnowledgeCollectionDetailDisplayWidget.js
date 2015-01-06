@@ -8,6 +8,15 @@ require([
         widgetsInTemplate: true,
         queryPageNumber:null,
         knowledgeItemOverviewWidgetList:null,
+        knowledgeItemAttachedTagEditorWidget:null,
+        knowledgeTagInfoMenuDialog:null,
+        knowledgeTagInfoTextDropDown:null,
+        knowledgeCollectionRelatedCollectionListMenuDialog:null,
+        knowledgeCollectionRelatedCollectionListWidget:null,
+        knowledgeCollectionRelatedCollectionDropdown:null,
+        knowledgeCollectionCommentMenuDialog:null,
+        knowledgeCollectionCommentWidget:null,
+        knowledgeCollectionCommentDropdown:null,
         postCreate: function(){
             var collectionDataObject=this.knowledgeCollectionInfo.KNOWLEDGE_VIEW_DATA.VIEW_METADATA;
             this.queryPageNumber=1;
@@ -20,6 +29,35 @@ require([
             dojo.style(this.collectionContentWidgetContainer,"height",currentHeightStyle);
             this.viewKnowledgeCollection();
             this.loadCollectionKnowledgeItems();
+
+            this.knowledgeCollectionRelatedCollectionListMenuDialog=new idx.widget.MenuDialog({});
+            this.knowledgeCollectionRelatedCollectionListWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.RelatedCollectionListWidget({
+                knowledgeCollectionInfo:collectionDataObject,popupDialog:this.knowledgeCollectionRelatedCollectionListMenuDialog});
+            dojo.place(this.knowledgeCollectionRelatedCollectionListWidget.domNode, this.knowledgeCollectionRelatedCollectionListMenuDialog.containerNode);
+            var showProjectDialogLinklabel="相似专辑 <i class='icon-caret-down'></i>";
+            this.knowledgeCollectionRelatedCollectionDropdown=new vfbam.userclient.common.UI.widgets.TextDropdownButton({
+                label:showProjectDialogLinklabel,dropDown: this.knowledgeCollectionRelatedCollectionListMenuDialog},this.relatedProjectsSwitcherContainer);
+            var that=this;
+            var tagUpdateCallback=function(tagArray){
+                that.knowledgeCollectionRelatedCollectionListWidget.renderSimilarCollectionsList(tagArray);
+            };
+            this.knowledgeItemAttachedTagEditorWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagEditorWidget({
+                knowledgeContentInfo:collectionDataObject,attachedTags:collectionDataObject.projectTags,isCollectionTags:true,callback:tagUpdateCallback,
+                knowledgeCategoryInheritDataStore:this.knowledgeDisplayPanelWidget.getKnowledgeCategoryInheritDataStore()});
+            this.knowledgeTagInfoMenuDialog=new idx.widget.MenuDialog({});
+            dojo.connect( this.knowledgeTagInfoMenuDialog,"onOpen",this.knowledgeItemAttachedTagEditorWidget,"renderTagItems");
+            dojo.place(this.knowledgeItemAttachedTagEditorWidget.domNode, this.knowledgeTagInfoMenuDialog.containerNode);
+            var showTagDialogLinklabel="分类标签 <i class='icon-caret-down'></i>";
+            this.knowledgeTagInfoTextDropDown=new vfbam.userclient.common.UI.widgets.TextDropdownButton({
+                label:showTagDialogLinklabel,dropDown: this.knowledgeTagInfoMenuDialog},this.knowledgeTagSwitcherContainer);
+
+            this.knowledgeCollectionCommentMenuDialog=new idx.widget.MenuDialog({});
+            this.knowledgeCollectionCommentWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.CollectionCommentWidget({
+                knowledgeCollectionInfo:collectionDataObject,popupDialog:this.knowledgeCollectionCommentMenuDialog});
+            dojo.place(this.knowledgeCollectionCommentWidget.domNode, this.knowledgeCollectionCommentMenuDialog.containerNode);
+            var showProjectDialogLinklabel="专辑备注 <i class='icon-caret-down'></i>";
+            this.knowledgeCollectionCommentDropdown=new vfbam.userclient.common.UI.widgets.TextDropdownButton({
+                label:showProjectDialogLinklabel,dropDown: this.knowledgeCollectionCommentMenuDialog},this.collectionCommentSwitcherContainer);
         },
         viewKnowledgeCollection:function(){
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
@@ -113,6 +151,33 @@ require([
             Application.WebServiceUtil.postJSONData(resturl,collectionDocumentObjContent,loadCallback,errorCallback);
         },
         destroy:function(){
+            if(this.knowledgeItemAttachedTagEditorWidget){
+                this.knowledgeItemAttachedTagEditorWidget.destroy();
+            }
+            if(this.knowledgeTagInfoMenuDialog){
+                this.knowledgeTagInfoMenuDialog.destroy();
+            }
+            if(this.knowledgeTagInfoTextDropDown){
+                this.knowledgeTagInfoTextDropDown.destroy();
+            }
+            if(this.knowledgeCollectionRelatedCollectionListMenuDialog){
+                this.knowledgeCollectionRelatedCollectionListMenuDialog.destroy();
+            }
+            if(this.knowledgeCollectionRelatedCollectionListWidget){
+                this.knowledgeCollectionRelatedCollectionListWidget.destroy();
+            }
+            if(this.knowledgeCollectionRelatedCollectionDropdown){
+                this.knowledgeCollectionRelatedCollectionDropdown.destroy();
+            }
+            if(this.knowledgeCollectionCommentMenuDialog){
+                this.knowledgeCollectionCommentMenuDialog.destroy();
+            }
+            if(this.knowledgeCollectionCommentWidget){
+                this.knowledgeCollectionCommentWidget.destroy();
+            }
+            if(this.knowledgeCollectionCommentDropdown){
+                this.knowledgeCollectionCommentDropdown.destroy();
+            }
             dojo.forEach(this.knowledgeItemOverviewWidgetList,function(knowledgeItem){
                 knowledgeItem.destroy();
             });

@@ -13,7 +13,7 @@ require([
         categorySelector:null,
         categoryTagFilter:null,
         postCreate: function(){
-            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT";
+            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT_141215";
             this.currentSearchCategoryMap={};
             this.savedCategoriesSearchItemMap={};
             this.renderSavedCategorySearchItems();
@@ -34,17 +34,48 @@ require([
         },
         showCategorySelector: function(){
             if(!this.categorySelector){
-                this.categorySelector=new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategorySelectorWidget({advancedSearchWidget:this});
+                this.categorySelector=new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategorySelectorWidget({advancedSearchWidget:this,selectedTags:this.getSelectedSearchCategory()});
+            }else{
+                this.categorySelector.checkSelectedCategorys(this.getSelectedSearchCategory());
             }
+            var that=this;
+            var actionButtone=[];
+            var confirmSelectFromCheckboxButton=new dijit.form.Button({
+                label: "<i class='icon-ok-sign'></i> 确定选择",
+                onClick: function(){
+                    that._doClearSelectedCategories();
+                    var selectedTags=that.categorySelector.getSelectedTags();
+                    if(selectedTags&&selectedTags.length>0){
+                        dojo.forEach(selectedTags,function(currentItem){
+                            var currentTagObject=that.categoryDataStore.get(currentItem);
+                            that.addSearchCategory(currentTagObject);
+                        },that);
+                    }
+                    dialog.hide();
+                }
+            });
+            actionButtone.push(confirmSelectFromCheckboxButton);
+
             var	dialog = new Dialog({
                 style:"width:320px;height:610px;",
-                title: "<i class='icon-th-list'></i> 选择分类 ",
+                title: "<span style='font-size: 0.7em;'><i class='icon-th-list'></i> 选择分类 </span>",
+                buttons:actionButtone,
                 content: "",
                 //class:'nonModal',
-                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+                closeButtonLabel: "<i class='icon-remove'></i> 取消"
             });
             dojo.place(this.categorySelector.containerNode, dialog.containerNode);
             dialog.show();
+        },
+        getSelectedSearchCategory: function(){
+            var selectedTagIdArray=[];
+            for(var p in this.currentSearchCategoryMap){
+                if(typeof(this.currentSearchCategoryMap[p])=="function"){
+                }else{
+                    selectedTagIdArray.push(p);
+                }
+            }
+            return selectedTagIdArray;
         },
         addSearchCategory:function(newCategory){
             var displayNameInheritArray=[];
@@ -53,6 +84,21 @@ require([
             if(this.currentSearchCategoryMap[categoryId]){
                 UI.showToasterMessage({type:"warn",message:"该分类已经选择"});
                 return;
+            }
+            //need remove tags in inherit tree of this one
+            var currentCategoryId=newCategory.id;
+            for(var p in this.currentSearchCategoryMap){
+                if(typeof(this.currentSearchCategoryMap[p])=="function"){
+                }else{
+                    if(currentCategoryId.indexOf(p)>=0){
+                        //this tag is a child tag of a parent tag, so need remove the parent one
+                        this.removeSearchCategory(p);
+                    }
+                    if(p.indexOf(currentCategoryId)>=0){
+                        //this tag is parent of a child, so need remove the child one
+                        this.removeSearchCategory(p);
+                    }
+                }
             }
             var newSelectedCategoryTag=new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.SelectedCategoryTagWidget({categoryData:newCategory,categoryTagNameArray:displayNameInheritArray.reverse(),advancedSearchWidget:this});
             this.selectedTagContainer.appendChild(newSelectedCategoryTag.domNode);

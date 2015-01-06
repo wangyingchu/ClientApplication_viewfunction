@@ -41,6 +41,7 @@ var KNOWLEDGE_CATEGORY_SERVICE_ROOT=QINHE_KNOWLEDGEBASE_SERVICE_ROOT+"categoryMa
 var KNOWLEDGE_OPERATION_SERVICE_ROOT=QINHE_KNOWLEDGEBASE_SERVICE_ROOT+"knowledgeOperationService/";
 var KNOWLEDGE_DISPLAY_PREVIEW_BASELOCATION="/KnowledgeBaseService/knowledge_fileStorage/STORAGES_BASE_NODE/";
 var KNOWLEDGE_DISPLAY_PREVIEW_THUMBNAIL_FOLDER="/thumbnail/";
+var KNOWLEDGE_DISPLAY_PREVIEW_CONVERTED_FOLDER="/converted/";
 //Addon model service definition end
 var KNOWLEDGE_CONTENTSEARCH_ROOT="/KCSearch/rest/KCSEARCHREST/";
 
@@ -140,6 +141,7 @@ var idx_packages = [
     {name: "dijit", location: "../dijit" },
     {name: "dojox", location: "../dojox" },
     {name: "gridx", location: "../gridx" },
+    {name: "cbtree", location: "../cbtree" },
     {name: "idx", location: "../../ibmjs/idx" },
     {name: "idxx", location: "../../ibmjs/idxx" },
     {name: "ibm", location: "../../ibmjs/ibm" },
@@ -326,6 +328,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.AdvancedSearchWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategorySelectorWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategoryItemSelectorWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategoryItemCheckboxSelectorWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategoryItemInfoWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.SelectedCategoryTagWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.SaveSelectedCategoriesWidget",
@@ -344,6 +347,8 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.GeneralKnowledgeViewerWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemMetaInfoWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.ItemRecommendedKnowledgeWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.RelatedCollectionListWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.CollectionCommentWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagEditorWidget",
     "vfbam.userclient.components.knowledgeBase.util.KnowledgeBaseDataHandleUtil",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionListWidget",
@@ -360,6 +365,12 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.UpdateKnowledgeDescriptionWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.AddNewKnowledgeItemWidget",
     "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.AddNewKnowledgeCollectionWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.CollectionNewAddedKnowledgeItemInfoListWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.CollectionNewAddedKnowledgeItemInfoWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.UpdateKnowledgeItemPreviewFileWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.CollectionSelectListWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.CollectionSelectItemWidget",
+    "vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.CollectionNameFilterWidget",
 
     "app.util.Interface",
     "app.ApplicationBaseFunctionImpl",

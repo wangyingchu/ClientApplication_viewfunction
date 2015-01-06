@@ -1,7 +1,7 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
-    "dojo/text!vfbam/userclient/components/knowledgeBase/widget/knowledgeDisplay/template/KnowledgeItemMetaInfoWidget.html"
-],function(lang,declare, _Widget, _Templated, template){
+    "dojo/text!vfbam/userclient/components/knowledgeBase/widget/knowledgeDisplay/template/KnowledgeItemMetaInfoWidget.html","idx/oneui/Dialog"
+],function(lang,declare, _Widget, _Templated, template,Dialog){
     declare("vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemMetaInfoWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
@@ -9,8 +9,15 @@ require([
         updateKnowledgeDescriptionWidget:null,
         updateKnowledgeDescriptionDropDown:null,
         updateBelongedCollectionsEventListener:null,
+        updatePreviewFileEditor:null,
+        updateCollectionKnowledgeContentEventListener:null,
         postCreate: function(){
-            var previewFileLocation=KNOWLEDGE_DISPLAY_PREVIEW_BASELOCATION+this.knowledgeContentInfo.bucketName+KNOWLEDGE_DISPLAY_PREVIEW_THUMBNAIL_FOLDER+this.knowledgeContentInfo.contentName;
+            var previewFileLocation =KNOWLEDGE_OPERATION_SERVICE_ROOT+"getKnowledgeContentPreviewThumbnailFile/"+this.knowledgeContentInfo.bucketName+"/"+this.knowledgeContentInfo.contentName+"?contentMimeType="+
+                this.knowledgeContentInfo.contentMimeType;
+            if(KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM[this.knowledgeContentInfo.contentLocation]){
+                var timeStamp=new Date().getTime();
+                previewFileLocation=previewFileLocation+"&timestamp="+timeStamp;
+            }
             this.thubmnailPic.src=previewFileLocation;
             this.knowledgeTitleTxt.innerHTML=this.knowledgeContentInfo.contentDescription;
             this.documentNameText.innerHTML= this.knowledgeContentInfo.contentName;
@@ -46,8 +53,8 @@ require([
             dojo.place(this.updateKnowledgeDescriptionWidget.domNode, this.updateKnowledgeDescriptionMenuDialog.containerNode);
             var updateKnowledgeDescriptionDropdownLabel='<i class="icon-edit"></i>';
             this.updateKnowledgeDescriptionDropDown=new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:updateKnowledgeDescriptionDropdownLabel,dropDown: this.updateKnowledgeDescriptionMenuDialog},this.updateDescLinkContainer);
-
             this.updateBelongedCollectionsEventListener=Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_UPDATECONTENTBELONGEDCOLLECTION_EVENT,dojo.hitch(this,this.updateKnowledgeContentBelongedCollection));
+            this.updateCollectionKnowledgeContentEventListener=Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_UPDATECOLLECTIONKNOWLEDGECONTENT_EVENT,dojo.hitch(this,this.updateCollectionKnowledgeContent));
         },
         updateKnowledgeDescription:function(newKnowledgeDesc){
             this.updateKnowledgeDescriptionMenuDialog.close();
@@ -74,6 +81,8 @@ require([
                     });
                     UI.hideProgressDialog();
                     UI.showToasterMessage({type:"success",message:"更新素材描述信息成功"});
+                    //sync description update to backend knowledge search engine.
+                    KnowledgeBaseDataHandleUtil.syncKnowledgeItemInfoWithSearchEngine(data);
                 };
                 Application.WebServiceUtil.postJSONData(resturl,setNewDescObjectContent,loadCallback,errorCallback);
                 timer.stop();
@@ -89,17 +98,54 @@ require([
                     var currentProjectName=currentCollection.projectName;
                     collectionNameTxt=collectionNameTxt+currentProjectName;
                     if(idx<collectionList.length-1){
-                        collectionNameTxt=collectionNameTxt+"<br/>"
+                        collectionNameTxt=collectionNameTxt+"<br/>";
                     }
-                })
+                });
                 this.documentBelongedCollection.innerHTML=collectionNameTxt;
             }
+        },
+        updateCollectionKnowledgeContent:function(payload){
+            if(payload.knowledgeContentInfo.contentLocation==this.knowledgeContentInfo.contentLocation){
+                if(payload.operationType=="ADD_COLLECTION_ITEM"){
+                    var currentCollectionInfoTxt=this.documentBelongedCollection.innerHTML;
+                    this.documentBelongedCollection.innerHTML=currentCollectionInfoTxt+"<br/>"+payload.collectionName;
+                }
+            }
+        },
+        showUpdatePreviewFileDialog:function(){
+            var that=this;
+            var	dialog = new Dialog({
+                style:"width:500px;height:230px;",
+                title: "<i class='icon-picture'></i> 更新素材 <b>"+this.knowledgeContentInfo.contentName +"</b> 预览文件",
+                content: "",
+                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+            });
+            var updateFinishCallback=function(){
+                var timeStamp=new Date().getTime();
+                var previewFileLocation =KNOWLEDGE_OPERATION_SERVICE_ROOT+"getKnowledgeContentPreviewThumbnailFile/"+that.knowledgeContentInfo.bucketName+"/"+that.knowledgeContentInfo.contentName+"?contentMimeType="+
+                    that.knowledgeContentInfo.contentMimeType+"&timestamp="+timeStamp;
+                that.thubmnailPic.src=previewFileLocation;
+                that.updatePreviewFileEditor.destroy();
+                dialog.hide();
+            };
+            this.updatePreviewFileEditor=new vfbam.userclient.components.knowledgeBase.widget.knowledgeModify.UpdateKnowledgeItemPreviewFileWidget({
+                knowledgeContentInfo:this.knowledgeContentInfo,updateFinishCallback:updateFinishCallback
+            });
+            var closeDialogCallBack=function(){
+                if(that.updatePreviewFileEditor){
+                    that.updatePreviewFileEditor.destroy();
+                }
+            };
+            dojo.connect(dialog,"hide",closeDialogCallBack);
+            dojo.place(this.updatePreviewFileEditor.containerNode, dialog.containerNode);
+            dialog.show();
         },
         destroy:function(){
             this.updateKnowledgeDescriptionMenuDialog.destroy();
             this.updateKnowledgeDescriptionWidget.destroy();
             this.updateKnowledgeDescriptionDropDown.destroy();
             this.updateBelongedCollectionsEventListener.calcelMessageListening();
+            this.updateCollectionKnowledgeContentEventListener.calcelMessageListening();
             this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}

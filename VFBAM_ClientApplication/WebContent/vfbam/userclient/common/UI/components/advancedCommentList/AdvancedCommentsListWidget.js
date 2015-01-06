@@ -26,25 +26,35 @@ require([
             this.commentQueryInfo=commentQueryInfo;
             this.commentType=commentType;
             var that=this;
+            var resturl="";
             if(commentType=="ACTIVITY_DOCUMENT"){
-                var activityFileInfoContent=dojo.toJson(commentQueryInfo);
-                var resturl=COMMENT_SERVICE_ROOT+"activityDocumentComments/";
-                var errorCallback= function(data){
-                    UI.showSystemErrorMessage(data);
-                };
-                var loadCallback=function(resultData){
-                    var timer = new dojox.timing.Timer(200);
-                    timer.onTick = function(){
-                        UI.hideProgressDialog();
-                        timer.stop();
-                    };
-                    timer.start();
-                    that.commentsListData=resultData;
-                    that.renderCommentsList();
-                };
-                UI.showProgressDialog("获取备注列表");
-                Application.WebServiceUtil.postJSONData(resturl,activityFileInfoContent,loadCallback,errorCallback);
+                resturl=COMMENT_SERVICE_ROOT+"activityDocumentComments/";
             }
+            if(commentType=="PARTICIPANT_DOCUMENT"){
+                resturl=COMMENT_SERVICE_ROOT+"participantDocumentComments/";
+            }
+            if(commentType=="APPLICATIONSPACE_DOCUMENT"){
+                resturl=COMMENT_SERVICE_ROOT+"applicationSpaceDocumentComments/";
+            }
+            if(commentType=="ROLE_DOCUMENT"){
+                resturl=COMMENT_SERVICE_ROOT+"roleDocumentComments/";
+            }
+            var documentInfoContent=dojo.toJson(commentQueryInfo);
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback=function(resultData){
+                var timer = new dojox.timing.Timer(200);
+                timer.onTick = function(){
+                    UI.hideProgressDialog();
+                    timer.stop();
+                };
+                timer.start();
+                that.commentsListData=resultData;
+                that.renderCommentsList();
+            };
+            UI.showProgressDialog("获取备注列表");
+            Application.WebServiceUtil.postJSONData(resturl,documentInfoContent,loadCallback,errorCallback);
         },
         reloadCommentList:function(){
             dojo.forEach(this.currentCommentsArray,function(infoItem){
@@ -74,13 +84,15 @@ require([
         addComment:function(commentContent){
             var that=this;
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
-            if(this.commentType="ACTIVITY_DOCUMENT"){
-                var addActivityDocumentCommentObj={};
-                var newCommentObj={};
-                newCommentObj.activitySpaceName=APPLICATION_ID;
-                newCommentObj.commentContent=commentContent;
-                newCommentObj.commentAuthor=userId;
-                addActivityDocumentCommentObj.newComment=newCommentObj;
+            var resturl="";
+            var addNewDocumentCommentObj={};
+            var newCommentObj={};
+            newCommentObj.activitySpaceName=APPLICATION_ID;
+            newCommentObj.commentContent=commentContent;
+            newCommentObj.commentAuthor=userId;
+            addNewDocumentCommentObj.newComment=newCommentObj;
+
+            if(this.commentType=="ACTIVITY_DOCUMENT"){
                 var activityDocumentObj={};
                 activityDocumentObj.activitySpaceName=APPLICATION_ID;
                 activityDocumentObj.activityName=this.documentMetaInfo.taskItemData.activityName;
@@ -88,25 +100,53 @@ require([
                 activityDocumentObj.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
                 activityDocumentObj.fileName=this.documentMetaInfo.documentInfo.documentName;
                 activityDocumentObj.participantName=userId;
-                addActivityDocumentCommentObj.activityDocument=activityDocumentObj;
-                var addActivityDocumentCommentObjContent=dojo.toJson(addActivityDocumentCommentObj);
-                var resturl=COMMENT_SERVICE_ROOT+"addActivityDocumentComment/";
-                var errorCallback= function(data){
-                    UI.showSystemErrorMessage(data);
-                };
-                var loadCallback=function(resultData){
-                    if(resultData){
-                        that.addNewCommentMenuDialog.close();
-                        that.addNewCommentDropDown.clearInput();
-                        that.reloadCommentList();
-                        UI.showToasterMessage({
-                            type:"success",
-                            message:"添加备注成功。"
-                        });
-                    }
-                };
-                Application.WebServiceUtil.postJSONData(resturl,addActivityDocumentCommentObjContent,loadCallback,errorCallback);
+                addNewDocumentCommentObj.activityDocument=activityDocumentObj;
+                resturl=COMMENT_SERVICE_ROOT+"addActivityDocumentComment/";
             }
+            if(this.commentType=="PARTICIPANT_DOCUMENT"){
+                var participantentDocumentObj={};
+                participantentDocumentObj.activitySpaceName=APPLICATION_ID;
+                participantentDocumentObj.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
+                participantentDocumentObj.fileName=this.documentMetaInfo.documentInfo.documentName;
+                participantentDocumentObj.participantName=userId;
+                addNewDocumentCommentObj.participantDocument=participantentDocumentObj;
+                resturl=COMMENT_SERVICE_ROOT+"addParticipantDocumentComment/";
+            }
+            if(this.commentType=="APPLICATIONSPACE_DOCUMENT"){
+                var applicationSpaceDocumentObj={};
+                applicationSpaceDocumentObj.activitySpaceName=APPLICATION_ID;
+                applicationSpaceDocumentObj.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
+                applicationSpaceDocumentObj.fileName=this.documentMetaInfo.documentInfo.documentName;
+                applicationSpaceDocumentObj.participantName=userId;
+                addNewDocumentCommentObj.applicationSpaceDocument=applicationSpaceDocumentObj;
+                resturl=COMMENT_SERVICE_ROOT+"addApplicationSpaceDocumentComment/";
+            }
+            if(this.commentType=="ROLE_DOCUMENT"){
+                var roleDocumentObj={};
+                roleDocumentObj.activitySpaceName=APPLICATION_ID;
+                roleDocumentObj.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
+                roleDocumentObj.fileName=this.documentMetaInfo.documentInfo.documentName;
+                roleDocumentObj.participantName=userId;
+                roleDocumentObj.roleName=this.documentMetaInfo.documentInfo.roleName;
+                addNewDocumentCommentObj.roleDocument=roleDocumentObj;
+                resturl=COMMENT_SERVICE_ROOT+"addRoleDocumentComment/";
+            }
+            var addNewDocumentCommentObjContent=dojo.toJson(addNewDocumentCommentObj);
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback=function(resultData){
+                if(resultData){
+                    that.addNewCommentMenuDialog.close();
+                    that.addNewCommentDropDown.clearInput();
+                    that.reloadCommentList();
+                    UI.showToasterMessage({
+                        type:"success",
+                        message:"添加备注成功。"
+                    });
+                }
+            };
+            Application.WebServiceUtil.postJSONData(resturl,addNewDocumentCommentObjContent,loadCallback,errorCallback);
         },
         cancelAddComment:function(){
             this.addNewCommentMenuDialog.close();

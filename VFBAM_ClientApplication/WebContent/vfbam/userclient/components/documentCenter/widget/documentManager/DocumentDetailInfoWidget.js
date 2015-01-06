@@ -9,6 +9,8 @@ require([
         clickEventConnectionHandler:null,
         doubleClickEventConnectionHandler:null,
         isCurrentDocumentLocked:null,
+        lockerNamecardWidget:null,
+        currentDocumentLocker:null,
         postCreate: function(){
             this.documentName.innerHTML=this.documentInfo.documentName;
             if(DocumentHandleUtil.isPreviewable(this.documentInfo.documentType,this.documentInfo.documentName)||this.documentInfo.isFolder){
@@ -30,6 +32,11 @@ require([
                 this.isCurrentDocumentLocked=true;
             }else{
                 this.isCurrentDocumentLocked=false;
+            }
+            if(this.documentInfo.documentLockPerson){
+                this.currentDocumentLocker=this.documentInfo.documentLockPerson;
+            }else{
+                this.currentDocumentLocker=null;
             }
             this._setDocumentLockStatusUIElement();
             if(this.documentInfo.isFolder){
@@ -65,7 +72,16 @@ require([
             }
         },
         updateDocument:function(){
-            console.log("updateDocument");
+            var that=this;
+            var documentLockCallback=function(){
+                that.documentListWidget.refreshCurrentFolder();
+            };
+            this.documentInfo["callback"]= documentLockCallback;
+            if(this.documentListWidget.roleName){
+                this.documentInfo.roleName=this.documentListWidget.roleName;
+            }
+            Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_UPDATEDOCUMENT_EVENT,{documentInfo:this.documentInfo,
+                documentsOwnerType:this.documentsOwnerType});
         },
         lockDocument:function(){
             var that=this;
@@ -75,6 +91,17 @@ require([
                     message:"锁定操作成功"
                 });
                 that.isCurrentDocumentLocked=true;
+                var currentDocumentLockerObj={};
+                currentDocumentLockerObj.participantAddress=Application.AttributeContext.getAttribute(USER_PROFILE).address;
+                currentDocumentLockerObj.participantDesc=Application.AttributeContext.getAttribute(USER_PROFILE).description;
+                currentDocumentLockerObj.participantEmail=Application.AttributeContext.getAttribute(USER_PROFILE).emailAddress;
+                currentDocumentLockerObj.participantId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                currentDocumentLockerObj.participantName=Application.AttributeContext.getAttribute(USER_PROFILE).displayName;
+                currentDocumentLockerObj.participantPhone=Application.AttributeContext.getAttribute(USER_PROFILE).fixedPhone;
+                currentDocumentLockerObj.participantTitle=Application.AttributeContext.getAttribute(USER_PROFILE).title;
+                currentDocumentLockerObj.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+
+                    Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                that.currentDocumentLocker=currentDocumentLockerObj;
                 that._setDocumentLockStatusUIElement();
             };
             this.documentInfo["callback"]= documentDeleteCallback;
@@ -93,6 +120,7 @@ require([
                     message:"解锁操作成功"
                 });
                 that.isCurrentDocumentLocked=false;
+                that.currentDocumentLocker=null;
                 that._setDocumentLockStatusUIElement();
             };
             this.documentInfo["callback"]= documentDeleteCallback;
@@ -152,34 +180,59 @@ require([
         },
         _setDocumentLockStatusUIElement:function(){
             dojo.style(this.documentUnlockButton,{"display": "none"});
+            dojo.style(this.documentUnlockButtonDisabled,{"display": "none"});
             dojo.style(this.documentLockButton,{"display": "none"});
             dojo.style(this.deleteDocumentButton,{"display": "none"});
             dojo.style(this.deleteDocumentButtonDisabled,{"display": "none"});
             dojo.style(this.updateDocumentButton,{"display": "none"});
             dojo.style(this.updateDocumentButtonDisabled,{"display": "none"});
-            dojo.style(this.addNewChildDocumentButton,{"display": "none"});
-            dojo.style(this.addNewChildDocumentButtonDisabled,{"display": "none"});
+            //dojo.style(this.addNewChildDocumentButton,{"display": "none"});
+            //dojo.style(this.addNewChildDocumentButtonDisabled,{"display": "none"});
+            if(this.lockerNamecardWidget){
+                this.lockerNamecardWidget.destroy();
+            }
             if(this.isCurrentDocumentLocked){
-                dojo.style(this.documentUnlockButton,{"display": "inline"});
                 dojo.style(this.deleteDocumentButtonDisabled,{"display": "inline"});
                 if(this.documentInfo.isFolder){
-                    dojo.style(this.addNewChildDocumentButtonDisabled,{"display": "inline"});
+                    //dojo.style(this.addNewChildDocumentButtonDisabled,{"display": "inline"});
                 }else{
                     dojo.style(this.updateDocumentButtonDisabled,{"display": "inline"});
+                }
+                if(this.currentDocumentLocker){
+                    var lockerInfoLabel=this.currentDocumentLocker.participantName;
+                    this.documentLockerDropDown.set("label",lockerInfoLabel);
+                    this.lockerNamecardWidget=
+                        new vfbam.userclient.common.UI.components.participantsList.ParticipantNamecardWidget({participantInfo:this.currentDocumentLocker});
+                    this.documentLockerDropDown.set("dropDown",this.lockerNamecardWidget);
+                    var lockerId=this.currentDocumentLocker.participantId;
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    dojo.style(this.lockedDocumentPromptContainer,{"display": ""});
+                    if(lockerId==userId){
+                        dojo.style(this.documentUnlockButton,{"display": "inline"});
+                    }else{
+                        dojo.style(this.documentUnlockButtonDisabled,{"display": "inline"});
+                    }
                 }
             }else{
                 dojo.style(this.documentLockButton,{"display": "inline"});
                 dojo.style(this.deleteDocumentButton,{"display": "inline"});
                 if(this.documentInfo.isFolder){
-                    dojo.style(this.addNewChildDocumentButton,{"display": "inline"});
+                    //dojo.style(this.addNewChildDocumentButton,{"display": "inline"});
+                    dojo.style(this.documentUnlockButton,{"display": "none"});
+                    dojo.style(this.documentLockButton,{"display": "none"});
+
                 }else{
                     dojo.style(this.updateDocumentButton,{"display": "inline"});
+                    dojo.style(this.lockedDocumentPromptContainer,{"display": "none"});
                 }
             }
         },
         destroy:function(){
             dojo.disconnect(this.clickEventConnectionHandler);
             dojo.disconnect(this.doubleClickEventConnectionHandler);
+            if(this.lockerNamecardWidget){
+                this.lockerNamecardWidget.destroy();
+            }
             this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}

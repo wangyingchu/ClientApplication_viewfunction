@@ -7,7 +7,13 @@ require([
         widgetsInTemplate: true,
         categoryTree:null,
         postCreate: function(){
-            this.categoryTree=new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategoryItemSelectorWidget({advancedSearchWidget:this.advancedSearchWidget},this.categoryTreeContainer);
+            this.categoryTree=new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.CategoryItemCheckboxSelectorWidget({advancedSearchWidget:this.advancedSearchWidget,selectedTags:this.selectedTags},this.categoryTreeContainer);
+        },
+        checkSelectedCategorys:function(categoryIdArray){
+            this.categoryTree.checkCategorys(categoryIdArray);
+        },
+        getSelectedTags:function(){
+            return this.categoryTree.getSelectedCategories();
         },
         _endOfCode: function(){}
     });

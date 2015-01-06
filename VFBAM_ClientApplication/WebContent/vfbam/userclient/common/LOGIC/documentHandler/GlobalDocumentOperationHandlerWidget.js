@@ -369,7 +369,7 @@ require([
                 var documentName=encodeURIComponent(data.documentInfo.documentName);
                 var participantName=encodeURIComponent(userId);
                 var activitySpaceName=encodeURIComponent(APPLICATION_ID);
-                var roleName=encodeURIComponent(data.roleName);
+                var roleName=encodeURIComponent(data.documentInfo.roleName);
                 var fullLocation=location+"?documentFolderPath="+documentFolderPath+"&documentName="+documentName+"&activitySpaceName="+activitySpaceName+
                     "&participantName="+participantName+"&browserType="+browserType+"&roleName="+roleName;
                 var iframe = Iframe.create(downloadIframeName);

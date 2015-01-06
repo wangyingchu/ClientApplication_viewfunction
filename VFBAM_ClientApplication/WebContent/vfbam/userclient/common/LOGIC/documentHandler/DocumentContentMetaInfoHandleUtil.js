@@ -216,6 +216,63 @@ var DocumentHandleUtil=(function(){
             }
             return false;
         },
+        getDocumentMainType:function(documentInfo){
+            var contentMimeType=documentInfo.documentType;
+            if((contentMimeType.indexOf("image/vnddwg")>=0)
+                ||(contentMimeType.indexOf("image/x-dwg")>=0)||(contentMimeType.indexOf("application/acad")>=0)
+                ||(contentMimeType.indexOf("image/vnd.dwg")>=0)){
+                return "DWG 文档";
+            }
+            if((contentMimeType.indexOf("application/pdf")>=0)){
+                return "PDF 文档";
+            }
+            if((contentMimeType.indexOf("image/jpeg")>=0)
+                ||(contentMimeType.indexOf("image/pjpeg")>=0)){
+                return "JPEG 图像";
+            }
+            if((contentMimeType.indexOf("image/jpeg")>=0)
+                ||(contentMimeType.indexOf("image/png")>=0)){
+                return "PNG 图像";
+            }
+            if((contentMimeType.indexOf("application/vnd.ms-excel")>=0)
+                ||(contentMimeType.indexOf("application/excel")>=0)||(contentMimeType.indexOf("application/vndms-excel")>=0)
+                ||(contentMimeType.indexOf("application/x-excel")>=0)||(contentMimeType.indexOf("application/x-msexcel")>=0)
+                ||(contentMimeType.indexOf("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")>=0)){
+                return "MS Excel 文档";
+            }
+            if((contentMimeType.indexOf("application/mspowerpoint")>=0)
+                ||(contentMimeType.indexOf("application/vndms-powerpoint")>=0)||(contentMimeType.indexOf("application/powerpoint")>=0)
+                ||(contentMimeType.indexOf("application/x-mspowerpoint")>=0)||(contentMimeType.indexOf("application/vnd.ms-powerpoint")>=0)
+                ||(contentMimeType.indexOf("application/vnd.openxmlformats-officedocument.presentationml.presentation")>=0)){
+                return "MS PowerPoint 文档";
+            }
+            if((contentMimeType.indexOf("application/msword")>=0)
+                ||(contentMimeType.indexOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document")>=0)){
+                return "MS Word 文档";
+            }
+            if((contentMimeType.indexOf("application/vnd.oasis.opendocument.text")>=0)){
+                return "OpenOffice ODT 文档";
+            }
+            if((contentMimeType.indexOf("application/vnd.oasis.opendocument.presentation")>=0)){
+                return "OpenOffice ODP 文档";
+            }
+            if((contentMimeType.indexOf("application/vnd.oasis.opendocument.spreadsheet")>=0)){
+                return "OpenOffice ODS 文档";
+            }
+            if((contentMimeType.indexOf("application/java-byte-code")>=0)
+                ||(contentMimeType.indexOf("application/x-java-class")>=0)||(contentMimeType.indexOf("application/java")>=0)
+                ||(contentMimeType.indexOf("application/x-java-applet")>=0)||(contentMimeType.indexOf("application/java-vm")>=0)){
+                return "Java 文件";
+            }
+            //for common image file
+            if((contentMimeType.indexOf("image")>=0)){
+                if((contentMimeType.indexOf("image/vnd.adobe.photoshop")>=0)){
+                    return "Photoshop 图像文件";
+                }
+                return "图像文件";
+            }
+            return contentMimeType;
+        },
         getPreviewPicURL:function(fileType,isFolder){
             if(isFolder){
                 return "vfbam/userclient/css/image/fileType/fileTypePreview/folderDocument.png";

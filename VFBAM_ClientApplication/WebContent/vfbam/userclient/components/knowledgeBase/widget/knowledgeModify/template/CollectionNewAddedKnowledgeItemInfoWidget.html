@@ -1,0 +1,31 @@
+<div>
+    <div data-dojo-attach-point="collectionKnowledgeItemInfoContainer">
+        <div>
+            <table width="100%" border="0" style="padding-top: 5px;">
+                <tr>
+                    <td width="110">
+                        <span  data-dojo-attach-point="previewPictureContainer">
+                             <div style="height: 85px;"> </div>
+                             <div style="background-color: #FFFFFF;filter:alpha(opacity=60);-moz-opacity:0.60;opacity:0.60;">
+                                 <div style="padding-top: 5px;padding-bottom:5px;padding-left: 30px;font-size: 1.0em;">
+                                     <span style="padding-right: 10px;cursor: pointer;" data-dojo-attach-event="onclick:showKnowledgeItemPreview"><i style="cursor: pointer;" class="icon-resize-full icon-border"></i> </span>
+                                     <span data-dojo-attach-event="onclick:showUpdatePreviewFileDialog"><i style="cursor: pointer;" class="icon-picture icon-border"></i> </span>
+                                 </div>
+                             </div>
+                        </span>
+                    </td>
+                    <td  align="left" style="vertical-align:top;width: 95%;">
+                        <div style="background-color: #eeeeee;padding: 5px;font-size: 0.9em;color: #777777;height: 100px;">
+                            <div style="padding-bottom: 3px;"><i class="icon-comment"></i> 素材描述:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="knowledgeTitleTxt"></span><span style="padding-left: 5px;"><span data-dojo-attach-point="updateDescLinkContainer"></span></span></div>
+                            <div style="padding-bottom: 3px;"><i class="icon-file-alt"></i> 素材名称:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentNameText"></span></div>
+                            <div style="padding-bottom: 3px;"><i class="icon-hdd"></i> 素材大小:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentSizeText"></span></div>
+                            <div style="padding-bottom: 3px;"><i class="icon-sort-by-order"></i> 素材序号:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentSequenceText"></span></div>
+                            <div style="padding-bottom: 3px;"><i class="icon-file"></i> 文件类型:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;" data-dojo-attach-point="documentTypeText"></span></div>
+                            <div style="padding-bottom: 3px;"><i style="color:#26A251;" class="icon-pushpin"></i> 分类标签:<span style="color: #333333; font-size: 1.0em;padding-left: 5px;font-weight: bold;">( <span data-dojo-attach-point="documentTagNumber"></span> )</span><span style="padding-left: 5px; cursor: pointer;" data-dojo-attach-event="onclick:showKnowledgeItemTags"><i class="icon-edit"></i></span></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

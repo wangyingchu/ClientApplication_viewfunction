@@ -16,6 +16,7 @@ require([
         fullSizeGeneralKnowledgeViewerWidget:null,
         postCreate: function(){
             var knowledgeContentInfo=this.knowledgeMetaInfo.KNOWLEDGE_VIEW_DATA.VIEW_METADATA;
+
             this.generalKnowledgeViewerWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.GeneralKnowledgeViewerWidget({
                 resultDisplayZoneWidth:this.resultDisplayZoneWidth,knowledgeContentInfo:knowledgeContentInfo
             },this.generalKnowledgeViewerContainer);
@@ -35,7 +36,7 @@ require([
             new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:showTagDialogLinklabel,dropDown: this.knowledgeTagInfoMenuDialog},this.knowledgeTagSwitcherContainer);
 
             this.knowledgeItemBelongedCollectionListMenuDialog=new idx.widget.MenuDialog({});
-            this.knowledgeItemBelongedCollectionListWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionListWidget({
+                    this.knowledgeItemBelongedCollectionListWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionListWidget({
                 knowledgeContentInfo:knowledgeContentInfo,popupDialog:this.knowledgeItemBelongedCollectionListMenuDialog});
             dojo.place(this.knowledgeItemBelongedCollectionListWidget.domNode, this.knowledgeItemBelongedCollectionListMenuDialog.containerNode);
             var showProjectDialogLinklabel="所属专辑 <i class='icon-caret-down'></i>";

@@ -27,7 +27,7 @@ require([
                 pathToUploadServerService=CONTENT_SERVICE_ROOT+"applicationSpaceFile/updateFile/"+APPLICATION_ID+"/"+ userId+"/";
             }
             if(this.documentMetaInfo.documentsOwnerType=="ROLE"){
-                var roleName=this.documentMetaInfo.documentsInitData.roleName;
+                var roleName=this.documentMetaInfo.documentInfo.roleName;
                 pathToUploadServerService=CONTENT_SERVICE_ROOT+"roleFile/updateFile/"+APPLICATION_ID+"/"+ roleName+"/"+ userId+"/";
             }
             var that=this;
@@ -40,7 +40,7 @@ require([
                     if(fileName!=that.documentMetaInfo.documentInfo.documentName){
                         UI.showToasterMessage({
                             type:"error",
-                            message:"上传更新的文件名称必须是: <b>"+fileName+"</b>"
+                            message:"上传更新的文件名称必须是: <b>"+that.documentMetaInfo.documentInfo.documentName+"</b>"
                         });
                         return;
                     }

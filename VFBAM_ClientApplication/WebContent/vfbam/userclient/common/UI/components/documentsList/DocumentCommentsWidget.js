@@ -50,7 +50,7 @@ require([
                 previewTempFileGenerateObj.participantFileInfo={};
                 previewTempFileGenerateObj.participantFileInfo.activitySpaceName=APPLICATION_ID;
                 previewTempFileGenerateObj.participantFileInfo.participantName=userId;
-                previewTempFileGenerateObj.participantFileInfo.parentFolderPath=documentExtalInfo.parentFolderPath;
+                previewTempFileGenerateObj.participantFileInfo.parentFolderPath=documentInfo.documentFolderPath;
                 previewTempFileGenerateObj.participantFileInfo.fileName=documentInfo.documentName;
             }
             if(documentsOwnerType=="ACTIVITY"){
@@ -65,15 +65,15 @@ require([
                 previewTempFileGenerateObj.applicationSpaceFileInfo={};
                 previewTempFileGenerateObj.applicationSpaceFileInfo.activitySpaceName=APPLICATION_ID;
                 previewTempFileGenerateObj.applicationSpaceFileInfo.participantName=userId;
-                previewTempFileGenerateObj.applicationSpaceFileInfo.parentFolderPath=documentExtalInfo.parentFolderPath;
+                previewTempFileGenerateObj.applicationSpaceFileInfo.parentFolderPath=documentInfo.documentFolderPath;
                 previewTempFileGenerateObj.applicationSpaceFileInfo.fileName=documentInfo.documentName;
             }
             if(documentsOwnerType=="ROLE"){
                 previewTempFileGenerateObj.roleFileInfo={};
                 previewTempFileGenerateObj.roleFileInfo.activitySpaceName=APPLICATION_ID;
                 previewTempFileGenerateObj.roleFileInfo.participantName=userId;
-                previewTempFileGenerateObj.roleFileInfo.roleName=documentExtalInfo.roleName;
-                previewTempFileGenerateObj.roleFileInfo.parentFolderPath=documentExtalInfo.parentFolderPath;
+                previewTempFileGenerateObj.roleFileInfo.roleName=documentInfo.roleName;
+                previewTempFileGenerateObj.roleFileInfo.parentFolderPath=documentInfo.documentFolderPath;
                 previewTempFileGenerateObj.roleFileInfo.fileName=documentInfo.documentName;
             }
             this.documentDetailInfo=previewTempFileGenerateObj;

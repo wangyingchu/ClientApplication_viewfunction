@@ -1,0 +1,46 @@
+<div data-dojo-attach-point="containerNode">
+    <div>
+        <table width="100%" border="0" >
+            <tr>
+                <td width="40" style="display: inline;">
+                    <span><img src="" width="32px" height="32px" class="app_photoBorder" data-dojo-attach-point="thubmnailPic"/></span>
+                </td>
+                <td width="90%" align="left" style="vertical-align:middle;font-size: 1.1em; color: #00475B; font-weight:bold;text-align:left;">
+                    <span style="color: #444444;" data-dojo-attach-point="knowledgeTitleTxt"></span><span style="font-weight:normal;color: #888888;font-size: 0.9em;"> - <span data-dojo-attach-point="knowledgeFileName"></span></span>
+                </td>
+            </tr>
+        </table>
+        <div class="app_headerDivLine"></div>
+        <div>
+            <div style="padding-top: 5px;;padding-bottom:3px;">
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            <span style="font-size: 0.9em;font-weight:bold;color: #444444;padding-left: 10px;">
+                                <i class="icon-archive"></i> 专辑列表：
+                            </span>
+                            <span style="font-size: 0.8em;color:#666666;padding-left: 5px;">
+                                <span data-dojo-attach-point="collectionNameFilterContainer"></span>
+                                <span data-dojo-attach-point="filterContentPrompt">
+                                    <span style="font-weight:normal;color: #888888;font-size: 0.9em;">-</span>
+                                    <span data-dojo-attach-point="filterTxt" style="font-weight:normal;color: #666666;font-size: 1.0em;font-style: italic;"></span>
+                                </span>
+                            </span>
+                        </td>
+                        <td align="right">
+                             <span style="font-style: italic; font-size: 0.9em; padding-right: 5px;">
+                                <span data-dojo-attach-point="currentCollectionListPageNumber">0</span>/<span data-dojo-attach-point="totalCollectionPageNumber">0</span> 总计: <span data-dojo-attach-point="collectionTotalNumber">1000</span>
+                            </span>
+                            <span style="font-size: 1.2em;">
+                                <span data-dojo-type="idx.form.Link" data-dojo-attach-point="previousPageButton" data-dojo-attach-event="onClick:loadPreviousPage"> <i class="icon-chevron-sign-left"></i></span>
+                                <span data-dojo-type="idx.form.Link" data-dojo-attach-point="nextPageButton" data-dojo-attach-event="onClick:loadNextPage"> <i style="padding-left: 5px;padding-right: 5px;" class="icon-chevron-sign-right"></i></span>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="app_headerDivLine"></div>
+            <div data-dojo-attach-point="collectionSelectionContainer" style="height: 300px;overflow: auto;"> </div>
+        </div>
+    </div>
+</div>

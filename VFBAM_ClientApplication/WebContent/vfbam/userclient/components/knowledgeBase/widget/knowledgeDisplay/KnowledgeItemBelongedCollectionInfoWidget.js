@@ -8,7 +8,12 @@ require([
         clickEventConnectionHandler:null,
         postCreate: function(){
             var coverKnowledgeItem=this.knowledgeCollectionInfo.docs[0];
-            var previewFileLocation=KNOWLEDGE_DISPLAY_PREVIEW_BASELOCATION+coverKnowledgeItem.bucketName+KNOWLEDGE_DISPLAY_PREVIEW_THUMBNAIL_FOLDER+coverKnowledgeItem.contentName;
+            var previewFileLocation =KNOWLEDGE_OPERATION_SERVICE_ROOT+"getKnowledgeContentPreviewThumbnailFile/"+coverKnowledgeItem.bucketName+"/"+coverKnowledgeItem.contentName+"?contentMimeType="+
+                coverKnowledgeItem.contentMimeType;
+            if(KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM[coverKnowledgeItem.contentLocation]){
+                var timeStamp=new Date().getTime();
+                previewFileLocation=previewFileLocation+"&timestamp="+timeStamp;
+            }
             this.collectionMainPicture.src=previewFileLocation;
             this.collectionName.innerHTML=this.knowledgeCollectionInfo.projectName;
             this.knowledgeItemNumber.innerHTML=this.knowledgeCollectionInfo.docTotalCountPerProject;

@@ -30,6 +30,7 @@ require([
                 UI.showToasterMessage({type:"success",message:"添加一级分类成功"});
                 that.addNewFirstLevelCategoryMenuDialog.close();
                 that.categoryTree.addCategoryInfo(data);
+                KnowledgeBaseDataHandleUtil.addNeCategoryTagInSearchEngine(data);
             };
             Application.WebServiceUtil.postJSONData(resturl,newFirstLevelCategoryDataObjContent,loadCallback,errorCallback);
         },

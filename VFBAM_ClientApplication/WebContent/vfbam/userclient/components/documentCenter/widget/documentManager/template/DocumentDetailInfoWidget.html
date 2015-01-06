@@ -7,6 +7,10 @@
                 <span style="font-size: 0.9em;font-style: italic;" data-dojo-attach-point="folderChildrenNumber"></span>
                 <span style="font-size: 0.9em;font-style: italic;padding-right: 5px;" data-dojo-attach-point="createDateContainer"><i class="icon-time"></i> <span data-dojo-attach-point="createDate"></span></span>
                 <span style="font-size: 0.9em;color: #ce0000;padding-right: 5px;"><i class="icon-code-fork"></i> v<span data-dojo-attach-point="documentVersion"></span></span>
+                <span style="padding-left: 4px;color:#777777;display: none;" data-dojo-attach-point="lockedDocumentPromptContainer">
+                    <i class="icon-lock"></i><span style="padding-left: 3px;">-</span>
+                    <span style="font-size: 0.9em;" data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="documentLockerDropDown"></span>
+                </span>
             </td>
             <td align="right">
                 <span data-dojo-attach-point="openFolderButton" data-dojo-attach-event="onclick:previewDocument"  style="display: none;"><i class="icon-folder-open icon-border" style="cursor: pointer;"></i></span>
@@ -16,9 +20,12 @@
                 <span style="padding-left: 5px;padding-right: 5px; font-size: 0.8em;">|</span>
                 <span data-dojo-attach-point="documentLockButton" data-dojo-attach-event="onclick:lockDocument" style="display:none;"><i class="icon-lock icon-border" style="cursor: pointer;padding-left:3px; padding-right: 3px;"></i></span>
                 <span data-dojo-attach-point="documentUnlockButton" data-dojo-attach-event="onclick:unLockDocument" style="display:none;"><i class="icon-unlock icon-border" style="cursor: pointer;padding-left:3px; padding-right: 3px;"></i></span>
-                <span style="padding-right: 5px;"></span>
+                <span data-dojo-attach-point="documentUnlockButtonDisabled" style="display:none;"><i class="icon-unlock icon-border" style="color:#cccccc;"></i></span>
+                <span style="padding-right: 5px;" ></span>
+                <!--
                 <span data-dojo-attach-point="addNewChildDocumentButton" data-dojo-attach-event="onclick:addChildDocument" style="display: none;"><i class="icon-file icon-border" style="cursor: pointer;padding-left:3px; padding-right: 3px;"></i></span>
                 <span data-dojo-attach-point="addNewChildDocumentButtonDisabled"><i class="icon-file icon-border" style="color:#cccccc;padding-left:3px; padding-right: 3px;"></i></span>
+                -->
                 <span data-dojo-attach-point="updateDocumentButton" data-dojo-attach-event="onclick:updateDocument"><i class="icon-edit icon-border" style="cursor: pointer;"></i></span>
                 <span data-dojo-attach-point="updateDocumentButtonDisabled"><i class="icon-edit icon-border" style="color:#cccccc;"></i></span>
                 <span style="padding-right: 5px;"></span>

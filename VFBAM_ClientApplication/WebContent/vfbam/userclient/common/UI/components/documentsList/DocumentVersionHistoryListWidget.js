@@ -8,7 +8,6 @@ require([
         widgetsInTemplate: true,
         documentVersionItemArray:null,
         postCreate: function(){
-            //console.log(this.documentMetaInfo);
             this.documentVersionItemArray=[];
             this.retriveDocumentVersionHistoryInfo(this.documentMetaInfo);
         },

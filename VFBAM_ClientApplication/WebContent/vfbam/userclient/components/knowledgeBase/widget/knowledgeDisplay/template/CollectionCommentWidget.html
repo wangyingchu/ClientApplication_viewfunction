@@ -1,0 +1,26 @@
+<div data-dojo-attach-point="containerNode">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <div style="padding-left: 10px;padding-top: 7px;padding-bottom: 2px;font-size: 0.9em;color: #888888;"><i class="icon-comment-alt"></i> 专辑备注:</div>
+            </td>
+            <td align="right">
+                <div style="padding-right: 10px;padding-top: 7px;padding-bottom: 2px;font-size: 0.9em;"><i class="icon-edit"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:editCollectionComment">编辑专辑备注</span></div>
+            </td>
+        </tr>
+    </table>
+    <div class="app_headerDivLine" style=" border-width:0px; border-bottom-width: 1px; border-bottom-color: #DDDDDD; border-style:solid;"> </div>
+    <div style="width:400px;height: 200px;overflow: auto;padding: 10px;">
+        <div data-dojo-attach-point="commentContentText"></div>
+        <div data-dojo-attach-point="commentEditor" style="display: none;">
+            <div>
+                <input dojoType="dijit.form.Textarea" style="width:99%; min-height:160px;max-height:160px;color:#777777" data-dojo-attach-point="commentValueField"/>
+                <div style="height: 10px;"></div>
+                <div style="text-align:right;">
+                    <button data-dojo-type="dijit.form.Button"  type="button" data-dojo-attach-event="onClick:addComment"><i class="icon-ok"></i> 确定</button>
+                    <button data-dojo-type="dijit.form.Button"  type="button" data-dojo-attach-event="onClick:cancelAddComment"><i class="icon-remove"></i> 取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
