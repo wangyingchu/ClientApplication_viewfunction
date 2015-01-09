@@ -30,6 +30,8 @@ require([
             this.renderFolderDocumentsList("/","");
         },
         renderFolderDocumentsList:function(parentFolderPath,folderName){
+            dojo.style(this.folderListContainer,"display","");
+            dojo.style(this.queryResultListContainer,"display","none");
             this.activitySpaceName=this.documentsInitData.activitySpaceName;
             var resturl="";
             var folderQueryContent="";
@@ -86,60 +88,7 @@ require([
                     if(data.childContentList){
                         var documentsArray=[];
                         dojo.forEach(data.childContentList,function(documentItem){
-                            var currentDocument={};
-                            currentDocument["documentName"]=documentItem.documentName;
-                            currentDocument["documentCreateDate"]=new Date(documentItem.documentCreateDate);
-                            currentDocument["isFolder"]=documentItem.folder;
-                            currentDocument["documentType"]=documentItem.documentType;
-                            currentDocument["documentFolderPath"]=documentItem.documentFolderPath;
-                            currentDocument["documentLastUpdateDate"]=new Date(documentItem.documentLastUpdateDate);
-                            currentDocument["documentCreator"]=documentItem.documentCreator;
-                            currentDocument["documentLastUpdatePerson"]=documentItem.documentLastUpdatePerson;
-                            currentDocument["version"]=documentItem.version;
-                            currentDocument["childrenNumber"]=documentItem.childDocumentNumber;
-                            currentDocument["documentSize"]=documentItem.documentSize;
-                            currentDocument["isDocumentLocked"]=documentItem.locked;
-                            currentDocument["isLinkDocument"]=documentItem.linked;
-                            currentDocument["documentTags"]=documentItem.documentTags;
-                            var documentCreator=documentItem.documentCreator;
-                            if(documentCreator){
-                                var creatorParticipant={};
-                                creatorParticipant.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentCreator.userId;
-                                creatorParticipant.participantName=documentCreator.displayName;
-                                creatorParticipant.participantId=documentCreator.userId;
-                                creatorParticipant.participantTitle=documentCreator.title;
-                                creatorParticipant.participantDesc=documentCreator.description;
-                                creatorParticipant.participantAddress=documentCreator.address;
-                                creatorParticipant.participantPhone=documentCreator.fixedPhone;
-                                creatorParticipant.participantEmail=documentCreator.emailAddress;
-                                currentDocument["documentCreator"]=creatorParticipant;
-                            }
-                            var documentLastUpdater=documentItem.documentLastUpdatePerson;
-                            if(documentLastUpdater){
-                                var updateParticipant={};
-                                updateParticipant.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentLastUpdater.userId;
-                                updateParticipant.participantName=documentLastUpdater.displayName;
-                                updateParticipant.participantId=documentLastUpdater.userId;
-                                updateParticipant.participantTitle=documentLastUpdater.title;
-                                updateParticipant.participantDesc=documentLastUpdater.description;
-                                updateParticipant.participantAddress=documentLastUpdater.address;
-                                updateParticipant.participantPhone=documentLastUpdater.fixedPhone;
-                                updateParticipant.participantEmail=documentLastUpdater.emailAddress;
-                                currentDocument["documentLastUpdatePerson"]=updateParticipant;
-                            }
-                            var documentLocker=documentItem.documentLocker;
-                            if(documentLocker){
-                                var documentLockPerson={};
-                                documentLockPerson.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentLocker.userId;
-                                documentLockPerson.participantName=documentLocker.displayName;
-                                documentLockPerson.participantId=documentLocker.userId;
-                                documentLockPerson.participantTitle=documentLocker.title;
-                                documentLockPerson.participantDesc=documentLocker.description;
-                                documentLockPerson.participantAddress=documentLocker.address;
-                                documentLockPerson.participantPhone=documentLocker.fixedPhone;
-                                documentLockPerson.participantEmail=documentLocker.emailAddress;
-                                currentDocument["documentLockPerson"]=documentLockPerson;
-                            }
+                            var currentDocument=that._buildDocumentInfoObject(documentItem);
                             documentsArray.push(currentDocument);
                         });
                         if(documentsArray.length>0){
@@ -323,6 +272,25 @@ require([
             return checkResult;
         },
         queryDocuments:function(queryParams){
+            dojo.style(this.folderListContainer,"display","none");
+            dojo.style(this.queryResultListContainer,"display","");
+            this.queryContent.innerHTML=queryParams.queryContent;
+            if(queryParams.queryDocumentName){
+                dojo.style(this.nameQueryPrompt,"display","");
+            }else{
+                dojo.style(this.nameQueryPrompt,"display","none");
+            }
+            if(queryParams.queryDocumentTag){
+                dojo.style(this.tagQueryPrompt,"display","");
+            }else{
+                dojo.style(this.tagQueryPrompt,"display","none");
+            }
+            if(queryParams.queryDocumentContent){
+                dojo.style(this.contentQueryPrompt,"display","");
+            }else{
+                dojo.style(this.contentQueryPrompt,"display","none");
+            }
+            this.documentManager.disableAddDocumentsElements();
             var documentsQueryMeteInfo={};
             documentsQueryMeteInfo.queryContent=queryParams.queryContent;
             documentsQueryMeteInfo.queryDocumentName=queryParams.queryDocumentName;
@@ -339,11 +307,9 @@ require([
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };
-
             var that=this;
             var documentQueryContent=dojo.toJson(documentsQueryMeteInfo);
             var resturl=CONTENT_SERVICE_ROOT+"queryDocuments/";
-
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };
@@ -354,9 +320,76 @@ require([
                     timer.stop();
                 };
                 timer.start();
+                var documentsArray=[];
+                dojo.forEach(data,function(documentItem){
+                    var currentDocument=that._buildDocumentInfoObject(documentItem);
+                    documentsArray.push(currentDocument);
+                });
+                if(documentsArray.length>0){
+                    that._renderDocumentsList(documentsArray);
+                }else{
+                    that._renderDocumentsList([]);
+                }
             };
             UI.showProgressDialog("查询数据");
             Application.WebServiceUtil.postJSONData(resturl, documentQueryContent, loadCallback, errorCallback);
+        },
+        _buildDocumentInfoObject:function(documentItem){
+            var currentDocument={};
+            currentDocument["documentName"]=documentItem.documentName;
+            currentDocument["documentCreateDate"]=new Date(documentItem.documentCreateDate);
+            currentDocument["isFolder"]=documentItem.folder;
+            currentDocument["documentType"]=documentItem.documentType;
+            currentDocument["documentFolderPath"]=documentItem.documentFolderPath;
+            currentDocument["documentLastUpdateDate"]=new Date(documentItem.documentLastUpdateDate);
+            currentDocument["documentCreator"]=documentItem.documentCreator;
+            currentDocument["documentLastUpdatePerson"]=documentItem.documentLastUpdatePerson;
+            currentDocument["version"]=documentItem.version;
+            currentDocument["childrenNumber"]=documentItem.childDocumentNumber;
+            currentDocument["documentSize"]=documentItem.documentSize;
+            currentDocument["isDocumentLocked"]=documentItem.locked;
+            currentDocument["isLinkDocument"]=documentItem.linked;
+            currentDocument["documentTags"]=documentItem.documentTags;
+            var documentCreator=documentItem.documentCreator;
+            if(documentCreator){
+                var creatorParticipant={};
+                creatorParticipant.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentCreator.userId;
+                creatorParticipant.participantName=documentCreator.displayName;
+                creatorParticipant.participantId=documentCreator.userId;
+                creatorParticipant.participantTitle=documentCreator.title;
+                creatorParticipant.participantDesc=documentCreator.description;
+                creatorParticipant.participantAddress=documentCreator.address;
+                creatorParticipant.participantPhone=documentCreator.fixedPhone;
+                creatorParticipant.participantEmail=documentCreator.emailAddress;
+                currentDocument["documentCreator"]=creatorParticipant;
+            }
+            var documentLastUpdater=documentItem.documentLastUpdatePerson;
+            if(documentLastUpdater){
+                var updateParticipant={};
+                updateParticipant.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentLastUpdater.userId;
+                updateParticipant.participantName=documentLastUpdater.displayName;
+                updateParticipant.participantId=documentLastUpdater.userId;
+                updateParticipant.participantTitle=documentLastUpdater.title;
+                updateParticipant.participantDesc=documentLastUpdater.description;
+                updateParticipant.participantAddress=documentLastUpdater.address;
+                updateParticipant.participantPhone=documentLastUpdater.fixedPhone;
+                updateParticipant.participantEmail=documentLastUpdater.emailAddress;
+                currentDocument["documentLastUpdatePerson"]=updateParticipant;
+            }
+            var documentLocker=documentItem.documentLocker;
+            if(documentLocker){
+                var documentLockPerson={};
+                documentLockPerson.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+documentLocker.userId;
+                documentLockPerson.participantName=documentLocker.displayName;
+                documentLockPerson.participantId=documentLocker.userId;
+                documentLockPerson.participantTitle=documentLocker.title;
+                documentLockPerson.participantDesc=documentLocker.description;
+                documentLockPerson.participantAddress=documentLocker.address;
+                documentLockPerson.participantPhone=documentLocker.fixedPhone;
+                documentLockPerson.participantEmail=documentLocker.emailAddress;
+                currentDocument["documentLockPerson"]=documentLockPerson;
+            }
+            return currentDocument;
         },
         _endOfCode: function(){}
     });

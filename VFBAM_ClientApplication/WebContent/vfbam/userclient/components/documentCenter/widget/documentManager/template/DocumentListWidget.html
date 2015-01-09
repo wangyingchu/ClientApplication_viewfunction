@@ -3,6 +3,16 @@
         <i class="icon-terminal"></i><span data-dojo-type="idx.form.Link"  style="padding-right: 5px;" data-dojo-attach-event="onClick:renderRootFolder"> 根目录</span>
         <span data-dojo-attach-point="folderListBbreadcrumb"></span>
     </div>
+    <div style="padding-top: 15px;" data-dojo-attach-point="queryResultListContainer">
+        <i class="icon-search"></i><span style="padding-right: 5px;font-size: 0.9em;"> 搜索内容:</span>
+        <span style="color: #666666;font-size: 0.8em;font-style: italic;padding-right: 1px;" data-dojo-attach-point="nameQueryPrompt">[名称]</span>
+        <span style="color: #666666;font-size: 0.8em;font-style: italic;padding-right: 1px;"  data-dojo-attach-point="tagQueryPrompt">[标签]</span>
+        <span style="color: #666666;font-size: 0.8em;font-style: italic;padding-right: 1px;"  data-dojo-attach-point="contentQueryPrompt">[内容]</span>
+        <span style="font-weight: bold;color: #444444;" data-dojo-attach-point="queryContent"> </span>
+        <span style="padding-left: 15px;">
+            <i class="icon-remove-circle"></i><span data-dojo-type="idx.form.Link" style="padding-right: 5px;" data-dojo-attach-event="onClick:refreshCurrentFolder"> 取消搜索</span>
+        </span>
+    </div>
     <div class="app_headerDivLine"></div>
     <div data-dojo-attach-point="documentsListContainer" style="overflow: auto;">
     </div>
