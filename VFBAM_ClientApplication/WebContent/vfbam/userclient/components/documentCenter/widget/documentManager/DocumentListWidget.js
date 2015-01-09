@@ -322,6 +322,42 @@ require([
             },this);
             return checkResult;
         },
+        queryDocuments:function(queryParams){
+            var documentsQueryMeteInfo={};
+            documentsQueryMeteInfo.queryContent=queryParams.queryContent;
+            documentsQueryMeteInfo.queryDocumentName=queryParams.queryDocumentName;
+            documentsQueryMeteInfo.queryDocumentTag=queryParams.queryDocumentTag;
+            documentsQueryMeteInfo.queryDocumentContent=queryParams.queryDocumentContent;
+            documentsQueryMeteInfo.documentsOwnerType=this.documentsOwnerType;
+            documentsQueryMeteInfo.activitySpaceName=this.documentsInitData.activitySpaceName;
+            if( this.documentsOwnerType=="PARTICIPANT"){
+                documentsQueryMeteInfo.participantName=this.participantId;
+            }
+            if( this.documentsOwnerType=="ROLE"){
+                documentsQueryMeteInfo.roleName=this.documentsInitData.roleName;
+            }
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+
+            var that=this;
+            var documentQueryContent=dojo.toJson(documentsQueryMeteInfo);
+            var resturl=CONTENT_SERVICE_ROOT+"queryDocuments/";
+
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback=function(data){
+                var timer = new dojox.timing.Timer(200);
+                timer.onTick = function(){
+                    UI.hideProgressDialog();
+                    timer.stop();
+                };
+                timer.start();
+            };
+            UI.showProgressDialog("查询数据");
+            Application.WebServiceUtil.postJSONData(resturl, documentQueryContent, loadCallback, errorCallback);
+        },
         _endOfCode: function(){}
     });
 });

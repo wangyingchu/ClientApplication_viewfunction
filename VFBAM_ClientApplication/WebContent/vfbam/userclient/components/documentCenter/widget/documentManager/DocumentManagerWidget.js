@@ -11,6 +11,7 @@ require([
         addNewDocumentDropDown:null,
         documentsListWidget:null,
         documentPreviewWidget:null,
+        documentSearchWidget:null,
         postCreate: function(){
             console.log("DocumentManagerWidget created");
             var contentBox = domGeom.getContentBox(dojo.byId("app_documentCenter_mainContainer"));
@@ -31,8 +32,7 @@ require([
             this.documentsListWidget.setAddNewDocumentDropDown(this.addNewFolderDropDown);
             this.addNewDocumentDropDown=new vfbam.userclient.common.UI.components.documentsList.AddNewDocumentWidget({documentListWidget:this.documentsListWidget});
             this.addDocumentLink.set("dropDown",this.addNewDocumentDropDown);
-
-            new vfbam.userclient.components.documentCenter.widget.documentManager.DocumentSearchWidget({},this.documentsSearchDialog);
+            this.documentSearchWidget=new vfbam.userclient.components.documentCenter.widget.documentManager.DocumentSearchWidget({documentManager:this},this.documentsSearchDialog);
         },
         disableAddDocumentsElements:function(){
             this.addFolderLink.set("disabled","disabled");
@@ -50,6 +50,10 @@ require([
             if(!this.documentsListWidget.alreadyLoad){
                 this.documentsListWidget.initRender();
             }
+        },
+        queryDocuments:function(queryParams){
+            this.documentsSearchMenuDialog.close();
+            this.documentsListWidget.queryDocuments(queryParams);
         },
         _endOfCode: function(){}
     });

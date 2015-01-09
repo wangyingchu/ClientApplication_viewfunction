@@ -38,9 +38,8 @@ require([
                     documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
             }
             if(this.documentMetaInfo.documentsOwnerType=="ROLE"){
-                this.documentMetaInfo.documentInfo.roleName=this.documentMetaInfo.roleName;
                 Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_PREVIEWDOCUMENT_EVENT,{documentInfo:this.documentMetaInfo.documentInfo,
-                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber});
+                    documentsOwnerType:this.documentMetaInfo.documentsOwnerType,documentVersionNumber:this.documentVersionInfo.versionNumber,roleName:this.documentMetaInfo.roleName});
             }
         },
         downloadVersionDocument:function(){

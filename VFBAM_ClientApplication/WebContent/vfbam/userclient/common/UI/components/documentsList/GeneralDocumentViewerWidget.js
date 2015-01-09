@@ -84,15 +84,10 @@ require([
                 previewTempFileGenerateObj.applicationSpaceFileInfo.fileName=this.documentMetaInfo.documentInfo.documentName;
             }
             if(this.documentMetaInfo.documentsOwnerType=="ROLE"){
-
-
-
-
-
                 previewTempFileGenerateObj.roleFileInfo={};
                 previewTempFileGenerateObj.roleFileInfo.activitySpaceName=APPLICATION_ID;
                 previewTempFileGenerateObj.roleFileInfo.participantName=userId;
-                previewTempFileGenerateObj.roleFileInfo.roleName=this.documentMetaInfo.documentInfo.roleName;
+                previewTempFileGenerateObj.roleFileInfo.roleName=this.documentMetaInfo.roleName;
                 previewTempFileGenerateObj.roleFileInfo.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
                 previewTempFileGenerateObj.roleFileInfo.fileName=this.documentMetaInfo.documentInfo.documentName;
             }
