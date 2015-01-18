@@ -1,0 +1,27 @@
+<div style="width:400px;height:550px;">
+    <div style="padding-left: 10px; padding-top: 10px;padding-bottom: 6px;"><span style="font-size: 1.3em;color: #888888;"><i class="icon-user"></i> 企业用户</span></div>
+    <div class="app_headerDivLine_thin" style="border-bottom-color:#CCCCCC;"></div>
+    <div>
+        <div class="app_taskCenter_activityLauncher_header">
+            <div style="padding: 5px;font-size: 0.9em;">
+                <span style="font-weight: bold;padding-right: 10px;"><i class="icon-filter"></i> 过滤用户 :</span>
+                <input dojoType="dijit.form.CheckBox" data-dojo-attach-point="userNameCheckbox" checked="true">用户名称</input>
+                <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+                <input dojoType="dijit.form.CheckBox" data-dojo-attach-point="userIdCheckbox" checked="false" style="font-size: 0.8em;">用户登录ID</input>
+                <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+                <span data-dojo-attach-point="participantRolesContainer"></span>
+            </div>
+            <div class="app_taskCenter_activityLauncher_search">
+                <table style="width: 100%;  border-spacing: 0px">
+                    <tr>
+                        <td style="width: 100%; white-space: nowrap">
+                            <input data-dojo-type="dijit.form.TextBox" data-dojo-props="intermediateChanges:true" data-dojo-attach-point="filterInputValue" data-dojo-attach-event="onChange:renderGlobalRoleParticipantsList"/>
+                            <input data-dojo-type="dijit.form.Button" data-dojo-props="iconClass: 'idxSearchButton', label: 'Search', showLabel: false" data-dojo-attach-event="onClick:renderGlobalRoleParticipantsList"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="overflow: auto;height: 415px;padding: 5px;" data-dojo-attach-point="participantsListContainer"></div>
+    </div>
+</div>

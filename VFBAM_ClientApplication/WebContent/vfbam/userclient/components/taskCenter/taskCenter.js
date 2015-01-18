@@ -28,8 +28,16 @@ var initFinishCounter=function(){
     }
 };
 var activityLauncher=new vfbam.userclient.common.UI.components.activityLauncher.ActivityLauncherWidget({},"app_taskCenter_activityLauncherContainer");
+
+//Simple Participant List
+/*
 var myTeamParticipantList=new vfbam.userclient.common.UI.components.participantsList.ParticipantListWidget(
     {containerElementId:"app_taskCenter_mainContainer",reservationHeight:45,containerInitFinishCounterFuc:initFinishCounter},"app_taskCenter_helpWidget_participantList");
+*/
+//Role Group Participant List
+var myTeamParticipantList=new vfbam.userclient.common.UI.components.participantsList.RoleGroupParticipantListWidget(
+    {containerElementId:"app_taskCenter_mainContainer",reservationHeight:45,containerInitFinishCounterFuc:initFinishCounter},"app_taskCenter_helpWidget_participantList");
+
 var myDocumentList=new vfbam.userclient.common.UI.components.documentsList.DocumentsListWidget(
     {containerElementId:"app_taskCenter_mainContainer",reservationHeight:45,containerInitFinishCounterFuc:initFinishCounter,documentsOwnerType:"PARTICIPANT"},"app_taskCenter_helpWidget_documentList");
 var myTaskListWidget=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskListWidget({region:"left",containerInitFinishCounterFuc:initFinishCounter},"app_taskCenter_myTasksContainer");
