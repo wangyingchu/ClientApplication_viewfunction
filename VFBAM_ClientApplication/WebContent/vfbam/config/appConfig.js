@@ -18,6 +18,14 @@ var APPLICATION_ROLE_DISPLAYNAME_MAP={};
 APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_SUPERVISER"]="系统管理员";
 APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_NORMALUSER"]="普通用户";
 
+var APPLICATION_ATTRIBUTE_TYPE={};
+APPLICATION_ATTRIBUTE_TYPE["STRING"]="STRING";
+APPLICATION_ATTRIBUTE_TYPE["LONG"]="LONG";
+APPLICATION_ATTRIBUTE_TYPE["DATE"]="DATE";
+APPLICATION_ATTRIBUTE_TYPE["DOUBLE"]="DOUBLE";
+APPLICATION_ATTRIBUTE_TYPE["BOOLEAN"]="BOOLEAN";
+APPLICATION_ATTRIBUTE_TYPE["DECIMAL"]="DECIMAL";
+
 var PARTICIPANT_SERVICE_ROOT="/ParticipantManagementService/ws/";
 var USER_TYPE_PARTICIPANT="PARTICIPANT";
 var USER_TYPE_ROLE="ROLE";
@@ -280,6 +288,14 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.activityLauncher.ActivityTypeDefinitionWidget",
     "vfbam.userclient.common.UI.components.activityLauncher.ActivityStarterWidget",
     "vfbam.userclient.common.UI.components.activityLauncher.ActivityStartDataEditorWidget",
+    "vfbam.userclient.common.UI.components.activitiesQueryer.ActivitiesQueryerWidget",
+    "vfbam.userclient.common.UI.components.activitiesQueryer.UserStartedActivitiesWidget",
+    "vfbam.userclient.common.UI.components.activitiesQueryer.UserWorkedTasksWidget",
+    "vfbam.userclient.common.UI.components.activitiesQueryer.ActivityInstanceDetailWidget",
+    "vfbam.userclient.common.UI.components.activitiesQueryer.ActivityStepDetailWidget",
+    "vfbam.userclient.common.UI.components.activitiesQueryer.ActivityStepListWidget",
+    "vfbam.userclient.common.UI.components.activitiesQueryer.ActivityNextStepsInfoWidget",
+
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantProfileEditorWidget",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantFacePhotoUploaderWidget",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantPasswordResetWidget",

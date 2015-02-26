@@ -28,6 +28,7 @@ var initFinishCounter=function(){
     }
 };
 var activityLauncher=new vfbam.userclient.common.UI.components.activityLauncher.ActivityLauncherWidget({},"app_taskCenter_activityLauncherContainer");
+var activityQueryer=new vfbam.userclient.common.UI.components.activitiesQueryer.ActivitiesQueryerWidget({},"app_taskCenter_queryActivityContainer");
 
 //Simple Participant List
 /*

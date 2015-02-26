@@ -29,6 +29,7 @@ require([
             dojo.place(this.globalParticipantsSearchWidget.domNode, this.globalParticipantsSearchMenuDialog.containerNode);
             this.participantSearchLabel.set("label"," 查找同事");
             this.participantSearchLabel.set("dropDown",this.globalParticipantsSearchMenuDialog);
+            this.loadCustomFaviorParticipantsList();
         },
         getParticipantsList:function(){
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
@@ -72,6 +73,116 @@ require([
             };
             Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
         },
+
+        loadCustomFaviorParticipantsList:function(){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            userId="Management Department";
+
+            var newCustomeAttributeObj={};
+            /*
+            newCustomeAttributeObj.attributeName="TESTAttribute1";
+            newCustomeAttributeObj.attributeType="STRING";
+            newCustomeAttributeObj.arrayAttribute=false;
+            newCustomeAttributeObj.attributeRowValue=["value1_150204Modified"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute2";
+            newCustomeAttributeObj.attributeType="STRING";
+            newCustomeAttributeObj.arrayAttribute=true;
+            newCustomeAttributeObj.attributeRowValue=["value1_150204Modified","value2_150204Modified","NewValueAAAAAmodifiedAgain"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute3";
+            newCustomeAttributeObj.attributeType="LONG";
+            newCustomeAttributeObj.arrayAttribute=false;
+            newCustomeAttributeObj.attributeRowValue=["100203456"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute4";
+            newCustomeAttributeObj.attributeType="LONG";
+            newCustomeAttributeObj.arrayAttribute=true;
+            newCustomeAttributeObj.attributeRowValue=["100203000","898131000"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute5";
+            newCustomeAttributeObj.attributeType="DOUBLE";
+            newCustomeAttributeObj.arrayAttribute=false;
+            newCustomeAttributeObj.attributeRowValue=["8345.021"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute6";
+            newCustomeAttributeObj.attributeType="DOUBLE";
+            newCustomeAttributeObj.arrayAttribute=true;
+            newCustomeAttributeObj.attributeRowValue=["2000.888","100.99"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute7";
+            newCustomeAttributeObj.attributeType="DATE";
+            newCustomeAttributeObj.arrayAttribute=false;
+            newCustomeAttributeObj.attributeRowValue=[""+new Date().getTime()];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute8";
+            newCustomeAttributeObj.attributeType="DATE";
+            newCustomeAttributeObj.arrayAttribute=true;
+            newCustomeAttributeObj.attributeRowValue=[""+new Date().getTime(),""+new Date().getTime(),""+new Date().getTime(),""+new Date().getTime()];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute9";
+            newCustomeAttributeObj.attributeType="DECIMAL";
+            newCustomeAttributeObj.arrayAttribute=false;
+            newCustomeAttributeObj.attributeRowValue=["123006.550002"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute10";
+            newCustomeAttributeObj.attributeType="DECIMAL";
+            newCustomeAttributeObj.arrayAttribute=true;
+            newCustomeAttributeObj.attributeRowValue=["120006.550012","420006.5500042","32700066.3300012","3448000.000022"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute11";
+            newCustomeAttributeObj.attributeType="BOOLEAN";
+            newCustomeAttributeObj.arrayAttribute=false;
+            newCustomeAttributeObj.attributeRowValue=["false"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute12";
+            newCustomeAttributeObj.attributeType="BOOLEAN";
+            newCustomeAttributeObj.arrayAttribute=false;
+            newCustomeAttributeObj.attributeRowValue=["true"];
+
+            newCustomeAttributeObj.attributeName="TESTAttribute13";
+            newCustomeAttributeObj.attributeType="BOOLEAN";
+            newCustomeAttributeObj.arrayAttribute=true;
+            newCustomeAttributeObj.attributeRowValue=["true","true","false"];
+
+            var resturl0=USERMANAGEMENTSERVICE_ROOT+"addRoleCustomAttribute/"+APPLICATION_ID+"/"+userId+"/";
+            var newCustomeAttributeObjContent=dojo.toJson(newCustomeAttributeObj);
+            var errorCallback0= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback0=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.postJSONData(resturl0,newCustomeAttributeObjContent,loadCallback0,errorCallback0);
+            */
+
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"getRoleCustomAttribute/"+APPLICATION_ID+"/"+userId+"/TESTAttribute11/";
+            //var resturl=USERMANAGEMENTSERVICE_ROOT+"getRoleCustomAttributes/"+APPLICATION_ID+"/"+userId+"/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+            */
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"deleteRoleCustomAttribute/"+APPLICATION_ID+"/"+userId+"/TESTAttribute3/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            var fileTagOperationObj = {};
+            var fileTagOperationObjContent=dojo.toJson(fileTagOperationObj);
+            Application.WebServiceUtil.deleteJSONData(resturl, fileTagOperationObjContent, loadCallback, errorCallback);
+            */
+        },
+
         destroy:function(){
             dojo.forEach(this.currentRoleParticipantsArray,function(currentWidget){
                 currentWidget.destroy();

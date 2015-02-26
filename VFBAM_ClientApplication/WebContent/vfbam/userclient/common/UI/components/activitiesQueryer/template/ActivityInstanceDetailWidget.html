@@ -1,0 +1,37 @@
+<div data-dojo-attach-point="containerNode">
+    <div>
+        <div>
+            <div dojoType="dijit.Tooltip"  position="after" data-dojo-attach-point="activityTypeDescTxtPopup"></div>
+            <span style="font-size: 1.2em; font-weight: bold;color: #444444;">
+                <i class='icon-retweet'></i> <span data-dojo-attach-point="activityTypeTxt"></span> <span>(<span data-dojo-attach-point="activityIdTxt"></span>)</span>
+            </span>
+        </div>
+        <div style="height: 5px;"> </div>
+        <div style="padding-left: 5px;">
+             <span>
+                <span style="font-size: 0.9em;color: #777777;padding-right: 5px;"><i class="icon-male"></i> 创建人:
+                    <span style="font-weight: bold;color: #00475B;">
+                        <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="activityStarterParticipantNameLabel"></span>
+                    </span>
+                </span>
+                <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+            </span>
+             <span style="font-size: 0.9em;color: #777777;padding-right: 5px;">
+                <i class="icon-ok-circle"></i> 业务状态: <span style="font-weight: bold;color: #26a251;display: none;" data-dojo-attach-point="activityFinishedTxt">已完成</span><span style="font-weight: bold;color: #555555;display: none;" data-dojo-attach-point="activityGoingTxt">进行中</span>
+            </span>
+            <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+            <span style="font-size: 0.9em;color: #777777;padding-right: 5px;"><i class="icon-time"></i> 创建时间: <span style="font-weight: bold;color: #555555;" data-dojo-attach-point="activityLaunchDateTxt"></span></span>
+            <span data-dojo-attach-point="finishedActivityTimePropertiesContainer" style="display: none;">
+                <span style="font-size: 0.9em;color: #777777;padding-right: 5px;">-  完成时间: <span style="font-weight: bold;color: #555555;" data-dojo-attach-point="activityFinishDateTxt"></span></span>
+                <span style="font-size: 0.9em;color: #777777;padding-right: 5px;"> <i class="icon-resize-horizontal"></i> 耗时: <span style="font-weight: bold;color: #555555;" data-dojo-attach-point="activityDurationTxt"></span></span>
+            </span>
+        </div>
+        <div style="height: 5px;"> </div>
+        <div class="app_headerDivLine"></div>
+        <div style="padding-left: 10px;padding-right: 10px;height: 400px;overflow: auto;">
+            <div data-dojo-attach-point="currentTasksContainer"></div>
+            <div data-dojo-attach-point="nextTasksContainer"></div>
+            <div data-dojo-attach-point="finishedTasksContainer"></div>
+        </div>
+    </div>
+</div>
