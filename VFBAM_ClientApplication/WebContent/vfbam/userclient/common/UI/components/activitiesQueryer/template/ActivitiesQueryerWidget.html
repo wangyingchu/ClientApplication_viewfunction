@@ -1,7 +1,28 @@
 <div>
     <div style="padding-top: 5px;"> </div>
-    <div style="padding-left: 10px;padding-right: 10px;"><span style="cursor: pointer" data-dojo-attach-event="onclick:queryICreatedActivities"><i class="icon-retweet"></i> 我启动的业务活动</span></div>
+    <div style="padding-left: 10px;padding-right: 10px;">
+        <span style="cursor: pointer" data-dojo-attach-event="onclick:queryICreatedActivities">
+            <span class="icon-stack">
+                <i class="icon-circle icon-stack-base"></i>
+                <i class="icon-retweet icon-light"></i>
+            </span> 查询我启动的业务活动
+        </span>
+    </div>
     <div class="app_headerDivLine"></div>
-    <div style="padding-left: 10px;padding-top: 5px;padding-right: 10px;"><span style="cursor: pointer" data-dojo-attach-event="onclick:queryIWorkedTasks"><i class="icon-indent-right"></i> 我完成的业务任务</span></div>
+    <div style="padding-left: 10px;padding-top: 5px;padding-right: 10px;">
+        <span style="cursor: pointer" data-dojo-attach-event="onclick:queryIWorkedTasks">
+            <span class="icon-stack">
+                <i class="icon-circle icon-stack-base"></i>
+                <i class="icon-indent-right icon-light"></i>
+            </span> 查询我完成的业务任务
+        </span>
+    </div>
+    <div class="app_headerDivLine"></div>
+    <div style="padding-left: 15px;padding-top: 5px;padding-right: 10px;">
+        <div><i class="icon-key"></i> 按序号查询业务活动</div>
+        <div class="app_headerDivLine" style="border-style:dotted;"></div>
+        <input dojoType="dijit.form.TextBox" style="width: 150px;" data-dojo-attach-point="queryActivityIdInput">
+        <button dojoType="dijit.form.Button" data-dojo-attach-point="queryActivityByIdButton"><i class="icon-search"></i> 查询</button>
+    </div>
     <div class="app_headerDivLine"></div>
 </div>
