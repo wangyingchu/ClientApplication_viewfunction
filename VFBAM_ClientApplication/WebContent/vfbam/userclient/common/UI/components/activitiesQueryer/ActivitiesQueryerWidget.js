@@ -27,11 +27,10 @@ require([
             dojo.connect(dialog,"hide",closeDialogCallBack);
         },
         queryIWorkedTasks:function() {
-            console.log("queryIWorkedTasks");
-            var userWorkedTasksWidget = new vfbam.userclient.common.UI.components.activitiesQueryer.UserWorkedTasksWidget({});
+            var userWorkedTasksWidget = new vfbam.userclient.common.UI.components.activitiesQueryer.UserWorkedStepsWidget({});
             var dialog = new Dialog({
-                style: "width:1000px;",
-                title: "<i class='icon-indent-right'></i> 我参与的业务任务",
+                style: "width:760px;",
+                title: "<i class='icon-indent-right'></i> 我完成的业务任务",
                 content: "",
                 buttons: null,
                 closeButtonLabel: "<i class='icon-remove'></i> 关闭"

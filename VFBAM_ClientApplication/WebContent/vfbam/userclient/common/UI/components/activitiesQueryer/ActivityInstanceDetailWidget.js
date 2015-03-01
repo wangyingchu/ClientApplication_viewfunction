@@ -56,7 +56,11 @@ require([
                 }if(timeCostResult.minuteCost>0){
                     activityDuration=activityDuration+timeCostResult.minuteCost+"分钟";
                 }
-                this.activityDurationTxt.innerHTML=activityDuration;
+                if(activityDuration==""){
+                    this.activityDurationTxt.innerHTML="小于1分钟";
+                }else{
+                    this.activityDurationTxt.innerHTML=activityDuration;
+                }
                 dojo.style(this.currentTasksContainer,"display","none");
                 dojo.style(this.nextTasksContainer,"display","none");
             }else{

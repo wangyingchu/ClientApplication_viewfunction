@@ -12,7 +12,7 @@ require([
             var that=this;
             var isOdd=true;
             dojo.forEach(this.activityStepsData,function(currentStepData){
-                var currentActivityStepDetailWidget=new vfbam.userclient.common.UI.components.activitiesQueryer.ActivityStepDetailWidget({activityStepData:currentStepData});
+                var currentActivityStepDetailWidget=new vfbam.userclient.common.UI.components.activitiesQueryer.ActivityStepGeneralInfoWidget({activityStepData:currentStepData});
                 if(isOdd){
                     domClass.add(currentActivityStepDetailWidget.domNode, "app_magazineView_item_odd");
                 }else{

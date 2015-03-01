@@ -1,13 +1,14 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
-    "dojo/text!vfbam/userclient/common/UI/components/basicTaskToolbar/template/BasicTaskToolbarWidget.html"
-],function(lang,declare, _Widget, _Templated, template){
+    "dojo/text!vfbam/userclient/common/UI/components/basicTaskToolbar/template/BasicTaskToolbarWidget.html","idx/oneui/Dialog"
+],function(lang,declare, _Widget, _Templated, template,Dialog){
     declare("vfbam.userclient.common.UI.components.basicTaskToolbar.BasicTaskToolbarWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
         taskDataEditor:null,
         taskItemData:null,
         menu_operationCollection:null,
+        activityInstanceDetail:null,
         postCreate: function(){},
         //interface method used to close dynamic page
         _CLOSE_DYNAMIC_PAGE:function(){
@@ -300,6 +301,34 @@ require([
                 that.taskAssignerNameLabel.set("dropDown",assignerParticipantNamecardWidget);
             };
             Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+        },
+        showActivityInstanceDetail:function(){
+            var resturl=ACTIVITY_SERVICE_ROOT+"activityInstanceDetail/"+APPLICATION_ID+"/"+this.taskItemData.activityId+"/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                that.doShowActivityInstanceDetail(data);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+        },
+        doShowActivityInstanceDetail:function(activityInstanceData){
+            this.activityInstanceDetail=new vfbam.userclient.common.UI.components.activitiesQueryer.ActivityInstanceDetailWidget({activityInstanceData:activityInstanceData});
+            var	dialog = new Dialog({
+                style:"width:760px;",
+                title: "<i class='icon-info-sign'></i> 业务活动详情",
+                content: "",
+                buttons:null,
+                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+            });
+            dojo.place(this.activityInstanceDetail.containerNode, dialog.containerNode);
+            dialog.show();
+            var that=this;
+            var closeDialogCallBack=function(){
+                that.activityInstanceDetail.destroy();
+            };
+            dojo.connect(dialog,"hide",closeDialogCallBack);
         },
         //interface method used to set task data editor
         SET_TASKDATA_EDITOR:function(taskDataEditor){
