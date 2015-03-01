@@ -9,7 +9,7 @@
         </span>
     </div>
     <div class="app_headerDivLine"></div>
-    <div style="padding-left: 10px;padding-top: 8px;padding-right: 10px;">
+    <div style="padding-left: 10px;padding-top: 8px;padding-right: 10px;" class="app_magazineView_item_even">
         <span style="cursor: pointer" data-dojo-attach-event="onclick:queryIWorkedTasks">
             <span class="icon-stack">
                 <i class="icon-circle icon-stack-base"></i>
@@ -17,12 +17,11 @@
             </span> 查询我完成的业务任务
         </span>
     </div>
-    <div class="app_headerDivLine"></div>
-    <div style="padding-left: 15px;padding-top: 8px;padding-right: 10px;">
+    <div class="app_headerDivLine app_magazineView_item_even"></div>
+    <div style="padding-left: 15px;padding-top: 8px;padding-bottom:12px;padding-right: 10px;">
         <div><i class="icon-key"></i> 按序号查询业务活动</div>
         <div class="app_headerDivLine" style="border-style:dotted;"></div>
         <input dojoType="dijit.form.TextBox" style="width: 150px;" data-dojo-attach-point="queryActivityIdInput">
-        <button dojoType="dijit.form.Button" data-dojo-attach-point="queryActivityByIdButton"><i class="icon-search"></i> 查询</button>
+        <button dojoType="dijit.form.Button" data-dojo-attach-point="queryActivityByIdButton" data-dojo-attach-event="onClick:queryActivityById"><i class="icon-search"></i> 查询</button>
     </div>
-    <div class="app_headerDivLine"></div>
 </div>
