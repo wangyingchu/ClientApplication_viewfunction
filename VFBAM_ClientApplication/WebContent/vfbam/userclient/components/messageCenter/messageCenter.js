@@ -268,6 +268,36 @@ function deleteMessage(messageData){
         cancelButtonAction:cancelButtonAction
     });
 }
+function showComponentConfigDialog(){
+    require(["idx/oneui/Dialog"], function(Dialog){
+        /*
+        var messageEditor=new vfbam.userclient.components.messageCenter.widget.messageEditor.MessageEditorWidget(messageData.data);
+         */
+        var confirmButton=new dijit.form.Button({
+            label: "<i class='icon-ok-sign'></i> 确定",
+            onClick: function(){
+            }
+        });
+        var applyButton=new dijit.form.Button({
+            label: "<i class='icon-ok'></i> 应用",
+            onClick: function(){
+            }
+        });
+        var actionButtone=[];
+        actionButtone.push(confirmButton);
+        actionButtone.push(applyButton);
+        var	dialog = new Dialog({
+            style:"width:600px;",
+            title: "<i class='icon-cog'></i> 信息中心参数设置",
+            content: "",
+            buttons:actionButtone,
+            closeButtonLabel: "<i class='icon-remove'></i> 取消"
+        });
+        //dialog.connect(messageEditor, "doCloseContainerDialog", "hide");
+        //dojo.place(messageEditor.containerNode, dialog.containerNode);
+        dialog.show();
+    });
+}
 //global resource definition
 //Message center is the default page and it will always load no matter display or not, so all global message events handlers should init here
 var GLOBAL_TASK_OPERATION_HANDLER=new vfbam.userclient.common.LOGIC.taskHandler.GlobalTaskOperationHandlerWidget();

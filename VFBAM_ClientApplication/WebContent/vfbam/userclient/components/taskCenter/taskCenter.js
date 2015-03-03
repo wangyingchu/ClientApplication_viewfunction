@@ -60,3 +60,33 @@ function initTaskCenterUI(){
         isTaskCenterFirstLoad=false;
     }
 }
+function showComponentConfigDialog(){
+    require(["idx/oneui/Dialog"], function(Dialog){
+        /*
+         var messageEditor=new vfbam.userclient.components.messageCenter.widget.messageEditor.MessageEditorWidget(messageData.data);
+         */
+        var confirmButton=new dijit.form.Button({
+            label: "<i class='icon-ok-sign'></i> 确定",
+            onClick: function(){
+            }
+        });
+        var applyButton=new dijit.form.Button({
+            label: "<i class='icon-ok'></i> 应用",
+            onClick: function(){
+            }
+        });
+        var actionButtone=[];
+        actionButtone.push(confirmButton);
+        actionButtone.push(applyButton);
+        var	dialog = new Dialog({
+            style:"width:600px;",
+            title: "<i class='icon-cog'></i> 我的工作参数设置",
+            content: "",
+            buttons:actionButtone,
+            closeButtonLabel: "<i class='icon-remove'></i> 取消"
+        });
+        //dialog.connect(messageEditor, "doCloseContainerDialog", "hide");
+        //dojo.place(messageEditor.containerNode, dialog.containerNode);
+        dialog.show();
+    });
+}
