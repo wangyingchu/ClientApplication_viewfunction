@@ -29,11 +29,12 @@ require([
             }else{
                 var lineCount=parseInt(activityTypeDefineArray.length/3);
                 var lastOnInLoop=0;
+                var totalNumber=0;
                 for(var i=0;i<lineCount;i++){
                     var currentLineActivityDefinition=[];
-                    var item1=  i*lineCount;
-                    var item2=item1+1;
-                    var item3=item1+2;
+                    var item1= totalNumber+0;
+                    var item2=totalNumber+1;
+                    var item3=totalNumber+2; 
                     currentLineActivityDefinition.push(activityTypeDefineArray[item1]);
                     currentLineActivityDefinition.push(activityTypeDefineArray[item2]);
                     currentLineActivityDefinition.push(activityTypeDefineArray[item3]);
@@ -41,6 +42,7 @@ require([
                     isOdd=!isOdd;
                     this.activityTypeDefinitionsContainer.appendChild(currentField.domNode);
                     lastOnInLoop=item3;
+                    totalNumber=item3+1;
                 }
                 var finalLineActivityDefinition=[];
                 var remainItems=activityTypeDefineArray.length-(lineCount*3);

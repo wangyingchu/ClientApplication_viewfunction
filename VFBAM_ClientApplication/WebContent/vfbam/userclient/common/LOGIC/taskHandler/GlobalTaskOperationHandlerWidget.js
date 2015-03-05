@@ -326,7 +326,11 @@ require([
                     }else{
                         if(currentTaskData.type=="DATE"){
                             if(currentTaskData.value){
-                                currentTaskDataObj.singleDataFieldValue=""+currentTaskData.value.getTime();
+                                if(currentTaskData.value.getTime!=null){
+                                    currentTaskDataObj.singleDataFieldValue=""+currentTaskData.value.getTime();
+                                }else{
+                                    currentTaskDataObj.singleDataFieldValue=""+currentTaskData.value;
+                                }
                             }else{
                                 currentTaskDataObj.singleDataFieldValue="";
                             }

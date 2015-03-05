@@ -56,52 +56,54 @@ require([
                 var participantTasksDetailVOList=data.participantTasksVOList;
                 if(participantTasksDetailVOList){
                     dojo.forEach(participantTasksDetailVOList,function(participantDetailTask){
-                        var taskDetailItemData={};
-                        taskDetailItemData["taskName"]= participantDetailTask.activityStepName;
-                        taskDetailItemData["activityName"]= participantDetailTask.activityType;
-                        taskDetailItemData["activityId"]= participantDetailTask.activityStep.activityId;
-                        taskDetailItemData["taskDescription"]= participantDetailTask.stepDescription;
-                        taskDetailItemData["taskDueDate"]=new Date(participantDetailTask.dueDate);
-                        if(participantDetailTask.activityStep.relatedRole){
-                            taskDetailItemData["taskRole"]= participantDetailTask.activityStep.relatedRole.displayName;
-                            taskDetailItemData["taskRoleID"]=participantDetailTask.activityStep.relatedRole.roleName;
+                        if(participantDetailTask.activityStep){
+                            var taskDetailItemData={};
+                            taskDetailItemData["taskName"]= participantDetailTask.activityStepName;
+                            taskDetailItemData["activityName"]= participantDetailTask.activityType;
+                            taskDetailItemData["activityId"]= participantDetailTask.activityStep.activityId;
+                            taskDetailItemData["taskDescription"]= participantDetailTask.stepDescription;
+                            taskDetailItemData["taskDueDate"]=new Date(participantDetailTask.dueDate);
+                            if(participantDetailTask.activityStep.relatedRole){
+                                taskDetailItemData["taskRole"]= participantDetailTask.activityStep.relatedRole.displayName;
+                                taskDetailItemData["taskRoleID"]=participantDetailTask.activityStep.relatedRole.roleName;
+                            }
+                            taskDetailItemData["taskDueStatus"]=participantDetailTask.dueStatus;
+                            taskDetailItemData["taskResponse"]=participantDetailTask.activityStep.stepResponse;
+                            var taskDataFields=[];
+                            var taskDataDetailInfo=participantDetailTask.activityStep.activityDataFieldValueList.activityDataFieldValueList;
+                            if(taskDataDetailInfo){
+                                dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
+                                    var fieldDefinition=taskDataDetail.activityDataDefinition;
+                                    var propertyValue={};
+                                    propertyValue["name"]=fieldDefinition.displayName;
+                                    propertyValue["fieldName"]=fieldDefinition.fieldName;
+                                    propertyValue["type"]=fieldDefinition.fieldType;
+                                    propertyValue["multipleValue"]=fieldDefinition.arrayField;
+                                    propertyValue["required"]=fieldDefinition.mandatoryField;
+                                    if(fieldDefinition.arrayField){
+                                        propertyValue["value"]=taskDataDetail.arrayDataFieldValue;
+                                    }else{
+                                        propertyValue["value"]=taskDataDetail.singleDataFieldValue;
+                                    }
+                                    propertyValue["writable"]=true;
+                                    propertyValue["readable"]=true;
+                                    taskDataFields.push(propertyValue);
+                                });
+                            }
+                            taskDetailItemData["taskDataFields"] = taskDataFields;
+                            taskDetailItemData["stepAssignee"] = participantDetailTask.stepAssignee;
+                            taskDetailItemData["stepOwner"] = participantDetailTask.stepOwner;
+                            var currentTaskItem=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskMagazineViewItemWidget(
+                                {taskStatus:true,taskItemData:taskDetailItemData});
+                            if(isOdd){
+                                domClass.add(currentTaskItem.domNode, "app_magazineView_item_odd");
+                            }else{
+                                domClass.add(currentTaskItem.domNode, "app_magazineView_item_even");
+                            }
+                            isOdd=!isOdd;
+                            that.myTaskMagazineViewItemListContainer.appendChild(currentTaskItem.domNode);
+                            that.taskItemsArray.push(currentTaskItem);
                         }
-                        taskDetailItemData["taskDueStatus"]=participantDetailTask.dueStatus;
-                        taskDetailItemData["taskResponse"]=participantDetailTask.activityStep.stepResponse;
-                        var taskDataFields=[];
-                        var taskDataDetailInfo=participantDetailTask.activityStep.activityDataFieldValueList.activityDataFieldValueList;
-                        if(taskDataDetailInfo){
-                            dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
-                                var fieldDefinition=taskDataDetail.activityDataDefinition;
-                                var propertyValue={};
-                                propertyValue["name"]=fieldDefinition.displayName;
-                                propertyValue["fieldName"]=fieldDefinition.fieldName;
-                                propertyValue["type"]=fieldDefinition.fieldType;
-                                propertyValue["multipleValue"]=fieldDefinition.arrayField;
-                                propertyValue["required"]=fieldDefinition.mandatoryField;
-                                if(fieldDefinition.arrayField){
-                                    propertyValue["value"]=taskDataDetail.arrayDataFieldValue;
-                                }else{
-                                    propertyValue["value"]=taskDataDetail.singleDataFieldValue;
-                                }
-                                propertyValue["writable"]=true;
-                                propertyValue["readable"]=true;
-                                taskDataFields.push(propertyValue);
-                            });
-                        }
-                        taskDetailItemData["taskDataFields"] = taskDataFields;
-                        taskDetailItemData["stepAssignee"] = participantDetailTask.stepAssignee;
-                        taskDetailItemData["stepOwner"] = participantDetailTask.stepOwner;
-                        var currentTaskItem=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskMagazineViewItemWidget(
-                            {taskStatus:true,taskItemData:taskDetailItemData});
-                        if(isOdd){
-                            domClass.add(currentTaskItem.domNode, "app_magazineView_item_odd");
-                        }else{
-                            domClass.add(currentTaskItem.domNode, "app_magazineView_item_even");
-                        }
-                        isOdd=!isOdd;
-                        that.myTaskMagazineViewItemListContainer.appendChild(currentTaskItem.domNode);
-                        that.taskItemsArray.push(currentTaskItem);
                     });
                 }
                 if(that.containerInitFinishCounterFuc){

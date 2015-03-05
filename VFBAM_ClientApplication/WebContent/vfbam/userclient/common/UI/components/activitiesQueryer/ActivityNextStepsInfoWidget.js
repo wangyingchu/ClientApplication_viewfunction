@@ -13,6 +13,8 @@ require([
                 if(stepName=="Exclusive Gateway"){
                     //currentStepName="等待决策（排他性条件跳转节点）";
                     currentStepName="等待决策";
+                }if(stepName=="End"){
+                    currentStepName="结束";
                 }
                 var currentStepSpan=domConstruct.create("span",{"style":"font-weight: bold;color: #888888;padding-top: 10px;padding-left: 5px;"});
                 var tagIconSpan=domConstruct.create("i",{"style":"padding-right: 5px;","class":"icon-tag"});
