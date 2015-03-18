@@ -63,14 +63,21 @@ function doUserLogin(){
     var userLoginDataContent=dojo.toJson(userLoginData);
     UI.showProgressDialog("登录系统");
     var resturl=PARTICIPANT_AUTH_REST_LOCATION;
-
     var errorCallback= function(data){
         UI.hideProgressDialog();
         UI.showSystemErrorMessage(data);
     };
     var loadCallback=function(data){
-        UI.hideProgressDialog();
-        window.location.href="index.html?participantId="+data.participantID;
+        var timer = new dojox.timing.Timer(1000);
+        timer.onTick = function(){
+            UI.hideProgressDialog();
+        };
+        timer.start();
+        if(data.loginAuthenticateResult){
+            window.location.href="index.html?participantId="+data.participantID;
+        }else{
+            UI.showToasterMessage({type:"error",message:"用户名称或密码错误"});
+        }
     };
     Application.WebServiceUtil.postJSONData(resturl,userLoginDataContent,loadCallback,errorCallback);
 }
