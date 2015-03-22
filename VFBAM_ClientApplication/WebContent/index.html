@@ -66,7 +66,14 @@
                 };
                 var loadCallback=function(data){
                     if(!data.loginAuthenticateResult){
-                        window.location.href="login.html";
+                        var errorDialogDataObj={};
+                        var okButtonAction=function(){
+                            window.location.href="login.html";
+                        };
+                        errorDialogDataObj.message="用户登录信息无效,请重新登录系统";
+                        errorDialogDataObj.oKButtonAction=okButtonAction;
+                        errorDialogDataObj.oKButtonLabel="重新登录";
+                        UI.showErrorDialog(errorDialogDataObj);
                     }else{
                         setupUserLoginInfo(userLoginName);
                     }
