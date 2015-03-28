@@ -75,11 +75,11 @@ require([
         },
 
         loadCustomFaviorParticipantsList:function(){
-            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
-            userId="Management Department";
-
-            var newCustomeAttributeObj={};
             /*
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            //userId="Management Department";
+
+             var newCustomeAttributeObj={};
             newCustomeAttributeObj.attributeName="TESTAttribute1";
             newCustomeAttributeObj.attributeType="STRING";
             newCustomeAttributeObj.arrayAttribute=false;
@@ -180,6 +180,202 @@ require([
             var fileTagOperationObj = {};
             var fileTagOperationObjContent=dojo.toJson(fileTagOperationObj);
             Application.WebServiceUtil.deleteJSONData(resturl, fileTagOperationObjContent, loadCallback, errorCallback);
+            */
+
+            /*
+            var newCustomeStructureObj={};
+            newCustomeStructureObj.structureName="TEST_Structure_B";
+             var resturl0=USERMANAGEMENTSERVICE_ROOT+"addParticipantCustomStructure/"+APPLICATION_ID+"/"+userId+"/";
+             var newCustomeStructureObjContent=dojo.toJson(newCustomeStructureObj);
+             var errorCallback0= function(data){
+             UI.showSystemErrorMessage(data);
+             };
+             var loadCallback0=function(data){
+             console.log(data);
+             };
+             Application.WebServiceUtil.postJSONData(resturl0,newCustomeStructureObjContent,loadCallback0,errorCallback0);
+             */
+
+            /*
+            var existingCustomeStructureObj={};
+            existingCustomeStructureObj.structureId ="/ACTIVITYSPACE_DEFINATION_ROOT/viewfunction_inc/ACTIVITYSPACE_Participant/ManagerA/CustomStructureStore/TEST_Structure_B/CustomStructureStore/newSubStructure001";
+            var resturl0=USERMANAGEMENTSERVICE_ROOT+"customStructure/addSubCustomStructure/"+APPLICATION_ID+"/newSubSubStructure002/";
+            var existingCustomeStructureObjContent=dojo.toJson(existingCustomeStructureObj);
+            var errorCallback0= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback0=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.postJSONData(resturl0,existingCustomeStructureObjContent,loadCallback0,errorCallback0);
+
+            */
+            /*
+            var newCustomeStructureObj={};
+            newCustomeStructureObj.structureName="Role_Structure_1";
+            var resturl0=USERMANAGEMENTSERVICE_ROOT+"addRoleCustomStructure/"+APPLICATION_ID+"/Management Department/";
+            var newCustomeStructureObjContent=dojo.toJson(newCustomeStructureObj);
+            var errorCallback0= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback0=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.postJSONData(resturl0,newCustomeStructureObjContent,loadCallback0,errorCallback0);
+
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"getRoleCustomStructures/"+APPLICATION_ID+"/Management Department/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+
+            */
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"getParticipantCustomStructures/"+APPLICATION_ID+"/"+userId+"";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+            */
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"getParticipantCustomStructure/"+APPLICATION_ID+"/"+userId+"/TEST_Structure_B/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"getRoleCustomStructure/"+APPLICATION_ID+"/Management Department/Role_Structure_1/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+            */
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"deleteParticipantCustomStructure/"+APPLICATION_ID+"/"+userId+"/";
+
+            var deleteCustomeStructureObj={};
+           // deleteCustomeStructureObj.structureName="Role_Structure_1";
+            deleteCustomeStructureObj.structureName="TEST_Structure_A";
+
+            var deleteCustomeStructureObjContent=dojo.toJson(deleteCustomeStructureObj);
+
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.deleteJSONData(resturl, deleteCustomeStructureObjContent, loadCallback, errorCallback);
+
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"deleteRoleCustomStructure/"+APPLICATION_ID+"/Management Department/";
+
+            var deleteCustomeStructureObj={};
+            deleteCustomeStructureObj.structureName="Role_Structure_1";
+
+            var deleteCustomeStructureObjContent=dojo.toJson(deleteCustomeStructureObj);
+
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.deleteJSONData(resturl, deleteCustomeStructureObjContent, loadCallback, errorCallback);
+            */
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"getParticipantCustomStructure/"+APPLICATION_ID+"/"+userId+"/TEST_Structure_B/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+            */
+            /*
+            var existingCustomeStructureObj={};
+            existingCustomeStructureObj.structureId ="/ACTIVITYSPACE_DEFINATION_ROOT/viewfunction_inc/ACTIVITYSPACE_Participant/ManagerA/CustomStructureStore/TEST_Structure_B/CustomStructureStore/newSubStructure001";
+            var resturl0=USERMANAGEMENTSERVICE_ROOT+"customStructure/addSubCustomStructure/"+APPLICATION_ID+"/newSubSubStructure004/";
+            var existingCustomeStructureObjContent=dojo.toJson(existingCustomeStructureObj);
+            var errorCallback0= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback0=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.postJSONData(resturl0,existingCustomeStructureObjContent,loadCallback0,errorCallback0);
+
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"customStructure/deleteSubCustomStructure/"+APPLICATION_ID+"/newSubSubStructure003/";
+            var deleteCustomeStructureObj={};
+            deleteCustomeStructureObj.structureId ="/ACTIVITYSPACE_DEFINATION_ROOT/viewfunction_inc/ACTIVITYSPACE_Participant/ManagerA/CustomStructureStore/TEST_Structure_B/CustomStructureStore/newSubStructure001";
+            var deleteCustomeStructureObjContent=dojo.toJson(deleteCustomeStructureObj);
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.deleteJSONData(resturl, deleteCustomeStructureObjContent, loadCallback, errorCallback);
+             */
+
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"customStructure/updateCustomAttribute/"+APPLICATION_ID+"/";
+            var structureAttributrOperationVO={};
+            structureAttributrOperationVO.customStructure={};
+            structureAttributrOperationVO.customStructure.structureId ="/ACTIVITYSPACE_DEFINATION_ROOT/viewfunction_inc/ACTIVITYSPACE_Participant/ManagerA/CustomStructureStore/TEST_Structure_B/";
+
+            var newCustomeAttributeObj={};
+            newCustomeAttributeObj.attributeName="TESTAttribute2";
+            newCustomeAttributeObj.attributeType="STRING";
+            newCustomeAttributeObj.arrayAttribute=true;
+            newCustomeAttributeObj.attributeRowValue=["value1_150204AAAA","value2_150204AAAA","NewValueAAAAAAAAAA"];
+
+            structureAttributrOperationVO.customAttribute=newCustomeAttributeObj;
+            var structureAttributrOperationVOObjContent=dojo.toJson(structureAttributrOperationVO);
+            var errorCallback0= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback0=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.postJSONData(resturl,structureAttributrOperationVOObjContent,loadCallback0,errorCallback0);
+            */
+
+            /*
+            var resturl=USERMANAGEMENTSERVICE_ROOT+"customStructure/deleteCustomAttribute/"+APPLICATION_ID+"/TESTAttribute2/";
+            var structureAttributrOperationVO={};
+            structureAttributrOperationVO.customStructure={};
+            structureAttributrOperationVO.customStructure.structureId ="/ACTIVITYSPACE_DEFINATION_ROOT/viewfunction_inc/ACTIVITYSPACE_Participant/ManagerA/CustomStructureStore/TEST_Structure_B/";
+
+            structureAttributrOperationVO.customAttribute=newCustomeAttributeObj;
+            var structureAttributrOperationVOObjContent=dojo.toJson(structureAttributrOperationVO.customStructure);
+            var errorCallback0= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback0=function(data){
+                console.log(data);
+            };
+            Application.WebServiceUtil.deleteJSONData(resturl,structureAttributrOperationVOObjContent,loadCallback0,errorCallback0);
             */
         },
 
