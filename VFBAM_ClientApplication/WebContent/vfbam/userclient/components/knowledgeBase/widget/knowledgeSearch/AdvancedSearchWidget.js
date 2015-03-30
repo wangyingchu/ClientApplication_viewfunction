@@ -13,7 +13,7 @@ require([
         categorySelector:null,
         categoryTagFilter:null,
         postCreate: function(){
-            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT_141215";
+            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT";
             this.currentSearchCategoryMap={};
             this.savedCategoriesSearchItemMap={};
             this.renderSavedCategorySearchItems();

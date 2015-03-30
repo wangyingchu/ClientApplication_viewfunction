@@ -9,7 +9,7 @@ var APP_KNOWLEDGEBASE_DELETESAVEDSEARCH_EVENT="APP_KNOWLEDGEBASE_DELETESAVEDSEAR
 var APP_KNOWLEDGEBASE_UPDATECONTENTDISPLAYTITLE_EVENT="APP_KNOWLEDGEBASE_UPDATECONTENTDISPLAYTITLE_EVENT";
 var APP_KNOWLEDGEBASE_UPDATECONTENTBELONGEDCOLLECTION_EVENT="APP_KNOWLEDGEBASE_UPDATECONTENTBELONGEDCOLLECTION_EVENT";
 var APP_KNOWLEDGEBASE_UPDATECOLLECTIONKNOWLEDGECONTENT_EVENT="APP_KNOWLEDGEBASE_UPDATECOLLECTIONKNOWLEDGECONTENT_EVENT";
-
+var APP_KNOWLEDGEBASE_UPDATEKNOWLEDGEDISPLAYPANELHEIGHT_EVENT="APP_KNOWLEDGEBASE_UPDATEKNOWLEDGEDISPLAYPANELHEIGHT_EVENT";
 //knowledge render logic
 var KNOWLEDGE_VIEW_TYPE="KNOWLEDGE_VIEW_TYPE";
 var KNOWLEDGE_VIEW_TYPE_COLLECTION="COLLECTION";
@@ -48,6 +48,9 @@ var KNOWLEDGESEARCH_INPUTTYPE_TAG_VALUE="TAG_VALUE";
 //knowledge modification logic
 var KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM={};
 
+//multi item search result logic
+var KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT=null;
+/*
 var knowledgeNavigateItemInfo=[];
 var item1={};
 knowledgeNavigateItemInfo.push(item1);
@@ -185,10 +188,18 @@ extrnalResourceItemInfo.resource.push({
 var knowledgeNavigationBarWidget=
     new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationBarWidget(
         {knowledgeNavigateItemInfo:knowledgeNavigateItemInfo,externalResourceItemInfo:extrnalResourceItemInfo},"app_knowledgeBase_knowledgeNavigationBar");
+*/
+
+var xxx=document.getElementById("app_knowledgeBase_mainContainer").offsetHeight;
+console.log(xxx);
+console.log(xxx);
+
+var knowledgeNavigationBarWidget=
+    new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationMenuListWidget({},"app_knowledgeBase_knowledgeNavigationBar");
 
 var resultDisplayZoneWidth = document.getElementById("app_knowledgeBase_resultDisplayZone").offsetWidth;
 var knowledgeDisplayPanelWidget=
-    new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget({resultDisplayZoneWidth:resultDisplayZoneWidth},"app_knowledgeBase_resultDisplayZone");
+    new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget({resultDisplayZoneWidth:resultDisplayZoneWidth,knowledgeNavigationBarWidget:knowledgeNavigationBarWidget},"app_knowledgeBase_resultDisplayZone");
 
 var searchInputTypeSelect_MenuCollection=new dijit.DropDownMenu({ style: "display: none;"});
 var menuItem_materialDescription = new dijit.MenuItem({

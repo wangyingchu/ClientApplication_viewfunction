@@ -7,9 +7,22 @@ require([
         widgetsInTemplate: true,
         knowledgeItemWallDisplayWidgetArray:null,
         postCreate: function() {
-            this.knowledgeItemWallDisplayWidgetArray=[];   
+            KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT=this.knowledgeMetaInfo;
+            this.knowledgeItemWallDisplayWidgetArray=[];
+            var that=this;
             dojo.forEach(this.knowledgeMetaInfo,function(currentKnowledgeItem){
-                var newSecondaryItemWidget = new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemWallDisplayWidget({knowledgeContentInfo: currentKnowledgeItem});
+                var newSecondaryItemWidget = null;
+                if(that.highLightKnowledgeContent){
+                    var highLightContentName=that.highLightKnowledgeContent.contentName;
+                    var highLightSequenceNumber=that.highLightKnowledgeContent.sequenceNumber;
+                    if(highLightContentName==currentKnowledgeItem.contentName&&highLightSequenceNumber==currentKnowledgeItem.sequenceNumber){
+                        newSecondaryItemWidget = new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemWallDisplayWidget({knowledgeContentInfo: currentKnowledgeItem,isHighLightItem:true});
+                    }else{
+                        newSecondaryItemWidget = new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemWallDisplayWidget({knowledgeContentInfo: currentKnowledgeItem});
+                    }
+                }else{
+                    newSecondaryItemWidget = new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemWallDisplayWidget({knowledgeContentInfo: currentKnowledgeItem});
+                }
                 this.knowledgeItemContainer.appendChild(newSecondaryItemWidget.domNode);
                 this.knowledgeItemWallDisplayWidgetArray.push(newSecondaryItemWidget);
             },this);

@@ -28,7 +28,7 @@ require([
             var dateString=dojo.date.locale.format(uploadDate,dateDisplayFormat);
             var timeString=dojo.date.locale.format(uploadDate,timeDisplayFormat);
             this.uploadTimeTxt.innerHTML=dateString+" "+timeString;
-
+            /*
             var that=this;
             if(KnowledgeBaseDataHandleUtil.shouldSwitchSummaryInfoDisplay(this.knowledgeContentInfo)){
                 this.mouseEnterEventListener=on(this.itemContainer, mouse.enter, function(evt){
@@ -40,6 +40,14 @@ require([
             }else{
                 that.showDesc();
             }
+            */
+            var that=this;
+            this.mouseEnterEventListener=on(this.itemContainer, mouse.enter, function(evt){
+                that.showDesc();
+            });
+            this.mouseLeaveEventListener=on(this.itemContainer, mouse.leave, function(evt){
+                that.hideDesc();
+            });
 
             this.mouseClickEventListener=on(this.itemContainer, "click", function(evt){
                 Application.MessageUtil.publishMessage(APP_KNOWLEDGEBASE_SHOWKNOWLEDGECONTENT_EVENT,{

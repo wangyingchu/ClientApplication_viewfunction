@@ -49,8 +49,9 @@ require([
             }else{
                 dojo.style(this.recommendedKnowledgeIconContainer,"display","none");
                 dojo.style(this.noResultContainer,"display","");
+                this.previousPageButton.set("disabled","disabled");
+                this.nextPageButton.set("disabled","disabled");
             }
-
         },
         _renderSimilarDocuments:function(){
             var startIdx=9*this.currentSimilarDocumentPageStep;

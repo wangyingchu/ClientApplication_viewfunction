@@ -17,7 +17,7 @@ require([
             this.categoryTreeMetaData["identifier"]="categoryId";
             this.categoryTreeMetaData["label"]="categoryDisplayName_cn";
             this.categoryTreeMetaData["items"]=[];
-            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT_141215";
+            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT";
             this.loadCategoryTree();
             this.categorySelectedListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_UPDATECATEGORYDATA_EVENT,dojo.hitch(this,this.updateCategoryInfo));
         },
@@ -85,7 +85,17 @@ require([
                     menu.startup();
                     that.categoryDataTree.startup();
                 }
+                /*
+                var timer = new dojox.timing.Timer(300);
+                timer.onTick = function(){
+
+                    UI.hideProgressDialog();
+                    timer.stop();
+                };
+                timer.start();
+                */
             };
+            //UI.showProgressDialog("查询数据");
             Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
         },
         _buildDataTreeStructure:function(data){

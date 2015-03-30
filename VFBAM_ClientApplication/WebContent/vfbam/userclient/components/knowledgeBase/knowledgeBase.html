@@ -19,11 +19,6 @@
                 <span class="searchBarButton">
                     <div dojoType="dijit.form.Button" onClick="doKnowledgeInputValueSearch"><i class="icon-search"></i> 搜索</div>
                 </span>
-                <span>
-                    <span style="font-size: 1.0em;color: #888888;font-weight: bold;padding-left: 10px;"><i class="icon-globe"></i> 知识导航：</span>
-                    <span id="app_knowledgeBase_knowledgeNavigationBar">
-                    </span>
-                </span>
             </div>
         </td>
         <td align="right" style="min-width: 200px;">
@@ -36,10 +31,17 @@
             </span>
         </td>
     </tr>
+    <tr>
+        <td colspan="2" style="background-color: #F7F7F7;">
+            <div id="app_knowledgeBase_knowledgeNavigationBar"></div>
+        </td>
+    </tr>
 </table>
 <div class="app_headerDivLine"></div>
-
+<!--
 <div dojoType="idx.layout.BorderContainer" id="app_knowledgeBase_mainContainer" style="width: 100%; height: 94%;" gutters="false" liveSplitters="true">
+-->
+<div dojoType="idx.layout.BorderContainer" id="app_knowledgeBase_mainContainer" style="width: 100%; height: 450px;" gutters="false" liveSplitters="true">
     <div dojoType="dijit.layout.ContentPane" region="left" splitter="true" style="width: 120px; overflow: auto;">
         <div style="height: 8px;"> </div>
         <div><span style="font-size: 0.9em;color: #888888;"><i class="icon-archive"></i> 专辑：</span></div>

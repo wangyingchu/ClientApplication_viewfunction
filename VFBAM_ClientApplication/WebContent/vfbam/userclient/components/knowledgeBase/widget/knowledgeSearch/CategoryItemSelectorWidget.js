@@ -17,7 +17,7 @@ require([
             this.categoryTreeMetaData["identifier"]="categoryId";
             this.categoryTreeMetaData["label"]="categoryDisplayName_cn";
             this.categoryTreeMetaData["items"]=[];
-            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT_141215";
+            this.rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT";
             this.loadCategoryTree();
         },
         loadCategoryTree:function(){

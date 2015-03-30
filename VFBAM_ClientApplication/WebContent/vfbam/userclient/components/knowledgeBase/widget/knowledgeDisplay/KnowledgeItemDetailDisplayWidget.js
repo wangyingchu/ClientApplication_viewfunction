@@ -14,9 +14,10 @@ require([
         knowledgeItemBelongedCollectionListMenuDialog:null,
         knowledgeItemBelongedCollectionListWidget:null,
         fullSizeGeneralKnowledgeViewerWidget:null,
+        sameSearchResultWallDisplayWidget:null,
+        sameSearchResultWallDisplayWidgetDialog:null,
         postCreate: function(){
             var knowledgeContentInfo=this.knowledgeMetaInfo.KNOWLEDGE_VIEW_DATA.VIEW_METADATA;
-
             this.generalKnowledgeViewerWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.GeneralKnowledgeViewerWidget({
                 resultDisplayZoneWidth:this.resultDisplayZoneWidth,knowledgeContentInfo:knowledgeContentInfo
             },this.generalKnowledgeViewerContainer);
@@ -24,17 +25,20 @@ require([
             this.knowledgeItemMetaInfoWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemMetaInfoWidget({
                     knowledgeContentInfo:knowledgeContentInfo},this.knowledgeItemMetaInfoContainer);
 
+            this.itemRelatedMainCategoriesWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemRelatedMainCategoriesWidget({
+                knowledgeContentInfo:knowledgeContentInfo,mainCategoriesContainer:this.mainCategoriesContainer},this.itemRelatedMainCategoriesWidgetContainer);
+
             this.itemRecommendedKnowledgeWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.ItemRecommendedKnowledgeWidget({
                 knowledgeContentInfo:knowledgeContentInfo},this.itemRecommendedKnowledgeWidgetContainer);
 
             this.knowledgeItemAttachedTagEditorWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagEditorWidget({
                 knowledgeContentInfo:knowledgeContentInfo,attachedTags:knowledgeContentInfo.contentTags,knowledgeCategoryInheritDataStore:this.knowledgeDisplayPanelWidget.getKnowledgeCategoryInheritDataStore()});
+
             this.knowledgeTagInfoMenuDialog=new idx.widget.MenuDialog({});
             dojo.connect( this.knowledgeTagInfoMenuDialog,"onOpen",this.knowledgeItemAttachedTagEditorWidget,"renderTagItems");
             dojo.place(this.knowledgeItemAttachedTagEditorWidget.domNode, this.knowledgeTagInfoMenuDialog.containerNode);
             var showTagDialogLinklabel="分类标签 <i class='icon-caret-down'></i>";
             new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:showTagDialogLinklabel,dropDown: this.knowledgeTagInfoMenuDialog},this.knowledgeTagSwitcherContainer);
-
             this.knowledgeItemBelongedCollectionListMenuDialog=new idx.widget.MenuDialog({});
                     this.knowledgeItemBelongedCollectionListWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionListWidget({
                 knowledgeContentInfo:knowledgeContentInfo,popupDialog:this.knowledgeItemBelongedCollectionListMenuDialog});
@@ -42,6 +46,11 @@ require([
             var showProjectDialogLinklabel="所属专辑 <i class='icon-caret-down'></i>";
             new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:showProjectDialogLinklabel,dropDown: this.knowledgeItemBelongedCollectionListMenuDialog},this.knowledgeProjectsSwitcherContainer);
             this.viewKnowledgeItem();
+            if(KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT){
+                dojo.style(this.sameSearchResultContainer,"display","");
+            }else{
+                dojo.style(this.sameSearchResultContainer,"display","none");
+            }
         },
         downloadKnowledgeFile:function(){
             var knowledgeContentInfo=this.knowledgeMetaInfo.KNOWLEDGE_VIEW_DATA.VIEW_METADATA;
@@ -120,6 +129,20 @@ require([
             };
             Application.WebServiceUtil.postJSONData(resturl,collectionDocumentObjContent,loadCallback,errorCallback);
         },
+        showSameSearchResult:function(){
+            var knowledgeContentInfo=this.knowledgeMetaInfo.KNOWLEDGE_VIEW_DATA.VIEW_METADATA;
+            var viewerWidthStyle="width:1100px;";
+            this.sameSearchResultWallDisplayWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemsWallWidget(
+                {knowledgeMetaInfo:KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT,highLightKnowledgeContent:knowledgeContentInfo});
+            this.sameSearchResultWallDisplayWidgetDialog = new Dialog({
+                style:viewerWidthStyle,
+                title: "<i class='icon-th'></i> 当前素材搜索结果:",
+                content:this.sameSearchResultWallDisplayWidget,
+                //class:'nonModal',// for noe modal window
+                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+            });
+            this.sameSearchResultWallDisplayWidgetDialog.show();
+        },
         destroy:function(){
             this.generalKnowledgeViewerWidget.destroy();
             if(this.fullSizeGeneralKnowledgeViewerWidget){
@@ -127,10 +150,17 @@ require([
             }
             this.knowledgeItemMetaInfoWidget.destroy();
             this.itemRecommendedKnowledgeWidget.destroy();
+            this.itemRelatedMainCategoriesWidget.destroy();
             this.knowledgeTagInfoMenuDialog.destroy();
             this.knowledgeItemAttachedTagEditorWidget.destroy();
             this.knowledgeItemBelongedCollectionListMenuDialog.destroy();
             this.knowledgeItemBelongedCollectionListWidget.destroy();
+            if(this.sameSearchResultWallDisplayWidget!=null){
+                this.sameSearchResultWallDisplayWidget.destroy();
+            }
+            if(this.sameSearchResultWallDisplayWidgetDialog!=null){
+                this.sameSearchResultWallDisplayWidgetDialog.destroy();
+            }
             this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}

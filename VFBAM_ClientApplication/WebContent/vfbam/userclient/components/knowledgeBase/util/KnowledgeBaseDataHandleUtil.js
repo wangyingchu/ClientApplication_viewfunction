@@ -1,6 +1,6 @@
 var KnowledgeBaseDataHandleUtil=(function(){
     //private members:
-    var rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT_141215";
+    var rootCategoryNodeId= "/CATEGORY_BASE_METADATA_ROOT";
     var _buildDataTreeStructure=function(data){
         var  treeData=[];
         treeData.push(
@@ -290,9 +290,7 @@ var KnowledgeBaseDataHandleUtil=(function(){
             Application.WebServiceUtil.postJSONData(resturl,changedObjContent,loadCallback,errorCallback);
         },
         addNeCategoryTagInSearchEngine:function(newTagValue){
-            var newTagsArray=[];
-            newTagsArray.push(newTagValue);
-            var changedObjContent=dojo.toJson(newTagsArray);
+            var changedObjContent=dojo.toJson(newTagValue);
             var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"createTag/";
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);

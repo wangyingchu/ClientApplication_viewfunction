@@ -1,8 +1,8 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
     "dojo/text!vfbam/userclient/components/knowledgeBase/widget/knowledgeDisplay/template/KnowledgeDisplayPanelWidget.html",
-    "dojo/dom-class","dojo/window","dojo/dom-style"
-],function(lang,declare, _Widget, _Templated, template,domClass,win,domStyle){
+    "dojo/dom-class","dojo/window","dojo/dom-style","dojo/dom-geometry"
+],function(lang,declare, _Widget, _Templated, template,domClass,win,domStyle,domGeom){
     declare("vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
@@ -13,22 +13,11 @@ require([
         knowledgeContentDisplayItemList:null,
         knowledgeCategoryInheritDataStore:null,
         postCreate: function(){
-            //init knowledge display zone Center container height
-            var App_KnowledgeBase_UI_Header_Height=0;
-            if(dojo.isChrome){
-                App_KnowledgeBase_UI_Header_Height=220;
-            }else{
-                App_KnowledgeBase_UI_Header_Height=214;
-            }
-            var vs =win.getBox();
-            var App_KnowledgeBase_UI_Dynamic_Real_Height=  vs.h-App_KnowledgeBase_UI_Header_Height;
-            var currentHeightStyle=""+ App_KnowledgeBase_UI_Dynamic_Real_Height+"px";
-            dojo.style(this.app_knowledgeBase_resultDisplayZone,"height",currentHeightStyle);
-
+            this.modifyDisplayPanelHeight();
             Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_SHOWKNOWLEDGECONTENT_EVENT,dojo.hitch(this,this.showKnowledgeContentView));
             Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_RELOADKNOWLEDGECONTENT_EVENT,dojo.hitch(this,this.reloadKnowledgeContentView));
             Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_UPDATECONTENTDISPLAYTITLE_EVENT,dojo.hitch(this,this.updateKnowledgeContentDisplayTitle));
-
+            Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_UPDATEKNOWLEDGEDISPLAYPANELHEIGHT_EVENT,dojo.hitch(this,this.modifyDisplayPanelHeight));
             this.knowledgeQueryHistoryListMenuDialog=new idx.widget.MenuDialog();
             this.knowledgeQueryHistoryList=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeQueryHistoryListWidget({containerDialog: this.knowledgeQueryHistoryListMenuDialog,displayPanel:this});
             dojo.place(this.knowledgeQueryHistoryList.domNode, this.knowledgeQueryHistoryListMenuDialog.containerNode);
@@ -54,6 +43,24 @@ require([
             this.showKnowledgeContentView(defaultDisplayViewInfo);
             this.currentKnowledgeViewInfo=defaultDisplayViewInfo;
             this._loadKnowledgeCategoryInheritDataStore();
+        },
+        modifyDisplayPanelHeight:function(){
+            //init knowledge display zone Center container height
+            //calcute navigationBar height
+            var navigationBarContentBox = domGeom.getContentBox(this.knowledgeNavigationBarWidget.domNode);
+            var navigationBarHeight=navigationBarContentBox.h+2;
+            var App_KnowledgeBase_UI_Header_Height=0;
+            if(dojo.isChrome){
+                App_KnowledgeBase_UI_Header_Height=220;
+            }else{
+                App_KnowledgeBase_UI_Header_Height=214;
+            }
+            var vs =win.getBox();
+            var App_KnowledgeBase_UI_Dynamic_Real_Height=  vs.h-App_KnowledgeBase_UI_Header_Height-navigationBarHeight;
+            //var App_KnowledgeBase_UI_Dynamic_Real_Height=  vs.h-App_KnowledgeBase_UI_Header_Height;
+
+            var currentHeightStyle=""+ App_KnowledgeBase_UI_Dynamic_Real_Height+"px";
+            dojo.style(this.app_knowledgeBase_resultDisplayZone,"height",currentHeightStyle);
         },
         showKnowledgeContentView:function(data){
             this.knowledgeQueryHistoryList.addViewQueryHistory(data);
@@ -93,7 +100,6 @@ require([
             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.CURRENT_PAGE_NUMBER=currentPageNumber+1;
             this._doLoadKnowledgeContentData(this.currentKnowledgeViewInfo);
         },
-
         _setUpPagingElementInfo:function(pagingMetaData){
             if(pagingMetaData.isFirstPage){
                 this.previousPageButton.set("disabled","disabled");
@@ -136,7 +142,6 @@ require([
             }else{
                 dojo.style(this.pagingElementContainer,"display","");
             }
-
             var that=this;
             if(contentData.KNOWLEDGE_VIEW_TYPE==KNOWLEDGE_VIEW_TYPE_MATERIAL){
                 if(contentData.KNOWLEDGE_VIEW_MODE==KNOWLEDGE_VIEW_MODE_SINGLE){
@@ -147,7 +152,6 @@ require([
                 }
                 if(contentData.KNOWLEDGE_VIEW_MODE==KNOWLEDGE_VIEW_MODE_MULTIPLE){
                     if(contentData.KNOWLEDGE_VIEW_DATA.VIEW_METADATA){
-
                         var pageSize=50;
                         var currentPageNumber=1;
                         if(contentData.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA){
@@ -328,6 +332,9 @@ require([
                     }
                 }
             }else if(contentData.KNOWLEDGE_VIEW_TYPE==KNOWLEDGE_VIEW_TYPE_COLLECTION){
+
+                KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT=null;
+
                 if(contentData.KNOWLEDGE_VIEW_MODE==KNOWLEDGE_VIEW_MODE_SINGLE){
                     var currentKnowledgeItem=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeCollectionDetailDisplayWidget(
                         {resultDisplayZoneWidth:this.resultDisplayZoneWidth,knowledgeCollectionInfo:contentData,knowledgeDisplayPanelWidget:this});
@@ -614,7 +621,7 @@ require([
                         multiTagSearchObj.currentPageNumber=currentPageNumber;
                         multiTagSearchObj.limitCount=1000;
                         multiTagSearchObj.paging=true;
-                        multiTagSearchObj.booleanOperator=1;
+                        multiTagSearchObj.booleanOperator=0;
                         var tagIdsWithDepthMap=[];
                         dojo.forEach(searchValue,function(currentTag){
                             var tagInfoObj={};
@@ -758,18 +765,39 @@ require([
                 this.showKnowledgeContentView(displayViewInfo);
             }
             if(searchType==KNOWLEDGESEARCH_INPUTTYPE_TAG_VALUE){
+                var inputTagArrays=searchValue.split(" ");
+                var inputValidTagNameMap={};
+                var searchValueinValid=false;
                 var categoryInheritDataStore= this.getKnowledgeCategoryInheritDataStore();
                 var matchedTagsArray = categoryInheritDataStore.query({ categoryDisplayName_cn: searchValue });
-                if(matchedTagsArray.length==0){
-                    var errorDialogDataObj={};
-                    var okButtonAction=function(){};
-                    errorDialogDataObj.message="标签分类: <b>"+searchValue+"</b> 不存在";
-                    errorDialogDataObj.oKButtonAction=okButtonAction;
-                    errorDialogDataObj.oKButtonLabel="确定";
-                    UI.showErrorDialog(errorDialogDataObj);
+                var fullMatchedTagValurArray=[];
+                dojo.forEach(inputTagArrays,function(currentTag){
+                    if(currentTag!=""){
+                        var currentMatchedTagsArray= categoryInheritDataStore.query({ categoryDisplayName_cn: currentTag });
+                        if(currentMatchedTagsArray.length==0){
+                            var errorDialogDataObj={};
+                            var okButtonAction=function(){};
+                            errorDialogDataObj.message="标签分类: <b>"+currentTag+"</b> 不存在";
+                            errorDialogDataObj.oKButtonAction=okButtonAction;
+                            errorDialogDataObj.oKButtonLabel="确定";
+                            UI.showErrorDialog(errorDialogDataObj);
+                            searchValueinValid=true;
+                            return;
+                        }else{
+                            if(!inputValidTagNameMap[currentTag]){
+                                inputValidTagNameMap[currentTag]=currentMatchedTagsArray;
+                                dojo.forEach(currentMatchedTagsArray,function(currentMatchedTagValue){
+                                    fullMatchedTagValurArray.push(currentMatchedTagValue);
+                                });
+                            }
+                        }
+                    }
+                });
+                if(searchValueinValid){
+                    return;
                 }else{
                     var matchedTageValue=[];
-                    dojo.forEach(matchedTagsArray,function(tagObj){
+                    dojo.forEach(fullMatchedTagValurArray,function(tagObj){
                         matchedTageValue.push(tagObj.categoryId);
                     });
                     var displayViewInfo={

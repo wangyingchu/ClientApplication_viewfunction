@@ -12,6 +12,10 @@
                             <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
                             <span><i style="color:#CE0000;" class="icon-heart"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:collectKnowledgeItem">收藏</span></span>
                             <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                            <span data-dojo-attach-point="sameSearchResultContainer">
+                                <span><i class="icon-th"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showSameSearchResult">当前素材搜索结果</span></span>
+                                <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                            </span>
                             <span  style="padding-right: 10px;"><i style="color:#00475B;" class="icon-archive"></i> <span style="color: #05386b;"><span data-dojo-attach-point="knowledgeProjectsSwitcherContainer"></span></span></span>
                         </div>
                     </div>
@@ -29,7 +33,11 @@
                         <div data-dojo-attach-point="knowledgeItemMetaInfoContainer"></div>
                     </div>
                     <div>
-                        <div style="height: 30px;"> </div>
+                        <div style="display: none;" data-dojo-attach-point="mainCategoriesContainer">
+                            <div style="height: 20px;"> </div>
+                            <div data-dojo-attach-point="itemRelatedMainCategoriesWidgetContainer"></div>
+                        </div>
+                        <div style="height: 20px;"> </div>
                         <div data-dojo-attach-point="itemRecommendedKnowledgeWidgetContainer"></div>
                     </div>
                 </td>

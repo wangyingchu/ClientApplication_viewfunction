@@ -1,14 +1,15 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
     "dojo/text!vfbam/userclient/components/knowledgeBase/widget/knowledgeDisplay/template/KnowledgeItemAttachedTagEditorWidget.html",
-    "idx/oneui/Dialog"
-],function(lang,declare, _Widget, _Templated, template,Dialog){
+    "idx/oneui/Dialog","dojo/dom-construct"
+],function(lang,declare, _Widget, _Templated, template,Dialog,domConstruct){
     declare("vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagEditorWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
         attachedCategoryTagList:null,
         postCreate: function(){
             this.attachedCategoryTagList=[];
+            this.renderSheetMode();
         },
         renderTagItems:function(){
             dojo.empty(this.attachedTagDisplayContainer);
@@ -24,6 +25,125 @@ require([
                 this.attachedTagDisplayContainer.appendChild(attachedCategoryTag.domNode);
                 this.attachedCategoryTagList.push(attachedCategoryTag);
             },this);
+            this.renderTagSheet();
+        },
+        renderTagSheet:function(){
+            var that=this;
+            var contentTags=this.knowledgeContentInfo.contentTags;
+            var projectTags=this.knowledgeContentInfo.projectTags;
+            var mergedTagArray=[];
+            dojo.forEach(contentTags,function(currentTag){
+                mergedTagArray.push(currentTag);
+            });
+            dojo.forEach(projectTags,function(currentProjectTag){
+                if(!that.containedInMergedTagArray(currentProjectTag,mergedTagArray)){
+                    mergedTagArray.push(currentProjectTag);
+                }
+            });
+            var maxInheritDepth=0;
+            var finalTagDisplayNamesArray=[];
+            dojo.forEach(mergedTagArray,function(tagId){
+                var currentCategory=this.knowledgeCategoryInheritDataStore.get(tagId);
+                var displayNameInheritArray=[];
+                KnowledgeBaseDataHandleUtil.getCategoryDisplayNameInherit(currentCategory,displayNameInheritArray,this.knowledgeCategoryInheritDataStore);
+                var finalDisplayNameInheritArray=displayNameInheritArray.reverse();
+                finalTagDisplayNamesArray.push(finalDisplayNameInheritArray);
+                if(finalDisplayNameInheritArray.length> maxInheritDepth){
+                    maxInheritDepth=finalDisplayNameInheritArray.length;
+                }
+            },this);
+
+            function level0Sort(a,b){
+                var stringCompare=a[0].localeCompare(b[0]);
+                return stringCompare;
+            }
+            finalTagDisplayNamesArray.sort(level0Sort);
+            function level1Sort(a,b){
+                if(a[0]==b[0]){
+                    var stringCompare=a[1].localeCompare(b[1]);
+                    return stringCompare;
+                }else{
+                   return null;
+                }
+            }
+            finalTagDisplayNamesArray.sort(level1Sort);
+            function level2Sort(a,b){
+                if(a[0]==b[0]&&a[1]==b[1]){
+                    var stringCompare=a[2].localeCompare(b[2]);
+                    return stringCompare;
+                }else{
+                    return null;
+                }
+            }
+            finalTagDisplayNamesArray.sort(level2Sort);
+            function level3Sort(a,b){
+                if(a[0]==b[0]&&a[1]==b[1]&&a[2]==b[2]){
+                    var stringCompare=a[3].localeCompare(b[3]);
+                    return stringCompare;
+                }else{
+                    return null;
+                }
+            }
+            finalTagDisplayNamesArray.sort(level3Sort);
+            function level4Sort(a,b){
+                if(a[0]==b[0]&&a[1]==b[1]&&a[2]==b[2]&&a[3]==b[3]){
+                    var stringCompare=a[4].localeCompare(b[4]);
+                    return stringCompare;
+                }else{
+                    return null;
+                }
+            }
+            finalTagDisplayNamesArray.sort(level4Sort);
+            function level5Sort(a,b){
+                if(a[0]==b[0]&&a[1]==b[1]&&a[2]==b[2]&&a[3]==b[3]&&a[4]==b[4]){
+                    var stringCompare=a[5].localeCompare(b[5]);
+                    return stringCompare;
+                }else{
+                    return null;
+                }
+            }
+            finalTagDisplayNamesArray.sort(level5Sort);
+
+            var existingTagNameRegister={};
+            dojo.empty(this.attachedTagSheetTable);
+            dojo.forEach(finalTagDisplayNamesArray,function(displayNameInheritArray){
+                var trNode = domConstruct.create("tr");
+                that.attachedTagSheetTable.appendChild(trNode);
+                dojo.forEach(displayNameInheritArray,function(tagNameValue,idx){
+                    var columnNumber=""+idx;
+                    if(existingTagNameRegister[columnNumber]==null){
+                        existingTagNameRegister[columnNumber]=[];
+                    }
+                    var existingFlag=false;
+                    if(that.containedInMergedTagArray(tagNameValue,existingTagNameRegister[columnNumber])){
+                        existingFlag=true;
+                    }else{
+                        existingTagNameRegister[columnNumber].push(tagNameValue);
+                        existingFlag=false;
+                    }
+                    var currentTd;
+                    if(existingFlag){
+                        currentTd=domConstruct.create("td",{"innerHTML":tagNameValue,"style":"border-width:0px;border-bottom-width: 1px;padding: 8px; border-style: solid; border-color: #CCCCCC;color:#DDDDDD;"});
+                    }else{
+                        currentTd=domConstruct.create("td",{"innerHTML":tagNameValue,"style":"border-width:0px;border-bottom-width: 1px;padding: 8px; border-style: solid; border-color: #CCCCCC;"});
+                    }
+                    trNode.appendChild(currentTd);
+                });
+                var emptyTdNumber=maxInheritDepth-displayNameInheritArray.length;
+                for(i=0;i<emptyTdNumber;i++){
+                    var emptyTd=domConstruct.create("td",{"innerHTML":"","style":"border-width:0px;border-bottom-width: 1px;padding: 8px; border-style: solid; border-color: #CCCCCC;"});
+                    trNode.appendChild(emptyTd);
+                }
+            });
+        },
+        containedInMergedTagArray:function(tagId,tagArray){
+            var result=false;
+            dojo.forEach(tagArray,function(currentTag){
+                if(currentTag==tagId){
+                    result=true;
+                }
+            });
+            return result;
         },
         renderItemTagSelectorDialog:function(){
             var tagSelector=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagSelectorWidget({attachedTags:this.attachedTags});
@@ -120,6 +240,18 @@ require([
                 confirmButtonAction:confirmButtonAction,
                 cancelButtonAction:cancelButtonAction
             });
+        },
+        renderSheetMode:function(){
+            dojo.style(this.attachedTagDisplayContainer,"display","none");
+            dojo.style(this.attachedTagSheetContainer,"display","");
+            this.sheetModeSwitch.set("disabled","disabled");
+            this.tagModeSwitch.set("disabled",false);
+        },
+        renderTagMode:function(){
+            dojo.style(this.attachedTagDisplayContainer,"display","");
+            dojo.style(this.attachedTagSheetContainer,"display","none");
+            this.sheetModeSwitch.set("disabled",false);
+            this.tagModeSwitch.set("disabled","disabled");
         },
         destroy:function(){
             dojo.forEach(this.attachedCategoryTagList,function(tagWidget){

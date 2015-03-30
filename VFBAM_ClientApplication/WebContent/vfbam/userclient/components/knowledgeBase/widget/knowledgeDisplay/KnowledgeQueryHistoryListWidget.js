@@ -21,7 +21,15 @@ require([
             }
             var currentHistoryItem=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeQueryHistoryItemWidget(
                 {historyItemInfo:historyData,knowledgeQueryHistoryList:this});
-            this.queryItemListContainer.appendChild(currentHistoryItem.domNode);
+            //this.queryItemListContainer.appendChild(currentHistoryItem.domNode);
+            //revert order to display query history item
+            if(this.knowledgeQueryHistoryItemList.length==0){
+                this.queryItemListContainer.appendChild(currentHistoryItem.domNode);
+            }else{
+                var lastQueryItem=this.knowledgeQueryHistoryItemList[this.knowledgeQueryHistoryItemList.length-1];
+                this.queryItemListContainer.insertBefore(currentHistoryItem.domNode,lastQueryItem.domNode);
+            }
+
             this.knowledgeQueryHistoryItemList.push(currentHistoryItem);
             this.currentDisplayHistoryItem=currentHistoryItem;
             this.resetHistoryOrder();

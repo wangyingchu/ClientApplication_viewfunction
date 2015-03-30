@@ -9,6 +9,7 @@ require([
         mouseEnterEventListener:null,
         mouseLeaveEventListener:null,
         mouseClickEventListener:null,
+        knowledgeInfoTooltip:null,
         postCreate: function(){
             var previewFileLocation =KNOWLEDGE_OPERATION_SERVICE_ROOT+"getKnowledgeContentPreviewThumbnailFile/"+this.knowledgeContentInfo.bucketName+"/"+this.knowledgeContentInfo.contentName+"?contentMimeType="+
                 this.knowledgeContentInfo.contentMimeType;
@@ -28,6 +29,7 @@ require([
             var timeString=dojo.date.locale.format(uploadDate,timeDisplayFormat);
             this.uploadTimeTxt.innerHTML=dateString+" "+timeString;
             var that=this;
+            /*
             if(KnowledgeBaseDataHandleUtil.shouldSwitchSummaryInfoDisplay(this.knowledgeContentInfo)){
                 this.mouseEnterEventListener=on(this.itemContainer, mouse.enter, function(evt){
                     that.showDesc();
@@ -38,6 +40,14 @@ require([
             }else{
                 that.showDesc();
             }
+            */
+            this.mouseEnterEventListener=on(this.itemContainer, mouse.enter, function(evt){
+                that.showDesc();
+            });
+            this.mouseLeaveEventListener=on(this.itemContainer, mouse.leave, function(evt){
+                that.hideDesc();
+            });
+
             this.mouseClickEventListener=on(this.itemContainer, "click", function(evt){
                 Application.MessageUtil.publishMessage(APP_KNOWLEDGEBASE_SHOWKNOWLEDGECONTENT_EVENT,{
                     KNOWLEDGE_VIEW_TYPE:KNOWLEDGE_VIEW_TYPE_MATERIAL,
@@ -49,6 +59,16 @@ require([
                     }
                 });
             });
+
+            var toolTipLabel='<img src="'+previewFileLocation+'" width="300px" height="300px" />';
+            this.knowledgeInfoTooltip=new dijit.Tooltip({
+                connectId: this.previewPictureContainer,
+                label:toolTipLabel
+            });
+
+            if(this.isHighLightItem){
+                dojo.style(this.currentViewKnowledgeIndicator,"visibility","visible");
+            }
         },
         showDesc:function(){
             dojo.style(this.knowledgeDescContainer,"display","");
@@ -60,6 +80,7 @@ require([
             if(this.mouseEnterEventListener){this.mouseEnterEventListener.remove();}
             if(this.mouseLeaveEventListener){this.mouseLeaveEventListener.remove();}
             this.mouseClickEventListener.remove();
+            this.knowledgeInfoTooltip.destroy();
             this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}
