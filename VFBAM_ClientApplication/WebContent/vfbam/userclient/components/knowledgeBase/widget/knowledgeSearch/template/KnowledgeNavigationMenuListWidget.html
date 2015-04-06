@@ -1,88 +1,33 @@
-<div style="border-width:0px;border-bottom-width: 1px;border-bottom-color: #dfdfdf;border-top-width: 1px;border-top-color: #dfdfdf;border-style:solid;padding-top:5px;padding-bottom: 5px;">
-    <div style="font-size: 1.0em;color: #888888;font-weight: bold;padding-left: 10px;padding-bottom: 6px;border-width:0px;border-bottom-width: 1px;border-bottom-color: #efefef;border-style:solid;">
-        <span style="padding-right: 5px;"><i class="icon-compass"></i> 知识导航</span>
-        <i style="color: #444444;cursor: pointer;display: none;" class="icon-caret-right" data-dojo-attach-event="onclick:showHideContent" data-dojo-attach-point="expandIndicator"></i>
-        <i style="color: #444444;cursor: pointer;;display: none;" class="icon-caret-down" data-dojo-attach-event="onclick:showHideContent" data-dojo-attach-point="contractIndicator"></i>
-    </div>
-    <div style="padding-left: 30px;padding-top: 5px;"  data-dojo-attach-point="contentContainer">
-        <table style="display: inline">
-            <tr><td style="font-size: 1.0em;color: #666666;font-weight: bold;">城市分级</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer0"></span>
-                    <span data-dojo-attach-point="categoryItemContainer1"></span>
-                    <span data-dojo-attach-point="categoryItemContainer2"></span>
-                </td>
-            </tr>
+<div style="padding-top:5px;padding-bottom: 5px;width: 900px;">
+    <div data-dojo-attach-point="containerNode">
+        <table width="100%">
             <tr>
-                <td  style="font-size: 1.0em;color: #666666;font-weight: bold;">建筑层数</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer3"></span>
-                    <span data-dojo-attach-point="categoryItemContainer4"></span>
-                    <span data-dojo-attach-point="categoryItemContainer5"></span>
-                    <span data-dojo-attach-point="categoryItemContainer6"></span>
-                </td>
-            </tr>
-            <tr>
-                <td  style="font-size: 1.0em;color: #666666;font-weight: bold;">每梯户数</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer7"></span>
-                    <span data-dojo-attach-point="categoryItemContainer8"></span>
-                    <span data-dojo-attach-point="categoryItemContainer9"></span>
-                    <span data-dojo-attach-point="categoryItemContainer10"></span>
-                    <span data-dojo-attach-point="categoryItemContainer11"></span>
-                </td>
-            </tr>
-            <tr>
-                <td  style="font-size: 1.0em;color: #666666;font-weight: bold;">户型信息</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer12"></span>
-                    <span data-dojo-attach-point="categoryItemContainer13"></span>
-                    <span data-dojo-attach-point="categoryItemContainer14"></span>
-                    <span data-dojo-attach-point="categoryItemContainer15"></span>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size: 1.0em;color: #666666;font-weight: bold;">组合形态</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer16"></span>
-                    <span data-dojo-attach-point="categoryItemContainer17"></span>
-                    <span data-dojo-attach-point="categoryItemContainer18"></span>
-                    <span data-dojo-attach-point="categoryItemContainer19"></span>
-                    <span data-dojo-attach-point="categoryItemContainer20"></span>
-                    <span data-dojo-attach-point="categoryItemContainer21"></span>
-                    <span data-dojo-attach-point="categoryItemContainer22"></span>
-                    <span data-dojo-attach-point="categoryItemContainer23"></span>
-                    <span data-dojo-attach-point="categoryItemContainer24"></span>
-                    <span data-dojo-attach-point="categoryItemContainer25"></span>
-                    <span data-dojo-attach-point="categoryItemContainer26"></span>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size:1.0em;color: #666666;font-weight: bold;">地域</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer27"></span>
-                    <span data-dojo-attach-point="categoryItemContainer28"></span>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size:1.0em;color: #666666;font-weight: bold;">楼型</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer29"></span>
-                    <span data-dojo-attach-point="categoryItemContainer30"></span>
-                    <span data-dojo-attach-point="categoryItemContainer31"></span>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size: 1.0em;color: #666666;font-weight: bold;">开发商</td>
-                <td style="padding-left: 15px;">
-                    <span data-dojo-attach-point="categoryItemContainer32"></span>
-                    <span data-dojo-attach-point="categoryItemContainer33"></span>
-                    <span data-dojo-attach-point="categoryItemContainer34"></span>
-                    <span data-dojo-attach-point="categoryItemContainer35"></span>
-                    <span data-dojo-attach-point="categoryItemContainer36"></span>
-                    <span data-dojo-attach-point="categoryItemContainer37"></span>
+                <td style="vertical-align: top;padding-left:5px;padding-right: 5px;">
+                    <table width="100%">
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <span style="padding-top:10px;padding-bottom:10px;padding-left:5px;color: #222; font-size: 1.4em; font-weight: normal; line-height: 1.2;"><i class="icon-compass"></i> 知识导航</span>
+                            </td>
+                            <td style="vertical-align: middle;text-align: right;padding-right: 10px;">
+                                <i class="icon-plus-sign-alt"></i> <span data-dojo-type="idx.form.Link"  data-dojo-attach-event="onClick:addNewGlobalCategoriesSearchItem">添加知识导航</span>
+                                <span style="color:#666666;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
+                                <i class="icon-wrench"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:configGlobalCategoriesSearchItems">知识导航管理</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="app_headerDivLine"></div>
+                    <div style="height: 280px;vertical-align: top;overflow: auto;padding: 10px;" >
+                        <table style="display: inline" data-dojo-attach-point="knowledgeNavigationItemBarsContainer">
+                        </table>
+                    </div>
+                    <div class="app_headerDivLine"></div>
+                    <div style="height: 10px;"></div>
+                    <div>
+                        <span dojoType="dijit.form.Button" data-dojo-attach-event="onClick:closeGlobalCategoriesSearchDialog"><i class='icon-remove'></i> 关闭</span>
+                    </div>
                 </td>
             </tr>
         </table>
+        <div style="height: 5px;"></div>
     </div>
 </div>

@@ -32,6 +32,7 @@ require([
                     }
                 }
             });
+            Application.MessageUtil.publishMessage(APP_KNOWLEDGEBASE_CLOSE_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT,{});
         },
         _endOfCode: function(){}
     });

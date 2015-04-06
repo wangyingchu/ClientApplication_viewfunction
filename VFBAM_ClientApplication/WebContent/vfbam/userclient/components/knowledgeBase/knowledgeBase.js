@@ -10,6 +10,8 @@ var APP_KNOWLEDGEBASE_UPDATECONTENTDISPLAYTITLE_EVENT="APP_KNOWLEDGEBASE_UPDATEC
 var APP_KNOWLEDGEBASE_UPDATECONTENTBELONGEDCOLLECTION_EVENT="APP_KNOWLEDGEBASE_UPDATECONTENTBELONGEDCOLLECTION_EVENT";
 var APP_KNOWLEDGEBASE_UPDATECOLLECTIONKNOWLEDGECONTENT_EVENT="APP_KNOWLEDGEBASE_UPDATECOLLECTIONKNOWLEDGECONTENT_EVENT";
 var APP_KNOWLEDGEBASE_UPDATEKNOWLEDGEDISPLAYPANELHEIGHT_EVENT="APP_KNOWLEDGEBASE_UPDATEKNOWLEDGEDISPLAYPANELHEIGHT_EVENT";
+var APP_KNOWLEDGEBASE_OPEN_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT="APP_KNOWLEDGEBASE_OPEN_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT";
+var APP_KNOWLEDGEBASE_CLOSE_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT="APP_KNOWLEDGEBASE_CLOSE_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT";
 //knowledge render logic
 var KNOWLEDGE_VIEW_TYPE="KNOWLEDGE_VIEW_TYPE";
 var KNOWLEDGE_VIEW_TYPE_COLLECTION="COLLECTION";
@@ -50,156 +52,10 @@ var KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM={};
 
 //multi item search result logic
 var KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT=null;
-/*
-var knowledgeNavigateItemInfo=[];
-var item1={};
-knowledgeNavigateItemInfo.push(item1);
-item1.itemName="专业";
-item1.options=[];
-item1.options.push({
-    optionName:"营销",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"运营",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"人事",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"建筑",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"结构",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"设备",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"机电",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"室内",
-    optionDesc:""
-});
-item1.options.push({
-    optionName:"景观",
-    optionDesc:""
-});
-
-var item2={};
-knowledgeNavigateItemInfo.push(item2);
-item2.itemName="工作阶段";
-item2.options=[];
-item2.options.push({
-    optionName:"概念设计",
-    optionDesc:""
-});
-item2.options.push({
-    optionName:"方案设计",
-    optionDesc:""
-});
-item2.options.push({
-    optionName:"初步设计",
-    optionDesc:""
-});
-item2.options.push({
-    optionName:"施工图设计",
-    optionDesc:""
-});
-
-var item3={};
-knowledgeNavigateItemInfo.push(item3);
-item3.itemName="建筑功能类型";
-item3.options=[];
-item3.options.push({
-    optionName:"住宅",
-    optionDesc:""
-});
-item3.options.push({
-    optionName:"酒店",
-    optionDesc:""
-});
-item3.options.push({
-    optionName:"办公楼",
-    optionDesc:""
-});
-
-var item4={};
-knowledgeNavigateItemInfo.push(item4);
-item4.itemName="表达方式";
-item4.options=[];
-item4.options.push({
-    optionName:"照片图片",
-    optionDesc:""
-});
-item4.options.push({
-    optionName:"CAD图纸",
-    optionDesc:""
-});
-item4.options.push({
-    optionName:"SKP模型",
-    optionDesc:""
-});
-item4.options.push({
-    optionName:"BIM模型",
-    optionDesc:""
-});
-item4.options.push({
-    optionName:"计算书与表格",
-    optionDesc:""
-});
-
-var extrnalResourceItemInfo={}
-extrnalResourceItemInfo.itemName="外部资源";
-extrnalResourceItemInfo.resource=[];
-extrnalResourceItemInfo.resource.push({
-    resourceName:"企业内优秀工程图库",
-    resourceDesc:"",
-    resourceLink:""
-});
-extrnalResourceItemInfo.resource.push({
-    resourceName:"项目合同库",
-    resourceDesc:"",
-    resourceLink:""
-});
-extrnalResourceItemInfo.resource.push({
-    resourceName:"国家标准构造图库",
-    resourceDesc:"",
-    resourceLink:""
-});
-extrnalResourceItemInfo.resource.push({
-    resourceName:"规范标准库",
-    resourceDesc:"",
-    resourceLink:""
-});
-extrnalResourceItemInfo.resource.push({
-    resourceName:"相关专业性网站",
-    resourceDesc:"",
-    resourceLink:""
-});
-
-var knowledgeNavigationBarWidget=
-    new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationBarWidget(
-        {knowledgeNavigateItemInfo:knowledgeNavigateItemInfo,externalResourceItemInfo:extrnalResourceItemInfo},"app_knowledgeBase_knowledgeNavigationBar");
-*/
-
-var xxx=document.getElementById("app_knowledgeBase_mainContainer").offsetHeight;
-console.log(xxx);
-console.log(xxx);
-
-var knowledgeNavigationBarWidget=
-    new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationMenuListWidget({},"app_knowledgeBase_knowledgeNavigationBar");
 
 var resultDisplayZoneWidth = document.getElementById("app_knowledgeBase_resultDisplayZone").offsetWidth;
 var knowledgeDisplayPanelWidget=
-    new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget({resultDisplayZoneWidth:resultDisplayZoneWidth,knowledgeNavigationBarWidget:knowledgeNavigationBarWidget},"app_knowledgeBase_resultDisplayZone");
+    new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget({resultDisplayZoneWidth:resultDisplayZoneWidth},"app_knowledgeBase_resultDisplayZone");
 
 var searchInputTypeSelect_MenuCollection=new dijit.DropDownMenu({ style: "display: none;"});
 var menuItem_materialDescription = new dijit.MenuItem({
@@ -261,6 +117,7 @@ var searchknowledgeInputTypeSelectDropDown=new vfbam.userclient.common.UI.widget
 var searchknowledgeInputTypeInput=new dijit.form.TextBox({style:"width: 170px;"},"app_knowledgeBase_searchInputTypeInput");
 
 var savedCategorySearchLinkList=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.SavedCategorySearchLinkListWidget({},"app_knowledgeBase_savedCategorySearchListContainer");
+
 var advancedSearchEditor=new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.AdvancedSearchWidget();
 var ADVANCEDSEARCH_EDITOR_POPUP_DIALOG= new idx.widget.MenuDialog({
     id: 'app_knowledgeBase_advancedSearchEditorTooltipDialog',
@@ -268,6 +125,18 @@ var ADVANCEDSEARCH_EDITOR_POPUP_DIALOG= new idx.widget.MenuDialog({
 });
 ADVANCEDSEARCH_EDITOR_POPUP_DIALOG.onShow = function() {
     dojo.style(ADVANCEDSEARCH_EDITOR_POPUP_DIALOG._popupWrapper,"zIndex",900);
+};
+
+var knowledgeNavigationBarWidget= new vfbam.userclient.components.knowledgeBase.widget.knowledgeSearch.KnowledgeNavigationMenuListWidget({});
+var GLOBALKNOWLEDGE_NAVIGATION_PANEL_POPUP_DIALOG= new idx.widget.MenuDialog({
+    id: 'app_knowledgeBase_globalKnowledgeNavigationPanelTooltipDialog',
+    content: knowledgeNavigationBarWidget
+});
+GLOBALKNOWLEDGE_NAVIGATION_PANEL_POPUP_DIALOG.onShow = function() {
+    dojo.style(GLOBALKNOWLEDGE_NAVIGATION_PANEL_POPUP_DIALOG._popupWrapper,"zIndex",900);
+};
+GLOBALKNOWLEDGE_NAVIGATION_PANEL_POPUP_DIALOG.onOpen = function() {
+    knowledgeNavigationBarWidget.renderGlobalSearchItems();
 };
 
 function renderKnowledgeConfigDialog(){
@@ -542,3 +411,25 @@ function addNewCollection(){
         dialog.show();
     });
 }
+
+var knowledgeNavigationPanelPopupDisplayFlag=true;
+function switchShowKnowledgeNavigationListPopup(){
+   require(["dijit/popup"], function(popup){
+        if(knowledgeNavigationPanelPopupDisplayFlag){
+            popup.open({
+                popup: GLOBALKNOWLEDGE_NAVIGATION_PANEL_POPUP_DIALOG,
+                orient: ["below","below-alt"],
+                padding :{x: 0, y: -100},
+                around: "app_knowledgeBase_navigationListDropdownLink",
+                onClose:function(){
+                    knowledgeNavigationPanelPopupDisplayFlag=true;
+                }
+            });
+            knowledgeNavigationPanelPopupDisplayFlag=false;
+        }else{
+            popup.close(GLOBALKNOWLEDGE_NAVIGATION_PANEL_POPUP_DIALOG);
+        }
+    });
+}
+Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_OPEN_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT,switchShowKnowledgeNavigationListPopup);
+Application.MessageUtil.listenToMessageTopic(APP_KNOWLEDGEBASE_CLOSE_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT,dojo.hitch(this,this.switchShowKnowledgeNavigationListPopup));

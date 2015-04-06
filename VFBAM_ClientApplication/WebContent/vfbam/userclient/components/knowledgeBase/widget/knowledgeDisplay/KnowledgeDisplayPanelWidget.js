@@ -46,9 +46,6 @@ require([
         },
         modifyDisplayPanelHeight:function(){
             //init knowledge display zone Center container height
-            //calcute navigationBar height
-            var navigationBarContentBox = domGeom.getContentBox(this.knowledgeNavigationBarWidget.domNode);
-            var navigationBarHeight=navigationBarContentBox.h+2;
             var App_KnowledgeBase_UI_Header_Height=0;
             if(dojo.isChrome){
                 App_KnowledgeBase_UI_Header_Height=220;
@@ -56,9 +53,7 @@ require([
                 App_KnowledgeBase_UI_Header_Height=214;
             }
             var vs =win.getBox();
-            var App_KnowledgeBase_UI_Dynamic_Real_Height=  vs.h-App_KnowledgeBase_UI_Header_Height-navigationBarHeight;
-            //var App_KnowledgeBase_UI_Dynamic_Real_Height=  vs.h-App_KnowledgeBase_UI_Header_Height;
-
+            var App_KnowledgeBase_UI_Dynamic_Real_Height=  vs.h-App_KnowledgeBase_UI_Header_Height;
             var currentHeightStyle=""+ App_KnowledgeBase_UI_Dynamic_Real_Height+"px";
             dojo.style(this.app_knowledgeBase_resultDisplayZone,"height",currentHeightStyle);
         },
