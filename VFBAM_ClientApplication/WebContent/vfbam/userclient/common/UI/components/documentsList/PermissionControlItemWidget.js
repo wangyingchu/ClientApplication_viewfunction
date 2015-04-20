@@ -7,18 +7,24 @@ require([
         widgetsInTemplate: true,
         displayContentPermissionCheckboxInput: true,
         addContentPermissionCheckboxInput: true,
+        addSubFolderPermissionCheckboxInput: true,
         deleteContentPermissionCheckboxInput: true,
+        deleteSubFolderPermissionCheckboxInput: true,
         configPermissionPermissionCheckboxInput: true,
         editContentPermissionCheckboxInput: true,
         postCreate: function(){
             this.displayContentPermissionCheckboxInput=new dijit.form.CheckBox({},this.displayContentPermissionCheckbox);
             this.addContentPermissionCheckboxInput=new dijit.form.CheckBox({},this.addContentPermissionCheckbox);
             this.deleteContentPermissionCheckboxInput=new dijit.form.CheckBox({},this.deleteContentPermissionCheckbox);
+            this.addSubFolderPermissionCheckboxInput=new dijit.form.CheckBox({},this.addSubFolderPermissionCheckbox);
+            this.deleteSubFolderPermissionCheckboxInput=new dijit.form.CheckBox({},this.deleteSubFolderPermissionCheckbox);
             this.configPermissionPermissionCheckboxInput=new dijit.form.CheckBox({},this.configPermissionPermissionCheckbox);
             this.editContentPermissionCheckboxInput=new dijit.form.CheckBox({},this.editContentPermissionCheckbox);
             this.displayContentPermissionCheckboxInput.set("checked",this.permissionItem.displayContentPermission);
             this.addContentPermissionCheckboxInput.set("checked",this.permissionItem.addContentPermission);
             this.deleteContentPermissionCheckboxInput.set("checked",this.permissionItem.deleteContentPermission);
+            this.addSubFolderPermissionCheckboxInput.set("checked",this.permissionItem.addSubFolderPermission);
+            this.deleteSubFolderPermissionCheckboxInput.set("checked",this.permissionItem.deleteSubFolderPermission);
             this.configPermissionPermissionCheckboxInput.set("checked",this.permissionItem.configPermissionPermission);
             this.editContentPermissionCheckboxInput.set("checked",this.permissionItem.editContentPermission);
             if(this.permissionItem.permissionScope=="OWNER"){
@@ -35,6 +41,8 @@ require([
                     this.displayContentPermissionCheckboxInput.set("disabled",true);
                     this.addContentPermissionCheckboxInput.set("disabled",true);
                     this.deleteContentPermissionCheckboxInput.set("disabled",true);
+                    this.addSubFolderPermissionCheckboxInput.set("disabled",true);
+                    this.deleteSubFolderPermissionCheckboxInput.set("disabled",true);
                     this.configPermissionPermissionCheckboxInput.set("disabled",true);
                     this.editContentPermissionCheckboxInput.set("disabled",true);
                     dojo.style(this.deleteConfigButton,"display","none");
@@ -47,9 +55,13 @@ require([
             var currentDeleteContentPermission=this.deleteContentPermissionCheckboxInput.get("checked");
             var currentConfigPermissionPermission=this.configPermissionPermissionCheckboxInput.get("checked");
             var currentEditContentPermission=this.editContentPermissionCheckboxInput.get("checked");
+            var currentAddSubFolderPermission=this.addSubFolderPermissionCheckboxInput.get("checked");
+            var currentDeleteSubFolderPermission=this.deleteSubFolderPermissionCheckboxInput.get("checked");
             if(currentDisplayContentPermission===this.permissionItem.displayContentPermission&
                 currentAddContentPermission===this.permissionItem.addContentPermission&
                 currentDeleteContentPermission===this.permissionItem.deleteContentPermission&
+                currentAddSubFolderPermission===this.permissionItem.addSubFolderPermission&
+                currentDeleteSubFolderPermission===this.permissionItem.deleteSubFolderPermission&
                 currentConfigPermissionPermission===this.permissionItem.configPermissionPermission&
                 currentEditContentPermission===this.permissionItem.editContentPermission){
                 return false;
@@ -62,6 +74,8 @@ require([
             permissionObj.displayContentPermission=this.displayContentPermissionCheckboxInput.get("checked");
             permissionObj.addContentPermission=this.addContentPermissionCheckboxInput.get("checked");
             permissionObj.deleteContentPermission=this.deleteContentPermissionCheckboxInput.get("checked");
+            permissionObj.addSubFolderPermission=this.addSubFolderPermissionCheckboxInput.get("checked");
+            permissionObj.deleteSubFolderPermission=this.deleteSubFolderPermissionCheckboxInput.get("checked");
             permissionObj.configPermissionPermission=this.configPermissionPermissionCheckboxInput.get("checked");
             permissionObj.editContentPermission=this.editContentPermissionCheckboxInput.get("checked");
             permissionObj.permissionParticipant=this.permissionItem.permissionParticipant;

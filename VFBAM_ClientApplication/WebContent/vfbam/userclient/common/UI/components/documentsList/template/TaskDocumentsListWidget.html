@@ -1,0 +1,36 @@
+<table width="100%;" border="0">
+    <tr data-dojo-attach-point="folderListContainer">
+        <td style="padding-left: 8px;padding-top: 5px;">
+            <div>
+                <i class="icon-terminal"></i><span data-dojo-type="idx.form.Link"  style="padding-right: 5px;" data-dojo-attach-event="onClick:renderRootFolder"> 根目录</span>
+                <span data-dojo-attach-point="folderListBbreadcrumb"></span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="app_headerDivLine"></div>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="padding-right: 5px;font-size: 0.9em;padding-top: 5px;">
+            <i class="icon-folder-open"></i>
+            <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="addFolderLink" style="padding-right: 5px;color:#00649D;" label="添加文件夹">
+            </span>
+            <i class="icon-file"></i>
+            <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="addDocumentLink" style="padding-right: 5px;color:#00649D;" label="添加文档">
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="app_headerDivLine_thin_light"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div data-dojo-attach-point="documentsListContainer" style="overflow: auto;">
+            </div>
+        </td>
+    </tr>
+</table>

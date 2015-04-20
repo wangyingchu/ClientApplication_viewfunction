@@ -253,15 +253,28 @@ require([
             var currentParentFolderPermissionsObj=this.documentListWidget.getPermissionControlProperties(currentParentFolderFolderPermissions,this.documentInfo.documentCreator);
             var currentDocumentPermissionsObj=this.documentListWidget.getPermissionControlProperties(currentDocumentPermissions,this.documentInfo.documentCreator);
 
-            if(currentParentFolderPermissionsObj.deleteContentPermission){
-                //can delete current document
-                dojo.style(this.deleteDocumentButton,{"display": ""});
-                dojo.style(this.disabledDeleteDocumentButton,{"display": "none"});
+            if(this.documentInfo.isFolder){
+                if(currentParentFolderPermissionsObj.deleteSubFolderPermission){
+                    //can delete current document
+                    dojo.style(this.deleteDocumentButton,{"display": ""});
+                    dojo.style(this.disabledDeleteDocumentButton,{"display": "none"});
+                }else{
+                    //can't delete current document
+                    dojo.style(this.deleteDocumentButton,{"display": "none"});
+                    dojo.style(this.disabledDeleteDocumentButton,{"display": ""});
+                }
             }else{
-                //can't delete current document
-                dojo.style(this.deleteDocumentButton,{"display": "none"});
-                dojo.style(this.disabledDeleteDocumentButton,{"display": ""});
+                if(currentParentFolderPermissionsObj.deleteContentPermission){
+                    //can delete current document
+                    dojo.style(this.deleteDocumentButton,{"display": ""});
+                    dojo.style(this.disabledDeleteDocumentButton,{"display": "none"});
+                }else{
+                    //can't delete current document
+                    dojo.style(this.deleteDocumentButton,{"display": "none"});
+                    dojo.style(this.disabledDeleteDocumentButton,{"display": ""});
+                }
             }
+
             if(this.documentInfo.isFolder){
                 if(currentDocumentPermissionsObj.displayContentPermission){
                     dojo.style(this.documentName,{"display": ""});

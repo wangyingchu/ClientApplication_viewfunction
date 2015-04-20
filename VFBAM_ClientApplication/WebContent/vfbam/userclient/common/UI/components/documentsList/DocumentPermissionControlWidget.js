@@ -81,6 +81,8 @@ require([
             groupPermissionObj.displayContentPermission=true;
             groupPermissionObj.addContentPermission=true;
             groupPermissionObj.deleteContentPermission=true;
+            groupPermissionObj.addSubFolderPermission=true;
+            groupPermissionObj.deleteSubFolderPermission=true;
             groupPermissionObj.configPermissionPermission=true;
             groupPermissionObj.editContentPermission=true;             
             groupPermissionObj.permissionParticipant=groupInfo.userId;

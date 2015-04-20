@@ -1,6 +1,6 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
-    "dojo/text!vfbam/userclient/common/UI/components/documentsList/template/DocumentsListWidget.html","dojo/dom-geometry"
+    "dojo/text!vfbam/userclient/common/UI/components/documentsList/template/TaskDocumentsListWidget.html","dojo/dom-geometry"
 ],function(lang,declare, _Widget, _Templated, template,domGeom){
     declare("vfbam.userclient.common.UI.components.documentsList.TaskDocumentsListWidget", [_Widget, _Templated], {
         templateString: template,
@@ -199,17 +199,20 @@ require([
 
             var currentFolderPermissionProperties=this.getPermissionControlProperties(this.currentFolderPermissions,this.currentFolderCreator);
             if(currentFolderPermissionProperties.addContentPermission){
-                this.addFolderLink.set("disabled",false);
-                dojo.style(this.addFolderLink.domNode,"color","#00649D");
                 this.addDocumentLink.set("disabled",false);
                 dojo.style(this.addDocumentLink.domNode,"color","#00649D");
             }else{
-                this.addFolderLink.set("disabled",true);
-                dojo.style(this.addFolderLink.domNode,"color","#CCCCCC");
                 this.addDocumentLink.set("disabled",true);
                 dojo.style(this.addDocumentLink.domNode,"color","#CCCCCC");
             }
+            if(currentFolderPermissionProperties.addSubFolderPermission){
+                this.addFolderLink.set("disabled",false);
+                dojo.style(this.addFolderLink.domNode,"color","#00649D");
 
+            }else{
+                this.addFolderLink.set("disabled",true);
+                dojo.style(this.addFolderLink.domNode,"color","#CCCCCC");
+            }
             dojo.empty(this.documentsListContainer);
             dojo.forEach(documentList,function(currentDocument){
                 var currentDocumentInfoWidget=new vfbam.userclient.common.UI.components.documentsList.AdvancedDocumentInfoWidget({documentInfo:currentDocument,documentListWidget:this});
@@ -318,7 +321,9 @@ require([
 
             var currentDisplayContentPermission=true;
             var currentAddContentPermission=true;
+            var currentAddSubFolderPermission=true;
             var currentDeleteContentPermission=true;
+            var currentDeleteSubFolderPermission=true;
             var currentEditContentPermission=true;
             var currentConfigPermissionPermission=true;
 
@@ -328,7 +333,9 @@ require([
                     if(currentPermission.permissionScope=="OTHER"){
                         currentDisplayContentPermission=currentPermission.displayContentPermission;
                         currentAddContentPermission=currentPermission.addContentPermission;
+                        currentAddSubFolderPermission=currentPermission.addSubFolderPermission;
                         currentDeleteContentPermission=currentPermission.deleteContentPermission;
+                        currentDeleteSubFolderPermission=currentPermission.deleteSubFolderPermission;
                         currentEditContentPermission=currentPermission.editContentPermission;
                         currentConfigPermissionPermission=currentPermission.configPermissionPermission;
                     }
@@ -342,7 +349,9 @@ require([
                             if(documentOwnerId==currentUserId){
                                 currentDisplayContentPermission=currentPermission.displayContentPermission;
                                 currentAddContentPermission=currentPermission.addContentPermission;
+                                currentAddSubFolderPermission=currentPermission.addSubFolderPermission;
                                 currentDeleteContentPermission=currentPermission.deleteContentPermission;
+                                currentDeleteSubFolderPermission=currentPermission.deleteSubFolderPermission;
                                 currentEditContentPermission=currentPermission.editContentPermission;
                                 currentConfigPermissionPermission=currentPermission.configPermissionPermission;
                             }
@@ -353,7 +362,9 @@ require([
                 if(currentUserApplicationRoles){
                     var groupCombinedDisplayContentPermission=false;
                     var groupCombinedAddContentPermission=false;
+                    var groupCombinedAddSubFolderPermission=false;
                     var groupCombinedDeleteContentPermission=false;
+                    var groupCombinedDeleteSubFolderPermission=false;
                     var groupCombinedEditContentPermission=false;
                     var groupCombinedConfigPermissionPermission=false;
 
@@ -367,7 +378,9 @@ require([
                                     hasMatchedRolePermissionConfig=true;
                                     groupCombinedDisplayContentPermission=groupCombinedDisplayContentPermission||currentGroupPermission.displayContentPermission;
                                     groupCombinedAddContentPermission=groupCombinedAddContentPermission||currentGroupPermission.addContentPermission;
+                                    groupCombinedAddSubFolderPermission=groupCombinedAddSubFolderPermission||currentGroupPermission.addSubFolderPermission;
                                     groupCombinedDeleteContentPermission=groupCombinedDeleteContentPermission||currentGroupPermission.deleteContentPermission;
+                                    groupCombinedDeleteSubFolderPermission=groupCombinedDeleteSubFolderPermission||currentGroupPermission.deleteSubFolderPermission;
                                     groupCombinedEditContentPermission=groupCombinedEditContentPermission||currentGroupPermission.editContentPermission;
                                     groupCombinedConfigPermissionPermission=groupCombinedConfigPermissionPermission||currentGroupPermission.configPermissionPermission;
                                 }
@@ -377,7 +390,9 @@ require([
                     if(hasMatchedRolePermissionConfig){
                         currentDisplayContentPermission=groupCombinedDisplayContentPermission;
                         currentAddContentPermission=groupCombinedAddContentPermission;
+                        currentAddSubFolderPermission=groupCombinedAddSubFolderPermission;
                         currentDeleteContentPermission=groupCombinedDeleteContentPermission;
+                        currentDeleteSubFolderPermission=groupCombinedDeleteSubFolderPermission;
                         currentEditContentPermission=groupCombinedEditContentPermission;
                         currentConfigPermissionPermission=groupCombinedConfigPermissionPermission;
                     }
@@ -386,7 +401,9 @@ require([
             var permissionPropertiesObj={};
             permissionPropertiesObj["displayContentPermission"]=currentDisplayContentPermission;
             permissionPropertiesObj["addContentPermission"]=currentAddContentPermission;
+            permissionPropertiesObj["addSubFolderPermission"]=currentAddSubFolderPermission;
             permissionPropertiesObj["deleteContentPermission"]=currentDeleteContentPermission;
+            permissionPropertiesObj["deleteSubFolderPermission"]=currentDeleteSubFolderPermission;
             permissionPropertiesObj["editContentPermission"]=currentEditContentPermission;
             permissionPropertiesObj["configPermissionPermission"]=currentConfigPermissionPermission;
             return permissionPropertiesObj;
