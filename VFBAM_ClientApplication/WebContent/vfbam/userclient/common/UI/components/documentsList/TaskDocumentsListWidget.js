@@ -19,6 +19,7 @@ require([
         folderPermissionsInfoMap:null,
         currentFolderCreator:null,
         folderCreatorInfoMap:null,
+        taskRootFolderPermissions:null,
         postCreate: function(){
             this.documentsFolderPathArray=[];
             this.currentDocumentsArray=[];
@@ -48,29 +49,33 @@ require([
             }
         },
         setCurrentFolderMetaInfo:function(currentFolderPath,subFolderName){
-            this.currentFolderPermissions=null;
-            this.currentFolderCreator=null;
-            if(this.folderPermissionsInfoMap[currentFolderPath]){
-                this.currentFolderPermissions=this.folderPermissionsInfoMap[currentFolderPath];
-            }
-            if(this.folderCreatorInfoMap[currentFolderPath]){
-                this.currentFolderCreator=this.folderCreatorInfoMap[currentFolderPath];
-            }
-            if(this.currentFolderDocumentsList){
-                dojo.forEach(this.currentFolderDocumentsList,function(documentItem){
-                    if(documentItem.isFolder){
-                        if(documentItem.documentName==subFolderName){
-                            if(documentItem.documentPermissions){
-                                this.folderPermissionsInfoMap[currentFolderPath]=documentItem.documentPermissions;
-                                this.currentFolderPermissions=documentItem.documentPermissions;
-                            }
-                            if(documentItem.documentCreator){
-                                this.folderCreatorInfoMap[currentFolderPath]=documentItem.documentCreator;
-                                this.currentFolderCreator=documentItem.documentCreator;
+            if(currentFolderPath=="/"&&subFolderName==""){
+                this.currentFolderPermissions=this.taskRootFolderPermissions;
+            }else{
+                this.currentFolderPermissions=null;
+                this.currentFolderCreator=null;
+                if(this.folderPermissionsInfoMap[currentFolderPath]){
+                    this.currentFolderPermissions=this.folderPermissionsInfoMap[currentFolderPath];
+                }
+                if(this.folderCreatorInfoMap[currentFolderPath]){
+                    this.currentFolderCreator=this.folderCreatorInfoMap[currentFolderPath];
+                }
+                if(this.currentFolderDocumentsList){
+                    dojo.forEach(this.currentFolderDocumentsList,function(documentItem){
+                        if(documentItem.isFolder){
+                            if(documentItem.documentName==subFolderName){
+                                if(documentItem.documentPermissions){
+                                    this.folderPermissionsInfoMap[currentFolderPath]=documentItem.documentPermissions;
+                                    this.currentFolderPermissions=documentItem.documentPermissions;
+                                }
+                                if(documentItem.documentCreator){
+                                    this.folderCreatorInfoMap[currentFolderPath]=documentItem.documentCreator;
+                                    this.currentFolderCreator=documentItem.documentCreator;
+                                }
                             }
                         }
-                    }
-                },this);
+                    },this);
+                }
             }
         },
         renderDocumentsList:function(parentFolderPath,folderName,hideProgressDialog){
@@ -81,7 +86,6 @@ require([
             }else{
                 currentFolderPath=parentFolderPath+"/"+folderName;
             }
-            this.setCurrentFolderMetaInfo(currentFolderPath,folderName);
             if(!this.documentsOwnerType){
                 return;
             }
@@ -127,6 +131,11 @@ require([
                     that.currentFolderPath=data.folderPath;
                     that.parentFolderPath=data.parentFolderPath;
                     that.currentFolderName=data.folderName;
+                    //set permissions for activity root folder
+                    if(parentFolderPath=="/"&&folderName==""){
+                        that.taskRootFolderPermissions=data.folderPermissions;
+                    }
+                    that.setCurrentFolderMetaInfo(currentFolderPath,folderName);
                     if(data.childContentList){
                         var documentsArray=[];
                         dojo.forEach(data.childContentList,function(documentItem){
