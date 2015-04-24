@@ -1,0 +1,37 @@
+<table width="100%" border="0">
+    <tr>
+        <td style="width: 40px;">
+            <img src="" width="40px" height="40px" class="app_photoBorder_thin" data-dojo-attach-point="participantPhoto"/>
+        </td>
+        <td align="left" style="padding-left:5px;width: 70px;">
+            <div style="font-size: 0.9em;font-weight: bold;color:#00475B;">
+                <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="participantNameLabel">
+                </span>
+            </div>
+            <div style="font-size: 0.9em; color:#333333;" data-dojo-attach-point="participantTitleLabel"></div>
+        </td>
+        <td align="left">
+            <div>
+                <span data-dojo-attach-point="finishPrompt" style="font-size: 0.9em;color: #26a251;display: none;font-weight: bold;">完成- </span><span data-dojo-attach-point="handelPrompt" style="font-size: 0.9em;color: #555555;display: none;font-weight: bold;">处理中- </span><span style="font-size: 1.0em;color: #444444;font-weight: bold;" data-dojo-attach-point="involveActionLabel"></span>
+                <span style="font-size: 0.9em;color: #777777;padding-right: 5px;display: none;" data-dojo-attach-point="ownerNameCardContainer">
+                    <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="ownerNameLabel">
+                </span>
+                </span>
+            </div>
+            <div style="padding-left: 5px;text-align: right;padding-right: 5px">
+                <span style="font-size: 0.8em;color: #777777;padding-right: 10px;">
+                    <i class="icon-time"></i>
+                    <span data-dojo-attach-point="launchTimePrompt" style="display: none;"> 启动时间: </span>
+                    <span data-dojo-attach-point="finishTimePrompt" style="display: none;"> 完成时间: </span>
+                    <span data-dojo-attach-point="startTimePrompt" style="display: none;"> 开始时间: </span>
+                    <span style="font-weight: bold;color: #555555;" data-dojo-attach-point="displayDateTxt"></span>
+                </span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div class="app_headerDivLine_thin"></div>
+        </td>
+    </tr>
+</table>

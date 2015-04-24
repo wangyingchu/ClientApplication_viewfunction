@@ -93,7 +93,7 @@ require([
                     dojo.style(this.taskSupportDataWidget_participant.domNode,{"display": ""});
                 }else{
                     this.taskSupportDataWidget_participant=new vfbam.userclient.common.UI.components.participantsList.
-                        ParticipantListWidget({taskData:this.dynamicPagePayload["APP_PAGE_DYNAMIC_DATA"]},this.taskSupportDataContainer_participant);
+                        ActivityInvolvedParticipantListWidget({taskData:this.dynamicPagePayload["APP_PAGE_DYNAMIC_DATA"]},this.taskSupportDataContainer_participant);
                 }
             }
             if(supportWidgetType=="showComment"){
