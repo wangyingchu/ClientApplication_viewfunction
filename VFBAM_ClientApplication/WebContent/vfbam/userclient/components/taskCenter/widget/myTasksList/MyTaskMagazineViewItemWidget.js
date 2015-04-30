@@ -54,29 +54,41 @@ require([
                 onClick:dojo.hitch(this,this.openTaskDetail)
             });
             menu_operationCollection.addChild(menuItem_handle);
-            if(this.taskItemData.taskRole){
-                var returnTaskOperationCallback=function(){
-                    Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT,{taskData:that.taskItemData});
-                    Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT,{taskData:that.taskItemData});
-                };
-                var menuItem_return = new dijit.MenuItem({
-                    label: "<i class='icon-download-alt'></i> 返还任务",
-                    onClick: function(){
-                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RETURNTASK_EVENT,{taskData:that.taskItemData,switchPagePayload:that.switchPagePayload,callback:returnTaskOperationCallback});
-                    }
-                });
-                menu_operationCollection.addChild(menuItem_return);
-                var reassignTaskOperationCallback=function(){
-                    Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT,{taskData:that.taskItemData});
-                };
-                var menuItem_reasign = new dijit.MenuItem({
-                    label: "<i class='icon-male'></i> 重新分配",
-                    onClick: function(){
-                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_REASSIGNTASK_EVENT,{taskData:that.taskItemData,switchPagePayload:that.switchPagePayload,callback:reassignTaskOperationCallback});
-                    }
-                });
-                menu_operationCollection.addChild(menuItem_reasign);
+
+            if(!this.taskItemData.hasParentActivityStep){
+                if(this.taskItemData.taskRole) {
+                    var returnTaskOperationCallback = function () {
+                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT, {taskData: that.taskItemData});
+                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT, {taskData: that.taskItemData});
+                    };
+                    var menuItem_return = new dijit.MenuItem({
+                        label: "<i class='icon-download-alt'></i> 返还任务",
+                        onClick: function () {
+                            Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RETURNTASK_EVENT, {
+                                taskData: that.taskItemData,
+                                switchPagePayload: that.switchPagePayload,
+                                callback: returnTaskOperationCallback
+                            });
+                        }
+                    });
+                    menu_operationCollection.addChild(menuItem_return);
+                    var reassignTaskOperationCallback = function () {
+                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT, {taskData: that.taskItemData});
+                    };
+                    var menuItem_reasign = new dijit.MenuItem({
+                        label: "<i class='icon-male'></i> 重新分配",
+                        onClick: function () {
+                            Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_REASSIGNTASK_EVENT, {
+                                taskData: that.taskItemData,
+                                switchPagePayload: that.switchPagePayload,
+                                callback: reassignTaskOperationCallback
+                            });
+                        }
+                    });
+                    menu_operationCollection.addChild(menuItem_reasign);
+                }
             }
+
             if(this.taskItemData.taskDataFields){
                 dojo.forEach(this.taskItemData.taskDataFields,function(item){
                     var currentProperty=new vfbam.userclient.components.taskCenter.widget.myTasksList.TaskPropertyWidget(item);

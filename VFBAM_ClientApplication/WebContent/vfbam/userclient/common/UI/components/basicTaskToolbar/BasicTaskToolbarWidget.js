@@ -9,6 +9,8 @@ require([
         taskItemData:null,
         menu_operationCollection:null,
         activityInstanceDetail:null,
+        childTaskLauncher:null,
+        childTaskList:null,
         postCreate: function(){},
         //interface method used to close dynamic page
         _CLOSE_DYNAMIC_PAGE:function(){
@@ -56,23 +58,30 @@ require([
             var label="<i class='icon-caret-down icon-large'></i> 任务操作";
             this.taskOperationsDropdownButton=new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:label,dropDown: this.menu_operationCollection},this.operationLink);
 
+            if(taskItemData.hasParentActivityStep){
+                dojo.style(this.operationLinkContainer,"display","none");
+            }
+
             var that =this;
             if(taskItemData.stepAssignee){
                 if(taskItemData.taskRole&&taskItemData.taskRole!="-"){
-                    var returnTaskOperationCallback=function(){
-                        taskItemData.stepAssignee=null;
-                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT,{taskData:taskItemData});
-                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT,{taskData:taskItemData});
+                    var returnTaskOperationCallback = function () {
+                        taskItemData.stepAssignee = null;
+                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT, {taskData: taskItemData});
+                        Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT, {taskData: taskItemData});
                         that._CLOSE_DYNAMIC_PAGE();
                     };
                     var menuItem_return = new dijit.MenuItem({
                         label: "<i class='icon-download-alt'></i> 返还任务",
-                        onClick: function(){
-                            var isDirtyPage=that.taskDataEditor. CHECK_DIRTY_TASKDATA();
-                            if(isDirtyPage){
+                        onClick: function () {
+                            var isDirtyPage = that.taskDataEditor.CHECK_DIRTY_TASKDATA();
+                            if (isDirtyPage) {
                                 that._renderHandleDirtyDataDialog();
-                            }else{
-                                Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RETURNTASK_EVENT,{taskData:taskItemData,callback:returnTaskOperationCallback});
+                            } else {
+                                Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RETURNTASK_EVENT, {
+                                    taskData: taskItemData,
+                                    callback: returnTaskOperationCallback
+                                });
                             }
                         }
                     });
@@ -147,6 +156,16 @@ require([
             if(taskItemData.stepAssignee){
                 dojo.style(this.saveDataButtonsContainer,"display","");
                 dojo.style(this.handleTaskButtonContainer,"display","none");
+                dojo.style(this.childTaskOperationContainer,"display","");
+                if(taskItemData.hasChildActivityStep){
+                    dojo.style(this.childTaskDetailInfoContainer,"display","");
+                }
+                if(taskItemData.hasParentActivityStep){
+                    dojo.style(this.parentTaskDetailInfoContainer,"display","");
+
+                }else{
+                    dojo.style(this.createChildTaskInfoContainer,"display","");
+                }
             }else{
                 dojo.style(this.handleTaskButtonContainer,"display","");
                 //if don't allow edit task before accept, hide save data button
@@ -249,6 +268,16 @@ require([
                 }
             });
             this.menu_operationCollection.addChild(menuItem_reasign);
+            dojo.style(this.childTaskOperationContainer,"display","");
+            if(taskItemData.hasChildActivityStep){
+                dojo.style(this.childTaskDetailInfoContainer,"display","");
+            }
+            if(taskItemData.hasParentActivityStep){
+                dojo.style(this.parentTaskDetailInfoContainer,"display","");
+
+            }else{
+                dojo.style(this.createChildTaskInfoContainer,"display","");
+            }
         },
         _setupTaskResponseButtons:function(){
             var that=this;
@@ -329,6 +358,52 @@ require([
                 that.activityInstanceDetail.destroy();
             };
             dojo.connect(dialog,"hide",closeDialogCallBack);
+        },
+        launchChildTask:function(){
+            this.childTaskLauncher=new vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskLauncherWidget({parentTaskItemData:this.taskItemData,taskToolbar:this});
+            var confirmButton=new dijit.form.Button({
+                label: "<i class='icon-plus-sign'></i> 创建",
+                onClick: function(){
+                    that.childTaskLauncher.launchChildTask();
+                }
+            });
+            var actionButtone=[];
+            actionButtone.push(confirmButton);
+            var	dialog = new Dialog({
+                style:"width:520px;",
+                title: "<i class='icon-plus-sign'></i> 创建子任务",
+                content: "",
+                buttons:actionButtone,
+                closeButtonLabel: "<i class='icon-remove'></i> 取消"
+            });
+            dojo.place(this.childTaskLauncher.containerNode, dialog.containerNode);
+            dialog.show();
+            var that=this;
+            var closeDialogCallBack=function(){
+                that.childTaskLauncher.destroy();
+            };
+            dialog.connect(this.childTaskLauncher, "doCloseContainerDialog", "hide");
+            dojo.connect(dialog,"hide",closeDialogCallBack);
+        },
+        showChildTasksInfo:function(){
+            this.childTaskList=new vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskListWidget({parentTaskItemData:this.taskItemData,taskToolbar:this});
+            var	dialog = new Dialog({
+                style:"width:520px;",
+                title: "<i class='icon-sitemap'></i> 子任务详情",
+                content: "",
+                buttons:null,
+                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+            });
+            dojo.place(this.childTaskList.containerNode, dialog.containerNode);
+            dialog.show();
+            var that=this;
+            var closeDialogCallBack=function(){
+                that.childTaskList.destroy();
+            };
+            dojo.connect(dialog,"hide",closeDialogCallBack);
+        },
+        refreshChildTasksInfo:function(childTasksInfo){
+            console.log(childTasksInfo);
         },
         //interface method used to set task data editor
         SET_TASKDATA_EDITOR:function(taskDataEditor){

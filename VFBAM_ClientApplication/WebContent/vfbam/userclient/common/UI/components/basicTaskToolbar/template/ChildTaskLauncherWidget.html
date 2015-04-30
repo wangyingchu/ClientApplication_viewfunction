@@ -1,0 +1,25 @@
+<div data-dojo-attach-point="containerNode">
+    <table>
+        <tr>
+            <td align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-tag"></i> 子任务名称:<span style="color:#CE0000;font-size: 1.1em;">*</span></td>
+            <td align="left"  style="padding-left: 2px;"><input dojoType="dijit.form.TextBox" style="width:350px;" data-dojo-attach-point="childTaskNameField"></input></td>
+        </tr>
+        <tr>
+            <td valign="top" align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-comment"></i> 子任务说明:<span style="color:#CE0000;font-size: 1.1em;">*</span></td>
+            <td align="left" style="padding-left: 2px;"><input dojoType="dijit.form.Textarea" style="font-size: 1.0em;width:352px; min-height:80px;color:#444444" data-dojo-attach-point="childTaskDescriptionField"></td>
+        </tr>
+        <tr>
+            <td valign="top" align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-user"></i> 子任务处理人:<span style="color:#CE0000;font-size: 1.1em;">*</span></td>
+            <td align="left">
+                <span data-dojo-attach-point="assigneeSelector"></span>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" align="right" style="font-size: 0.9em;font-weight:bold;color:#666666;padding-right:10px;width:100px;"><i class="icon-time"></i> 截止时间:</td>
+            <td align="left" style="padding-left: 2px;">
+                <input dojoType="dijit.form.DateTextBox" style="font-size: 1.0em;color:#444444;width:250px;" data-dojo-attach-point="dueDateSelector">
+                <input dojoType="dijit.form.TimeTextBox" style="font-size: 1.0em;color:#444444;" data-dojo-attach-point="dueTimeSelector">
+            </td>
+        </tr>
+    </table>
+</div>

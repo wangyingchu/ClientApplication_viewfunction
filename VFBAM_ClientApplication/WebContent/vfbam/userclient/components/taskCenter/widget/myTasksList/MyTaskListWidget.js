@@ -93,6 +93,8 @@ require([
                             taskDetailItemData["taskDataFields"] = taskDataFields;
                             taskDetailItemData["stepAssignee"] = participantDetailTask.stepAssignee;
                             taskDetailItemData["stepOwner"] = participantDetailTask.stepOwner;
+                            taskDetailItemData["hasChildActivityStep"] = participantDetailTask.activityStep.hasChildActivityStep;
+                            taskDetailItemData["hasParentActivityStep"] = participantDetailTask.activityStep.hasParentActivityStep;
                             var currentTaskItem=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskMagazineViewItemWidget(
                                 {taskStatus:true,taskItemData:taskDetailItemData});
                             if(isOdd){

@@ -1,12 +1,31 @@
 <table width="100%" border="0">
     <tr>
         <td style="padding-left: 5px;">
-            <div dojoType="dijit.Tooltip"  position="after" data-dojo-attach-point="taskDescTxtPopup">xxxxxx</div>
+            <div dojoType="dijit.Tooltip"  position="after" data-dojo-attach-point="taskDescTxtPopup"></div>
             <span style="font-size: 1.3em; font-weight: bold;color: #444444;" data-dojo-attach-point="taskNameTxt"></span>
             <span style="font-size: 1.0em; font-weight: normal;color: #666666; font-style: italic">(<span data-dojo-attach-point="activityIdTxt"></span>)</span>
             <span style="font-size: 0.9em; font-weight: normal;color: #AAAAAA;">-</span>
             <span style="font-size: 1.0em; font-weight: bold;color: #666666;" data-dojo-attach-point="activityNameTxt"></span>
-            <span style="font-size: 0.9em;color: #444444;padding-left:3px;"><i class="icon-retweet"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showActivityInstanceDetail">业务活动详情</span></span>
+            <span style="font-size: 0.9em;color: #AAAAAA;padding-left: 5px;padding-right: 2px;">|</span>
+            <span style="font-size: 0.9em;color: #444444;padding-left:3px;">
+                <i class="icon-retweet"></i> <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showActivityInstanceDetail">业务活动详情</span>
+            </span>
+            <span data-dojo-attach-point="childTaskOperationContainer" style="font-size: 0.9em;display: none;">
+                <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+                <span data-dojo-attach-point="createChildTaskInfoContainer"  style="display: none; padding-right: 5px;">
+                    <i class="icon-plus-sign"></i>
+                    <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:launchChildTask">创建子任务</span>
+                </span>
+                <span data-dojo-attach-point="childTaskDetailInfoContainer" style="display: none;">
+                     <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+                    <i class="icon-sitemap"></i>
+                    <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showChildTasksInfo">子任务详情</span>
+                </span>
+                <span data-dojo-attach-point="parentTaskDetailInfoContainer" style="display: none;">
+                    <i class="icon-sitemap"></i>
+                    <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showActivityInstanceDetail">父任务详情</span>
+                </span>
+            </span>
         </td>
         <td align="right" style="padding-right: 5px;">
             <span style="font-size: 0.9em;color: #777777;padding-right: 15px;"><i class="icon-time"></i> 截止时间: <span style="font-weight: bold;color: #444444;" data-dojo-attach-point="taskDueDateTxt"></span></span>
@@ -41,14 +60,12 @@
     <tr>
         <td data-dojo-attach-point="taskResponseButtonsContainer"></td>
         <td align="right" style="padding-right: 10px;">
-
             <span data-dojo-attach-point="handleTaskButtonContainer">
                 <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:handleCurrentTask"><i class='icon-check'></i> 接受任务</button>
             </span>
              <span data-dojo-attach-point="saveDataButtonsContainer">
                 <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:saveTaskData"><i class='icon-save'></i> 保存任务数据</button>
             </span>
-
             <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
             <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:_CLOSE_DYNAMIC_PAGE">关闭当前任务</span>
         </td>

@@ -128,7 +128,6 @@ require([
                             errorDialogDataObj.oKButtonLabel="确定";
                             UI.showErrorDialog(errorDialogDataObj);
                         }
-
                     };
                     UI.showProgressDialog("重新分配任务");
                     Application.WebServiceUtil.postJSONData(resturl,activityStepOperationContent,loadCallback,errorCallback);

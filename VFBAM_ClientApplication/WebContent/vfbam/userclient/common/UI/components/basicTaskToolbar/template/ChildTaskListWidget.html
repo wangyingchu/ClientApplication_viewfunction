@@ -1,0 +1,23 @@
+<div data-dojo-attach-point="containerNode">
+    <div>
+         <span>
+             <span style="font-size: 0.9em;color: #777777;padding-right: 5px;"><i class="icon-sort-by-order"></i> 子任务数量:
+                 <span style="font-weight: bold;color: #00475B;">
+                     <span data-dojo-attach-point="childTasksNumberLabel"></span>
+                 </span>
+             </span>
+             <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;">|</span>
+             <span style="font-size: 0.9em;">
+                 <span style="font-weight: bold;color: #26A251;display:none;" data-dojo-attach-point="allTasksFinishedPrompt">
+                     <i class="icon-ok"></i> 子任务已全部完成
+                 </span>
+                 <span style="font-weight: bold;color: #666666;display:none;" data-dojo-attach-point="allTasksNotFinishedPrompt">
+                     <i class="icon-chevron-right"></i> 子任务尚未全部完成
+                 </span>
+             </span>
+         </span>
+    </div>
+    <div style="height: 5px;"> </div>
+    <div class="app_headerDivLine"></div>
+    <div data-dojo-attach-point="childTaskListContainer" style="overflow: auto;height:400px;"></div>
+</div>

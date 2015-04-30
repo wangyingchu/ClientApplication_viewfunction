@@ -281,6 +281,8 @@ var modules = [	"dojo.parser",
 
     "vfbam.userclient.common.UI.components.basicTaskDataEditor.BasicTaskDataEditorWidget",
     "vfbam.userclient.common.UI.components.basicTaskToolbar.BasicTaskToolbarWidget",
+    "vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskLauncherWidget",
+    "vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskListWidget",
     "vfbam.userclient.common.UI.components.basicTaskDataEditor.BasicTaskDataFieldWidget",
     "vfbam.userclient.common.UI.components.basicTaskDataEditor.BinaryPropertyViewerWidget",
     "vfbam.userclient.common.UI.components.basicTaskDataEditor.MultipleValuePropertyEditorWidget",

@@ -7,7 +7,11 @@ require([
         widgetsInTemplate: true,
         applicationUsersListStore:null,
         postCreate: function(){
-            this.selectorDescriptionLabel.innerHTML=this.selectorDescription;
+            if(this.selectorDescription){
+                this.selectorDescriptionLabel.innerHTML=this.selectorDescription;
+            }else{
+                dojo.style(this.selectorDescriptionLabelContainer,"display","none");
+            }
             this.getParticipantsList();
         },
         getSelectedParticipant:function(){
@@ -73,6 +77,9 @@ require([
                 that.participantsFilter.set("labelAttr","label");
                 that.participantsFilter.set("labelType","html");
                 that.participantsFilter.set("disabled",false);
+                if(that.customStyle){
+                    that.participantsFilter.set("style",that.customStyle);
+                }
             };
             Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
         },
