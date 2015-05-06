@@ -106,7 +106,6 @@ require([
                     taskData["stepOwner"] = singleTaskData.stepOwner;
                     taskData["taskDueStatus"] = singleTaskData["dueStatus"];
                     taskData["taskResponse"]=singleTaskData["stepResponse"];
-
                     var currentTaskDataFieldsArray=singleTaskData.activityDataFieldValueList.activityDataFieldValueList;
                     dojo.forEach(teamTaskQueueDataFieldsDefine,function(dataFieldDefination){
                         var currentDataFieldDefinationName=dataFieldDefination.fieldName;

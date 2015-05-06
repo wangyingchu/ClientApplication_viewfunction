@@ -5,7 +5,9 @@ require([
     declare("vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskListWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
+        childTaskItemsArray:null,
         postCreate: function(){
+            this.childTaskItemsArray=[];
             this.loadChildTasksList();
         },
         loadChildTasksList:function(){
@@ -38,11 +40,26 @@ require([
             var allChildStepsFinished=childTasksInfo.allChildStepsFinished;
             var childActivitySteps=childTasksInfo.childActivitySteps;
             this.childTasksNumberLabel.innerHTML=childActivitySteps.length;
+            var that=this;
             if(allChildStepsFinished){
                 dojo.style(this.allTasksFinishedPrompt,"display","");
+                that.taskToolbar._enableResponseButtons();
+                that.taskToolbar._hideResponseButtonsStatusControl();
             }else{
                 dojo.style(this.allTasksNotFinishedPrompt,"display","");
             }
+            var that=this;
+            dojo.forEach(childActivitySteps,function(childActivityStep){
+                var currentChildTaskItem=new vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskItemDetailInfoWidget({taskItemInfo:childActivityStep});
+                that.childTaskItemsArray.push(currentChildTaskItem);
+                that.childTaskListContainer.appendChild(currentChildTaskItem.domNode);
+            });
+        },
+        destroy:function(){
+            dojo.forEach(this.childTaskItemsArray,function(currentWidget){
+                currentWidget.destroy();
+            },this);
+            this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}
     });

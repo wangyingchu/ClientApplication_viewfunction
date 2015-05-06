@@ -21,9 +21,8 @@
                     <i class="icon-sitemap"></i>
                     <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showChildTasksInfo">子任务详情</span>
                 </span>
-                <span data-dojo-attach-point="parentTaskDetailInfoContainer" style="display: none;">
-                    <i class="icon-sitemap"></i>
-                    <span data-dojo-type="idx.form.Link" data-dojo-attach-event="onClick:showActivityInstanceDetail">父任务详情</span>
+                <span data-dojo-attach-point="parentTaskDetailInfoContainer" style="display: none;font-size: 0.8em;color:#666666;">
+                    <i class="icon-sitemap"></i> <span>子业务任务</span>
                 </span>
             </span>
         </td>
@@ -58,7 +57,12 @@
         </td>
     </tr>
     <tr>
-        <td data-dojo-attach-point="taskResponseButtonsContainer"></td>
+        <td><span data-dojo-attach-point="taskResponseButtonsContainer"></span>
+            <span data-dojo-attach-point="finishChildTasksUIContainer" style="display: none;">
+                <span dojoType="dijit.form.CheckBox" data-dojo-attach-event="onChange:resetResponseButtonsStatus" data-dojo-attach-point="switchResponseButtonsCheckbox"></span>
+                <span style="font-size: 0.9em;color:#666666;">完成所有尚未结束的子任务</span>
+            </span>
+        </td>
         <td align="right" style="padding-right: 10px;">
             <span data-dojo-attach-point="handleTaskButtonContainer">
                 <button dojoType="dijit.form.Button" data-dojo-attach-event="onClick:handleCurrentTask"><i class='icon-check'></i> 接受任务</button>

@@ -11,6 +11,9 @@ require([
         activityInstanceDetail:null,
         childTaskLauncher:null,
         childTaskList:null,
+        taskHasChildActivitySteps:null,
+        allChildStepsFinished:false,
+        taskResponseButtonArray:false,
         postCreate: function(){},
         //interface method used to close dynamic page
         _CLOSE_DYNAMIC_PAGE:function(){
@@ -159,10 +162,10 @@ require([
                 dojo.style(this.childTaskOperationContainer,"display","");
                 if(taskItemData.hasChildActivityStep){
                     dojo.style(this.childTaskDetailInfoContainer,"display","");
+                    this._getChildTasksInfo();
                 }
                 if(taskItemData.hasParentActivityStep){
                     dojo.style(this.parentTaskDetailInfoContainer,"display","");
-
                 }else{
                     dojo.style(this.createChildTaskInfoContainer,"display","");
                 }
@@ -187,6 +190,7 @@ require([
                 Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT,{taskData:taskItemData});
                 that.taskItemData["stepAssignee"]=userId;
                 that._setupToolBarElements();
+                that._getChildTasksInfo();
             };
             Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_ACCEPTTASK_EVENT,{taskData:taskItemData,callback:taskOperationCallback});
         },
@@ -221,10 +225,10 @@ require([
             var that=this;
             var confirmButtonAction=function(){
                 that.taskDataEditor.SAVE_TASKDATA();
-            }
+            };
             var cancelButtonAction=function(){
                 that.taskDataEditor.RESET_TASKDATA();
-            }
+            };
             var confirmationLabel= "有未保存的数据变更，请选择<b> 保存任务数据 </b>存储变更的数据,或选择<b> 放弃变更数据 </b>恢复变更前的初始数据之后再尝试当前操作。";
             UI.showConfirmDialog({
                 message:confirmationLabel,
@@ -282,7 +286,7 @@ require([
         _setupTaskResponseButtons:function(){
             var that=this;
             var taskItemData= this.taskItemData;
-            if(!taskItemData.taskResponse||taskItemData.taskResponse.length==0){
+            if(taskItemData.hasParentActivityStep==true){
                 var completeButton=new dijit.form.Button({
                     label:"完成当前任务",
                     onClick: function(){
@@ -294,18 +298,41 @@ require([
                     completeButton.set("disabled","disabled");
                 }
             }else{
-                dojo.forEach(taskItemData.taskResponse,function(responseName){
-                    var newResponseButton=new dijit.form.Button({
-                        label:responseName,
+                this.taskResponseButtonArray=[];
+                if(!taskItemData.taskResponse||taskItemData.taskResponse.length==0){
+                    var completeButton=new dijit.form.Button({
+                        label:"完成当前任务",
                         onClick: function(){
-                            that.completeCurrentTask(responseName);
+                            that.completeCurrentTask();
                         }
                     });
-                    this.taskResponseButtonsContainer.appendChild(newResponseButton.domNode);
+                    this.taskResponseButtonsContainer.appendChild(completeButton.domNode);
                     if(taskItemData.taskProgress=="WAITING"||taskItemData.taskProgress=="WAITING_OVERDUE"||taskItemData.taskProgress=="COMPLETE"){
-                        newResponseButton.set("disabled","disabled");
+                        completeButton.set("disabled","disabled");
                     }
-                },this);
+                    this.taskResponseButtonArray.push(completeButton);
+                }else{
+                    dojo.forEach(taskItemData.taskResponse,function(responseName){
+                        var newResponseButton=new dijit.form.Button({
+                            label:responseName,
+                            onClick: function(){
+                                that.completeCurrentTask(responseName);
+                            }
+                        });
+                        this.taskResponseButtonsContainer.appendChild(newResponseButton.domNode);
+                        if(taskItemData.taskProgress=="WAITING"||taskItemData.taskProgress=="WAITING_OVERDUE"||taskItemData.taskProgress=="COMPLETE"){
+                            newResponseButton.set("disabled","disabled");
+                        }
+                        this.taskResponseButtonArray.push(newResponseButton);
+                    },this);
+                }
+                if(taskItemData.hasChildActivityStep==true){
+                    if(this.allChildStepsFinished==true){
+                    }else{
+                        this._disableResponseButtons();
+                        this._showResponseButtonsStatusControl();
+                    }
+                }
             }
         },
         _renderTaskAssignerInfo:function(assignerId){
@@ -330,6 +357,29 @@ require([
                 that.taskAssignerNameLabel.set("dropDown",assignerParticipantNamecardWidget);
             };
             Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+        },
+        _getChildTasksInfo:function(){
+            this.taskHasChildActivitySteps=true;
+            var queryChildTasksData={};
+            queryChildTasksData.activitySpaceName=APPLICATION_ID;
+            queryChildTasksData.activityType=this.taskItemData.activityName;
+            queryChildTasksData.activityStepName=this.taskItemData.taskName;
+            queryChildTasksData.activityId=this.taskItemData.activityId;
+            queryChildTasksData.currentStepOwner=this.taskItemData.stepAssignee;
+            var queryChildTasksDataContent=dojo.toJson(queryChildTasksData);
+            var resturl=ACTIVITY_SERVICE_ROOT+"childTasksInfo/";
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                if(data.allChildStepsFinished==false&&data.childActivitySteps.length==0){
+                }else{
+                    that.allChildStepsFinished=data.allChildStepsFinished;
+                    that.refreshChildTasksInfo();
+                }
+            };
+            Application.WebServiceUtil.postJSONData(resturl,queryChildTasksDataContent,loadCallback,errorCallback);
         },
         showActivityInstanceDetail:function(){
             var resturl=ACTIVITY_SERVICE_ROOT+"activityInstanceDetail/"+APPLICATION_ID+"/"+this.taskItemData.activityId+"/";
@@ -388,7 +438,7 @@ require([
         showChildTasksInfo:function(){
             this.childTaskList=new vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskListWidget({parentTaskItemData:this.taskItemData,taskToolbar:this});
             var	dialog = new Dialog({
-                style:"width:520px;",
+                style:"width:700px;",
                 title: "<i class='icon-sitemap'></i> 子任务详情",
                 content: "",
                 buttons:null,
@@ -403,7 +453,51 @@ require([
             dojo.connect(dialog,"hide",closeDialogCallBack);
         },
         refreshChildTasksInfo:function(childTasksInfo){
-            console.log(childTasksInfo);
+            if(childTasksInfo){
+                //called after added a new child taks
+                this.taskHasChildActivitySteps=true;
+                this.allChildStepsFinished=false;
+            }else{
+                //refresh Current tasks info
+            }
+            var taskItemData= this.taskItemData;
+            dojo.style(this.childTaskDetailInfoContainer,"display","");
+            if(this.allChildStepsFinished){
+                this._enableResponseButtons();
+                this._hideResponseButtonsStatusControl();
+            }else{
+                this._disableResponseButtons();
+                this._showResponseButtonsStatusControl();
+            }
+        },
+        resetResponseButtonsStatus:function(){
+            var enableFinishAllChildTasks= this.switchResponseButtonsCheckbox.get('checked');
+            if(enableFinishAllChildTasks){
+                this._enableResponseButtons();
+            }else{
+                this._disableResponseButtons();
+            }
+        },
+        _disableResponseButtons:function(){
+            dojo.forEach(this.taskResponseButtonArray,function(responseButton){
+                responseButton.set("disabled","disabled");
+            });
+        },
+        _enableResponseButtons:function(){
+            var taskItemData= this.taskItemData;
+            dojo.forEach(this.taskResponseButtonArray,function(responseButton){
+                if(taskItemData.taskProgress=="WAITING"||taskItemData.taskProgress=="WAITING_OVERDUE"||taskItemData.taskProgress=="COMPLETE"){
+                    responseButton.set("disabled","disabled");
+                }else{
+                    responseButton.set("disabled",false);
+                }
+            });
+        },
+        _showResponseButtonsStatusControl:function(){
+            dojo.style(this.finishChildTasksUIContainer,"display","");
+        },
+        _hideResponseButtonsStatusControl:function(){
+            dojo.style(this.finishChildTasksUIContainer,"display","none");
         },
         //interface method used to set task data editor
         SET_TASKDATA_EDITOR:function(taskDataEditor){

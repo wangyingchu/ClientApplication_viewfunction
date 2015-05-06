@@ -1,0 +1,44 @@
+<table width="100%" border="0">
+    <tr>
+        <td style="width: 20px;" data-dojo-attach-point="taskStatusIcon"></td>
+        <td style="width: 40px;">
+            <img src="" width="40px" height="40px" class="app_photoBorder_thin" data-dojo-attach-point="participantPhoto"/>
+        </td>
+        <td align="left" style="padding-left:5px;width: 70px;">
+            <div style="font-size: 0.9em;font-weight: bold;color:#00475B;">
+                <span data-dojo-type="vfbam.userclient.common.UI.widgets.TextDropdownButton" data-dojo-attach-point="participantNameLabel"></span>
+                <span data-dojo-attach-point="taskAssigneeOperationLink"></span>
+            </div>
+            <div style="font-size: 0.9em; color:#333333;" data-dojo-attach-point="participantTitleLabel"></div>
+        </td>
+        <td align="left">
+            <div>
+                <i class='icon-ok icon-large' style='color: #26A251;display: none;' data-dojo-attach-point="taskFinishedPrompt"></i>
+                <span style="font-size: 1.0em;color: #444444;font-weight: bold;" data-dojo-attach-point="childTaskNameLabel"></span>
+            </div>
+            <div style="height: 2px;"></div>
+            <div style="padding-left: 5px;text-align: right;padding-right: 5px">
+                <span style="font-size: 0.8em;color: #777777;padding-right: 20px;" data-dojo-attach-point="dueDateContainer">
+                    <i class="icon-time"></i>
+                    <span data-dojo-attach-point="startTimePrompt"> 截止时间: </span>
+                    <span style="font-weight: bold;color: #555555;" data-dojo-attach-point="dueDateLabel"></span>
+                    <span data-dojo-attach-point="taskDueDateOperationLink"></span>
+                </span>
+                <span style="font-size: 0.8em;color: #777777;padding-right: 10px;">
+                    <i class="icon-time"></i>
+                    <span data-dojo-attach-point="startTimePrompt"> 开始时间: </span>
+                    <span style="font-weight: bold;color: #555555;" data-dojo-attach-point="startDateLabel"></span>
+                    <span style="font-size: 0.9em;color: #AAAAAA;padding-right: 5px;padding-left:5px;">-</span>
+                    <i class="icon-time"></i>
+                    <span data-dojo-attach-point="startTimePrompt"> 结束时间: </span>
+                    <span style="font-weight: bold;color: #555555;" data-dojo-attach-point="finishDateLabel"></span>
+                </span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="app_headerDivLine_thin"></div>
+        </td>
+    </tr>
+</table>
