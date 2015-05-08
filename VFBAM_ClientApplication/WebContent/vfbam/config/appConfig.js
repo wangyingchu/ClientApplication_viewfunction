@@ -80,6 +80,8 @@ var APP_GLOBAL_TASKCENTER_TASKDATAUPDATED_EVENT="APP_GLOBAL_TASKCENTER_TASKDATAU
 var APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT="APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT";
 var APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT="APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT";
 var APP_GLOBAL_TASKCENTER_COMPLETETASK_EVENT="APP_GLOBAL_TASKCENTER_COMPLETETASK_EVENT";
+var APP_GLOBAL_TASKCENTER_SETTASKDUEDATE_EVENT="APP_GLOBAL_TASKCENTER_SETTASKDUEDATE_EVENT";
+var APP_GLOBAL_TASKCENTER_REMOVETASKDUEDATE_EVENT="APP_GLOBAL_TASKCENTER_REMOVETASKDUEDATE_EVENT";
 
 var idx_aliases = [
     ["idx/oneui/form/CheckBox", "idx/form/CheckBox"],
@@ -243,6 +245,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.widgets.DateTimeSelector",
     "vfbam.userclient.common.UI.widgets.NonActionBarDialog",
     "vfbam.userclient.common.UI.widgets.NestedContentContainer",
+    "vfbam.userclient.common.UI.widgets.DateTimeOptionalSelector",
     "vfbam.userclient.common.UI.components.participantsList.ActivityInvolvedParticipantListWidget",
     "vfbam.userclient.common.UI.components.participantsList.ActivityInvolveInfoWidget",
     "vfbam.userclient.common.UI.components.participantsList.RoleGroupParticipantListWidget",

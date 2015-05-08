@@ -9,6 +9,11 @@ require([
         ownerNamecardWidget:null,
         nameCardShowHideTimer:null,
         postCreate: function(){
+            if(this.activityInvolveInfo.isChildActivityStep){
+                dojo.style(this.childTaskIndector,"display","");
+                dojo.style(this.childTaskDiv,"display","");
+                dojo.style(this.normalTaskDiv,"display","none");
+            }
             var startTime=this.activityInvolveInfo.startTime;
             var endTime=this.activityInvolveInfo.endTime;
             var assigneeInvolver=this.activityInvolveInfo.assigneeInvolver;

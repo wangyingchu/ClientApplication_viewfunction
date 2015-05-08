@@ -22,6 +22,9 @@ require([
                 dojo.style(this.participantsListContainer,"height",currentHeightStyle);
             }
         },
+        reloadParticipantsList:function(){
+            this.getParticipantsList();
+        },
         getParticipantsList:function(){
             var activityId=this.taskData.taskItemData.activityId;
             var resturl=ACTIVITY_SERVICE_ROOT+"activityInvolvedParticipants/"+APPLICATION_ID+"/"+activityId+"/";
@@ -37,6 +40,7 @@ require([
                     currentActivityInvolveInfo.startTime=activityInvolveInfo.startTime;
                     currentActivityInvolveInfo.endTime=activityInvolveInfo.endTime;
                     currentActivityInvolveInfo.initTime=activityInvolveInfo.initTime;
+                    currentActivityInvolveInfo.isChildActivityStep=activityInvolveInfo.isChildActivityStep;
                     if(activityInvolveInfo.initInvolver){
                         currentActivityInvolveInfo.initInvolver={};
                         currentActivityInvolveInfo.initInvolver.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+ activityInvolveInfo.initInvolver.userId;
@@ -77,16 +81,17 @@ require([
             Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
         },
         renderParticipantsList:function(activityInvolveInfoList){
+            var that=this;
             dojo.empty(this.participantsListContainer);
-            for(x=0;x<this.currentParticipantsArray.length;i++){
-                this.currentParticipantsArray[x].destroy();
-            }
-            for(i=0;i<activityInvolveInfoList.length;i++){
-                var currentParticipant= activityInvolveInfoList[i];
+            dojo.forEach(this.currentParticipantsArray,function(currentParticipants){
+                currentParticipants.destroy();
+            });
+            dojo.forEach(activityInvolveInfoList,function(activityInvolveInfo){
+                var currentParticipant= activityInvolveInfo;
                 var currentParticipantInfoWidget=new vfbam.userclient.common.UI.components.participantsList.ActivityInvolveInfoWidget({activityInvolveInfo:currentParticipant});
-                this.currentParticipantsArray.push(currentParticipantInfoWidget);
-                this.participantsListContainer.appendChild(currentParticipantInfoWidget.domNode);
-            }
+                that.currentParticipantsArray.push(currentParticipantInfoWidget);
+                that.participantsListContainer.appendChild(currentParticipantInfoWidget.domNode);
+            });
             if(this.containerInitFinishCounterFuc){
                 this.containerInitFinishCounterFuc();
             }

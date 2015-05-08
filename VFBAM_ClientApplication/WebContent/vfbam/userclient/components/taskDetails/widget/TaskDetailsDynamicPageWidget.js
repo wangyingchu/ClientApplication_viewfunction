@@ -91,6 +91,7 @@ require([
                 this.taskSupportDataWidgetSwitchButton.set("label","活动参与人");
                 if(this.taskSupportDataWidget_participant){
                     dojo.style(this.taskSupportDataWidget_participant.domNode,{"display": ""});
+                    this.taskSupportDataWidget_participant.reloadParticipantsList();
                 }else{
                     this.taskSupportDataWidget_participant=new vfbam.userclient.common.UI.components.participantsList.
                         ActivityInvolvedParticipantListWidget({taskData:this.dynamicPagePayload["APP_PAGE_DYNAMIC_DATA"]},this.taskSupportDataContainer_participant);

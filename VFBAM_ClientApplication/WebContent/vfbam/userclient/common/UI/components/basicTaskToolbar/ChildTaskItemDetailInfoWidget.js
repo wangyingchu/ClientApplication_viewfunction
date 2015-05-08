@@ -11,20 +11,22 @@ require([
         menu_dueDateOperationCollection:null,
         dueDateOperationsDropdownButton:null,
         postCreate: function(){
-            if(this.taskItemInfo.dueStatus=="NODEU"){
-                this.taskStatusIcon.innerHTML="<i class='icon-inbox icon-large' style='padding-right: 5px;color: #26A251'></i>";
-            }
-            if(this.taskItemInfo.dueStatus==null){
-                this.taskStatusIcon.innerHTML="<i class='icon-inbox icon-large' style='padding-right: 5px;color: #26A251'></i>";
-            }
-            if(this.taskItemInfo.dueStatus=="OVERDUE"){
-                this.taskStatusIcon.innerHTML="<i class='icon-warning-sign icon-large' style='padding-right: 5px;color: #CE0000'></i>";
-            }
-            if(this.taskItemInfo.dueStatus=="DUETODAY"){
-                this.taskStatusIcon.innerHTML="<i class='icon-time icon-large' style='padding-right: 5px;color: #FAC126'></i>";
-            }
-            if(this.taskItemInfo.dueStatus=="DUETHISWEEK"){
-                this.taskStatusIcon.innerHTML="<i class='icon-calendar icon-large' style='padding-right: 5px;color: #666666'></i>";
+            if(this.taskItemInfo.finishTime==0){
+                if(this.taskItemInfo.dueStatus=="NODEU"){
+                    this.taskStatusIcon.innerHTML="<i class='icon-inbox icon-large' style='padding-right: 5px;color: #26A251'></i>";
+                }
+                if(this.taskItemInfo.dueStatus==null){
+                    this.taskStatusIcon.innerHTML="<i class='icon-inbox icon-large' style='padding-right: 5px;color: #26A251'></i>";
+                }
+                if(this.taskItemInfo.dueStatus=="OVERDUE"){
+                    this.taskStatusIcon.innerHTML="<i class='icon-warning-sign icon-large' style='padding-right: 5px;color: #CE0000'></i>";
+                }
+                if(this.taskItemInfo.dueStatus=="DUETODAY"){
+                    this.taskStatusIcon.innerHTML="<i class='icon-time icon-large' style='padding-right: 5px;color: #FAC126'></i>";
+                }
+                if(this.taskItemInfo.dueStatus=="DUETHISWEEK"){
+                    this.taskStatusIcon.innerHTML="<i class='icon-calendar icon-large' style='padding-right: 5px;color: #666666'></i>";
+                }
             }
             var taskAssigneeParticipant=this.taskItemInfo.stepAssigneeParticipant;
             var currentActivityAssigneeInfo={};
@@ -44,6 +46,7 @@ require([
             this.participantNameLabel.set("dropDown",this.participantNamecardWidget);
 
             var finishTime=this.taskItemInfo.finishTime;
+            var that=this;
             if(finishTime==0) {
                 this.menu_assigneeOperationCollection = new dijit.DropDownMenu({style: "display: none;"});
                 var label = "<i style='color:#777777;' class='icon-caret-down icon-large'></i>";
@@ -54,8 +57,9 @@ require([
                 var reassignTaskOperationCallback = function () {
                 };
                 var menuItem_reassign = new dijit.MenuItem({
-                    label: "<i class='icon-male'></i> 重新分配处理人",
+                    label: "<i class='icon-male'></i> 重新分配负责人",
                     onClick: function () {
+                        that.reAssignTask();
                     }
                 });
                 this.menu_assigneeOperationCollection.addChild(menuItem_reassign);
@@ -88,18 +92,109 @@ require([
                 var taskDueDateOperationCallback = function () {
                 };
                 var menuItem_setDueDate = new dijit.MenuItem({
-                    label: "<i class='icon-time'></i> 重设截止时间",
+                    label: "<i class='icon-time'></i> 设定截止时间",
                     onClick: function () {
+                        that.resetTaskDueDate();
                     }
                 });
                 this.menu_dueDateOperationCollection.addChild(menuItem_setDueDate);
                 var menuItem_deleteDueDate = new dijit.MenuItem({
                     label: "<i class='icon-trash'></i> 删除截止时间",
                     onClick: function () {
+                        that.removeTaskDueDate();
                     }
                 });
                 this.menu_dueDateOperationCollection.addChild(menuItem_deleteDueDate);
             }
+        },
+        reAssignTask:function(){
+            var taskReassignInfo={};
+            taskReassignInfo.taskRoleID=this.taskItemInfo.relatedRole.roleName;
+            taskReassignInfo.taskName=this.taskItemInfo.activityStepName;
+            taskReassignInfo.activityName=this.taskItemInfo.activityType;
+            taskReassignInfo.activityId=this.taskItemInfo.activityId;
+            taskReassignInfo.currentTaskAssignee=this.taskItemInfo.stepAssigneeParticipant.userId;
+            Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_REASSIGNTASK_EVENT,{taskData:taskReassignInfo,callback:dojo.hitch(this,this.resetTaskAssignee)});
+        },
+        resetTaskAssignee:function(newAssigneeParticipantInfo){
+            this.participantNamecardWidget.destroy();
+            var newAssigneeParticipantId=newAssigneeParticipantInfo.participantId;
+            var resturl=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/detailInfo/"+APPLICATION_ID+"/"+ newAssigneeParticipantId;
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback=function(data){
+                that.taskItemInfo.stepAssigneeParticipant=data;
+                var currentActivityAssigneeInfo={};
+                currentActivityAssigneeInfo.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+ data.userId;
+                currentActivityAssigneeInfo.participantName=data.displayName;
+                currentActivityAssigneeInfo.participantId=data.userId;
+                currentActivityAssigneeInfo.participantTitle=data.title;
+                currentActivityAssigneeInfo.participantDesc=data.description;
+                currentActivityAssigneeInfo.participantAddress=data.address;
+                currentActivityAssigneeInfo.participantPhone=data.fixedPhone;
+                currentActivityAssigneeInfo.participantEmail=data.emailAddress;
+                that.participantPhoto.src=currentActivityAssigneeInfo.participantPhotoPath;
+                that.participantTitleLabel.innerHTML =currentActivityAssigneeInfo.participantTitle;
+                that.participantNamecardWidget=
+                    new vfbam.userclient.common.UI.components.participantsList.ParticipantNamecardWidget({participantInfoWidget:that,participantInfo:currentActivityAssigneeInfo});
+                that.participantNameLabel.set("label",currentActivityAssigneeInfo.participantName);
+                that.participantNameLabel.set("dropDown",that.participantNamecardWidget);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+        },
+        resetTaskDueDate:function(){
+            var taskReassignInfo={};
+            taskReassignInfo.taskRoleID=this.taskItemInfo.relatedRole.roleName;
+            taskReassignInfo.taskName=this.taskItemInfo.activityStepName;
+            taskReassignInfo.activityName=this.taskItemInfo.activityType;
+            taskReassignInfo.activityId=this.taskItemInfo.activityId;
+            taskReassignInfo.currentTaskAssignee=this.taskItemInfo.stepAssigneeParticipant.userId;
+            taskReassignInfo.currentTaskDueDate=this.taskItemInfo.dueDate;
+            Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_SETTASKDUEDATE_EVENT,{taskData:taskReassignInfo,callback:dojo.hitch(this,this.renderTaskDueDateElement)});
+        },
+        renderTaskDueDateElement:function(activityStepData){
+            var newDueDateTimestamp=activityStepData.dueDate;
+            var newDueStatus=activityStepData.dueStatus;
+            var newFinishTime=activityStepData.finishTime;
+            this.taskItemInfo.dueDate=newDueDateTimestamp;
+            this.taskItemInfo.dueStatus=newDueStatus;
+            this.taskItemInfo.finishTime=newFinishTime;
+            if(this.taskItemInfo.finishTime==0) {
+                if (this.taskItemInfo.dueStatus == "NODEU") {
+                    this.taskStatusIcon.innerHTML = "<i class='icon-inbox icon-large' style='padding-right: 5px;color: #26A251'></i>";
+                }
+                if (this.taskItemInfo.dueStatus == null) {
+                    this.taskStatusIcon.innerHTML = "<i class='icon-inbox icon-large' style='padding-right: 5px;color: #26A251'></i>";
+                }
+                if (this.taskItemInfo.dueStatus == "OVERDUE") {
+                    this.taskStatusIcon.innerHTML = "<i class='icon-warning-sign icon-large' style='padding-right: 5px;color: #CE0000'></i>";
+                }
+                if (this.taskItemInfo.dueStatus == "DUETODAY") {
+                    this.taskStatusIcon.innerHTML = "<i class='icon-time icon-large' style='padding-right: 5px;color: #FAC126'></i>";
+                }
+                if (this.taskItemInfo.dueStatus == "DUETHISWEEK") {
+                    this.taskStatusIcon.innerHTML = "<i class='icon-calendar icon-large' style='padding-right: 5px;color: #666666'></i>";
+                }
+            }
+            var dueDate=this.taskItemInfo.dueDate;
+            if(dueDate!=0){
+                var dueDateDateStr=dojo.date.locale.format(new Date(dueDate));
+                this.dueDateLabel.innerHTML=dueDateDateStr;
+            }else{
+                this.dueDateLabel.innerHTML="未指定";
+            }
+        },
+        removeTaskDueDate:function(){
+            var taskReassignInfo={};
+            taskReassignInfo.taskRoleID=this.taskItemInfo.relatedRole.roleName;
+            taskReassignInfo.taskName=this.taskItemInfo.activityStepName;
+            taskReassignInfo.activityName=this.taskItemInfo.activityType;
+            taskReassignInfo.activityId=this.taskItemInfo.activityId;
+            taskReassignInfo.currentTaskAssignee=this.taskItemInfo.stepAssigneeParticipant.userId;
+            taskReassignInfo.currentTaskDueDate=this.taskItemInfo.dueDate;
+            Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_REMOVETASKDUEDATE_EVENT,{taskData:taskReassignInfo,callback:dojo.hitch(this,this.renderTaskDueDateElement)});
         },
         destroy:function(){
             this.participantNamecardWidget.destroy();

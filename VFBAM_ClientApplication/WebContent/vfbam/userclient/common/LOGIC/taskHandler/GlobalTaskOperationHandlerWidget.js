@@ -11,6 +11,8 @@ require([
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_ASSIGNTASK_EVENT,dojo.hitch(this,this.assignTask));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_ACCEPTTASK_EVENT,dojo.hitch(this,this.acceptTask));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_COMPLETETASK_EVENT,dojo.hitch(this,this.completeTask));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_SETTASKDUEDATE_EVENT,dojo.hitch(this,this.setTaskDueDate));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_REMOVETASKDUEDATE_EVENT,dojo.hitch(this,this.removeTaskDueDate));
         },
         handleTask:function(messageData){
             var businessData={};
@@ -90,18 +92,23 @@ require([
             var taskDesc=messageData.taskData.taskName+"-"+messageData.taskData.activityName +"("+messageData.taskData.activityId+")";
             var participantsListURL=VFBAM_CORE_SERVICE_ROOT+"userManagementService/participantsOfRole/"+APPLICATION_ID+"/"+taskRelatedRole+"/";
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
-            var participantSelector=vfbam.userclient.common.UI.widgets.ParticipantSelector({selectorDescription:"<i class='icon-ok'></i>  请选择新的任务负责人：",participantDataSourceURL:participantsListURL,hideParticipantIds:[userId]});
+            var currentTaskAssignee=null;
+            if(messageData.taskData.currentTaskAssignee){
+                currentTaskAssignee=messageData.taskData.currentTaskAssignee;
+            }else{
+                currentTaskAssignee=userId;
+            }
+            var participantSelector=vfbam.userclient.common.UI.widgets.ParticipantSelector({selectorDescription:"<i class='icon-ok'></i>  请选择新的任务负责人：",participantDataSourceURL:participantsListURL,hideParticipantIds:[currentTaskAssignee]});
             var _doAssignTask=function(){
                 var participantInfo=participantSelector.getSelectedParticipant();
                 var confirmButtonAction=function(){
                     dialog.hide();
-                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
                     var activityStepOperationObject={};
                     activityStepOperationObject.activitySpaceName = APPLICATION_ID;
                     activityStepOperationObject.activityType = messageData.taskData.activityName;
                     activityStepOperationObject.activityStepName = messageData.taskData.taskName;
                     activityStepOperationObject.activityId = messageData.taskData.activityId;
-                    activityStepOperationObject.currentStepOwner = userId;
+                    activityStepOperationObject.currentStepOwner = currentTaskAssignee;
                     activityStepOperationObject.newStepOwner = participantInfo.participantId;
                     var activityStepOperationContent=dojo.toJson(activityStepOperationObject);
                     var resturl=ACTIVITY_SERVICE_ROOT+"reassignParticipantTask/";
@@ -118,7 +125,7 @@ require([
                         if(data.operationResult){
                             UI.showToasterMessage({type:"success",message:"重新分配任务成功"});
                             if(messageData.callback){
-                                messageData.callback();
+                                messageData.callback(participantInfo);
                             }
                         }else{
                             var errorDialogDataObj={};
@@ -377,6 +384,111 @@ require([
                 cancelButtonLabel:"<i class='icon-remove'></i> 取消",
                 confirmButtonAction:confirmButtonAction,
                 cancelButtonAction:cancelButtonAction
+            });
+        },
+        setTaskDueDate:function(taskItemData){
+            var taskDesc=taskItemData.taskData.taskName+"-"+taskItemData.taskData.activityName +"("+taskItemData.taskData.activityId+")";
+            var dateTimeOptionalSelectorOption={};
+            dateTimeOptionalSelectorOption.selectorDescription="<i class='icon-ok'></i>  请选择任务截止时间：";
+            var currentTaskDueDate=taskItemData.taskData.currentTaskDueDate;
+            if(currentTaskDueDate!=0){
+                dateTimeOptionalSelectorOption.initDateTime=new Date(currentTaskDueDate);
+            }
+            var dueDateSelector= vfbam.userclient.common.UI.widgets.DateTimeOptionalSelector(dateTimeOptionalSelectorOption);
+            var _doSetTaskDueDate=function(){
+                var settedDateTime=dueDateSelector.getDateTime();
+                var confirmButtonAction=function(){
+                    dialog.hide();
+                    var setTaskDueDateOperationObject={};
+                    setTaskDueDateOperationObject.activitySpaceName = APPLICATION_ID;
+                    setTaskDueDateOperationObject.activityType = taskItemData.taskData.activityName;
+                    setTaskDueDateOperationObject.activityStepName = taskItemData.taskData.taskName;
+                    setTaskDueDateOperationObject.activityId = taskItemData.taskData.activityId;
+                    setTaskDueDateOperationObject.currentStepOwner = taskItemData.taskData.currentTaskAssignee;
+                    setTaskDueDateOperationObject.activityStepDueDate=settedDateTime.getTime();
+                    var activityStepOperationContent=dojo.toJson(setTaskDueDateOperationObject);
+                    var resturl=ACTIVITY_SERVICE_ROOT+"setTaskDueDate/";
+                    var errorCallback= function(data){
+                        UI.showSystemErrorMessage(data);
+                    };
+                    var loadCallback=function(data){
+                        var timer = new dojox.timing.Timer(300);
+                        timer.onTick = function(){
+                            UI.hideProgressDialog();
+                            timer.stop();
+                        };
+                        timer.start();
+                        UI.showToasterMessage({type:"success",message:"设定任务截止时间成功"});
+                        if(taskItemData.callback){
+                            taskItemData.callback(data);
+                        }
+                    };
+                    UI.showProgressDialog("设定任务截止时间");
+                    Application.WebServiceUtil.postJSONData(resturl,activityStepOperationContent,loadCallback,errorCallback);
+                };
+                if(settedDateTime){
+                    var dueDateDateStr=dojo.date.locale.format(settedDateTime);
+                    UI.showConfirmDialog({
+                        message:"请确认是否将任务 '<b>"+taskDesc+"</b>' 的截止时间设定为 <b>"+dueDateDateStr+"</b> ?" ,
+                        confirmButtonLabel:"<i class='icon-ok'></i> 确认",
+                        cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+                        confirmButtonAction:confirmButtonAction
+                    });
+                }else{
+                    UI.showToasterMessage({type:"warning",message:"请选择任务截止时间"});
+                }
+            };
+            var setDueDateButton=new dijit.form.Button({
+                label: "<i class='icon-time'></i> 设定",
+                onClick: _doSetTaskDueDate
+            });
+            var actionButtone=[];
+            actionButtone.push(setDueDateButton);
+            var	dialog = new Dialog({
+                style:"width:500px;",
+                title: "<span style='font-size: 0.7em;'><i class='icon-time'></i> 设定任务截止时间</span>",
+                content: "",
+                buttons:actionButtone,
+                closeButtonLabel: "<i class='icon-remove'></i> 取消"
+            });
+            dojo.place(dueDateSelector.containerNode, dialog.containerNode);
+            dialog.show();
+        },
+        removeTaskDueDate:function(taskItemData){
+            var taskDesc=taskItemData.taskData.taskName+"-"+taskItemData.taskData.activityName +"("+taskItemData.taskData.activityId+")";
+            var confirmButtonAction=function(){
+                var setTaskDueDateOperationObject={};
+                setTaskDueDateOperationObject.activitySpaceName = APPLICATION_ID;
+                setTaskDueDateOperationObject.activityType = taskItemData.taskData.activityName;
+                setTaskDueDateOperationObject.activityStepName = taskItemData.taskData.taskName;
+                setTaskDueDateOperationObject.activityId = taskItemData.taskData.activityId;
+                setTaskDueDateOperationObject.currentStepOwner = taskItemData.taskData.currentTaskAssignee;
+                setTaskDueDateOperationObject.activityStepDueDate=0;
+                var activityStepOperationContent=dojo.toJson(setTaskDueDateOperationObject);
+                var resturl=ACTIVITY_SERVICE_ROOT+"setTaskDueDate/";
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback=function(data){
+                    var timer = new dojox.timing.Timer(300);
+                    timer.onTick = function(){
+                        UI.hideProgressDialog();
+                        timer.stop();
+                    };
+                    timer.start();
+                    UI.showToasterMessage({type:"success",message:"删除任务截止时间成功"});
+                    if(taskItemData.callback){
+                        taskItemData.callback(data);
+                    }
+                };
+                UI.showProgressDialog("删除任务截止时间");
+                Application.WebServiceUtil.postJSONData(resturl,activityStepOperationContent,loadCallback,errorCallback);
+            };
+            UI.showConfirmDialog({
+                message:"请确认是否删除任务 '<b>"+taskDesc+"</b>' 的截止时间 ?" ,
+                confirmButtonLabel:"<i class='icon-ok'></i> 确认",
+                cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+                confirmButtonAction:confirmButtonAction
             });
         },
         getTaskDataEditor:function(taskItemData){

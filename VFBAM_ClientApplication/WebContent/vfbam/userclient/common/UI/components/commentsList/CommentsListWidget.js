@@ -33,7 +33,11 @@ require([
             var commentsQueryObject={};
             commentsQueryObject.activitySpaceName=APPLICATION_ID;
             commentsQueryObject.activityType=this.taskData.taskItemData.activityName;
-            commentsQueryObject.activityStepName=this.taskData.taskItemData.taskName;
+            if(this.taskData.taskItemData.hasParentActivityStep){
+                commentsQueryObject.activityStepName=this.taskData.taskItemData.parentActivityStepName;
+            }else{
+                commentsQueryObject.activityStepName=this.taskData.taskItemData.taskName;
+            }
             commentsQueryObject.activityId=this.taskData.taskItemData.activityId;
             commentsQueryObject.commentType=this.currentCommentType;
             var commentsQueryContent=dojo.toJson(commentsQueryObject);
@@ -96,7 +100,11 @@ require([
                 var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
                 commentsAddingObject.activitySpaceName=APPLICATION_ID;
                 commentsAddingObject.activityType=that.taskData.taskItemData.activityName;
-                commentsAddingObject.activityStepName=that.taskData.taskItemData.taskName;
+                if(that.taskData.taskItemData.hasParentActivityStep){
+                    commentsAddingObject.activityStepName=that.taskData.taskItemData.parentActivityStepName;
+                }else{
+                    commentsAddingObject.activityStepName=that.taskData.taskItemData.taskName;
+                }
                 commentsAddingObject.activityId=that.taskData.taskItemData.activityId;
                 commentsAddingObject.commentType=that.currentCommentType;
                 commentsAddingObject.commentWriter=userId;
