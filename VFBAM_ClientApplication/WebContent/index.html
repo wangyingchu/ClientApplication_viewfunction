@@ -66,14 +66,15 @@
                 };
                 var loadCallback=function(data){
                     if(!data.loginAuthenticateResult){
-                        var errorDialogDataObj={};
+                        var infoDialogDataObj={};
                         var okButtonAction=function(){
                             window.location.href="login.html";
                         };
-                        errorDialogDataObj.message="用户登录信息无效,请重新登录系统";
-                        errorDialogDataObj.oKButtonAction=okButtonAction;
-                        errorDialogDataObj.oKButtonLabel="重新登录";
-                        UI.showErrorDialog(errorDialogDataObj);
+                        infoDialogDataObj.title="<span style='font-size: 0.8em;'><i class='icon-warning-sign' style='color: #CE0000;'></i> 用户登录信息无效</span>";
+                        infoDialogDataObj.message="<span style='font-size: 1em;padding-left: 20px;'><i class='icon-signin' style='padding-right: 5px;'></i> 用户登录信息过期或服务器已重新启动,请重新登录系统</span>";
+                        infoDialogDataObj.applyInfoButtonAction=okButtonAction;
+                        infoDialogDataObj.applyInfoButtonLabel="<i class='icon-signin'></i> 重新登录";
+                        UI.showSystemInfoDialog(infoDialogDataObj);
                     }else{
                         setupUserLoginInfo(userLoginName);
                     }

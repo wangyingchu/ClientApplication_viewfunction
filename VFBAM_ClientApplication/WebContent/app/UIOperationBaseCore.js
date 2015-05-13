@@ -93,6 +93,23 @@ var UI=(function(){
         showErrorDialog:function(dialogDataObject){
             idx.dialogs.error(dialogDataObject.message,dialogDataObject.oKButtonAction, dialogDataObject.oKButtonLabel);
         },
+        showSystemInfoDialog:function(dialogDataObject){
+            require(["idx/oneui/Dialog"], function(Dialog){
+                var	dialog = new Dialog({
+                    style:"width:450px;height:160px;z-index: 2000;",
+                    draggable:false,
+                    title: dialogDataObject.title,
+                    content: dialogDataObject.message,
+                    closeButtonLabel: dialogDataObject.applyInfoButtonLabel
+                });
+                var closeDialogCallBack=function(){
+                    dialogDataObject.applyInfoButtonAction();
+                };
+                dojo.connect(dialog,"hide",closeDialogCallBack);
+                dialog.show();
+                dojo.style(dialog.domNode,"zIndex",1000);
+            });
+        },
         showProgressDialog:function(progressingText){
             loadingDlg = new dijit.Dialog({
                 title: "处理中",
