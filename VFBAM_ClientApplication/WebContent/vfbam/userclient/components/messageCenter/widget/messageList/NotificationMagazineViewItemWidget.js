@@ -69,7 +69,79 @@ require([
         },
         handleNotification:function(){
             if(this.notificationItemData){
-                Application.MessageUtil.publishMessage(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,this.notificationItemData);
+                var notificationType= this.notificationItemData.notificationType;
+                if(notificationType== MESSAGESERVICE_NotificationType_ACTIVITYTASK){
+                    var activityId=this.notificationItemData.notificationMetaData.activityTaskNotificationVO.activityId;
+                    var taskName=this.notificationItemData.notificationMetaData.activityTaskNotificationVO.taskName;
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var resturl=ACTIVITY_SERVICE_ROOT+"participantTaskDetailInfo/"+APPLICATION_ID+"/"+userId+"/"+activityId+"/"+taskName+"/";
+                    var errorCallback= function(data){
+                        UI.showSystemErrorMessage(data);
+                    };
+                    var that=this;
+                    var loadCallback=function(participantDetailTask){
+                        if(participantDetailTask.activityType){
+                            var taskDetailItemData={};
+                            taskDetailItemData["taskName"]= participantDetailTask.activityStepName;
+                            taskDetailItemData["activityName"]= participantDetailTask.activityType;
+                            taskDetailItemData["activityId"]= participantDetailTask.activityStep.activityId;
+                            taskDetailItemData["taskDescription"]= participantDetailTask.stepDescription;
+                            taskDetailItemData["taskDueDate"]=new Date(participantDetailTask.dueDate);
+                            if(participantDetailTask.activityStep.relatedRole){
+                                taskDetailItemData["taskRole"]= participantDetailTask.activityStep.relatedRole.displayName;
+                                taskDetailItemData["taskRoleID"]=participantDetailTask.activityStep.relatedRole.roleName;
+                            }
+                            taskDetailItemData["taskDueStatus"]=participantDetailTask.dueStatus;
+                            taskDetailItemData["taskResponse"]=participantDetailTask.activityStep.stepResponse;
+                            var taskDataFields=[];
+                            var taskDataDetailInfo=participantDetailTask.activityStep.activityDataFieldValueList.activityDataFieldValueList;
+                            if(taskDataDetailInfo){
+                                dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
+                                    var fieldDefinition=taskDataDetail.activityDataDefinition;
+                                    var propertyValue={};
+                                    propertyValue["name"]=fieldDefinition.displayName;
+                                    propertyValue["fieldName"]=fieldDefinition.fieldName;
+                                    propertyValue["type"]=fieldDefinition.fieldType;
+                                    propertyValue["multipleValue"]=fieldDefinition.arrayField;
+                                    propertyValue["required"]=fieldDefinition.mandatoryField;
+                                    if(fieldDefinition.arrayField){
+                                        propertyValue["value"]=taskDataDetail.arrayDataFieldValue;
+                                    }else{
+                                        propertyValue["value"]=taskDataDetail.singleDataFieldValue;
+                                    }
+                                    propertyValue["writable"]=true;
+                                    propertyValue["readable"]=true;
+                                    taskDataFields.push(propertyValue);
+                                });
+                            }
+                            taskDetailItemData["taskDataFields"] = taskDataFields;
+                            taskDetailItemData["stepAssignee"] = participantDetailTask.stepAssignee;
+                            taskDetailItemData["stepOwner"] = participantDetailTask.stepOwner;
+                            taskDetailItemData["hasChildActivityStep"] = participantDetailTask.activityStep.hasChildActivityStep;
+                            taskDetailItemData["hasParentActivityStep"] = participantDetailTask.activityStep.hasParentActivityStep;
+                            taskDetailItemData["parentActivityStepName"] = participantDetailTask.activityStep.parentActivityStepName;
+                            that.notificationItemData.notificationMetaData.activityTaskNotificationVO=taskDetailItemData;
+                            Application.MessageUtil.publishMessage(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,that.notificationItemData);
+
+                        }else{
+                            var messageTxt="业务任务 <b>"+taskName +"</b> 已处理完毕或已不在您的任务列表中。";
+                            var confirmButtonAction=function(){
+                                Application.MessageUtil.publishMessage(APP_MESSAGECENTER_DELETENOTIFICATIONDIRECTLY_EVENT,{type:"NOTIFICATION",data:that.notificationItemData});
+                            };
+                            var cancelButtonAction=function(){};
+                            UI.showConfirmDialog({
+                                message:messageTxt,
+                                confirmButtonLabel:"<i class='icon-trash'></i> 删除此项通知",
+                                cancelButtonLabel:"<i class='icon-remove'></i> 关闭",
+                                confirmButtonAction:confirmButtonAction,
+                                cancelButtonAction:cancelButtonAction
+                            });
+                        }
+                    };
+                    Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+                }else{
+                    Application.MessageUtil.publishMessage(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,this.notificationItemData);
+                }
                 if(!this.notificationItemData.notificationReadStatus){
                     dojo.style(this.newMessageIcon,"display","none");
                     dojo.style(this.alreadyReadMessageIcon,"display","");

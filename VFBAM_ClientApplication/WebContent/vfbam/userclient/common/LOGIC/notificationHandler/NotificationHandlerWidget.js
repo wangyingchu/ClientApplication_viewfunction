@@ -4,10 +4,12 @@ require([
     declare("vfbam.userclient.common.LOGIC.notificationHandler.NotificationHandlerWidget", [_Widget], {
         handleNotificationListenerHandler:null,
         deleteNotificationListenerHandler:null,
+        deleteNotificationDirectlyListenerHandler:null,
         postCreate: function(){
             console.log("NotificationHandlerWidget created");
             this.handleNotificationListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,dojo.hitch(this,this.handleNotification));
             this.deleteNotificationListenerHandler=  Application.MessageUtil.listenToMessageTopic(APP_MESSAGECENTER_DELETENOTIFICATION_EVENT,dojo.hitch(this,this.deleteNotification));
+            this.deleteNotificationDirectlyListenerHandler=  Application.MessageUtil.listenToMessageTopic(APP_MESSAGECENTER_DELETENOTIFICATIONDIRECTLY_EVENT,dojo.hitch(this,this.deleteNotificationDirectly));
         },
         handleNotification:function(notificationData){
            if(!notificationData.notificationReadStatus){
@@ -53,18 +55,10 @@ require([
                 var openTaskPagePayload= this.switchPagePayload;
                 var businessData={};
                 var activityTaskNotificationVO= notificationData.notificationMetaData.activityTaskNotificationVO;
-                var taskItemData={};
-                taskItemData["taskName"]=activityTaskNotificationVO.taskName;
-                taskItemData["activityName"]=activityTaskNotificationVO.activityName;
-                taskItemData["activityId"]=activityTaskNotificationVO.activityId;
-                taskItemData["taskDescription"]=activityTaskNotificationVO.taskDescription;
-                taskItemData["taskDueDate"]=new Date(activityTaskNotificationVO.taskDueDate);
-                taskItemData["taskRole"]=activityTaskNotificationVO.taskRole;
-                taskItemData["taskDueStatus"]=activityTaskNotificationVO.taskDueStatus;
-                businessData["taskItemData"] =taskItemData;
+                businessData["taskItemData"] =activityTaskNotificationVO;
                 openTaskPagePayload["APP_PAGE_DYNAMIC_DATA"]=businessData;
-                var taskPageTitle= "<i class='icon-tag'></i> 任务详情 ("+taskItemData.activityId+")";
-                var dynamicPageId=UI.openDynamicPage("TASK_DETAIL","任务详情",taskItemData.activityId,taskPageTitle,openTaskPagePayload);
+                var taskPageTitle= "<i class='icon-tag'></i> 任务详情 ("+activityTaskNotificationVO.activityId+")";
+                var dynamicPageId=UI.openDynamicPage("TASK_DETAIL","任务详情",activityTaskNotificationVO.activityId,taskPageTitle,openTaskPagePayload);
                 if(dynamicPageId){
                     UI.showDynamicPage(dynamicPageId);
                 }
@@ -119,6 +113,24 @@ require([
                 confirmButtonAction:confirmButtonAction,
                 cancelButtonAction:cancelButtonAction
             });
+        },
+        deleteNotificationDirectly:function(messageData){
+            if(messageData.type=="NOTIFICATION"){
+                var resturl=MESSAGE_SERVICE_ROOT+"messageExchangeService/deleteNotification/"+messageData.data.notificationObjectId;
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback=function(data){
+                    if(data.operationResult){
+                        if(messageData.callback){
+                            messageData.callback();
+                        }
+                        UI.showToasterMessage({type:"success",message:"删除通知成功"});
+                    }
+                    Application.MessageUtil.publishMessage(APP_MESSAGECENTER_LOADMESSAGE_EVENT,{messageType:"NOTIFICATION"});
+                };
+                Application.WebServiceUtil.deleteJSONData(resturl,null,loadCallback,errorCallback);
+            }
         },
         _endOfCode: function(){}
     });
