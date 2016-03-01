@@ -1,0 +1,90 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .gridxArrowButtonNode {
+    background-image: url("images/gridx-sort-icon.png") !important;
+    background-repeat: no-repeat;
+    background-size: auto 11px;
+    height: 10px;
+    margin: 5px 7px 0 0;
+    padding: 0;
+    width: 10px;
+    display: none;
+}
+.@{theme-name} {
+    .gridxSortUp {
+        .gridxArrowButtonNode {
+            display: block;
+            background-position: -72px -3px;
+        }
+    }
+    .gridxSortDown {
+        .gridxArrowButtonNode {
+            display: block;
+            background-position: -12px 0px;
+        }
+    }
+    .gridxSortSingle {
+        display: none;
+    }
+    .gridxArrowButtonChar {
+        display: none;
+    }
+    .gridxSortNested {
+        display: block;
+        margin: 2px 5px;
+        float: right;
+        font-size: 10px;
+    }
+}
+.dijit_a11y.@{theme-name} {
+    .gridxArrowButtonChar {
+        display: block;
+    }
+}
+.@{theme-name} .gridxHeaderRow .gridxCell:hover .gridxArrowButtonNode{
+    display: block;
+    background-position: -134px 0px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxArrowButtonNode {
+    display: block;
+    background-position: -145px 0px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell:hover .gridxSortUp .gridxArrowButtonNode{
+    background-position: -196px 0px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortUp .gridxArrowButtonNode {
+    display: block;
+    background-position: -206px 0px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell:hover .gridxSortDown .gridxArrowButtonNode{
+    background-position: -165px 0px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortDown .gridxArrowButtonNode {
+    background-position: -176px 0px;
+}
+
+.@{theme-name} .gridxHeaderRow .gridxCell:hover .gridxSortAscendOnly{
+    background-position: -41px -4px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortAscendOnly {
+    background-position: -19px -4px;
+}
+
+.@{theme-name} .gridxHeaderRow .gridxCell:hover .gridxSortDescendOnly{
+    background-position: -82px -4px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortDescendOnly {
+    background-position: -102px -4px;
+}
+
+.@{theme-name} .gridxHeaderRow .gridxCell:hover .gridxSortUp .gridxSortAscendOnly{
+    background-position: -51px -4px;
+}
+.@{theme-name} .gridxHeaderCellFocus .gridxSortUp .gridxSortAscendOnly {
+    background-position: -51px -4px;
+}
+.@{theme-name} .gridxHeaderRow .gridxCell:hover .gridxSortDown .gridxSortDescendOnly{
+    background-position: -19px -4px;
+}
+.@{theme-name} .gridxHeaderCellFocus .gridxSortDown .gridxSortDescendOnly {
+    background-position: -19px -4px;
+}

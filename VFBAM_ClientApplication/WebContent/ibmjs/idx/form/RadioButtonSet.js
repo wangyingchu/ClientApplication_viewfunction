@@ -22,15 +22,51 @@ define([
 	"./_InputListMixin",
 	"./_RadioButtonSetItem",
 	"idx/widget/HoverHelpTooltip",
-	"dojo/text!./templates/RadioButtonSet.html"
-], function(declare, lang, array, has, domAttr, domClass, domStyle, keys, _FormSelectWidget, _Container, _CssStateMixin, _CompositeMixin, _ValidationMixin, _InputListMixin, _RadioButtonSetItem, HoverHelpTooltip, template){
+	"dojo/has!dojo-bidi?../bidi/form/RadioButtonSet",
+	// ====================================================================================================================
+	// ------
+	// Load _TemplatePlugableMixin and PlatformPluginRegistry if on "mobile" or if on desktop, but using the 
+	// platform-plugable API.  Any prior call to PlaformPluginRegistry.setGlobalTargetPlatform() or 
+	// PlatformPluginRegistry.setRegistryDefaultPlatform() sets "platform-plugable" property for dojo/has.
+	// ------
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	// ------
+	// We want to load the desktop template unless we are using the mobile implementation.
+	// ------
+	"idx/has!#idx_form_RadioButtonSet-desktop?dojo/text!./templates/RadioButtonSet.html" 	// desktop widget, load the template
+		+ ":#idx_form_RadioButtonSet-mobile?"											// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/RadioButtonSet.html"						// global desktop platform, load template
+		+ ":#mobile?"															// global mobile platform, don't load
+		+ ":dojo/text!./templates/RadioButtonSet.html", 								// no dojo/has features, load the template
+			
+	// ------
+	// Load the mobile plugin according to build-time/runtime dojo/has features
+	// ------
+	"idx/has!#idx_form_RadioButtonSet-mobile?./plugins/phone/RadioButtonSetPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_RadioButtonSet-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/phone/RadioButtonSetPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+
+	// ====================================================================================================================
+], function(declare, lang, array, has, domAttr, domClass, domStyle, keys, _FormSelectWidget, _Container, _CssStateMixin, _CompositeMixin, _ValidationMixin, _InputListMixin, _RadioButtonSetItem, HoverHelpTooltip, bidiExtension, 
+		TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
+	var baseClassName = "idx.form.RadioButtonSet";
+	if (has("mobile") || has("platform-plugable")) {
+		baseClassName = baseClassName + "Base";
+	}
+	if (has("dojo-bidi")) {
+		baseClassName = baseClassName + "_";
+	}		
+	
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	
 	/**
 	 * @name idx.form.RadioButtonSet
 	 * @class idx.form.RadioButtonSet is a composit widget which consists of a group of radiobuttons.
 	 * RadioButtonSet can be created in the same way of creating a dijit.form.Select control.
-	 * NOTE: The "startup" method should be called after a CheckBoxList is created in Javascript.
+	 * NOTE: The "startup" method should be called after a RadioButtonSet is created in Javascript.
 	 * In order to get the value of the widget, you don't need to invoke the get("value") method of
 	 * each radiobutton anymore, but simply call get("value") method of the RadioButtonSet.
 	 * As a composite widget, it also provides following features:
@@ -75,10 +111,10 @@ define([
 	 *		store: readStore
 	 *	});
 	 */
-	return iForm.RadioButtonSet = declare("idx.form.RadioButtonSet", [_FormSelectWidget, _Container, _CssStateMixin, _CompositeMixin, _ValidationMixin, _InputListMixin],
+	iForm.RadioButtonSet = declare(baseClassName, [_FormSelectWidget, _Container, _CssStateMixin, _CompositeMixin, _ValidationMixin, _InputListMixin],
 	/**@lends idx.form.RadioButtonSet.prototype*/
 	{
-		templateString: template,
+		templateString: desktopTemplate,
 		
 		baseClass: "idxRadioButtonSetWrap",
 		
@@ -86,8 +122,14 @@ define([
 		
 		multiple: false,
 		
-		radioButtonSetItems: [],
+		radioButtonSetItems: [], // need to override this class-static value in postMixInProperties
 		
+		instantValidate: false,
+		
+		postMixInProperties: function() {
+			this.radioButtonSetItems = [];
+			this.inherited(arguments);
+		},
 		buildRendering: function(){
 			// Radio button set must have a name, otherwise all unnamed radio buttons will
 			// be considered as one group.
@@ -95,11 +137,6 @@ define([
 			this.inherited(arguments);
 		},
 		postCreate: function(){
-			this._event = {
-				"input" : "_setValueAttr",
-				"blur" 	: "_onBlur",
-				"focus" : "_onFocus"
-			}
 			this.inherited(arguments);
 			this._resize();
 		},
@@ -180,8 +217,11 @@ define([
 			if(has("ie") > 7 && !has("quirks")) this._relayout(this.domNode);
 			this.onAfterAddOptionItem(item, option);
 		},
-		isValid: function(isFocused){
-			return (!this.required || this.value === 0 || !(/^\s*$/.test(this.value || ""))); 
+		//_isValid: function(isFocused){
+		//	return (!this.required || this.value === 0 || !(/^\s*$/.test(this.value || ""))); 
+		//},
+		_isEmpty: function(){
+			return /^\s*$/.test(this.value || "");
 		},
 		validate: function(/*Boolean*/ isFocused){
 			// summary:
@@ -190,7 +230,7 @@ define([
 			//		Show missing or invalid messages if appropriate, and highlight textbox field.
 			//		Used when a select is initially set to no value and the user is required to
 			//		set the value.
-			var isValid = this.isValid(isFocused);
+			var isValid = this._isValid(isFocused);
 			this._set("state", isValid ? "" : "Error");
 			this.focusNode.setAttribute("aria-invalid", isValid ? "false" : "true");
 			var message = isValid ? "" : this.getErrorMessage();
@@ -205,15 +245,75 @@ define([
 			this.inherited(arguments);
 			this._refreshState();
 		},
+		_onBlur: function(){
+			this.inherited(arguments);
+			if(!this.instantValidate){this.validate();}
+		},
 		
 		destroy: function(){
+			this.inherited(arguments);
 			for ( var index = 0; index < this.radioButtonSetItems.length; index++){
 				var item = this.radioButtonSetItems[index];
 				item.destroy();
 			}
 			this.radioButtonSetItems.length = 0;
-			this.inherited(arguments);
 		},
 		_errorIconWidth: 45
 	});
+	
+	if (has("dojo-bidi")) {
+		baseClassName = baseClassName.substring(0, baseClassName.length-1);
+		var baseRadioButtonSet = iForm.RadioButtonSet;
+		iForm.RadioButtonSet = declare(baseClassName,[baseRadioButtonSet,bidiExtension]);
+	}
+	
+	if ( has("mobile") || has("platform-plugable")) {
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/RadioButtonSet", 
+				{	
+					desktop: "inherited",	// no plugin for desktop, use inherited methods  
+				 	mobile: MobilePlugin	// use the mobile plugin if loaded
+				});
+		
+		iForm.RadioButtonSet = declare("idx.form.RadioButtonSet",[iForm.RadioButtonSet, TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			templatePath: require.toUrl("idx/form/templates/RadioButtonSet.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			/**
+			 * Stub Plugable method
+			 */
+			startup: function(){
+				this.inherited(arguments);
+				return this.doWithPlatformPlugin(arguments, "startup", "startup");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			_addOptionItem: function(/* dojox.form.__SelectOption */ option){
+				return this.doWithPlatformPlugin(arguments, "_addOptionItem", "_addOptionItem",option);
+			},
+			 			
+			/**
+			 * 
+			 * @param {Object} message
+			 */
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			/**
+			 * 
+			 * @param {Object} helpText
+			 */
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			}
+		});
+	}
+	return iForm.RadioButtonSet;
 });

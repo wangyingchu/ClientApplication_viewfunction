@@ -9,6 +9,8 @@ define(["idx/main",
         "dojo/_base/lang",
         "dojo/json",
         "dojo/dom-style",
+		"dojo/dom-class",
+        "dojo/i18n", // i18n.getLocalization
         "idx/resources",
 		"idx/widget/ModalDialog",
         "idx/widget/ConfirmationDialog",
@@ -18,6 +20,8 @@ define(["idx/main",
 				 dLang,
 				 dJson,
 				 dDomStyle,
+				 dDomClass,
+				 dI18n,
 				 iResources,
 				 ModalDialog,
 				 ConfirmationDialog) 
@@ -27,6 +31,7 @@ define(["idx/main",
  * @namespace Provides convenient functions to show/hide common dialogs.
  */
 	var iDialogs = dLang.getObject("dialogs", true, iMain);
+	var _nlsResources = dI18n.getLocalization("idx", "dialogs");
 
 /**
  * @public
@@ -97,23 +102,31 @@ define(["idx/main",
 		var res = iResources.getResources("idx/dialogs");
 		labelOk = (labelOk || res.close);
 		if(dLang.isObject(error)){
-			showErrorDialog(dLang.mixin(error, {
-				type: "error", 
-				text: error.summary,
-				info: [{
-					title: "Fix this problem",
-					content: error.detail
-				},{
-					title: "Get more help",
-					content: error.moreContent
-				}],
-				messageId: error.messageId || "",
-				messageRef: error.messageRef || "",
-				messageTimeStamp: error.messageTimeStamp || ""
-			}), cb);
+			if(error.moreContent){
+				showErrorDialog(dLang.mixin(error, {
+					type: "error", 
+					text: error.summary,
+					info: [{
+						title: error.detailTabLabel || _nlsResources.idxErrorDialog_detailTabLabel || "Fix this problem",
+						content: error.detail
+					},{
+						title: error.moreTabLabel || _nlsResources.idxErrorDialog_moreTabLabel || "Get more help",
+						content: error.moreContent
+					}],
+					messageId: error.messageId || "",
+					messageRef: error.messageRef || "",
+					messageTimeStamp: error.messageTimeStamp || "",
+					closeButtonLabel: labelOk, 
+					showCancel: true, 
+					title: res.error
+				}), cb);
+			}else if(error.detail){
+				showSimpleDialog({type: "error", text: error.summary, info: error.detail, closeButtonLabel: labelOk, 
+					showCancel: true, title: res.error}, cb);
+			}
 		}else if(dLang.isString(error)){
 			showSimpleDialog({type: "error", text: res.error, info: error, closeButtonLabel: labelOk, 
-				showCancel: true, title: res.error, iconClass: "idxSignIcon idxErrorIcon"}, cb);
+				showCancel: true, title: res.error}, cb);
 		}
 	};
 	
@@ -150,7 +163,7 @@ define(["idx/main",
  * @param {String} s Specifies the message.
  * @param {Number} msec Specifies duration for automatic pop-down in milliseconds.
  */
-	iMain.showProgressDialog = iDialogs.showProgressDialog = function(s, msec){
+	iMain.showProgressDialog = iDialogs.showProgressDialog = function(s, msec, action, actionLabel){
 		var res = iResources.getResources("idx/dialogs");
 		var dialog = iDialogs._progressDialog;
 		dialog && dialog.destroy && dialog.destroy();
@@ -158,14 +171,16 @@ define(["idx/main",
 		
 		dialog = iMain._progressDialog = iDialogs._progressDialog = new ModalDialog(dLang.mixin(args, dLang.isObject(s) ? s : {"info": s || res.loading}, {
 			type: "progress",
-			text: res.progress,
-			style: "min-width:350px; min-height:90px; max-width: 600px;", 
 			title: res.progress,
-			info: '<table class="idxSimpleIconContainer"><tbody><tr>' +
-			'<td valign="top"><div class="idxSignIcon dijitContentPaneLoading" dojoattachpoint="iconNode" style=""></div></td>' +
-			'<td class="idxSimpleIconText" dojoattachpoint="textNode">' + (dLang.isObject(s) ? s.text : (s || res.loading)) + '</td>' +
-			'</tr></tbody></table>',
-			showActionBar: false,
+			text: (dLang.isObject(s) ? s.text : (s || res.loading)),
+			style: "min-width:100px; min-height:150px; max-width: 600px;", 
+			className: "idxProgressDialog",
+			info: '<table class="idxSimpleIconContainer"><tbody>' +
+			'<tr><td valign="top"><div class="idxSignIcon dijitContentPaneLoading" dojoattachpoint="iconNode" style=""></div></td></tr>' +
+			'<tr><td class="idxSimpleIconText" dojoattachpoint="textNode">' + res.loading + '</td></tr>' +
+			'</tbody></table>',
+			showActionBar: action,
+			closeButtonLabel: actionLabel || "Cancel",
 			iconClass: "idxSignIcon dijitContentPaneLoading"
 		}));
 		dialog._onKey = function(){};

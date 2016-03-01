@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Stäng"
 //end v1.x content
 });
+

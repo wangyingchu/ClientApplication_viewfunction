@@ -8,7 +8,7 @@
 define({ root:
 //begin v1.x content
 ({
-	viewAll: "View All ({num})",
+	viewAll: "View All ({num})&lrm;",
 	viewDetails: "More Details",
 	refresh: "Refresh",
 	showDetails: "Show Details",
@@ -32,7 +32,7 @@ define({ root:
 "nb": true,
 "ko": true,
 "kk": true,
-"ja": true,
+"ja": true, "id": true,
 "it": true,
 "hu": true,
 "fr": true,
@@ -43,5 +43,12 @@ define({ root:
 "da": true,
 "cs": true,
 "ca": true,
-"ar": true
+"ar": true,
+"bg": true,
+"he": true,
+"hr": true,
+"uk": true,"vi":true,
+"bs": true,
+"mk": true,
+"sr": true
 });

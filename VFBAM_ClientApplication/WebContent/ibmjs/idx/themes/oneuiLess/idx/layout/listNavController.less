@@ -1,0 +1,166 @@
+.dijitStackController.idxListNavController {
+  padding: 0px;
+  background-color: @fwBackground;
+  height: 100%;
+}
+.dijitStackController.idxListNavController .idxListNavButton {
+  display: block;
+  /*Show stackController buttons vertically*/
+
+  width: 100%;
+  background-color: @fwBackground;
+}
+.dijitStackController.idxListNavController .dijitCheckedFocused,
+.dijitStackController.idxListNavController .dijitCheckBoxFocused {
+  outline-width: 0px;
+}
+.dijitStackController.idxListNavController .dijitButtonNode {
+  border: none;
+  font-weight: normal;
+  width: 100%;
+  margin: 0px;
+  background-color: transparent;
+  background-image: none;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-topright: 0;
+  text-align: left;
+  text-indent: 5px;
+  /*padding-left didn't work for IE8, see defect 3019*/
+
+  padding-left: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.dijitRtl & .dijitStackController.idxListNavController .dijitButtonNode {
+  text-align: right;
+  padding-right: 0px;
+}
+/*text-indent fix for IE8 broke look of IE7, continue using padding for IE7 (note: both methods work in FF)*/
+.dj_ie7 & .dijitStackController.idxListNavController .dijitButtonNode {
+  text-indent: 0px;
+  padding-left: 5px;
+}
+.dijitStackController.idxListNavController .idxListNavButtonHover .dijitButtonNode,
+.dijitStackController.idxListNavController .idxListNavButtonFocused .dijitButtonNode,
+.idxSectionedNavigation .dojoxGrid .dojoxGridRowOver,
+.dijitStackController.idxListNavController .idxListNavButtonChecked .dijitButtonNode,
+.dijitStackController.idxListNavController .idxListNavButtonCheckedHover .dijitButtonNode,
+.idxSectionedNavigation .dojoxGrid .dojoxGridRowSelected {
+  text-decoration: none;
+  background-color: @selected;
+  background-image: none;
+  font-weight: bold;
+  vertical-align: middle;
+}
+/*ContentPane grouping navigation list items*/
+.idxListNavigation {
+  background-color: @fwBackground;
+}
+.idxNestedNavigation,
+.idxSectionedNavigation {
+  background-color: @fwBackground;
+  padding: 0px;
+  margin: 0px;
+}
+.idxNestedNavigation .idxHeaderPaneContent,
+.idxNestedNavigation .dijitTitlePaneContentInner {
+  padding: 0px;
+}
+/*TitlePanes and Grids that make up Nested and Sectioned List Navigation*/
+.idxNestedNavigation .dijitTitlePane,
+.idxSectionedNavigation .dijitTitlePane {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  margin: 0;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.idxNestedNavigation .dijitTitlePaneTitle {
+  border: none;
+  background: none;
+  background-image: none;
+  font-weight: normal;
+  text-shadow: none;
+}
+.idxNestedNavigation .dijitTitlePaneContentOuter {
+  border: none;
+}
+.idxNestedNavigation .dijitTitlePaneTitleHover {
+  background-color: @hover;
+  font-weight: bold;
+}
+.idxNestedNavigation .dijitTitlePane .dijitArrowNode {
+  background-image: url('images/idx/layout/leftNavArrows.png');
+  width: 7px;
+  height: 7px;
+}
+.idxNestedNavigation .dijitTitlePane .dijitClosed .dijitArrowNode {
+  background-position: 0 0;
+}
+.idxNestedNavigation .dijitTitlePane .dijitOpen .dijitArrowNode {
+  background-position: -16px 0;
+}
+.idxNestedNavigation .dijitTitlePaneRtl .dijitClosed .dijitArrowNode {
+  background-position: -30px 0;
+}
+.idxNestedNavigation .dijitTitlePaneTitleFocus,
+.idxSectionedNavigation .dijitTitlePaneTitleFocus {
+  margin: 0;
+}
+.idxNestedNavigation .dijitTitlePaneContentOuter {
+  border: none;
+}
+.idxNestedNavigation .dijitStackController.idxListNavController .dijitButtonNode {
+  text-indent: 15px;
+  /*padding-left didn't work for IE8, see defect 3019*/
+
+  padding-left: 0px;
+}
+/*text-indent fix for IE8 broke look of IE7, continue using padding for IE7 (note: both methods work in FF)*/
+.dj_ie7 & .idxNestedNavigation .dijitStackController.idxListNavController .dijitButtonNode {
+  text-indent: 0px;
+  padding-left: 20px;
+}
+.idxSectionedNavigation .dojoxGrid {
+  border: none;
+}
+.idxSectionedNavigation .dojoxGridHeader,
+.idxSectionedNavigation .dojoxGridHeader .dojoxGridSortNode {
+  /*Use oneui defaults according to Alex S.
+	filter: ~"none";
+	background-image: none;
+	background-color: #e4e1da;*/
+
+}
+.idxSectionedNavigation .dojoxGridHeader .dojoxGridCell {
+  padding-top: 5px;
+  padding-bottom: 4px;
+  border-left-color: @fwBase;
+}
+.idxSectionedNavigation .dojoxGridCell,
+.idxSectionedNavigation .dojoxGridRow {
+  border-left-color: @fwLightest;
+  border-right-color: transparent;
+}
+.idxSectionedNavigation .dojoxGridRowTable tr {
+  background-color: inherit;
+}
+.idxSectionedNavigation .dojoxGridMasterHeader {
+  border-bottom-color: @fwBase;
+}
+.idxSectionedNavigation .dojoxGrid table {
+  /*border-right: none;*/
+
+  /*MB removed to fix defect 7245*/
+
+}
+.idxSectionedNavigation .dojoxGridView,
+.idxSectionedNavigation .dojoxGridHeader {
+  left: 0 !important;
+  right: 0 !important;
+}

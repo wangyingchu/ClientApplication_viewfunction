@@ -1,0 +1,21 @@
+<div class="idxHeaderPane">
+
+<div class="idxHeaderFrame" dojoAttachPoint="_frameContainer" dojoType="dijit.layout.BorderContainer" gutters="false"  style="width:100%;height:100%;">
+
+	<div region="top" class="idxHeaderPaneHeader" dojoAttachPoint="_headerContainer" dojoType="dijit.layout.BorderContainer" gutters="false"  >
+		<div region="top" dojoType="dijit.layout.ContentPane" class="idxHeaderPaneTitleBar"  dojoAttachPoint="_headerTitleBar">
+			<span class="idxHeaderPaneTitleLeft ${baseClass}TitleText" dojoAttachPoint="_titleNode"></span>
+	 		<span class="idxHeaderPaneTitleRight ${baseClass}TitleActions" dojoAttachPoint="_titleActionsNode"></span>
+	 	</div>
+	 	<div region="center" dojoType="dijit.layout.ContentPane" class="idxHeaderPaneActions" dojoAttachPoint="_headerActionsBar">	
+	 		<span class="idxHeaderPaneActionsLeft ${baseClass}MajorActions" dojoAttachPoint="_majorActionsNode"></span>
+			<span class="idxHeaderPaneActionsRight ${baseClass}MinorActions" dojoAttachPoint="_minorActionsNode"></span>
+		</div>
+	</div>
+
+<div region="center" dojoType="dijit.layout.ContentPane" class="idxHeaderPaneContent" style="padding:0px;">
+	<div dojoAttachPoint="containerNode" style="width:100%;height:100%;"></div>
+	
+</div>
+</div>
+</div>

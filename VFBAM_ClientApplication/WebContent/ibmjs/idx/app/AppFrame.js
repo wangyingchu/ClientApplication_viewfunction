@@ -8,6 +8,7 @@
 define(["dojo/_base/declare",
         "dijit/layout/_LayoutWidget",
         "dijit/_TemplatedMixin",
+		"dijit/registry",
         "./_A11yAreaProvider",
         "dojo/_base/array",
         "dojo/dom-construct",
@@ -16,13 +17,18 @@ define(["dojo/_base/declare",
         "dojo/query",
         "../a11y",
         "../util",
+		"../string",
         "../border/BorderDesign",
         "../border/BorderLayout",
+		"./AppMarquee",
+		"./Header",
+		"./Banner",
         "dojo/text!./templates/AppFrame.html",
         "dojo/NodeList-dom"],
         function(dDeclare,				// (dojo/_base_decalre)
 		         dLayoutWidget,			// (dijit/layout/_LayoutWidget)
 		         dTemplatedMixin,		// (dijit/_TemplatedMixin)
+		         dRegistry,				// (dijit/registry)
 		         iA11yAreaProvider,		// (./_A11yAreaProvider)
 		         dArray,				// (dojo/_base/array)
 				 dDomConstruct,			// (dojo/dom-construct)
@@ -31,8 +37,12 @@ define(["dojo/_base/declare",
 				 dQuery,				// (dojo/query.NodeList)+(dojo/NodeList-dom)
 				 iA11y,					// (../a11y)
 				 iUtil,					// (../util)
+				 iString,				// (../string)
 				 iBorderDesign,			// (../border/BorderDesign)
 				 iBorderLayout,			// (../border/BorderLayout)
+				 iAppMarquee,			// (./AppMarquee)
+				 iHeader,				// (./AppHeader)
+				 iBanner,				// (./Banner)
 				 templateText) 			// (dojo/text!./html/AppFrame.html)
 {
 	var dNodeList = dQuery.NodeList;
@@ -74,6 +84,22 @@ define(["dojo/_base/declare",
 	baseClass: "idxAppFrame",
 
 	/**
+	 * The name of the application.
+	 */
+	appName: "",
+	
+	/**
+	 * The design attribute is used to indicate the design for the AppFrame and specifically the location
+	 * of the "marquee" and "body" region.  This can be set to "auto", in which case the theme will attempt
+	 * to set the region using the "CSS Options" feature from idx/util.  However, you can explicitly set this
+	 * to "header" to force an application header at the top or set it to "sidebar" to force a sidebar navigation.
+	 *
+	 * @type String
+	 * @default "auto"
+	 */
+	design: "auto", // can be "header" or "sidebar" in addition to "auto"
+	
+	/**
  	 * The widget text for the dijit._Templated base class.
  	 * @constant
  	 * @type String
@@ -113,7 +139,55 @@ define(["dojo/_base/declare",
 		this.set(this.ctorArgs);
 	},
 
+  /**
+   *
+   */
+  _setAppNameAttr: function(value) {
+	this.appName = value;
+	this._setupA11yLabel();
+  },
+  
+  /**
+   * Attempts to find the application name in child widget and reference it with aria-labelledby.
+   */
+  _setupA11yLabel: function() {
+	// check if we have an explicit app name
+	if (iString.nullTrim(this.appName)) {
+		dDomAttr.remove(this.domNode, "aria-labelledby");
+		dDomAttr.set(this.domNode, "aria-label", this.appName);
+		return;
+	}
+	// if nothing explicit, then remove "aria-label" and try to "aria-labelledby"
+	dDomAttr.remove(this.domNode, "aria-label");
 	
+	// look for an AppMarquee widget
+	if (this._marquee && this._marquee.appNameNode) {
+		dDomAttr.set(this.domNode, "aria-labelledby", dDomAttr.get(this._marquee.appNameNode, "id"));
+		return;
+	}
+	
+	// look for Banner widget
+	if (this._banner && this._banner.containerNode) {
+		dDomAttr.set(this.domNode, "aria-labelledby", dDomAttr.get(this._banner.containerNode, "id"));
+		return;
+	}
+	
+	// look for a Header widget
+	if (this._header && this._header.primaryTitleTextNode) {
+		dDomAttr.set(this.domNode, "aria-labelledby", 
+					 dDomAttr.get(this._header.primaryTitleTextNode, "id"));
+		return;
+	}
+	if (this._header && this._header.secondaryTitleTextNode) {
+		dDomAttr.set(this.domNode, "aria-labelledby", 
+					 dDomAttr.get(this._header.secondaryTitleTextNode, "id"));
+		return;
+	}
+	
+	// if no app name found them remove the "aria-labelledby" attribute
+	dDomAttr.remove(this.domNode, "aria-labelledby");
+  },
+  
   /**
    * Overrides dijit._TemplatedMixin._fillContent() to ensure that
    * the container node is properly set via CSS options.
@@ -144,8 +218,24 @@ define(["dojo/_base/declare",
     };
 
     // set the body node and marquee node
-    this.marqueeNode = this.nodeLookup[this.cssOptions.marquee];
-    this.bodyNode    = this.nodeLookup[this.cssOptions.body];
+	var marqueeRegion = null;
+	var bodyRegion = null;
+	switch (this.design) {
+		case "header":
+			marqueeRegion = "header";
+			bodyRegion = "center";
+			break;
+		case "sidebar":
+			marqueeRegion = "leader";
+			bodyRegion = "center";
+			break;
+		default: // "auto"
+			marqueeRegion = this.cssOptions.marquee;
+			bodyRegion = this.cssOptions.body;
+	}
+	
+    this.marqueeNode = this.nodeLookup[marqueeRegion];
+    this.bodyNode    = this.nodeLookup[bodyRegion];
 
     // in case the CSS is ill-formed, then log that and use defaults
     if (! this.marqueeNode) {
@@ -191,7 +281,7 @@ define(["dojo/_base/declare",
    * Gets the children widgets that are within the marquee region.
    */
   getMarqueeChildren: function() {
-	return (this.marqueeRegion) ? dijit.findWidgets(this.marqueeRegion) : [];  
+	return (this.marqueeRegion) ? dRegistry.findWidgets(this.marqueeRegion) : [];  
   },
   
 	/**
@@ -287,6 +377,9 @@ define(["dojo/_base/declare",
     this.a11yStartup();
     // resize the widget
     this.resize();
+	
+	// setup the A11y label for the application
+	this._setupA11yLabel();
   },
   	
   /**
@@ -305,8 +398,30 @@ define(["dojo/_base/declare",
   addChild: function(child, index) {
     this.inherited(arguments);
     this.resize();
+		
+	// setup the A11y label for the application
+	this._setupA11yLabel();
   },
 
+  /**
+   *
+   */
+  removeChild: function(child) {
+	this.inherited(arguments);
+	
+	// check the child's type to see if app name can be inferred
+	if (child === this._marquee) {
+		this._marquee = null;
+	} else if (child === this._banner) {
+		this._banner = null;
+	} else if (child === this._header) {
+		this._header = null;
+	}
+	
+	// setup the A11y label for the application
+	this._setupA11yLabel();
+  },
+  
   /**
    * Worker method to set up the added child
    * @param {Widget} child
@@ -314,7 +429,7 @@ define(["dojo/_base/declare",
   _setupChild: function(/*Widget*/ child) {
     this.inherited(arguments);
     var region = child.region;
-    if ((region == null) || (region.length == 0)) region = "body";
+    if ((region == null) || (region.length === 0)) region = "body";
 
     var node = this.regionLookup[region];
     if (node == null) {
@@ -327,6 +442,15 @@ define(["dojo/_base/declare",
     var nodeList = new dNodeList(child.domNode);
     nodeList.orphan();
     dDomConstruct.place(child.domNode, node, "last");
+	
+	// check the child's type to see if app name can be inferred
+	if (child instanceof iAppMarquee) {
+		this._marquee = child;
+	} else if (child instanceof iBanner) {
+		this._banner = child;
+	} else if (child instanceof iHeader) {
+		this._header = child;
+	}
   },
 
   /**
@@ -340,6 +464,7 @@ define(["dojo/_base/declare",
     if (! this._appFrameStarted) {
     	return;
     }
+	var index = 0, child = null, d = null;
     // call the inherited function
     this.inherited(arguments);
     // do the border layout
@@ -347,12 +472,12 @@ define(["dojo/_base/declare",
 
     // cycle through the marquee children
     var marqueeChildren = this.getMarqueeChildren();
-    for (var index = 0; index < marqueeChildren.length; index++) {
-    	var child = marqueeChildren[index];
+    for (index = 0; index < marqueeChildren.length; index++) {
+    	child = marqueeChildren[index];
     	if (! child.resize) continue;
     	if (marqueeChildren.length == 1) {
     		// single child behavior
-    		var d = dDomGeo.getContentBox(this.marqueeRegion);
+    		d = dDomGeo.getContentBox(this.marqueeRegion);
     		changeSize = { w: d.w, h: d.h };
     	} else {
     		changeSize = changeSize || dDomGeo.getMarginBox(child.domNode);
@@ -362,12 +487,12 @@ define(["dojo/_base/declare",
     
     // cycle through the body children
 	var children = this.getChildren();
-	for (var index = 0; index < children.length; index++) {
-		var child = children[index];
+	for (index = 0; index < children.length; index++) {
+		child = children[index];
 		if (! child.resize) continue;
 		if (children.length == 1) {
 			// single child behavior
-			var d = dDomGeo.getContentBox(this.containerNode);
+			d = dDomGeo.getContentBox(this.containerNode);
 			changeSize = { w: d.w, h: d.h };
 	    } else {
 	    	changeSize = changeSize || dDomGeo.getMarginBox(child.domNode);

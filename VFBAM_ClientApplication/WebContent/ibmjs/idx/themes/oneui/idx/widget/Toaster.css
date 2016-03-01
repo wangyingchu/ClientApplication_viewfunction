@@ -35,6 +35,10 @@
     padding: 0;
     overflow: hidden;
 }
+.oneui .oneuiToaster.dijitHidden  ul {
+    display:none;
+    visibility:hidden;
+}
 
 .oneui .oneuiToaster li {
     border-top: 1px solid #ededed;
@@ -76,6 +80,9 @@
     margin-top: 2px;
     margin-left: 15px;
     margin-right: 8px;
+}
+.oneui .oneuiToaster .status .idxToasterMsgAltText{
+    display: none;
 }
 .oneui .oneuiToaster .information{
 	width: 200px;
@@ -125,6 +132,10 @@
 }
 .dijit_a11y .oneuiToaster .close .closeText{
 	display: block;
+}
+
+.dijit_a11y .oneuiToaster .status .idxToasterMsgAltText{
+    display: block;
 }
 .oneui .oneuiToaster .reveal {
     height: 29px;

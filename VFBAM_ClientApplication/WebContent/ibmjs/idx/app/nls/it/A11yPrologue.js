@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT più ${accessKey}",
 	keySequence_Firefox: "ALT più MAIUSC più ${accessKey} su Windows e Linux o CONTROL più ${accessKey} su Mac",
 	keySequence_Safari: "CONTROL più OPT più ${accessKey} su Mac o ALT più ${accessKey} su Windows",
-	keySequence_Chrome: "ALT più ${accessKey} su Windows e Linux o CONTROL più OPT su Mac",
+	keySequence_Chrome: "ALT più ${accessKey} su Windows e Linux o CONTROL più OPT più ${accessKey} su Mac",
 	shortcutListMessage: "Le scelte rapide per questa pagina sono:",
 	a11yPrologueLabel: "Prologo di accesso facilitato",
     a11yStatementLabel: "Istruzione di accesso facilitato",

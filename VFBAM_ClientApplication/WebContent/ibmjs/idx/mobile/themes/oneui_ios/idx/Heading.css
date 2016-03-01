@@ -12,7 +12,10 @@
 .oneui .mblHeading .mblDomButtonIdxHeadingMenuIcon,
 .oneui .mblHeading .mblDomButtonIdxHeadingSearchIcon,
 .oneui .mblHeading .mblDomButtonIdxHeadingShareIcon,
-.oneui .mblHeading .mblDomButtonIdxHeadingUserIcon {
+.oneui .mblHeading .mblDomButtonIdxHeadingSettingsIcon,
+.oneui .mblHeading .mblDomButtonIdxHeadingMoreIcon,
+.oneui .mblHeading .mblDomButtonIdxHeadingUserIcon,
+.oneui .mblHeading .mblDomButtonIdxHeadingActionsIcon {
 		background-image: url(images/headerIcons.png);
 }
 
@@ -33,6 +36,15 @@
 }
 .oneui .mblHeading .mblDomButtonIdxHeadingUserIcon {
 	background-position:  -1px -354px; height: 32px; width: 30px;
+}
+.oneui .mblHeading .mblDomButtonIdxHeadingMoreIcon {
+	background-position:  -1px -450px; height: 32px; width: 30px;
+}
+.oneui .mblHeading .mblDomButtonIdxHeadingSettingsIcon {
+	background-position:  -1px -546px; height: 32px; width: 30px;
+}
+.oneui .mblHeading .mblDomButtonIdxHeadingActionsIcon {
+	background-position:  -1px -642px; height: 32px; width: 30px;
 }
 
 .oneui .mblTooltip.mblIdxHeadingDropDown {

@@ -1,0 +1,71 @@
+/* pagination bar */
+.gridxPager {
+  background: transparent;
+  padding: 0 7px;
+  height: 32px;
+  border: none;
+}
+.gridxPagerInner {
+  height: 100%;
+}
+.gridxPagerNodeFocus {
+  border: 1px dotted @focusOutline;
+}
+.gridxPagerDescription {
+  font: italic 12px;
+  font-family: @serif;
+  color: @textDisabled;
+}
+.gridxPager .gridxPagerStepper {
+  text-align: center;
+}
+.gridxPagerStepperBtn,
+.gridxPagerSizeSwitchBtn {
+  margin: 0 5px;
+  font: normal 12px;
+  font-family: @sans;
+  color: @linkColor;
+}
+.gridxPagerStepperBtn:focus,
+.gridxPagerSizeSwitchBtn:focus {
+  outline: 1px dotted @focusOutline;
+}
+.gridxPagerSizeSwitchBtn:last-child {
+  margin-right: 0;
+}
+.gridxPagerStepperBtnHover,
+.gridxPagerSizeSwitchBtnHover {
+  text-decoration: underline;
+  color: @linkHover;
+}
+.gridxPagerStepperBtnActive,
+.gridxPagerSizeSwitchBtnActive {
+  font: bold 12px;
+  font-family: @sans;
+  color: @textDefault;
+}
+.gridxPagerSizeSwitchSeparator {
+  color: @textDisabled;
+}
+/*DD*/
+.gridxPager .gridxPagerSizeSwitchDD {
+  text-align: right;
+}
+.gridxPager .gridxPagerStepperDD {
+  text-align: center;
+}
+.gridxPager .gridxPagerLabel {
+  font: italic 12px;
+  font-family: @serif;
+  color: @textDisabled;
+  margin: 0 5px;
+}
+.gridxGotoPageDialog {
+  width: 300px;
+}
+/* Have to use idx.form.Select because OneUI theme can not fit dijit.form.Select.
+ * But the validation part of idx.form.Select must be hidden.
+ */
+.gridxPagerSizeSwitchWidget .dijitValidationContainer {
+  display: none;
+}

@@ -1,0 +1,330 @@
+.dlBlue {
+  /* Need to explicitly define how to treat hovering over the arrow on IE */
+  /* content */
+  /* editing */
+  /* Drag and Drop */
+  /* Tree Grid */
+}
+.dlBlue .dojoxGrid {
+  position: relative;
+  background-color: #EBEADB;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  -moz-outline-style: none;
+  outline: none;
+  overflow: hidden;
+  height: 0;
+  /* master header */
+  /* master view */
+  /* master messages */
+  /* views */
+  /* header */
+  /* rowbar */
+  /* cells */
+  /* rows */
+}
+.dlBlue .dojoxGrid table {
+  padding: 0;
+}
+.dlBlue .dojoxGrid td {
+  -moz-outline: none;
+}
+.dlBlue .dojoxGrid .dojoxGridMasterHeader {
+  position: relative;
+}
+.dlBlue .dojoxGrid .dojoxGridMasterView {
+  position: relative;
+}
+.dlBlue .dojoxGrid .dojoxGridMasterMessages {
+  position: relative;
+  padding: 1em;
+  text-align: center;
+  background-color: white;
+}
+.dlBlue .dojoxGrid .dojoxGridView {
+  position: absolute;
+  overflow: hidden;
+}
+.dlBlue .dojoxGrid .dojoxGridHeader {
+  position: absolute;
+  overflow: hidden;
+  cursor: default;
+  background-color: #E3E4E6;
+  box-sizing: border-box;
+}
+.dlBlue .dojoxGrid .dojoxGridHeader table {
+  text-align: center;
+  padding: 14px;
+}
+.dlBlue .dojoxGrid .dojoxGridArrowButtonNode {
+  display: none;
+  padding-left: 16px;
+}
+.dlBlue .dojoxGrid .dojoxGridArrowButtonChar {
+  display: inline;
+}
+.dlBlue .dojoxGrid .dojoxGridRowbar {
+  border: 1px solid;
+  border-color: #F6F4EB #ACA899 #ACA899 #F6F4EB;
+  border-top: none;
+  /*background: url(images/grid_dx_gradient.gif) #E8E1CF top repeat-x;*/
+}
+.dlBlue .dojoxGrid .dojoxGridRowbarInner {
+  border-top: 1px solid #F6F4EB;
+}
+.dlBlue .dojoxGrid .dojoxGridRowbarOver {
+  background-image: none;
+  background-color: white;
+  border-top-color: #FEBE47;
+  border-bottom-color: #FEBE47;
+}
+.dlBlue .dojoxGrid .dojoxGridRowbarSelected {
+  background-color: #D9E8F9;
+}
+.dlBlue .dojoxGrid .dojoxGridCell {
+  text-align: left;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.dlBlue .dojoxGrid .dojoxGridFixedRowHeight .dojoxGridCell {
+  white-space: nowrap;
+  word-break: keep-all;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+}
+.dlBlue .dojoxGrid .dojoxGridRow {
+  position: relative;
+}
+.dlBlue .dojoxGrid .dojoxGridRow .dojoxGridRowTable .dojoxGridCell {
+  padding: 14px;
+  box-sizing: border-box;
+}
+.dlBlue .dojoxGrid .dojoxGridRowSelected {
+  background-color: #ECF8FD;
+}
+.dlBlue .dojoxGrid .dojoxGridRowOver {
+  text-decoration: none;
+  background-color: #DBF3FC;
+  background-image: none;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.dlBlue .dojoxGrid .dojoxGridRowSelected {
+  background-color: #D9E8F9;
+}
+.dlBlue .dojoxGrid .dojoxGridRowTable {
+  table-layout: fixed;
+  width: 0;
+  empty-cells: show;
+}
+.dlBlue .dojoxGrid .dj_ie .dojoxGridRowTable {
+  border-collapse: collapse;
+}
+.dlBlue .dojoxGrid .dojoxGridInvisible {
+  visibility: hidden;
+}
+.dlBlue .dojoxGrid .Xdojo-ie .dojoxGridInvisible {
+  display: none;
+}
+.dlBlue .dojoxGrid .dojoxGridInvisible td,
+.dlBlue .dojoxGrid .dojoxGridHeader .dojoxGridInvisible td {
+  border-top-width: 0;
+  border-bottom-width: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 0;
+  overflow: hidden;
+}
+.dlBlue .dojoxGridArrowButtonNode:hover {
+  cursor: default;
+}
+.dlBlue .dojoxGridArrowButtonChar:hover {
+  cursor: default;
+}
+.dlBlue .dojoxGridSortUp:hover {
+  cursor: default;
+}
+.dlBlue .dojoxGridSortDown:hover {
+  cursor: default;
+}
+.dlBlue .dijit_a11y .dojoxGridArrowButtonChar {
+  display: inline !important;
+}
+.dlBlue .dojoxGridScrollbox {
+  position: relative;
+  overflow: auto;
+  background-color: white;
+  width: 100%;
+}
+.dlBlue .dojoxGridContent {
+  position: relative;
+  overflow: hidden;
+  -moz-outline-style: none;
+  outline: none;
+}
+.dlBlue .dojoxGridRowEditing td {
+  background-color: #F4FFF4;
+}
+.dlBlue .dojoxGridRow-inserting td {
+  background-color: #F4FFF4;
+}
+.dlBlue .dojoxGridRow-inflight td {
+  background-color: #F2F7B7;
+}
+.dlBlue .dojoxGridRow-error td {
+  background-color: #F8B8B6;
+}
+.dlBlue .dojoxGridInput,
+.dlBlue .dojoxGridSelect,
+.dlBlue .dojoxGridTextarea {
+  margin: 0;
+  padding: 0;
+  border-style: none;
+  width: 100%;
+  font-size: 100%;
+  font-family: inherit;
+}
+.dlBlue .dojoxGridHiddenFocus {
+  position: absolute;
+  top: -1000px;
+  height: 0;
+  width: 0;
+}
+.dlBlue .dijit_a11y .dojoxGridRowbarSelected {
+  border-top: 1px solid white;
+  border-bottom: 1px dashed black;
+  border-top: 0;
+  background: none;
+}
+.dlBlue .dijit_a11y .dojoxGridRowbarSelected .dojoxGridRowbarInner {
+  border: 0;
+  border-top: 1px solid white;
+}
+.dlBlue .dijit_a11y .dojoxGridRowSelected {
+  border: 1px solid black !important;
+}
+.dlBlue .dojoxGridRowTable .dojoDndHorizontal th.dojoDndItem {
+  display: table-cell;
+  /* overwrite margin/padding setting from dijit.css */
+  margin: 0;
+}
+.dlBlue .dojoxGridDndAvatar {
+  font-size: 100%;
+}
+.dlBlue .dojoxGrid .dojoDndItemBefore {
+  border-left-color: red;
+}
+.dlBlue .dojoxGrid .dojoDndItemAfter {
+  border-right-color: red;
+}
+.dlBlue .dijit_a11y .dojoDndItemBefore {
+  border-left: double;
+}
+.dlBlue .dijit_a11y .dojoDndItemAfter {
+  border-right: double;
+}
+.dlBlue .dojoxGridDndAvatarItem td {
+  border: 1px solid;
+  border-color: #F6F4EB #ACA899 #ACA899 #F6F4EB;
+  /*background: url(images/grid_dx_gradient.gif) #E8E1CF top repeat-x;*/
+  padding: 0pt;
+  margin: 0pt;
+}
+.dlBlue .dojoxGridDndAvatarItem td.dojoxGridDndAvatarItemImage {
+  border: 0;
+  border-color: #F6F4EB #ACA899 #ACA899 #F6F4EB;
+  background-color: transparent;
+  padding: 3px;
+  padding-bottom: 2px;
+  margin: 0;
+}
+.dlBlue .dojoDndMove .dojoxGridDndAvatarItem .dojoxGridDndAvatarItemImage {
+  /*background-image: url(../../../dojo/resources/images/dndNoMove.png);*/
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.dlBlue .dojoDndCopy .dojoxGridDndAvatarItem .dojoxGridDndAvatarItemImage {
+  /*background-image: url(../../../dojo/resources/images/dndNoCopy.png);*/
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.dlBlue .dojoDndMove .dojoDndAvatarCanDrop .dojoxGridDndAvatarItem .dojoxGridDndAvatarItemImage {
+  /*background-image: url(../../../dojo/resources/images/dndMove.png);*/
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.dlBlue .dojoDndCopy .dojoDndAvatarCanDrop .dojoxGridDndAvatarItem .dojoxGridDndAvatarItemImage {
+  /*background-image: url(../../../dojo/resources/images/dndCopy.png);*/
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.dlBlue .dojoxGridColPlaceBottom {
+  /*background: transparent url(images/grid_sort_up.gif) no-repeat scroll left top;*/
+}
+.dlBlue .dojoxGridColPlaceTop {
+  /*background: transparent url(images/grid_sort_down.gif) no-repeat scroll left top;*/
+}
+.dlBlue .dojoxGridColPlaceTop,
+.dlBlue .dojoxGridColPlaceBottom {
+  font-size: 1px;
+  height: 6px;
+  z-index: 10000;
+  top: 0;
+  overflow: hidden;
+  position: absolute;
+  line-height: 1px;
+  width: 8px;
+}
+.dlBlue .dojoxGridResizeColLine {
+  width: 1px;
+  background-color: #777;
+  position: absolute;
+  cursor: col-resize;
+  z-index: 10000;
+}
+.dlBlue .dojoxGridColNoResize,
+.dlBlue .dojoxGridColNoResize .dojoDndItemOver {
+  cursor: not-allowed !important;
+}
+.dlBlue .dojoxGridColResize,
+.dlBlue .dojoxGridColResize .dojoDndItemOver,
+.dlBlue .dojoxGridColumnResizing,
+.dlBlue .dojoxGridColumnResizing .dojoDndItemOver,
+.dlBlue .dojoxGridColumnResizing .dojoxGridHeader {
+  cursor: col-resize !important;
+}
+.dlBlue .dojoxGridColPlaceBottom {
+  /*background: transparent url(images/grid_sort_up.gif) no-repeat scroll left top;*/
+}
+.dlBlue .dojoxGridColPlaceTop {
+  /*background: transparent url(images/grid_sort_down.gif) no-repeat scroll left top;*/
+}
+.dlBlue .dojoxGridColPlaceTop,
+.dlBlue .dojoxGridColPlaceBottom {
+  font-size: 1px;
+  height: 6px;
+  z-index: 10000;
+  top: 0;
+  overflow: hidden;
+  position: absolute;
+  line-height: 1px;
+  width: 8px;
+}
+.dlBlue .dojoxGridResizeColLine {
+  width: 1px;
+  background-color: #777;
+  position: absolute;
+}
+.dlBlue .dojoxGridExpandoCell {
+  vertical-align: middle;
+}
+.dlBlue .dojoxGridSummarySpan {
+  visibility: hidden;
+}
+.dlBlue .dojoxGridSummaryRow .dojoxGridSummarySpan,
+.dlBlue .dojoxGridRowCollapsed .dojoxGridSummarySpan {
+  visibility: visible;
+}
+.dlBlue .dojoxGridNoChildren .dojoxGridExpando {
+  visibility: hidden !important;
+  width: 0px !important;
+}

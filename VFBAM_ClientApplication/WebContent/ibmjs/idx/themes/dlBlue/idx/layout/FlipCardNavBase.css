@@ -1,0 +1,449 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+/************ Main Container ************/
+.dlBlue .idxFlipCardNavBase {
+  padding-top: 56px;
+  /************ navigation Container ************/
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar {
+  background: #fafbfb;
+  border-right: 1px solid #CCCCCC;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /* replece with less begin */
+  width: 55px;
+  /* replece with less end */
+  z-index: 1;
+  /* for expanding process, not be overlapped by the center content pane*/
+  position: relative;
+  float: left;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar.standardScroller .mblScrollBarWrapper {
+  right: -5px !important;
+  background: #fafbfb;
+  width: 7px !important;
+  top: 0 !important;
+  height: 100% !important;
+  -webkit-mask-image: inherit !important;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .idxFlipCardNavBarActions {
+  list-style: 0;
+  margin: 0;
+  padding: 0;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .idxFlipCardNavBarTop {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .idxFlipCardNavBarBottom {
+  list-style: none;
+  margin: 0;
+  padding: 5px 0px;
+  /*background-color: rgba(0, 0, 0, 0.4);
+			    border-top: 1px solid #484848;*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem {
+  overflow: hidden;
+  height: 50px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  padding: 10px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .navItemIcon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  background: url("images/flipCardIconSprite.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .welcomeIcon {
+  background-position: 0 -289px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .analyzeIcon {
+  background-position: 0 -32px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .monitorIcon {
+  background-position: 0 -480px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .customIcon {
+  background-position: 0 -160px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .expanderIcon {
+  background-position: 0 -544px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .expanderIcon {
+  background-position: 0 -544px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .helpIcon {
+  background-position: 0 -128px;
+}
+[lang|="ar"] .dlBlue .idxFlipCardNavBaseRtl .idxFlipCardNavBar .navItem .helpIcon {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .settingsIcon {
+  background-position: 0 -352px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .defaultNavItemIcon {
+  background: url("images/navSprite_24.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background-position: -168px 0;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .navItemDesc {
+  position: absolute;
+  left: 65px;
+  top: 15px;
+  color: #00649d;
+  font-weight: bold;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction {
+  width: 100%;
+  height: 30px;
+  position: relative;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction .navActionIconContainer {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction .navActionIcon {
+  width: 32px;
+  height: 32px;
+  opacity: .7;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction .navActionIcon_a11y {
+  display: none;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction .defaultNavActionIcon {
+  background: url("images/navSprite_24.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background-position: -384px 0;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction .toggleNavBarActionIcon {
+  background: url("images/flipCardIconSprite.png") no-repeat scroll -32px -96px rgba(0, 0, 0, 0);
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction .navActionDesc {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  height: 20px;
+  color: white;
+  font-weight: bold;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover {
+  background-color: #0A7AA9;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .navItemIcon {
+  opacity: .9;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .navItemIcon {
+  background-position: -32px 0px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .welcomeIcon {
+  background-position: -32px -289px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .analyzeIcon {
+  background-position: -32px -32px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .monitorIcon {
+  background-position: -32px -480px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .customIcon {
+  background-position: -32px -160px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .expanderIcon {
+  background-position: -32px -544px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .helpIcon {
+  background-position: -32px -128px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .settingsIcon {
+  background-position: -32px -352px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemHover .navItemDesc {
+  color: #FFFFFF;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected {
+  background-color: #0A7AA9;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected td.dijitMenuItemLabel {
+  color: #FFFFFF;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .navItemDesc {
+  color: #FFFFFF;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .navItemIcon {
+  background-position: -32px 0px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .welcomeIcon {
+  background-position: -32px -289px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .analyzeIcon {
+  background-position: -32px -32px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .monitorIcon {
+  background-position: -32px -480px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .customIcon {
+  background-position: -32px -160px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .expanderIcon {
+  background-position: -32px -544px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .helpIcon {
+  background-position: -32px -128px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItemSelected .settingsIcon {
+  background-position: -32px -352px;
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar.navExpandoSelected {
+  width: 40px;
+  background: #464646;
+  background: -moz-linear-gradient(left, #71706f 0%, #939290 90%, #ffb400 95%, #ffb400 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #71706f), color-stop(90%, #939290), color-stop(95%, #ffb400), color-stop(100%, #ffb400));
+  background: -webkit-linear-gradient(left, #71706f 0%, #939290 90%, #ffb400 95%, #ffb400 100%);
+  background: -ms-linear-gradient(left, #71706f 0%, #939290 90%, #ffb400 95%, #ffb400 100%);
+  background: linear-gradient(left, #71706f 0%, #939290 90%, #ffb400 95%, #ffb400 100%);
+}
+.dlBlue .idxFlipCardNavBase .idxFlipCardContent {
+  /* replace with less begin*/
+  padding: 10px 10px 10px 65px;
+  /* replace with less end*/
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.dlBlue .idxFlipCardNavBase .contentBorder {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane.noBorder {
+  border: none;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane {
+  margin-left: 100%;
+  position: absolute;
+  z-index: 1000;
+  border-left: 1px solid #A4A6AB;
+  border-right: 1px solid #A4A6AB;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoTitle {
+  background-color: #F5F6F6;
+  color: #444444;
+  height: 50px;
+  position: absolute;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px;
+  color: #4a4a4a;
+  border-bottom: 1px solid #A4A6AB;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoContent {
+  padding-top: 50px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoContent .expandoContentPane {
+  padding: 0;
+  margin: 0;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoTitleNode {
+  padding-right: 6px;
+  padding-left: 6px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoIcon {
+  width: 14px;
+  cursor: pointer;
+  background-position: -60px 0px;
+  background-repeat: no-repeat;
+  height: 14px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoIcon .a11yNode {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoPersistenceIcon {
+  background-image: url("../../dijit/form/images/checkboxRadioButtonStates.png");
+  background-position: -196px center;
+  display: block;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoPane .dojoxExpandoPersistenceIcon.persistence {
+  background-position: -211px center;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed {
+  background: none;
+  background-color: #E6E6E7;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoTitleNode {
+  display: none;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIcon {
+  background-position: 0px 0px;
+  margin: 0 auto;
+  margin-right: 4px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoTitle {
+  background: none;
+  background-color: #E6E6E7;
+  border: none;
+  padding: 3px;
+  background-position: 0 0;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconLeft {
+  background-position: -30px 0;
+  margin-right: 4px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconRight {
+  background-position: 0 0;
+  margin-left: 4px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconBottom {
+  background-position: -45px 0;
+  margin-top: 1px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconTop {
+  background-position: -15px 0;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoRight .dojoxExpandoIcon {
+  float: left;
+  margin-left: 2px;
+}
+.dlBlue .idxFlipCardNavBase .dijitBorderContainer-dijitExpandoPane {
+  border: none !important;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoIcon {
+  background-image: url("images/spriteRoundedIconsSmall.gif");
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoIconLeft {
+  background-position: 0 0;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoIconRight {
+  background-position: -30px 0;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoIconBottom {
+  background-position: -15px 0;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoIconTop {
+  background-position: -45px 0;
+}
+.dlBlue .idxFlipCardNavBase .centerContainer {
+  /*
+		        Center Container is a dijit/ContentPane, dynamically replace content
+		        by url, parent is a fixed div container
+		    */
+  height: 100%;
+  /* in the full size of idxFlipCardContent with top 0 and bottom 0 */
+  overflow: hidden;
+  /* the center container should be hidden other content out of it*/
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.dlBlue .idxFlipCardNavBase .centerContainer.css3Animations {
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -ms-perspective: 800px;
+  perspective: 800px;
+}
+.dlBlue .idxFlipCardNavBase.idxFlipCardNavBarExtended .idxFlipCardNavBar {
+  width: 300px;
+}
+.dlBlue .idxFlipCardNavBase.idxFlipCardNavBarExtended .idxFlipCardNavBar .navAction .toggleNavBarActionIcon {
+  background: url("images/flipCardIconSprite.png") no-repeat scroll 0 -96px rgba(0, 0, 0, 0);
+}
+.dlBlue .idxFlipCardNavBase.idxFlipCardNavBarExtended .idxFlipCardNavBar .navAction .navActionDesc {
+  opacity: 1;
+}
+.dlBlue .idxFlipCardNavBase.idxFlipCardNavBarExtended .idxFlipCardNavBar .navItem .navItemDesc {
+  opacity: 1;
+}
+.dlBlue .idxFlipCardNavBase.idxFlipCardNavBarExtended .idxFlipCardContent {
+  padding-left: 310px;
+}
+.dlBlue .idxFlipCardNavBase.navBarHidden .idxFlipCardNavBar {
+  width: 0px;
+  visibility: hidden;
+}
+.dlBlue .idxFlipCardNavBase.navBarHidden .idxFlipCardContent {
+  padding-left: 10px;
+}
+.dlBlue .fcNavTooltip {
+  width: 200px;
+  height: 35px;
+}
+.dlBlue .fcNavTooltip .dijitTooltipConnector {
+  display: none;
+}
+.dojoxExpandoClosed .dojoxExpandoWrapper * {
+  overflow: hidden !important;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoBottom .dojoxExpandoIcon,
+.dlBlue .idxFlipCardNavBase .dojoxExpandoTop .dojoxExpandoIcon,
+.dlBlue .idxFlipCardNavBase .dojoxExpandoLeft .dojoxExpandoIcon {
+  float: right;
+  margin-right: 2px;
+}
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconLeft,
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconRight,
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconTop,
+.dlBlue .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconBottom {
+  margin-top: 3px;
+}
+.dlBlue .idxFlipCardNavBase.css3AnimationsDisabled,
+.dlBlue .idxFlipCardNavBase.css3AnimationsDisabled .idxFlipCardNavBar,
+.dlBlue .idxFlipCardNavBase.css3AnimationsDisabled .idxFlipCardNavBar *,
+.dlBlue .idxFlipCardNavBase.css3AnimationsDisabled .idxFlipCardContent {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+.dj_a11y.dlBlue .idxFlipCardNavBase .centerExpando {
+  border: 1px solid #A9A7A5;
+}
+.dj_a11y.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navAction .navActionIcon_a11y {
+  display: inline;
+}
+.dj_a11y.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem .navItemDesc {
+  left: 0;
+  opacity: 1;
+}
+.dj_a11y.dlBlue .idxFlipCardNavBase .idxFlipCardNavBar .navItem.navItemFocused {
+  border: 1px dashed #ccc;
+}

@@ -18,7 +18,7 @@ require([
                 });
             }
             //add knowledge page for all kinds of user
-            UI.openDynamicPage("KNOWLEDGE_BASE","知识中心", "KNOWLEDGE_BASE_UID", "<i class='icon-book'></i> 知识中心",{},true);
+            //UI.openDynamicPage("KNOWLEDGE_BASE","知识中心", "KNOWLEDGE_BASE_UID", "<i class='icon-book'></i> 知识中心",{},true);
         },
         _endOfCode: function(){}
     });

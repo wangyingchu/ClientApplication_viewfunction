@@ -1,0 +1,92 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .dijitLayoutContainer .dijitSplitterH {
+  height: 5px;
+  text-align: center;
+}
+.dlBlue .dijitLayoutContainer .dijitSplitterV {
+  width: 5px;
+  vertical-align: middle;
+}
+.dlBlue .dijitLayoutContainer .dijitSplitterV .dojoxToggleSplitterIcon {
+  background-image: url('images/toggleArrowsV.png');
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  width: 5px;
+  height: 47px;
+  left: 0;
+  top: 45%;
+  cursor: pointer;
+}
+.dlBlue .dijitLayoutContainer .dijitSplitterH .dojoxToggleSplitterIcon {
+  background-image: url('images/toggleArrowsH.png');
+  background-repeat: no-repeat;
+  width: 47px;
+  height: 5px;
+  cursor: pointer;
+}
+.dj_ie .dlBlue .dijitLayoutContainer .dijitSplitterH .dojoxToggleSplitterIcon {
+  background-image: url('images/toggleArrowsH8bits.png');
+}
+.dj_ie .dlBlue .dijitLayoutContainer .dijitSplitterV .dojoxToggleSplitterIcon {
+  background-image: url('images/toggleArrowsV8bits.png');
+}
+.dlBlue .dijitSplitterHHover .dojoxToggleSplitterTopIconOpen,
+.dijitSplitterHActive .dojoxToggleSplitterTopIconOpen,
+.dlBlue .dijitSplitterHHover .dojoxToggleSplitterBottomIconClosed,
+.dijitSplitterHActive .dojoxToggleSplitterBottomIconClosed {
+  background-position: 0 -15px !important;
+}
+.dlBlue .dijitSplitterHHover .dojoxToggleSplitterBottomIconOpen,
+.dijitSplitterHActive .dojoxToggleSplitterBottomIconOpen,
+.dlBlue .dijitSplitterHHover .dojoxToggleSplitterTopIconClosed,
+.dijitSplitterHActive .dojoxToggleSplitterTopIconClosed {
+  background-position: 0 -10px !important;
+}
+.dlBlue .dojoxToggleSplitterTopIconOpen,
+.dlBlue .dojoxToggleSplitterBottomIconClosed,
+.dlBlue .dojoxToggleSplitter .dojoxToggleSplitterTopIconOpenHover {
+  background-position: 0 -5px !important;
+}
+.dlBlue .dojoxToggleSplitterBottomIconOpen,
+.dlBlue .dojoxToggleSplitterTopIconClosed {
+  background-position: 0 0 !important;
+}
+.dlBlue .dijitSplitterVHover .dojoxToggleSplitterLeftIconOpen,
+.dijitSplitterVActive .dojoxToggleSplitterLeftIconOpen,
+.dlBlue .dijitSplitterVHover .dojoxToggleSplitterRightIconClosed,
+.dijitSplitterVActive .dojoxToggleSplitterRightIconClosed {
+  background-position: -15px 0 !important;
+}
+.dlBlue .dijitSplitterVHover .dojoxToggleSplitterRightIconOpen,
+.dijitSplitterVActive .dojoxToggleSplitterRightIconOpen,
+.dlBlue .dijitSplitterVHover .dojoxToggleSplitterLeftIconClosed,
+.dijitSplitterVActive .dojoxToggleSplitterLeftIconClosed {
+  background-position: -10px 0 !important;
+}
+.dlBlue .dojoxToggleSplitterLeftIconOpen,
+.dlBlue .dojoxToggleSplitterRightIconClosed,
+.dlBlue .dojoxToggleSplitter .dojoxToggleSplitterLeftIconOpenHover,
+.dlBlue .dojoxToggleSplitter .dojoxToggleSplitterRightIconClosedHover {
+  background-position: -5px 0 !important;
+}
+.dlBlue .dojoxToggleSplitterRightIconOpen,
+.dlBlue .dojoxToggleSplitterLeftIconClosed,
+.dlBlue .dojoxToggleSplitter .dojoxToggleSplitterRightIconOpenHover {
+  background-position: 0 0 !important;
+}
+.dlBlue .dojoxToggleSplitterTop .dojoxToggleSplitterA11y,
+.dlBlue .dojoxToggleSplitterBottom .dojoxToggleSplitterA11y {
+  display: none;
+  font-size: 6px;
+  text-align: center;
+}
+.dlBlue .dojoxToggleSplitterRight .dojoxToggleSplitterA11y,
+.dlBlue .dojoxToggleSplitterLeft .dojoxToggleSplitterA11y {
+  display: none;
+  font-size: 8px;
+  position: relative;
+  top: 48%;
+}
+.dijit_a11y .dojoxToggleSplitter .dojoxToggleSplitterA11y {
+  display: block;
+}

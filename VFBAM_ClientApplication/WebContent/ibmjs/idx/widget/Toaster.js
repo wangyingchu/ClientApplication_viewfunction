@@ -9,6 +9,7 @@ define(["dojo/_base/declare",
 	    "dijit/_Widget",
 		"dijit/_TemplatedMixin",
 		"dojo/string",
+		"dojo/has",
 		"dojo/_base/lang",
 		"dojo/query",
 		"dojo/NodeList-dom",
@@ -17,6 +18,7 @@ define(["dojo/_base/declare",
 		"dojo/dom-style",
 		"dojo/fx",
 		"dojo/_base/array",
+		"dojo/has!dojo-bidi?../bidi/widget/Toaster",
 		"dojo/text!./templates/Toaster.html",
 		"dojo/text!./templates/_ToasterMessage.html",
 		"dojo/i18n!./nls/Toaster"],
@@ -24,6 +26,7 @@ define(["dojo/_base/declare",
 				  _Widget,
 				  _TemplatedMixin,
 				  str,
+				  has,
 				  lang,
 				  query,
 				  NodeListDom,
@@ -32,6 +35,7 @@ define(["dojo/_base/declare",
 				  domStyle,
 				  fx,
 				  array,
+				  bidiExtension,
 				  template,
 				  msgTmpl,
 				  nlsBundle){
@@ -56,8 +60,8 @@ define(["dojo/_base/declare",
      * the user to read that message.
 	 * @augments dijit.messaging.Toaster
 	 */
-
-	return iMessaging.Toaster = declare("idx.widget.Toaster", [_Widget, _TemplatedMixin], {
+	var baseClassName = has("dojo-bidi")? "idx.widget.Toaster_" : "idx.widget.Toaster";
+	iMessaging.Toaster = declare(baseClassName, [_Widget, _TemplatedMixin], {
 		/**@lends idx.widget.Toaster*/
 		
 	    /** 
@@ -96,6 +100,8 @@ define(["dojo/_base/declare",
 	     * @type Boolean
 	     */ 
 	    persistMessages: false,
+		
+		_messages: null,
 	
 	    /**
 	     * Template node binding, overflow message count.
@@ -118,6 +124,14 @@ define(["dojo/_base/declare",
 	        msg_id: "",
 	        timestamp: ""
 	    },
+	    
+	    _iconTextMap: {
+			"error": "X",
+			"warning": "!",
+			"info": "i",
+			"success": "&#8730;"
+		},
+
 		postMixInProperties: function(){
 			var _nlsResources = nlsBundle;
 			this._viewAll = _nlsResources.viewAll;
@@ -132,10 +146,10 @@ define(["dojo/_base/declare",
 	    postCreate: function () {
 	        this._animQueue = [];
 	        this.watch("msgCount", lang.hitch(this, "_onMessageCountChange"));
-	        dojo.body().appendChild(this.toasterNode);
+			document.body.appendChild(this.toasterNode);
 			domStyle.set(this.messageList, "maxHeight", this.maxMsgHeight + "px");
 	    },
-	
+	    
 	    /**
 	     * Override to ensure the toaster node gets destroyed since it is a child of the body.
 	     */
@@ -146,7 +160,7 @@ define(["dojo/_base/declare",
 	    	// let the base method do the cleanup
 	    	this.inherited(arguments);
 	    },
-	    
+	
 	    /** Public API methods below... */
 	
 	    /**
@@ -160,7 +174,6 @@ define(["dojo/_base/declare",
 	     */ 
 	    add: function (message) {
 	        domClass.remove(this.toasterNode, "dijitHidden");
-	
 	        var msgNode = this._displayMsg(message);
 	        fx.wipeIn({node:msgNode, onEnd: lang.hitch(this, "_onMessageDisplayed", msgNode)}).play();
 	    }, 
@@ -172,12 +185,15 @@ define(["dojo/_base/declare",
 	     *
 	     * @param {DOMNode} msgNode - List element
 	     */       
-	    remove: function (msgNode) {
+	    remove: function (msgNode, wipeOut) {
 	        if (!this._isNodeInList(msgNode)) {
 	            return;
 	        }
-	
-	        this._play(fx.wipeOut({node:msgNode, onEnd: lang.hitch(this, "_onMessageRemoved", msgNode)}));
+			this._messages.pop();
+			var index = array.indexOf(this._animQueue, wipeOut)
+			if(index >= 0){
+				this._animQueue.splice(index, 1)[0].play();
+			}
 	    },
 	
 	    /**
@@ -185,6 +201,8 @@ define(["dojo/_base/declare",
 	     */
 	    reset: function () {
 	        this.set("msgCount", 0);
+			this._animQueue = [];
+			this._messages = [];
 	        query("li", this.toasterNode).orphan();
 	    },
 	
@@ -225,7 +243,11 @@ define(["dojo/_base/declare",
 	     */
 	    _onMessageDisplayed: function (msgNode) {
 	        this.set("msgCount", this.msgCount + 1);
-	        setTimeout(lang.hitch(this, "remove", msgNode), this.messageTimeout);
+			var wipeOut = fx.wipeOut({node:msgNode, onEnd: lang.hitch(this, "_onMessageRemoved", msgNode)});
+			this._animQueue.push(wipeOut);
+			if(!this.persistMessages){
+			    setTimeout(lang.hitch(this, "remove", msgNode, wipeOut), this.messageTimeout);
+			}
 	    },
 	
 	    /**
@@ -238,6 +260,7 @@ define(["dojo/_base/declare",
 	     */
 	    _onMessageRemoved: function (msgNode) {
 	        domConstruct.destroy(msgNode);
+			this._messages.shift();
 	        this.set("msgCount", this.msgCount - 1);
 	    },
 	
@@ -253,8 +276,6 @@ define(["dojo/_base/declare",
 	            window.clearTimeout(this.handler);
 	            this.handler = null;
 	        }
-	
-	        this.persistMessages = true;
 	    }, 
 	
 	    /**
@@ -268,8 +289,9 @@ define(["dojo/_base/declare",
 	     * @private
 	     */ 
 	    _onMouseOut: function () {
-	        this.persistMessages = false;
-	        this.handler = setTimeout(lang.hitch(this, "_playAnimQueue"));
+			if(this.persistMessages){
+		        this.handler = setTimeout(lang.hitch(this, "_playAnimQueue"));
+			}
 	    },
 	
 	    /** Private utility methods below... */
@@ -280,20 +302,9 @@ define(["dojo/_base/declare",
 	     * @private
 	     */
 	    _playAnimQueue: function () {
-	        array.forEach(this._animQueue, function (anim) {
-	            anim.play();
-	        });
-	    },
-	
-	    /**
-	     * Play an animation if user isn't hovering over the toaster, 
-	     * otherwise add animation to the internal queue.
-	     *
-	     * @param {DojoFX} anim - Dojo FX animation
-	     * @private
-	     */ 
-	    _play: function (anim) {
-	        this.persistMessages ? this._animQueue.push(anim) : anim.play();                
+			while(this._animQueue.length){
+				this._animQueue.pop().play();
+			}
 	    },
 	
 	    /**
@@ -349,7 +360,23 @@ define(["dojo/_base/declare",
 	     * @private
 	     */
 	    _createMessageHTML: function (message) {
-	        return str.substitute(msgTmpl, lang.mixin(false, this.defaultMessage, message));
-	    }
+			var newMessage = lang.mixin(false, this.defaultMessage, message);
+			newMessage.iconText=this._iconTextMap[newMessage.type];
+			if(!this._messages){this._messages = [];}
+			this._messages.push(newMessage);
+	        return str.substitute(msgTmpl, newMessage);
+	    },
+		_onViewAll: function(){
+			this.onViewAll(this._messages);
+		},
+		/**
+		 * Click "view all..." link to trigger this one, it should be overriden by user.
+		 * @param {Array} messages - Current messages
+		 * @protected
+		 */
+		onViewAll: function(messages){
+			
+		}
 	});
+	return has("dojo-bidi")? declare("idx.widget.Toaster",[iMessaging.Toaster,bidiExtension]) : iMessaging.Toaster;
 });

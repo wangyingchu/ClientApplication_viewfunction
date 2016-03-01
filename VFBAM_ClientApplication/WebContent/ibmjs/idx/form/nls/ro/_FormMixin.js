@@ -10,3 +10,4 @@ define({
 	legendText: "Necesar"
 //end v1.x content
 });
+

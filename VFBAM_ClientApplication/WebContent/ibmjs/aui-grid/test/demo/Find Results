@@ -1,0 +1,800 @@
+
+
+Searching 21 files for "hasVscrollbar"
+
+0 matches across 0 files
+
+
+Searching 21 files for "hasVScroll"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-body.js:
+   61  					console.log('%cin on body render event', 'color:pink');
+   62  					if ($scope.grid.bodyNode.scrollHeight > $scope.grid.bodyNode.clientHeight) {
+   63: 						$scope.grid.hasVScroller = true;
+   64  					} else {
+   65: 						$scope.grid.hasVScroller = false;
+   66  					}
+   67  					if ($scope.grid.bodyNode.scrollWidth > $scope.grid.bodyNode.clientWidth) {
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+   29  			this.isIE = false;
+   30  			this.options = options;
+   31: 			this.hasVScroller = false;
+   32  			this.hasHScroller = false;
+   33  			this.api = {};		//GridApi
+   ..
+   57  		Grid.prototype.version = version;
+   58  
+   59: 		Grid.prototype.hasVScroller = false;
+   60  
+   61  		Grid.prototype.hasHScroller = false;
+
+4 matches across 2 files
+
+
+Searching 21 files for "registerapi"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\core.js:
+  414  		onModulesLoaded: function(){},
+  415  
+  416: 		registerApi: function(moduleName, apiName, func) {
+  417  			if (!this.api) return;
+  418  
+  ...
+  430  			t.topics = t.topics || {};
+  431  
+  432: 			t.registerApi('core', 'sort', hitch(t, t.sort));
+  433: 			t.registerApi('core', 'refresh', hitch(t, t.refresh));
+  434  
+  435  			if(t.touch){
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-pagination.js:
+   40  				this._page = this.grid.currentPage = this.grid.getOption('startPage');
+   41  
+   42: 				this.grid.registerApi('pagination', 'goto', hitch(this, this.goto));
+   43: 				this.grid.registerApi('pagination', 'previous', hitch(this, this.previous));
+   44: 				this.grid.registerApi('pagination', 'next', hitch(this, this.next));
+   45: 				this.grid.registerApi('pagination', 'pageCount', hitch(this, this.pageCount));
+   46: 				this.grid.registerApi('pagination', 'setPageSize', hitch(this, this.setPageSize));
+   47  
+   48  				// grid.currentPage = this.currentPage;
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-sort.js:
+    8  		var service = {
+    9  			init: function(grid) {
+   10: 				grid.registerApi('sort', 'sort', hitch(this, this.sort, grid));
+   11  			},
+   12  
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid.js:
+   60  				grid.domNode = $elem[0];
+   61  
+   62: 				if (GridUtil.isFunction($scope.auiGrid.onRegisterApi)) {
+   63: 					$scope.auiGrid.onRegisterApi(grid.api);
+   64  				}
+   65  
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\services\GridSortService.js:
+    8  		var service = {
+    9  			init: function(grid) {
+   10: 				// grid.registerApi('sort', 'sort', hitch(this, this.sort, grid))
+   11  			},
+   12  
+
+12 matches across 5 files
+
+
+Searching 21 files for "resize"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\core.js:
+  432  			t.registerApi('core', 'sort', hitch(t, t.sort));
+  433  			t.registerApi('core', 'refresh', hitch(t, t.refresh));
+  434: 			t.registerApi('core', 'resize', hitch(t, t.resize));
+  435  
+  436  			if(t.touch){
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+  106  		};
+  107  
+  108: 		Grid.prototype.resize = function() {
+  109  			this.renderVLayout();
+  110  		};
+  ...
+  160  			t._initEvents(t._compNames, t._eventNames);
+  161  			t._init();
+  162: 			//resize the grid when zoomed in/out.
+  163: 			// t.connect(metrics, 'onFontResize', function(){
+  164: 			// 	t.resize();
+  165  			// });
+  166  		},
+  ...
+  221  	=====*/
+  222  
+  223: 		Grid.prototype.resize = function(changeSize) {
+  224  			// summary:
+  225: 			//		Resize the grid using given width and height.
+  226  			// tags:
+  227  			//		public
+  ...
+  239  				domGeometry.setMarginBox(t.domNode, changeSize);
+  240  			}
+  241: 			t._onResizeBegin(changeSize, ds);
+  242: 			t._onResizeEnd(changeSize, ds);
+  243  		},
+  244  
+  245  		//Private-------------------------------------------------------------------------------
+  246: 		Grid.prototype._onResizeBegin = function(){},
+  247: 		Grid.prototype._onResizeEnd = function(){},
+  248  
+  249  		Grid.prototype._getSortOptions = function() {
+
+12 matches across 2 files
+
+
+Searching 21 files for "timeNode"
+
+0 matches across 0 files
+
+
+Searching 21 files for "rowHover"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+   34  			this._options = new GridOption(options);
+   35  			this._vLayouts = [];
+   36: 			this.enableRowHoverEffect = this.getOption('enableRowHoverEffect');
+   37  			// console.log('childField', this.getOption('childField'));
+   38  			// console.log('emptyInfo', this.getOption('emptyInfo'));
+   ..
+   61  		Grid.prototype.hasHScroller = false;
+   62  
+   63: 		Grid.prototype.enableRowHoverEffect = true;
+   64  
+   65  		Grid.prototype.sortOptions = [];
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\GridBody.js:
+   47  		loadFailInfo: '',
+   48  
+   49: 		// rowHoverEffect: Boolean
+   50  		//		Whether to show a visual effect when mouse hovering a row.
+   51: 		rowHoverEffect: true,
+   52  
+   53  		// renderedIds: Object
+   ..
+  254  			t.renderedRows = [];
+  255  
+  256: 			// if(t.arg('rowHoverEffect')){
+  257: 			// 	domClass.add(dn, 'gridxBodyRowHoverEffect');
+  258  			// }
+  259  			// g.emptyNode.innerHTML = t.arg('loadingInfo', g.nls.loadingInfo);
+  ...
+  326  			},
+  327  
+  328: 			rowHoverEffect: true,
+  329  
+  330  			stuffEmptyCell: true,
+  ...
+  430  				delete t._err;
+  431  				clearTimeout(t._sizeChangeHandler);
+  432: 				domClass.toggle(t.domNode, 'gridxBodyRowHoverEffect', t.arg('rowHoverEffect'));
+  433  
+  434  				// cache visual ids
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\GridOption.js:
+   19  		GridOption.prototype.paginationPageSizes = [5, 10, 25, 50];
+   20  
+   21: 		GridOption.prototype.enableRowHoverEffect = true;
+   22  
+   23  		GridOption.prototype.getOption = function(name) {
+
+11 matches across 3 files
+
+
+Searching 21 files for "enableRowHoverEffect"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+   34  			this._options = new GridOption(options);
+   35  			this._vLayouts = [];
+   36: 			this.enableRowHoverEffect = this.getOption('enableRowHoverEffect');
+   37  			// console.log('childField', this.getOption('childField'));
+   38  			// console.log('emptyInfo', this.getOption('emptyInfo'));
+   ..
+   61  		Grid.prototype.hasHScroller = false;
+   62  
+   63: 		Grid.prototype.enableRowHoverEffect = true;
+   64  
+   65  		Grid.prototype.sortOptions = [];
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\GridOption.js:
+   19  		GridOption.prototype.paginationPageSizes = [5, 10, 25, 50];
+   20  
+   21: 		GridOption.prototype.enableRowHoverEffect = true;
+   22  
+   23  		GridOption.prototype.getOption = function(name) {
+
+4 matches across 2 files
+
+
+Searching 21 files for "clientHeight"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-body.js:
+   60  					console.log(new Date().getTime());
+   61  					console.log('%cin on body render event', 'color:pink');
+   62: 					if ($scope.grid.bodyNode.scrollHeight > $scope.grid.bodyNode.clientHeight) {
+   63  						$scope.grid.hasVScroller = true;
+   64  					} else {
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-header.js:
+   48  						$scope.$emit('onHeaderRender');
+   49  						grid.publish('renderVLayout');
+   50: 						console.log('header height', $elem[0].clientHeight);
+   51  					}, 0);
+   52  				}
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid.js:
+   66  
+   67  				$scope.$watch(
+   68: 					function() { return grid.domNode.clientHeight; },
+   69  					function(nv, ov) { if (ov !== nv) grid.renderVLayout(); }
+   70  				);
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+   94  
+   95  			this._vLayouts.forEach(function(item) {
+   96: 				total += item.clientHeight;
+   97  			});
+   98  
+   99: 			this.mainNode.style.height = this.domNode.clientHeight - total + 'px';
+  100  		};
+  101  
+
+5 matches across 4 files
+
+
+Searching 21 files for "registerv"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-header.js:
+   22  				grid.headerNode = $elem[0];
+   23  				grid.headerInner = $elem[0].querySelectorAll('.gridxHeaderRowInner')[0];
+   24: 				grid.registerVLayout(grid.headerNode);
+   25  
+   26  				$scope.columns = gridCtrl._columns;
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+   84  		},
+   85  
+   86: 		Grid.prototype.registerVLayout = function(node) {
+   87  			this._vLayouts.push(node);
+   88  		};
+
+2 matches across 2 files
+
+
+Searching 21 files for "pagination-bar"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-pagination-bar.js:
+    6  	module.directive('auiGridPaginationBar', ['GridUtil', function(GridUtil) {
+    7  		return {
+    8: 			templateUrl: 'aui-grid/aui-grid-pagination-bar',
+    9  			replace: true,
+   10  			require: ['^auiGrid'],
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-pagination.js:
+  206  				grid.paging = true;
+  207  
+  208: 				var pager = angular.element("<div aui-grid-pagination-bar></div>");
+  209  				$elem.append(pager);
+  210  				$compile(pager)($scope);
+
+2 matches across 2 files
+
+
+Searching 105 files for "pagination-bar"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-pagination-bar.js:
+    6  	module.directive('auiGridPaginationBar', ['GridUtil', function(GridUtil) {
+    7  		return {
+    8: 			templateUrl: 'aui-grid/aui-grid-pagination-bar',
+    9  			replace: true,
+   10  			require: ['^auiGrid'],
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-pagination.js:
+  206  				grid.paging = true;
+  207  
+  208: 				var pager = angular.element("<div aui-grid-pagination-bar></div>");
+  209  				$elem.append(pager);
+  210  				$compile(pager)($scope);
+
+C:\Dev\dojospace\AUI-gridx\src\less\Gridx.css:
+    1: .gridx{position:relative;overflow:hidden;border:1px solid #ddd;-webkit-tap-highlight-color:rgba(0,0,0,0);height:300px}.gridx *{box-sizing:border-box;outline:none}.gridxHeader,.gridxFooter{overflow:hidden;background-color:#eee}.gridxLoad{display:none;position:absolute;top:0;left:0}.gridxLoading{display:block;width:100%;height:100%;z-index:99999;opacity:0}.gridxFooter{position:absolute;left:0;bottom:0;width:100%}.gridxMain{position:relative}.gridxHeaderRow{background-color:#eee;border-bottom:1px solid #ccc;position:relative}.gridxHeaderRowHidden{height:0}.gridxHeaderRowInner{overflow:hidden;border-style:solid;border-color:#ccc;border-width:0 1px 0 0}.gridxHeaderRowInner.hasVScroller{margin-right:17px}.dj_ie7 .gridxHeaderRowInner,.dj_ie6 .gridxHeaderRowInner{position:relative}.gridxHeaderRow table{border-collapse:separate;border-spacing:0;border:none;table-layout:fixed;width:1px}.gridxGH .gridxHeaderRow table{width:auto}.gridxPercentColumnWidth .gridxHeaderRow table,.gridxPercentColumnWidth .gridxRow,.gridxPercentColumnWidth .gridxRow .gridxRowTable{width:100%}.gridxGroupHeader,.gridxHeaderRow .gridxCell{border-width:1px;border-style:solid;border-color:transparent #ccc transparent transparent;text-align:left;padding:3px;overflow:hidden;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gridxGroupHeader.sortable,.gridxHeaderRow .gridxCell.sortable{cursor:pointer}.gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxHeaderCellFocus,.gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxCellRegion.gridxHeaderRegionFocus{border:1px dashed #00008b}.dj_android .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxHeaderCellFocus,.dj_android .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxCellRegion.gridxHeaderRegionFocus,.dj_ios .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxHeaderCellFocus,.dj_ios .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxCellRegion.gridxHeaderRegionFocus{border-color:transparent}.gridxHeaderRow :focus{outline:none}.gridxBody{height:100%;width:100%;overflow:hidden;position:absolute;top:0;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;-khtml-box-sizing:border-box;box-sizing:border-box}.gridxCell{-moz-box-sizing:content-box;-ms-box-sizing:content-box;-webkit-box-sizing:content-box;-khtml-box-sizing:content-box;box-sizing:content-box}.gridxBodyRowHoverEffect .gridxRowOver>.gridxRowTable{background-color:#cee8f2}.gridxRow{background-color:#fff}.gridxRowHeaderRow table,.gridxRow .gridxRowTable{border-collapse:separate;border-spacing:0;border:none;table-layout:fixed;width:1px;empty-cells:show}.gridxRowHeaderRow table .gridxCell,.gridxRow .gridxRowTable .gridxCell{border-style:solid;border-color:transparent #ccc #ccc transparent;border-width:1px;padding:3px;text-align:left;overflow:hidden;text-overflow:ellipsis}.gridxRowHeaderRow table .gridxCell:focus,.gridxRow .gridxRowTable .gridxCell:focus{outline:none}.dj_safari .gridxGH .gridxRow .gridxRowTable{width:auto}.dj_safari .gridxPercentColumnWidth .gridxRow .gridxRowTable{width:100%}.gridxRowDummy{height:24px;width:100%;border-bottom:1px solid #e5dac8}.gridx .gridxBody .gridxCellFocus{border:1px dashed #00008b !important}.gridxBodyEmpty{background-color:#fff;width:100%;height:100%;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;-khtml-box-sizing:border-box;box-sizing:border-box;padding:30px 0;text-align:center;position:absolute;top:0;left:0}.gridxBodyEmpty:focus{outline:1px dotted #aaa}.gridxHScrollerInner{display:none;overflow:scroll;overflow-y:hidden;border:none;outline:none}.dj_ie6 .gridxHScrollerInner{line-height:0}.gridxVScroller{position:absolute;top:0;right:0;overflow:scroll;overflow-x:hidden;border:none;height:100%;outline:none}.gridxMac .gridxHScrollerInner::-webkit-scrollbar{height:11px !important}.gridxMac .gridxVScroller::-webkit-scrollbar{width:11px !important}.gridxMac .gridxHScrollerInner::-webkit-scrollbar,.gridxMac .gridxVScroller::-webkit-scrollbar{-webkit-appearance:none !important;background-color:#eee !important}.gridxMac .gridxHScrollerInner::-webkit-scrollbar-thumb,.gridxMac .gridxVScroller::-webkit-scrollbar-thumb{border-radius:8px !important;border:2px solid #fff !important;background-color:rgba(100,100,100,0.5) !important}.gridxMac .gridxHScrollerInner::-webkit-scrollbar-thumb:hover,.gridxMac .gridxVScroller::-webkit-scrollbar-thumb:hover,.gridxMac .gridxHScrollerInner::-webkit-scrollbar-thumb:active,.gridxMac .gridxVScroller::-webkit-scrollbar-thumb:active,.gridxMac .gridxHScrollerInner::-webkit-scrollbar-thumb:focus,.gridxMac .gridxVScroller::-webkit-scrollbar-thumb:focus{background-color:rgba(0,0,0,0.5) !important}.gridxRowHeaderHeader,.gridxRowHeaderBody{position:absolute;left:0;top:0;height:100%;overflow:hidden;border-right:1px solid #e5dac8;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;-khtml-box-sizing:border-box;box-sizing:border-box}.gridxRowHeaderBody table{width:100%}.gridxRowHeaderHeader table{height:100%}.gridxRowHeaderRow{overflow:hidden;width:100%;background:#edf2f7;background:-moz-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #edf2f7), color-stop(100%, #d0dfea));background:-webkit-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:-o-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:-ms-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:linear-gradient(top, #edf2f7 0, #d0dfea 100%)}.gridxRowHeaderHeader .gridxHeaderCellFocus{border-top:1px dashed #00008b;border-bottom:1px dashed #00008b}.dj_android .gridxRowHeaderHeader .gridxHeaderCellFocus,.dj_ios .gridxRowHeaderHeader .gridxHeaderCellFocus{border-color:transparent}.gridxRowHeaderCell{border-bottom:1px solid #e5dac8}.gridxRowHeaderRow .gridxCellFocus{border:1px dashed #00008b !important}.dj_gecko .gridx .gridxRowHeaderBody .gridxRowHeaderRow .gridxRowHeaderCell .dijitCheckBox{overflow:visible}.gridxColumnResizing{cursor:ew-resize}.dj_ie .gridxColumnResizing{cursor:e-resize}.gridxColumnResizer{position:absolute;height:100%;width:2px;background-color:#666;z-index:1000;top:0}.gridxCellWidget{width:100%;height:100%}.gridxCellEditor{width:100%}.dj_ie [class~='dijitTextArea'].gridxCellEditor{width:100%}[class~='dijitSliderV'].gridxCellEditor{width:auto}.gridxEditButtons{height:25px;position:relative}.gridxAlwaysEdit{display:none}.gridxEditFocus{display:block}.gridxEditOK,.gridxEditCancel{display:inline-block;float:right;cursor:pointer;margin-left:5px}.gridxEditOK:hover,.gridxEditCancel:hover{background-color:#9bcaf7}.gridxEditOK{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-200px -120px;height:20px;width:20px}.gridxEditCancel{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-160px 0;height:20px;width:20px}.gridxTouchVScroller .gridxHScroller,.gridxTouchVScroller .gridxVScroller{display:none}.gridxTouchVScroller .gridxMain{overflow:hidden}.gridxTouchVScroller .gridxBody{height:auto !important;width:auto !important}.gridxTouchVScroller .gridxHeaderRowInner{position:relative}.gridxTouchVScroller .gridxHeaderRowInner>table{position:absolute}.gridxTouchVScroller.gridxPercentColumnWidth .gridxBody{width:100% !important}.gridxTouchScrollVWrapper{overflow:hidden;position:absolute;right:2px;top:2px;width:5px}.gridxTouchScrollHWrapper{overflow:hidden;position:absolute;bottom:2px;left:2px;height:5px}.gridxTouchScrollVBar{width:5px}.gridxTouchScrollHBar{height:5px}.gridxTouchScrollVBar,.gridxTouchScrollHBar{background-color:#606060;opacity:0;position:absolute;z-index:999;-webkit-transition-property:opacity;-moz-transition-property:opacity;-o-transition-property:opacity;transition-property:opacity;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;-o-transition-duration:.3s;transition-duration:.3s}.gridxHiddenColumn{display:none}.gridxHeaderMenu{width:100px}.gridxHeaderMenuBtn{border-left:1px solid #fff;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-25px -23.5px;height:13px;width:10px}.gridxHeaderMenuBtnInner{display:none}.dijit_a11y .gridxHeaderMenuBtnInner{display:inline}.gridxBodyTop,.gridxBodyBottom{padding:10px;text-align:center}.gridxBodyTop button,.gridxBodyBottom button{width:100%;min-height:28px}.gridxLoadingMore{display:inline-block;background-image:url('images/treeExpand_loading.gif');background-repeat:no-repeat;background-position:center center;vertical-align:middle;width:20px;height:20px;margin:0 5px}.gridxHeaderRegion{float:right;display:none}.gridxHeaderRegionFocusable{cursor:pointer}.gridxCell:hover .gridxHeaderRegion,.gridxHeaderRegionFocus .gridxHeaderRegion{display:block}.gridxHeaderRegionFocus .gridxSortNode:focus,.gridxHeaderRegionFocus .gridxHeaderRegion:focus{outline:1px dashed #00008b}.gridxCellEditedBgWrapper{display:block;position:relative}.gridxCellEditedBgWrapper{position:relative;display:block}.gridxCellEditedBg{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-147px -127px;height:6px;width:6px;position:absolute;z-index:10;top:0;right:0}.gridxCellEditedBg span{display:none}.dijit_a11y .gridxCellEditedBg span{position:relative;display:block;left:-3px;color:#fff;font-size:8px}.gridxSlideRefresh{-webkit-transition-property:left;-moz-transition-property:left;-o-transition-property:left;transition-property:left;-webkit-transition-duration:.7s;-moz-transition-duration:.7s;-o-transition-duration:.7s;transition-duration:.7s;background:#fff;border-left:1px solid #dbdbdb;border-right:1px solid #dbdbdb}.gridxLayerContext{position:relative}.gridxLayerWrapper{position:absolute}.gridxLayerWrapper .gridxRow .gridxCell{background-color:#d0dfea}.gridxLayerHSlide{-webkit-transition-property:left;-moz-transition-property:left;-o-transition-property:left;transition-property:left;-webkit-transition-duration:.7s;-moz-transition-duration:.7s;-o-transition-duration:.7s;transition-duration:.7s}.gridxLayerVSlide{-webkit-transition-property:top;-moz-transition-property:top;-o-transition-property:top;transition-property:top;-webkit-transition-duration:.7s;-moz-transition-duration:.7s;-o-transition-duration:.7s;transition-duration:.7s}.gridxLayerHasChildren{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-164px -124px;height:12px;width:12px}.gridxLayerLoading .gridxLayerHasChildren{background-image:url('images/treeExpand_loading.gif');background-repeat:no-repeat;background-position:center center;width:20px;height:20px}.gridxLayerLevelUp{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-184px -124px;height:12px;width:12px}.gridxPuller{overflow:hidden !important;position:relative !important}.gridxPullerInner{position:absolute !important;bottom:0 !important}.gridxPullerAnim{-webkit-transition-property:height;-moz-transition-property:height;-o-transition-property:height;transition-property:height;-webkit-transition-duration:300ms;-moz-transition-duration:300ms;-o-transition-duration:300ms;transition-duration:300ms}.gridxSortNode{overflow:hidden}.gridxArrowButtonCharAsc,.gridxArrowButtonCharDesc{display:none}.dijit_a11y .gridxCellSortedAsc .gridxArrowButtonCharAsc,.dijit_a11y .gridxCellSortedDesc .gridxArrowButtonCharDesc{display:block}.gridxArrowButtonNode{float:right;margin-right:7px;width:10px;height:12px}.gridxCellSorted .gridxArrowButtonNode{display:block}.gridxCellSortedAsc .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-5px -23px}.gridxCellSortedDesc .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-25px -23px}.gridxCell:hover.gridxCellSortedAsc .gridxArrowButtonNode,.gridxHeaderCellFocus.gridxCellSortedAsc .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-45px -23px}.gridxCell:hover.gridxCellSortedDesc .gridxArrowButtonNode,.gridxHeaderCellFocus.gridxCellSortedDesc .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-65px -23px}.gridxSortBtn{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-65px -23px;float:right;cursor:pointer;width:10px;display:none}.gridxSortNodeFocus{background:#ddd}.gridxSortBtnNested{width:20px;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-55px -23px}.gridxSortBtn:hover,.gridxSortBtnFocus{background-color:#ddd}.gridxHeader .gridxCell .gridxSortBtnNested{display:none}.gridxCellSorted .gridxSortBtnSingle,.gridxNestedSorted .gridxCellSorted .gridxSortBtnNested,.gridxCell:hover .gridxSortBtnSingle,.gridxSingleSorted .gridxCell:hover .gridxSortBtn,.gridxNestedSorted .gridxCell:hover .gridxSortBtn,.gridxHeader .gridxCellSortFocus .gridxSortBtnSingle,.gridxSingleSorted .gridxCellSortFocus .gridxSortBtn,.gridxNestedSorted .gridxCellSortFocus .gridxSortBtn,.gridxHeader .gridxHeaderRegionFocus .gridxSortBtnSingle,.gridxSingleSorted .gridxHeaderRegionFocus .gridxSortBtn,.gridxNestedSorted .gridxHeaderRegionFocus .gridxSortBtn,.gridxSingleSorted .gridxHeaderRow:hover .gridxCellSortedMain .gridxSortBtnNested,.gridxSingleSorted .gridxHeaderFocus .gridxCellSortedMain .gridxSortBtnNested{display:block}.gridxSingleSorted .gridxHeader .gridxCellSortedMain:hover .gridxSortBtnNested,.gridxSingleSorted .gridxHeader .gridxCellSortedMain.gridxCellSortFocus .gridxSortBtnNested,.gridxSingleSorted .gridxHeader .gridxCellSortedMain.gridxHeaderRegionFocus .gridxSortBtnNested,.gridxSingleSorted .gridxHeaderRow:hover .gridxCellSortedMain .gridxSortBtnSingle,.gridxSingleSorted .gridxHeaderFocus .gridxCellSortedMain .gridxSortBtnSingle,.gridxNestedSorted .gridxSortBtnSingle{display:none}.gridxSingleSorted .gridxHeaderRow:hover .gridxCellSortedMain:hover .gridxSortBtnSingle,.gridxSingleSorted .gridxHeaderFocus .gridxCellSortedMain.gridxCellSortFocus .gridxSortBtnSingle,.gridxSingleSorted .gridxHeaderFocus .gridxCellSortedMain.gridxHeaderRegionFocus .gridxSortBtnSingle{display:block}.gridxCellSortedAsc .gridxSortBtnSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-5px -23px}.gridxCellSortedAsc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:5px -23px}.gridxCellSortedDesc .gridxSortBtnSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-25px -23px}.gridxCellSortedDesc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-15px -23px}.gridxCell:hover.gridxCellSortedAsc .gridxSortBtnSingle,.gridxCellSortFocus.gridxCellSortedAsc .gridxSortBtnSingle,.gridxHeaderRegionFocus.gridxCellSortedAsc .gridxSortBtnSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-45px -23px}.gridxCell:hover.gridxCellSortedAsc .gridxSortBtnNested,.gridxCellSortFocus.gridxCellSortedAsc .gridxSortBtnNested,.gridxHeaderRegionFocus.gridxCellSortedAsc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-35px -23px}.gridxCell:hover.gridxCellSortedDesc .gridxSortBtnSingle,.gridxCellSortFocus.gridxCellSortedDesc .gridxSortBtnSingle,.gridxHeaderRegionFocus.gridxCellSortedDesc .gridxSortBtnSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-85px -23px}.gridxCell:hover.gridxCellSortedDesc .gridxSortBtnNested,.gridxCellSortFocus.gridxCellSortedDesc .gridxSortBtnNested,.gridxHeaderRegionFocus.gridxCellSortedDesc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-75px -23px}.gridxNestedSorted .gridxCell:hover .gridxSortBtnSingle,.gridxNestedSorted .gridxCellSortFocus .gridxSortBtnSingle,.gridxNestedSorted .gridxHeaderRegionFocus .gridxSortBtnSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-65px -23px}.gridxNestedSortBtnText{display:none}.dijit_a11y .gridxNestedSortBtnText{display:inline}.gridxSort .gridxSortSingle{display:none}.gridxSort .gridxSortNested{float:right;display:block;margin:0 5px;font-size:10px}.gridxSort .gridxArrowButtonChar{display:none}.dijit_a11y .gridxSort .gridxArrowButtonChar{display:block}.gridxSort .gridxArrowButtonNode{height:10px;width:10px;margin:3px 7px 0 0;display:none}.gridxSort .gridxSortUp .gridxArrowButtonNode{display:block;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-5px -5px}.gridxSort .gridxSortDown .gridxArrowButtonNode{display:block;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-25px -5px}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxArrowButtonNode,.gridxSort .gridxHeaderCellFocus .gridxArrowButtonNode{display:block}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxArrowButtonNode,.gridxSort .gridxHeaderCellFocus .gridxArrowButtonNode{display:block;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-85px -5px}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxSortUp .gridxArrowButtonNode,.gridxSort .gridxHeaderCellFocus .gridxSortUp .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-105px -5px}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxSortDown .gridxArrowButtonNode,.gridxSort .gridxHeaderCellFocus .gridxSortDown .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-125px -5px}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxSortAscendOnly,.gridxSort .gridxHeaderCellFocus .gridxSortAscendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-65px -5px}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxSortDescendOnly,.gridxSort .gridxHeaderCellFocus .gridxSortDescendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-45px -5px}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxSortUp .gridxSortAscendOnly,.gridxSort .gridxHeaderCellFocus .gridxSortUp .gridxSortAscendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-5px -5px}.gridxSort .gridxHeaderRow .gridxCell:hover .gridxSortDown .gridxSortDescendOnly,.gridxSort .gridxHeaderCellFocus .gridxSortDown .gridxSortDescendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-25px -5px}.gridxSort.gridxTouch .gridxHeaderRow .gridxCell .gridxArrowButtonNode{display:block;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-85px -5px}.gridxSort.gridxTouch .gridxHeaderRow .gridxCell .gridxSortUp .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-105px -5px}.gridxSort.gridxTouch .gridxHeaderRow .gridxCell .gridxSortDown .gridxArrowButtonNode{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-125px -5px}.gridxSort.gridxTouch .gridxHeaderRow .gridxCell .gridxSortAscendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-65px -5px}.gridxSort.gridxTouch .gridxHeaderRow .gridxCell .gridxSortDescendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-45px -5px}.gridxSort.gridxTouch .gridxHeaderRow .gridxCell .gridxSortUp .gridxSortAscendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-5px -5px}.gridxSort.gridxTouch .gridxHeaderRow .gridxCell .gridxSortDown .gridxSortDescendOnly{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-25px -5px}.gridxLockedCell{position:absolute;background-color:#fff;z-index:1}.gridxLockedRow{z-index:2}.gridxLockedRow .gridxLockedCell{z-index:2}.gridxColumnLock .gridxRow{overflow:hidden}.gridxTreeExpandoCell{height:100%;position:relative;min-height:16px}.gridxTreeExpandoIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-2px -122px;height:16px;width:16px;position:absolute;top:0;left:0;cursor:pointer}.gridxTreeExpandoIcon:hover{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-22px -122px;height:16px;width:16px}.gridxTreeExpandoCellOpen .gridxTreeExpandoIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-42px -122px;height:16px;width:16px}.gridxTreeExpandoCellOpen .gridxTreeExpandoIcon:hover{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-62px -122px;height:16px;width:16px}.gridx .gridxTreeExpandoLoading .gridxTreeExpandoIcon{background-image:url('images/treeExpand_loading.gif');background-repeat:no-repeat;background-position:center center}.gridxTreeExpandoIconNoChildren{visibility:hidden}.gridxTreeExpandoInner{visibility:hidden;text-align:center}.dijit_a11y .gridxTreeExpandoInner{visibility:visible}.gridxDodNode,.gridxDodLoadNode{border-bottom:1px solid #e5dac8;overflow:auto}.gridxDodLoadNode{background:transparent url(images/loadingAnimation.gif) no-repeat 5px 2px;padding:5px 5px 5px 30px}.gridxDodExpando{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-82px -82px;height:16px;width:16px;float:left;margin:2px 3px 0 0;cursor:pointer;visibility:hidden}.gridxRowOver .gridxDodExpando{visibility:visible}.gridxTouch .gridxDodExpando{visibility:visible}.gridxDodShown .gridxDodExpando{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-82px -102px;height:16px;width:16px}.gridxDodExpandoText{display:none}.dijit_a11y .gridxDodExpandoText{display:inline}.gridxRowSelected>.gridxRowTable{background-color:#bfd6eb}.gridxRow .gridxColumnSelected{background-color:#bfd6eb}.gridxCellSelected{background-color:#bfd6eb}.dijit_a11y .gridxRowSelected,.dijit_a11y .gridxRow .gridxColumnSelected,.dijit_a11y .gridxCellSelected{opacity:.8}.dijit_a11y .gridxRowUnselectable{opacity:.5}.gridxRowHeaderHeaderCell,.gridxRowHeaderCell{text-align:center}.gridx .gridxIndirectSelectionCheckBox{margin:-4px 0 0 0}.gridxIndirectSelectionCheckBoxInner{display:none}.dijit_a11y .gridxIndirectSelectionCheckBoxInner{display:inline}.gridxSummaryBar{padding:3px 9px;border-top:1px solid #ddd}.gridxTitleBar{padding:3px 9px;border-top:1px solid #fff}.gridxBar{border-top:1px solid #fff}.gridxBar>table{width:100%}.gridxSummaryBar,.gridxTitleBar,.gridxBar{background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAPCAYAAAAlH6X5AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QkBDyst7ytGZAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAF0lEQVQI12NggAJGJgYGBgYmGIt0ggEABXAAJ5rKjIAAAAAASUVORK5CYII=") repeat-x scroll center bottom #e5edf4}.gridxSummary{padding:3px 9px}.gridxDnDReadyCursor{cursor:move}.gridxCanNotDnD{cursor:default}.gridxDnDAnchor{width:2px;background-color:#808080;font-size:0;position:absolute;z-index:998}.gridxDndAvatar{background-color:#fff;border:1px solid #ccc;padding:0;-moz-box-shadow:5px 5px 7px #999;-webkit-box-shadow:5px 5px 7px #999;box-shadow:5px 5px 7px #999;z-index:999;border-spacing:3px}.dojoDndMove .gridxDnDIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-182px -102px;height:16px;width:16px}.dojoDndMove .dojoDndAvatarCanDrop .gridxDnDIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-182px -82px;height:16px;width:16px}.dojoDndCopy .gridxDnDIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-162px -102px;height:16px;width:16px}.dojoDndCopy .dojoDndAvatarCanDrop .gridxDnDIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-162px -82px;height:16px;width:16px}.gridxDnDAnchorRow{left:0;height:1px}.gridxDnDAnchorRow:before{content:'';position:absolute;top:-1px;height:1px;width:100%;background-color:#808080}.gridxDnDIconRowSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-122px -82px;height:16px;width:16px}.gridxDnDIconRowMulti{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-122px -102px;height:16px;width:16px}.gridxDnDAnchorColumn{top:0;width:2px}.gridxDnDIconColumnSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-142px -82px;height:16px;width:16px}.gridxDnDIconColumnMulti{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-142px -102px;height:16px;width:16px}.gridxFilterDialog .dijitAccordionContainer .dijitAccordionContainer-child{padding:6px 9px}.gridxFilterDialog .gridxFilterAccordionWrapper{height:227px;width:300px;overflow:auto;position:relative;margin:5px 0 15px 0}.gridxFilterDialog .gridxFilterDialogButtons{text-align:right}.gridxFilterDialog .gridxFilterDialogButtons .gridxFilterDialogBtnAdd{float:left;margin-top:-10px}.gridxFilterDialog .dijitAccordionTitleFocus{margin-right:16px}.gridxFilterDialog .dijitAccordionTitleFocus .dijitAccordionText{display:block}.gridxFilterDialog .dijitAccordionTitleFocus .dijitAccordionArrow{display:none}.gridxFilterPaneForm{margin:0;padding:0;list-style:none;font-size:10px}.gridxFilterPaneForm .dijitSelect{margin:0}.gridxFilterPaneForm li{margin:0;padding:0;list-style:none;width:98%}.gridxFilterPaneForm .dijitSelect,.gridxFilterPaneForm .dijitTextBox,.gridxFilterPaneForm .dijitComboBox{font-size:12px}.gridxFilterPaneForm .gridxFilterPaneFieldWrapper{display:none}.gridxFilterPaneCloseButton{float:right;margin-top:-15px}.gridxFilterPaneCloseButton img{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-202px -22px;height:16px;width:16px;cursor:pointer}.gridxFilterPaneCloseButton img:hover{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-202px -2px;height:16px;width:16px}.gridxFilterSingleRule .gridxFilterPaneCloseButton{display:none}.gridxFilterBtnAddRule{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-182px -2px;height:16px;width:16px}.dijitButtonDisabled .gridxFilterBtnAddRule{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-182px -22px;height:16px;width:16px}.gridxFilterBarBtnIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-142.5px -42.5px;height:15px;width:15px}.gridxFilterPaneText .gridxFilterPaneTextWrapper,.gridxFilterPaneCombo .gridxFilterPaneComboWrapper,.gridxFilterPaneNumber .gridxFilterPaneNumberWrapper,.gridxFilterPaneNumberRange .gridxFilterPaneNumberRangeWrapper,.gridxFilterPaneDate .gridxFilterPaneDateWrapper,.gridxFilterPaneDateRange .gridxFilterPaneDateRangeWrapper,.gridxFilterPaneDatePast .gridxFilterPaneDatePastWrapper,.gridxFilterPaneDatetime .gridxFilterPaneDatetimeWrapper,.gridxFilterPaneDatetimeRange .gridxFilterPaneDatetimeRangeWrapper,.gridxFilterPaneDatetimePast .gridxFilterPaneDatetimePastWrapper,.gridxFilterPaneTime .gridxFilterPaneTimeWrapper,.gridxFilterPaneTimeRange .gridxFilterPaneTimeRangeWrapper,.gridxFilterPaneTimePast .gridxFilterPaneTimePastWrapper,.gridxFilterPaneSelect .gridxFilterPaneSelectWrapper,.gridxFilterPaneRadio .gridxFilterPaneRadioWrapper{display:block}.gridxFilterBar{cursor:pointer;width:100%;font-family:arial}.gridxFilterBar [action="clear"]{color:#5b83b6;text-decoration:none}.gridxFilterBar [action="clear"]:hover{text-decoration:underline}.gridxFilterBar .dijitButton{margin:0;float:left}.gridxFilterBar .dijitButton .dijitButtonNode{-moz-border-radius:1px;-webkit-border-radius:1px;padding-top:0;padding-bottom:0;padding-right:2px}.gridxFilterBarStatus{background:#f2f9ff;background:-moz-linear-gradient(top, #f2f9ff 0, #eaf5ff 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #f2f9ff), color-stop(100%, #eaf5ff));background:-webkit-linear-gradient(top, #f2f9ff 0, #eaf5ff 100%);background:-o-linear-gradient(top, #f2f9ff 0, #eaf5ff 100%);background:-ms-linear-gradient(top, #f2f9ff 0, #eaf5ff 100%);background:linear-gradient(top, #f2f9ff 0, #eaf5ff 100%);border-bottom:1px solid #bfd6eb;border-top:1px solid #bfd6eb;padding:1px 0 0 45px}.dj_ie9 .gridxFilterBarStatus{padding-left:5px}.gridxFilterBarCloseBtn{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-83px -123px;height:14px;width:14px;float:right;margin-right:3px;cursor:pointer}.dj_ie7 .gridxFilterBarCloseBtn{margin-top:-14px}.gridxFilterBarHideCloseBtn .gridxFilterBarCloseBtn{display:none}.gridxFilterBarCloseBtn:hover{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-103px -123px;height:14px;width:14px}.dj_ie .gridxFilterBarCloseBtn:focus{outline:1px dotted #000}.gridxFilterTooltip table{border:1px solid #bbb;border-collapse:collapse}.gridxFilterTooltip table th{background-color:#e8eff4;border:1px solid #bbb}.gridxFilterTooltip table th,.gridxFilterTooltip table td{padding:2px 4px;height:16px;vertical-align:middle}.gridxFilterTooltip table .gridxFilterTooltipValueCell div{max-width:150px;position:relative;padding-right:25px}.gridxFilterTooltip .gridxFilterTooltipTitle{margin-bottom:8px}.gridxFilterTooltip .gridxFilterTooltipRemoveBtn{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-202px -22px;height:16px;width:16px;position:absolute;right:0;top:1px;cursor:pointer;border:none}.gridxFilterTooltip .gridxFilterTooltipRemoveBtn:hover{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-202px -2px;height:16px;width:16px}.gridxFilterTooltip .gridxFilterTooltipOddRow{background-color:#f1f8ff}.gridxFilterTooltipSingleRule .gridxFilterTooltipRemoveBtn{visibility:hidden}.gridxFilterConfirmDialogButtons{text-align:right;margin-top:10px}.gridxQuickFilterInputContainer{margin-right:2px;position:relative}.gridxQuickFilterInput{width:150px}.gridxQuickFilterInput .dijitInputInner::-ms-clear{display:none}.gridxQuickFilterClear{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-81px -21px;height:18px;width:18px;position:absolute;right:0;top:0;cursor:pointer;display:none;text-align:center}.dj_ie7 .gridxQuickFilterClear{top:5px}.gridxQuickFilterActive .gridxQuickFilterClear{display:block}.gridxQuickFilterIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-142px -42px;height:16px;width:16px}.gridxQuickFilterNoFilterBar .gridxQuickFilterComboButton,.gridxQuickFilterHasFilterBar .gridxQuickFilterButton{display:none}.gridxQuickFilterClearInner,.gridxFilterBarCloseBtnText,.gridxFilterTooltipRemoveBtnText{display:none}.dijit_a11y .gridxQuickFilterClearInner,.dijit_a11y .gridxFilterBarCloseBtnText,.dijit_a11y .gridxFilterTooltipRemoveBtnText{display:inline}.gridxBarQuickFilter{text-align:right}.dojoxEllipsis,.dojoxEllipsisShown{white-space:nowrap;width:100%;overflow:hidden;text-overflow:ellipsis;-o-text-overflow:ellipsis;-webkit-text-overflow:ellipsis}.dojoxEllipsis window{width:100%;-moz-user-focus:normal;-moz-user-select:text}.dojoxEllipsis description{-moz-user-focus:normal;-moz-user-select:text}.dojoxEllipsisIFrame{white-space:normal;border:none;width:100%;display:block;height:1px;margin-top:-1px;clear:both}.dojoxEllipsisContainer{width:100%}.dojoxEllipsisShown:after{content:"\2026"}.gridxPagerInner{width:100%;table-layout:auto}.gridxPagerA11yInner{visibility:hidden}.dijit_a11y .gridxPagerA11yInner{visibility:visible}.gridxPagerPages span:focus,span.gridxPagerSizeSwitchBtn:focus{outline:dotted 1px #555}.gridxPagerStepperBtn,.gridxPagerSizeSwitchBtn{cursor:pointer;display:inline-block;text-align:center}.gridxPagerStepperBtnActive,.gridxPagerSizeSwitchBtnActive{cursor:default}.gridxPagerFirstPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-42px -42px;height:16px;width:16px}.gridxPagerFirstPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-42px -62px;height:16px;width:16px;cursor:default;opacity:.8}.gridxPagerPrevPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-2px -42px;height:16px;width:16px}.gridxPagerPrevPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-2px -62px;height:16px;width:16px;cursor:default;opacity:.8}.gridxPagerNextPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-22px -42px;height:16px;width:16px}.gridxPagerNextPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-22px -62px;height:16px;width:16px;cursor:default;opacity:.8}.gridxPagerLastPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-62px -42px;height:16px;width:16px}.gridxPagerLastPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-62px -62px;height:16px;width:16px;cursor:default;opacity:.8}.gridxPagerDescriptionTD{text-align:left;width:33%}.gridxPagerStepperTD{text-align:center;width:33%}.gridxPagerSizeSwitchTD{text-align:right}.gridxPagerGoto{width:20px;text-align:center}.gridxPagerGotoBtn{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-85px -42px;height:16px;width:10px;cursor:pointer}.gridxGotoPage td{padding-bottom:5px}.gridxGotoPage .gridxGotoPageBtns{padding-bottom:0;text-align:right}.gridxGotoPage .gridxGotoPageInputBox{width:100px}.gridxGotoPage .gridxPageCountMsg{padding-left:5px}.gridxPagerStepperWidget{width:55px}.gridxPagerLabel{vertical-align:middle}.gridxLinkPager,.gridxLinkSizer{padding:5px 0}.gridxPaginationBar{padding-right:9px}.gridxDropDownPager,.gridxDropDownSizer{padding-top:3px;padding-bottom:3px}.gridx-pagination-bar-control{float:left}.gridx-pagination-bar-control input.currentPage{height:20px;width:50px;vertical-align:top}.gridx-pagination-bar-control button{height:20px}.gridx-pagination-bar-control .next-triangle,.gridx-pagination-bar-control .last-triangle{width:0;height:0;border-style:solid;border-width:5px 0 5px 8.7px;border-color:transparent transparent transparent #4d4d4d;margin-left:-1px}.gridx-pagination-bar-control .prev-triangle,.gridx-pagination-bar-control .first-triangle{width:0;height:0;border-style:solid;border-width:5px 8.7px 5px 0;border-color:transparent #4d4d4d transparent transparent}.gridx-pagination-bar-control .first-bar{width:10px;border-left:2px solid #4d4d4d;margin-top:-6px;height:12px;margin-left:-3px}.gridx-pagination-bar-control .last-bar{width:10px;border-left:2px solid #4d4d4d;margin-top:-6px;height:12px;margin-left:1px}.gridx-pagination-bar-sizes{float:right}.gridx-pagination-count-label{color:#2c3e50;font-size:13px;margin:0 5px}.gridx-pagination-max-pages-number{color:#2c3e50;font-size:13px}.gridxSlantedHeader{overflow:visible}.gridxSlantedHeader .gridxHeader{overflow:visible;margin-left:0;border-top:1px solid #dbdbdb;margin-top:-1px;background:#edf2f7;background:-moz-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #edf2f7), color-stop(100%, #d0dfea));background:-webkit-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:-o-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:-ms-linear-gradient(top, #edf2f7 0, #d0dfea 100%);background:linear-gradient(top, #edf2f7 0, #d0dfea 100%)}.gridxSlantedHeader .gridxHeader .gridxHeaderRow{border-top:1px solid #dbdbdb;border-right:1px solid #dbdbdb;margin-top:-1px}.gridxSlantedHeader .gridxHeaderRow .gridxHeaderRowInner{padding-bottom:0;margin-bottom:0}.gridxSlantedHeader .gridxHeaderRow .gridxHeaderRowInner table{height:130px}.gridxSlantedHeader .gridxHeaderRow .gridxHeaderRowInner .gridxGroupHeader{height:16px}.gridxSlantedHeader .gridxHeaderRow .gridxCell{vertical-align:bottom;position:relative;overflow:visible;border-bottom:none}.gridxSlantedHeader .gridxHeaderRow .gridxCell.gridxCellHighlight{background-color:#9bcaf7}.gridxSlantedHeader .gridxHeaderRow .gridxCell .gridxSortNode{overflow:visible;margin:auto auto 5px auto;width:30px;-webkit-transform:skew(45deg, 0deg) rotate(-45deg);-moz-transform:skew(45deg, 0deg) rotate(-45deg);-o-transform:skew(45deg, 0deg) rotate(-45deg);-ms-transform:skew(45deg, 0deg) rotate(-45deg);transform:skew(45deg, 0deg) rotate(-45deg)}.gridxSlantedHeader .gridxHeaderRow .gridxCell .gridxArrowButtonNode{float:none;display:inline-block;margin-bottom:60px;margin-left:8px;-webkit-transform:skew(45deg, 0deg) rotate(0deg);-moz-transform:skew(45deg, 0deg) rotate(0deg);-ms-transform:skew(45deg, 0deg) rotate(0deg);-o-transform:skew(45deg, 0deg) rotate(0deg);transform:skew(45deg, 0deg) rotate(0deg)}.gridxSlantedHeader .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortNode{margin-bottom:4px}.gridxSlantedHeader .gridxHeaderRow .gridxGroupHeader .gridxSortNode{text-align:center;-webkit-transform:skew(45deg, 0deg);-moz-transform:skew(45deg, 0deg);-o-transform:skew(45deg, 0deg);-ms-transform:skew(45deg, 0deg);transform:skew(45deg, 0deg)}.gridxSlantedHeaderActionAreaHolder{background-color:#d0dfea;height:10px;text-align:center}.gridxColumnExpandoBar{overflow:hidden;background-image:url("data:image/gif;base64,R0lGODdhAQABAIABALy8vP///ywAAAAAAQABAAACAkQBADs=");background-position:right;background-repeat:repeat-y;border-right:1px solid #fff}.gridxColumnExpandoBar table{table-layout:fixed;width:auto;margin-left:1px}.gridxColumnExpandoBar table .gridxColumnExpandoCell{padding:0 3px;height:12px;border-left:1px solid #fff;border-right:1px solid #ccc;text-align:center;cursor:normal}.gridxColumnExpandoBar table .gridxColumnExpandoCell:first-child{border-left:none}.gridxColumnExpandoBar table .gridxColumnExpandoCell.gridxColumnExpandoHighlight{background-color:#9bcaf7}.gridxColumnExpandoBar table .gridxColumnExpandoCell .gridxColumnExpando{display:block;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-126px -26px;height:8px;width:8px;margin:0 auto;cursor:pointer}.gridxColumnExpandNode{-webkit-transform:skew(45deg, 0deg);-moz-transform:skew(45deg, 0deg);-o-transform:skew(45deg, 0deg);-ms-transform:skew(45deg, 0deg);transform:skew(45deg, 0deg);display:block;float:none;position:absolute;height:11px;left:3px;bottom:-11px;right:-6px;background-color:#d0dfea;border-right:1px solid #bcbcbc;border-left:1px solid #fff}.gridxColumnExpandNodeIcon{display:block;margin:1px auto;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-126px -26px;height:8px;width:8px}.gridxColumnCollapseNode{display:inline-block;height:10px;width:10px;padding-right:3px;cursor:pointer}.gridxColumnCollapseNodeIcon{display:block;margin:1px auto;background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-26px -6px;height:8px;width:8px}.gridxSlantedHeader .gridxHeaderRow .gridxCell:hover .gridxColumnExpandNode{background-color:#9bcaf7}.gridxSlantedHeaderActionCell{padding:3px;border-right:1px solid #bcbcbc;border-left:1px solid #fff;background-color:#d0dfea}body .gridxSlantedHeader .gridxHeaderRow{border-bottom:none}.dj_ie7 .gridxRtl .gridxHeaderRow table{position:relative}.gridxRtl .gridxRow .gridxCell{border-color:transparent transparent #ccc #ccc;text-align:right}.gridxRtl .gridxVScroller{right:auto;left:0}.gridxRtl .gridxTouchScrollVWrapper{left:2px;right:auto}.gridxRtl .dj_ff3 .gridxVScroller,.gridxRtl .dj_webkit .gridxVScroller{left:-1px}.gridxRtl .gridxRowHeaderHeader,.gridxRtl .gridxRowHeaderBody{right:0;left:auto;border-right:none;border-left:1px solid #e5dac8}.gridxRtl .gridxHeaderRegion{float:left}.gridxRtl .gridxEditOK,.gridxRtl .gridxEditCancel{float:left;margin-left:0;margin-right:5px}.gridxRtl .gridxArrowButtonNode{float:left;margin-right:0;margin-left:7px}.gridxRtl .gridxSortNode{text-align:right}.gridxRtl .gridxSortBtn{float:left}.gridxRtl .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-65px -23px;text-align:right}.gridxRtl .gridxCell:hover .gridxSortBtn,.gridxRtl .gridxCellSortFocus .gridxSortBtn{border-left:none}.gridxRtl .gridxCellSortedAsc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-5px -23px}.gridxRtl .gridxCellSortedDesc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-25px -23px}.gridxRtl .gridxCell:hover.gridxCellSortedAsc .gridxSortBtnNested,.gridxRtl .gridxCellSortFocus.gridxCellSortedAsc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-45px -23px}.gridxRtl .gridxCell:hover.gridxCellSortedDesc .gridxSortBtnNested,.gridxRtl .gridxCellSortFocus.gridxCellSortedDesc .gridxSortBtnNested{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-85px -23px}.gridxRtl .gridxNestedSorted .gridxCell:hover .gridxSortBtnSingle,.gridxRtl .gridxNestedSorted .gridxCellSortFocus .gridxSortBtnSingle{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-65px -23px}.gridxRtl .gridxPagerDescriptionTD{text-align:right}.gridxRtl .gridxPagerSizeSwitchTD{text-align:left}.gridxRtl .gridxPager .gridxPagerGoto,.gridxRtl .gridxGotoPage .gridxGotoPageBtns{text-align:left}.gridxRtl .gridxPagerFirstPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-62px -42px;height:16px;width:16px}.gridxRtl .gridxPagerFirstPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-62px -62px;height:16px;width:16px}.gridxRtl .gridxPagerPrevPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-22px -42px;height:16px;width:16px}.gridxRtl .gridxPagerPrevPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-22px -62px;height:16px;width:16px}.gridxRtl .gridxPagerNextPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-2px -42px;height:16px;width:16px}.gridxRtl .gridxPagerNextPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-2px -62px;height:16px;width:16px}.gridxRtl .gridxPagerLastPage{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-42px -42px;height:16px;width:16px}.gridxRtl .gridxPagerLastPageDisable{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-42px -62px;height:16px;width:16px}.gridxRtl .gridxPagerSizeSwitchDD{text-align:left}.dijitRtl .gridxGotoPage .gridxPageCountMsg{padding-left:0;padding-right:5px}.dijitRtl .gridxGotoPage .gridxGotoPageBtns{text-align:left}.gridxRtl .gridxTreeExpandoIcon{left:auto;right:0}.gridxRtl .gridxFilterBar .dijitButton{float:right}.gridxRtl .gridxFilterBarBtnIcon{background-image:url("images/sprite.png");background-repeat:no-repeat;background-position:-142.5px -62.5px;height:15px;width:15px}.gridxRtl .gridxFilterBarStatus{padding:1px 45px 0 0}.gridxRtl .gridxFilterBarCloseBtn{float:left}.gridxRtl .gridxBarQuickFilter{text-align:left}.dijitRtl .gridxFilterPaneCloseButton{float:left}.dijitRtl .gridxFilterDialog .dijitAccordionTitleFocus{margin-right:0;margin-left:16px}.dijitRtl .gridxFilterDialog .gridxFilterDialogButtons{text-align:left}.dijitRtl .gridxFilterDialog .gridxFilterDialogButtons .gridxFilterDialogBtnAdd{float:right}.dijitRtl .gridxQuickFilterClear{right:auto;left:5px}
+
+C:\Dev\dojospace\AUI-gridx\src\less\pagination.less:
+  134  }
+  135  
+  136: .gridx-pagination-bar-control {
+  137  	float: left;
+  138  
+  ...
+  181  }
+  182  
+  183: .gridx-pagination-bar-sizes {
+  184  	float: right;
+  185  }
+
+C:\Dev\dojospace\AUI-gridx\src\templates\aui-grid\aui-grid-pagination-bar.html:
+    1: <div class="gridx-pagination-bar">
+    2: 	<div class="gridx-pagination-bar-container">
+    3: 	<div class="gridx-pagination-bar-control">
+    4  		<button type="button" ng-click="paginationApi.goto(1)" class='firstPage'ng-disabled="cantPageBackward()">
+    5  			<div class="first-triangle">
+    .
+   24  		</button>
+   25  	</div>
+   26: 	<div class="gridx-pagination-bar-sizes">
+   27  		<select ng-model="grid.paginationPageSize" ng-options="o as o for o in paginationPageSizes"></select>
+   28  		<!-- <span class="ui-grid-pager-row-count-label">&nbsp;{{sizesLabel}}</span> -->
+
+18 matches across 5 files
+
+
+Searching 105 files for "sort options"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\core.js:
+  341  			t.sortOptions.length = 0;
+  342  			GridUtil.concat(t.sortOptions, t._getSortOptions());
+  343: 			console.log('sort options', t.sortOptions);
+  344  			
+  345  			if(t.model){
+
+1 match in 1 file
+
+
+Searching 105 files for "data load done"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\core.js:
+  453  				//Create model before module creation, so that all modules can use the logic grid from very beginning.
+  454  				t.model = new Model(t);
+  455: 				t.model.when({}, function() {console.log('data load done')});
+  456  				t.when = hitch(t.model, t.model.when);
+  457  				t._create();
+
+1 match in 1 file
+
+
+Searching 105 files for "in data watch"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid.js:
+   35  					grid.refresh();
+   36  				});
+   37: 				console.log('in data watch function;');
+   38  			}
+   39  
+
+1 match in 1 file
+
+
+Searching 105 files for "in column watch"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid.js:
+   40  				grid.setColumns(nv);
+   41  				grid.publish('columnChange');
+   42: 				console.log('in column watch function');
+   43  			}
+   44  		}]);
+
+1 match in 1 file
+
+
+Searching 105 files for "in watch"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-body.js:
+   47  
+   48  				$scope.$watch(
+   49: 					function() { console.log('in watch');return gridCtrl.grid.model.size() === 0; },
+   50  					function(newValue, oldValue) {
+   51  						if (newValue) {
+
+1 match in 1 file
+
+
+Searching 105 files for "in Render"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+   90  		Grid.prototype.renderVLayout = function(node) {
+   91  			if (!this._vLayouts.length) return;
+   92: 			console.log('IN RENDERVLAYOUT');
+   93  			var total = 0;
+   94  
+
+C:\Dev\dojospace\AUI-gridx\src\templates\aui-grid\aui-grid-body.html:
+    2  	<div class="gridxBodyEmpty" role="alert" tabindex="-1" ng-show='renderedRows.length === 0'>this is the empty body</div>
+    3  	<div class="gridxBody" role="presentation" tabindex="0" ng-class="{gridxBodyRowHoverEffect: grid.enableRowHoverEffect}">
+    4: 		<div aui-grid-row ng-repeat='row in renderedRows' row="row"></div>
+    5  	</div>
+    6  <!-- 	<div class="gridxVScroller"tabindex="-1">
+
+2 matches across 2 files
+
+
+Searching 105 files for "data load done"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\core.js:
+  453  				//Create model before module creation, so that all modules can use the logic grid from very beginning.
+  454  				t.model = new Model(t);
+  455: 				t.model.when({}, function() {console.log('data load done')});
+  456  				t.when = hitch(t.model, t.model.when);
+  457  				t._create();
+
+1 match in 1 file
+
+
+Searching 105 files for "in column change"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-header.js:
+   16  				var grid = $scope.grid;
+   17  				grid.subscribe(['columnChange', 'refresh'], function() {
+   18: 					console.log('%cin column change callback', 'color:green');
+   19  					buildHeader();
+   20  				});
+
+1 match in 1 file
+
+
+Searching 105 files for "in build header"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-header.js:
+   32  				function buildHeader() {
+   33  					$scope.headerCells = [];
+   34: 					console.log('%cin build header', 'color:blue');
+   35  					angular.forEach(grid._columns, function(col) {
+   36  						temp = {};
+
+1 match in 1 file
+
+
+Searching 105 files for "in RENDER"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\Grid.js:
+   90  		Grid.prototype.renderVLayout = function(node) {
+   91  			if (!this._vLayouts.length) return;
+   92: 			console.log('IN RENDERVLAYOUT');
+   93  			var total = 0;
+   94  
+
+C:\Dev\dojospace\AUI-gridx\src\templates\aui-grid\aui-grid-body.html:
+    2  	<div class="gridxBodyEmpty" role="alert" tabindex="-1" ng-show='renderedRows.length === 0'>this is the empty body</div>
+    3  	<div class="gridxBody" role="presentation" tabindex="0" ng-class="{gridxBodyRowHoverEffect: grid.enableRowHoverEffect}">
+    4: 		<div aui-grid-row ng-repeat='row in renderedRows' row="row"></div>
+    5  	</div>
+    6  <!-- 	<div class="gridxVScroller"tabindex="-1">
+
+2 matches across 2 files
+
+
+Searching 105 files for "header height"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-header.js:
+   48  						$scope.$emit('onHeaderRender');
+   49  						grid.publish('renderVLayout');
+   50: 						console.log('header height', $elem[0].clientHeight);
+   51  					}, 0);
+   52  				}
+
+1 match in 1 file
+
+
+Searching 105 files for "formatter"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-header.js:
+   40  						temp.style = 'width:' +  col.width + ';min-width:' + col.width + ';';
+   41  						temp.style += (GridUtil.isFunction(col.headerStyle) ? col.headerStyle(col) : col.headerStyle) || '';
+   42: 						temp.content = (GridUtil.isFunction(col.headerFormatter) ? col.headerFormatter(col) : col.name);
+   43  						temp.sorting = col.sorting;
+   44  						temp.sortable = col.enableSorting !== false;
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\model\Sync.js:
+  383  					cellData; 
+  384  
+  385: 				cellData = col.formatter ? col.formatter(rawData[col.field], rawData, rowId, colId, t.model) : rawData[col.field || colId];
+  386  				return (t.columns[colId] && t.columns[colId].encode === true && typeof cellData === 'string')? entities.encode(cellData) : cellData;
+  387  			},
+
+4 matches across 2 files
+
+
+Searching 105 files for "gridx-pagination-bar"
+
+C:\Dev\dojospace\AUI-gridx\src\less\Gridx.css:
+ 1651    padding-bottom: 3px;
+ 1652  }
+ 1653: .gridx-pagination-bar-container:after {
+ 1654    content: '';
+ 1655    clear: both;
+ 1656    display: block;
+ 1657  }
+ 1658: .gridx-pagination-bar-control {
+ 1659    float: left;
+ 1660  }
+ 1661: .gridx-pagination-bar-control input.currentPage {
+ 1662    height: 20px;
+ 1663    width: 50px;
+ 1664    vertical-align: top;
+ 1665  }
+ 1666: .gridx-pagination-bar-control button {
+ 1667    height: 20px;
+ 1668  }
+ 1669: .gridx-pagination-bar-control .next-triangle,
+ 1670: .gridx-pagination-bar-control .last-triangle {
+ 1671    width: 0;
+ 1672    height: 0;
+ ....
+ 1676    margin-left: -1px;
+ 1677  }
+ 1678: .gridx-pagination-bar-control .prev-triangle,
+ 1679: .gridx-pagination-bar-control .first-triangle {
+ 1680    width: 0;
+ 1681    height: 0;
+ ....
+ 1684    border-color: transparent #4d4d4d transparent transparent;
+ 1685  }
+ 1686: .gridx-pagination-bar-control .first-bar {
+ 1687    width: 10px;
+ 1688    border-left: 2px solid #4d4d4d;
+ ....
+ 1691    margin-left: -3px;
+ 1692  }
+ 1693: .gridx-pagination-bar-control .last-bar {
+ 1694    width: 10px;
+ 1695    border-left: 2px solid #4d4d4d;
+ ....
+ 1698    margin-left: 1px;
+ 1699  }
+ 1700: .gridx-pagination-bar-sizes {
+ 1701    float: right;
+ 1702  }
+
+C:\Dev\dojospace\AUI-gridx\src\less\pagination.less:
+  134  }
+  135  
+  136: .gridx-pagination-bar-container:after {
+  137  	content: '';
+  138  	clear: both;
+  ...
+  140  }
+  141  
+  142: .gridx-pagination-bar-control {
+  143  	float: left;
+  144  
+  ...
+  187  }
+  188  
+  189: .gridx-pagination-bar-sizes {
+  190  	float: right;
+  191  }
+
+C:\Dev\dojospace\AUI-gridx\src\templates\aui-grid\aui-grid-pagination-bar.html:
+    1: <div class="gridx-pagination-bar">
+    2: 	<div class="gridx-pagination-bar-container">
+    3: 	<div class="gridx-pagination-bar-control">
+    4  		<button type="button" ng-click="paginationApi.goto(1)" class='firstPage'ng-disabled="cantPageBackward()">
+    5  			<div class="first-triangle">
+    .
+   24  		</button>
+   25  	</div>
+   26: 	<div class="gridx-pagination-bar-sizes">
+   27  		<select ng-model="grid.paginationPageSize" ng-options="o as o for o in paginationPageSizes"></select>
+   28  		<!-- <span class="ui-grid-pager-row-count-label">&nbsp;{{sizesLabel}}</span> -->
+
+18 matches across 3 files
+
+
+Searching 105 files for "headerStyle"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid-header.js:
+   39  						temp.domClass = (GridUtil.isFunction(col.headerClass) ? col.headerClass(col) : col.headerClass) || '';
+   40  						temp.style = 'width:' +  col.width + ';min-width:' + col.width + ';';
+   41: 						temp.style += (GridUtil.isFunction(col.headerStyle) ? col.headerStyle(col) : col.headerStyle) || '';
+   42  						temp.content = (GridUtil.isFunction(col.headerFormatter) ? col.headerFormatter(col) : col.name);
+   43  						temp.sorting = col.sorting;
+
+3 matches in 1 file
+
+
+Searching 105 files for "window.grid"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid.js:
+    9  			var grid;
+   10  			$scope.grid = new Grid($scope.auiGrid);
+   11: 			window.grid = $scope.grid;
+   12  			grid = this.grid = $scope.grid;
+   13  			grid.body = new GridBody('basic', grid);
+
+1 match in 1 file
+
+
+Searching 105 files for "onreigsterapi"
+
+0 matches across 0 files
+
+
+Searching 105 files for "onregisterapi"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\directives\aui-grid.js:
+   58  				grid.domNode = $elem[0];
+   59  
+   60: 				if (GridUtil.isFunction($scope.auiGrid.onRegisterApi)) {
+   61: 					$scope.auiGrid.onRegisterApi(grid.api);
+   62  				}
+   63  
+
+2 matches in 1 file
+
+
+Searching 105 files for "data-dojo-attach"
+
+C:\Dev\dojospace\AUI-gridx\src\templates\aui-grid\aui-grid-footer.html:
+    1: <div class="gridxFooter" data-dojo-attach-point="footerNode">
+    2  <!-- 	<div class="gridxHScroller">
+    3: 		<div class="gridxHScrollerInner" tabindex="-1" style="">
+    4  			<div style=""></div>
+    5  		</div>
+
+C:\Dev\dojospace\AUI-gridx\src\templates\aui-grid\aui-grid.html:
+    4  	<div aui-grid-body></div>
+    5  	<div aui-grid-footer></div>
+    6: 	<span data-dojo-attach-point="lastFocusNode" tabindex="0"></span>
+    7  </div>
+    8  
+
+3 matches across 2 files
+
+
+Searching 105 files for "data-dojo-attach"
+
+C:\Dev\dojospace\AUI-gridx\src\templates\aui-grid\aui-grid-footer.html:
+    1: <div class="gridxFooter" data-dojo-attach-point="footerNode">
+    2  <!-- 	<div class="gridxHScroller">
+    3: 		<div class="gridxHScrollerInner" data-dojo-attach-point="hScrollerNode" tabindex="-1" style="">
+    4  			<div style=""></div>
+    5  		</div>
+
+2 matches in 1 file
+
+
+Searching 105 files for "sortcache"
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\factories\model\Model.js:
+  318  				t = this;
+  319  
+  320: 			return this.sortCache(rootIndex, options, grid);
+  321  		},
+  322  		
+  323: 		sortCache: function(list, options, grid) {
+  324  			// technically, sort should be an async process
+  325  			// there would be server-side sorting
+  ...
+  476  				a = arguments[arguments.length - 1];
+  477  
+  478: 			return this.sortCache.apply(this, [rootIndex].concat(a));
+  479  		},
+  480  
+
+C:\Dev\dojospace\AUI-gridx\src\js\core\services\GridSortService.js:
+   15  			},
+   16  
+   17: 			sortCache: function(list, options, cache) {
+   18  				// technically, sort should be an async process
+   19  				// there would be server-side sorting
+
+4 matches across 2 files
+
+
+Searching 105 files for "build.js"
+
+0 matches across 0 files
+
+
+Searching 4128 files for "build.js"
+
+C:\Dev\dojospace\AUI-gridx\README.md:
+   17  * include aui-grid JS
+   18  ```HTML
+   19: <script type='text/javascript' src='aui-gridx/build.js'></script>
+   20  ```
+   21:     If you are using the source code version of the aui-grid, you can find the js file in /release/build.js. 
+   22  
+   23  * include aui-grid CSS
+
+C:\Dev\dojospace\AUI-gridx\node_modules\grunt-angular-templates\node_modules\html-minifier\node_modules\change-case\node_modules\sentence-case\package.json:
+   13      "mocha": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --bail",
+   14      "test": "npm run build && npm run lint && npm run mocha",
+   15:     "build": "node build.js",
+   16      "stage-vendor": "git add vendor"
+   17    },
+
+C:\Dev\dojospace\AUI-gridx\node_modules\karma\node_modules\connect\node_modules\csurf\node_modules\http-errors\node_modules\statuses\package.json:
+   30    },
+   31    "scripts": {
+   32:     "build": "node scripts/build.js",
+   33      "update": "node scripts/update.js",
+   34      "test": "mocha --reporter spec --bail --check-leaks",
+
+
+
+Searching 7 files for "build.js"
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-formatter&decorator.html:
+   56  </style>
+   57  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   58: <script type='text/javascript' src='../../release/build.js'></script>
+   59  <script type='text/javascript' src='../js/musicData.js'></script>
+   60  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-height.html:
+   47  </style>
+   48  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   49: <script type='text/javascript' src='../../release/build.js'></script>
+   50  <script type='text/javascript' src='../js/musicData.js'></script>
+   51  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-pagination.html:
+   43  </style>
+   44  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   45: <script type='text/javascript' src='../../release/build.js'></script>
+   46  <script type='text/javascript' src='../js/musicData.js'></script>
+   47  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-portal.html:
+   43  </style>
+   44  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   45: <script type='text/javascript' src='../../release/build.js'></script>
+   46  <script type='text/javascript' src='../js/musicData.js'></script>
+   47  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-tree.html:
+   48  </style>
+   49  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   50: <script type='text/javascript' src='../../release/build.js'></script>
+   51  <script type='text/javascript' src='../js/musicData.js'></script>
+   52  <script type='text/javascript'>
+
+5 matches across 5 files
+
+
+Searching 7 files for "build.js"
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-formatter&decorator.html:
+   56  </style>
+   57  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   58: <script type='text/javascript' src='../../release/build.js'></script>
+   59  <script type='text/javascript' src='../js/musicData.js'></script>
+   60  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-height.html:
+   47  </style>
+   48  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   49: <script type='text/javascript' src='../../release/build.js'></script>
+   50  <script type='text/javascript' src='../js/musicData.js'></script>
+   51  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-pagination.html:
+   43  </style>
+   44  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   45: <script type='text/javascript' src='../../release/build.js'></script>
+   46  <script type='text/javascript' src='../js/musicData.js'></script>
+   47  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-portal.html:
+   43  </style>
+   44  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   45: <script type='text/javascript' src='../../release/build.js'></script>
+   46  <script type='text/javascript' src='../js/musicData.js'></script>
+   47  <script type='text/javascript'>
+
+C:\Dev\dojospace\AUI-gridx\test\demo\test-grid-tree.html:
+   48  </style>
+   49  <script type='text/javascript' src='../../lib/angular/angular.js'></script>
+   50: <script type='text/javascript' src='../../release/build.js'></script>
+   51  <script type='text/javascript' src='../js/musicData.js'></script>
+   52  <script type='text/javascript'>
+
+5 matches across 5 files

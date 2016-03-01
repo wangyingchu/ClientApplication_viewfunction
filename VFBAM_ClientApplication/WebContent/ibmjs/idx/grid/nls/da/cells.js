@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Slå markering af alle rækker til/fra"		
 //end v1.x content
 });
+

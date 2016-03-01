@@ -1,0 +1,30 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxLabel .idxTextBoxHoverHelp {
+  background-image: url("../../dijit/form/images/question.png");
+  width: 16px;
+  height: 16px;
+  margin: 0 0 1px 4px;
+  cursor: pointer;
+}
+.dijitRtl .dlBlue .idxLabel .idxTextBoxHoverHelp {
+  margin: 0 4px 1px 0;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+.dijitRtl .dlBlue.idx_i18n_il .idxLabel .idxTextBoxHoverHelp {
+  background-image: url("../../dijit/form/images/question.png");
+}
+.dijitRtl .dijit_a11y .idxTextBoxHoverHelp .idxHelpIconAltText {
+  margin: 0 4px 0 0;
+}
+.dlBlue .idxTextBoxHoverHelp .idxHelpIconAltText {
+  display: none;
+}
+.dijit_a11y .idxTextBoxHoverHelp .idxHelpIconAltText {
+  display: block;
+  margin: 0 0 0 4px;
+}

@@ -36,15 +36,44 @@
 	color:#222;
 }
 
-.oneui .dijitInputField .dijitPlaceHolder,.oneui .dijitInputContainer .dijitPlaceHolder {
+.oneui .dijitInputField .dijitPlaceHolder,
+.oneui .dijitInputContainer .dijitPlaceHolder
+{
 	padding:4px 10px;
 	color:#666;
-	font-style:normal;
+	font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+	font-style: normal;
 }
 
-.oneui .dijitTextArea {
+.oneui input::-webkit-input-placeholder,
+.oneui textarea::-webkit-input-placeholder{
+	color:#666;
+	font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+}
+.oneui input::-moz-placeholder,
+.oneui textarea::-moz-placeholder{
+	color:#666;
+	font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+}
+.oneui input:-ms-input-placeholder,
+.oneui textarea:-ms-input-placeholder{
+	color:#666;
+	font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+}
+
+.oneui .idxTextareaWrap .dijitTextArea {
 	padding:4px 8px;
 	color:#222;
+	border: 0;
+}
+.oneui .idxTextareaWrap .dijitInputContainer{
+	border:1px solid #aaa;
+}
+.oneui .idxTextareaWrapReadOnly .dijitInputContainer{
+	border:1px solid #bbb;
+}
+.oneui .idxTextareaWrapDisabled .dijitInputContainer{
+	border:1px solid #ccc;
 }
 
 .oneui .dijitHintOuter {
@@ -70,7 +99,7 @@
 .oneui .dijitTextBox {
 	border:1px solid #aaa;
 	background-color:#fff;
-	font-family:Helvetica,Arial,sans-serif;
+	/*font-family:Helvetica,Arial,sans-serif;*/
 }
 
 /* .oneui .idxTextBoxWrap .dijitTextBox{

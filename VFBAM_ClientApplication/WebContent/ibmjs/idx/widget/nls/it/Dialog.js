@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Chiudi"
 //end v1.x content
 });
+

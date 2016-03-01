@@ -1,139 +1,186 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Gridx OneUI Theme Test</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-	<style type="text/css">
-		.testDataWarningStatus,
-		.testDataCriticalStatus,
-		.testDataNormalStatus {
-			background-image: url("support/data/status.png");
-			background-repeat: no-repeat;
-			width: 20px;
-			height: 20px;
-			display: inline-block;
-			vertical-align: middle;
-		}
-
-		.testDataWarningStatus {
-			background-position: 0 -2px;
-		}
-
-		.testDataNormalStatus {
-			background-position: -18px -2px;
-		}
-
-		.testDataCriticalStatus {
-			background-position: -36px -2px;
-		}
-
-		.testToolbarButtonCut,
-		.testToolbarButtonCopy,
-		.testToolbarButtonPaste {
-			background-image: url("support/data/toolbarbuttons.png");
-			background-repeat: no-repeat;
-			width: 16px;
-			height: 16px;
-			background-position: -4px -6px;
-		}
-
-		.gridxRtl .testToolbarButtonCut,
-		.gridxRtl .testToolbarButtonCopy,
-		.gridxRtl .testToolbarButtonPaste {
-			background-image: url("support/data/toolbarbuttons_rtl.png");
-		}
-
-		.testToolbarButtonCopy {
-			background-position: -29px -5px;
-		}
-
-		.testToolbarButtonPaste {
-			background-position: -55px -5px;
-		}
-
-		.dijitButtonHover .testToolbarButtonCut,
-		.dijitButtonActive .testToolbarButtonCut,
-		.dijitButtonHover .testToolbarButtonCopy,
-		.dijitButtonActive .testToolbarButtonCopy,
-		.dijitButtonHover .testToolbarButtonPaste,
-		.dijitButtonActive .testToolbarButtonPaste {
-			background-image: url("../../icons/images/editorIconsHover.png");
-			background-repeat: no-repeat;
-			width: 16px;
-			height: 16px;
-			background-position: -54px -1px;
-		}
-
-		.gridxRtl .dijitButtonHover .testToolbarButtonCut,
-		.gridxRtl .dijitButtonActive .testToolbarButtonCut,
-		.gridxRtl .dijitButtonHover .testToolbarButtonCopy,
-		.gridxRtl .dijitButtonActive .testToolbarButtonCopy,
-		.gridxRtl .dijitButtonHover .testToolbarButtonPaste,
-		.gridxRtl .dijitButtonActive .testToolbarButtonPaste {
-			background-image: url("../../icons/images/editorIconsHover_rtl.png");
-		}
-
-
-		.dijitButtonHover .testToolbarButtonCopy, 
-		.dijitButtonActive .testToolbarButtonCopy {
-			background-position: -72px -1px;
-		}
-
-		.dijitButtonHover .testToolbarButtonPaste,
-		.dijitButtonActive .testToolbarButtonPaste {
-			background-position: -90px -1px;
-		}
-		
-		.gridContainer {
-			width: 500px;
-			height: 300px;
-			margin-bottom: 20px;
-		}
-		.gridx {
-			height: 100%;
-		}
-	</style>
-	<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
-	<script type="text/javascript">
-		dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx_rtl.css", "idxStyles");
-	</script>
-	<style id="idxStyles" type="text/css">
-		@import "../../themes/oneui/dijit/document.css";
-		@import "../../themes/oneui/oneui.css";
-		@import "../../tests/test.css";
-	</style>
-	<link rel='stylesheet' href="support/common.css" />
-
-	<script type="text/javascript">
-		var dojoConfig = currentDojoVersion.dojoConfig;
-		dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
-	</script>
 	<script type="text/javascript" src='support/common.js'></script>
+	<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
+	<script type="text/javascript" src="support/commonImport.js"></script>
+	<style id="idxStyles" type="text/css">
+		@import "../../../gridx/resources/Gridx.css";
+/*		@import "../../themes/oneui/dijit/document.css";
+		@import "../../themes/oneui/oneui.css";*/
+		@import "../../tests/test.css";
+		@import "support/common.css";
+		.gridx {
+			width: 500px;
+			height: 400px;
+		}
+		body.dlBlue{
+			padding: 50px;
+		}
+	</style>
 	<script type="text/javascript" src='test_grid_oneui.js'></script>
 	<script type="text/javascript" src="../../tests/commonTest.js"></script>
+	<!--[if lte IE 8]>
+		<script type='text/javascript'>
+			var currentTheme = window.currentTheme;
+			var themeCode = currentTheme.code;
+			var themePath = '';
+			
+			if(themeCode === 'dlBlue'){
+				dojoCSSImport((themePath || "../../themes/") + themeCode + "/" + themeCode + "_ie.css", "idxStyles");
+			}
+		</script>
+	<![endif]-->
 </head>
 <body class='oneui'>
-	<script type="text/javascript">applyThemeToBody("oneui");</script><!-- only oneui theme is supported -->
-	<h1 class='title' tabindex='0' onfocus='this.style.color="blue"' 
-		onblur='this.style.color=""'>
-		Gridx OneUI Theme Test
-	</h1>
-	<br/><br/>
+	<script type="text/javascript">applyThemeToBody();</script>
+	<h1>Gridx OneUI Theme Test</h1>
 	<h2>Paging Grid</h2>
-	<div id='grid1Container' class='gridContainer'></div>
+	<div id="grid1" data-dojo-id="grid1" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		autoWidth: true,
+		selectRowTriggerOnCell: true,
+		paginationBarGotoButton: true,
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/CellWidget',
+			'gridx/modules/Filter',
+			'gridx/modules/Pagination',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/VirtualVScroller',
+			'idx/gridx/modules/filter/QuickFilter',
+			'idx/gridx/modules/filter/FilterBar',
+			'idx/gridx/modules/pagination/PaginationBar',
+			'gridx/modules/Sort'
+		]
+	"></div>
+	
+	<h2>Column Lock</h2>
+	<div id="gridColumnLock" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		columnLockCount: 2,
+		selectRowTriggerOnCell: true,
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/SummaryBar',
+			'gridx/modules/Sort',
+			'gridx/modules/RowHeader',
+			'gridx/modules/IndirectSelect',
+			'gridx/modules/ColumnLock'
+		]
+	">
+	</div>
+		
 	<h2>Horizontally Constrained Paging Grid</h2>
-	<div id='grid2Container' class='gridContainer'></div>
+	<div id="grid2" data-dojo-id="grid2" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		autoWidth: true,
+		selectRowTriggerOnCell: true,
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/CellWidget',
+			'gridx/modules/Filter',
+			'gridx/modules/Pagination',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/VirtualVScroller',
+			'idx/gridx/modules/filter/QuickFilter',
+			'idx/gridx/modules/pagination/PaginationBarDD',
+			'gridx/modules/Sort'
+		]
+	"></div>
 	<h2>Scrolling Grid</h2>
-	<div id='grid3Container' class='gridContainer'></div>
+	<div id="grid3" data-dojo-id="grid3" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		autoWidth: true,
+		selectRowTriggerOnCell: true,
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/CellWidget',
+			'gridx/modules/Filter',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/SummaryBar',
+			'gridx/modules/VirtualVScroller',
+			'idx/gridx/modules/filter/QuickFilter',
+			'gridx/modules/Sort'
+		]
+	"></div>
 	<h2>Dual Paging Grid</h2>
-	<div id='grid4Container' class='gridContainer'></div>
+	<div id="grid4" data-dojo-id="grid4" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		autoWidth: true,
+		selectRowTriggerOnCell: true,
+		paginationBarPosition: 'both',
+		paginationBarGotoButton: false,
+		paginationBarDescription: 'bottom',
+		paginationBarSizeSwitch: 'top',
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/CellWidget',
+			'gridx/modules/Filter',
+			'gridx/modules/Pagination',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/VirtualVScroller',
+			'idx/gridx/modules/filter/QuickFilter',
+			'idx/gridx/modules/pagination/PaginationBar',
+			'gridx/modules/Sort'
+		]
+	"></div>
 	<h2>Zebra Grid</h2>
-	<div id='grid5Container' class='gridContainer'></div>
+	<div id="grid5" data-dojo-id="grid5" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		autoWidth: true,
+		selectRowTriggerOnCell: true,
+		'class': 'gridxAlternatingRows',
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/CellWidget',
+			'gridx/modules/Filter',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/SummaryBar',
+			'gridx/modules/VirtualVScroller',
+			'idx/gridx/modules/filter/QuickFilter',
+			'gridx/modules/Sort'
+		]
+	"></div>
 	<h2>Compact Grid</h2>
-	<div id='grid6Container' class='gridContainer'></div>
+	<div id="grid6" data-dojo-id="grid6" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		autoWidth: true,
+		selectRowTriggerOnCell: true,
+		'class': 'compact',
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/CellWidget',
+			'gridx/modules/Filter',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/SummaryBar',
+			'gridx/modules/VirtualVScroller',
+			'idx/gridx/modules/filter/QuickFilter',
+			'gridx/modules/Sort'
+		]
+	"></div>
 </body>
 </html>

@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Vizualizare tot ({num})",
+	viewAll: "Vizualizare toate ({num})&lrm;",
 	viewDetails: "Mai multe detalii",
 	refresh: "Reîmprospătare",
 	showDetails: "Afişare detalii",
 	hideDetails: "Ascundere detalii"
 //end v1.x content
 });
+

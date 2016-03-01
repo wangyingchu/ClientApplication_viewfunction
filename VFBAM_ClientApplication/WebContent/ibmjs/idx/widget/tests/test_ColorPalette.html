@@ -5,7 +5,7 @@
 	US Government Users Restricted Rights - Use, duplication or
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<html>
+<html lang="en">
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>ColorPalette Test</title>
@@ -41,14 +41,16 @@
 	<script type="text/javascript" id="postDojo">
 		
 		var modules = [
-			"dijit.ColorPalette",
 			"dojo.parser",
+			"dojo.dom",
+			"dijit.ColorPalette",
 			"idx.tests._pagefooter._PageFooter"
 		]; 
-		var parser, ColorPalette, _PageFooter;
+		var parser, dom, ColorPalette, _PageFooter;
 		
 		function preParse(modules){
 			parser  		= modules["dojo/parser"];
+			dom  			= modules["dojo/dom"];
 			ColorPalette  	= modules["dijit/ColorPalette"];
 			_PageFooter   	= modules["idx/tests/_pagefooter/_PageFooter"];
 		}
@@ -60,11 +62,11 @@
 		var palette;
 		function programatic(){ 
 			var date0 = new Date();
-			palette = new ColorPalette({palette: "7x10", id: "prog"}, dojo.byId("programPalette"));
+			palette = new ColorPalette({palette: "7x10", id: "prog"}, dom.byId("programPalette"));
 			console.log("creation time for 7x10 palette: " + (new Date() - date0) );
 		}
 		function setColor(color){
-			var theSpan = dojo.byId("outputSpan");
+			var theSpan = dom.byId("outputSpan");
 			theSpan.style.color = color;
 			theSpan.innerHTML = color;
 		}	

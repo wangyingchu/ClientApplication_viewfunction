@@ -75,107 +75,95 @@
 		<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 		<script type="text/javascript">applyThemeToBody("oneui");</script><!-- only oneui theme is supported -->
 		<a name="maincontent"></a>
-		
-		<div class="testMain">
+			<div class="testMain" role="main">
 			<h1>TextBox and TextArea </h1>
 			
 			<h2>TextBox</h2>
 			<input data-dojo-type="idx.form.TextBox" data-dojo-props='
-				hint: "Input address",
+				hint: "Input text here",
 				hintPosition: "inside",
 				label: "Address:",
 				help: "A Help Message.",
 				labelAlignment: "horizontal",
-				labelWidth: 90,
-				trim:true,required:true,regExp:"([A-Za-z0-9][A-Za-z0-9-_\.]*)"
+				labelWidth: 150,
+				trim:true,required:true,regExp:"([A-Za-z0-9][A-Za-z0-9-_\.]*)",
+				value: ""
 			'/>
 			<br/>
 			<input data-dojo-type="idx.form.TextBox" data-dojo-props='
-				hint: "Input address",
-				hintPosition: "inside",
-				label: "Address:",
-				help: "A Help Message.",
-				labelAlignment: "vertical",
-				labelWidth: 90,
-				trim:true,required:true,regExp:"([A-Za-z0-9][A-Za-z0-9-_\.]*)"
-			'/>
-			<br/>
-			<input data-dojo-type="idx.form.TextBox" data-dojo-props='
-				hint: "Input address",
+				hint: "Input text here",
 				hintPosition: "outside",
 				label: "Address:",
 				labelAlignment: "horizontal",
-				labelWidth: 90
+				labelWidth: 150
 			'/>
 			<br/>
 			<input data-dojo-type="idx.form.TextBox" disabled data-dojo-props='
-				hint: "Input address",
+				hint: "Input text here",
 				hintPosition: "inside",
 				label: "Address:",
 				labelAlignment: "horizontal",
-				labelWidth: 90,
+				labelWidth: 150,
 				value: "Disabled"
 			'/>
 			<br/>
 			<input data-dojo-type="idx.form.TextBox" readOnly data-dojo-props='
-				hint: "Input address",
+				hint: "Input text here",
 				hintPosition: "inside",
 				label: "Address:",
 				labelAlignment: "horizontal",
-				labelWidth: 90,
+				labelWidth: 150,
 				value: "ReadOnly"
 			'/>
 			<br/>
 			
 			<input data-dojo-type="idx.form.TextBox" readOnly data-dojo-props='
-				hint: "Input address",
+				hint: "Input text here",
 				hintPosition: "inside",
 				label: "Address:",
 				help: "A Help Message",
 				labelAlignment: "horizontal",
-				labelWidth: 90,
+				labelWidth: 150,
 				value: "ReadOnly With Help"
 			'/>
 			<br/>
 			<h2>TextArea</h2>
-			<textarea data-dojo-type="idx.form.Textarea" data-dojo-props='
-				rows: 2,
+			<textarea id="textarea0" data-dojo-type="idx.form.Textarea" data-dojo-props='
+				rows: 3,
 				cols: 20,
 				trim: true,
-				hint: "Input text",
+				hint: null,
 				hintPosition: "inside",
 				help: "",
 				label: "Textarea:",
 				labelAlignment: "horizontal",
-				labelWidth: 90
+				required: true,
+				labelWidth: 150,
+				heightFixed: true
 			'>
 			</textarea>
 			<br>
-			<textarea data-dojo-type="idx.form.Textarea" data-dojo-props='
-				rows: 2,
-				cols: 20,
-				trim: true,
-				hint: "Input text",
-				hintPosition: "inside",
-				help: "A Help Message.",
-				label: "Textarea with Hover Help:",
-				labelAlignment: "horizontal",
-				labelWidth: "100%"
-			'>
-			</textarea>
 			<br>
-			<textarea data-dojo-type="idx.form.Textarea" data-dojo-props='
-				rows: 2,
-				cols: 20,
-				trim: true,
-				hint: "Input text",
-				hintPosition: "inside",
-				help: "A Help Message.",
-				label: "Textarea with Hover Help:",
-				labelAlignment: "vertical",
-				labelWidth: "100%"
-			'>
-			</textarea>
-		</div>
+			<br>
+			<div data-dojo-type="idx/layout/ContentPane" data-dojo-props="style: 'padding: 0px; left: 0px; right: 0px; width: 100%;'">
+				<textarea data-dojo-type="idx.form.Textarea" data-dojo-props='
+					rows: 2,
+					trim: true,
+					hint: "Input text",
+					hintPosition: "inside",
+					help: "A Help Message.",
+					label: "<b>Textarea with \"width\" specified</b><br>(style: \"width:100%\", labelWidth:\"30%\", fieldWidth:\"70%\")",
+					labelAlignment: "horizontal",
+					style: "width: 100%;",
+					labelWidth: "30%",
+					fieldWidth: "70%",
+					value: "",
+					required: true
+				'
+					id="textarea1"
+				>
+				</textarea>
+			</div>
+			</div>
 	</body>
 </html>

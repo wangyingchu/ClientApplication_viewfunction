@@ -1,0 +1,62 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .dijitRtl .@{theme-name} .oneuiToaster {
+    right: auto;
+    left:20px;
+}
+.dijitRtl {
+    .@{theme-name} {
+        .oneuiToaster {
+            .content {
+                text-align: right;
+                .timestamp {
+                    float: left;
+                }
+                .meta_data {
+                    padding: 5px 40px 5px 0;
+                }
+            }
+            .close {
+                left: 12px;
+                right: auto;
+            }
+            .status {
+                float: right;
+                margin: 0 0 0 15px;
+                .img-reverse();
+            }
+            .reveal {
+                padding: 5px 15px 5px 0;
+            }
+        }
+    }
+    .@{theme-name}.idx_i18n_il {
+        .oneuiToaster {
+            .status {
+                background: url('images/msgIcons_24bit_rtl_il.png') no-repeat;
+            }
+        }
+    }
+    .oneuiToaster {
+        .close {
+            .closeText {
+                right: auto;
+                left: 20px;
+            }
+        }
+    }
+}
+.dj_ie6-rtl {
+    .@{theme-name} {
+        .oneuiToaster {
+            .status {
+                background: url('images/msgIcons_8bit_rtl.png') no-repeat;
+            }
+        }
+    }
+    .idx_i18n_il {
+        .oneuiToaster {
+            .status {
+                background: url('images/msgIcons_8bit_rtl_il.png') no-repeat;
+            }
+        }
+    }
+}

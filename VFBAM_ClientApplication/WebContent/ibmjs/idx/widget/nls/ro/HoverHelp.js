@@ -4,7 +4,7 @@ define({
 
 	defaultMessage: "[Nu a fost definit niciun text de ajutor]\u200e",
 
-	defaultTitle: "Treceţi pe deasupra sau faceţi clic pentru a afişa ajutor"
+	defaultTitle: "Treceţi pe deasupra sau faceţi clic pentru a afişa ajutorul"
 //end v1.x content
 });
 

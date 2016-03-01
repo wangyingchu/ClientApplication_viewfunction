@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Näytä kaikki ({num})",
+	viewAll: "Näytä kaikki ({num})&lrm;",
 	viewDetails: "Lisää tietoja",
 	refresh: "Päivitä",
 	showDetails: "Näytä tiedot",
 	hideDetails: "Piilota tiedot"
 //end v1.x content
 });
+

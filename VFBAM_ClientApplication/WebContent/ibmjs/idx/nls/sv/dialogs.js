@@ -6,7 +6,9 @@ define({
 	confirmation: "Bekräftelse",
 	progress: "Förlopp",
 	loading: "Läser in",
-	close: "Stäng"
+	close: "Stäng",
+	idxErrorDialog_detailTabLabel: "Rätta problemet",
+	idxErrorDialog_moreTabLabel: "Mer hjälp"
 //end v1.x content
 });
 

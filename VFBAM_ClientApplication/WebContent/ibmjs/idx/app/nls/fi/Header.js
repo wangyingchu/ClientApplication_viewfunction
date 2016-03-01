@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM",
 	actionShare: "Määritä yhteiskäyttöön",
+	actionSettings: "Asetukset",
 	actionHelp: "Ohje",
 	searchEntry: "Hae",
-	searchSubmit: "Hae"
+	searchSubmit: "Hae",
+	primarySearchLabelSuffix: "ensisijainen haku",
+	secondarySearchLabelSuffix: "toissijainen haku",
+	homeButton: "Pääsivu"
 //end v1.x content
 });
+

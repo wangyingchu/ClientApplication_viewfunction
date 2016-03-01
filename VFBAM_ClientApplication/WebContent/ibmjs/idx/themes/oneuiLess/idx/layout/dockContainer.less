@@ -1,0 +1,38 @@
+.idxDockable {
+  z-index: 50;
+  position: relative;
+}
+.idxDockableFloating {
+  position: absolute;
+}
+.idxDockAreaDockable {
+  border: dashed 1px @focusOutline !important;
+}
+.idxDockAreaMockPane {
+  border: dashed 2px @focusOutline !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.idxDockAreaVertical .idxDockPane,
+.idxDockAreaVertical .idxDockPane .dijitTitlePaneContentInner {
+  height: auto;
+  overflow: hidden;
+}
+.idxDockAreaHorizontal .idxDockPane {
+  height: 100%;
+}
+.idxDockTabContainer .idxDockPaneTitle {
+  display: none;
+}
+.idxDockArea > .idxDockable > .dijitTitlePaneTitle {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  /* to avoid margins being collapsed above me */
+
+  padding-top: 1px;
+}
+.idxDockArea > .idxDockable > .dijitTitlePaneContentOuter {
+  border-left: none;
+  border-right: none;
+}

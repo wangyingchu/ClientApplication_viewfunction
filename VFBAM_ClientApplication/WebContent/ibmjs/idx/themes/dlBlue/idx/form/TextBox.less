@@ -1,0 +1,48 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} .idxLabel .idxTextBoxHoverHelp {
+    background-image: url("../../dijit/@{image-form-question}");
+    width:16px;
+    height:16px;
+    margin:0 0 1px 4px;
+    cursor: pointer;
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxLabel {
+            .idxTextBoxHoverHelp {
+                margin:0 4px 1px 0;
+                .img-reverse();
+            }
+        }
+    }
+    .@{theme-name}.idx_i18n_il {
+        .idxLabel {
+            .idxTextBoxHoverHelp {
+                background-image: url("../../dijit/@{image-form-question}");
+            }
+        }
+    }
+    .dijit_a11y {
+        .idxTextBoxHoverHelp {
+            .idxHelpIconAltText {
+                margin: 0 4px 0 0;
+            }
+        }
+    }
+}
+.@{theme-name} {
+    .idxTextBoxHoverHelp {
+        .idxHelpIconAltText {
+            display: none;
+        }
+    }
+}
+.dijit_a11y {
+    .idxTextBoxHoverHelp {
+        .idxHelpIconAltText {
+            display: block;
+            margin: 0 0 0 4px;
+        }
+    }
+}

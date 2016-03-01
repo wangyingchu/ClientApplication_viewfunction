@@ -15,12 +15,13 @@ define([
 	"dojo/window",
 	"dojo/query",
 	"dojo/keys",
+	"dojo/dom-geometry",
 	"dijit/popup",
 	"dijit/_Widget",
 	"dijit/_TemplatedMixin",
 	"idx/util",
 	"idx/resources"
-], function(dojo_declare, dojo_lang, dojo_array, dojo_json, dojo_html, dojo_connect, dojo_xhr, dojo_window, dojo_query, dojo_keys, dijit_popup, dijit_Widget, dijit_TemplatedMixin, idx_util, idx_resources){
+], function(dojo_declare, dojo_lang, dojo_array, dojo_json, dojo_html, dojo_connect, dojo_xhr, dojo_window, dojo_query, dojo_keys, dojo_geometry, dijit_popup, dijit_Widget, dijit_TemplatedMixin, idx_util, idx_resources){
 
 var TypeAheadPopup;
 
@@ -515,7 +516,7 @@ var TypeAhead = dojo_declare("idx.widget.TypeAhead", [dijit_Widget],
      * @returns {String}
      */
     jsonToHtml: function(suggestions){
-    	var html = ["<table class='typeAheadTable'><tbody>"];
+    	var html = ["<table role='presentation' class='typeAheadTable'><tbody>"];
     	for(var i=0, len=suggestions.length; i<len; i++){
     		html.push("<tr class='");
     		html.push((i % 2 == 0) ? "typeAheadTableRow": "typeAheadTableRow typeAheadTableRowOdd");
@@ -550,7 +551,12 @@ var TypeAhead = dojo_declare("idx.widget.TypeAhead", [dijit_Widget],
     hideResults: function(){
     	dijit_popup.close(this._popupWidget);
 		this.isShowing = false;
-    	dojo_html.style(this.domNode, "display", "none");
+		//
+		// hideResult is not safe for destroy when the popup is showing
+		// which caused by the time interval parameter
+		//
+		if ( this.domNode)
+    		dojo_html.style(this.domNode, "display", "none");
     },
 
     /**
@@ -560,7 +566,8 @@ var TypeAhead = dojo_declare("idx.widget.TypeAhead", [dijit_Widget],
     	if(this._popupWidget.domNode.firstChild){
 	    	var best = dijit_popup.open({
 				popup: this._popupWidget,
-				around: this.connectedNode
+				around: this.connectedNode,
+				orient: dojo_geometry.isBodyLtr() ? "": ["below-alt", "above-alt"]
 			});
 			this.isShowing = true;
 			this._popupWidget.setWidth(dojo_html.marginBox(this.connectedNode).w);
@@ -767,13 +774,13 @@ TypeAheadPopup = dojo_declare("idx.widget._TypeAheadPopup", [dijit_Widget, dijit
 	_selectedNode: null,
 	
 	res: null,
-	_handlers: [],
+	_handlers: [], // override this class-static value in constructor 
 
 	/**
 	 * Initializes internal properties.
 	 */
 	constructor: function(){
-		this._handlers = [];
+		this._handlers = []; // set handlers to instance-local value
 	},
 
 	/**

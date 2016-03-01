@@ -1,0 +1,48 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .dijitTree .idxOneuiTriStateCheckBoxWrap {
+  margin-top: 0;
+  padding-top: 0;
+}
+.dlBlue .dijitTree .dijitTreeLabel:focus {
+  outline: 1px dotted #000000;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeIcon {
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNode {
+  background-image: url("../../dijit/form/images/checkboxRadioButtonStates.png");
+  background-repeat: no-repeat;
+  background-position: -15px center;
+  width: 15px;
+  height: 15px;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeChecked {
+  background-position: 0px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeMixed {
+  background-position: -90px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeDisabled {
+  background-position: -75px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeCheckedDisabled {
+  background-position: -60px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeMixedDisabled {
+  background-position: -150px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent > .idxOneuiTriStateCheckBox {
+  background-position: -45px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent > .dijitTreeNode:hover {
+  background-position: -45px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent > .dijitTreeNodeChecked:hover {
+  background-position: -30px;
+}
+.dlBlue .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent .dijitTreeNodeMixed:hover {
+  background-position: -120px;
+}

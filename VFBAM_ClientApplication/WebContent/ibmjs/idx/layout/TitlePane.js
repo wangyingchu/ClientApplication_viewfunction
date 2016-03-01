@@ -74,6 +74,8 @@ define(["dojo/_base/declare",
    	 */
     baseClass: "dijitTitlePane",
 
+	_setTitleAttr: iContentPane.prototype._setTitleAttr,
+	
 	/**
    	 * IDX base CSS class.
    	 * @private
@@ -225,7 +227,10 @@ define(["dojo/_base/declare",
 		    	this._setStateClass();
 		    	dDomClass.remove(this.domNode, this.baseClass+"Active");
 		    	dDomClass.remove(this.titleBarNode, this.baseClass+"TitleActive");
-    			dEvent.stop(e);
+		    	// Comment this out for dojo 1.9.1 since it prevents events on the action buttons
+   			 	// TODO: work with dojo team to understand event handling change that prevents 
+    			// blocking style changes to title bar (active state on key down)
+    			//dEvent.stop(e);
     		}
     	}
     },
@@ -238,7 +243,7 @@ define(["dojo/_base/declare",
       // defer to the base function
       this.inherited(arguments);
       this._titleActionsNode = dDomConstruct.create(
-         "div", { "class": this.idxBaseClass + "Actions" }, this.focusNode);
+         "div", { "class": this.idxBaseClass + "Actions" }, this.titleBarNode);
 
       this.own(dOn(this._titleActionsNode, "mousedown", dLang.hitch(this, this._killActionsMouseEvent)));
       this.own(dOn(this._titleActionsNode, "click", dLang.hitch(this, this._killActionsMouseEvent)));
@@ -851,13 +856,27 @@ define(["dojo/_base/declare",
       this._checkIfSingleChild();
       this.inherited(arguments);
     },
+    
+    /**
+     * Defect 14165
+     * As Dojo 1.10 change the remove check of doLayout in _layoutChildren
+     * force to skip _checkIfSingleChild in titlepane for proper layout 
+     */
+    _layoutChildren: function(){
+        var tmpfunc = this._checkIfSingleChild;
+        this._checkIfSingleChild = function(){};
+        this.inherited(arguments);
+        this._checkIfSingleChild = tmpfunc;
+      },
 
     /**
-     * Pass through to parent method
-     * @see dijit.layout._LayoutWidget._checkIfSingleChild
+     * Override since the implementation in _ContentPaneResizeMixin now only performs the
+	 * check if "doLayout" is true, and "doLayout" is false for TitlePane.
      */
     _checkIfSingleChild: function() {
-       this.inherited(arguments);
+		this.doLayout = true;
+		this.inherited(arguments);
+		this.doLayout = false;
     },
 
     /**
@@ -880,7 +899,7 @@ define(["dojo/_base/declare",
     
       dDomStyle.set(this.titleNode, {width: "auto", height: "auto"});
       dDomStyle.set(this._titleActionsNode, {width: "auto", height: "auto"});
-      dDomStyle.set(this.focusNode, {height: tHeight + "px"});
+      //dDomStyle.set(this.focusNode, {height: tHeight + "px"});
  
       // determine if we have a single child
       if (this.open && this._singleChild && this._singleChild.resize) {
@@ -957,12 +976,16 @@ define(["dojo/_base/declare",
     _setTitleObject: function(titleObj) {
     	// clear out any old title
     	if (this._enhancedTitle) {
-    		this.removeChild(this._enhancedTitle);
-    		if (this._enhancedTitle.destroyRecursive) {
-    			this._enhancedTitle.destroy();
-    		} else if (this._enhancedTitle.destroy) {
-    			this._enhancedTitle.destroyRecursive();
-    		}
+			if (this._enhancedTitle instanceof dWidget) {
+				this.removeChild(this._enhancedTitle);
+				if (this._enhancedTitle.destroyRecursive) {
+					this._enhancedTitle.destroyRecursive();
+				} else if (this._enhancedTitle.destroy) {
+					this._enhancedTitle.destroy();
+				}
+			} else {
+				dDomConstruct.destroy(this._enhancedTitle);
+			}
     	}
         this.titleNode.innerHTML = "";
         
@@ -977,7 +1000,6 @@ define(["dojo/_base/declare",
 
 		// set the enhanced title
 		this._enhancedTitle = titleObj;
-
 		// get the node for the title object
         var node = null;
         if (titleObj instanceof dWidget) {
@@ -989,7 +1011,7 @@ define(["dojo/_base/declare",
         // otherwise move the widget
         var nodeList = new dNodeList(node);
         nodeList.orphan();
-        dDomConstruct.place(node, this.titleNode, "last");
+		dDomConstruct.place(node, this.titleNode, "last");
         this.resize();
     },
     
@@ -1091,6 +1113,10 @@ define(["dojo/_base/declare",
 		this._restorePosition = (iString.nullTrim(currentPos) ? currentPos : "");
 		this._restoreCollapse = this.get("collapsible");
 		this.set("collapsible", false);
+		this._restoreScrollPosition = {
+			scrollLeft: container.scrollLeft,
+			scrollTop: container.scrollTop
+		};
 		switch (currentPos) {
 		case "absolute":
 			// do nothing
@@ -1102,6 +1128,10 @@ define(["dojo/_base/declare",
 		this._maximizeMixin.maximize(this.domNode, container);
 		this._maximized = true;
 		dDomStyle.set(this.hideNode, {position: "absolute", top: "" + mbox.h + "px", left: "0px", right: "0px", bottom: "0px"});
+		
+		//handle max status for idx titlepane's max mode
+		dDomClass.add(this.domNode, "idxTitlePaneMaxMode");
+		
 		dDomClass.remove(this.titleBarNode, "dijitTitlePaneTitleHover");
 		if (this._resizeButton) {
 			this._resizeButton.set("hovering", false);
@@ -1123,11 +1153,17 @@ define(["dojo/_base/declare",
 		dDomStyle.set(this.domNode, {position: this._restorePosition});
 		this.set("collapsible", this._restoreCollapse);
 		this._maximized = false;
+		
+		//max status return to normal
+		dDomClass.remove(this.domNode, "idxTitlePaneMaxMode");
+		
 		dDomClass.remove(this.titleBarNode, "dijitTitlePaneTitleHover");
 		if (this._resizeButton) {
 			this._resizeButton.set("hovering", false);
 			this._resizeButton.set("active", false);
 		}
+		this.domNode.parentNode.scrollLeft=this._restoreScrollPosition.scrollLeft;
+		this.domNode.parentNode.scrollTop=this._restoreScrollPosition.scrollTop;
 		this.onRestore();
 	},
 	

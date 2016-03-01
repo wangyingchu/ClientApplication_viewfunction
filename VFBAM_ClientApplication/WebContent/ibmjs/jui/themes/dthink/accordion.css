@@ -1,0 +1,14 @@
+.jui.ui-accordion .ui-accordion-header{
+	background: #00648D;
+	color: #fff;
+	font-weight:bold;
+}
+
+.jui.ui-accordion .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr{
+	border-radius: 0px;
+}
+
+.jui.ui-accordion .ui-accordion-content{
+	border: none;
+	border-radius: 0px;
+}

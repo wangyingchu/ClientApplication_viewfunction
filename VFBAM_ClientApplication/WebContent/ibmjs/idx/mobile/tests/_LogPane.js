@@ -75,7 +75,7 @@ define(["dojo/_base/declare",
 				node: msg,
 				duration:2000,
 				properties: {
-					backgroundColor: { start: '#ffff44', end: '#ffffff' },
+					backgroundColor: { start: '#ffff44', end: '#ffffff' }
 				}
 			}).play();
 			

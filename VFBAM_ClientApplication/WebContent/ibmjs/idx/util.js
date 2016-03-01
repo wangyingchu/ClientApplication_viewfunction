@@ -9,6 +9,7 @@ define(["dojo/_base/lang",
         "idx/main",
         "dojo/_base/kernel",
         "dojo/has",
+		"dojo/aspect",
         "dojo/_base/xhr",
         "dojo/_base/window",
         "dojo/_base/url",
@@ -23,6 +24,7 @@ define(["dojo/_base/lang",
         "dojo/io-query",
         "dojo/query",
         "dojo/NodeList-dom",
+		"dojo/Stateful",
         "dijit/registry",
         "dijit/form/_FormWidget",
         "dijit/_WidgetBase",
@@ -32,6 +34,7 @@ define(["dojo/_base/lang",
 				 iMain,				// idx
 		         dKernel, 			// dojo/_base/kernel
 		     	 dHas,				// dojo/has
+				 dAspect,			// dojo/aspect
 		     	 dXhr,				// dojo/_base/xhr
    		    	 dWindow,			// dojo/_base/window
    		     	 dURL,				// dojo/_base/url
@@ -46,6 +49,7 @@ define(["dojo/_base/lang",
 				 dIOQuery,			// dojo/io-query
 				 dQuery,			// dojo/query
 				 dNodeList,			// dojo/NodeList-dom
+				 dStateful,			// dojo/Stateful
 				 dRegistry,			// dijit/registry
 				 dFormWidget,		// dijit/form/_FormWidget
 				 dWidget)			// dijit/_WidgetBase
@@ -155,9 +159,24 @@ define(["dojo/_base/lang",
  	 * @return {Object} The converted value of the object according to the specified "type".
  	 */
 	iUtil.parseObject = function(/*Object*/ value, /*String*/ type){
+		var lastIndex = 0;
 		// summary:
 		//		Convert given string value to given type
 		switch(type){
+			case "regex": 
+				value = "" + value;
+				lastIndex = value.lastIndexOf('/');
+				if ((value.length>2) && (value.charAt(0) == '/') && (lastIndex > 0)) {
+					return new RegExp(value.substring(1,lastIndex), 
+									  ((lastIndex==value.length-1)?undefined:value.substring(lastIndex+1)));
+				} else {
+					return new RegExp(value);
+				}
+				break;
+			case "null":
+				return null;
+			case "undefined":
+				return undefined;
 			case "string":
 				return "" + value;
 			case "number":
@@ -229,7 +248,8 @@ define(["dojo/_base/lang",
  	 */
     iUtil.getCSSOptions = function(/*String*/  className,
                                    /*Node?*/   parentNode,
-                                   /*Object?*/ guide) {
+                                   /*Object?*/ guide,
+                                   /*Object?*/ fallback) {
             var body = dWindow.body();
             if ((! parentNode) || (("canHaveHTML" in parentNode) && (! parentNode.canHaveHTML))) {
                 parentNode = body;
@@ -273,45 +293,56 @@ define(["dojo/_base/lang",
         	dDomConstruct.destroy(optionElem);
             if (root) dDomConstruct.destroy(root);
             
-        	if (! bgImage) return null;
-            if (bgImage.length < 5) return null;
-            if (bgImage.toLowerCase().substring(0, 4) != "url(") return null;
-            if (bgImage.charAt(bgImage.length - 1) != ")") return null;
+            var noURL = ((! bgImage)
+            			  || (bgImage.length < 5) 
+            			  || (bgImage.toLowerCase().substring(0, 4) != "url(")
+            			  || (bgImage.charAt(bgImage.length - 1) != ")"));
+            var options = null;
+            if (noURL && (bgImage == null || bgImage == "none") && fallback && (!dLang.isString(fallback))) {
+            	options = fallback;
+            } 
             
-            // remove the "url(" prefix and ")" suffix
-            bgImage = bgImage.substring(4, bgImage.length - 1);
+            if (! options) {
+            	var cssOpts = null;
+	            if (noURL && (bgImage == null || bgImage == "none") && fallback && dLang.isString(fallback)) {
+            		cssOpts = fallback;
+            		
+            	} else if (!noURL) {
+		            // remove the "url(" prefix and ")" suffix
+    		        bgImage = bgImage.substring(4, bgImage.length - 1);
             
-        	// check if our URL is quoted
-            if (bgImage.charAt(0) == "\"") {
-                // if not properly quoted then we don't parse it
-                if (bgImage.length < 2) return null;
-                if (bgImage.charAt(bgImage.length - 1) != "\"") return null;
+        			// check if our URL is quoted
+	        	    if (bgImage.charAt(0) == "\"") {
+    	        	    // if not properly quoted then we don't parse it
+        	        	if (bgImage.length < 2) return null;
+            	    	if (bgImage.charAt(bgImage.length - 1) != "\"") return null;
                 
-                // otherwise remove the quotes
-                bgImage = bgImage.substring(1, bgImage.length - 1);
+	                	// otherwise remove the quotes
+    	            	bgImage = bgImage.substring(1, bgImage.length - 1);
+            		}
+            
+	        		// find the query string
+    	        	var queryIdx = bgImage.lastIndexOf("?");
+            		var slashIdx = bgImage.lastIndexOf("/");
+            		if (queryIdx < 0) return null;
+            
+        			// get just the query string from the URL
+            		cssOpts = bgImage.substring(queryIdx + 1, bgImage.length);
+            	}         
+            	if (cssOpts == null) return null;
+            	if (cssOpts.length == 0) return null;
+            
+        		// parse the query string and return the result
+            	options = dIOQuery.queryToObject(cssOpts);
             }
-            
-        	// find the query string
-            var queryIdx = bgImage.lastIndexOf("?");
-            var slashIdx = bgImage.lastIndexOf("/");
-            if (queryIdx < 0) return null;
-            if (queryIdx < slashIdx) return null;
-            
-        	// get just the query string from the URL
-            var cssOpts = bgImage.substring(queryIdx + 1, bgImage.length);
-            if (cssOpts == null) return null;
-            if (cssOpts.length == 0) return null;
-            
-        	// parse the query string and return the result
-            var queryParams = dIOQuery.queryToObject(cssOpts);
-            return (guide) ? iUtil.mixin({}, queryParams, guide) : queryParams;
+            return (guide) ? iUtil.mixin({}, options, guide) : options;
         };
         
 	/**
   	 * @public
   	 * @function
  	 * @name idx.util.mixinCSSDefaults
- 	 * @description Obtains the "CSS Options" using idx.util.getCSSDefaults via the specified CSS class name
+ 	 * @description Obtains the "CSS Options" using idx.util.getCSSOptions via the specified CSS class name
  	 *              and optional parent node using the specified target object as the "guide" and mixing the
  	 *              CSS options directly into the target object via idx.util.mixin.  Any CSS options not 
  	 *              matching an attribute of the target object are ignored.
@@ -1470,6 +1501,47 @@ define(["dojo/_base/lang",
 		if ((!dLang.isString(w2)) && ("id" in w2)) w2 = w2.id;
 		return (w1 == w2);
 	};
-        
+  
+	/**
+	 * Provides a way to watch an attribute on an object whether it be an instance of
+	 * dojo/Stateful or dijit/_WidgetBase.  The "watch()" method does not work on 
+	 * dijit/_WidgetBase instances that implement custom setters.
+	 *
+	 * @param {Stateful|Widget} obj The object that owns the attribute to watch.
+	 * @param {String} attr The attribute name to watch.
+	 *
+	 * @return {Handle} Returns the handle to remove the watch or null if the attribute
+	 *         cannot be watched on the specified object.
+	 */
+	iUtil.watch = function(obj, attr, func) {
+		if (!obj) return null;
+		if (!attr) return null;
+		if  ((! ("watch" in obj)) || (!dLang.isFunction(obj.watch))) {
+			// object is not an instance of dojo/Stateful
+			return null;
+		}
+		attr = dString.trim(attr);
+		if (attr.length == 0) return null;
+		var uc = attr.charAt(0).toUpperCase();
+		if (attr.length > 1) {
+			uc = uc + attr.substring(1);
+		}
+		var funcName = "_set" + uc + "Attr";
+		if (funcName in obj) {
+			return dAspect.around(obj, funcName, function(origFunc) {
+				return function(value) {
+					var oldValue = obj.get(attr);
+					origFunc.apply(obj, arguments);
+					var newValue = obj.get(attr);
+					if (oldValue != newValue) {
+						func.call(undefined, attr, oldValue, newValue);
+					}
+				};
+			});
+		} else {
+			return obj.watch(attr, func);
+		}
+	};
+  	
     return iUtil;
 });

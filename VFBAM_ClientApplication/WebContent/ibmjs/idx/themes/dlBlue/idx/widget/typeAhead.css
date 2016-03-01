@@ -1,0 +1,31 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxTypeAhead {
+  border: 1px solid #ADAAAD;
+  zIndex: 1000;
+  overflow: auto;
+  max-height: 300px;
+}
+.dlBlue .idxTypeAhead .typeAheadTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dlBlue .idxTypeAhead .typeAheadTable tr.typeAheadTableRow {
+  background-color: #FFFFFF;
+  color: #393a3f;
+  cursor: pointer;
+}
+.dlBlue .idxTypeAhead .typeAheadTable tr.typeAheadTableRowOdd {
+  /*background-color: #F4F9FD;*/
+}
+.dlBlue .idxTypeAhead .typeAheadTable td.typeAheadTableCell {
+  padding: 6px;
+}
+.dlBlue .idxTypeAhead .typeAheadTable td.typeAheadCloseNode {
+  text-align: right;
+  padding-right: 8px;
+}
+.dlBlue .idxTypeAhead .typeAheadTable tr.typeAheadTableRowSelected td.typeAheadTableCell {
+  color: #393a3f;
+  background-color: #daf1fc;
+}

@@ -10,3 +10,4 @@ define({
 	missingMessage: "يجب تحديد بند واحد على الأقل."
 //end v1.x content
 });
+

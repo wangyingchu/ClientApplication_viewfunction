@@ -13,9 +13,11 @@ define({
 	Success: "완료",
 	Confirmation: "확인",
 	Question: "질문",
+	Progress: "진행 상태",
 	closeButtonLabel: "닫기",
 	cancelButtonLabel: "취소",
 	executeButtonLabel: "확인",
 	checked: "다시 묻지 않음"
 //end v1.x content
 });
+

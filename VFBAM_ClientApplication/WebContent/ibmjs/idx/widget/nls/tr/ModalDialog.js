@@ -13,9 +13,11 @@ define({
 	Success: "Başarılı",
 	Confirmation: "Doğrulama",
 	Question: "Soru",
+	Progress: "Aşama",
 	closeButtonLabel: "Kapat",
 	cancelButtonLabel: "İptal",
 	executeButtonLabel: "Tamam",
 	checked: "Bir daha sorma"
 //end v1.x content
 });
+

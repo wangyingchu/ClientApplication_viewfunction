@@ -1,0 +1,307 @@
+/*
+ * Licensed Materials - Property of IBM
+ * 5724-Q36
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or or otherwise 
+ * divested of its trade secrets, irrespective of what has been 
+ * deposited with the U.S. Copyright Office.
+ */
+/* HoverHelp stylings: */
+.idxHoverHelp {
+  display: inline;
+}
+.dj_safari & .idxHoverHelp {
+  display: inline-block;
+}
+/** uncomment this to implement the larger bluer icons
+
+.idxHoverHelp .idxHelpIcon,
+.idxHoverHelp .idxButtonToolbar.idxButtonIcon .dijitIcon,
+.idxHoverHelp .idxButtonIcon.idxButtonToolbar .dijitIcon {
+	background-position: 0px 0px;
+	background-image: url('../oneui/images/hoverHelpQuestionMarkIcon.png')
+}
+
+*/
+.idxHoverHelpInfoWrapper {
+  padding: 0px;
+  margin: 0px;
+}
+.idxHoverHelp_idxDefaults {
+  background-image: url('images/blank.gif?clickToOpen=false&showDelay=600');
+}
+.idxHoverHelpButtonOptions {
+  background-image: url('images/blank.gif?placement=toolbar&buttonType=help&displayMode=iconOnly');
+}
+.idxHoverHelp_TooltipDialog .dijitTooltipContainer {
+  overflow: auto;
+}
+.idxHoverHelp_TooltipDialog .dijitTooltipContainer.limitedSize {
+  max-width: 250px;
+  max-height: 150px;  
+}
+.idxHoverHelp .dijitArrowButtonInner {
+  display: none;
+  visibility: hidden;
+}
+.idxHoverHelpMessage {
+  width: 100%;
+  color: @textDisabled;
+  display: block;
+}
+div.idxHoverHelpLinkHidden {
+  display: none;
+  visibility: hidden;
+}
+div.idxHoverHelpLink {
+  width: 100%;
+  display: block;
+  margin-top: 15px;
+  white-space: nowrap;
+}
+a.idxHoverHelpLink {
+  color: @linkColor;
+  display: inline;
+  white-space: nowrap;
+  background: url('images/idx/widget/hoverLearnMoreArrow.png') no-repeat right center;
+  padding-right: 13px;
+  padding-top: 1px;
+}
+.dijitRtl & a.idxHoverHelpLink {
+  background: url('images/idx/widget/hoverLearnMoreArrow_rtl.png') no-repeat left center;
+  padding-left: 13px;
+  padding-right: 0px;
+  padding-top: 1px;
+}
+.dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipBelow .dijitTooltipConnector,
+.dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipAbove .dijitTooltipConnector {
+  left: 4.5px;
+}
+.dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .dijitTooltipConnector{
+  right:7px;
+}
+.dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipBelow .dijitTooltipConnector { 
+  top: -6px;
+}
+.dj_ie & .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipAbove .dijitTooltipConnector {
+  bottom: -4px;
+}
+.dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .idxTooltipDialogCloseIcon {
+  right:auto;
+  left:-22px;
+}
+.dijitRtl & .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABLeft .idxTooltipDialogCloseIcon {
+  right:-8px;
+}
+.dijitRtl & .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .idxTooltipDialogCloseIcon {
+    left: -7px;
+}
+.dijitRtl & .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .dijitTooltipConnector { 
+  right: 6px;
+}
+.dijitRtl & .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .dijitTooltipConnector { 
+  left: 6px;
+}
+/** choose the icon file based on the placement of the button **/
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonSecondary.idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonSpecial.idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonToolbar.idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonIcon.idxButtonToolbar .dijitIcon {
+  background-image: url('images/idx/widget/hoverHelpQuestionMarkIcon.png');
+  width: 16px;
+  height: 16px;
+}
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonSecondary.idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonSpecial.idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonToolbar.idxButtonIcon .dijitIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonIcon.idxButtonToolbar .dijitIcon {
+  background-image: url('images/idx/widget/hoverHelpQuestionMarkIcon_12px.png');
+  width: 12px;
+  height: 12px;
+}
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonToolbar .dijitButtonNode,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonToolbar.dijitComboButton .dijitButtonNode,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonToolbar.dijitToggleButton .dijitButtonNode {
+  padding: 2px 0px 2px 0px;
+}
+.idxHoverHelp .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxHelpIcon {
+  background-position: 0px 0px;
+}
+.idxHoverHelp .idxButtonDerived.dijitHover .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.dijitHover .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.dijitHover .idxHelpIcon {
+  background-position: 0px 0px;
+}
+.idxHoverHelp .idxButtonDerived.dijitActive .idxHelpIcon,
+.idxHoverHelp .idxButtonDerived.dijitOpened .idxHelpIcon,
+.idxHoverHelp .idxButtonDerived.idxDropDownOpen .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.dijitActive .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.dijitOpened .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.idxDropDownOpen .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.dijitActive .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.dijitOpened .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.idxDropDownOpen .idxHelpIcon {
+  background-position: 0px 0px;
+}
+.idxHoverHelp .idxButtonDerived.dijitDisabled .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.dijitDisabled .idxHelpIcon,
+.idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.dijitDisabled .idxHelpIcon {
+  background-position: 0px 0px;
+}
+.idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxCompactButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxSecondaryButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxSpecialButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxToolbarButton .idxHoverHelp .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=toolbar');
+}
+.idxCompactButton.idxSecondaryButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxSecondaryButton.idxCompactButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxCompactButton .idxSecondaryButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxSecondaryButton .idxCompactButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxCompactButton.idxSpecialButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxSpecialButton.idxCompactButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxCompactButton .idxSpecialButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxSpecialButton .idxCompactButton .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxCompactButton.idxToolbarButtonn .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxToolbarButton.idxCompactButtonn .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxCompactButton .idxToolbarButtonn .idxHoverHelp .idxButtonDerived_idxDefaults,
+.idxToolbarButton .idxCompactButtonn .idxHoverHelp .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=toolbar&profile=compact');
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.dj_ie & .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNode,
+.dj_ie & .idxHoverHelp .dijitComboButton.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie & .idxHoverHelp table.idxButtonToolbar.dijitComboButton,
+.dj_ie & .idxHoverHelp table.dijitComboButton.idxButtonToolbar {
+  background: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.idxHoverHelp .idxButtonToolbar .dijitButtonText {
+  color: @textStrong;
+}
+/* hover text color */
+.idxHoverHelp .idxButtonToolbar.dijitButtonHover .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitDropDownButtonHover .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitToggleButtonHover .dijitButtonText,
+.idxHoverHelp .dijitButtonHover.idxButtonToolbar .dijitButtonText,
+.idxHoverHelp .dijitDropDownButtonHover.idxButtonToolbar .dijitButtonText,
+.idxHoverHelp .dijitComboButton.idxButtonToolbar .dijitButtonNodeHover .dijitButtonText,
+.idxHoverHelp .dijitToggleButtonHover.idxButtonToolbar .dijitButtonText {
+  color: @textStrong;
+  text-decoration: underline;
+}
+/* disabled text color */
+.idxHoverHelp .dijitDisabled.idxButtonToolbar .dijitButtonText {
+  color: @textDisabled;
+  text-decoration: none;
+}
+/* hover status */
+.idxHoverHelp .idxButtonToolbar.dijitButtonHover .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitDropDownButtonHover .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover,
+.idxHoverHelp .idxButtonToolbar.dijitToggleButtonHover .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+/*
+    NOTE: We cheat a bit for "Hover" since the border and the background are so close in color.
+    Technically, the borders are not visible when we do this CSS on the ButtonNode cells, but 
+    they are replaced with the gradient which is just as dark on IE, and unnoticeable.  The
+    alternative would have been to hover-highlight the entire button instead of the parts
+*/
+.dj_ie & .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover,
+.dj_ie & .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover {
+  background: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+/* checked status */
+.idxHoverHelp .idxButtonToolbar.dijitButtonActive .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitDropDownButtonActive .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitComboButtonActive .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitToggleButtonActive .dijitButtonNode,
+.idxHoverHelp .dijitButtonActive.idxButtonToolbar .dijitButtonNode,
+.idxHoverHelp .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonNode,
+.idxHoverHelp .dijitComboButtonActive.idxButtonToolbar .dijitButtonNode,
+.idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+  color: @textStrong;
+}
+.idxHoverHelp .idxButtonToolbar.dijitButtonActive .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitDropDownButtonActive .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNodeActive .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitToggleButtonActive .dijitButtonText,
+.idxHoverHelp .dijitButtonActive.idxButtonToolbar .dijitButtonText,
+.idxHoverHelp .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonText,
+.idxHoverHelp .dijitComboButton.idxButtonToolbar .dijitButtonNodeActive .dijitButtonText,
+.idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonText {
+  color: @textStrong;
+  text-decoration: underline;
+}
+.idxHoverHelp .idxButtonToolbar.dijitButtonDisabled .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitDropDownButtonDisabled .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitComboButtonDisabled .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitToggleButtonDisabled .dijitButtonNode,
+.idxHoverHelp .dijitButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.idxHoverHelp .dijitDropDownButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.idxHoverHelp .dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.idxHoverHelp .dijitToggleButtonDisabled.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+  border: none;
+  color: @textDisabled;
+  .BoxShadow(none);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.dj_ie & .idxHoverHelp .idxButtonToolbar.dijitComboButtonDisabled .dijitButtonNode,
+.dj_ie & .idxHoverHelp .dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie & .idxHoverHelp table.idxButtonToolbar.dijitComboButtonDisabled,
+.dj_ie & .idxHoverHelp table.dijitComboButtonDisabled.idxButtonToolbar {
+  background: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.idxHoverHelp .idxButtonToolbar.dijitDisabled .dijitArrowButtonInner {
+  background-position: -151px 0px;
+}
+.idxHoverHelp .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonText,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonText {
+  color: @textStrong;
+}
+.idxHoverHelp .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
+.idxHoverHelp .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+  filter: none;
+  background: none;
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.dj_ie & .idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
+.dj_ie & .idxHoverHelp .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie & .idxHoverHelp table.idxButtonToolbar.dijitComboButton.dijitOpened,
+.dj_ie & .idxHoverHelp table.idxButtonToolbar.dijitComboButton.idxDropDownOpen {
+  background-color: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/

@@ -10,3 +10,4 @@ define({
 	legendText: "Zahtevano"
 //end v1.x content
 });
+

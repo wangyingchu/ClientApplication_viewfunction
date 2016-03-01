@@ -35,7 +35,7 @@ define([
 		prog.start();
 		setTimeout(function(){
 			hide_progress_indicator(dlg);
-		}, 50000);
+		}, 5000);
 	}
 
 	hide_progress_indicator = function(dlg){

@@ -1,36 +1,25 @@
 require([
-	'dojo/_base/lang',
-	'gridx/Grid',
-	'gridx/core/model/cache/Async',
+	'dojo/parser',
 	'idx/gridx/tests/support/data/MusicData',
 	'idx/gridx/tests/support/stores/Memory',
-	'idx/gridx/tests/support/modules',
+	'gridx/Grid',
+	'gridx/core/model/cache/Async',
+	'gridx/modules/extendedSelect/Row',
+	'gridx/modules/RowHeader',
+	'gridx/modules/IndirectSelect',
+	'gridx/modules/IndirectSelectColumn',
+	'gridx/modules/VirtualVScroller',
+	'gridx/modules/Filter',
+	'idx/gridx/modules/filter/FilterBar',
 	'dojo/domReady!'
-], function(lang, Grid, Cache, dataSource, storeFactory, modules){
+], function(parser, dataSource, storeFactory){
 
-	var create = function(id, container, size, props){
-		var grid = new Grid(lang.mixin({
-			id: id,
-			cacheClass: Cache,
-			store: storeFactory({
-				dataSource: dataSource, 
-				size: size 
-			}),
-			structure: dataSource.layouts[5],
-			modules: [
-				modules.ExtendedSelectRow,
-				modules.RowHeader,
-				modules.IndirectSelect,
-				modules.VirtualVScroller
-			]
-		}, props || {}));
-		grid.placeAt(container);
-		grid.startup();
-		return grid;
-	};
-	
-	create('grid', 'gridContainer', 100);
+	store = storeFactory({
+		dataSource: dataSource,
+		size: 100
+	});
+
+	layout = dataSource.layouts[5];
+
+	parser.parse();
 });
-
-
-

@@ -10,3 +10,4 @@ define({
 	invalidMessage: "少なくとも 1 つの項目を選択する必要があります。"
 //end v1.x content
 });
+

@@ -1,0 +1,197 @@
+/*header, body, scroller*/
+/*common*/
+.gridx {
+  border: none;
+}
+.gridxHeader,
+.gridxFooter {
+  background: none;
+}
+.gridx .dijitButton .dijitButtonNode {
+  min-width: 0px;
+}
+.gridxGotoPage .gridxGotoPageInputBox .dijitTextBox {
+  width: 70px;
+}
+/*Header*/
+.gridxHeaderRow {
+  overflow: hidden;
+  border: 1px solid @fwBase;
+  clear: both;
+  .gradient(@fwBackground, @fwLighter);
+}
+.gridxHeaderRowInner {
+  background: none;
+  border-color: transparent;
+  border-width: 0 2px 0 0;
+}
+/*.gridxHeaderRowInner table {*/
+/*    border-collapse: collapse;*/
+/*}*/
+/*.gridxHeaderRowInner table tr:last-child {*/
+/*    border: none;*/
+/*}*/
+.gridxHeaderRow .gridxCell {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid @fwBase;
+  padding: 13px 7px;
+  font-weight: bold;
+  .textColors(mix(@fwBackground, @fwLighter));
+  color: @textSecondary;
+  vertical-align: top;
+  .TextShadow(@shadowSolid);
+}
+
+.gridxHeaderRow .gridxCell:hover {
+	.gradient(@fwLightest, @fwLight);
+	.textColors(mix(@fwLightest, @fwLight));
+	color: @textSecondary;
+	cursor: pointer;
+	border-top-color: @fwLightest;
+	border-bottom-color: @fwLight;
+}
+
+.dijit_a11y & .gridxHeaderRow .gridxCell {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.gridxHeaderRow .gridxLockedCell {
+  .gradient(@fwLightest, @fwLighter);
+}
+.gridxHeaderRow .gridxHeaderCellOver {
+	.gradient(@fwLightest, @fwLight);
+}
+.gridx .gridxHeader .gridxHeaderRow .gridxHeaderCellFocus {
+  border-top: none;
+  border-bottom: none;
+  border-left: 1px solid transparent;
+  border-right: 1px solid @fwBase;
+  outline: none;
+  .gradient(@fwBackground, @fwLighter);
+}
+.dijit_a11y & .gridxHeader .gridxHeaderRow .gridxHeaderCellFocus {
+  border: 1px dashed @focusOutline;
+}
+/*RowHeader*/
+.gridxRowHeaderCell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid @fwLighter;
+}
+.gridxRowHeaderRow:first-child .gridxRowHeaderCell {
+  border-top-color: transparent;
+}
+.gridxRowHeaderHeader {
+  border-right-color: @fwLighter;
+}
+.gridxRowHeaderHeader,
+.gridxRowHeaderRow {
+	.gradient(@fwBackground, @fwLighter);
+}
+.gridxRowHeaderBody {
+  border-left: 1px solid @fwLighter;
+  border-right-width: 0px;
+}
+.gridxRowHeaderBody .gridxRowOver {
+.gradient(@fwLightest, @fwLighter);
+  
+}
+/*Body*/
+.gridxRow {
+  background: none;
+}
+.gridxMain {
+  border-left: 1px solid @fwLighter;
+  border-right: 1px solid @fwLighter;
+}
+.gridxVScroller {
+  border-right: 1px solid @fwLighter;
+}
+.gridxMain .gridxBody {
+  /*    border-right: 1px solid #d9d9d9;*/
+
+}
+.gridxRow .gridxRowTable {
+  background-color: #ffffff;
+  border-left: none;
+}
+.gridxRow .gridxCell {
+  padding: 10px 7px;
+  border-width: 1px;
+  border-color: @fwLighter @fwLighter transparent transparent;
+  color: @textSecondary;
+  background: none;
+  vertical-align: top;
+}
+.gridxRow:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.gridxRow:last-child .gridxCell {
+  border-bottom-color: @fwLighter;
+}
+.dj_ie & .gridxLastRow .gridxCell {
+  border-bottom-color: @fwLighter;
+}
+.dj_webkit & .gridx .gridxRow:first-child .gridxCellFocus,
+.dj_ie7 & .gridx .gridxRow:first-child .gridxCellFocus {
+  border-top-color: @focusOutline;
+}
+.dj_ie & .gridxRow .gridxCellFocus {
+  border-bottom: 1px dashed @focusOutline;
+}
+.gridxAlternatingRows .gridxRowOdd .gridxRowTable {
+  background-color: @fwLightest;
+}
+.gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxCell {
+  border-top-color: @fwDark;
+}
+.gridx .gridxBodyRowHoverEffect .gridxRowOver:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable {
+  background-color: @hover;
+}
+.gridx .gridxBodyRowHoverEffect .gridxRowOver + .gridxRow .gridxCell {
+  border-top-color: @fwDark;
+}
+.gridxAlternatingRows .gridxBody .gridxRow .gridxCell {
+  border-top-color: @fwBackground;
+}
+.gridxAlternatingRows .gridxBodyRowHoverEffect .gridxRowOver + .gridxRow .gridxCell {
+  border-top-color: @fwBackground;
+}
+/* WholeRow -- No Column Borders */
+.gridxWholeRow .gridxBody .gridxRow .gridxCell {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+/*HScroller*/
+.gridxHScroller {
+  border-style: solid;
+  border-color: @fwLighter;
+  border-width: 0 1px 1px 1px;
+}
+/* compact */
+.compact .gridxHeaderRow .gridxCell {
+  padding: 10px 7px;
+  font-size: 11px;
+}
+.compact .gridxBody .gridxCell {
+  padding: 7px;
+  font-size: 11px;
+}
+/* Full Page */
+.gridxFullPage .gridxHeader .gridxHeaderRow {
+  border-top-color: @fwLighter;
+  border-bottom: 1px solid @fwBase;
+}
+.gridxFullPage .gridxHeader .gridxHeaderRow,
+.gridxFullPage .gridxMain,
+.gridxFullPage .gridxHeader .gridxHeaderRow .gridxCell,
+.gridxFullPage .gridxBody .gridxRow .gridxCell {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.dj_ie & .gridxLastRow .gridxCell {
+  border-bottom-color: @fwLighter;
+}

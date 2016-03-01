@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Vis alle ({num})",
+	viewAll: "Vis alle ({num})&lrm;",
 	viewDetails: "Flere detaljer",
 	refresh: "Forny",
 	showDetails: "Vis detaljer",
 	hideDetails: "Skjul detaljer"
 //end v1.x content
 });
+

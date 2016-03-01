@@ -1,0 +1,37 @@
+define({     
+//begin v1.x content
+	closeLabel: "Itxi",
+	configureLabel: "Konfiguratu",
+	editLabel: "Editatu",
+	filterLabel: "Iragazi",
+	clearFilterLabel: "Garbitu",
+	helpLabel: "Laguntza",
+	infoLabel: "Informazioa",
+	minimizeLabel: "Minimizatu",
+	maximizeLabel: "Maximizatu",
+	printLabel: "Inprimatu",
+	refreshLabel: "Freskatu",
+	restoreLabel: "Leheneratu",
+	nextPageLabel: "Hurrengoa",
+	previousPageLabel: "Aurrekoa",
+	lastPageLabel: "Azkena",
+	firstPageLabel: "Lehenengoa",
+	closeTip: "Itxi",
+	configureTip: "Konfiguratu",
+	editTip: "Editatu",
+	filterTip: "Iragazi",
+	clearFilterTip: "Garbitu iragazkia",
+	helpTip: "Eskuratu laguntza",
+	infoTip: "Eskuratu informazioa",
+	minimizeTip: "Minimizatu",
+	maximizeTip: "Maximizatu",
+	printTip: "Inprimatu",
+	refreshTip: "Freskatu",
+	restoreTip: "Leheneratu",
+	nextPageTip: "Hurrengo orria",
+	previousPageTip: "Aurreko orria",
+	lastPageTip: "Azken orria",
+	firstPageTip: "Lehenengo orria"
+//end v1.x content
+});
+

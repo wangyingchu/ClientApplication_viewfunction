@@ -17,7 +17,8 @@ define(["dojo/_base/lang",
 		"dijit/registry",
 		"./_MenuOpenOnHoverMixin",
 		"dojo/text!./templates/Menu.html",
-		"dojo/text!./templates/_MenuColumn.html"],
+		"dojo/text!./templates/_MenuColumn.html",
+		"idx/widgets"],
 		function(lang,
 				array,
 				 declare,
@@ -100,6 +101,11 @@ define(["dojo/_base/lang",
 	var Menu = declare("idx.widget.Menu", [Menu, _MenuOpenOnHoverMixin], 
 	/** @lends idx.widget.Menu.prototype */
 	{
+		/**
+		 * Provide an IDX base class to distinguish from Dijit menus in CSS selectors. 
+		 */
+		idxBaseClass: "idxMenu",
+		
 		/**
 		 * An array of the DOM nodes (tbody's), one per column, that
 		 * contain the items that are in each column.

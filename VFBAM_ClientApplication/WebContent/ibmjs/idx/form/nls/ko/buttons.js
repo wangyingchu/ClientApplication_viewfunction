@@ -31,7 +31,7 @@ define({
 	nextPageTip: "다음 페이지",
 	previousPageTip: "이전 페이지",
 	lastPageTip: "마지막 페이지",
-	firstPageTip: "첫 번째 페이지"
+	firstPageTip: "첫 페이지"
 //end v1.x content
 });
 

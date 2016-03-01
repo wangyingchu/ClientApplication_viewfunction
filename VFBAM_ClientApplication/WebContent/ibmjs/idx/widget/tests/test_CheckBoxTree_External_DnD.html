@@ -18,7 +18,6 @@
 	</script>
 	
 	<style id="idxStyles" type="text/css">
-		@import "../../themes/oneui/oneui.css";
 		@import "../../tests/test.css";
 		@import "../../tests/_pagefooter/_PageFooter.css";
 	</style>
@@ -36,11 +35,15 @@
 			"idx.widget.CheckBoxTree",
 			"dijit.tree.ForestStoreModel",
 			"dojo.data.ItemFileWriteStore",
+			"dojo.query",
+			"dojo.dom-attr",
 			"idx.widget.checkboxtree.dndSource",
 			"idx.tests._pagefooter._PageFooter"]; 
-		var _PageFooter = null;
+		var _PageFooter = null, DomAttr = null, Query = null;
 		function preParse(modules){
 			_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+			DomAttr = modules["dojo/dom-attr"];
+			Query = modules["dojo/query"];
 			new _PageFooter();
 		}
 		function postParse(modules){
@@ -51,7 +54,7 @@
 </head>
 <body style="width: 100%; height: 100%; margin: 0; padding: 0px;">
 	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
-	<script type="text/javascript">applyThemeToBody("oneui");</script>
+	<script type="text/javascript">applyThemeToBody();</script>
 	<a name="maincontent"></a>
 	<div class="testMain">
 		<h1 class="testTitle">idx.widget.CheckBoxTree Test</h1>

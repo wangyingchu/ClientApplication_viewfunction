@@ -1,0 +1,179 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.dijitTextBoxError .dijitValidationContainer {
+	margin:4px 3px 0;
+	width:15px;
+	height:15px;
+	border:solid @errorLight 0;
+	background:url('images/dijit/form/msgIcons_24bit.png') no-repeat;
+	background-position:-2px -2px;
+}
+
+.dijitTextBoxError .dijitValidationIcon {
+	width:0;
+	background-color:transparent!important;
+/* so the INPUT doesn't obscure the border in rtl+a11y */
+}
+
+// Padding for the input area of TextBox based widgets, and corresponding padding for the
+// down arrow button and the placeholder.   placeholder is explicitly listed  because
+// dijitPlaceHolder is absolutely positioned, so padding set on dijitInputField
+// won't affect it
+//
+
+.dijitTextBox {
+	outline:medium none;
+}
+
+.dijitTextBox .dijitInputField {
+	padding:3px 10px;
+	color:@textDefault;
+}
+
+.dijitInputField .dijitPlaceHolder,.dijitInputContainer .dijitPlaceHolder {
+	padding:4px 10px;
+	color:@textDisabled;
+	font-style:normal;
+}
+
+.dijitTextArea {
+	padding:4px 8px;
+	color:@textDefault;
+}
+
+.dijitHintOuter {
+	padding-top:5px;
+	color:@textDisabled;
+}
+
+.dj_gecko & .dijitTextBox .dijitInputInner,.dj_webkit & .dijitTextBox .dijitInputInner,.dj_ie8 & .dijitTextBox .dijitInputInner,.dj_ie7 & .dijitTextBox .dijitInputInner {
+	padding:1px 1px 2px;
+}
+
+.dijitTextBox,.dijitTextBox .dijitButtonNode {
+/* color for (outer) border on *TextBox widgets, and border between input and buttons on ComboBox and Spinner */
+	border-color:@fwDarker;
+	.transition(background-color,border; .35s);
+}
+
+.dijitTextBox {
+	border:1px solid @fwDarker;
+	background-color:@fwBackground;
+}
+
+/* hover */
+.dijitTextBoxHover,.dijitTextBoxHover .dijitButtonNode {
+	border-color:@hoverOutline;
+	.transition(inherit,.25s);
+}
+
+/* error state */
+.dijitTextBoxError,.dijitTextBoxError .dijitButtonNode {
+	border-color:@error;
+}
+
+.dijitTextBoxError,.dijitTextBoxError .dijitInputContainer {
+	background-color:@errorLighter;
+	float: left;
+}
+
+/* focused state */
+.dijitTextBoxFocused,.dijitTextBoxFocused .dijitButtonNode {
+	border-color:@focusOutline !important;
+	.transition(inherit,.1s);
+}
+.dijitTextBoxFocused .dijitInputContainer,.dijitTextAreaFocused {
+	background:@fwBackground;
+}
+
+.dijitTextBoxErrorFocused,.dijitTextBoxErrorFocused .dijitButtonNode {
+	border-color:@errorLight;
+}
+
+/* disabled state */
+.dijitTextBoxDisabled,.dijitTextBoxDisabled .dijitButtonNode {
+	border-color:@fwBase;
+}
+
+.dijitTextBoxDisabled,
+.dijitTextBoxDisabled .dijitInputInner,
+.dijitTextBoxDisabled input,
+.dijitTextBoxDisabled .dijitInputContainer,
+.dijitTextBoxDisabled .dijitInputField .dijitPlaceHolder {
+	background-color:@fwLightest;
+	background-image:none;
+	color:@textDisabled;
+}
+
+.dj_webkit & .dijitTextBoxDisabled .dijitInputInner,
+.dj_webkit & .dijitTextBoxDisabled input {
+	background-color:@fwLightest!important;
+	color:@textDisabled!important;
+}
+
+.dijitTextBoxReadOnly {
+	border:1px solid @fwDark;
+}
+
+.dijitTextBoxReadOnly .dijitInputField {
+	color:@textDisabled;
+}
+
+/* Simple Text Area */
+.dijitSimpleTextArea {
+	padding:0 0 0 10px;
+	color:@textDefault;
+}
+
+.dijitSimpleTextAreaDisabled {
+	border-color:@fwBase;
+	background-color:@fwLightest;
+	color:@textDisabled;
+}
+
+.dijitSimpleTextAreaReadOnly .dijitInputField {
+	border-color:@fwDark;
+	color:@textSecondary;
+}
+
+/*========================= for special widgets =========================*/
+/* Input boxes with an arrow (for a drop down) */
+.dijitToolbar .dijitComboBox .dijitArrowButtonInner {
+	border:none;
+}
+
+.dijitToolbar .dijitComboBox .dijitArrowButtonInner {
+	border:none;
+}
+
+/* Add 1px vertical padding to the <input> where user types and the validation icon,
+   to match the 1px border on arrow button */
+.dijitTextBox .dijitInputInner,.dijitTextBox .dijitValidationContainer {
+	padding:1px 0;
+}
+
+/*========================= hacks for browsers =========================*/
+/* it seems the input[type="hidden"] has a height (16px) too... this may cause the widget's height calculate error */
+.dj_ff3 & .dijitInputField input[type="hidden"] {
+	display:none;
+	width:0;
+	height:0;
+}
+
+/* ie6 doesn't support transparent background img */
+.dj_ie6 & .dijitTextBox,.dj_ie6 & .dijitComboBox .dijitButtonNode {
+	background-image:none;
+}
+
+.dj_borderbox & .dijitComboBox .dijitHasDropDownOpen .dijitArrowButtonInner {
+	width:18px;
+}
+
+.dj_borderbox & .dijitComboBoxFocused .dijitHasDropDownOpen .dijitArrowButtonInner {
+	width:16px;
+}

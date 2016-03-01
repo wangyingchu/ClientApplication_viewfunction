@@ -10,3 +10,4 @@ define({
 	missingMessage: "Należy wybrać co najmniej jedną pozycję."
 //end v1.x content
 });
+

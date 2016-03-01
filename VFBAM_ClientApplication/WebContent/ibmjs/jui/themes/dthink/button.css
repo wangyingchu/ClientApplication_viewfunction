@@ -1,0 +1,31 @@
+.jui-button{
+	border-radius: 0px;
+	background-color: #008ABF;
+	background-image: none;
+	border: 1px solid #FFFFFF;
+	color: white;
+}
+
+.jui-button:hover{
+	background-color: #00B0DA;
+}
+
+.jui-button:active{
+	background-color: #FFFFFF;
+	border: 1px solid #B8BABE;
+	color: #929399;
+}
+
+.jui-button.ui-state-active{
+	background-color: #FFFFFF;
+	border: 1px solid #B8BABE;
+	color: #929399;	
+}
+
+.jui-button.ui-state-default .ui-icon{
+	background-image: url(../../jquery-ui/themes/base/images/ui-icons_454545_256x240.png);
+}
+
+.jui-button.ui-button-text-only .ui-button-text {
+	padding: .4em 1em;
+}

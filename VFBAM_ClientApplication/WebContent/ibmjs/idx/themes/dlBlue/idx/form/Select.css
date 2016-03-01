@@ -1,0 +1,52 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxSelectWrapError .dijitSelectError {
+  border: 1px solid #d9182d;
+}
+.dlBlue {
+  /*.idxSelectWrap {
+        .dijitValidationContainer {
+            display: none;
+        }
+    }*/
+}
+.dlBlue .idxComposite .dijitSelect .dijitArrowButtonInner {
+  border: 1px solid transparent;
+  background-image: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxComposite .dijitSelectHover .dijitArrowButtonInner {
+  background-position: -151px 53%;
+}
+.dlBlue .idxComposite .dijitSelectDisabled .dijitArrowButton .dijitArrowButtonInner {
+  background-image: url("../../dijit/form/images/arrows_white.png");
+}
+.dlBlue .idxSelectWrapError .dijitSelectError .dijitButtonContents {
+  background: #ffffff;
+}
+.dlBlue .idxSelectWrapError .dijitValidationContainer {
+  display: inline-block;
+}
+.dlBlue .dijitSelectError .dijitButtonContents .dijitButtonText {
+  display: block !important;
+}
+.dlBlue .idxSelectWrapLabel {
+  vertical-align: top;
+}
+.dlBlue .idxSelectWrapMenu {
+  background: #ffffff;
+  border-color: #cdced2;
+}
+.dlBlue .idxSelectWrapMenu .dijitMenuItemIconCell {
+  padding: 1px;
+  width: 6px;
+}
+.dlBlue .idxSelectWrapMenu .dijitMenuItem .dijitMenuItemLabel {
+  color: #393a3f;
+}
+.dlBlue .idxSelectWrapMenu .dijitMenuItemHover,
+.dlBlue .idxSelectWrapMenu .dijitMenuItemSelected,
+.dlBlue .idxSelectWrapMenu .dijitMenuItemHover td,
+.dlBlue .idxSelectWrapMenu .dijitMenuItemSelected td {
+  background: #daf1fc;
+  border-color: #daf1fc;
+  color: #393a3f;
+}

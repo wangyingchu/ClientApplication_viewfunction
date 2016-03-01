@@ -63,11 +63,26 @@
 	margin: 0;
 	width: 16px;
 }
+.oneui .idxCheckBoxSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemIconCell{
+	padding-left: 9px;
+}
+.oneui .idxCheckBoxSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemLabel {
+  	padding-top: 2px;
+  	padding-bottom: 4px;
+}
+.oneui .idxCheckBoxSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>td.dijitMenuItemLabel {
+  	padding-top: 3px;
+}
+
 
 .oneui .idxCheckBoxSelectMenu .dijitMenuItemLabel,
 .oneui .idxCheckBoxSelectMenu .oneuiMenuHeadingLabel {
 	margin: 0;
-  	padding: 4px 10px 4px 0;
+  	padding: 3px 10px 4px 0;
+}
+
+.oneui .idxCheckBoxSelectMenu table.dijitMenuTable{
+	width: 100%;
 }
 
 .oneui .dijitMenuPopup .idxCheckBoxSelectMenu .dijitMenuItemReadOnly{
@@ -90,3 +105,11 @@
 	background: #fff3f3;
 }
 
+
+.oneui .idxCheckBoxSelectWrap .dijitValidationContainer{
+	display:none;
+}
+
+.oneui .idxCheckBoxSelectWrapError .dijitValidationContainer{
+	display: inherit;
+}

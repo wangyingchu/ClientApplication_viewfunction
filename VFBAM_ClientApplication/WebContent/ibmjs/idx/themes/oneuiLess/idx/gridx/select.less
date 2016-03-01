@@ -1,0 +1,33 @@
+/* row select */
+.gridx .gridxRowSelected .gridxCell {
+  border-top-color: @fwDark;
+  background: none;
+  background-color: transparent;
+}
+.gridx .gridxRowSelected:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.gridx .gridxRowSelected:last-child .gridxCell {
+  border-bottom-color: @fwDark;
+}
+.gridxRowSelected + .gridxRow .gridxCell {
+  border-top-color: @fwDark;
+}
+.gridx .gridxRowSelected .gridxRowTable {
+  background-color: @selected;
+}
+/* column select */
+.gridx .gridxRow .gridxColumnSelected {
+  background-color: @selected;
+}
+/* cell select */
+.gridx .gridxRow .gridxCellSelected {
+  background-color: @selected;
+}
+/* Indirect Select */
+.gridxIndirectSelectionCheckBox {
+  margin: 0;
+}
+.gridx .gridxHeader .gridxRowHeaderHeader .gridxHeaderCellFocus {
+  border-color: transparent;
+}

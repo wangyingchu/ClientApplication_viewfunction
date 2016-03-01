@@ -1,0 +1,27 @@
+.idxDropDownLink.idxLinkDerived {
+  white-space: nowrap;
+  display: inline;
+}
+.idxDropDownLink .idxDropDownLinkAnchor {
+  margin-right: 2px;
+  cursor: pointer;
+}
+.idxDropDownLink .dijitArrowButtonInner {
+  cursor: pointer;
+}
+.dijitRtl & .idxDropDownLink .idxDropDownLinkAnchor {
+  margin-right: 0px;
+  margin-left: 4px;
+}
+.idxDropDownLinkDisabled .idxDropDownLinkAnchor,
+.idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor {
+  color: @textDisabled;
+}
+.idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover,
+.idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover {
+  text-decoration: none;
+  cursor: default;
+}
+.idxDropDownLinkDisabled .dijitArrowButtonInner {
+  cursor: auto;
+}

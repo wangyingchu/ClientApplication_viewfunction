@@ -1,7 +1,7 @@
 define({     
 //begin v1.x content
-	loginTitle: "Кіру",
-	labelUserName: "Пайдаланушы аты",
+	loginTitle: "Логин",
+	labelUserName: "Пайдаланушының аты",
 	labelPassword: "Құпия сөз",
 	invalidMessageTitle: "Жарамсыз енгізу әрекеті",
 	invalidMessage: "Жарамды мән сұралған екеуінеде енгізілмеген."

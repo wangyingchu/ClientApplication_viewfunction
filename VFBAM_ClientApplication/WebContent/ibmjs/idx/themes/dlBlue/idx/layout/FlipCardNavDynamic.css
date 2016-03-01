@@ -1,0 +1,105 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+/************* grid navigator common ****************/
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx {
+  width: 100%;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxRow .gridxCell {
+  color: #00597B;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerContextVSize {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerHSlide {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerVSlide {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxSlideRefresh {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerWrapper .gridxRowTable {
+  width: 100%;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerWrapper .gridxRowTable .gridxCell {
+  border: medium none;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerWrapper .gridxLayerCellFocus {
+  outline: 1px dashed #00008B;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerUnderlay {
+  position: absolute;
+  background-color: #F7F7F7;
+  top: 0;
+  left: 0height:0;
+  width: 100%;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerUnderlay .gridxRow .gridxCell {
+  background-color: #F7F7F7;
+  border: medium none;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxBody {
+  background-color: #F5F6F6;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxBody .gridxCellFocus {
+  border: 1px dashed darkblue !important;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxBody .gridxRowTable {
+  background-color: transparent;
+  width: 100%;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxBody .gridxRowTable .gridxCell {
+  border: medium none;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxBody .gridxRowTable .gridxCustomRow {
+  background-color: #F9F9F9;
+  color: gray;
+  width: 250px;
+  padding: 0px;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxBody .gridxRowSelected .gridxCell {
+  background-color: #0a7aa9;
+  color: #FFFFFF;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerHasChildren {
+  background-position: -44px -4px;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerLevelUp {
+  background-position: -84px -4px;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxRow .gridxCell .gridxTreeExpandoIcon {
+  background-image: url("images/leftNavArrows.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxRow .gridxCell .gridxTreeExpandoCellOpen .gridxTreeExpandoIcon {
+  background-position: -16px 0;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxRow.fcNavItemGroupStatic .gridxCell .gridxTreeExpandoIcon {
+  display: none;
+}
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerUnderlay .gridxRow .gridxCell .gridxLayerHasChildren,
+.dlBlue .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerUnderlay .gridxRow .gridxCell .gridxLayerLevelUp {
+  background: none;
+}

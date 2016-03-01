@@ -1,0 +1,236 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxErrorMessageDialog .messageSummary {
+  background: #d9182d;
+  color: #ffffff;
+}
+.dlBlue .idxWarningMessageDialog .messageSummary,
+.dlBlue .idxConfirmationMessageDialog .messageSummary {
+  background: #ffe268;
+  color: #4c4d53;
+}
+.dlBlue .idxSuccessMessageDialog .messageSummary {
+  background: #007446;
+  color: #ffffff;
+}
+.dlBlue .idxInformationMessageDialog .messageSummary,
+.dlBlue .idxQuestionMessageDialog .messageSummary {
+  background: #267bac;
+  color: #ffffff;
+}
+.dlBlue .idxModalDialog,
+.dlBlue .idxConfirmDialog {
+  border: 0;
+  -webkit-box-shadow: 0px 0px 5px rgba(29, 30, 30, 0.3);
+  -moz-box-shadow: 0px 0px 5px rgba(29, 30, 30, 0.3);
+  box-shadow: 0px 0px 5px rgba(29, 30, 30, 0.3);
+}
+.dj_ie8 .dlBlue .idxModalDialog,
+.dj_ie8 .dlBlue .idxConfirmDialog {
+  border: 1px solid #a4a6ab;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+.dlBlue .idxModalDialog,
+.dlBlue .idxConfirmDialog {
+  background: #ffffff;
+  width: 500px;
+  min-width: 0;
+  padding: 0;
+}
+.dlBlue .idxModalDialog .dijitDialogTitleBar,
+.dlBlue .idxConfirmDialog .dijitDialogTitleBar {
+  display: none;
+}
+.dlBlue .idxModalDialog .messageSummary,
+.dlBlue .idxConfirmDialog .messageSummary {
+  overflow: auto;
+  padding: 15px 20px;
+  _height: 48px;
+}
+.dlBlue .idxModalDialog .messageSummary .messageDescription,
+.dlBlue .idxConfirmDialog .messageSummary .messageDescription {
+  word-wrap: break-word;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.538em;
+  font-weight: 200;
+}
+.dlBlue .idxModalDialog .messageSummary .messageIcon,
+.dlBlue .idxConfirmDialog .messageSummary .messageIcon {
+  float: left;
+  margin: 0 15px 0 0;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  background-image: url('../idx/widget/images/MsgIcons.svg');
+}
+.dj_ie8 .dlBlue .idxModalDialog .messageSummary .messageIcon,
+.dj_ie8 .dlBlue .idxConfirmDialog .messageSummary .messageIcon {
+  background-image: url('../idx/widget/images/MsgIcons.png');
+}
+.dlBlue .idxErrorMessageDialog .messageIcon {
+  background-position: 0px -42px;
+}
+.dlBlue .idxInformationMessageDialog .messageIcon {
+  background-position: -186px -42px;
+}
+.dlBlue .idxWarningMessageDialog .messageIcon,
+.dlBlue .idxConfirmationMessageDialog .messageIcon {
+  background-position: -62px -42px;
+}
+.dlBlue .idxSuccessMessageDialog .messageIcon {
+  background-position: -124px -42px;
+}
+.dlBlue .idxModalDialog.idxQuestionMessageDialog .messageSummary .messageIcon,
+.dlBlue .idxConfirmDialog.idxQuestionMessageDialog .messageSummary .messageIcon {
+  background-image: url('../idx/app/images/help.svg');
+}
+.dj_ie8 .dlBlue .idxModalDialog.idxQuestionMessageDialog .messageSummary .messageIcon,
+.dj_ie8 .dlBlue .idxConfirmDialog.idxQuestionMessageDialog .messageSummary .messageIcon {
+  background-image: url('../idx/app/images/help.png');
+  background-position: -4px -4px;
+}
+.dlBlue .idxModalDialog .messageWrapper,
+.dlBlue .idxConfirmDialog .messageWrapper {
+  margin: 0 20px;
+  padding: 15px 0;
+  color: #74767a;
+  font-size: 1em;
+  font-weight: 400;
+  border-bottom: 1px solid #cdced2;
+}
+.dlBlue .idxModalDialog .messageDialogFooter,
+.dlBlue .idxConfirmDialog .messageDialogFooter {
+  padding: 15px 20px 20px;
+  min-height: 1.5em;
+}
+.dlBlue .idxModalDialog .dijitDialogPaneContent,
+.dlBlue .idxConfirmDialog .dijitDialogPaneContent {
+  border-top: none;
+  padding: 0px;
+}
+.dlBlue .idxModalDialog .dijitTitlePane,
+.dlBlue .idxConfirmDialog .dijitTitlePane {
+  margin-bottom: 8px;
+}
+.dlBlue .idxModalDialog .messageDialogFooter .messageCheckBox,
+.dlBlue .idxConfirmDialog .messageDialogFooter .messageCheckBox {
+  margin: 0;
+  padding: 0;
+}
+.dlBlue .idxModalDialog .messageDialogFooter .messageCheckBox .idxLabel,
+.dlBlue .idxConfirmDialog .messageDialogFooter .messageCheckBox .idxLabel {
+  margin: 2px 0 0;
+}
+.dlBlue .idxModalDialog .messageDialogFooter .messageAction,
+.dlBlue .idxConfirmDialog .messageDialogFooter .messageAction {
+  float: right;
+}
+.dlBlue .messageDialogFooter .messageAction .dijitButton {
+  margin: 0 0 0 5px;
+}
+.dlBlue .idxModalDialog a.messageIdOnly {
+  text-decoration: none !important;
+  color: #222 !important;
+}
+.dlBlue .idxProgressDialog {
+  width: 300px !important;
+  padding: 0px 0px 5px;
+}
+.dlBlue .idxProgressDialog .messageSummary {
+  margin: auto;
+  padding: 25px 0px;
+}
+.dlBlue .idxProgressDialog .messageWrapper {
+  border-top: medium none;
+  margin: 0px;
+}
+.dlBlue .idxProgressDialog .dijitDialogPaneContent {
+  padding: 0px;
+}
+.dlBlue .idxProgressDialog .idxSimpleIconContainer {
+  text-align: center;
+}
+.dlBlue .idxProgressDialog .idxSimpleIconContainer tr td {
+  text-align: center;
+}
+.dlBlue .idxProgressDialog .idxSimpleIconContainer .idxSignIcon.dijitContentPaneLoading {
+  margin: auto;
+  padding-left: 0px !important;
+  padding-top: 3px !important;
+  padding-bottom: 2px !important;
+  height: 45px;
+  width: 40px;
+}
+.dlBlue .idxProgressDialog .idxSimpleIconContainer .idxSimpleIconText {
+  padding: 0px 0px 15px 0px;
+}
+.dlBlue .idxProgressDialog .messageDialogFooter {
+  padding: 15px 0px 8px;
+  min-height: 30px;
+  text-align: center;
+}
+.dlBlue .idxProgressDialog .messageDialogFooter .messageAction {
+  float: none;
+}
+.dlBlue .idxModalDialog .messageRef,
+.dlBlue .idxConfirmDialog .messageRef {
+  margin-right: 10px;
+}
+.dlBlue .idxModalDialog .messageTimeStamp,
+.dlBlue .idxConfirmDialog .messageTimeStamp {
+  color: #74767a;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.dlBlue .idxModalDialog .messageRef a,
+.dlBlue .idxConfirmDialog .messageRef a {
+  text-decoration: none;
+  color: #74767a;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.dlBlue .idxModalDialog .messageRef a:hover,
+.dlBlue .idxConfirmDialog .messageRef a:hover {
+  text-decoration: underline;
+}
+.dlBlue .idxModalDialog .messageSummary .messageProgressIcon,
+.dlBlue .idxConfirmDialog .messageSummary .messageProgressIcon {
+  display: none;
+}
+.dlBlue .idxModalDialog .messageSummary .messageIconText,
+.dlBlue .idxConfirmDialog .messageSummary .messageIconText {
+  display: none;
+}
+.dlBlue .messageDialogFooter .dijitButton .dijitButtonNode {
+  padding: 0;
+  min-width: 0;
+  color: #267bac;
+  background: transparent;
+  border: 0;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.dlBlue .messageDialogFooter .dijitButton .dijitButtonNode .dijitButtonText {
+  padding: 0 .4em;
+}
+.dijit_a11y .idxModalDialog .messageSummary img,
+.dijit_a11y .idxConfirmDialog .messageSummary img {
+  display: none;
+}
+.dijit_a11y .idxModalDialog .messageSummary .messageIconText,
+.dijit_a11y .idxConfirmDialog .messageSummary .messageIconText {
+  display: inline;
+  margin: 0 10px;
+}
+.dlBlue .dijitDialog .compact .dijitTabContainer .dijitTabContainerTop-tabs {
+  padding-left: 0;
+  padding-right: 0;
+}
+.dlBlue .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTab,
+.dlBlue .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTabChecked,
+.dlBlue .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedHover,
+.dlBlue .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedActive {
+  padding: 7px 10px;
+}

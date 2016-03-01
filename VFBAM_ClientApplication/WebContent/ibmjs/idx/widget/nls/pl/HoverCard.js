@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Więcej działań"
 //end v1.x content
 });
+

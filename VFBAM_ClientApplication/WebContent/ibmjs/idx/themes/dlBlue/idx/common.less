@@ -1,0 +1,134 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  
+
+@import "../dijit/variables";  
+.dj_safari .@{theme-name} a {
+    color: #00649d;
+    text-decoration: none;
+}
+
+.@{theme-name} {
+	.idxFloatLeading { float: left; }
+	.idxFloatTrailing {	float: right; }
+	.idxTextAlignLeading { text-align: left; }
+	.idxTextAlignTrailing { text-align: right; }
+}
+
+.dijitRtl .@{theme-name} {
+	.idxFloatLeading {	float: right; }
+	.idxFloatTrailing { float: left; }
+	.idxTextAlignLeading { text-align: right; }
+	.idxTextAlignTrailing { text-align: left; }
+}
+
+.@{theme-name} {
+    a:link {
+        color: #00649d;
+        text-decoration: none;
+    }
+    a:visited {
+        color: #745285;
+    }
+    a:hover {
+        color: #265C80;
+        text-decoration: underline;
+    }
+    a:active {
+        color: @pressed-background-color;
+    }
+}
+
+.idxTextAlternative {
+    display: none;
+}
+.dijit_a11y {
+    .idxTextAlternative {
+        display: inline;
+    }
+    .@{theme-name} {
+        .idxSignIcon.dijitContentPaneLoading {
+            color: black;
+        }
+    }
+}
+.@{theme-name} {
+    .idxSignIcon {
+        background-image: url(images/msgIcons_24bit.png);
+        background-repeat: no-repeat;
+        width: 24px;
+        height: 24px;
+        padding: 0 !important;
+    }
+    .idxSimpleIconContainer {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .idxSimpleIconText {
+        padding: 0px 0px 0px 5px;
+    }
+    .idxInformIcon {
+        background-position: -96px -18px;
+    }
+    .idxWarnIcon {
+        background-position: -24px -18px;
+    }
+    .idxErrorIcon {
+        background-position: 0 -18px;
+    }
+    .idxConfirmIcon {
+        background-position: -48px -18px;
+    }
+    .idxDialogIconWarning {
+        background-position: -24px -18px;
+    }
+    .idxDialogIconInformation {
+        background-position: -96px -18px;
+    }
+    .idxDialogIconError {
+        background-position: 0 -18px;
+    }
+    .idxDialogIconText {
+        margin-left: 0px;
+    }
+    .idxDetailsPaneText {
+        border-style: none none solid;
+        border-width: 0px;
+        text-align: center;
+        display: block !important;
+        font-family: Georgia, "Times New Roman", serif;
+        color: #666;
+        padding: 15px;
+    }
+    .idxSignIcon.dijitContentPaneLoading {
+        width: 50px;
+        height: 50px;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        background: url(images/loadingAnimation38px.gif) no-repeat;
+        padding-left: 45px !important;
+        padding-top: 12px !important;
+    }
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxSimpleIconText {
+            padding: 0px 5px 0px 0px;
+        }
+        .idxSignIcon.dijitContentPaneLoading {
+            background-position: top right;
+            padding-right: 45px !important;
+        }
+    }
+}
+.@{theme-name} .idxDialogIconWarning,.@{theme-name} .idxDialogIconInformation,.@{theme-name} .idxDialogIconError {
+    background-image: url('images/msgIcons_24bit.png');
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+}
+.dijitRtl .@{theme-name} .idxDialogIconWarning,.dijitRtl .@{theme-name} .idxDialogIconInformation,.dijitRtl .@{theme-name} .idxDialogIconError {
+    margin-right: 0px;
+    margin-left: 4px;
+}

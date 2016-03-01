@@ -10,11 +10,11 @@ define([
 	"dojo/_base/array", 
 	"dojo/_base/lang", 
 	"dojo/dom-attr", 
-	"dojo/dom-style", 
+	"dojo/dom-class", 
 	"dojo/i18n", 
 	"dijit/form/Button",
 	"dojo/i18n!./nls/_FormMixin"
-], function(declare, array, lang, domAttr, domStyle, i18n, Button){
+], function(declare, array, lang, domAttr, domClass, i18n, Button){
 	// module:
 	// oneui/form/_FormMixin
 	// summary:
@@ -73,9 +73,10 @@ define([
 		
 		children: null,
 		
-		actionButtons: [],
+		actionButtons: [], // need to override this class-static value in postMixInProperties
 		
 		postMixInProperties: function(){
+			this.actionButtons = []; // set this to a instance-local value
 			this.inherited(arguments);
 			this._nlsResources = i18n.getLocalization("idx.form", "_FormMixin", this.lang);
 			this.legend = this._nlsResources.legendText;
@@ -149,10 +150,8 @@ define([
 		},
 		
 		_setNodeText: function (/*Dom*/node, /* String*/ text) {
-			domStyle.set(node, {
-				visibility: text ? "visible" : "hidden",
-				display: text ? "block" : "none"
-			});
+			if(!node)return;
+			domClass.toggle(node, "dijitHidden", text);
 			if(text){
 				node.innerHTML = text;
 			}

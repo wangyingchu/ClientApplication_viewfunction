@@ -10,3 +10,4 @@ define({
 	legendText: "Vereist"
 //end v1.x content
 });
+

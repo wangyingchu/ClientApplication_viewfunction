@@ -1,0 +1,37 @@
+define({     
+//begin v1.x content
+	closeLabel: "Затвори",
+	configureLabel: "Конфигурирај",
+	editLabel: "Уреди",
+	filterLabel: "Филтрирај",
+	clearFilterLabel: "Исчисти",
+	helpLabel: "Помош",
+	infoLabel: "Информации",
+	minimizeLabel: "Намали",
+	maximizeLabel: "Зголеми",
+	printLabel: "Печати",
+	refreshLabel: "Освежи",
+	restoreLabel: "Обнови",
+	nextPageLabel: "Следно",
+	previousPageLabel: "Претходно",
+	lastPageLabel: "Последно",
+	firstPageLabel: "Прва",
+	closeTip: "Затвори",
+	configureTip: "Конфигурирај",
+	editTip: "Уреди",
+	filterTip: "Филтрирај",
+	clearFilterTip: "Исчисти филтер",
+	helpTip: "Види Помош",
+	infoTip: "Види Информации",
+	minimizeTip: "Намали",
+	maximizeTip: "Зголеми",
+	printTip: "Печати",
+	refreshTip: "Освежи",
+	restoreTip: "Обнови",
+	nextPageTip: "Следна страница",
+	previousPageTip: "Претходна страница",
+	lastPageTip: "Последна страница",
+	firstPageTip: "Прва страница"
+//end v1.x content
+});
+

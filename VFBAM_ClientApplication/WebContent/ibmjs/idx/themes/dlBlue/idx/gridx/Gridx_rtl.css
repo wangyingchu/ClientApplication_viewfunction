@@ -1,0 +1,149 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxRtl .gridxHeaderRow .gridxCell {
+  /*    border-left: 1px solid #ccc;
+    border-right-color: transparent;*/
+  text-align: right;
+}
+.dlBlue .gridxRtl .gridxHeader .gridxHeaderRow .gridxHeaderCellFocus {
+  border-left: 1px solid #ccc;
+  border-right-color: transparent;
+}
+.dlBlue .gridxRtl .gridxRow .gridxCell {
+  border-color: #d9d9d9 transparent transparent #d9d9d9;
+}
+.dlBlue .gridxRtl .gridxHeaderRowInner {
+  border-width: 0 0 0 1px;
+}
+.dlBlue .gridxRtl .gridxVScroller {
+  border-right: none;
+  border-left: 1px solid #d9d9d9;
+}
+.dlBlue .gridxRtl .gridxRowHeaderBody {
+  border-left: 0px solid #b8babe;
+}
+.dlBlue .gridxRow:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.dlBlue .gridxRow:last-child .gridxCell {
+  border-bottom-color: #d9d9d9;
+}
+.dj_ie .dlBlue .gridxLastRow .gridxCell {
+  border-bottom-color: #d9d9d9;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxRtl .gridxQuickFilterClear {
+  right: auto;
+  left: 10px;
+}
+.dlBlue .gridxRtl .gridxFilterBar .dijitButton {
+  left: auto;
+  right: 0;
+}
+.dlBlue .gridxRtl .gridxFilterBarCloseBtn {
+  margin-right: 0;
+  margin-left: 10px;
+}
+.dlBlue .gridxRtl .gridxFilterBarStatusText {
+  margin-right: auto;
+  margin-left: 10px;
+}
+.dlBlue .dijitRtl .gridxFilterPaneForm .gridxFilterPaneRemoveBtn {
+  margin-right: 5px;
+  margin-left: 15px;
+}
+.dlBlue .gridxRtl .gridxQuickFilterIcon,
+.dlBlue .gridxRtl .gridxFilterBar .dijitButton .gridxFilterBarBtnIcon {
+  /*background-position: 0px -32px;*/
+}
+.dlBlue .gridxRtl .dijitButtonHover .gridxQuickFilterIcon,
+.dlBlue .gridxRtl .dijitButtonActive .gridxQuickFilterIcon,
+.dlBlue .gridxRtl .dijitComboButtonHover .gridxQuickFilterIcon,
+.dlBlue .gridxRtl .dijitComboButtonActive .gridxQuickFilterIcon {
+  /*background-position: -16px -32px;*/
+}
+.dlBlue .dijitRtl .gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.dlBlue .dijitRtl .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  margin-right: auto;
+  margin-left: 20px;
+}
+.dlBlue .dijitRtl .gridxFilterPaneForm .gridxFilterPaneColumnSelect .dijitValidationContainer,
+.dlBlue .dijitRtl .gridxFilterPaneForm .gridxFilterPaneConditionSelect .dijitValidationContainer {
+  margin: 0 5px 0 0;
+}
+.dj_rtl .dlBlue .gridxFilterDialogOneLine form > label {
+  margin-right: auto;
+  margin-left: 10px;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxRtl .gridxRowSelected .gridxCell {
+  border-top-color: #bbb;
+  background: none;
+  background-color: transparent;
+}
+.dlBlue .gridxRtl .gridxRowSelected:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.dlBlue .gridxRtl .gridxRowSelected:last-child .gridxCell {
+  border-bottom-color: #bbb;
+}
+.dlBlue .gridxRtl .gridxRowSelected + .gridxRow .gridxCell {
+  border-top-color: #bbb;
+}
+.dj_rtl .dlBlue .gridxAlternatingRows .gridxRowSelected + .gridxRow .gridxCell {
+  border-top-color: #fff;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxRtl .gridxPagerDescription {
+  text-align: right;
+}
+.dlBlue .gridxRtl .gridxPagerSizeSwitchTD,
+.dlBlue .gridxRtl .gridxPager .gridxPagerGoto,
+.dlBlue .gridxRtl .gridxGotoPage .gridxGotoPageBtns {
+  text-align: left;
+}
+.dlBlue .gridxRtl .gridxPagerSizeSwitchDD {
+  text-align: left;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage {
+  background-image: url('svg/next-right-forward.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage {
+  background-image: url('svg/back-left-previous.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+  background-image: url('svg/next-right-forward-disabled.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable {
+  background-image: url('svg/back-left-previous-disabled.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerSizeSwitchDD {
+  text-align: left;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage {
+  background-image: url('images/next-right-forward.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage {
+  background-image: url('images/back-left-previous.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+  background-image: url('images/next-right-forward-disabled.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable {
+  background-image: url('images/back-left-previous-disabled.png');
+  background-size: 100%;
+  background-position: 0 0;
+}

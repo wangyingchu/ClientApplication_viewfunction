@@ -16,7 +16,8 @@ define(["dojo/_base/declare",
         "dojo/aspect",
         "dijit/registry",
         "dijit/focus",
-        "dojo/_base/array"
+        "dojo/_base/array",
+        "dijit/form/Button"
         ],
         function (dDeclare,
                   dStackController, 
@@ -28,7 +29,8 @@ define(["dojo/_base/declare",
 	              dAspect,
 	              dRegistry,
 	              dFocus,
-	              dArray) {
+	              dArray,
+	              dButton) {
          var dStackButton = dStackController.StackButton;
          
      	 /**
@@ -157,18 +159,21 @@ define(["dojo/_base/declare",
                 adjacent: function(/*Boolean*/ forward){
                     
                     //if(!this.isLeftToRight() && (!this.tabPosition || /top|bottom/.test(this.tabPosition))){ forward = !forward; }
-                    
+                    var index = 0;
                     // find currently focused button in children array
                     var children = this.getChildren();
-                    var idx = dArray.indexOf(children, this.pane2button[this._currentChild.id]),
-                        current = children[idx];
+                    var current = children[0];
+                    if (this._currentChild) {
+                    	index = dArray.indexOf(children, this.pane2button(this._currentChild.id) );
+                    	current = children[index];
+                    }
 
                     // Pick next/previous non-disabled button to focus on.   If we get back to the original button it means
                     // that all buttons must be disabled, so return current child to avoid an infinite loop.
                     var child;
                     do{
-                        idx = (idx + (forward ? 1 : children.length - 1)) % children.length;
-                        child = children[idx];
+                        index = (index + (forward ? 1 : children.length - 1)) % children.length;
+                        child = children[index];
                     }while(child.disabled && child != current);
 
                     return child; // dijit/_WidgetBase
@@ -217,7 +222,7 @@ define(["dojo/_base/declare",
                 
                 onAddChild: function(page) {
                 	this.inherited(arguments);
-                	var button = this.pane2button[page.id];
+                	var button = this.pane2button(page.id);
                 	if (! button) return;
                 	var controlNode = (button.focusNode ? button.focusNode : button.domNode);
                 	var pageNode = page.domNode;
@@ -247,24 +252,20 @@ define(["dojo/_base/declare",
                 onkeypress: function(/*Event*/e) {
                 	this.inherited(arguments);
                 },
-                
-                onButtonClick: function(/*dijit._Widget*/ buttonOrPage){
-                	var page = null;
-                	if (buttonOrPage.page) {
-                		// this is a button (Dojo 1.8)
-                		page = buttonOrPage.page;
-                		dFocus.focus(buttonOrPage.focusNode);
-                		
-                	} else {
-                		// this is the page (Dojo 1.7)
-                		page = buttonOrPage;
+
+                paneOrButton2Button: function(paneOrButton) {
+                	if (paneOrButton instanceof dButton) {
+                		return paneOrButton;
                 	}
-					var button = this.pane2button[page.id];
+                	return this.pane2button(paneOrButton.id);
+                },
+                
+                onButtonClick: function(/*dijit._Widget*/ page){                	
+					var button = this.paneOrButton2Button(page);
 					dFocus.focus(button.focusNode);
 					        			
         			if(this._currentChild && this._currentChild.id === page.id) {
         				//In case the user clicked the checked button, keep it in the checked state because it remains to be the selected stack page.
-        				var button=this.pane2button[page.id];
         				button.set('checked', true);
         			}
         			var container = dRegistry.byId(this.containerId);

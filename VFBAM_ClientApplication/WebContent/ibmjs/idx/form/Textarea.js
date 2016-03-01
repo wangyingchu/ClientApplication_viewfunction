@@ -15,12 +15,30 @@ define([
 	"dojo/dom-attr",
 	"dojo/dom-geometry",
 	"dijit/form/Textarea",
+	"dijit/form/SimpleTextarea",
+	"dijit/form/TextBox",
+	"idx/widget/HoverHelpTooltip",
 	"../util",
 	"./_CssStateMixin",
 	"./_ValidationMixin",
 	"./_CompositeMixin",
-	"dojo/text!./templates/Textarea.html"
-], function(declare, lang, array, has,  event, domStyle, domAttr, domGeometry, Textarea, iUtil, _CssStateMixin, _ValidationMixin, _CompositeMixin, template){
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	"idx/has!#idx_form_Textarea-desktop?dojo/text!./templates/Textarea.html"  // desktop widget, load the template
+		+ ":#idx_form_Textarea-mobile?"										// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/Textarea.html"						// global desktop platform, load template
+		+ ":#mobile?"														// global mobile platform, don't load
+		+ ":dojo/text!./templates/Textarea.html", 							// no dojo/has features, load the template
+		
+	"idx/has!#idx_form_Textarea-mobile?./plugins/mobile/TextareaPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_Textarea-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/mobile/TextareaPlugin"							// global mobile platform, load plugin
+		+ ":"
+], function(declare, lang, array, has,  event, domStyle, domAttr, domGeometry, 
+	Textarea, SimpleTextarea, TextBox, HoverHelpTooltip, iUtil, _CssStateMixin, 
+	_ValidationMixin, _CompositeMixin, _TemplatePlugableMixin, PlatformPluginRegistry, 
+	desktopTemplate, MobilePlugin){
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	
     /**
@@ -41,16 +59,41 @@ define([
 	 * @augments idx.form._ValidationMixin
 	 */
 
-	return iForm.Textarea = declare("idx.form.Textarea", [Textarea, _CompositeMixin,  _CssStateMixin, _ValidationMixin], 
+	var Textarea = declare([Textarea, _CompositeMixin,  _CssStateMixin, _ValidationMixin], 
 	/**@lends idx.form.Textarea.prototype*/
 	{
+		/**
+		 * 
+		 */
 		instantValidate: false,
-		templateString: template,
+		/**
+		 * 
+		 */
+		templateString: desktopTemplate,
+		/**
+		 * 
+		 */
 		baseClass: "idxTextareaWrap",
+		/**
+		 * 
+		 */
 		oneuiBaseClass: "dijitTextBox dijitTextArea dijitExpandingTextArea",
+		/**
+		 * 
+		 */
 		rows: 1,
+		/**
+		 * 
+		 */
 		_minScrollHeight: 0,
-
+		/**
+		 *  Set height fixed
+		 *  Default value is false
+		 */
+		heightFixed:false,
+		/**
+		 * 
+		 */
 		postCreate: function(){
 			// summary:
 			//     add style height setting, change to integer of rows number
@@ -80,30 +123,77 @@ define([
 				return conn && conn[0] && conn[0][1] == "onfocus"; 
 			}), this.disconnect, this);
 			this._resize();
+
+			// for task 13788
+			// if heightFixed true, when input, set scroll bar automatically
+			// by yifan ruan
+			if(this.heightFixed)
+				this.textbox.style.overflowY = "auto";
 		},
+		/**
+		 * overwrite this funtion for  Defect 11013 Fixed
+		 */
+		_onBlur: function(){
+			this.validate(this.focused);
+			//
+			// Trigger the onChanged event in the following method
+			//
+			this.inherited(arguments);
+		},
+		/**
+		 * 
+		 */
 		_onInput: function(){
-			dijit.form.SimpleTextarea.prototype._onInput.apply(this, arguments);
+			SimpleTextarea.prototype._onInput.apply(this, arguments);
 			this._resizeVertical();
 		},
+		/**
+		 * 
+		 */
 		_resizeLater: function(){
 			this.defer("_resizeVertical");
 		},
+		/**
+		 * 
+		 */
 		_isEmpty: function(){
 			return (this.trim ? /^\s*$/ : /^$/).test(this.get("value")); // Boolean
 		},
+		/**
+		 * 
+		 */
 		_setValueAttr: function(){
-			dijit.form.TextBox.prototype._setValueAttr.apply(this, arguments);
+			TextBox.prototype._setValueAttr.apply(this, arguments);
 			this._updatePlaceHolder();
-			this.validate(this.focused);
+			//this.validate(this.focused);
 		},
+		/**
+		 * 
+		 * @param {Object} mousedownNode
+		 */
 		_isValidFocusNode: function(mousedownNode){
 			return (this.hintPosition == "inside" && mousedownNode == this._phspan || 
 				mousedownNode == this.oneuiBaseNode.parentNode) || this.inherited(arguments);
 		},
+		/**
+		 * 
+		 * @param {Object} Int rows
+		 */
 		_setRowsAttr: function(/*Int*/ rows){
 			domAttr.set(this.oneuiBaseNode, "rows", rows);
 			this.rows = parseInt(rows);
 		},
+		/**
+		 * 
+		 * @param {Object} Int cols
+		 */
+		_setColsAttr: function(/*Int*/ cols){
+			domAttr.set(this.oneuiBaseNode, "cols", cols);
+			this.cols = parseInt(cols);
+		},
+		/**
+		 * 
+		 */
 		_estimateHeight: function(){
 			// summary:
 			//		Approximate the height when the textarea is invisible with the number of lines in the text.
@@ -118,9 +208,21 @@ define([
 			this._errorIconWidth = 27;
 			this.inherited(arguments);
 			this._resizeVertical();
+			this._resizeHorizontal();
 		},
-		
+		_resizeHorizontal:function(){
+			if ( this.cols > 0 ){
+				domStyle.set(this.oneuiBaseNode, "width", "");
+			}
+		},
 		_resizeVertical: function(){
+
+			// for task 13788
+			// if heightFixed false, resize height
+			// otherwise no resize
+			// by yifan ruan
+			if(!this.heightFixed){
+
 			// summary:
 			//		Resizes the textarea vertically (should be called after a style/value change)
 			var textarea = this.textbox, self = this;
@@ -178,6 +280,7 @@ define([
 				if (textarea.style.overflowY == "hidden") {
 					textarea.scrollTop = 0;
 				}
+				this._onExpanded();
 			}
 			else {
 				// hidden content of unknown size
@@ -186,5 +289,61 @@ define([
 	
 			this.busyResizing = false;
 		}
+
+		},
+		displayMessage: function(/*String*/ message, /*Boolean*/ force){
+			if(message){
+				if(!this.messageTooltip){
+					this.messageTooltip = new HoverHelpTooltip({
+						connectId: [this.iconNode],
+						label: message,
+						position: this.tooltipPosition,
+						forceFocus: false
+					});
+				}else{
+					this.messageTooltip.set("label", message);
+				}
+				if(this.focused || force){
+					var node = domStyle.get(this.iconNode, "visibility") == "hidden" ? this.oneuiBaseNode : this.iconNode;
+					this.messageTooltip.open(node);
+				}
+			}else{
+				this.messageTooltip && this.messageTooltip.close();
+			}
+		},
+		_onExpanded: function(){}
 	});
+	
+	if(has("mobile") || has("platform-plugable")){
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/Textarea", {	
+			desktop: "inherited",	// no plugin for desktop, use inherited methods  
+			mobile: MobilePlugin	// use the mobile plugin if loaded
+		});
+		
+		Textarea = declare([Textarea,_TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			
+			
+			templatePath: require.toUrl("idx/form/templates/Textarea.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			 			
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			},
+			_onExpanded: function(newHeight){
+				return this.doWithPlatformPlugin(arguments, "_onExpanded", "onExpanded", newHeight);
+			}
+		});
+	}
+	return iForm.Textarea = declare("idx.form.Textarea", Textarea);
 });

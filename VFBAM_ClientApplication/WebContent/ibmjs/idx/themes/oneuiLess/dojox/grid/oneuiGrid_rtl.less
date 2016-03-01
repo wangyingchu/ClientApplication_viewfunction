@@ -1,0 +1,62 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/* RTL oneui styles for DataGrid */
+
+/* first load the dojox/Grid styles, in case they
+ * have not yet been loaded */
+@import "Grid_rtl";
+
+
+.dijitRtl & .dojoxGrid {
+	border-right: none;
+}
+
+/* Vienna styles for DataGrid right-to-left */
+.dijitRtl & .dojoxGridLoading, 
+.dijitRtl & .dojoxGridError {
+	background-position:right center;
+	padding-right:25px;
+	padding-left: 0px;
+}
+
+.dijitRtl & .dojoxGridHeader {
+	border-right-style: none;
+}
+
+.dijitRtl & .dojoxGridHeader .dojoxGridCell,
+.dijitRtl & .dojoxGridCell {
+	border-right-color: transparent;
+	border-left: 1px solid @fwLighter;
+}
+
+.dijitRtl & .dojoxGridArrowButtonNode {
+	padding-right: 0px;
+	float: left;
+}
+
+.dijitRtl & .dojoxGridArrowButtonChar {
+	float:left;
+}
+
+.dijitRtl & .dojoxGridRowbar { 
+	border:none;
+	border-left:1px solid @fwBase;
+}
+
+.dijitRtl & .dojoxGridRowbarSelected {
+	border-right: none;
+	border-left:1px solid @fwDark;
+}
+
+.dijitRtl & .dojoxGridExpando {
+	float: right;
+}
+
+.dijitRtl & .dojoxGridExpandoCell {
+	background-position: right top !important;
+}

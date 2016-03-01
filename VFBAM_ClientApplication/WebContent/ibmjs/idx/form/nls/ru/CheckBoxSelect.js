@@ -10,3 +10,4 @@ define({
 	missingMessage: "Необходимо выбрать хотя бы один элемент."
 //end v1.x content
 });
+

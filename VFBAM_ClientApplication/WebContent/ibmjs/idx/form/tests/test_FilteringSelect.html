@@ -53,14 +53,16 @@
 	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 	<script type="text/javascript">applyThemeToBody("oneui");</script>
 	<a name="maincontent"></a>
-	<div class="testMain">
+	<div class="testMain" role="main">
 		<h1 class="testTitle">idx.form.FilteringSelect Test</h1>
 		<h2>FilteringSelect with short menu</h2>
 		<select id="combobox1" data-dojo-type="idx.form.FilteringSelect"
 				data-dojo-props='name:"combobox1",
 				help: "Field help goes here.",
 				label: "FilteringSelect with short menu:",
-				fieldWidth: "300px"
+				fieldWidth: "300px",
+				required: true,
+				value: ""
 		'>
 			<option value="AK">Alaska</option>
 			<option value="AS">American Samoa</option>
@@ -70,7 +72,15 @@
 			<option value="WY">Wyoming</option>
 		</select>
 		<br/>
-		
+		<h2>FilteringSelect with empty option for Defect 12306</h2>
+		<select id="emptyFilteringSelect" data-dojo-type="idx.form.FilteringSelect"
+				data-dojo-props='name:"emptyFilteringSelect",
+				help: "Field help goes here.",
+				label: "FilteringSelect without options:",
+				fieldWidth: "300px"
+		'>
+		</select>
+		<br/>
 		<h2>FilteringSelect with long menu</h2>
 		<select id="combobox2" data-dojo-type="idx.form.FilteringSelect"
 				data-dojo-props='name:"combobox2",

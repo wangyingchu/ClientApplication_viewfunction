@@ -1,0 +1,581 @@
+/** configure the display modes -- note that the "showLabel" button attribute hides labels for us */
+.dijitButton.idxButtonLabelOnly .dijitIcon,
+.dijitComboButton.idxButtonLabelOnly .dijitIcon,
+.dijitDropDownButton.idxButtonLabelOnly .dijitIcon,
+.dijitToggleButton.idxButtonLabelOnly .dijitIcon {
+  visibility: hidden;
+  display: none;
+}
+/** choose the icon file based on the placement of the button **/
+.idxButtonIcon .dijitIcon {
+	background-image: url("images/idx/form/buttonIcons.png");
+  width: 16px;
+  height: 16px;
+}
+.idxButtonSecondary.idxButtonIcon .dijitIcon,
+.idxButtonIcon.idxButtonSecondary .dijitIcon {
+  background-image: url("images/idx/form/buttonIcons.png");
+}
+.idxButtonSpecial.idxButtonIcon .dijitIcon {
+	background-image: url("images/idx/form/buttonIconsSpecial.png");
+}
+.idxTooltipDialogButton .dijitButtonContents .dijitArrowButtonInner {
+  background: none;
+  width: 0;
+}
+.idxButtonToolbar.idxButtonIcon .dijitIcon,
+.idxButtonIcon.idxButtonToolbar .dijitIcon {
+	background-image: url("images/idx/form/buttonIcons.png");
+}
+.dijitTabButtonIcon.idxConfigureIcon,
+.dijitTabButtonIcon.idxCloseIcon,
+.dijitTabButtonIcon.idxEditIcon,
+.dijitTabButtonIcon.idxFilterIcon,
+.dijitTabButtonIcon.idxClearFilterIcon,
+.dijitTabButtonIcon.idxHelpIcon,
+.dijitTabButtonIcon.idxInfoIcon,
+.dijitTabButtonIcon.idxMinimizeIcon,
+.dijitTabButtonIcon.idxMaximizeIcon,
+.dijitTabButtonIcon.idxRestoreIcon,
+.dijitTabButtonIcon.idxRefreshIcon,
+.dijitTabButtonIcon.idxPrintIcon,
+.dijitTabButtonIcon.idxNextPageIcon,
+.dijitTabButtonIcon.idxPreviousPageIcon,
+.dijitTabButtonIcon.idxLastPageIcon,
+.dijitTabButtonIcon.idxFirstPageIcon {
+	.image(@imageRoot,"tabButtonIcons.png");
+  width: 16px;
+  height: 16px;
+  margin: 0px;
+  border: 0px none;
+  padding: 0px;
+}
+/** setup the background position for each icon type in each state **/
+.idxCloseIcon {
+  background-position: 0px 0px;
+}
+.idxButtonDerived.dijitHover .idxCloseIcon {
+  background-position: -16px 0px;
+}
+.idxButtonDerived.dijitActive .idxCloseIcon,
+.idxButtonDerived.dijitOpened .idxCloseIcon,
+.idxButtonDerived.idxDropDownOpen .idxCloseIcon {
+  background-position: -32px 0px;
+}
+.idxButtonDerived.dijitDisabled .idxCloseIcon {
+  background-position: -48px 0px;
+}
+.idxConfigureIcon {
+  background-position: 0px -16px;
+}
+.idxButtonDerived.dijitHover .idxConfigureIcon {
+  background-position: -16px -16px;
+}
+.idxButtonDerived.dijitActive .idxConfigureIcon,
+.idxButtonDerived.dijitOpened .idxConfigureIcon,
+.idxButtonDerived.idxDropDownOpen .idxConfigureIcon {
+  background-position: -32px -16px;
+}
+.idxButtonDerived.dijitDisabled .idxConfigureIcon {
+  background-position: -48px -16px;
+}
+.idxEditIcon {
+  background-position: 0px -32px;
+}
+.idxButtonDerived.dijitHover .idxEditIcon {
+  background-position: -16px -32px;
+}
+.idxButtonDerived.dijitActive .idxEditIcon,
+.idxButtonDerived.dijitOpened .idxEditIcon,
+.idxButtonDerived.idxDropDownOpen .idxEditIcon {
+  background-position: -32px -32px;
+}
+.idxButtonDerived.dijitDisabled .idxEditIcon {
+  background-position: -48px -32px;
+}
+.idxFilterIcon {
+  background-position: 0px -48px;
+}
+.idxButtonDerived.dijitHover .idxFilterIcon {
+  background-position: -16px -48px;
+}
+.idxButtonDerived.dijitActive .idxFilterIcon,
+.idxButtonDerived.dijitOpened .idxFilterIcon,
+.idxButtonDerived.idxDropDownOpen .idxFilterIcon {
+  background-position: -32px -48px;
+}
+.idxButtonDerived.dijitDisabled .idxFilterIcon {
+  background-position: -48px -48px;
+}
+.idxClearFilterIcon {
+  background-position: 0px -64px;
+}
+.idxButtonDerived.dijitHover .idxClearFilterIcon {
+  background-position: -16px -64px;
+}
+.idxButtonDerived.dijitActive .idxClearFilterIcon,
+.idxButtonDerived.dijitOpened .idxClearFilterIcon,
+.idxButtonDerived.idxDropDownOpen .idxClearFilterIcon {
+  background-position: -32px -64px;
+}
+.idxButtonDerived.dijitDisabled .idxClearFilterIcon {
+  background-position: -48px -64px;
+}
+.idxHelpIcon {
+  background-position: 0px -80px;
+}
+.idxButtonDerived.dijitHover .idxHelpIcon {
+  background-position: -16px -80px;
+}
+.idxButtonDerived.dijitActive .idxHelpIcon,
+.idxButtonDerived.dijitOpened .idxHelpIcon,
+.idxButtonDerived.idxDropDownOpen .idxHelpIcon {
+  background-position: -32px -80px;
+}
+.idxButtonDerived.dijitDisabled .idxHelpIcon {
+  background-position: -48px -80px;
+}
+.idxInfoIcon {
+  background-position: 0px -96px;
+}
+.idxButtonDerived.dijitHover .idxInfoIcon {
+  background-position: -16px -96px;
+}
+.idxButtonDerived.dijitActive .idxInfoIcon,
+.idxButtonDerived.dijitOpened .idxInfoIcon,
+.idxButtonDerived.idxDropDownOpen .idxInfoIcon {
+  background-position: -32px -96px;
+}
+.idxButtonDerived.dijitDisabled .idxInfoIcon {
+  background-position: -48px -96px;
+}
+.idxMinimizeIcon {
+  background-position: 0px -112px;
+}
+.idxButtonDerived.dijitHover .idxMinimizeIcon {
+  background-position: -16px -112px;
+}
+.idxButtonDerived.dijitActive .idxMinimizeIcon,
+.idxButtonDerived.dijitOpened .idxMinimizeIcon,
+.idxButtonDerived.idxDropDownOpen .idxMinimizeIcon {
+  background-position: -32px -112px;
+}
+.idxButtonDerived.dijitDisabled .idxMinimizeIcon {
+  background-position: -48px -112px;
+}
+.idxMaximizeIcon {
+  background-position: 0px -128px;
+}
+.idxButtonDerived.dijitHover .idxMaximizeIcon {
+  background-position: -16px -128px;
+}
+.idxButtonDerived.dijitActive .idxMaximizeIcon,
+.idxButtonDerived.dijitOpened .idxMaximizeIcon,
+.idxButtonDerived.idxDropDownOpen .idxMaximizeIcon {
+  background-position: -32px -128px;
+}
+.idxButtonDerived.dijitDisabled .idxMaximizeIcon {
+  background-position: -48px -128px;
+}
+.idxRestoreIcon {
+  background-position: 0px -144px;
+}
+.idxButtonDerived.dijitHover .idxRestoreIcon {
+  background-position: -16px -144px;
+}
+.idxButtonDerived.dijitActive .idxRestoreIcon,
+.idxButtonDerived.dijitOpened .idxRestoreIcon,
+.idxButtonDerived.idxDropDownOpen .idxRestoreIcon {
+  background-position: -32px -144px;
+}
+.idxButtonDerived.dijitDisabled .idxRestoreIcon {
+  background-position: -48px -144px;
+}
+.idxRefreshIcon {
+  background-position: 0px -160px;
+}
+.idxButtonDerived.dijitHover .idxRefreshIcon {
+  background-position: -16px -160px;
+}
+.idxButtonDerived.dijitActive .idxRefreshIcon,
+.idxButtonDerived.dijitOpened .idxRefreshIcon,
+.idxButtonDerived.idxDropDownOpen .idxRefreshIcon {
+  background-position: -32px -160px;
+}
+.idxButtonDerived.dijitDisabled .idxRefreshIcon {
+  background-position: -48px -160px;
+}
+.idxPrintIcon {
+  background-position: 0px -176px;
+}
+.idxButtonDerived.dijitHover .idxPrintIcon {
+  background-position: -16px -176px;
+}
+.idxButtonDerived.dijitActive .idxPrintIcon,
+.idxButtonDerived.dijitOpened .idxPrintIcon,
+.idxButtonDerived.idxDropDownOpen .idxPrintIcon {
+  background-position: -32px -176px;
+}
+.idxButtonDerived.dijitDisabled .idxPrintIcon {
+  background-position: -48px -176px;
+}
+.idxNextPageIcon {
+  background-position: 0px -192px;
+}
+.idxButtonDerived.dijitHover .idxNextPageIcon {
+  background-position: -16px -192px;
+}
+.idxButtonDerived.dijitActive .idxNextPageIcon,
+.idxButtonDerived.dijitOpened .idxNextPageIcon,
+.idxButtonDerived.idxDropDownOpen .idxNextPageIcon {
+  background-position: -32px -192px;
+}
+.idxButtonDerived.dijitDisabled .idxNextPageIcon {
+  background-position: -48px -192px;
+}
+.idxPreviousPageIcon {
+  background-position: 0px -208px;
+}
+.idxButtonDerived.dijitHover .idxPreviousPageIcon {
+  background-position: -16px -208px;
+}
+.idxButtonDerived.dijitActive .idxPreviousPageIcon,
+.idxButtonDerived.dijitOpened .idxPreviousPageIcon,
+.idxButtonDerived.idxDropDownOpen .idxPreviousPageIcon {
+  background-position: -32px -208px;
+}
+.idxButtonDerived.dijitDisabled .idxPreviousPageIcon {
+  background-position: -48px -208px;
+}
+.idxLastPageIcon {
+  background-position: 0px -224px;
+}
+.idxButtonDerived.dijitHover .idxLastPageIcon {
+  background-position: -16px -224px;
+}
+.idxButtonDerived.dijitActive .idxLastPageIcon,
+.idxButtonDerived.dijitOpened .idxLastPageIcon,
+.idxButtonDerived.idxDropDownOpen .idxLastPageIcon {
+  background-position: -32px -224px;
+}
+.idxButtonDerived.dijitDisabled .idxLastPageIcon {
+  background-position: -48px -224px;
+}
+.idxFirstPageIcon {
+  background-position: 0px -240px;
+}
+.idxButtonDerived.dijitHover .idxFirstPageIcon {
+  background-position: -16px -240px;
+}
+.idxButtonDerived.dijitActive .idxFirstPageIcon,
+.idxButtonDerived.dijitOpened .idxFirstPageIcon,
+.idxButtonDerived.idxDropDownOpen .idxFirstPageIcon {
+  background-position: -32px -240px;
+}
+.idxButtonDerived.dijitDisabled .idxFirstPageIcon {
+  background-position: -48px -240px;
+}
+.idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?profile=compact');
+}
+.idxSecondaryButton .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=secondary');
+}
+.idxSpecialButton .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=special');
+}
+.idxToolbarButton .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=toolbar');
+}
+.idxCompactButton.idxSecondaryButton .idxButtonDerived_idxDefaults,
+.idxSecondaryButton.idxCompactButton .idxButtonDerived_idxDefaults,
+.idxCompactButton .idxSecondaryButton .idxButtonDerived_idxDefaults,
+.idxSecondaryButton .idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=secondary&profile=compact');
+}
+.idxCompactButton.idxSpecialButton .idxButtonDerived_idxDefaults,
+.idxSpecialButton.idxCompactButton .idxButtonDerived_idxDefaults,
+.idxCompactButton .idxSpecialButton .idxButtonDerived_idxDefaults,
+.idxSpecialButton .idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=special&profile=compact');
+}
+.idxCompactButton.idxToolbarButton .idxButtonDerived_idxDefaults,
+.idxToolbarButton.idxCompactButton .idxButtonDerived_idxDefaults,
+.idxCompactButton .idxToolbarButton .idxButtonDerived_idxDefaults,
+.idxToolbarButton .idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url('images/blank.gif?placement=toolbar&profile=compact');
+}
+/***** 
+ ***** TOOLBAR BUTTONS
+ *****/
+.idxButtonToolbar.dijitButton,
+.idxButtonToolbar.dijitDropDownButton,
+.idxButtonToolbar.dijitComboButton,
+.idxButtonToolbar.dijitToggleButton,
+.dijitButton.idxButtonToolbar,
+.dijitDropDownButton.idxButtonToolbar,
+.dijitComboButton.idxButtonToolbar,
+.dijitToggleButton.idxButtonToolbar {
+  background: none;
+  padding: 0px;
+  margin: 0px;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  min-width: 1px;
+  padding: 0;
+}
+.idxButtonToolbar.dijitButton .dijitButtonNode,
+.idxButtonToolbar.dijitDropDownButton .dijitButtonNode,
+.idxButtonToolbar.dijitComboButton .dijitButtonNode,
+.idxButtonToolbar.dijitToggleButton .dijitButtonNode,
+.dijitButton.idxButtonToolbar .dijitButtonNode,
+.dijitDropDownButton.idxButtonToolbar .dijitButtonNode,
+.dijitComboButton.idxButtonToolbar .dijitButtonNode,
+.dijitToggleButton.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  border: none;
+  filter: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  min-width: 1px;
+  padding: 0;
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.dj_ie & .idxButtonToolbar.dijitComboButton .dijitButtonNode,
+.dj_ie & .dijitComboButton.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie & table.idxButtonToolbar.dijitComboButton,
+.dj_ie & table.dijitComboButton.idxButtonToolbar {
+  background: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.idxButtonToolbar .dijitButtonText {
+  color: @textStrong;
+}
+/* hover text color */
+.idxButtonToolbar.dijitButtonHover .dijitButtonText,
+.idxButtonToolbar.dijitDropDownButtonHover .dijitButtonText,
+.idxButtonToolbar.dijitComboButton .dijitButtonNodeHover .dijitButtonText,
+.idxButtonToolbar.dijitToggleButtonHover .dijitButtonText,
+.dijitButtonHover.idxButtonToolbar .dijitButtonText,
+.dijitDropDownButtonHover.idxButtonToolbar .dijitButtonText,
+.dijitComboButton.idxButtonToolbar .dijitButtonNodeHover .dijitButtonText,
+.dijitToggleButtonHover.idxButtonToolbar .dijitButtonText {
+  text-decoration: underline;
+}
+/* disabled text color */
+.dijitDisabled.idxButtonToolbar .dijitButtonText {
+  color: @textDisabled;
+  text-decoration: none;
+}
+/* hover status */
+.idxButtonToolbar.dijitButtonHover .dijitButtonNode,
+.idxButtonToolbar.dijitDropDownButtonHover .dijitButtonNode,
+.idxButtonToolbar.dijitComboButton .dijitButtonNodeHover,
+.idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover,
+.idxButtonToolbar.dijitToggleButtonHover .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+/*
+    NOTE: We cheat a bit for "Hover" since the border and the background are so close in color.
+    Technically, the borders are not visible when we do this CSS on the ButtonNode cells, but 
+    they are replaced with the gradient which is just as dark on IE, and unnoticeable.  The
+    alternative would have been to hover-highlight the entire button instead of the parts
+*/
+.dj_ie & .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover,
+.dj_ie & .idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover {
+  background: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+/* checked status */
+.idxButtonToolbar.dijitButtonActive .dijitButtonNode,
+.idxButtonToolbar.dijitDropDownButtonActive .dijitButtonNode,
+.idxButtonToolbar.dijitComboButtonActive .dijitButtonNode,
+.idxButtonToolbar.dijitToggleButtonActive .dijitButtonNode,
+.dijitButtonActive.idxButtonToolbar .dijitButtonNode,
+.dijitDropDownButtonActive.idxButtonToolbar .dijitButtonNode,
+.dijitComboButtonActive.idxButtonToolbar .dijitButtonNode,
+.dijitToggleButtonActive.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+  color: @textStrong;
+}
+.idxButtonToolbar.dijitButtonActive .dijitButtonText,
+.idxButtonToolbar.dijitDropDownButtonActive .dijitButtonText,
+.idxButtonToolbar.dijitComboButton .dijitButtonNodeActive .dijitButtonText,
+.idxButtonToolbar.dijitToggleButtonActive .dijitButtonText,
+.dijitButtonActive.idxButtonToolbar .dijitButtonText,
+.dijitDropDownButtonActive.idxButtonToolbar .dijitButtonText,
+.dijitComboButton.idxButtonToolbar .dijitButtonNodeActive .dijitButtonText,
+.dijitToggleButtonActive.idxButtonToolbar .dijitButtonText {
+  text-decoration: underline;
+}
+.idxButtonToolbar.dijitButtonDisabled .dijitButtonNode,
+.idxButtonToolbar.dijitDropDownButtonDisabled .dijitButtonNode,
+.idxButtonToolbar.dijitComboButtonDisabled .dijitButtonNode,
+.idxButtonToolbar.dijitToggleButtonDisabled .dijitButtonNode,
+.dijitButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dijitDropDownButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dijitToggleButtonDisabled.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+  border: none;
+  color: @textDisabled;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.dj_ie & .idxButtonToolbar.dijitComboButtonDisabled .dijitButtonNode,
+.dj_ie & .dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie & table.idxButtonToolbar.dijitComboButtonDisabled,
+.dj_ie & table.dijitComboButtonDisabled.idxButtonToolbar {
+  background: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.idxButtonToolbar.dijitDisabled .dijitArrowButtonInner {
+  background-position: -151px 0px;
+}
+.idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonText,
+.idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonText,
+.idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonText {
+  color: @textStrong;
+}
+.idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonNode,
+.idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
+.idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+/** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+.dj_ie & .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
+.dj_ie & .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie & table.idxButtonToolbar.dijitComboButton.dijitOpened,
+.dj_ie & table.idxButtonToolbar.dijitComboButton.idxDropDownOpen {
+  background: none;
+  filter: none;
+}
+/** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
+/* Compact */
+.dijitButton.idxButtonCompact .dijitButtonText {
+  padding: 0 0 0 0;
+}
+.dijitDropDownButton.idxButtonCompact .dijitButtonText,
+.dijitComboButton.idxButtonCompact .dijitButtonText {
+  padding: 0 10px 0 0;
+}
+.dijitButtonRtl.idxButtonCompact .dijitButtonText,
+.dijitDropDownButtonRtl.idxButtonCompact .dijitButtonText,
+.dijitComboButtonRtl.idxButtonCompact .dijitButtonText,
+.dijitButton.dijitButtonRtl.idxButtonCompact .dijitButtonText,
+.dijitDropDownButton.dijitDropDownButtonRtl.idxButtonCompact .dijitButtonText,
+.dijitComboButton.dijitComboButtonRtl.idxButtonCompact .dijitButtonText {
+  padding: 0 0 0 10px;
+}
+.dijitButton .dijitButtonNode {
+  min-width: 87px;
+}
+.dijitToggleButton .dijitButtonNode {
+  min-width: 99px;
+}
+.dijitButton.idxButtonCompact .dijitButtonNode {
+  min-width: 65px;
+}
+.dijitToggleButton.idxButtonCompact .dijitButtonNode {
+  min-width: 55px;
+}
+.dijitButton.idxButtonIconOnly .dijitButtonNode,
+.dijitToggleButton.idxButtonIconOnly .dijitButtonNode,
+.dijitButton.idxButtonIconOnly.idxButtonCompact .dijitButtonNode,
+.dijitToggleButton.idxButtonIconOnly.idxButtonCompact .dijitButtonNode {
+  min-width: 1px;
+}
+/* secondary Button and special Button */
+.idxButtonDerived.idxButtonSecondary .dijitButtonNode,
+.dijitButton.idxButtonSecondary .dijitButtonNode,
+.dijitToggleButton.idxButtonSecondary .dijitButtonNode,
+.dijitDropDownButton.idxButtonSecondary .dijitButtonNode,
+.dijitComboButton.idxButtonSecondary .dijitButtonNode {
+  font-weight: normal;
+}
+.idxButtonDerived.idxButtonSpecial .dijitButtonNode,
+.dijitButton.idxButtonSpecial .dijitButtonNode,
+.dijitToggleButton.idxButtonSpecial .dijitButtonNode,
+.dijitDropDownButton.idxButtonSpecial .dijitButtonNode,
+.dijitComboButton.idxButtonSpecial .dijitButtonNode {
+	.gradient(@brand, @brandDarkest);
+  border: 1px solid @brandDarker;
+  .textColors(mix(@brand, @brandDarkest));
+  color: @textStrong;
+  .TextShadow(@shadowAlpha);
+}
+.idxButtonDerived.dijitHover.idxButtonSpecial .dijitButtonNode,
+.idxButtonDerived.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dijitButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dijitButton.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dijitToggleButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dijitToggleButton.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dijitDropDownButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dijitDropDownButton.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dijitComboButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dijitComboButton.idxButtonSpecial.dijitHover .dijitButtonNode {
+  .gradient(@brand, @brand);
+}
+.idxButtonDerived.dijitActive.idxButtonSpecial .dijitButtonNode,
+.idxButtonDerived.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dijitButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dijitButton.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dijitToggleButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dijitToggleButton.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dijitDropDownButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dijitDropDownButton.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dijitComboButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dijitComboButton.idxButtonSpecial.dijitActive .dijitButtonNode {
+  .gradient(@brandDarkest, @brand);
+  color: @brandLightest;
+}
+.idxButtonDerived.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.idxButtonDerived.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dijitButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dijitButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dijitToggleButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dijitToggleButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dijitDropDownButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dijitDropDownButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dijitComboButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dijitComboButton.idxButtonSpecial.dijitDisabled .dijitButtonNode {
+  color: @brandLighter;
+}
+.dj_ie & .idxButtonDerived.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie & .idxButtonDerived.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie & .dijitButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie & .dijitButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie & .dijitToggleButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie & .dijitToggleButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie & .dijitDropDownButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie & .dijitDropDownButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie & .dijitComboButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie & .dijitComboButton.idxButtonSpecial.dijitDisabled .dijitButtonNode {
+  color: @brandLighter;
+}

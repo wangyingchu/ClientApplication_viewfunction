@@ -10,3 +10,4 @@ define({
 	legendText: "Vyžadované"
 //end v1.x content
 });
+

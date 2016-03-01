@@ -1,0 +1,107 @@
+
+@import "../../dijit/variables";
+.@{theme-name} {
+    div.idxWorkspaceTab {
+        color:@header-workspace-tab-text-color;
+        height:40px;
+        position:absolute;
+        top:0;
+        margin:0;
+        background:@header-workspace-tab-background-color;
+    }
+    div.idxWorkspaceTabTitle {
+        white-space:nowrap;
+        border-color:transparent;
+        position:relative;
+        height:1em;
+        top:50%;
+        margin-top:-.5em;
+        line-height:1em;
+        font-family:@base-font-family;
+        font-size:13px;
+        color:@header-workspace-tab-text-color;
+        padding-left:15px;
+        padding-right:15px;
+    }
+    div.idxWorkspaceTabHovered {
+        background:@header-workspace-tab-hovered-background-color;
+        cursor:pointer;
+    }
+    div.idxWorkspaceTabTitleHovered {
+        font-family:@base-font-family;
+        font-size:13px;
+        color:@header-workspace-tab-hovered-text-color;
+        cursor:pointer;
+    }
+    button.idxWorkspaceTabTitleHovered {
+        font-family:@base-font-family;
+        font-size:13px;
+        color:@header-workspace-tab-hovered-text-color;
+        cursor:pointer;
+    }
+    div.idxWorkspaceTabTitleSelected {
+        font-family:@base-font-family;
+        font-size:13px;
+		font-weight: bold;
+        color:@header-workspace-tab-selected-text-color;
+        cursor:default;
+    }
+    button.idxWorkspaceTabTitleSelected {
+        font-family:@base-font-family;
+        font-size:13px;
+		font-weight: bold;
+        color:@header-workspace-tab-selected-text-color;
+        cursor:default;
+    }
+}
+.@{theme-name}.dijit_a11y {
+    div.idxWorkspaceTab {
+        border: 1px solid black;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        -moz-border-top-left-radius: 5px;
+        -moz-border-top-right-radius: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+    }
+    div.idxWorkspaceTabSelected {
+        border-bottom: 0px none transparent;
+        margin-bottom: -2px;
+        height: 50px;
+    }
+    div.idxWorkspaceTabTitle {
+        border-left: 0px none transparent;
+    }
+    div.idxWorkspaceTabTitleSelected {
+        font-size: 13px;
+    }
+    div.idxWorkspaceTabTitleHovered {
+        text-decoration: underline;
+    }
+    div.idxWorkspaceTabTitleSelected.idxWorkspaceTabTitleHovered {
+        text-decoration: none;
+        cursor: default;
+    }
+}
+.dj_ie8 {
+    .@{theme-name} {
+        div.idxWorkspaceTabHovered {
+            border-left:1px solid #003f69;
+            border-right:1px solid #003f69;
+        }
+    }
+}
+.@{theme-name} div.idxWorkspaceTabSelected {
+    background-image:none;
+    filter:none;
+    bottom:0;
+    background-color:@header-workspace-tab-selected-background-color;
+    cursor:default;
+}
+.@{theme-name} div.idxWorkspaceTabSelected:hover {
+    background-image:none;
+    filter:none;
+    bottom:0;
+    background-color:@header-workspace-tab-hovered-background-color;
+    cursor:default;
+}

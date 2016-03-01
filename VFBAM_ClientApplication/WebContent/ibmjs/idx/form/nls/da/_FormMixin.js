@@ -10,3 +10,4 @@ define({
 	legendText: "Påkrævet"
 //end v1.x content
 });
+

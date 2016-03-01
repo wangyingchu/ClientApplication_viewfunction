@@ -1,0 +1,93 @@
+.jui-rtl .ui-accordion .ui-accordion-icons{
+	padding:.5em 2.2em .5em .5em;
+}
+.jui-rtl .ui-accordion .ui-accordion-header .ui-accordion-header-icon{
+	left: auto;
+	right: .5em;
+}
+.jui-rtl .ui-icon-triangle-1-e{
+	background-position: -96px -16px;
+}
+.jui-rtl .ui-menu .ui-icon {
+	right: .4em;
+	left: auto;
+}
+.jui-rtl .ui-menu-icons .ui-menu-item a{
+	padding: 3px 2em 3px 7px;
+}
+.jui-rtl .ui-menu .ui-menu-item .ui-menu-icon{
+	float: left;
+}
+.jui-rtl .ui-icon-carat-1-e{
+	background-position: -96px 0;
+}
+.jui-rtl .ui-tabs .ui-tabs-nav li{
+	float: right;
+	margin: 1px 0 0 .2em;
+}
+.jui-rtl .ui-dialog button.ui-dialog-titlebar-close{
+	right: auto;
+	left: .3em;
+}
+.jui-rtl .ui-dialog .ui-dialog-title{
+	float: right;
+}
+.jui-rtl .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+	float: left;
+}
+.jui-rtl .ui-spinner-input{
+	margin: 0 0 0 15px;
+}
+.jui-rtl .ui-spinner-button{
+	right: auto;
+	left: 0;
+}
+.jui-rtl .ui-spinner a.ui-spinner-button{
+	border-left: none;
+	border-right: 1px solid #d9edf5
+}
+.jui-rtl .ui-button-text-icon-primary .ui-button-icon-primary, 
+.jui-rtl .ui-button-text-icons .ui-button-icon-primary, 
+.jui-rtl .ui-button-icons-only .ui-button-icon-primary{
+	left: auto;
+	right: 10px;
+}
+.jui-rtl .ui-button-text-icon-secondary .ui-button-icon-secondary, 
+.jui-rtl .ui-button-text-icons .ui-button-icon-secondary, 
+.jui-rtl .ui-button-icons-only .ui-button-icon-secondary{
+	left: 10px;
+	right: auto;
+}
+.jui-rtl .ui-button-text-icon-primary .ui-button-text{
+	padding: .4em 2em .4em 1em;
+}
+.jui-rtl .ui-slider-horizontal .ui-slider-range-min{
+	left: auto;
+	right: 0;
+}
+.jui-rtl .ui-slider-horizontal .ui-slider-range-max{
+	right: auto;
+	left: 0;
+}
+.jui-rtl.jui-a11y .ui-buttonset .ui-state-active .ui-button-text:before{
+	position: absolute;
+	left: auto;
+	right: .6em;
+	top: .7em;
+}
+.jui-rtl.jui-a11y .ui-accordion .ui-accordion-header .ui-accordion-header-icon:before {
+	right: .5em;
+	left: auto;
+}
+.jui-rtl.jui-a11y .ui-menu-item .ui-menu-icon:before{
+	text-indent: 0px;
+	float: left;
+} 
+.jui-rtl.jui-a11y .ui-datepicker .ui-datepicker-prev{
+	left: auto;
+	right: 2px;
+}
+.jui-rtl.jui-a11y .ui-datepicker .ui-datepicker-next{
+	right: auto;
+	left: 2px;
+}

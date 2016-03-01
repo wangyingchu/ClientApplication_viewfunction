@@ -1,15 +1,17 @@
-<div class="dijitTreeNode" role="presentation"
-	><div data-dojo-attach-point="rowNode" class="dijitTreeRow dijitInline" role="presentation"
+<div class="dijitTreeNode" role="treeitem"
+	><div data-dojo-attach-point="rowNode,focusNode" class="dijitTreeRow" tabindex="-1" role="treeitem"
 		><div data-dojo-attach-point="indentNode" class="dijitInline"></div
 		><img src="${_blankGif}" alt="" data-dojo-attach-point="expandoNode" class="dijitTreeExpando" role="presentation"
-		/><span data-dojo-attach-point="expandoNodeText" class="dijitExpandoText" role="presentation"
+		/><span data-dojo-attach-point="expandoNodeText" class="dijitExpandoText" aria-hidden="true" role="presentation"
 		></span
 		><span data-dojo-attach-point="contentNode"
 			class="dijitTreeContent" role="presentation"
-			><input dojoType="idx.form.TriStateCheckBox" states="false,true" data-dojo-attach-point="checkboxNode" tabindex="-1"></input
-			><img src="${_blankGif}" alt="" data-dojo-attach-point="iconNode" class="dijitIcon dijitTreeIcon" role="presentation"
-			/><span data-dojo-attach-point="labelNode" class="dijitTreeLabel" role="treeitem" tabindex="-1" aria-selected="false"></span>
+			><span states="false,true" class="dijitInline stateNode" data-dojo-attach-point="stateNode, checkboxNode"
+				><div class="idxOneuiTriStateCheckBoxInner" dojoAttachPoint="stateLabelNode" aria-hidden="true"></div
+			></span
+			><span data-dojo-attach-point="iconNode" class="dijitInline dijitIcon dijitTreeIcon" role="presentation" aria-hidden="true"></span
+			><span data-dojo-attach-point="labelNode" class="dijitTreeLabel" tabindex="-1" role="presentation"></span>
 		</span
 	></div>
-	<div data-dojo-attach-point="containerNode" class="dijitTreeContainer" role="presentation" style="display: none;"></div>
+	<div data-dojo-attach-point="containerNode" class="dijitTreeNodeContainer" role="presentation" style="display: none;"></div>
 </div>

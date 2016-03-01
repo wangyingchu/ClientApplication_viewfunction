@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "切換所有列的選項"		
 //end v1.x content
 });
+

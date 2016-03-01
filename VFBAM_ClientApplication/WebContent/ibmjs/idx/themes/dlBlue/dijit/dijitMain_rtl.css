@@ -1,0 +1,144 @@
+@import "../../../icons/editorIcons_rtl.css";
+@import "../../../icons/commonIcons_rtl.css";
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+/* RTL files */
+/* claro/form/Common_rtl.css */
+.dlBlue .dijitTextBoxRtlError .dijitValidationContainer {
+  border-left-width: 0;
+  border-right-width: 1px;
+}
+/* Combo Button */
+.dlBlue .dijitComboButtonRtl .dijitStretch {
+  -moz-border-radius: 0 1px 1px 0;
+  border-radius: 0 1px 1px 0;
+}
+.dlBlue .dijitComboButtonRtl .dijitArrowButton {
+  -moz-border-radius: 1px 0 0 1px;
+  border-radius: 1px 0 0 1px;
+  padding: 3px 0 4px;
+  border-left-width: 1px;
+  border-right-width: 0;
+}
+/* End Combo Button */
+/*@import "form/CheckBox_rtl";*/
+.dlBlue .dijitSliderRtl .dijitSliderProgressBarH,
+.dlBlue .dijitSliderRtl .dijitSliderRemainingBarH,
+.dlBlue .dijitSliderRtl .dijitSliderLeftBumper,
+.dlBlue .dijitSliderRtl .dijitSliderRightBumper,
+.dlBlue .dijitSliderRtl .dijitSliderTopBumper {
+  background-position: top right;
+}
+.dlBlue .dijitSliderRtl .dijitSliderProgressBarV,
+.dlBlue .dijitSliderRtl .dijitSliderRemainingBarV,
+.dlBlue .dijitSliderRtl .dijitSliderBottomBumper {
+  background-position: bottom right;
+}
+.dlBlue .dijitSliderRtl .dijitSliderLeftBumper {
+  border-left-width: 0;
+  border-right-width: 1px;
+}
+.dlBlue .dijitSliderRtl .dijitSliderRightBumper {
+  border-left-width: 1px;
+  border-right-width: 0;
+}
+.dlBlue .dijitSliderRtl .dijitSliderIncrementIconH {
+  background-position: -357px 50%;
+}
+.dlBlue .dijitSliderRtl .dijitSliderDecrementIconH {
+  background-position: -251px 50%;
+}
+/*@import "form/Select_rtl";*/
+/* Dialog */
+.dlBlue .dijitDialogRtl .dijitDialogCloseIcon {
+  right: auto;
+  left: 15px;
+}
+.dlBlue .dijitDialogRtl .dijitDialogPaneActionBar {
+  text-align: left;
+}
+/* Editor */
+.dlBlue .dijitEditorRtl .dijitEditorIFrameContainer {
+  padding: 3px 10px 1px 3px;
+}
+.dj_ie6 .dlBlue .dijitEditorRtl .dijitEditorIFrameContainer,
+.dj_ie7 .dlBlue .dijitEditorRtl .dijitEditorIFrameContainer,
+.dj_ie8 .dlBlue .dijitEditorRtl .dijitEditorIFrameContainer {
+  padding: 3px 0px 1px 10px;
+  margin-right: 0px;
+  border: 0px solid #d3d3d3;
+}
+/* TitlePane */
+.dlBlue .dijitTitlePaneRtl .dijitClosed .dijitArrowNode,
+.dlBlue .dijitFieldsetRtl .dijitFieldsetTitleClosed .dijitArrowNode {
+  background-position: -74px 53%;
+}
+.dlBlue .dijitMenuItemRtl .dijitMenuExpand {
+  background-position: -80px -3px;
+  margin-right: 0;
+  margin-left: 3px;
+}
+.dlBlue .dijitMenuItemRtl .dijitMenuItemIcon {
+  margin: 0 4px 0 0;
+}
+.dlBlue .dijitCalendarRtl .dijitCalendarIncrease {
+  background-position: 0 0;
+}
+.dlBlue .dijitCalendarRtl .dijitCalendarDecrease {
+  background-position: -18px 0;
+}
+.dlBlue .dijitCalendarRtl .dijitCalendarArrowHover .dijitCalendarIncrease {
+  background-position: -36px 0;
+}
+.dlBlue .dijitCalendarRtl .dijitCalendarArrowHover .dijitCalendarDecrease {
+  background-position: -55px 0;
+}
+.dlBlue .dijitCalendarRtl .dijitCalendarArrowActive .dijitCalendarIncrease {
+  background-position: -72px 0;
+}
+.dlBlue .dijitCalendarRtl .dijitCalendarArrowActive .dijitCalendarDecrease {
+  background-position: -91px 0;
+}
+/*@import "TimePicker_rtl";*/
+/* Toolbar RTL */
+/* Repeated rules from Toolbar.css to override rule from Button_rtl.css, which is loaded after Toolbar.css */
+.dlBlue .dijitToolbar .dijitComboButtonRtl .dijitButtonNode {
+  border-width: 0;
+  padding: 2px;
+}
+.dlBlue .dijitToolbar .dijitComboButtonRtlHover .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitComboButtonRtlActive .dijitButtonNode {
+  border-width: 1px;
+  padding: 1px;
+}
+.dlBlue .dijitToolbar .dijitComboButtonRtl .dijitStretch {
+  /* no rounded border on side adjacent to arrow */
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+.dlBlue .dijitToolbar .dijitComboButtonRtl .dijitArrowButton {
+  /* no rounded border on side adjacent to button */
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+.dlBlue .dijitToolbar .dijitComboButtonRtlHover .dijitArrowButton,
+.dlBlue .dijitToolbar .dijitComboButtonRtlActive .dijitArrowButton {
+  /* border between button and arrow */
+  border-left-width: 1px;
+  border-right-width: 0;
+  padding-left: 1px;
+  padding-right: 2px;
+}
+/*@import "Tree_rtl";*/
+/*@import "oneuiCommon_rtl";*/
+.dlBlue .dijitTabContainerTop-tabs .dijitTabRtl,
+.dlBlue .dijitTabContainerBottom-tabs .dijitTabRtl {
+  margin-right: 0;
+  margin-left: 1px;
+}
+/* RTL sprite for editor icons to be used by all themes*/
+/* RTL sprite for common icons to be used by all themes*/

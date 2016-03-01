@@ -1,0 +1,53 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .gridxRtl .gridxHeaderRow .gridxCell {
+/*    border-left: 1px solid #ccc;
+    border-right-color: transparent;*/
+    text-align: right;
+}
+.@{theme-name} {
+    .gridxRtl {
+        .gridxHeader {
+            .gridxHeaderRow {
+                .gridxHeaderCellFocus {
+                    border-left: 1px solid #ccc;
+                    border-right-color: transparent;
+                }
+            }
+        }
+        .gridxRow {
+            .gridxCell {
+                border-color: #d9d9d9 transparent transparent #d9d9d9;
+            }
+        }
+        .gridxHeaderRowInner {
+            border-width: 0 0 0 1px;
+        }
+        .gridxVScroller {
+            border-right: none;
+            border-left: 1px solid #d9d9d9;
+        }
+
+        .gridxRowHeaderBody{
+            border-left: 0px solid @gridx-cell-border-color;
+        }
+    }
+    .gridxRow:first-child {
+        .gridxCell {
+            border-top-color: transparent;
+        }
+    }
+    .gridxRow:last-child {
+        .gridxCell {
+            border-bottom-color: #d9d9d9;
+        }
+    }
+}
+.dj_ie {
+    .@{theme-name} {
+        .gridxLastRow {
+            .gridxCell {
+                border-bottom-color: #d9d9d9;
+            }
+        }
+    }
+}

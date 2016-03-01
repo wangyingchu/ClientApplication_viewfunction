@@ -1,0 +1,93 @@
+.dijitLayoutContainer .dijitSplitterH {
+  height: 5px;
+  text-align: center;
+}
+.dijitLayoutContainer .dijitSplitterV {
+  width: 5px;
+  vertical-align: middle;
+}
+.dijitLayoutContainer .dijitSplitterH .dojoxToggleSplitterIcon {
+  background-image: url('images/idx/layout/toggleArrowsH.png');
+  background-repeat: no-repeat;
+  width: 47px;
+  height: 5px;
+  cursor: pointer;
+}
+.dijitLayoutContainer .dijitSplitterV .dojoxToggleSplitterIcon {
+  background-image: url('images/idx/layout/toggleArrowsV.png');
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  width: 5px;
+  height: 47px;
+  left: 0;
+  top: 45%;
+  cursor: pointer;
+}
+.dj_ie & .dijitLayoutContainer .dijitSplitterH .dojoxToggleSplitterIcon {
+  background-image: url('images/idx/layout/toggleArrowsH8bits.png');
+}
+.dj_ie & .dijitLayoutContainer .dijitSplitterV .dojoxToggleSplitterIcon {
+  background-image: url('images/idx/layout/toggleArrowsV8bits.png');
+}
+/* Horizontal Toggle Arrow*/
+.dijitSplitterHHover .dojoxToggleSplitterTopIconOpen,
+.dijitSplitterHActive .dojoxToggleSplitterTopIconOpen,
+.dijitSplitterHHover .dojoxToggleSplitterBottomIconClosed,
+.dijitSplitterHActive .dojoxToggleSplitterBottomIconClosed {
+  background-position: 0 -15px !important;
+}
+.dijitSplitterHHover .dojoxToggleSplitterBottomIconOpen,
+.dijitSplitterHActive .dojoxToggleSplitterBottomIconOpen,
+.dijitSplitterHHover .dojoxToggleSplitterTopIconClosed,
+.dijitSplitterHActive .dojoxToggleSplitterTopIconClosed {
+  background-position: 0 -10px !important;
+}
+.dojoxToggleSplitterTopIconOpen,
+.dojoxToggleSplitterBottomIconClosed,
+.dojoxToggleSplitter .dojoxToggleSplitterTopIconOpenHover {
+  background-position: 0 -5px !important;
+}
+.dojoxToggleSplitterBottomIconOpen,
+.dojoxToggleSplitterTopIconClosed {
+  background-position: 0 0 !important;
+}
+/*Vertical Toggle Arrow*/
+.dijitSplitterVHover .dojoxToggleSplitterLeftIconOpen,
+.dijitSplitterVActive .dojoxToggleSplitterLeftIconOpen,
+.dijitSplitterVHover .dojoxToggleSplitterRightIconClosed,
+.dijitSplitterVActive .dojoxToggleSplitterRightIconClosed {
+  background-position: -15px 0 !important;
+}
+.dijitSplitterVHover .dojoxToggleSplitterRightIconOpen,
+.dijitSplitterVActive .dojoxToggleSplitterRightIconOpen,
+.dijitSplitterVHover .dojoxToggleSplitterLeftIconClosed,
+.dijitSplitterVActive .dojoxToggleSplitterLeftIconClosed {
+  background-position: -10px 0 !important;
+}
+.dojoxToggleSplitterLeftIconOpen,
+.dojoxToggleSplitterRightIconClosed,
+.dojoxToggleSplitter .dojoxToggleSplitterLeftIconOpenHover,
+.dojoxToggleSplitter .dojoxToggleSplitterRightIconClosedHover {
+  background-position: -5px 0 !important;
+}
+.dojoxToggleSplitterRightIconOpen,
+.dojoxToggleSplitterLeftIconClosed,
+.dojoxToggleSplitter .dojoxToggleSplitterRightIconOpenHover {
+  background-position: 0 0 !important;
+}
+.dojoxToggleSplitterTop .dojoxToggleSplitterA11y,
+.dojoxToggleSplitterBottom .dojoxToggleSplitterA11y {
+  display: none;
+  font-size: 6px;
+  text-align: center;
+}
+.dojoxToggleSplitterRight .dojoxToggleSplitterA11y,
+.dojoxToggleSplitterLeft .dojoxToggleSplitterA11y {
+  display: none;
+  font-size: 8px;
+  position: relative;
+  top: 48%;
+}
+.dijit_a11y & .dojoxToggleSplitter .dojoxToggleSplitterA11y {
+  display: block;
+}

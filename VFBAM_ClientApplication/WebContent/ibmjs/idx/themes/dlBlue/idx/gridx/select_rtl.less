@@ -1,0 +1,42 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .gridxRtl .gridxRowSelected .gridxCell {
+    border-top-color: #bbb;
+    background: none;
+    background-color: @gridx-row-selected-background-color;
+}
+.@{theme-name} {
+    .gridxRtl {
+        .gridxRowSelected:first-child {
+            .gridxCell {
+                border-top-color: transparent;
+            }
+        }
+        .gridxRowSelected:last-child {
+            .gridxCell {
+                border-bottom-color: #bbb;
+            }
+        }
+        .gridxRowSelected {
+            + .gridxRow {
+                .gridxCell {
+                    border-top-color: #bbb;
+                }
+            }
+            
+        }
+    }
+}
+.dj_rtl {
+    .@{theme-name} {
+        .gridxAlternatingRows {
+            .gridxRowSelected {
+                + .gridxRow {
+                    .gridxCell {
+                        border-top-color: #fff;
+                    }
+                }
+                
+            }
+        }
+    }
+}

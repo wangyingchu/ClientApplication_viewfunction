@@ -25,8 +25,11 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
 <script type="text/javascript" id="postDojo">
 require(["dijit/layout/ContentPane", "idx/layout/OpenMenuTabContainer"]);
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">layout/nls/OpenMenuTabContainer</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>

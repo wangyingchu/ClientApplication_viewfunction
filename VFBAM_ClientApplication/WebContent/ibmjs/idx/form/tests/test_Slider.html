@@ -5,7 +5,7 @@
 	US Government Users Restricted Rights - Use, duplication or
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<html>
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Slider</title>
@@ -65,6 +65,7 @@
 			});
 			*/
 			var modules = [
+				"dijit.registry",
 				"dijit.form.Button",
 				"dijit.form.Form",
 				"idx.form.TextBox",
@@ -76,10 +77,11 @@
 				"dijit.form.VerticalRuleLabels",
 				"idx.tests._pagefooter._PageFooter"
 			]; 
-			var Button, Form, TextBox, HorizontalSlider, HorizontalRule, HorizontalRuleLabels, 
+			var registry, Button, Form, TextBox, HorizontalSlider, HorizontalRule, HorizontalRuleLabels, 
 			VerticalSlider, VerticalRule, VerticalRuleLabels, _PageFooter;
 			
 			function preParse(modules){
+				registry 				= modules["dijit/registry"];
 				Button 					= modules["dijit/form/Button"];
 				Form  					= modules["dijit/form/Form"];
 				TextBox   				= modules["idx/form/TextBox"];
@@ -104,8 +106,9 @@
 		<a name="maincontent"></a>
 		
 		<div class="testMain">
-			<h2> HorizontalSlider </h2>
+			<h2> HorizontalSlider : </h2>
 			<div data-dojo-type="idx.form.HorizontalSlider" data-dojo-props='
+				id: "hslider",
 				label: "Normal Horizontal Slider:",
 				labelAlignment: "horizontal",
 				name:"horizontal1",
@@ -166,7 +169,11 @@
 			<br/>
 			
 			
+			<h2> VerticalSlider : </h2>
+			<!--button id="changeState" dojoType="dijit.form.Button" onClick="registry.byId('vslider').set('state', 'Error');">change slider state</button-->
+			<br/>
 			<div data-dojo-type="idx.form.VerticalSlider" data-dojo-props='
+				id: "vslider",
 				label: "Normal Vertical Slider:",
 				labelAlignment: "horizontal",
 				name:"vertical1",

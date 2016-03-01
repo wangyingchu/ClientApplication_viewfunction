@@ -1,0 +1,40 @@
+.idxCheckBoxListItem {
+  cursor: default;
+  padding: 4px 4px 4px 0;
+  white-space: nowrap;
+}
+.idxCheckBoxListItem .dijitCheckBox {
+  margin-right: 5px;
+}
+.idxCheckBoxListWrap .idxCompContainer {
+  position: relative;
+  padding: 2px 39px 3px 8px;
+}
+.idxCheckBoxListWrap .dijitValidationContainer {
+  display: none;
+}
+.idxCheckBoxListWrap .idxLabel {
+  margin-top: 7px;
+}
+.idxCheckBoxListWrapError .idxCompContainer {
+  background: @errorLighter;
+  border: 1px solid @errorLight;
+  .BorderRadius(2px);
+}
+.idxCheckBoxListWrapError .dijitValidationContainer {
+  display: block;
+  position: absolute;
+  top: 7px;
+  right: 6px;
+  height: 15px;
+}
+.idxCheckBoxListWrapError .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.idxCheckBoxListItem label {
+  vertical-align: middle;
+}
+.dj_ie6 & .idxCheckBoxListItem label {
+  top: 1px;
+  position: relative;
+}

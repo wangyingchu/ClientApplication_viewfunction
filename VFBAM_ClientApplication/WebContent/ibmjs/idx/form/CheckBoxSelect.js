@@ -7,24 +7,30 @@
 
 define([
 	"dojo/_base/declare",
+	"dojo/has",
 	"dojo/_base/kernel",
 	"dojo/_base/lang",
 	"dojo/_base/array",
 	"dojo/_base/event",
 	"dojo/_base/window",
+	"dojo/when",
 	"dojo/query",
 	"dojo/keys",
+	"dojo/touch",
+	"dojo/on",
 	"dojo/dom-construct",
 	"dojo/dom-attr",
 	"dojo/dom-class",
 	"dojo/dom-style",
 	"dojo/dom-geometry",
+	"dojo/html",
 	"dojo/i18n",
+	"dijit/popup",
 	"dijit/form/_FormSelectWidget",
 	"dijit/form/_FormValueWidget",
 	"dijit/_HasDropDown",
 	"dijit/MenuSeparator",
-	"dijit/Tooltip",
+	"dijit/_WidgetsInTemplateMixin",
 	"../util",
 	"./_CssStateMixin",
 	"./_CheckBoxSelectMenu",
@@ -32,15 +38,55 @@ define([
 	"./_CompositeMixin",
 	"./_ValidationMixin",	
 	"./_FormSelectWidgetA11yMixin",
-	"dojo/text!./templates/CheckBoxSelect.html",
+	"dojo/has!dojo-bidi?../bidi/form/CheckBoxSelect",
+
+	// ====================================================================================================================
+	// ------
+	// Load _TemplatePlugableMixin and PlatformPluginRegistry if on "mobile" or if on desktop, but using the 
+	// platform-plugable API.  Any prior call to PlaformPluginRegistry.setGlobalTargetPlatform() or 
+	// PlatformPluginRegistry.setRegistryDefaultPlatform() sets "platform-plugable" property for dojo/has.
+	// ------
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	// ------
+	// We want to load the desktop template unless we are using the mobile implementation.
+	// ------
+	"idx/has!#idx_form_CheckBoxSelect-desktop?dojo/text!./templates/CheckBoxSelect.html"  // desktop widget, load the template
+		+ ":#idx_form_CheckBoxSelect-mobile?"									// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/CheckBoxSelect.html"					// global desktop platform, load template
+		+ ":#mobile?"															// global mobile platform, don't load
+		+ ":dojo/text!./templates/CheckBoxSelect.html", 						// no dojo/has features, load the template
+			
+	// ------
+	// Load the mobile plugin according to build-time/runtime dojo/has features
+	// ------
+	"idx/has!#idx_form_CheckBoxSelect-mobile?./plugins/phone/CheckBoxSelectPlugin"	// mobile widget, load the plugin
+		+ ":#idx_form_CheckBoxSelect-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/phone/CheckBoxSelectPlugin"							// global mobile platform, load plugin
+		+ ":",																		// no features, don't load plugin
+
+	// ====================================================================================================================
 	"dojo/i18n!./nls/CheckBoxSelect",
+	"dojox/html/entities",
 	"dojox/html/ellipsis"
-], function(declare, kernel, lang, array, event, win, query, keys, domConstruct, domAttr, domClass, domStyle, domGeom,
-			i18n, _FormSelectWidget, _FormValueWidget, _HasDropDown, MenuSeparator, Tooltip, iUtil, _CssStateMixin, _CheckBoxSelectMenu,
-			_CheckBoxSelectMenuItem, _CompositeMixin, _ValidationMixin,_FormSelectWidgetA11yMixin, template, checkBoxSelectNls){
+], function(declare, has, kernel, lang, array, event, win, when, query, keys, touch, on, domConstruct, domAttr, domClass, domStyle, domGeom, html, 
+			i18n, popup, _FormSelectWidget, _FormValueWidget, _HasDropDown, MenuSeparator,_WidgetsInTemplateMixin, iUtil, _CssStateMixin, _CheckBoxSelectMenu,
+			_CheckBoxSelectMenuItem, _CompositeMixin, _ValidationMixin,_FormSelectWidgetA11yMixin, 
+			bidiExtension, 
+			TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin,
+			checkBoxSelectNls, entities){
+			
+	var baseClassName = "idx.form.CheckBoxSelect";
+	if (has("mobile") || has("platform-plugable")) {
+		baseClassName = baseClassName + "Base";
+	}
+	if (has("dojo-bidi")) {
+		baseClassName = baseClassName + "_";
+	}
 	
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
-	
+
 	/**
 	 * @name idx.form.CheckBoxSelect
 	 * @class idx.form.CheckBoxSelect is a composite widget which looks like a drop down version multi select control.
@@ -86,7 +132,7 @@ define([
 	 *		store: readStore
 	 *	});
 	 */
-	return iForm.CheckBoxSelect = declare("idx.form.CheckBoxSelect", [_FormSelectWidget, _HasDropDown, _CssStateMixin, _CompositeMixin, _ValidationMixin,_FormSelectWidgetA11yMixin],
+	iForm.CheckBoxSelect = declare(baseClassName, [_FormSelectWidget, _HasDropDown, _CssStateMixin, _CompositeMixin, _ValidationMixin,_FormSelectWidgetA11yMixin],
 	/**@lends idx.form.CheckBoxSelect.prototype*/
 	{
 		// summary:
@@ -113,7 +159,7 @@ define([
 			"titleNode": "dijitDownArrowButton"
 		},
 		
-		templateString: template,
+		templateString: desktopTemplate,
 		
 		// attributeMap: Object
 		//		Add in our style to be applied to the focus node
@@ -133,7 +179,7 @@ define([
 	
 		//	tooltipPosition: String[]
 		//		See description of dijit.Tooltip.defaultPosition for details on this parameter.
-		tooltipPosition: [],
+		tooltipPosition: [], // need to override this class-static value in postMixInProperties
 	
 		// emptyLabel: string
 		//		What to display in an "empty" dropdown
@@ -148,31 +194,37 @@ define([
 		_childrenLoaded: false,
 		
 		postMixInProperties: function(){
+			this.tooltipPosition = []; // set this to instance-local value
 			this._nlsResources = checkBoxSelectNls;
 			this.missingMessage || (this.missingMessage = this._nlsResources.missingMessage);
 			this.inherited(arguments);
 		},
 		
+		_createCheckBoxSelectMenu: function(){
+			return new _CheckBoxSelectMenu({
+				id: this.id + "_menu"});
+		},
+		
 		_fillContent: function(){
 			// summary:
-			//		Overwrite dijit.form._FormSelectWidget._fillContent to fix a typo 
+			//		Overwrite dijit.form._FormSelectWidget._fillContent to fix a typo
 			var opts = this.options;
 			if(!opts){
 				opts = this.options = this.srcNodeRef ? query("> *",
-							this.srcNodeRef).map(function(node){
-								if(node.getAttribute("type") === "separator"){
-									return { value: "", label: "", selected: false, disabled: false };
-								}
-								return {
-									value: (node.getAttribute("data-" + kernel._scopeName + "-value") || node.getAttribute("value")),
-											label: String(node.innerHTML),
-									// FIXME: disabled and selected are not valid on complex markup children (which is why we're
-									// looking for data-dojo-value above.  perhaps we should data-dojo-props="" this whole thing?)
-									// decide before 1.6
-									selected: node.getAttribute("selected") || false,
-									disabled: node.getAttribute("disabled") || false
-								};
-							}, this) : [];
+					this.srcNodeRef).map(function(node){
+						if(node.getAttribute("type") === "separator"){
+							return { value: "", label: "", selected: false, disabled: false };
+						}
+						return {
+							value: (node.getAttribute("data-" + kernel._scopeName + "-value") || node.getAttribute("value")),
+									label: String(node.innerHTML),
+							// FIXME: disabled and selected are not valid on complex markup children (which is why we're
+							// looking for data-dojo-value above.  perhaps we should data-dojo-props="" this whole thing?)
+							// decide before 1.6
+							selected: node.getAttribute("selected") || false,
+							disabled: node.getAttribute("disabled") || false
+						};
+					}, this) : [];
 			}
 			if(!this.value){
 				this._set("value", this._getValueFromOpts());
@@ -181,7 +233,10 @@ define([
 			}
 			
 			// Create the dropDown widget
-			this.dropDown = new _CheckBoxSelectMenu({id: this.id + "_menu"});
+			when(this._createCheckBoxSelectMenu(), lang.hitch(this, function(dropDown) {
+				if (dropDown)
+					this.dropDown = dropDown;
+			}));
 		},
 		
 		_getValueFromOpts: function(){
@@ -207,14 +262,12 @@ define([
 				"focus" : "_onFocus"
 			};
 			
-//			if (this.instantValidate) {
-//				this.connect(this, "_onFocus", function(){
-//					if(this.message == ""){return;}
-//					this.displayMessage(this.message);
-//				});
-//			}
-			
 			this.inherited(arguments);
+
+			//when initialized, options inside checkbox select should be selected 
+			//if related items in the store set selected
+			this._setValueFromStore();
+
 			this.connect(this.domNode, "onmousemove", event.stop);
 			this._resize();
 		},
@@ -225,9 +278,12 @@ define([
 			//		sizing calculations should not called in postCreate 
 			
 			this.inherited(arguments);
-			this._resize();			
+			this._resize();	
 		},
 		resize: function(){
+			if(this._holdResize()){
+				return;
+			}
 			if (iUtil.isPercentage(this._styleWidth)) {
 				domStyle.set(this.containerNode, "width","");
 			}
@@ -243,7 +299,7 @@ define([
 					contentBoxWidth = domGeom.getContentBox(this.oneuiBaseNode).w;
 				if ( styleSettingWidth.indexOf("px") || dojo.isNumber(styleSettingWidth) ){
 					styleSettingWidth = parseInt(styleSettingWidth);
-					contentBoxWidth = ( styleSettingWidth < contentBoxWidth )? styleSettingWidth : contentBoxWidth;
+					contentBoxWidth = ( styleSettingWidth < contentBoxWidth || contentBoxWidth <= 0 )? styleSettingWidth : contentBoxWidth;
 				}
 					
 				domStyle.set(this.containerNode, "width", contentBoxWidth - 40 + "px");
@@ -256,13 +312,33 @@ define([
 			//		If there is any items selected in the store, the value
 			//		of the widget will be set to the values of these items.
 			this.inherited(arguments);
+			/**
+		 	* Fix defect 13101, deals with items with old or new store api
+		 	*/
+			/*
 			var setSelectedItems = function(items){
 				var value = array.map(items, function(item){ return item.value[0]; });
 				if(value.length){
 					this.set("value", value);
 				}
-			};
-			this.store.fetch({query:{selected: true}, onComplete: setSelectedItems, scope: this});
+			};*/
+			//this.store.fetch({query:{selected: true}, onComplete: setSelectedItems, scope: this});
+			this._setValueFromStore();
+		},
+
+		_setValueFromStore: function(){
+			if(this.store){
+				when(this.store.query({selected: true}), lang.hitch(this, function(items) {
+					var value;
+					if(this.store._oldAPI)
+						value = array.map(items, function(item){ return item.value[0]; });
+					else
+						value = array.map(items, function(item){ return item.value; });
+					if(value.length){
+						this.set("value", value);
+					}
+				}));
+			}
 		},
 		
 		_getMenuItemForOption: function(/*dijit.form.__SelectOption*/ option){
@@ -274,12 +350,11 @@ define([
 				return new MenuSeparator();
 			}else{
 				// Just a regular menu option
-				var click = lang.hitch(this, "_updateValue");
 				var item = new _CheckBoxSelectMenuItem({
 					parent: this,
 					option: option,
 					label: option.label || this.emptyLabel,
-					onClick: click,
+					onClick: this._onMenuItemClick,
 					checked: option.selected || false,
 					readOnly: this.readOnly || false,
 					disabled: this.disabled || false
@@ -287,7 +362,45 @@ define([
 				return item;
 			}
 		},
+
+		_onMenuItemClick: function(e){
+			this.parent._doSelect(this, e.shiftKey);
+			this.parent._updateValue();
+		},
 		
+		_doSelect: function(node, range) {
+			// summary:
+			//		Add or remove the given node from selection, responding
+			//		to a user action such as a click or keypress.
+			// range: Boolean
+			//		Indicates whether this is meant to be a ranged action (e.g. shift-click)
+
+			if (this.anchor && range) {
+				var distance = this.anchor.getIndexInParent() - node.getIndexInParent(),
+					begin, end, anchor = this.anchor;
+
+				if (distance < 0) { //current is after anchor
+					begin = anchor;
+					end = node;
+				} else { //current is before anchor
+					begin = node;
+					end = anchor;
+				}
+				var isChecked = node.get('checked');
+				//check/uncheck everything betweeen begin and end inclusively
+				while (begin != end) {
+					if (begin.option) { //exclude MenuSeparator
+						begin.set('checked', isChecked);
+						begin.option.selected = isChecked;
+					}
+					begin = begin.getNextSibling();
+				}
+				end.set('checked', isChecked);
+				end.option.selected = isChecked;
+			}
+			this.anchor = node;
+		},
+
 		_addOptionItem: function(/*dijit.form.__SelectOption*/ option){
 			// summary:
 			//		For the given option, add an option to our dropdown.
@@ -359,7 +472,6 @@ define([
 			// summary:
 			//		Overridden so that the state will be cleared.
 			this.inherited(arguments);
-			Tooltip.hide(this.domNode);
 			this._set("state", "");
 			this._set("message", "");
 		},
@@ -379,21 +491,33 @@ define([
 			// NOTE(bcaceres): I rewrote this section to avoid using "innerHTML" so that we
 			// would not need to escape elements of the label to avoid issues with attributes
 			// in the span tag or in the child text
-			var spanAttrs = null;
-			if(this.fieldWidth){
-				var spanAttrs = { "title": label };
-			}
+			//
+			// support special character encode for defect 11423
+			//
+			var spanAttrs = {"role": "option"}, labelStr = entities.decode(label);
+			if ( !labelStr )
+				spanAttrs["title"] = "empty";// Defect 11904
+			else
+				spanAttrs["title"] = labelStr;
+
 			
 			var span = domConstruct.create("span", spanAttrs, this.containerNode, "only");
 			domClass.add(span, "dijitReset");
 			domClass.add(span, "dijitInline");
 			if (this.fieldWidth) domClass.add(span, "dojoxEllipsis");
 			domClass.add(span, this.baseClass + "Label");
-						  
-			var labelTextNode = win.doc.createTextNode(label);
-			domConstruct.place(labelTextNode, span, "first");	
+			//
+			// support special character encode for defect 11423
+			// The Old code is as follow
+			// var labelTextNode = win.doc.createTextNode(label);
+			//
+			html.set(span, label);
+			span.title = has("ff") ? span.textContent : span.innerText; //title: show actual texts instead of html tags
 			
-			this.focusNode.setAttribute("aria-label", label);
+			// Defect 11904
+			if(span.title === ""){
+				span.title = 'empty';
+			}
 		},
 		
 		_setValueAttr: function(/*anything*/ newValue, /*Boolean?*/ priorityChange){
@@ -487,8 +611,11 @@ define([
 		_updateSelection: function(){
 			this.inherited(arguments);
 			this._handleOnChange(this.value);
-			array.forEach(this._getChildren(), function(item){ 
-				item._updateBox(); 
+			array.forEach(this._getChildren(), function(item){
+				// dijit.MenuSeparator does not have _updateBox
+				if ( item._updateBox )
+					item._updateBox();
+
 			});
 		},
 		
@@ -522,41 +649,30 @@ define([
 			});
 		},
 		
-//		_setFieldWidthAttr: function(/*String*/width){
-//			if(!width){ return; }
-//			var widthInPx = iUtil.normalizedLength(width);
-//			if(dojo.isFF){
-//				var borderWidthInPx = iUtil.normalizedLength(domStyle.get(this.oneuiBaseNode,"border-left-width")) +
-//				iUtil.normalizedLength(domStyle.get(this.oneuiBaseNode,"border-right-width"));
-//				widthInPx += borderWidthInPx;
-//			}else if(dojo.isIE){
-//				widthInPx += 2;
-//			}
-//			domStyle.set(this.oneuiBaseNode, "width", widthInPx + "px");
-//			
-//			var nw = domGeom.getContentBox(this.containerNode.parentNode).w;
-//			nw = nw > 0 ? nw : 0;
-//			domStyle.set(this.containerNode, "width", nw);
-//		},
-		
 		_setLabelAttr: function(/*String*/ label){
 			this.inherited(arguments);
 			this.focusNode.setAttribute("aria-labelledby", this.id + "_label");
 		},
-		
+		/**
+		 * Overwrite dijit._HasDropDown._onDropDownMouseDown
+		 * Open the drop down menu when readOnly is true.
+		 */
 		_onDropDownMouseDown: function(/*Event*/ e){
 			// summary:
-			//		Overwrite dijit._HasDropDown._onDropDownMouseDown
-			//		Open the drop down menu when readOnly is true.
-	
-			if(this.disabled){ return; }
-	
-			event.stop(e);
-	
-			this._docHandler = this.connect(win.doc, "onmouseup", "_onDropDownMouseUp");
-	
-			this.toggleDropDown();
-		},
+			//		Please see the _HasDropDown when the idt upgrade
+			//		DO NOT copy the "_onDropDownMouseDown" in _HasDropDown.js, 
+			//		use the temparory variable to record the readonly value
+			var tempReadOnly = this.readOnly;
+			
+			if ( tempReadOnly ) {
+				this.set("ReadOnly", false);
+			}
+			this.inherited(arguments);
+			
+			if ( tempReadOnly ) {
+				this.set("ReadOnly", tempReadOnly);
+			}
+		},	
 		
 		/**
 		 * Toggle the drop down menu.
@@ -579,36 +695,33 @@ define([
 				this.closeDropDown();
 			}
 		},
-		
+		openDropDown: function(){
+			var v = this.inherited(arguments);
+			var ltr = domGeom.isBodyLtr(this.ownerDocument);
+			if(!ltr && (this.focusNode === popup._firstAroundNode)){
+				// popup repositionAll break checkboxselect menu in rtl mode, so skip it for now.
+				popup._firstAroundNode = null;
+			}
+		},
+		/**
+		 * Overwrite dijit._HasDropDown._onKey
+		 * Open the drop down menu when readOnly is true.
+		 */
 		_onKey: function(/*Event*/ e){
 			// summary:
 			//		Overwrite dijit._HasDropDown._onKey
 			//		Open the drop down menu when readOnly is true.
-	
-			if(this.disabled){ return; }
-	
-			var d = this.dropDown, target = e.target;
-			if(d && this._opened && d.handleKey){
-				if(d.handleKey(e) === false){
-					/* false return code means that the drop down handled the key */
-					event.stop(e);
-					return;
-				}
+			//		DO NOT copy the "_onKey" in _HasDropDown.js, 
+			//		use the temparory variable to record the readonly value
+			var tempReadOnly = this.readOnly;
+			
+			if ( tempReadOnly ) {
+				this.set("ReadOnly", false);
 			}
-			if(d && this._opened && e.keyCode == keys.ESCAPE){
-				this.closeDropDown();
-				event.stop(e);
-			}else if(!this._opened &&
-					(e.keyCode == keys.DOWN_ARROW ||
-						( (e.keyCode == keys.ENTER || e.keyCode == " ") &&
-						  //ignore enter and space if the event is for a text input
-						  ((target.tagName || "").toLowerCase() !== 'input' ||
-						     (target.type && target.type.toLowerCase() !== 'text'))))){
-				// Toggle the drop down, but wait until keyup so that the drop down doesn't
-				// get a stray keyup event, or in the case of key-repeat (because user held
-				// down key for too long), stray keydown events
-				this._toggleOnKeyUp = true;
-				event.stop(e);
+			this.inherited(arguments);
+			
+			if ( tempReadOnly ) {
+				this.set("ReadOnly", tempReadOnly);
 			}
 		},
 		
@@ -625,4 +738,78 @@ define([
 			this.inherited(arguments);
 		}
 	});
+
+	if (has("dojo-bidi")) {
+		baseClassName = baseClassName.substring(0, baseClassName.length-1);
+		var baseCheckBox = iForm.CheckBoxSelect;
+		iForm.CheckBoxSelect = declare(baseClassName,[baseCheckBox,bidiExtension]);
+	}
+	
+	if ( has("mobile") || has("platform-plugable")) {
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/CheckBoxSelect", 
+				{	
+					desktop: "inherited",	// no plugin for desktop, use inherited methods  
+				 	mobile: MobilePlugin	// use the mobile plugin if loaded
+				});
+		
+		iForm.CheckBoxSelect = declare("idx.form.CheckBoxSelect",[iForm.CheckBoxSelect, TemplatePlugableMixin, _WidgetsInTemplateMixin], {
+					
+			oneuiBaseClass: "dijitSelect",
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			templatePath: require.toUrl("idx/form/templates/CheckBoxSelect.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			 			
+			// override _createCheckBoxSelectMenu to use the plugin (or inherited function for desktop)
+			_createCheckBoxSelectMenu: function(){
+				return this.doWithPlatformPlugin(arguments, "_createCheckBoxSelectMenu", "createCheckBoxSelectMenu");
+			},
+			/**
+			 * 
+			 */
+			onCheckStateChanged: function(item, checked){
+				return this.doWithPlatformPlugin(arguments, "onCheckStateChanged", "onCheckStateChanged",item, checked);
+			},
+			/**
+			 * Not Need on Mobile Platform
+			 */
+			_onDropDownMouseDown: function(){
+				return this.doWithPlatformPlugin(arguments, "_onDropDownMouseDown", "_onDropDownMouseDown");
+			},
+			/**
+			 * 
+			 */
+			closeDropDown: function(){
+				return this.doWithPlatformPlugin(arguments, "closeDropDown", "closeDropDown");
+			},
+			/**
+			 * 
+			 */
+			onCloseButtonClick: function(){
+				return this.doWithPlatformPlugin(arguments, "onCloseButtonClick", "onCloseButtonClick");
+			},
+			/**
+			 * 
+			 * @param {Object} message
+			 */
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			/**
+			 * 
+			 * @param {Object} helpText
+			 */
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			}
+		});
+	}
+	
+	return iForm.CheckBoxSelect;
 });

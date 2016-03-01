@@ -1,0 +1,235 @@
+{
+    identifier: "clazz",
+    label: "clazz",
+    items: [{
+        clazz: ["idx.form.ComboBox", "dijit.form.ComboBox"],
+        templates: [{
+            _type: "widgetProps",
+            description: "IDX ComboBox",
+			declaration: 
+				"<div data-dojo-type='idx/form/ComboBox' data-dojo-props='\"label\":\"idx.form.ComboBox\",\"labelAlignment\":\"vertical\",\"value\":\"\"'>" + 
+    				"<option value='ActionScript'>ActionScript</option>" +
+				    "<option value='AppleScript'>AppleScript</option>" +
+				    "<option value='Asp'>Asp</option>" +
+				    "<option value='BASIC'>BASIC</option>" +
+				    "<option value='C'>C</option>" +
+				    "<option value='C++'>C++</option>" +
+				    "<option value='Clojure'>Clojure</option>" +
+				    "<option value='COBOL'>COBOL</option>" +
+				    "<option value='ColdFusion'>ColdFusion</option>" +
+				    "<option value='Erlang'>Erlang</option>" +
+				    "<option value='Fortran'>Fortran</option>" +
+				    "<option value='Groovy'>Groovy</option>" +
+				    "<option value='Haskell'>Haskell</option>" +
+				    "<option value='Java'>Java</option>" +
+				    "<option value='JavaScript'>JavaScript</option>" +
+				    "<option value='Lisp'>Lisp</option>" +
+				    "<option value='Perl'>Perl</option>" +
+				    "<option value='PHP'>PHP</option>" +
+				    "<option value='Python'>Python</option>" +
+				    "<option value='Ruby'>Ruby</option>" +
+				    "<option value='Scala'>Scala</option>" +
+				    "<option value='Scheme'>Scheme</option>" +
+			 	"</div>"
+			},{
+				_type: "widgetProps",
+				description: "Dijit ComboBox",
+				declaration: "<div><label>dijit.form.ComboBox</label></div><div data-dojo-type='dijit/form/ComboBox'>"+
+					"<option value='ActionScript'>ActionScript</option>" +
+				    "<option value='AppleScript'>AppleScript</option>" +
+				    "<option value='Asp'>Asp</option>" +
+				    "<option value='BASIC'>BASIC</option>" +
+				    "<option value='C'>C</option>" +
+				    "<option value='C++'>C++</option>" +
+				    "<option value='Clojure'>Clojure</option>" +
+				    "<option value='COBOL'>COBOL</option>" +
+				    "<option value='ColdFusion'>ColdFusion</option>" +
+				    "<option value='Erlang'>Erlang</option>" +
+				    "<option value='Fortran'>Fortran</option>" +
+				    "<option value='Groovy'>Groovy</option>" +
+				    "<option value='Haskell'>Haskell</option>" +
+				    "<option value='Java'>Java</option>" +
+				    "<option value='JavaScript'>JavaScript</option>" +
+				    "<option value='Lisp'>Lisp</option>" +
+				    "<option value='Perl'>Perl</option>" +
+				    "<option value='PHP'>PHP</option>" +
+				    "<option value='Python'>Python</option>" +
+				    "<option value='Ruby'>Ruby</option>" +
+				    "<option value='Scala'>Scala</option>" +
+				    "<option value='Scheme'>Scheme</option>" +
+				"</div>"
+			},{
+			_type: "widgetProps",
+			description: "JQuery ComboBox",
+			jqType: "autocomplete",
+			jqSelector: ".ui-widget input",
+			jqOptions: {source: [
+			      "ActionScript",
+			      "AppleScript",
+			      "Asp",
+			      "BASIC",
+			      "C",
+			      "C++",
+			      "Clojure",
+			      "COBOL",
+			      "ColdFusion",
+			      "Erlang",
+			      "Fortran",
+			      "Groovy",
+			      "Haskell",
+			      "Java",
+			      "JavaScript",
+			      "Lisp",
+			      "Perl",
+			      "PHP",
+			      "Python",
+			      "Ruby",
+			      "Scala",
+			      "Scheme"
+    		]},
+			declaration: 
+				"<div class='ui-widget'><label>jQuery ComboBox</label><br><input></div>"
+		}]
+    },{
+    	clazz: ["dijit.Calendar"],
+    	templates: [{
+            _type: "widgetProps",
+            description: "IDX Calendar",
+            declaration: "<input data-dojo-type='dijit.Calendar'></input>"
+        },{
+			_type: "widgetProps",
+			description: "JQuery Calendar",
+			declaration: "<div class='ui-widget'><label>jQuery Datepicker</label><br><span></div>",
+			jqType: "datepicker",
+			jqSelector: ".ui-widget span"
+		}]
+    	
+    },{
+        clazz: ["idx.form.NumberSpinner", "dijit.form.NumberSpinner"],
+        templates: [{
+            _type: "widgetProps",
+            description: "IDX NumberSpinner",
+            declaration: "<div data-dojo-type='idx/form/NumberSpinner' data-dojo-props='\"label\":\"idx.form.NumberSpinner\",\"labelAlignment\":\"vertical\"'></div>"
+        },{
+			_type: "widgetProps",
+			description: "Dijit NumberSpinner",
+			declaration: "<div><label>dijit.form.NumberSpinner</label></div><div data-dojo-type='dijit/form/NumberSpinner'></div>"
+		},{
+			_type: "widgetProps",
+			description: "JQuery NumberSpinner",
+			declaration: "<div class='ui-widget'><label>jQuery NumberSpinner</label><br><input></div>",
+			jqType: "spinner",
+			jqSelector: ".ui-widget input"
+		}]
+    },{
+    	clazz: ["idx.form.HorizontalSlider", "dijit.form.HorizontalSlider"],
+        templates: [{
+            _type: "widgetProps",
+            description: "IDX Slider",
+            declaration: "<div data-dojo-type='idx.form.HorizontalSlider' data-dojo-props='style:{width:\"400px\"},label: \"IDX Slider:\",labelAlignment: \"vertical\",value:70,maximum:100,minimum:0'></div>"
+        },{
+			_type: "widgetProps",
+			description: "Dijit Slider",
+			declaration: "<div><label>Dijit Slider</label></div><div data-dojo-type='dijit/form/HorizontalSlider' data-dojo-props='style:{width:\"400px\"},value:70,maximum:100,minimum:0'></div>"
+		},{
+			_type: "widgetProps",
+			description: "JQuery Slider",
+			declaration: "<div class='ui-widget' style='width:400px'><label>jQuery Slider</label><br><div></div></div>",
+			jqType: "slider",
+			jqSelector: ".ui-widget div",
+			jqOptions: {
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 70
+			}
+		}]
+    },{
+    	clazz: ["idx.widget.Menu", "dijit.Menu", "dijit.MenuItem", "dijit.PopupMenuItem"],
+        templates: [{
+            _type: "widgetProps",
+            description: "IDX Menu",
+            declaration: '<div data-dojo-type="idx.widget.Menu">' + 
+							'<div data-dojo-type="dijit.MenuItem">Save</div>'+
+							'<div data-dojo-type="dijit.MenuItem">Zoom In</div>'+
+							'<div data-dojo-type="dijit.MenuItem">Zoom Out</div>'+
+							'<div data-dojo-type="dijit.PopupMenuItem">'+
+								'<span>Playback</span>'+
+								'<div data-dojo-type="idx.widget.Menu" >'+
+									'<div data-dojo-type="dijit.MenuItem">Prev</div>'+
+									'<div data-dojo-type="dijit.MenuItem">Stop</div>'+
+									'<div data-dojo-type="dijit.MenuItem">Play</div>'+
+									'<div data-dojo-type="dijit.MenuItem">Next</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'
+        },{
+			_type: "widgetProps",
+			description: "Dijit Menu",
+			declaration: '<div data-dojo-type="dijit.Menu">' + 
+							'<div data-dojo-type="dijit.MenuItem">Save</div>'+
+							'<div data-dojo-type="dijit.MenuItem">Zoom In</div>'+
+							'<div data-dojo-type="dijit.MenuItem">Zoom Out</div>'+
+							'<div data-dojo-type="dijit.PopupMenuItem">'+
+								'<span>Playback</span>'+
+								'<div data-dojo-type="idx.widget.Menu" >'+
+									'<div data-dojo-type="dijit.MenuItem">Prev</div>'+
+									'<div data-dojo-type="dijit.MenuItem">Stop</div>'+
+									'<div data-dojo-type="dijit.MenuItem">Play</div>'+
+									'<div data-dojo-type="dijit.MenuItem">Next</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'
+		},{
+			_type: "widgetProps",
+			description: "JQuery Menu",
+			declaration: '<ul class="ui-widget">' +
+							'<li><a href="#">Save</a></li>' +  
+							'<li><a href="#">Zoom In</a></li>' +  
+							'<li><a href="#">Zoom Out</a></li>' +  
+							'<li>'+
+								'<a href="#">Playback</a>'+
+								'<ul>' +
+									'<li><a href="#">Prev</a></li>' +  
+									'<li><a href="#">Stop</a></li>' +  
+									'<li><a href="#">Play</a></li>' +  
+									'<li><a href="#">Next</a></li>' +  
+								'</ul>'+
+							'</li>' +  
+						'</ul>',
+			jqType: "menu",
+			jqSelector: ".ui-widget"
+		}]
+    },{
+    	clazz: ["idx.widget.Dialog", "dijit.Dialog"],
+        templates: [{
+            _type: "widgetProps",
+            description: "IDX Dialog",
+            declaration: '<div data-dojo-type="idx.widget.Dialog" data-dojo-props=\'title: "Basic dialog"\'><p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the \'x\' icon.</p></div>'
+        },{
+			_type: "widgetProps",
+			description: "Dijit Dialog",
+			declaration: '<div data-dojo-type="dijit.Dialog" data-dojo-props=\'title: "Basic dialog"\'><p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the \'x\' icon.</p></div>'
+		},{
+			_type: "widgetProps",
+			description: "JQuery Dialog",
+			declaration: '<div class="ui-widget"title="Basic dialog"><p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the \'x\' icon.</p></div>',
+			jqType: "dialog",
+			jqSelector: ".ui-widget",
+			jqOptions: {autoOpen: false}
+		}]
+    },{
+    	clazz: ["dijit.form.Button"],
+        templates: [{
+			_type: "widgetProps",
+			description: "IDX Button",
+			declaration: '<button data-dojo-type="dijit.form.Button">Dijit Button</button>'
+		},{
+			_type: "widgetProps",
+			description: "JQuery Button",
+			declaration: '<button class="ui-widget">jQuery Button</button>',
+			jqType: "button",
+			jqSelector: ".ui-widget"
+		}]
+    }]
+}

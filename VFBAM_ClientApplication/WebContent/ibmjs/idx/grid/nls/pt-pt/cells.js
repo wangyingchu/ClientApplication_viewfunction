@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Comutar selecção de todas as filas"		
 //end v1.x content
 });
+

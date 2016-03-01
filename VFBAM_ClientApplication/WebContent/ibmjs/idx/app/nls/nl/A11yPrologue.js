@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT plus ${accessKey}",
 	keySequence_Firefox: "ALT plus SHIFT plus ${accessKey} onder Windows en Linux of CONTROL plus ${accessKey} op Mac",
 	keySequence_Safari: "CONTROL plus OPT plus ${accessKey} op Mac of ALT plus ${accessKey} onder Windows",
-	keySequence_Chrome: "ALT plus ${accessKey} onder Windows en Linux of CONTROL plus OPT op Mac",
+	keySequence_Chrome: "ALT plus ${accessKey} onder Windows en Linux of CONTROL plus OPT plus ${accessKey} op Mac",
 	shortcutListMessage: "De snelkoppelingen voor deze pagina zijn:",
 	a11yPrologueLabel: "Proloog voor toegankelijkheid",
     a11yStatementLabel: "Verklaring van toegankelijkheid",

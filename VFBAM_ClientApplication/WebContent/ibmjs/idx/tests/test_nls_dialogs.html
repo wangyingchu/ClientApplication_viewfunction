@@ -51,8 +51,11 @@ require([
 	});
 });
 </script>
+<script src="commonTest.js"></script>
+<script src="../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">nls/dialogs</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>
@@ -75,10 +78,10 @@ require([
 		Dismiss the dialog and click the "Confirmation" button to show another dialog.<br/><br/>
 		Verify that the "Confirmation" dialog message is translated.
 	</td></tr>
-	<tr><td>progress</td><td>
+	<!--<tr><td>progress</td><td>
 		Dismiss the dialog and click the "Progress" button to show another dialog.<br/><br/>
 		Verify that the "Progress" dialog message is translated.
-	</td></tr>
+	</td></tr>-->
 	<tr><td>loading</td><td>
 		Verify that the "Loading" message is translated.
 	</td></tr>

@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT plus ${accessKey}",
 	keySequence_Firefox: "ALT plus SHIFT plus ${accessKey} în Windows şi Linux sau CONTROL plus ${accessKey} în Mac",
 	keySequence_Safari: "CONTROL plus OPT plus ${accessKey} în Mac sau ALT plus ${accessKey} în Windows",
-	keySequence_Chrome: "ALT plus ${accessKey} în Windows şi Linux sau CONTROL plus OPT în Mac",
+	keySequence_Chrome: "ALT plus ${accessKey} în Windows şi Linux sau CONTROL plus OPT plus ${accessKey} în Mac",
 	shortcutListMessage: "Scurtăturile pentru această pagină sunt:",
 	a11yPrologueLabel: "Prolog accesibilitate",
     a11yStatementLabel: "Declaraţia de accesibilitate",

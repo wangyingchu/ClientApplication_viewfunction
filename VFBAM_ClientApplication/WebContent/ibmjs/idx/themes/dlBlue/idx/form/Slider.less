@@ -1,0 +1,160 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} .idxSliderWrapH {
+	.dijitSliderButtonContainerH{
+		padding: 1px 5px;
+	}
+	.dijitSliderDecrementIconH, .dijitSliderIncrementIconH{
+		background-color: @sec-button-background-color;
+		border: 1px solid @sec-button-border-color;
+		.border-radius(@button-border-radius);
+		height: 18px;
+		width: 12px;
+		background: url("../../dijit/@{image-form-button-arrows-color}");
+	}
+	.dijitSliderDisabled {
+		.dijitSliderDecrementIconH, .dijitSliderIncrementIconH{
+			background-color: @sec-button-disabled-background-color;
+			border: solid 1px @sec-button-disabled-border-color;
+			background: url("../../dijit/@{image-form-button-arrows}");
+		}
+		.dijitSliderDecrementIconH{
+			background-position: @arrow-disabled-left;
+		}
+		.dijitSliderIncrementIconH{
+			background-position: @arrow-disabled-right;
+		}
+	}
+	.dijitSlider .dijitSliderProgressBarH, .dijitSlider .dijitSliderLeftBumper{
+		background-image: none;
+	}
+	.dijitSliderDecrementIconH{
+		background-position: @arrow-left;
+	}
+	.dijitSliderIncrementIconH{
+		background-position: @arrow-right;
+	}
+	.dijitSliderBar {
+		height: 10px;
+	}
+	.dijitSliderFocused .dijitSliderBar {
+		.box-shadow(none);
+	}
+}
+.@{theme-name} .idxSliderWrapV {
+	.dijitSliderButtonContainerV{
+		padding: 5px 1px;
+	}
+	.dijitSliderDecrementIconV, .dijitSliderIncrementIconV{
+		background-color: @sec-button-background-color;
+		border: 1px solid @sec-button-border-color;
+		.border-radius(@button-border-radius);
+		height: 12px;
+		width: 16px;
+		background: url("../../dijit/@{image-form-button-arrows-color}");
+	}
+	.dijitSliderDisabled {
+		.dijitSliderDecrementIconV, .dijitSliderIncrementIconV{
+			background-color: @sec-button-disabled-background-color;
+			border: solid 1px @sec-button-disabled-border-color;
+			background: url("../../dijit/@{image-form-button-arrows}");
+		}
+		.dijitSliderDecrementIconV{
+			background-position: @arrow-disabled-down;
+		}
+		.dijitSliderIncrementIconV{
+			background-position: @arrow-disabled-up;
+		}
+	}
+	.dijitSlider .dijitSliderProgressBarV, .dijitSlider .dijitSliderBottomBumper{
+		background-image: none;
+	}
+	.dijitSliderDecrementIconV{
+		background-position: @arrow-down;
+	}
+	.dijitSliderIncrementIconV{
+		background-position: @arrow-up;
+	}
+	.dijitSliderBar {
+		width: 10px;
+	}
+	.dijitSliderFocused .dijitSliderBar {
+		.box-shadow(none);
+	}
+}
+
+
+
+.@{theme-name} .idxSliderWrapH .dijitValidationContainer,.@{theme-name} .idxSliderWrapV .dijitValidationContainer {
+    height: 15px;
+}
+.@{theme-name} .idxComposite.idxSliderWrapH .dijitValidationContainer,
+.@{theme-name} .idxComposite.idxSliderWrapV .dijitValidationContainer {
+    margin: 0 5px;
+}
+.@{theme-name} .idxSliderWrapH .idxLabel,.@{theme-name} .idxSliderWrapV .idxLabel {
+    vertical-align: top;
+    padding-top: 3px;
+}
+.@{theme-name} {
+    .idxSliderWrapV {
+        position: relative;
+        .dijitValidationContainer {
+            position: absolute;
+            right: 8px;
+            top:6px;
+        }
+    }
+}
+.dj_ie .@{theme-name} .idxSliderWrapV .dijitValidationContainer,.dj_gecko .@{theme-name} .idxSliderWrapV .dijitValidationContainer {
+    right: 13px;
+}
+.dj_ie {
+    .@{theme-name} {
+        .idxSliderWrapV {
+            .dijitSliderV {
+                .dijitSliderDecorationV {
+                    height:100% !important;
+                }
+            }
+        }
+    }
+}
+.dj_webkit {
+    .@{theme-name} {
+        .idxSliderWrapV {
+            .dijitSliderV {
+                .dijitSliderBarContainerV {
+                    height:101%;
+                }
+            }
+        }
+    }
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxSliderWrapV {
+            .dijitValidationContainer {
+                right: auto;
+                left: 13px;
+            }
+        }
+        .idxComposite .dijitSlider {
+			.dijitSliderDecrementIconH{
+				background-position: @arrow-right;
+			}
+			.dijitSliderIncrementIconH{
+				background-position: @arrow-left;
+			}
+		}
+        .idxComposite .dijitSliderDisabled {
+			.dijitSliderDecrementIconH{
+				background-position: @arrow-disabled-right;
+			}
+			.dijitSliderIncrementIconH{
+				background-position: @arrow-disabled-left;
+			}
+		}
+        
+    }
+}

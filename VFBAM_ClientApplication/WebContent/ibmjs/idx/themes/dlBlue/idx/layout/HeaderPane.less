@@ -1,0 +1,293 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+ @import "../../dijit/variables";
+.@{theme-name} {
+    .idxHeaderPaneA11y {
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        display: inline;
+        left: 50%;
+        top: -10000px;
+        visibility: visible;
+    }
+    .idxHeaderPane {
+        padding: 0px;
+        margin: 0px;
+        border: 1px solid #ddd;
+    }
+    .idxHeaderFrame {
+        position: relative;
+        padding: 0px;
+        margin: 0px;
+        border-style: none;
+        border-width: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    .idxHeaderPaneHeader {
+        position: absolute;
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        padding: 12px 20px;
+        border-style: none;
+        border-width: 0px;
+        background-color: #efeff1;
+        font-weight: bold;
+    }
+    
+    .idxHeaderPaneHeaderHover {
+    	background-color: #d9e2e9;
+    }
+    
+    .idxHeaderPaneTitleActions {
+    	.dijitButtonContents:focus {
+    		outline: thin dotted #000000;
+    	}
+	}
+    
+    .idxHeaderPaneHeaderActive, .dijitTitlePaneTitleActive {
+    	background-color: #003f69;
+    	color: white;
+    	.idxHeaderPaneTitleActions, .idxTitlePaneActions {
+    		
+	    	.idxButtonIcon {
+	    		.dijitButtonNode{
+	    			.dijitButtonText{
+		    			color: #ffffff;
+		            	padding: 0.4em;
+	    			}
+	    		}
+
+			    .idxCloseIcon{
+		    		background: url("./svg/headerpane_close_active.svg") no-repeat 0 0;
+		    	}
+		    	.idxRefreshIcon{
+	        		background: url("./svg/headerpane_refresh_active.svg") no-repeat 0 0;
+	        	}
+	        	
+	        	.idxHelpIcon{
+	        		background: url("./svg/headerpane_help_active.svg") no-repeat 0 0;
+	        	}
+	        	
+	        	.idxMaximizeIcon{
+	        		background: url("./svg/headerpane_maximize_active.svg") no-repeat 0 0;
+	        	}
+	        	
+	        	.idxRestoreIcon{
+	        		background: url("./svg/headerpane_restore_active.svg") no-repeat 0 0;
+	        	}
+		    }
+		}
+    }
+    
+    .idxHeaderPaneTitleBar {
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        vertical-align: middle;
+    }
+    .idxHeaderPaneTitleLeft {
+        float: left;
+        position: static;
+        vertical-align: middle;
+        display: inline;
+        margin: 0px;
+        padding: 0px;
+    }
+    .idxHeaderPaneTitleText {
+        vertical-align: middle;
+        display: inline-block;
+        white-space: nowrap;
+        line-height: 32px;
+        a{
+        	text-decoration: underline;
+        }
+    }
+    
+    .idxHeaderPaneTitleActions, .idxTitlePaneActions {
+        position: absolute;
+        right: 0px;
+        top: 10px;
+        vertical-align: middle;
+        display: inline;
+        margin: 0px;
+        padding: 0px;
+        
+       	.idxLinkDerived{
+        	text-decoration: underline;
+        }
+        
+        .idxButtonIcon {
+            margin: 0 20px;
+            .dijitIcon{
+                width: 32px;
+        		height: 32px;
+            }
+            
+        	.dijitButtonNode{
+    			.dijitButtonText{
+	            	color: #075e97;
+	            	padding: 0.4em;
+    			}
+    		}
+            
+        	.idxCloseIcon{
+        		background: url("./svg/headerpane_close.svg") no-repeat 0 0;
+        	}
+        	.idxRefreshIcon{
+        		background: url("./svg/headerpane_refresh.svg") no-repeat 0 0;
+        	}
+        	
+        	.idxHelpIcon{
+        		background: url("./svg/headerpane_help.svg") no-repeat 0 0;
+        	}
+        	
+        	.idxMaximizeIcon{
+        		background: url("./svg/headerpane_maximize.svg") no-repeat 0 0;
+        	}
+        	
+        	.idxRestoreIcon{
+        		background: url("./svg/headerpane_restore.svg") no-repeat 0 0;
+        	}
+        }
+        
+
+    }
+    
+
+    .idxHeaderPaneSpacer {
+        height: 6px;
+        margin: 0px;
+        padding: 0px;
+        display: block;
+    }
+    .idxHeaderPaneSpacerHidden {
+        display: none;
+        visibility: hidden;
+    }
+    .idxHeaderPaneActions {
+        display: block;
+        margin: 0px;
+        padding: 0px;
+    }
+    .idxHeaderPaneActionsHidden {
+        display: none;
+        visibility: hidden;
+    }
+    .idxHeaderPaneActionsLeft {
+        float: left;
+        position: static;
+        vertical-align: middle;
+        display: inline;
+        margin: 0px;
+        padding: 0px;
+    }
+    .idxHeaderPaneActionsRight {
+        position: static;
+        float: right;
+        text-align: right;
+        display: inline;
+        margin: 0px;
+        padding: 0px;
+    }
+    .idxHeaderPaneClear {
+        position: static;
+        visibility: hidden;
+        clear: both;
+        height: 0px;
+        width: 0px;
+        line-height: 0px;
+    }
+    .idxHeaderPaneAutoHide {
+        .idxHeaderPaneTitleActions {
+            visibility: hidden;
+        }
+    }
+    .idxHeaderPaneContent {
+        background-color: #ffffff;
+        position: absolute;
+        display: block;
+        margin: 0px;
+        padding: 12px 20px;
+        overflow: auto;
+    }
+    .idxHeaderPaneContent.idxHeaderPaneSingleChild {
+        padding: 0px 0px 0px 0px;
+        overflow: hidden;
+        .idxHeaderPane-child {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    }
+}
+
+.dj_ie8{
+	.idxHeaderPaneTitleActions, .idxTitlePaneActions {
+        .idxButtonIcon {
+        	.idxCloseIcon{
+        		background: url("./images/headerpane_close.png") no-repeat 0 0;
+        	}
+        	.idxRefreshIcon{
+        		background: url("./images/headerpane_refresh.png") no-repeat 0 0;
+        	}
+        	
+        	.idxHelpIcon{
+        		background: url("./images/headerpane_help.png") no-repeat 0 0;
+        	}
+        	
+        	.idxMaximizeIcon{
+        		background: url("./images/headerpane_maximize.png") no-repeat 0 0;
+        	}
+        	
+        	.idxRestoreIcon{
+        		background: url("./images/headerpane_restore.png") no-repeat 0 0;
+        	}
+        }
+        
+
+    }
+	.idxHeaderPaneHeaderActive, .dijitTitlePaneTitleActive {
+    	.idxHeaderPaneTitleActions, .idxTitlePaneActions {
+	    	.idxButtonIcon {
+			    .idxCloseIcon{
+		    		background: url("./images/headerpane_close_active.png") no-repeat 0 0;
+		    	}
+		    	.idxRefreshIcon{
+	        		background: url("./images/headerpane_refresh_active.png") no-repeat 0 0;
+	        	}
+	        	
+	        	.idxHelpIcon{
+	        		background: url("./images/headerpane_help_active.png") no-repeat 0 0;
+	        	}
+	        	
+	        	.idxMaximizeIcon{
+	        		background: url("./images/headerpane_maximize_active.png") no-repeat 0 0;
+	        	}
+	        	
+	        	.idxRestoreIcon{
+	        		background: url("./images/headerpane_restore_active.png") no-repeat 0 0;
+	        	}
+		    }
+		}
+    }
+}
+
+.@{theme-name} .idxHeaderPaneAutoHide.idxHeaderPaneFocused .idxHeaderPaneTitleActions,.@{theme-name} .idxHeaderPaneAutoHide .idxHeaderPaneHeaderHover .idxHeaderPaneTitleActions {
+    visibility: visible;
+}
+.dj_safari {
+    .@{theme-name} {
+        idxHeaderPaneContent {
+            padding-top: 7px;
+            padding-left: 7px;
+            padding-bottom: 7px;
+            padding-right: 7px;
+        }
+    }
+}

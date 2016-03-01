@@ -1,0 +1,466 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+@import "../../dijit/variables"; 
+.@{theme-name} {
+    .dijitSplitterV.idxSplitterV {
+        background: @disabled-color;
+        width: 7px;
+        border: 1px solid transparent;
+    }
+    .dijitSplitterH.idxSplitterH {
+        background: @disabled-color;
+        height: 7px;
+        border: 1px solid transparent;
+        text-align: center;
+    }
+    .idxSplitterH {
+        .dijitSplitterThumb {
+            height: 7px;
+            width: 46px;
+            left: 23px;
+            top: 0px;
+        }
+        .idxSplitterThumbOuter {
+            height: 7px;
+            width: 92px;
+        }
+    }
+    .idxSplitterV {
+        .dijitSplitterThumb {
+            height: 46px;
+            width: 7px;
+            left: 0px !important;
+            top: 23px;
+        }
+        .idxSplitterThumbOuter {
+            width: 7px;
+            height: 92px;
+        }
+    }
+    .idxSplitterNoResize {
+        cursor: default !important;
+    }
+    .idxSplitterH.dijitHover {
+        border-color: #999;
+        background: #929399;
+      /*  background: -moz-linear-gradient(top,  #ffffff 0%, #cccccc 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        background: -o-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        background: -ms-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        background: linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );*/
+        .idxSplitterThumbOuter {
+            background: #929399;
+          /*  background: -moz-linear-gradient(top,  #ffffff 0%, #cccccc 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+            background: -webkit-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+            background: -o-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+            background: -ms-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+            background: linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );*/
+        }
+    }
+    .idxSplitterH.dijitSplitterActive {
+        border-top-color: #828282;
+        border-bottom-color: #ffffff;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        .idxSplitterThumbOuter {
+            background: #929399;
+            background: -moz-linear-gradient(top,  #bbbaba 0%, #dddddd 50%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#cccccc));
+            background: -webkit-linear-gradient(top,  #bbbaba 0%,#dddddd 50%);
+            background: -o-linear-gradient(top,  #bbbaba 0%,#dddddd 50%);
+            background: -ms-linear-gradient(top,  #bbbaba 0%,#dddddd 50%);
+            background: linear-gradient(top,  #bbbaba 0%,#dddddd 50%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bbbaba', endColorstr='#dddddd',GradientType=0 );
+        }
+    }
+    .idxSplitterV.dijitHover {
+        background: #929399;
+     /*   background: -moz-linear-gradient(left,  #ffffff 0%, #cccccc 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+        background: -webkit-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: -o-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: -ms-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=1 );*/
+        border-color: #999;
+        .idxSplitterThumbOuter {
+            background: #929399;
+         /*   background: -moz-linear-gradient(left,  #ffffff 0%, #cccccc 100%);
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+            background: -webkit-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+            background: -o-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+            background: -ms-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+            background: linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=1 );*/
+        }
+    }
+    .idxSplitterV.dijitSplitterActive {
+        border-left-color: #828282;
+        border-right-color: #ffffff;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        .idxSplitterThumbOuter {
+            background: #ededed;
+            background: -moz-linear-gradient(left,  #bbbaba 0%, #ddd 50%);
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#bbbaba), color-stop(50%,#ddd));
+            background: -webkit-linear-gradient(left,  #bbbaba 0%,#ddd 50%);
+            background: -o-linear-gradient(left,  #bbbaba 0%,#ddd 50%);
+            background: -ms-linear-gradient(left,  #bbbaba 0%,#ddd 50%);
+            background: linear-gradient(left,  #bbbaba 0%,#ddd 50%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bbbaba', endColorstr='#ddd',GradientType=1 );
+        }
+    }
+    .idxSplitterThumbOuter {
+        position: absolute;
+    }
+    .dijitSplitterVHover {
+        background: #ededed;
+        background: -moz-linear-gradient(left,  #ffffff 0%, #cccccc 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+        background: -webkit-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: -o-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: -ms-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=1 );
+    }
+    .idxBorderContainer {
+        .idxSplitter {
+            position: absolute;
+        }
+    }
+    .idxSplitter {
+        .dijitSplitterThumb {
+            /*background-color: transparent;*/
+            background-color: @disabled-color;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            position: absolute;
+        }
+    }
+    .idxSplitterThumbExpand {
+        display: none;
+    }
+    .idxSplitterBidiToggleH {
+        .idxSplitterThumbCollapse {
+            left: 0px;
+        }
+        .idxSplitterThumbExpand {
+            display: block;
+            left: 46px;
+        }
+    }
+    .idxSplitterBidiToggleV {
+        .idxSplitterThumbCollapse {
+            top: 0px;
+        }
+        .idxSplitterThumbExpand {
+            display: block;
+            top: 46px;
+        }
+    }
+    .idxBorderContainerLocked {
+        .idxSplitter {
+            cursor: default;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+        }
+        .dijitSplitterThumb {
+            cursor: default;
+        }
+    }
+    .dijitSplitContainer.dijitBorderContainer-child {
+        border: 0px none transparent;
+    }
+    .dijitBorderContainer-child.dijitSplitContainer {
+        .dijitSplitContainer-child.dijitSplitContainer {
+            border:0px;
+        }
+    }
+    .idxHeaderPaneContent.idxHeaderPaneSingleChild {
+        .idxHeaderPane-child.dijitBorderContainer {
+            border: 0px;
+        }
+    }
+    .dijitBorderContainerNoGutter {
+        & > .idxSplitterH {
+            border: none;
+        }
+        & > .idxSplitterV {
+            border: none;
+        }
+    }
+    .dijitSplitContainerSizerV {
+        border: none;
+        background-color: transparent;
+        cursor: ns-resize;
+        height: 5px;
+    }
+    .dijitSplitContainerSizerH {
+        border: none;
+        background-color: transparent;
+        cursor: ew-resize;
+        width: 5px;
+    }
+    .dijitSplitContainerSizerH:hover {
+        background: #ededed;
+        background: -moz-linear-gradient(left,  #ffffff 0%, #cccccc 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+        background: -webkit-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: -o-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: -ms-linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        background: linear-gradient(left,  #ffffff 0%,#cccccc 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=1 );
+    }
+    .dijitSplitContainerSizerV:hover {
+        background: #ededed;
+        background: -moz-linear-gradient(top,  #ffffff 0%, #cccccc 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        background: -o-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        background: -ms-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        background: linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );
+    }
+}
+.@{theme-name} .idxBorderContainerToggle .dijitSplitContainer-dijitContentPane,.@{theme-name} .idxBorderContainerToggle .dijitBorderContainer-dijitContentPane,.@{theme-name} .idxBorderContainerToggle .dijitSplitContainerNoGutter-dijitContentPane,.@{theme-name} .idxBorderContainerToggle .dijitBorderContainerNoGutter-dijitContentPane {
+    padding: 0px;
+}
+.dj_ie {
+    .@{theme-name} {
+        .idxSplitter {
+            border: none;
+        }
+    }
+}
+.dijit_a11y .idxSplitterH .idxSplitterThumbCollapse,.dijit_a11y .idxSplitterH .idxSplitterThumbExpand {
+    border-top: 3px solid #fff;
+    height: 0;
+    top: 1px;
+    width: 45px;
+}
+.dijit_a11y .idxSplitterV .idxSplitterThumbCollapse,.dijit_a11y .idxSplitterV .idxSplitterThumbExpand {
+    border-left: 3px solid #fff;
+    width: 0;
+    left: 1px;
+    height: 45px;
+}
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbExpand,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbExpand,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopExpanded .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbExpandHover {
+    background-image: url("images/grabbie_horizontal.png") !important;
+}
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbExpand,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbExpand,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbExpandHover {
+    background-image: url("images/grabbie_vertical.png") !important;
+    background-color: @disabled-color !important;
+}
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbExpand {
+    background-position: 9px 1px;
+}
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbExpandHover {
+    background-position: 0 0;
+}
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbExpandHover {
+    background-position: 9px -4px;
+    background-color: transparent !important;
+}
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbExpand {
+    background-position: 9px 1px;
+}
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopExpanded .idxSplitterThumbExpandHover {
+    background-position: 0 -5px;
+}
+.@{theme-name} .idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbExpandHover {
+    background-position: 9px -4px;
+    background-color: transparent !important;
+}
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbExpand {
+    background-position: 2px 10px;
+}
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbExpandHover {
+    background-position: -5px 0;
+}
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbExpandHover {
+    background-color: transparent !important;
+    background-position: -4px 10px;
+}
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbExpand {
+    background-position: 1px 10px;
+}
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbExpandHover {
+    background-position: 0 0;
+}
+.@{theme-name} .idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbExpandHover {
+    background-color: transparent !important;
+    background-position: -4px 10px;
+}
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbCollapseHover {
+    background-image: url("images/grabbie_vertical.png");
+}
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbCollapseHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbCollapseHover {
+    background-image: url("images/grabbie_horizontal.png");
+}
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbCollapseHover {
+    background-position: 9px 1px;
+}
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterBottomCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterTopExpanded .idxSplitterThumbCollapseHover {
+    background-position: 9px 1px;
+    /*background-position: 0 -5px;*/
+}
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbCollapseHover {
+    background-position: -5px 0;
+}
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbExpand,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbCollapse,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbCollapseHover {
+    background-position: 0 0;
+}
+.@{theme-name} .idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterBottomExpanded .idxSplitterThumbCollapseHover {
+    background-position: 9px -4px;
+    background-color: transparent !important;
+}
+.@{theme-name} .idxSplitterBottomCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterTopExpanded .idxSplitterThumbCollapseHover {
+    background-position: 9px -4px;
+    background-color: transparent !important;
+}
+.@{theme-name} .idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterLeftExpanded .idxSplitterThumbCollapseHover {
+    background-position: -15px 0;
+}
+.@{theme-name} .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.@{theme-name} .idxSplitterRightExpanded .idxSplitterThumbCollapseHover {
+    background-position: -10px 0;
+}
+.@{theme-name} .idxBorderContainerLocked .idxSplitter .idxSplitterBarTop,
+.@{theme-name} .idxBorderContainerLocked .idxSplitter .idxSplitterBarBottom,
+.@{theme-name} .idxSplitterNoResize .idxSplitterBarTop,
+.@{theme-name} .idxSplitterNoResize .idxSplitterBarBottom {
+    display: none;
+}
+.@{theme-name} .dijitBorderContainer.dijitBorderContainer-child,
+.@{theme-name} .dijitBorderContainerNoGutter.dijitBorderContainer-child {
+    border: 0px;
+}
+.@{theme-name} .dijitBorderContainer.dijitBorderContainer-child &>.idxSplitterH,
+.@{theme-name} .dijitBorderContainer.dijitBorderContainer-child &>.idxSplitterV,
+.@{theme-name} .dijitBorderContainerNoGutter.dijitBorderContainer-child &>.idxSplitterH,
+.@{theme-name} .dijitBorderContainerNoGutter.dijitBorderContainer-child &>.idxSplitterV {
+    border: 0px none transparent;
+}

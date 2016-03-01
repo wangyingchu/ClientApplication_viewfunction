@@ -208,6 +208,7 @@ define(["dojo/_base/declare",						// dDeclare
 			 *   "length" - A value that is a non-empty array or non-empty string indicates possible children.
 			 *   "branch" - A value that is not zero, false, null or undefined indicates possible children.
 			 *   "leaf" - A value that is not zero, false, null or undefined indicates NO possible children
+			 *   "function" - The branchingAttr is a function that should be called.
 			 *   
 			 * @default "present"
 			 */
@@ -307,8 +308,12 @@ define(["dojo/_base/declare",						// dDeclare
 			 *  - Value of typeBranchingMap (when present)
 			 *  - Value from branchingAttr as interpreted by branchingAttrMode
 			 */
-			mayHaveChildren: function(item){
+			mayHaveChildren: function(item) {
 				if (item === this.root) return true;
+				if (this.store.hasChildren && dLang.isFunction(this.store.hasChildren)) {
+					var hasChildren = this.store.hasChildren(item);
+					return hasChildren;
+				}
 				var itemID = this.store.getIdentity(item);
 				if (itemID && this.branchingMap && (itemID in this.branchingMap)) {
 					return (this.branchingMap[itemID] ? true : false);
@@ -321,6 +326,7 @@ define(["dojo/_base/declare",						// dDeclare
 				// check if no branching attribute
 				if (!this.branchingAttr) return this.inherited(arguments);
 				var branchingAttrMode = this.branchingAttrMode ? this.branchingAttrMode : "present";
+				var value = undefined;
 				
 				// switch on the branching attribute mode
 				switch (this.branchingAttrMode) {
@@ -334,8 +340,8 @@ define(["dojo/_base/declare",						// dDeclare
 					return (! (this.branchingAttr in item));
 				case "length":
 				{
-					var val =(this.branchingAttr in item) ? item[this.branchingAttr] : null; 
-					return ("length" in val) ? (val.length > 0) : false;
+					value =(this.branchingAttr in item) ? item[this.branchingAttr] : null; 
+					return ("length" in value) ? (value.length > 0) : false;
 				}
 				case "branch":
 					return (item[this.branchingAttr] ? true : false);

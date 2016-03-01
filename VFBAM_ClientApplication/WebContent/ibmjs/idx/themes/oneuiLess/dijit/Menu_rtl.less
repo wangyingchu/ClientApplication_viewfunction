@@ -1,0 +1,52 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.dijitMenuItemRtl .dijitMenuExpand{
+  background-position: -7px 0;
+  margin-right: 0;
+  margin-left: 3px;
+}
+
+.dijitMenuItemRtlDisabled  .dijitMenuExpand{
+  background-position: -35px 0;
+}
+
+.dijitMenuItemRtl .dijitMenuArrowCell{
+	padding-left: 10px;
+	padding-right: 1px;
+	border-left: 1px solid @fwBackground;
+	border-right: none;
+}
+
+.dijitMenuRtl td.dijitMenuItemIconCell{
+  padding: 4px 9px 0 0;
+  margin: 0 4px 0 0;
+  border-bottom: 1px solid @fwBackground;
+  border-right: 1px solid @fwBackground;
+  border-left: none;
+}
+
+.dijitMenuRtl .dijitMenuItemIcon{
+	margin-left: 5px;
+	margin-right: 0;
+} 
+
+.dijitMenuBarRtl .dijitMenuItem{
+  margin-right: -1px;
+}
+
+/*** The following is for adding a dotted border to use more than color to show selection *****/
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemRtl.dijitMenuItemFocused>td.dijitMenuItemIconCell {
+	border: 1px dotted @focusOutline;
+	border-left: 0px none transparent;
+}
+
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemRtl.dijitMenuItemFocused>td.dijitMenuArrowCell {
+	border: 1px dotted @focusOutline;
+	border-right: 0px none transparent;
+	padding-left: 9px;
+}

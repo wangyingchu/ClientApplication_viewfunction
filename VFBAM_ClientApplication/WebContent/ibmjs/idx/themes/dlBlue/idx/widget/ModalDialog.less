@@ -1,0 +1,246 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} {
+	.idxErrorMessageDialog .messageSummary{
+		background: @error-message-color;
+		color: @error-message-stroke;
+	}
+	.idxWarningMessageDialog .messageSummary,
+	.idxConfirmationMessageDialog .messageSummary{
+		background: @warning-message-color;
+		color: @warning-message-stroke;
+	}
+	.idxSuccessMessageDialog .messageSummary{
+		background: #007446;
+		color: @success-message-stroke;
+	}
+	.idxInformationMessageDialog .messageSummary,
+	.idxQuestionMessageDialog .messageSummary{
+		background: @information-message-color;
+		color: @information-message-stroke;
+	}
+}
+
+.@{theme-name} .idxModalDialog,.@{theme-name} .idxConfirmDialog {
+    border: 0;
+    .box-shadow(0px 0px 5px rgba(29, 30, 30, .3))
+}
+.dj_ie8 .@{theme-name} .idxModalDialog,
+.dj_ie8 .@{theme-name} .idxConfirmDialog{
+	border: 1px solid @border-color;
+    .border-radius(1px);
+}
+.@{theme-name} .idxModalDialog,.@{theme-name} .idxConfirmDialog {
+    background: #ffffff;
+    width: 500px;
+    min-width: 0;
+    padding: 0;
+}
+.@{theme-name} .idxModalDialog .dijitDialogTitleBar,
+.@{theme-name} .idxConfirmDialog .dijitDialogTitleBar {
+    display: none;
+}
+.@{theme-name} .idxModalDialog .messageSummary,
+.@{theme-name} .idxConfirmDialog .messageSummary {
+    overflow:auto;
+    padding: 15px 20px;
+    _height:48px;
+}
+.@{theme-name} .idxModalDialog .messageSummary .messageDescription,
+.@{theme-name} .idxConfirmDialog .messageSummary .messageDescription {
+    word-wrap: break-word;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 1.538em;
+    font-weight: 200;
+}
+.@{theme-name} .idxModalDialog .messageSummary .messageIcon,
+.@{theme-name} .idxConfirmDialog .messageSummary .messageIcon {
+    float:left;
+    margin:0 15px 0 0;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width: 56px;
+    height: 56px;
+    background-image: @message-icons;
+}
+.dj_ie8 .@{theme-name} .idxModalDialog .messageSummary .messageIcon,
+.dj_ie8 .@{theme-name} .idxConfirmDialog .messageSummary .messageIcon{
+	background-image: @message-icons-png;
+}
+.@{theme-name} .idxErrorMessageDialog .messageIcon {
+    background-position: 0px -42px;
+}
+.@{theme-name} .idxInformationMessageDialog .messageIcon {
+    background-position: -186px -42px;
+}
+.@{theme-name} .idxWarningMessageDialog .messageIcon,
+.@{theme-name} .idxConfirmationMessageDialog .messageIcon
+ {
+    background-position: -62px -42px;
+}
+.@{theme-name} .idxSuccessMessageDialog .messageIcon {
+    background-position: -124px -42px;
+}
+.@{theme-name} .idxModalDialog.idxQuestionMessageDialog .messageSummary .messageIcon,
+.@{theme-name} .idxConfirmDialog.idxQuestionMessageDialog .messageSummary .messageIcon{
+    background-image: @message-icon-help;
+}
+.dj_ie8 .@{theme-name} .idxModalDialog.idxQuestionMessageDialog .messageSummary .messageIcon,
+.dj_ie8 .@{theme-name} .idxConfirmDialog.idxQuestionMessageDialog .messageSummary .messageIcon{
+    background-image: @message-icon-help-png;
+    background-position: -4px -4px;
+}
+
+.@{theme-name} .idxModalDialog .messageWrapper,
+.@{theme-name} .idxConfirmDialog .messageWrapper {
+	margin: 0 20px;
+    padding: 15px 0;
+    color: @message-dialog-text;
+    font-size: 1em;
+    font-weight: 400;
+    border-bottom: 1px solid @disabled-border-color;
+    
+}
+.@{theme-name} .idxModalDialog .messageDialogFooter,.@{theme-name} .idxConfirmDialog .messageDialogFooter {
+    padding: 15px 20px 20px;
+    min-height: 1.5em;
+}
+
+.@{theme-name} .idxModalDialog .dijitDialogPaneContent,
+.@{theme-name} .idxConfirmDialog .dijitDialogPaneContent {
+    border-top: none;
+    padding: 0px;
+}
+.@{theme-name} .idxModalDialog .dijitTitlePane,
+.@{theme-name} .idxConfirmDialog .dijitTitlePane {
+    margin-bottom: 8px;
+}
+
+.@{theme-name} .idxModalDialog .messageDialogFooter .messageCheckBox,
+.@{theme-name} .idxConfirmDialog .messageDialogFooter .messageCheckBox {
+    margin: 0;
+    padding: 0;
+    .idxLabel {
+    	margin: 2px 0 0;
+    }
+}
+.@{theme-name} .idxModalDialog .messageDialogFooter .messageAction,
+.@{theme-name} .idxConfirmDialog .messageDialogFooter .messageAction {
+    float: right;
+}
+.@{theme-name} {
+    .messageDialogFooter {
+        .messageAction {
+            .dijitButton {
+                margin: 0 0 0 5px;
+            }
+        }
+    }
+    .idxModalDialog {
+        a.messageIdOnly {
+            text-decoration: none !important;
+            color: #222 !important;
+        }
+    }
+    .idxProgressDialog {
+        width: 300px !important;
+        padding: 0px 0px 5px;
+        .messageSummary {
+            margin: auto;
+            padding: 25px 0px;
+        }
+        .messageWrapper {
+            border-top: medium none;
+            margin: 0px;
+        }
+        .dijitDialogPaneContent {
+            padding: 0px;
+        }
+        .idxSimpleIconContainer {
+            text-align: center;
+            tr {
+                td {
+                    text-align: center;
+                }
+            }
+            .idxSignIcon.dijitContentPaneLoading {
+                margin: auto;
+                padding-left: 0px !important;
+                padding-top: 3px !important;
+                padding-bottom: 2px !important;
+                height: 45px;
+                width: 40px;
+            }
+            .idxSimpleIconText {
+                padding: 0px 0px 15px 0px;
+            }
+        }
+        .messageDialogFooter {
+            padding: 15px 0px 8px;
+            min-height: 30px;
+            text-align: center;
+            .messageAction {
+                float: none;
+            }
+        }
+    }
+}
+.@{theme-name} .idxModalDialog .messageRef,
+.@{theme-name} .idxConfirmDialog .messageRef {
+    margin-right: 10px;
+}
+.@{theme-name} .idxModalDialog .messageTimeStamp,
+.@{theme-name} .idxConfirmDialog .messageTimeStamp {
+    color: @message-dialog-text;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+.@{theme-name} .idxModalDialog .messageRef a,.@{theme-name} .idxConfirmDialog .messageRef a {
+    text-decoration:none;
+    color: @message-dialog-text;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+.@{theme-name} .idxModalDialog .messageRef a:hover,.@{theme-name} .idxConfirmDialog .messageRef a:hover {
+    text-decoration:underline;
+}
+.@{theme-name} .idxModalDialog .messageSummary .messageProgressIcon,.@{theme-name} .idxConfirmDialog .messageSummary .messageProgressIcon {
+    display: none;
+}
+.@{theme-name} .idxModalDialog .messageSummary .messageIconText,.@{theme-name} .idxConfirmDialog .messageSummary .messageIconText {
+    display: none;
+}
+.@{theme-name} .messageDialogFooter .dijitButton .dijitButtonNode{
+	padding: 0;
+	min-width: 0;
+	color: @primary-color;
+	background: @no-color;
+	border: 0;
+	font-size: 1.1em;
+	font-weight: 400;
+	.dijitButtonText {
+		padding: 0 .4em;
+	}
+}
+
+
+.dijit_a11y .idxModalDialog .messageSummary img,.dijit_a11y .idxConfirmDialog .messageSummary img {
+    display: none;
+}
+.dijit_a11y .idxModalDialog .messageSummary .messageIconText,.dijit_a11y .idxConfirmDialog .messageSummary .messageIconText {
+    display: inline;
+    margin: 0 10px;
+}
+.@{theme-name} .dijitDialog .compact {
+	.dijitTabContainer .dijitTabContainerTop-tabs{
+	    padding-left: 0;
+	    padding-right: 0;
+	}
+}
+.@{theme-name} .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTab,
+.@{theme-name} .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTabChecked, 
+.@{theme-name} .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedHover, 
+.@{theme-name} .dijitDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedActive{
+	padding: 7px 10px;
+}

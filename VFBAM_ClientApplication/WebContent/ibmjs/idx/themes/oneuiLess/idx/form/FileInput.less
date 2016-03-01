@@ -1,0 +1,39 @@
+.oneuiFileInputWrap .dijitFileInput {
+  height: 2em;
+  width: 30em;
+  margin-bottom: 1px;
+}
+.oneuiFileInputWrap .dijitFileInput .dijitFileInputVisible {
+  border: 1px solid @fwDarker;
+}
+.dj_ie & FileInputWrap .dijitFileInput .dijitFileInputVisible {
+  padding: 0.1em 0.3em;
+}
+.dj_ie6 & .dijitFakeInput INPUT {
+  background-image: none;
+}
+.oneuiFileInputWrap .dijitFileInputReal {
+  width: 19em;
+}
+.oneuiFileInputWrap .dijitPlaceHolder {
+  padding: 4px 0 0 3px;
+}
+.oneuiFileInputWrap .dijitFileInput .dijitFileInputButton,
+.oneuiFileInputWrap .dijitFileInput .dijitFileInputText {
+  padding: 4px 10px 4px;
+  .gradient(@fwLightest, @fwLighter);
+  border: 1px solid @fwBase;
+ .BorderRadius(3px);
+ .BoxShadow(@shadowBox);
+  color: @textStrong;
+  .TextShadow(@shadowSolid);
+  font-weight: bold;
+}
+.oneuiFileInputWrap .dijitFakeInput input {
+  background-color: @fwBackground;
+  background-position: left top;
+  background-repeat: repeat-x;
+  border: 1px solid @fwDarker;
+  line-height: normal;
+  padding: 0.2em 0.3em;
+}

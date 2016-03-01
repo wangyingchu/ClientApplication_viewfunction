@@ -1,0 +1,162 @@
+/* Message menus
+ * 
+ * Styling consists of:
+ *  - classes to mark menu items with the appropriate icons
+ *  
+ */
+/* Styles for menu item icons for each message class */
+.dijitMenuTable .oneuiMenuColumn tr:first-child .dijitMenuArrowCell,
+.dijitMenuTable .oneuiMenuColumn tr:first-child .dijitMenuItemIconCell,
+.dijitMenuTable .oneuiMenuColumn tr:first-child .dijitMenuItemLabel,
+.dijitMenuTable .oneuiMenuColumn tr:first-child .oneuiMenuHeadingLabel {
+  border-top: 1px solid @fwBackground;
+}
+.oneuiErrorMenuItemIcon,
+.oneuiWarningMenuItemIcon,
+.oneuiConfirmationMenuItemIcon,
+.oneuiSuccessMenuItemIcon,
+.oneuiInformationMenuItemIcon,
+.oneuiCriticalMenuItemIcon,
+.oneuiAttentionMenuItemIcon,
+.oneuiComplianceMenuItemIcon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+.oneuiErrorMenuItemIcon,
+.oneuiWarningMenuItemIcon,
+.oneuiConfirmationMenuItemIcon,
+.oneuiSuccessMenuItemIcon,
+.oneuiInformationMenuItemIcon {
+  background-image: url('images/idx/widget/msgIcons_24bit.png');
+}
+.dj_ie6 & ErrorMenuItemIcon,
+.dj_ie6 & WarningMenuItemIcon,
+.dj_ie6 & ConfirmationMenuItemIcon,
+.dj_ie6 & SuccessMenuItemIcon,
+.dj_ie6 & InformationMenuItemIcon {
+  background-image: url('images/idx/widget/msgIcons_8bit.png');
+}
+.oneuiErrorMenuItemIcon {
+  background-position: -1px -1px;
+}
+.oneuiWarningMenuItemIcon {
+  background-position: -19px -1px;
+}
+.oneuiConfirmationMenuItemIcon {
+  background-position: -37px -1px;
+}
+.oneuiSuccessMenuItemIcon {
+  background-position: -55px -1px;
+}
+.oneuiInformationMenuItemIcon {
+  background-position: -73px -1px;
+}
+.oneuiErrorMenuItemIcon,
+.oneuiAttentionMenuItemIcon,
+.oneuiComplianceMenuItemIcon {
+  background-image: url('images/idx/widget/alertIcons_24bit.png');
+}
+.dj_ie6 & ErrorMenuItemIcon,
+.dj_ie6 & AttentionMenuItemIcon,
+.dj_ie6 & ComplianceMenuItemIcon {
+  background-image: url('images/idx/widget/alertIcons_8bit.png');
+}
+.oneuiCriticalMenuItemIcon {
+  background-position: -1px 0;
+}
+.oneuiAttentionMenuItemIcon {
+  background-position: -37px 0;
+}
+.oneuiComplianceMenuItemIcon {
+  background-position: -55px 0;
+}
+/* Styles for menu items */
+.oneuiMessageMenu .dijitMenuItem td,
+.oneuiMessageMenu .oneuiMenuHeading td {
+  padding: 10px 0;
+  border-bottom: 1px solid @fwLightest;
+  border-top: 1px solid @fwBackground;
+}
+.oneuiHeaderNavigationMenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.dijitMenuItemLabel,
+.oneuiHeaderNavigationSubmenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.dijitMenuItemLabel,
+.oneuiHeaderNavigationMenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.oneuiMenuHeadingLabel,
+.oneuiHeaderNavigationSubmenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.oneuiMenuHeadingLabel,
+.oneuiHeader2ndLevMenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.dijitMenuItemLabel,
+.oneuiHeader2ndLevSubmenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.dijitMenuItemLabel,
+.oneuiHeader2ndLevMenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.oneuiMenuHeadingLabel,
+.oneuiHeader2ndLevSubmenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.oneuiMenuHeadingLabel,
+.oneuiHeaderGlobalActionsMenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.dijitMenuItemLabel,
+.oneuiHeaderGlobalActionsSubmenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.dijitMenuItemLabel,
+.oneuiHeaderGlobalActionsMenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.oneuiMenuHeadingLabel,
+.oneuiHeaderGlobalActionsSubmenu .oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused td.oneuiMenuHeadingLabel {
+  padding: 10px 0;
+}
+.oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused > td.dijitMenuItemIconCell {
+  padding-bottom: 10px;
+}
+.oneuiMessageMenu.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child > td.dijitMenuItemIconCell {
+  padding-bottom: 10px;
+}
+.oneuiMessageMenu td.dijitMenuItemIconCell {
+  padding-left: 15px;
+  padding-right: 8px;
+}
+.oneuiMessageMenu .dijitMenuItemHover {
+  background-color: @hover;
+}
+.oneuiMessageMenu .messageMenuTimestamp {
+  float: right;
+  padding-left: 1.5em;
+}
+/**************************/
+/* Styles for MenuHeading */
+/**************************/
+.dijitMenuBar .oneuiMenuHeading {
+  padding: 6px 10px 7px 10px;
+  margin: 0 3px 0 2px;
+  color: @textDefault;
+  margin-left: -1px;
+}
+.dj_ie6 & .dijitMenuBar .oneuiMenuHeading {
+  margin-top: -1px;
+}
+.oneuiMenuHeading td {
+  padding: 1px;
+  border-bottom: 1px solid @fwBackground;
+}
+.dijit_a11y & .oneuiMenuHeading td {
+  border-bottom: none;
+}
+.dijitMenuTable tr:first-child .oneuiMenuHeadingLabel {
+  border-top: 1px solid @fwBackground;
+}
+td.oneuiMenuHeadingLabel {
+  padding-top: 4px;
+  padding-bottom: 3px;
+}
+/* RTL */
+.dijitMenuBarRtl .oneuiMenuHeading {
+  margin-right: -1px;
+}
+/* Styles for MenuHeading when in a select dropdown. */
+.dijitMenuPopup .dijitSelectMenu .oneuiMenuHeadingLabel {
+  margin: 1px 0 1px 0;
+  padding: 3px 10px 4px 10px;
+}
+.dijitSelectMenu td.oneuiMenuHeadingLabel {
+  /* line up menu text with text in select box (in LTR and RTL modes) */
+
+  padding: 2px;
+}
+/* Styles for MenuHeading in a combo-box. */
+.dijitComboBoxMenu .oneuiMenuHeading {
+  margin: 1px 0 1px 0;
+  padding: 3px 10px 4px 10px;
+}
+.dijitMenuTable .oneuiMenuHeading {
+  border: 1px solid @fwBackground;
+}
+.oneuiMenuHeadingLabel {
+  position: static;
+}

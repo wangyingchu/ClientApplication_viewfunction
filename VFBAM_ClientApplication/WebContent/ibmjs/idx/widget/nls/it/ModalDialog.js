@@ -13,9 +13,11 @@ define({
 	Success: "Esito positivo",
 	Confirmation: "Conferma",
 	Question: "Domanda",
+	Progress: "Avanzamento",
 	closeButtonLabel: "Chiudi",
 	cancelButtonLabel: "Annulla",
 	executeButtonLabel: "OK",
-	checked: "Non ripetere più la domanda"
+	checked: "Non chiedere di nuovo"
 //end v1.x content
 });
+

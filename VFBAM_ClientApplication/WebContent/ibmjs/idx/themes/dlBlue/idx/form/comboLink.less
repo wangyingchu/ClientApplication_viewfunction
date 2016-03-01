@@ -1,0 +1,45 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxComboLink.idxLinkDerived {
+    white-space: no-wrap;
+    display: inline;
+}
+.@{theme-name} {
+    .idxComboLinkArrowButton {
+        white-space: no-wrap;
+        display: inline;
+    }
+    .idxComboLink {
+        .idxComboLinkSeparator {
+            border: none;
+            border-right: solid 1px #d9d9d9;
+            height: 1em;
+            width: 6px;
+            margin-right: 2px;
+        }
+        .dijitArrowButtonInner {
+            cursor: pointer;
+            background-image: url("../../dijit/@{image-form-button-arrows-color}");
+        }
+    }
+    .idxAppMarquee {
+        .idxComboLinkAnchor {
+            color: #ffffff;
+        }
+    }
+    .idxComboLinkDisabled {
+        .dijitArrowButtonInner {
+            cursor: auto;
+            background-position: @arrow-disabled-down;
+        }
+        .dijitArrowButtonInner {
+            cursor: pointer;
+            background-image: url("../../dijit/@{image-form-button-arrows}");
+        }
+    }
+}
+.@{theme-name} .idxComboLinkDisabled .idxComboLinkAnchor,.@{theme-name} .idxAppMarquee .idxComboLinkDisabled .idxComboLinkAnchor {
+    color: @disabled-text-color;
+}
+.@{theme-name} .idxComboLinkDisabled .idxComboLinkAnchor:hover,.@{theme-name} .idxAppMarquee .idxComboLinkDisabled .idxComboLinkAnchor:hover {
+    text-decoration: none;
+    cursor: default;
+}

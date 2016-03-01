@@ -1,0 +1,48 @@
+@import "../../dijit/variables";
+.@{theme-name}{
+	.idxFlipCardNavBaseRtl{
+		.idxFlipCardNavBar{
+			float: right;
+			
+			.navAction {
+				.navActionIconContainer{
+					left: 0;
+					right: auto;
+				}
+                .toggleNavBarActionIcon {
+                    background: url("images/flipCardIconSprite.png") no-repeat scroll 0 -96px rgba(0, 0, 0, 0);
+                }
+            }
+		}
+		
+		.dojoxExpandoPane{
+			margin-right: 100%;
+			margin-left: 0;
+		}
+		
+		.idxFlipCardContent{
+			 padding: 10px 65px 10px 10px;
+		}
+	}
+	
+	.idxFlipCardNavBaseRtl.idxFlipCardNavBarExtended{
+		.idxFlipCardContent{
+			 padding: 10px 310px 10px 10px;
+		}
+		
+		.idxFlipCardNavBar{
+        	
+            .navAction {
+                .toggleNavBarActionIcon {
+                    background: url("images/flipCardIconSprite.png") no-repeat scroll -32px -96px rgba(0, 0, 0, 0);
+                }
+            }
+        }
+	}
+	
+    .idxFlipCardNavBaseRtl.navBarHidden {
+        .idxFlipCardContent {
+            padding-right: 48px;
+        }
+    }
+}

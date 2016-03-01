@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+	Licensed Materials - Property of IBM
+	(C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<title>FlipCardContainer Tests</title>
+		
+		<script type="text/javascript" src="../../../tests/dojoVersion.js"></script>
+		<script type="text/javascript" src="basicImportor.js"></script>	
+		<style id="idxStyles" type="text/css">
+            html, body {
+			    width: 100%;
+			    height: 100%;
+			    margin: 0; 
+			    padding: 0;
+			}
+			
+		</style>
+	
+	
+		<script type="text/javascript" src="../../../tests/commonTest.js"></script>
+		<script src="resources/html/d3.v3.js"></script>
+		<script src="resources/html/main.js"></script>
+		<script type="text/javascript">
+			var globalApp = null;
+			require(["./test_FlipCardContainer.js"], function( app ){
+				app.init();
+				globalApp = app;
+			});
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">applyThemeToBody( null, "../../../themes/" );</script><!-- only oneui theme is supported -->
+		
+		<div style="width: 100%; height: 100%; margin: 0px; padding: 0px;">
+            <div id="flipcardNode"></div>
+		</div>
+	</body>
+</html>

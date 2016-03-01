@@ -1,0 +1,103 @@
+@import "../variables";
+.@{theme-name} {
+	.dijitSelect {
+        border: 1px solid @border-color;
+        border-collapse: separate;
+        .dijitButtonContents {
+            border: 0 solid @border-color;
+            border-right-width: 1px;
+            background: white;
+            padding: 7px 10px;
+        }
+        .dijitButtonText {
+            padding: 0;
+            text-align: left;
+        }
+        .dijitArrowButton {
+            padding: 0;
+            border: 0;
+            border-color: @border-color;
+        }
+    }
+	.dijitSelect .dijitButtonNode {
+      border: 0;
+    }
+    .dijitSelect .dijitArrowButtonContainer {
+        border: 1px solid @no-color;
+
+    }
+    .dijitSelect .dijitArrowButton {
+        padding: 0;
+        background-color: @no-color;
+
+    }
+    .dijitSelect .dijitArrowButton .dijitArrowButtonInner {
+        height: 16px;
+    }
+    /* hover status */
+    .dijitSelectHover {
+        background-color: @textbox-hovered-background-color;
+        background-repeat: repeat-x;
+        border-color: @hovered-border-color;
+    }
+    .dijitSelectHover .dijitArrowButton {
+       background-color: @no-color;
+
+    }
+    /* focused status */
+    .dijitSelectFocused .dijitArrowButton {
+        background-color: @no-color;		
+
+    }
+    /*.dijitSelectFocused .dijitArrowButton {
+        border: none;
+        padding: 1px;
+    }*/
+    /* disable status */
+    .dijitSelectDisabled {
+        border-color: @disabled-border-color;
+        background-color: @disabled-background-color;
+        background-image: none;
+        color: @disabled-text-color;
+    }
+    
+    .dijitSelectDisabled .dijitButtonNode {
+        background-color: @disabled-background-color;
+    }
+    .dijitSelectDisabled .dijitArrowButton .dijitArrowButtonInner {
+    	background-image: url("../@{image-arrow-sprite}");
+        background-position: @arrow-disabled-down;
+    }
+    /* Dropdown menu style for select */
+    .dijitSelectMenu td.dijitMenuItemIconCell,
+    .dijitSelectMenu td.dijitMenuArrowCell {
+        /* so that arrow and icon cells from MenuItem are not displayed */
+        display: none;
+    }
+    .dijitSelectMenu td.dijitMenuItemLabel {
+        /* line up menu text with text in select box (in LTR and RTL modes) */
+        padding: @textbox-padding;
+
+    }
+    .dijitSelectMenu .dijitMenuSeparatorTop {
+        border-bottom: 1px solid @focused-border-color;
+    }
+}
+.dj_webkit {
+    .@{theme-name} {
+        .dijitSelect {
+            display: inline-block;
+        }
+        table.dijitSelect {
+            display: inline-table;
+        }
+    }
+}
+.@{theme-name} .dijitSelect .dijitButtonContents,.@{theme-name} .dijitSelect .dijitArrowButton {
+    -webkit-transition-property: background-color, border;
+    -moz-transition-property: background-color, border;
+    transition-property: background-color, border;
+    -webkit-transition-duration: 0.35s;
+    -moz-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+}

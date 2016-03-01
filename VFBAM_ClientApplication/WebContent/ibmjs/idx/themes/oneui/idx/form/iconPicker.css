@@ -11,10 +11,16 @@
 	margin-top: 3px;
 	cursor: pointer;
 }
+.oneui .dijitTextBoxDisabled .idxCalendarIcon{
+	cursor: default;
+}
 .oneui .idxTimeIcon {
 	background-image: url('images/time_picker16.png');
 	margin-top: 3px;
 	cursor: pointer;
+}
+.oneui .dijitTextBoxDisabled .idxTimeIcon{
+	cursor: default;
 }
 .oneui .idxIconPicker {
 	padding: 0px 20px 0px 1px;

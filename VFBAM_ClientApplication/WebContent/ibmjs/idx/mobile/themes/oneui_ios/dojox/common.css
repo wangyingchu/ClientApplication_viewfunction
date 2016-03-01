@@ -1,6 +1,6 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
@@ -8,41 +8,45 @@
 @import url(../../common/dojox/common.css);
 
 /* Tablet (iPad) variations of default button colors. */
-.dj_tablet .mblColorDefault {
+.oneui.dj_tablet .mblColorDefault {
 	background-color: #8b919a;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#b1b5bb), to(#6a727d));
 }
 
-.dj_tablet .mblColorDefault45 {
+.oneui.dj_tablet .mblColorDefault45 {
 	background-image: -webkit-gradient(linear, left top, right bottom, from(#b1b5bb), to(#6a727d));
 }
 
-.dj_tablet .mblColorDefaultSel {
+.oneui.dj_tablet .mblColorDefaultSel {
 	background-color: #515761;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#7a7e85), to(#303845));
 }
 
-.dj_tablet .mblColorDefaultSel45 {
+.oneui.dj_tablet .mblColorDefaultSel45 {
 	background-image: -webkit-gradient(linear, left top, right bottom, from(#7a7e85), to(#303845));
 }
 
 /* Default colors for buttons when used in a Heading. */
-.mblHeading .mblColorDefault {
+.oneui .mblHeading .mblColorDefault {
 	color: #fff;
 	background-color: #2d2d2d;
+	background-image:-webkit-gradient(linear,center bottom,center top,from(#121212),to(#464646));
 	background-image: -webkit-linear-gradient(bottom, #121212, #464646); 
 }
 
-.mblHeading .mblColorDefault45 {
+.oneui .mblHeading .mblColorDefault45 {
+	background-image:-webkit-gradient(linear,right bottom,left top,from(#121212),to(#464646));
 	background-image: -webkit-linear-gradient(bottom right, #121212, #464646); 
 }
 
-.mblHeading .mblColorDefaultSel {
+.oneui .mblHeading .mblColorDefaultSel {
 	color: #fff;
 	background-color: #1d1d1d;
+	background-image:-webkit-gradient(linear,center bottom,center top,from(#0c0c0c),to(#2e2e2e));
 	background-image: -webkit-linear-gradient(bottom, #0c0c0c, #2e2e2e); 
 }
 
-.mblHeading .mblColorDefaultSel45 {
+.oneui .mblHeading .mblColorDefaultSel45 {
+	background-image:-webkit-gradient(linear,right bottom,left top,from(#0c0c0c),to(#2e2e2e));
 	background-image: -webkit-linear-gradient(bottom right, #0c0c0c, #2e2e2e); 
 }

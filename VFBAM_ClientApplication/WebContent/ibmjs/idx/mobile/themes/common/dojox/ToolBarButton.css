@@ -6,7 +6,26 @@
  */
 
 /* dojox.mobile.ToolBarButton */
-.mblToolBarButton {
+
+/* Reset common styles. */
+.oneui .mblToolBarButton,
+.oneui .mblToolBarButton * {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
+}
+
+.oneui .mblToolBarButton {
 	position:relative;
 	display:inline-block;
 	margin:6px;
@@ -22,27 +41,27 @@
 	-webkit-tap-highlight-color:rgba(255,255,255,0);
 }
 
-.mblToolBarButtonHasIcon,.mblToolBarButtonLightIcon {
+.oneui .mblToolBarButtonHasIcon,.oneui .mblToolBarButtonLightIcon {
 	padding:0;
 }
 
-.mblHeading .mblToolBarButton {
+.oneui .mblHeading .mblToolBarButton {
 	float:left;
 }
 
-.mblHeading span.mblToolBarButtonLightIcon {
+.oneui .mblHeading span.mblToolBarButtonLightIcon {
 	padding:0;
 }
 
-.mblToolBarButtonHasLeftArrow {
+.oneui .mblToolBarButtonHasLeftArrow {
 	padding-right:0;
 }
 
-.mblToolBarButtonHasRightArrow {
+.oneui .mblToolBarButtonHasRightArrow {
 	padding-left:0;
 }
 
-.mblToolBarButtonArrow {
+.oneui .mblToolBarButtonArrow {
 	position:absolute;
 	top:5px;
 	width:20px;
@@ -55,15 +74,15 @@
 	-webkit-transform:scale(0.7,1.05) rotate(45deg);
 }
 
-.mblToolBarButtonHasLeftArrow .mblToolBarButtonArrow {
+.oneui .mblToolBarButtonHasLeftArrow .mblToolBarButtonArrow {
 	left:-1px;
 }
 
-.mblToolBarButtonHasRightArrow .mblToolBarButtonArrow {
+.oneui .mblToolBarButtonHasRightArrow .mblToolBarButtonArrow {
 	right:-2px;
 }
 
-.mblToolBarButtonBody {
+.oneui .mblToolBarButtonBody {
 	position:relative;
 	display:inline-block;
 	overflow:hidden;
@@ -74,50 +93,50 @@
 	text-shadow:rgba(0,0,0,1) 0 1px 0;
 }
 
-.mblToolBarButtonBodySelected {
+.oneui .mblToolBarButtonBodySelected {
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#222),to(#333));
 }
 
-.mblColorBlue.mblToolBarButtonBodySelected {
+.oneui .mblColorBlue.mblToolBarButtonBodySelected {
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#085884),to(#008abf));
 }
 
-.mblToolBarButton .mblToolBarButtonBody {
+.oneui .mblToolBarButton .mblToolBarButtonBody {
 	width:100%;
 }
 
-.mblToolBarButtonBody table {
+.oneui .mblToolBarButtonBody table {
 	margin:0 auto;
 }
 
-.mblToolBarButtonHasLeftArrow .mblToolBarButtonBody {
+.oneui .mblToolBarButtonHasLeftArrow .mblToolBarButtonBody {
 	border-left-width:0;
 	border-bottom-left-radius:0;
 	border-top-left-radius:0;
 }
 
-.mblToolBarButtonHasRightArrow .mblToolBarButtonBody {
+.oneui .mblToolBarButtonHasRightArrow .mblToolBarButtonBody {
 	border-right-width:0;
 	border-top-right-radius:0;
 	border-bottom-right-radius:0;
 }
 
-.mblToolBarButtonText .mblToolBarButtonIcon {
+.oneui .mblToolBarButtonText .mblToolBarButtonIcon {
 	padding-left:10px;
 }
 
-.mblToolBarButtonText .mblToolBarButtonLabel {
+.oneui .mblToolBarButtonText .mblToolBarButtonLabel {
 	padding-right:10px;
 }
 
-.mblToolBarButtonHasLeftArrow .mblToolBarButtonIcon {
+.oneui .mblToolBarButtonHasLeftArrow .mblToolBarButtonIcon {
 	padding-left:4px;
 }
 
-.mblToolBarButtonHasRightArrow .mblToolBarButtonLabel {
+.oneui .mblToolBarButtonHasRightArrow .mblToolBarButtonLabel {
 	padding-right:4px;
 }
 
-.mblToolBarButtonIcon > div {
+.oneui .mblToolBarButtonIcon > div {
 	height:29px;
 }

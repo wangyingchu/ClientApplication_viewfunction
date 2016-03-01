@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT + ${accessKey}",
 	keySequence_Firefox: "ALT + SHIFT + ${accessKey} Windows és Linux rendszeren, vagy CONTROL + ${accessKey} Mac rendszeren",
 	keySequence_Safari: "CONTROL + OPT + ${accessKey} Mac rendszeren, vagy ALT + ${accessKey} Windows rendszeren",
-	keySequence_Chrome: "ALT + ${accessKey} Windows és Linux rendszeren, vagy CONTROL + OPT Mac rendszeren",
+	keySequence_Chrome: "ALT + ${accessKey} Windows és Linux rendszeren, vagy CONTROL + OPT + ${accessKey} Mac rendszeren",
 	shortcutListMessage: "Az oldalon használható gyorsbillentyűk:",
 	a11yPrologueLabel: "Kisegítő lehetőségek bevezetője",
     a11yStatementLabel: "Hozzáférhetőségi nyilatkozat",

@@ -13,9 +13,11 @@ define({
 	Success: "成功",
 	Confirmation: "確認",
 	Question: "問題",
+	Progress: "進度",
 	closeButtonLabel: "關閉",
 	cancelButtonLabel: "取消",
 	executeButtonLabel: "確定",
 	checked: "不要再次詢問"
 //end v1.x content
 });
+

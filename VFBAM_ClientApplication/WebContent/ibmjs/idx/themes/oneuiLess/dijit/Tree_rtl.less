@@ -1,0 +1,27 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.dijitTreeNodeRtl  .dijitTreeExpando {
+  background-image: url('images/dijit/leftNavArrows_rtl.png');
+  background-position: -16px 0;
+}
+.dj_ie6 & .dijitTreeNodeRtl .dijitTreeExpando {
+  background-image: url('images/dijit/leftNavArrows8bit_rtl.png');/*leftNavArrows8bit*/
+}
+.dijitTreeNodeRtl .dijitTreeRowHover .dijitTreeExpandoOpened {
+  background-position: -16px 0;
+}
+.dijitTreeNodeRtl .dijitTreeExpandoClosed {
+  background-position: 0 0;
+}
+.dijitTreeNodeRtl .dijitTreeRowHover .dijitTreeExpandoClosed {
+  background-position: 0 0;
+}
+.dijitTreeNodeRtl .dijitTreeExpandoLeaf, 
+.dj_ie6 & .dijitTreeNodeRtl .dijitTreeExpandoLeaf {
+  background-image: none;
+}

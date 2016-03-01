@@ -1,0 +1,78 @@
+{
+	identifier: "id",
+	items: [
+		{id:"monitor", name:"monitor", title:"Monitor", icon:"resources/images/blank.png", iconClass:"monitorIcon", type:"nav", children: [
+			{id: "monitor_widget_pane", name:"monitor_widget_pane", title:"Monitor Widget Pane", type:"nav"},
+			{id: "monitor_widget_grid", name:"monitor_widget_grid", title:"Monitor Widget Grid", type:"nav"},
+			{id: "monitor_tasks", name:"monitor_tasks", title:"Monitor Tasks", type:"nav"},
+			{id: "monitor_ways", name:"monitor_ways", title:"Monitor Ways", type:"separator"},
+			{id: "monitor_common", name:"monitor_common", title:"Monitor Common", type:"nav"},
+			{id: "monitor_special", name:"monitor_special", title:"Monitor Special", type:"nav", children:[
+				{id: "monitor_special_base", name:"monitor_special_base", title:"Monitor Special Item Base", type:"nav"},
+				{id: "monitor_specials", name:"monitor_specials", title:"Monitor Special Details", type:"separator"},
+				{id: "monitor_special_1", name:"monitor_special_1", title:"Monitor Special Item 1", type:"nav"},
+				{id: "monitor_special_2", name:"monitor_special_2", title:"Monitor Special Item 2", type:"nav"},
+				{id: "monitor_special_3", name:"monitor_special_3", title:"Monitor Special Item 3", type:"nav"},
+				{id: "monitor_special_4", name:"monitor_special_4", title:"Monitor Special Item 4", type:"nav", children: [
+					{id: "monitor_deep_item_1", name:"monitor_deep_item_1", title:"Monitor Deep Item 1", type:"nav"},
+					{id: "monitor_deep_item_2", name:"monitor_deep_item_2", title:"Monitor Deep Item 2", type:"nav", children: [
+						{id: "monitor_deep_item_2_1", name:"monitor_deep_item_2_1", title:"Monitor Deep Item 2-1", type:"nav"},
+						{id: "monitor_deep_item_2_2", name:"monitor_deep_item_2_2", title:"Monitor Deep Item 2-2", type:"nav"},
+						{id: "monitor_deep_item_2_3", name:"monitor_deep_item_2_3", title:"Monitor Deep Item 2-3", type:"nav", children: [
+							{id: "monitor_deep_item_2_3_1", name:"monitor_deep_item_2_3_1", title:"Monitor Deep Item 2-3-1", type:"nav"},
+							{id: "monitor_deep_item_2_3_2", name:"monitor_deep_item_2_3_2", title:"Monitor Deep Item 2-3-2", type:"nav"},
+							{id: "monitor_deep_item_2_3_3", name:"monitor_deep_item_2_3_3", title:"Monitor Deep Item 2-3-3", type:"nav"}
+						]}
+					]}
+				]}
+			]}
+		]},
+		{id:"analyze", name:"analyze", title:"Analyze", icon:"resources/images/blank.png", containerClass:"analyzeContainer", iconClass:"analyzeIcon", descClass:"analyzeDesc", type:"nav", children: [
+			{id: "analyze_1", name:"analyze_1", title:"Analyze Item 1", type:"nav"},
+			{id: "analyze_2", name:"analyze_2", title:"Analyze Item 2", type:"nav", group:"static", children: [
+				{id: "analyze_2_1", name:"analyze_2_1", title:"Analyze Item 2-1", type:"nav"},
+				{id: "analyze_2_2", name:"analyze_2_2", title:"Analyze Item 2-2", type:"nav", children: [
+					{id: "analyze_2_2_1", name:"analyze_2_2_1", title:"Analyze Item 2-2-1", type:"nav"},
+					{id: "analyze_2_2_2", name:"analyze_2_2_2", title:"Analyze Item 2-2-2", type:"nav", group:"static", children: [
+						{id: "analyze_2_2_2_1", name:"analyze_2_2_2_1", title:"Analyze Item 2-2-2-1", type:"nav"},
+						{id: "analyze_2_2_2_2", name:"analyze_2_2_2_2", title:"Analyze Item 2-2-2-2", type:"nav"}
+					]}
+				]}
+			]},
+			{id: "analyze_3", name:"analyze_3", title:"Analyze Item 3", type:"nav", group:"static", children: [
+				{id: "analyze_3_1", name:"analyze_3_1", title:"Analyze Item 3-1", type:"nav"}
+			]},
+			{id: "analyze_4", name:"analyze_4", title:"Analyze Item 4", type:"nav", children: [
+				{id: "analyze_4_1", name:"analyze_4_1", title:"Analyze Item 4-1", type:"nav"},
+				{id: "analyze_4_2", name:"analyze_4_2", title:"Analyze Item 4-2", type:"nav", group:"static", children: [
+					{id: "analyze_4_2_1", name:"analyze_4_2_1", title:"Analyze Item 4-2-1", type:"nav"},
+					{id: "analyze_4_2_2", name:"analyze_4_2_2", title:"Analyze Item 4-2-2", type:"nav"}
+				]}
+			]},
+			{id: "analyze_5", name:"analyze_5", title:"Analyze Item 5", type:"nav", children: [
+				{id: "analyze_5_1", name:"analyze_5_1", title:"Analyze Item 5-1", type:"nav"},
+				{id: "analyze_5_2", name:"analyze_5_2", title:"Analyze Item 5-2", type:"nav"},
+				{id: "analyze_5_3", name:"analyze_5_3", title:"Analyze Item 5-3", type:"nav"}
+			]}
+		]},
+		{id:"search", name:"search", title:"Search", icon:"resources/images/blank.png", iconClass:"searchIcon", type:"nav", children:[
+			{id: "search_1", name:"search_1", title:"search Item 1", type:"nav"},
+			{id: "search_2", name:"search_2", title:"search Item 2", type:"nav"},
+			{id: "search_3", name:"search_3", title:"search Item 3", type:"nav"},
+			{id: "search_4", name:"search_4", title:"search Item 4", type:"nav"},
+			{id: "search_5", name:"search_5", title:"search Item 5", type:"nav"},
+			{id: "search_6", name:"search_6", title:"search Item 6", type:"nav"},
+			{id: "search_7", name:"search_7", title:"search Item 7", type:"nav"},
+			{id: "search_8", name:"search_8", title:"search Item 8", type:"nav"}
+		]},
+		{id:"admin", name:"admin", title:"Admin", icon:"resources/images/blank.png", iconClass:"adminIcon", type:"nav"},
+		{id:"custom", name:"custom", title:"Custom", icon:"resources/images/blank.png", 
+			containerClass:"customContainer", iconClass:"customIcon", descClass:"customDesc", type:"nav", custom: true},
+		
+		{id:"settings", name:"settings", title:"Settings", icon:"resources/images/blank.png", iconClass:"settingsIcon", type:"settings", 
+			children: [
+				{id: "idx_website", name:"idx_website", title:"Go To IDX Website", type:"settings"}
+			]
+		}
+	]
+}

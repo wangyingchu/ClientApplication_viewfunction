@@ -6,7 +6,9 @@ define({
 	confirmation: "Confirmació",
 	progress: "Progrés",
 	loading: "Carregant",
-	close: "Tanca"
+	close: "Tanca",
+	idxErrorDialog_detailTabLabel: "Corregeix aquest problema",
+	idxErrorDialog_moreTabLabel: "Obté més ajuda"
 //end v1.x content
 });
 

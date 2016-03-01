@@ -1,0 +1,25 @@
+.idxSliderWrapH .dijitValidationContainer,
+.idxSliderWrapV .dijitValidationContainer {
+  height: 15px;
+}
+.idxSliderWrapH .dijitValidationContainer .dijitValidationIcon,
+.idxSliderWrapV .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.idxSliderWrapH .idxLabel,
+.idxSliderWrapV .idxLabel {
+  vertical-align: top;
+  padding-top: 3px;
+}
+.idxSliderWrapV {
+  position: relative;
+}
+.idxSliderWrapV .dijitValidationContainer {
+  position: absolute;
+  right: 16px;
+  top: 6px;
+}
+.dj_ie & .idxSliderWrapV .dijitValidationContainer,
+.dj_gecko & .idxSliderWrapV .dijitValidationContainer {
+  right: 13px;
+}

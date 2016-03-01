@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Совместное использование",
+	actionSettings: "Параметры",
 	actionHelp: "Справка",
 	searchEntry: "Поиск",
-	searchSubmit: "Поиск"
+	searchSubmit: "Поиск",
+	primarySearchLabelSuffix: "основной поиск",
+	secondarySearchLabelSuffix: "вторичный поиск",
+	homeButton: "Домой"
 //end v1.x content
 });
+

@@ -1,5 +1,5 @@
 <input type="button"
-	aria-label='${nls.defineFilter}'
+	aria-label='${nls.defineFilterAriaLabel}'
 	data-dojo-type="dijit/form/Button"
 	data-dojo-props="
 		iconClass: 'gridxFilterBarBtnIcon',
@@ -7,7 +7,7 @@
 		label: '${nls.defineFilter}'
 "/><div class="gridxFilterBarStatus"
 	><span class="gridxFilterBarStatusText"></span
-	><a href="javascript:void(0);" action="clear" title="${nls.filterBarClearButton}">${nls.filterBarClearButton}</a
+	><a action="clear" title="${nls.filterBarClearButton}" tabindex="-1">${nls.filterBarClearButton}</a
 ></div
 ><span class="gridxFilterBarCloseBtn" tabindex="-1" title="${nls.closeFilterBarBtn}"
 	><span class="gridxFilterBarCloseBtnText">x</span

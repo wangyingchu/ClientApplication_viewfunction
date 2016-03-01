@@ -33,12 +33,18 @@
 	<script type="text/javascript" id="postDojo">
 		var modules = [
 			"idx.form.CheckBox",
+			"dojo.dom-geometry",
+			"dojo.query",
+			"dojo.dom-class",
 			"dijit.form.Button",
 			"dijit.form.Form",
 			"idx.tests._pagefooter._PageFooter"]; 
-		var _PageFooter = null;
+		var _PageFooter = null, DomGeometry = null, Query = null, DomClass = null;
 		function preParse(modules){
 			_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+			DomGeometry = modules["dojo/dom-geometry"];
+			Query = modules["dojo/query"];
+			DomClass = modules["dojo/dom-class"];
 			new _PageFooter();
 		}
 		function postParse(modules){
@@ -55,6 +61,14 @@
 	<a name="maincontent"></a>
 	<div class="testMain">
 		<h1 class="testTitle">idx.form.CheckBox Test</h1>
+		<h2>Required CheckBox</h2>
+		<input id="cb7" data-dojo-type="idx.form.CheckBox"
+				data-dojo-props='name:"cb7",
+				label: "Unchecked ",
+				checked: true,
+				required: true
+		'>
+		</input>
 		<h2>CheckBox Normal</h2>
 		<input id="cb1" data-dojo-type="idx.form.CheckBox"
 				data-dojo-props='name:"cb1",

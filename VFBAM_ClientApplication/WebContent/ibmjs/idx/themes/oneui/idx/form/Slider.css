@@ -30,3 +30,16 @@
 .dj_gecko .oneui .idxSliderWrapV .dijitValidationContainer{
 	right: 13px;
 }
+
+.dj_ie .oneui .idxSliderWrapV .dijitSliderV .dijitSliderDecorationV{
+	height:100% !important;
+}
+/********** fix the tiny gap isue **************/
+.dj_webkit .oneui .idxSliderWrapV .dijitSliderV .dijitSliderBarContainerV{
+	height:101%;
+}
+
+.dijitRtl .oneui .idxSliderWrapV .dijitValidationContainer{
+	right: auto;
+	left: 13px;
+}

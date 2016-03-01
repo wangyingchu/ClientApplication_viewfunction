@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT مع ${accessKey}",
 	keySequence_Firefox: "ALT مع SHIFT مع ${accessKey} على نظام Windows و Linux أو CONTROL مع ${accessKey} على نظام Mac",
 	keySequence_Safari: "CONTROL مع OPT مع ${accessKey} على نظام Mac أو ALT مع ${accessKey} على نظام Windows",
-	keySequence_Chrome: "ALT مع ${accessKey} على نظام Windows و Linux أو CONTROL مع OPT على نظام Mac",
+	keySequence_Chrome: "ALT + ${accessKey} على نظام Windows و Linux أو CONTROL + OPT + ${accessKey} على نظام Mac",
 	shortcutListMessage: "المسارات المختصرة لهذه الصفحة هي:",
 	a11yPrologueLabel: "مقدمة امكانية التوصل",
     a11yStatementLabel: "عبارة امكانية التوصل",

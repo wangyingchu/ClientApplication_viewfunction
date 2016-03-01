@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Test ListNavController</title>
+<title>Test PartialListNavController</title>
 
 <script type="text/javascript" src="../../tests/dojoVersion.js"></script>
 
@@ -18,8 +18,9 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 </script>
 
 <style type="text/css" id="idxStyles">
-@import "../../themes/oneui/oneui.css";
-@import "../../tests/test.css";
+	@import "../../tests/test.css";
+	@import "../../tests/_pagefooter/_PageFooter.css";
+
 </style>
 
 <script type="text/javascript">
@@ -31,14 +32,27 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 </script>
  
 <script type="text/javascript" id="postDojo">
-var modules = ["idx.layout.PartialListNavController",
-			   "dijit.layout.ContentPane",
-			   "dijit.layout.BorderContainer",
-			   "dijit.layout.StackContainer",
-			   "idx.layout.HeaderPane",
-			   "idx.layout.TitlePane"];
+var modules = [
+		"idx.layout.PartialListNavController",
+		"dijit.layout.ContentPane",
+		"dijit.layout.BorderContainer",
+		"dijit.layout.StackContainer",
+		"idx.layout.HeaderPane",
+		"idx.layout.TitlePane",
+		"idx.tests._pagefooter._PageFooter"
+];
 
-dojoRequireModules(modules, null, currentDojoVersion.async);
+
+var _PageFooter = null;
+
+function preParse(modules){
+	_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+}
+function postParse(modules){
+	new _PageFooter();
+}
+
+dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 </script>
 
 </style>

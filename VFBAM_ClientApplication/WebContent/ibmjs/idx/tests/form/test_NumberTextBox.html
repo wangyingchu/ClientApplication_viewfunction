@@ -43,25 +43,79 @@
 					doh.t(dijit.byId("numberspinner"));
 					doh.t(dijit.byId("currencytextbox"));
 				});
-	
-				doh.register("getValue & setValue",
-					function(){
+				
+				doh.register("number_labelAlignment", function(){
+					var widget = dijit.byId("numbertextbox");
+					doh.t(widget.get("labelAlignment") == "horizontal");
+					widget.set('labelAlignment', 'vertical');
+					doh.t(widget.get("labelAlignment") == "vertical");
+				});
+				
+				doh.register("numberValidate", function(){
+				    var widget = dijit.byId("numbertextbox");
+				    console.log(widget.get("value"));
+				    doh.t(isNaN(widget.get("value")));
+				    widget.set("required", true);
+				    doh.f(widget.validate());
+				    widget.set('value', 101);
+				    doh.f(widget.validate());
+				    widget.set('value', '1o1');
+				    doh.f(widget.validate());
+				});
+				
+				doh.register("spinnerValidate", function(){
+				    var widget2 = dijit.byId("numberspinner");
+				    doh.t(isNaN(widget2.get("value")));
+				    widget2.set("required", true);
+				    doh.f(widget2.validate());
+				    widget2.set('value', 'aa');
+				    doh.f(widget2.validate());
+				});
+				
+				doh.register("currencyValidate", function(){
+				    var widget3 = dijit.byId("currencytextbox");
+				    doh.t(isNaN(widget3.get("value")));
+				    widget3.set("required", true);
+				    doh.f(widget3.validate());
+				    widget3.set('value', 'aa');
+				    doh.f(widget3.validate());
+				});   
+					
+				doh.register("CurrencyUnit", function(){
+				    var	widget3 = dijit.byId("currencytextbox");
+				    widget3.set("currency","USD");
+				    doh.t(widget3.get("currency") === "USD");
+				});
+					
+				doh.register("value_Number", function(){
 						var widget = dijit.byId("numbertextbox");
 						doh.t(isNaN(widget.get("value")));
 						widget.set('value', 30);
 						doh.t(widget.get("value") == 30);
+						widget.set('constraints',{max:100000,min:0,places:'0,2'});
+						widget.set('value', 30.123);
+						doh.t(widget.get('value') === 30.12);
+						widget.set('value', 30.128);
+						doh.t(widget.get('value') === 30.13);
+						widget.set('constraints',{max:100,min:-100,fractional:false});
+						widget.set('value', 30.72);
+						doh.t(widget.get('value') === 31);
 						
+				});
+				doh.register("value_Spinner", function(){
 						var widget2 = dijit.byId("numberspinner");
 						doh.t(isNaN(widget2.get("value")));
-						widget2.set('value', 30);
-						doh.t(widget2.get("value") == 30);
-						
+						widget2.set('value', 31);
+						doh.t(widget2.get("value") == 31);
+				});		
+					
+				doh.register("value_Currency", function(){		
 						var widget3 = dijit.byId("currencytextbox");
 						doh.t(isNaN(widget3.get("value")));
-						widget3.set('value', 30);
-						doh.t(widget3.get("value") == 30);
-					}
-				);
+						widget3.set('value', 30.11);
+						doh.t(widget3.get("value") == 30.11);
+				 }
+			 );
 				doh.run();
 			}	
 			dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);	

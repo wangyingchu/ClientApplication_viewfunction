@@ -1,0 +1,37 @@
+define({     
+//begin v1.x content
+	closeLabel: "Ðóng",
+	configureLabel: "Cấu hình",
+	editLabel: "Sửa",
+	filterLabel: "Lọc",
+	clearFilterLabel: "Xóa",
+	helpLabel: "Trợ giúp",
+	infoLabel: "Thông tin",
+	minimizeLabel: "Tối thiểu hóa",
+	maximizeLabel: "Tối đa hóa",
+	printLabel: "In",
+	refreshLabel: "Làm mới",
+	restoreLabel: "Khôi phục",
+	nextPageLabel: "Tiếp theo",
+	previousPageLabel: "Trước đó",
+	lastPageLabel: "Cuối cùng",
+	firstPageLabel: "Ðầu tiên",
+	closeTip: "Ðóng",
+	configureTip: "Cấu hình",
+	editTip: "Sửa",
+	filterTip: "Lọc",
+	clearFilterTip: "Xóa bộ lọc",
+	helpTip: "Nhận trợ giúp",
+	infoTip: "Lấy thông tin",
+	minimizeTip: "Tối thiểu hóa",
+	maximizeTip: "Tối đa hóa",
+	printTip: "In",
+	refreshTip: "Làm mới",
+	restoreTip: "Khôi phục",
+	nextPageTip: "Trang tiếp theo",
+	previousPageTip: "Trang trước",
+	lastPageTip: "Trang cuối",
+	firstPageTip: "Trang đầu"
+//end v1.x content
+});
+

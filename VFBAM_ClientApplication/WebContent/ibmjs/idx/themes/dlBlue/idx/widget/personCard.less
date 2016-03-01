@@ -1,0 +1,76 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} {
+    .idxPersonCard {
+        padding: 5px;
+        color: #666;
+    }
+    .idxPersonCardContainer {
+        border-bottom: 1px solid #ccc;
+        & > div {
+            padding: 2px;
+            margin-left: 154px;
+        }
+        .idxClearFloat {
+            clear:both;
+            height:0px;
+            padding:0px;
+        }
+    }
+    .idxPersonCardPhoto {
+        margin: 0 15px 13px 20px;
+        height: 115px;
+        width: 115px;
+        padding: 3px;
+        background-color: #ffffff;
+        float: left;
+    }
+    .idxPersonCardFn {
+        color: @text-color;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+        font-size: 24px;
+    }
+    .idxPersonCardTitle {
+        color: @disabled-text-color;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .idxPersonCardOrg {
+        color: @sec-button-background-color;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+        font-size: 13px;
+    }
+    .idxPersonCardAdr {
+        font-size: .8em;
+    }
+    .idxPersonCardTel {
+        font-size: .8em;
+    }
+    .idxPersonCardEmail {
+        color: @primary-color;
+        font-size: .9em;
+    }
+    .idxPersonCardSametime {
+        font-size: .9em;
+    }
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxPersonCardContainer {
+            & > div {
+                margin-left: 0px;
+                margin-right: 154px;
+            }
+        }
+        .idxPersonCardPhoto {
+            float: right;
+        }
+        .idxPersonCard {
+            .awareness {
+                background-position: right center;
+                padding-right: 18px;
+            }
+        }
+    }
+}

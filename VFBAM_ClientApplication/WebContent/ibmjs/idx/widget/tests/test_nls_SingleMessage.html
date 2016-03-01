@@ -41,9 +41,11 @@ require([
 	});
 });
 </script>
-</script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">widget/nls/SingleMessage</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>
@@ -57,14 +59,14 @@ require([
 		Verify that the text at the right bottom corner is translated.
 	</td></tr>
 	<tr><td>showDetails</td><td>
-		Toggle the message title to collapse the message description. Hover mouse over the message title to show the tooltip.
+		(This resource can not be saw). Collapse message.
 		<br/>
-		Verify that the text in the tooltip is translated.
+		Verify that the "aria-label" attrbuite of message title is translated.
 	</td></tr>
 	<tr><td>hideDetails</td><td>
-		Toggle the message title to expand the message description. Hover mouse over the message title to show the tooltip.
+		(This resource can not be saw). Expand message.
 		<br/>
-		Verify that the text in the tooltip is translated.
+		Verify that the "aria-label" attrbuite of message title is translated.
 	</td></tr>
 </tbody></table>
 <hr/>

@@ -33,4 +33,8 @@
   bottom: 0px;
 }
 
+.oneui.dijit_a11y div.idxTabMenuDock {
+	border-bottom: 1px solid black;
+}
+
 

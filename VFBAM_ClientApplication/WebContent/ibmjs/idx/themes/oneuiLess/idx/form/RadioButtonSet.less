@@ -1,0 +1,41 @@
+.idxRadioButtonSetItem {
+  cursor: default;
+  padding: 4px 4px 4px 0;
+  white-space: nowrap;
+}
+.idxRadioButtonSetItem .dijitRadio {
+  margin-right: 5px;
+}
+.idxRadioButtonSetWrap .idxLabel {
+  margin: 7px 0 0 0;
+}
+.idxRadioButtonSetWrap .idxCompContainer {
+  padding: 2px 28px 3px 8px;
+  position: relative;
+}
+.idxRadioButtonSetWrap .dijitValidationContainer {
+  display: none;
+}
+.idxRadioButtonSetWrapError .idxCompContainer {
+  background: @errorLighter;
+  border: 2px solid @errorBright;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.idxRadioButtonSetWrapError .dijitValidationContainer {
+  display: block;
+  position: absolute;
+  top: 7px;
+  right: 6px;
+}
+.idxRadioButtonSetWrapError .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.idxRadioButtonSetItem label {
+  vertical-align: middle;
+}
+.dj_ie6 & .idxRadioButtonSetItem label,
+.dj_ie7 & .idxRadioButtonSetItem label {
+  top: 1px;
+  position: relative;
+}

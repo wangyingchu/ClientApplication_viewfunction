@@ -24,7 +24,7 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 </script>
  
 <script type="text/javascript" id="postDojo">
-var modules = ["idx.widget.PersonCard","dojo/dom","dijit/popup"];
+var modules = ["idx.widget.PersonCard","idx.widget.HoverCard", "dojo/dom","dijit/popup"];
 
 var testValue = {
 	photo: "../../resources/person.jpg",
@@ -55,17 +55,28 @@ function postParse(modules) {
 		spec: ["photo","fn","title","org","adr.work","tel.work","email.internet","sametime.awareness"]},
 		dom.byId("personCard2"));
 
-	var personCard3 = PersonCard({query: {email: "bwmorris@us.ibm.com"},
+	var personCard3 = PersonCard({
+		query: {email: "bwmorris@us.ibm.com"},
 		url: "https://w3-connections.ibm.com/profiles/json/profile.do", jsonp: "callback",
 		spec: ["photo","fn","title","org","adr.work","tel.work","email.internet","sametime.awareness"],
-		style: "background-color: #FFFFFF; width: 400px;"});
-	var node = dom.byId("personCard3");
-	node.onmouseover = function(event){
-		popup.open({popup: personCard3, around: node});
-	};
-	node.onmouseout = function(event){
-		popup.close(personCard3);
-	};
+		// style: "background-color: #FFFFFF; width: 400px;"
+	});
+	var fClick = function(){console.log("item clicked!")};
+	var hoverPersonCard = new idx.widget.HoverCard({
+		target: "personCard3node",
+		content: personCard3,
+		moreActions:[
+			{label: "Item 1", onClick: fClick},
+			{label: "Item 2", onClick: fClick},
+			{label: "Item 3", onClick: fClick}
+		],
+		actions: [
+		{iconClass: "placeHolderIcon", onClick: fClick, text:""},
+		{iconClass: "placeHolderIcon", onClick: fClick, text:""},
+		{iconClass: "placeHolderIcon", onClick: fClick, text:""}
+		]
+	})
+	
 }
 
 dojoRequireModules(modules, null, currentDojoVersion.async, null, postParse);
@@ -83,6 +94,11 @@ dojoRequireModules(modules, null, currentDojoVersion.async, null, postParse);
 		spec="photo,fn,title,org,adr.work,tel.work,email.internet,sametime.awareness"
 		placeHolder="Sametime is not available on your client."></div>
 	<div id="personCard2"></div>
-	<div style="padding: 10px;"><a id="personCard3" class="dijitInline">Point here to pop up a person card.</a></div>
+	<div dojoType="idx.widget.PersonCard" query="{email: 'rqruanqi@cn.ibm.com'}"
+		url="https://w3-connections.ibm.com/profiles/json/profile.do" jsonp="callback"
+		spec="photo,fn,title,org,adr.work"
+		placeHolder="Sametime is not available on your client."></div>
+
+	<div style="padding: 10px;"><a id="personCard3node">Point here to pop up a person card.</a></div>
 </body>
 </html>

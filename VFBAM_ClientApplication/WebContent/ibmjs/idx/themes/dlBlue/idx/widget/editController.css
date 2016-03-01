@@ -1,0 +1,44 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxEditController {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: 0px;
+}
+.dj_ie7 .dlBlue .idxEditController {
+  display: inline;
+  top: 0px;
+}
+.dj_webkit .dlBlue .idxEditController {
+  top: 0px;
+}
+.dj_ie8 .dlBlue .idxEditController {
+  top: 0px;
+}
+.dj_ie9 .dlBlue .idxEditController {
+  top: 0px;
+}
+.dlBlue .idxButtonBar.idxEditControllerButtonBar {
+  display: none;
+  visibility: hidden;
+  vertical-align: middle;
+}
+.dlBlue .idxEditControllerEditLink {
+  display: inline;
+  visibility: visible;
+  vertical-align: middle;
+}
+.dlBlue .idxEditControllerReadOnly .idxEditControllerEditLink,
+.dlBlue .idxEditControllerEditMode .idxEditControllerEditLink {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxEditControllerEditMode .idxEditControllerButtonBar,
+.dlBlue .idxEditControllerEditMode .idxButtonBar.idxEditControllerButtonBar {
+  display: inline-block;
+  visibility: visible;
+}
+.dj_ie7 .dlBlue .idxEditControllerEditMode .idxEditControllerButtonBar,
+.dj_ie7 .dlBlue .idxEditControllerEditMode .idxButtonBar.idxEditControllerButtonBar {
+  display: inline;
+}

@@ -24,6 +24,7 @@
 	background-size: 100% 100%;
 	background-image: url(compat/launch-bg.png);*/
 	
+	background-image:-webkit-gradient(linear,center top,center bottom,from(#464646),to(#131313));
 	background-image: -webkit-linear-gradient(top, #464646, #131313);
 }
 

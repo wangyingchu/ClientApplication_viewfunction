@@ -2,7 +2,7 @@ require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
     "dojo/text!vfbam/userclient/common/UI/components/activitiesQueryer/template/UserStartedActivitiesWidget.html",
     "gridx/Grid","gridx/core/model/cache/Async",
-    "gridx/modules/VirtualVScroller","gridx/modules/pagination/Pagination",
+    "gridx/modules/VirtualVScroller","gridx/modules/Pagination",
     "gridx/modules/pagination/PaginationBar",'gridx/modules/CellWidget','gridx/modules/Edit',
     'idx/gridx/modules/Sort','gridx/modules/Focus','gridx/modules/ColumnResizer',"gridx/modules/Menu","idx/oneui/Dialog"
 ],function(lang,declare, _Widget, _Templated, template,Grid,Cache,VirtualVScroller,Pagination,PaginationBar,CellWidget,Edit,Sort,Focus,ColumnResizer,Menu,Dialog){

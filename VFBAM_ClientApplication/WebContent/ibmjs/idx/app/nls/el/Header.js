@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Κοινοποίηση",
+	actionSettings: "Ρυθμίσεις",
 	actionHelp: "Βοήθεια",
 	searchEntry: "Αναζήτηση",
-	searchSubmit: "Αναζήτηση"
+	searchSubmit: "Αναζήτηση",
+	primarySearchLabelSuffix: "κύρια αναζήτηση",
+	secondarySearchLabelSuffix: "δευτερεύουσα αναζήτηση",
+	homeButton: "Αρχική σελίδα"
 //end v1.x content
 });
+

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>IBM One UI Mobile</title>
+		<link rel="stylesheet" type="text/css" href="gallery/demo.css"/>
+		<style>
+		html, body{
+			height: 100%;
+			overflow: hidden;
+		}
+		.idxLoadingMessage {
+			position: absolute;
+			left: -25px;
+			top: 40px;
+		}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../tests/tests.css" />
+		
+		<script src="../deviceTheme.js"></script>
+		<script src="../tests/dojoVersion.js" data-dojo-config="async:true, parseOnLoad:false, isDebug:true"></script>
+		
+		<script type="text/javascript">
+			
+			require([
+				"idx/mobile/Launch", "idx/mobile/tests/_TestUtils",
+				"dojo/on", "dojo/sniff", "dijit/registry",
+				"dojox/mobile", "dojox/mobile/parser", "dojo/ready", 
+				"dojox/mobile/compat", "dojox/mobile/Button", "dojox/mobile/Heading", "dojox/mobile/Tooltip", "dojox/mobile/RoundRect",
+				"dojox/mobile/ToolBarButton", "dojox/mobile/FixedSplitter", "dojox/mobile/Container", "dojox/mobile/ContentPane", "dojox/mobile/Pane", "dojox/mobile/Switch",
+				"dojox/mobile/ScrollableView", "dojox/mobile/SwapView", "dojox/mobile/TabBar", "dojox/mobile/TabBarButton", "dojox/mobile/EdgeToEdgeList", "dojox/mobile/ListItem",
+				"idx/mobile/demos/gallery/src", 
+				"idx/mobile/deviceTheme", "idx/mobile/AboutPane", "idx/mobile/About", "idx/mobile/tests/_LogPane", "idx/mobile/Login"], 
+				function(Launch, tu, on, sniff, registry, mobile, parser, ready, compat, Button, Heading, Tooltip, RoundRect,
+					ToolBarButton, FixedSplitter, Container, ContentPane, Pane, Switch,
+					ScrollableView, SwapView, TabBar, TabBarButton, EdgeToEdgeList, ListItem, 
+					src, deviceTheme, AboutPane, About, _LogPane, Login){
+					
+					//load css
+					var theme = (location.search.match(/theme=(\w+)/) ? RegExp.$1 : navigator.userAgent);
+					theme = (theme == "Android" ? "android" : "iphone");
+					deviceTheme.loadCssFile("gallery/css/themes/" + theme + "/gallery.css");
+					
+					ready(function(){
+						src.init();
+						
+						setTimeout(function(){
+							Launch.hide();
+						}, 2400);
+					});
+				});
+		</script>
+		
+	</head>
+	<body style="visibility: hidden;">
+		<div id="splitter" dojoType="dojox/mobile/FixedSplitter" orientation="H">
+			<div id="leftPane" dojoType="dojox/mobile/Container">
+				<h1 id="leftHeader" data-dojo-type="dojox/mobile/Heading" data-dojo-props="label:'Widgets', fixed:'top'">
+				</h1>
+				<div id="navigation" dojoType="dojox/mobile/ScrollableView"></div>
+			</div>
+
+			<div dojoType="dojox/mobile/Container">
+				<h1 id="header" data-dojo-type="dojox/mobile/Heading" data-dojo-props="label:'Welcome to &quot;IBM One UI Mobile&quot;', fixed:'top'">
+					<button id="navButton" dojoType="dojox/mobile/ToolBarButton" 
+							data-dojo-props="arrow:'left'">Back</button>
+					<button id="sourceButton" dojoType="dojox/mobile/ToolBarButton" 
+							toggle="true" style="display:none">Source</button>
+				</h1>
+				<div id="rightPane" dojoType="dojox/mobile/View" selected="true" style="overflow:hidden;">
+					<div id="welcome" dojoType="dojox/mobile/ScrollableView">
+						<div dojoType="dojox/mobile/RoundRect"
+							style="text-align:center;vertical-align:middle;margin-left:0px;padding-left:0px; border:medium none;font-weight:bold">
+							Welcome to the IBM One UI Mobile ThemeTester and Widget Gallery
+							<!--img src="images/welcomeLogo.png"/-->
+						</div>
+					</div>
+					<div id="source" dojoType="dojox/mobile/View">
+						<ul id="srcTabBar" dojoType="dojox/mobile/TabBar" barType="segmentedControl">
+							<li id="htmlSrcTab" dojoType="dojox/mobile/TabBarButton" 
+								moveTo="htmlSrcView" selected="true">HTML</li>
+							<li id="jsSrcTab" dojoType="dojox/mobile/TabBarButton" moveTo="jsSrcView">JavaScript</li>
+						</ul>
+						<div>
+							<div id="htmlSrcView" dojoType="dojox/mobile/ScrollableView" scrollDir="hv">
+								<pre id="htmlContent"></pre>
+							</div>
+							<div id="jsSrcView" dojoType="dojox/mobile/ScrollableView" scrollDir="hv">
+								<pre id="jsContent"></pre>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,717 @@
+/* Toolbar 
+ * 
+ * Styling Toolbar means styling the toolbar container and the widget inside toolbar  (dijitToolbar)
+ * 
+ * 1. toolbar (default styling): 
+ * 		.dijitToolbar - styles for outer container
+ *
+ * 2. widget inside toolbar
+ * 		.dijitToolbar .dijitButtonNode   - Button widget
+ * 					  .dijitComboButton  - ComboButton widget
+ * 					  .dijitDropDownButton  - DropDownButton widget
+ * 					  .dijitToggleButton  - ToggleButton widget
+ * 		
+ * 3. hovered widget inside toolbar (ie, mouse hover on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeHover  - styles for hovered Button widget
+ * 
+ * 4. actived widget inside toolbar (ie, mouse down on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeActive  - mouse down on Button widget
+ */
+.dlBlue .dijitToolbar {
+  border: 1px solid #bcbcbe;
+  background-color: #e6e7e8;
+  padding: 5px 0 5px 4px;
+  zoom: 1;
+}
+.dlBlue .dijitToolbar label {
+  padding: 0 3px 0 6px;
+}
+.dlBlue .dijitToolbar .dijitButton .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitComboButton .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitToggleButton .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitComboBox .dijitButtonNode {
+  min-width: 0px;
+}
+.dlBlue .dijitToolbar .dijitComboButton .dijitButtonNode .dijitButtonText {
+  color: white;
+}
+/** override claro/form/Button.css, and also ComboBox down arrow **/
+.dlBlue .dijitToolbar .dijitButton .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitToggleButton .dijitButtonNode {
+  border-width: 0;
+  /* on hover/active, border-->1px, padding-->1px */
+  padding: 5px;
+  /*.border-radius(@toolbar-button-border-radius);*/
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition-property: background-color;
+  -moz-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  background-color: rgba(171, 214, 255, 0);
+  /*background-image: none;	 cancel gradient for normal buttons, we don't want any gradient besides toolbar's on non-hovered buttons */
+}
+.dlBlue .dijitToolbar .dijitButton .dijitButtonNode .dijitButtonText,
+.dlBlue .dijitToolbar .dijitDropDownButton .dijitButtonNode .dijitButtonText,
+.dlBlue .dijitToolbar .dijitToggleButton .dijitButtonNode .dijitButtonText {
+  color: #58595b;
+  padding: 0;
+}
+.dlBlue .dijitToolbar .dijitButton .dijitButtonNode .dijitArrowButtonInner,
+.dlBlue .dijitToolbar .dijitDropDownButton .dijitButtonNode .dijitArrowButtonInner,
+.dlBlue .dijitToolbar .dijitToggleButton .dijitButtonNode .dijitArrowButtonInner {
+  background-image: url("form/images/arrows_blue.png");
+}
+.dlBlue .dijitToolbar .dijitComboButton .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitComboBox .dijitButtonNode {
+  /*background-color: ;*/
+}
+.dj_ie .dlBlue .dijitToolbar .dijitButton .dijitButtonNode,
+.dj_ie .dlBlue .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.dj_ie .dlBlue .dijitToolbar .dijitToggleButton .dijitButtonNode {
+  background-color: transparent;
+  /* for IE, which doesn't understand rgba(...) */
+}
+/* hover status */
+.dj_ie .dlBlue .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.dj_ie .dlBlue .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.dj_ie .dlBlue .dijitToolbar .dijitComboButton .dijitButtonNodeHover,
+.dj_ie .dlBlue .dijitToolbar .dijitComboButton .dijitDownArrowButtonHover,
+.dj_ie .dlBlue .dijitToolbar .dijitToggleButtonHover .dijitButtonNode {
+  /* button should still turn blue on hover, so need to override .dj_ie rules above */
+  /*background-color: @toolbar-button-hover-text-color;*/
+  color: #00649d;
+}
+/* active status */
+.dj_ie .dlBlue .dijitToolbar .dijitButtonActive .dijitButtonNode,
+.dj_ie .dlBlue .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,
+.dj_ie .dlBlue .dijitToolbar .dijitComboButtonActive .dijitButtonNode,
+.dj_ie .dlBlue .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+  /* button should still turn blue on press, so need to override .dj_ie rules above */
+  /*background-color: @button-pressed-background-color;*/
+}
+.dlBlue .dijitToolbar .dijitComboButton .dijitStretch {
+  /* no rounded border on side adjacent to arrow */
+  /*.border-radius(@toolbar-button-border-radius 0 0 @toolbar-button-border-radius);*/
+}
+.dlBlue .dijitToolbar .dijitComboButton .dijitArrowButton {
+  /*padding: 1px;*/
+  /* no rounded border on side adjacent to button */
+  /*.border-radius(0 @toolbar-button-border-radius @toolbar-button-border-radius 0);*/
+}
+.dlBlue .dijitToolbar .dijitComboButton .dijitButtonNode .dijitButtonText {
+  /*padding: 1px 5px;*/
+  padding: 0;
+}
+.dlBlue .dijitToolbar .dijitComboBox .dijitButtonNode {
+  padding: 0;
+}
+/* hover status */
+.dlBlue .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitComboButtonHover .dijitButtonNode {
+  border-width: 0;
+}
+.dlBlue .dijitToolbar .dijitComboButtonHover .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+  /*background-color: @toolbar-combobutton-hovered-unhoveredsection-background-color;*/
+}
+.dlBlue .dijitToolbar .dijitComboButtonHover .dijitButtonNodeHover,
+.dlBlue .dijitToolbar .dijitComboButtonHover .dijitDownArrowButtonHover {
+  /*background-color: @hovered-background-color;*/
+}
+/* active status */
+.dlBlue .dijitToolbar .dijitButtonActive .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+  /*border-width: 1px;*/
+  /*background-color:@pressed-background-color;*/
+  /*padding: 1px;*/
+}
+.dlBlue .dijitToolbar .dijitButtonActive .dijitButtonNode .dijitButtonText,
+.dlBlue .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode .dijitButtonText,
+.dlBlue .dijitToolbar .dijitToggleButtonActive .dijitButtonNode .dijitButtonText {
+  color: #008abf;
+}
+.dlBlue .dijitToolbar .dijitComboButtonActive {
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  /*border-width: 1px;*/
+  /*padding: 0;*/
+}
+.dlBlue .dijitToolbar .dijitComboButtonActive .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitComboButtonActive .dijitDownArrowButton {
+  /*background-color: @toolbar-combobutton-hovered-unhoveredsection-background-color;*/
+  /*padding: 5px;*/
+}
+.dlBlue .dijitToolbar .dijitComboButtonActive .dijitButtonNodeActive {
+  /*background-color: @pressed-background-color;*/
+}
+.dlBlue .dijitToolbar .dijitComboButtonActive .dijitDownArrowButtonActive {
+  /*background-color: @pressed-background-color;*/
+}
+/* Avoid double border between button and arrow */
+.dlBlue .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton,
+.dlBlue .dijitToolbar .dijitComboButtonActive .dijitDownArrowButton {
+  border-left-width: 1px;
+}
+.dlBlue .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+  padding-left: 5px;
+  /* since there's no left border, don't reduce from 2px --> 1px */
+}
+/* toggle button checked status */
+.dj_ie .dlBlue .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode,
+.dlBlue .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode {
+  /*	margin: 0;	 remove margin and add a border 
+	border-width: 1px;
+	border-style: solid;
+	background-image: none;
+	border-color: @selected-border-color;
+	background-color: @toolbar-button-checked-background-color;
+	padding: 1px;*/
+  background-color: #267bac;
+}
+.dj_ie .dlBlue .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode .dijitButtonText,
+.dlBlue .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode .dijitButtonText {
+  color: #FFFFFF;
+}
+.dlBlue .dijitToolbarSeparator {
+  /* separator icon in the editor sprite */
+  /*background: url(@image-editor-icons-enabled);*/
+  height: 26px;
+  width: 1px;
+  margin: 0 20px;
+  padding: 0;
+  background-color: #bcbcbe;
+}
+/* Toolbar inside of disabled Editor */
+.dlBlue .dijitDisabled .dijitToolbar {
+  background: none;
+  background-color: #cdced2;
+  border-bottom: 1px solid #cdced2;
+}
+.dlBlue .dijitToolbar .dijitComboBoxDisabled .dijitArrowButtonInner {
+  background-position: 0 50%;
+}
+.dlBlue .dijitEditorIcon {
+  height: 16px;
+  width: 16px;
+  background-size: 16px 16px;
+  background-position: 0 !important;
+}
+.dlBlue .dijitEditorIconCopy {
+  background-image: url('../idx/layout/svg/copy.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconCopy,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconCopy {
+  background-image: url('../idx/layout/svg/copy-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconCopy,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconCopy {
+  background-image: url('../idx/layout/svg/copy-active.svg');
+}
+.dlBlue .dijitEditorIconCut {
+  background-image: url('../idx/layout/svg/cut.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconCut,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconCut {
+  background-image: url('../idx/layout/svg/cut-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconCut,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconCut {
+  background-image: url('../idx/layout/svg/cut-active.svg');
+}
+.dlBlue .dijitEditorIconPaste {
+  background-image: url('../idx/layout/svg/paste.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconPaste,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconPaste {
+  background-image: url('../idx/layout/svg/paste-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconPaste,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconPaste {
+  background-image: url('../idx/layout/svg/paste-active.svg');
+}
+.dlBlue .dijitEditorIconUndo {
+  background-image: url('../idx/layout/svg/revert.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconUndo,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconUndo {
+  background-image: url('../idx/layout/svg/revert-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconUndo,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconUndo {
+  background-image: url('../idx/layout/svg/revert-active.svg');
+}
+.dlBlue .dijitEditorIconRedo {
+  background-image: url('../idx/layout/svg/redo.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconRedo,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconRedo {
+  background-image: url('../idx/layout/svg/redo-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconRedo,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconRedo {
+  background-image: url('../idx/layout/svg/redo-active.svg');
+}
+.dlBlue .dijitEditorIconBold {
+  background-image: url('../idx/layout/svg/bold.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconBold,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconBold {
+  background-image: url('../idx/layout/svg/bold-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconBold,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconBold {
+  background-image: url('../idx/layout/svg/bold-active.svg');
+}
+.dlBlue .dijitToggleButtonChecked .dijitEditorIconBold {
+  background-image: url('../idx/layout/svg/bold-white.svg');
+}
+.dlBlue .dijitEditorIconItalic {
+  background-image: url('../idx/layout/svg/italic.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconItalic,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconItalic {
+  background-image: url('../idx/layout/svg/italic-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconItalic,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconItalic {
+  background-image: url('../idx/layout/svg/italic-active.svg');
+}
+.dlBlue .dijitToggleButtonChecked .dijitEditorIconItalic {
+  background-image: url('../idx/layout/svg/italic-white.svg');
+}
+.dlBlue .dijitEditorIconUnderline {
+  background-image: url('../idx/layout/svg/underline.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconUnderline,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconUnderline {
+  background-image: url('../idx/layout/svg/underline-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconUnderline,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconUnderline {
+  background-image: url('../idx/layout/svg/underline-active.svg');
+}
+.dlBlue .dijitToggleButtonChecked .dijitEditorIconUnderline {
+  background-image: url('../idx/layout/svg/underline-white.svg');
+}
+.dlBlue .dijitEditorIconInsertOrderedList {
+  background-image: url('../idx/layout/svg/numberlist.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconInsertOrderedList,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconInsertOrderedList {
+  background-image: url('../idx/layout/svg/numberlist-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconInsertOrderedList,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconInsertOrderedList {
+  background-image: url('../idx/layout/svg/numberlist-active.svg');
+}
+.dlBlue .dijitEditorIconInsertUnorderedList {
+  background-image: url('../idx/layout/svg/bulletlist.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconInsertUnorderedList,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconInsertUnorderedList {
+  background-image: url('../idx/layout/svg/bulletlist-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconInsertUnorderedList,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconInsertUnorderedList {
+  background-image: url('../idx/layout/svg/bulletlist-active.svg');
+}
+.dlBlue .dijitEditorIconIndent {
+  background-image: url('../idx/layout/svg/indent.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconIndent,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconIndent {
+  background-image: url('../idx/layout/svg/indent-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconIndent,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconIndent {
+  background-image: url('../idx/layout/svg/indent-active.svg');
+}
+.dlBlue .dijitEditorIconOutdent {
+  background-image: url('../idx/layout/svg/outdent.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconOutdent,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconOutdent {
+  background-image: url('../idx/layout/svg/outdent-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconOutdent,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconOutdent {
+  background-image: url('../idx/layout/svg/outdent-active.svg');
+}
+.dlBlue .dijitEditorIconJustifyLeft {
+  background-image: url('../idx/layout/svg/alignleft.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconJustifyLeft,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyLeft {
+  background-image: url('../idx/layout/svg/alignleft-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconJustifyLeft,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyLeft {
+  background-image: url('../idx/layout/svg/alignleft-active.svg');
+}
+.dlBlue .dijitEditorIconJustifyRight {
+  background-image: url('../idx/layout/svg/alignright.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconJustifyRight,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyRight {
+  background-image: url('../idx/layout/svg/alignright-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconJustifyRight,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyRight {
+  background-image: url('../idx/layout/svg/alignright-active.svg');
+}
+.dlBlue .dijitEditorIconJustifyCenter {
+  background-image: url('../idx/layout/svg/aligncenter.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconJustifyCenter,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyCenter {
+  background-image: url('../idx/layout/svg/aligncenter-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconJustifyCenter,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyCenter {
+  background-image: url('../idx/layout/svg/aligncenter-active.svg');
+}
+.dlBlue .dijitEditorIconJustifyFull {
+  background-image: url('../idx/layout/svg/justify.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconJustifyFull,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyFull {
+  background-image: url('../idx/layout/svg/justify-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconJustifyFull,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyFull {
+  background-image: url('../idx/layout/svg/justify-active.svg');
+}
+.dlBlue .dijitEditorIconCreateLink {
+  background-image: url('../idx/layout/svg/externallink.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconCreateLink,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconCreateLink,
+.dlBlue .dijitDropDownButtonHover .dijitEditorIconCreateLink {
+  background-image: url('../idx/layout/svg/externallink-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconCreateLink,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconCreateLink,
+.dlBlue .dijitDropDownButtonActive .dijitEditorIconCreateLink {
+  background-image: url('../idx/layout/svg/externallink-active.svg');
+}
+.dlBlue .dijitEditorIconForeColor {
+  background-image: url('../idx/layout/svg/textcolor.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconForeColor,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconForeColor,
+.dlBlue .dijitDropDownButtonHover .dijitEditorIconForeColor {
+  background-image: url('../idx/layout/svg/textcolor-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconForeColor,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconForeColor,
+.dlBlue .dijitDropDownButtonActive .dijitEditorIconForeColor {
+  background-image: url('../idx/layout/svg/textcolor-active.svg');
+}
+.dlBlue .dijitEditorIconInsertImage {
+  background-image: url('../idx/layout/svg/picturefile.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconInsertImage,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconInsertImage,
+.dlBlue .dijitDropDownButtonHover .dijitEditorIconInsertImage {
+  background-image: url('../idx/layout/svg/picturefile-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconInsertImage,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconInsertImage,
+.dlBlue .dijitDropDownButtonActive .dijitEditorIconInsertImage {
+  background-image: url('../idx/layout/svg/picturefile-active.svg');
+}
+.dlBlue .dijitEditorIconStrikethrough {
+  background-image: url('../idx/layout/svg/strikethrough.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconStrikethrough,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconStrikethrough,
+.dlBlue .dijitDropDownButtonHover .dijitEditorIconStrikethrough {
+  background-image: url('../idx/layout/svg/strikethrough-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconStrikethrough,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconStrikethrough,
+.dlBlue .dijitDropDownButtonActive .dijitEditorIconStrikethrough {
+  background-image: url('../idx/layout/svg/strikethrough-active.svg');
+}
+.dlBlue .dijitToggleButtonChecked .dijitEditorIconStrikethrough {
+  background-image: url('../idx/layout/svg/strikethrough-white.svg');
+}
+.dlBlue .dijitEditorIconHiliteColor {
+  background-image: url('../idx/layout/svg/textbackground.svg');
+}
+.dlBlue .dijitButtonHover .dijitEditorIconHiliteColor,
+.dlBlue .dijitToggleButtonHover .dijitEditorIconHiliteColor,
+.dlBlue .dijitDropDownButtonHover .dijitEditorIconHiliteColor {
+  background-image: url('../idx/layout/svg/textbackground-hover.svg');
+}
+.dlBlue .dijitButtonActive .dijitEditorIconHiliteColor,
+.dlBlue .dijitToggleButtonActive .dijitEditorIconHiliteColor,
+.dlBlue .dijitDropDownButtonActive .dijitEditorIconHiliteColor {
+  background-image: url('../idx/layout/svg/textbackground-active.svg');
+}
+/*.@{theme-name} .dijitToolbar .dijitButtonText{
+	color: #FFFFFF;
+}*/
+.dj_ie8 .dlBlue .dijitEditorIconCopy {
+  background-image: url('../idx/widget/images/copy.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconCopy,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconCopy {
+  background-image: url('../idx/widget/images/copy-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconCopy,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconCopy {
+  background-image: url('../idx/widget/images/copy-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconCut {
+  background-image: url('../idx/widget/images/cut.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconCut,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconCut {
+  background-image: url('../idx/widget/images/cut-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconCut,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconCut {
+  background-image: url('../idx/widget/images/cut-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconPaste {
+  background-image: url('../idx/widget/images/paste.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconPaste,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconPaste {
+  background-image: url('../idx/widget/images/paste-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconPaste,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconPaste {
+  background-image: url('../idx/widget/images/paste-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconUndo {
+  background-image: url('../idx/widget/images/revert.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconUndo,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconUndo {
+  background-image: url('../idx/widget/images/revert-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconUndo,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconUndo {
+  background-image: url('../idx/widget/images/revert-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconRedo {
+  background-image: url('../idx/widget/images/redo.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconRedo,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconRedo {
+  background-image: url('../idx/widget/images/redo-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconRedo,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconRedo {
+  background-image: url('../idx/widget/images/redo-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconBold {
+  background-image: url('../idx/widget/images/bold.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconBold,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconBold {
+  background-image: url('../idx/widget/images/bold-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconBold,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconBold {
+  background-image: url('../idx/widget/images/bold-active.png');
+}
+.dj_ie8 .dlBlue .dijitToggleButtonChecked .dijitEditorIconBold {
+  background-image: url('../idx/widget/images/bold-white.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconItalic {
+  background-image: url('../idx/widget/images/italic.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconItalic,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconItalic {
+  background-image: url('../idx/widget/images/italic-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconItalic,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconItalic {
+  background-image: url('../idx/widget/images/italic-active.png');
+}
+.dj_ie8 .dlBlue .dijitToggleButtonChecked .dijitEditorIconItalic {
+  background-image: url('../idx/widget/images/italic-white.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconUnderline {
+  background-image: url('../idx/widget/images/underline.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconUnderline,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconUnderline {
+  background-image: url('../idx/widget/images/underline-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconUnderline,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconUnderline {
+  background-image: url('../idx/widget/images/underline-active.png');
+}
+.dj_ie8 .dlBlue .dijitToggleButtonChecked .dijitEditorIconUnderline {
+  background-image: url('../idx/widget/images/underline-white.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconInsertOrderedList {
+  background-image: url('../idx/widget/images/numberlist.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconInsertOrderedList,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconInsertOrderedList {
+  background-image: url('../idx/widget/images/numberlist-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconInsertOrderedList,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconInsertOrderedList {
+  background-image: url('../idx/widget/images/numberlist-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconInsertUnorderedList {
+  background-image: url('../idx/widget/images/bulletlist.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconInsertUnorderedList,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconInsertUnorderedList {
+  background-image: url('../idx/widget/images/bulletlist-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconInsertUnorderedList,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconInsertUnorderedList {
+  background-image: url('../idx/widget/images/bulletlist-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconIndent {
+  background-image: url('../idx/widget/images/indent.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconIndent,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconIndent {
+  background-image: url('../idx/widget/images/indent-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconIndent,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconIndent {
+  background-image: url('../idx/widget/images/indent-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconOutdent {
+  background-image: url('../idx/widget/images/outdent.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconOutdent,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconOutdent {
+  background-image: url('../idx/widget/images/outdent-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconOutdent,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconOutdent {
+  background-image: url('../idx/widget/images/outdent-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconJustifyLeft {
+  background-image: url('../idx/widget/images/alignleft.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconJustifyLeft,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyLeft {
+  background-image: url('../idx/widget/images/alignleft-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconJustifyLeft,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyLeft {
+  background-image: url('../idx/widget/images/alignleft-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconJustifyRight {
+  background-image: url('../idx/widget/images/alignright.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconJustifyRight,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyRight {
+  background-image: url('../idx/widget/images/alignright-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconJustifyRight,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyRight {
+  background-image: url('../idx/widget/images/alignright-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconJustifyCenter {
+  background-image: url('../idx/widget/images/aligncenter.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconJustifyCenter,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyCenter {
+  background-image: url('../idx/widget/images/aligncenter-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconJustifyCenter,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyCenter {
+  background-image: url('../idx/widget/images/aligncenter-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconJustifyFull {
+  background-image: url('../idx/widget/images/justify.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconJustifyFull,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconJustifyFull {
+  background-image: url('../idx/widget/images/justify-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconJustifyFull,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconJustifyFull {
+  background-image: url('../idx/widget/images/justify-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconCreateLink {
+  background-image: url('../idx/widget/images/externallink.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconCreateLink,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconCreateLink,
+.dj_ie8 .dlBlue .dijitDropDownButtonHover .dijitEditorIconCreateLink {
+  background-image: url('../idx/widget/images/externallink-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconCreateLink,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconCreateLink,
+.dj_ie8 .dlBlue .dijitDropDownButtonActive .dijitEditorIconCreateLink {
+  background-image: url('../idx/widget/images/externallink-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconForeColor {
+  background-image: url('../idx/widget/images/textcolor.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconForeColor,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconForeColor,
+.dj_ie8 .dlBlue .dijitDropDownButtonHover .dijitEditorIconForeColor {
+  background-image: url('../idx/widget/images/textcolor-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconForeColor,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconForeColor,
+.dj_ie8 .dlBlue .dijitDropDownButtonActive .dijitEditorIconForeColor {
+  background-image: url('../idx/widget/images/textcolor-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconInsertImage {
+  background-image: url('../idx/widget/images/picturefile.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconInsertImage,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconInsertImage,
+.dj_ie8 .dlBlue .dijitDropDownButtonHover .dijitEditorIconInsertImage {
+  background-image: url('../idx/widget/images/picturefile-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconInsertImage,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconInsertImage,
+.dj_ie8 .dlBlue .dijitDropDownButtonActive .dijitEditorIconInsertImage {
+  background-image: url('../idx/widget/images/picturefile-active.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconStrikethrough {
+  background-image: url('../idx/widget/images/strikethrough.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconStrikethrough,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconStrikethrough,
+.dj_ie8 .dlBlue .dijitDropDownButtonHover .dijitEditorIconStrikethrough {
+  background-image: url('../idx/widget/images/strikethrough-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconStrikethrough,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconStrikethrough,
+.dj_ie8 .dlBlue .dijitDropDownButtonActive .dijitEditorIconStrikethrough {
+  background-image: url('../idx/widget/images/strikethrough-active.png');
+}
+.dj_ie8 .dlBlue .dijitToggleButtonChecked .dijitEditorIconStrikethrough {
+  background-image: url('../idx/widget/images/strikethrough-white.png');
+}
+.dj_ie8 .dlBlue .dijitEditorIconHiliteColor {
+  background-image: url('../idx/widget/images/textbackground.png');
+}
+.dj_ie8 .dlBlue .dijitButtonHover .dijitEditorIconHiliteColor,
+.dj_ie8 .dlBlue .dijitToggleButtonHover .dijitEditorIconHiliteColor,
+.dj_ie8 .dlBlue .dijitDropDownButtonHover .dijitEditorIconHiliteColor {
+  background-image: url('../idx/widget/images/textbackground-hover.png');
+}
+.dj_ie8 .dlBlue .dijitButtonActive .dijitEditorIconHiliteColor,
+.dj_ie8 .dlBlue .dijitToggleButtonActive .dijitEditorIconHiliteColor,
+.dj_ie8 .dlBlue .dijitDropDownButtonActive .dijitEditorIconHiliteColor {
+  background-image: url('../idx/widget/images/textbackground-active.png');
+}

@@ -1,0 +1,97 @@
+.dlBlue div.idxWorkspaceTab {
+  color: #58595b;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  background: #efeff1;
+}
+.dlBlue div.idxWorkspaceTabTitle {
+  white-space: nowrap;
+  border-color: transparent;
+  position: relative;
+  height: 1em;
+  top: 50%;
+  margin-top: -0.5em;
+  line-height: 1em;
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 13px;
+  color: #58595b;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.dlBlue div.idxWorkspaceTabHovered {
+  background: #efeff1;
+  cursor: pointer;
+}
+.dlBlue div.idxWorkspaceTabTitleHovered {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 13px;
+  color: #58595b;
+  cursor: pointer;
+}
+.dlBlue button.idxWorkspaceTabTitleHovered {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 13px;
+  color: #58595b;
+  cursor: pointer;
+}
+.dlBlue div.idxWorkspaceTabTitleSelected {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #231f20;
+  cursor: default;
+}
+.dlBlue button.idxWorkspaceTabTitleSelected {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #231f20;
+  cursor: default;
+}
+.dlBlue.dijit_a11y div.idxWorkspaceTab {
+  border: 1px solid black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+}
+.dlBlue.dijit_a11y div.idxWorkspaceTabSelected {
+  border-bottom: 0px none transparent;
+  margin-bottom: -2px;
+  height: 50px;
+}
+.dlBlue.dijit_a11y div.idxWorkspaceTabTitle {
+  border-left: 0px none transparent;
+}
+.dlBlue.dijit_a11y div.idxWorkspaceTabTitleSelected {
+  font-size: 13px;
+}
+.dlBlue.dijit_a11y div.idxWorkspaceTabTitleHovered {
+  text-decoration: underline;
+}
+.dlBlue.dijit_a11y div.idxWorkspaceTabTitleSelected.idxWorkspaceTabTitleHovered {
+  text-decoration: none;
+  cursor: default;
+}
+.dj_ie8 .dlBlue div.idxWorkspaceTabHovered {
+  border-left: 1px solid #003f69;
+  border-right: 1px solid #003f69;
+}
+.dlBlue div.idxWorkspaceTabSelected {
+  background-image: none;
+  filter: none;
+  bottom: 0;
+  background-color: #efeff1;
+  cursor: default;
+}
+.dlBlue div.idxWorkspaceTabSelected:hover {
+  background-image: none;
+  filter: none;
+  bottom: 0;
+  background-color: #efeff1;
+  cursor: default;
+}

@@ -1,0 +1,422 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .gridxFilterBar {
+    /*border: 1px solid #ccc;*/
+    border-bottom: 1px solid @gridx-cell-border-color;
+    box-sizing: border-box;
+    height: 26px;
+    padding: 0;
+    width: auto;
+    background-color: #f7f7f7;
+    /*padding: 3px 0;*/
+    position: relative;
+}
+.@{theme-name} {
+    .gridxFilterBar {
+        [action="clear"] {
+            font-family: Arial;
+            font-style: normal;
+        }
+        .dijitButton {
+            float: none;
+            margin: 0 10px;
+            .dijitArrowButtonInner {
+                height: 25px;
+                width: 9px;
+            }
+        }
+    }
+    .gridxFilterBarStatus {
+        border: none;
+        font: italic 12px Georgia;
+        color: #222;
+        background: none;
+        display: inline-block;
+        padding: 0;
+        filter: none;
+    }
+    .gridxFilterBarStatusText {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .gridxFilterBarCloseBtn {
+        width: 8px;
+        height: 8px;
+        background: transparent url(images/gridx_sprite.png) no-repeat -36px -20px;
+        margin: 9px;
+        font-family: Arial;
+        font-style: normal;
+    }
+    .gridxFilterBarCloseBtn:hover {
+        background-position: -52px -20px;
+    }
+    .gridx {
+        .gridxFilterBar {
+            .dijitButton {
+                span {
+                    margin: 0;
+                    padding: 0;
+                }
+                .gridxFilterBarBtnIcon {
+                    background: transparent url(svg/filter.svg) no-repeat 0px 0px;
+                    background-size: 100% 100%;
+                    height: 16px;
+                    margin: 4px;
+                    width: 16px;
+                    /*background: transparent url(images/gridx_sprite.png) no-repeat 0px -16px;*/
+                }
+                .dijitButtonNode {
+                    border: 1px solid transparent;
+                    background: none;
+                    padding: 0;
+                    box-shadow: none;
+                }
+                .dijitButtonText {
+                    display: none;
+                }
+            }
+            .dijitButtonHover {
+                .dijitButtonNode {
+                }
+            }
+            .dijitButtonActive {
+                .dijitButtonNode {
+                }
+            }
+        }
+        .gridxQuickFilterIcon {
+            width: 16px;
+            height: 16px;
+            background: transparent url(svg/filter.svg) no-repeat 0px 0px;
+            background-size: 100% 100%;
+            margin: 0;
+        }
+        .gridxHeader {
+            .gridxQuickFilterInput {
+                .dijitInputInner {
+                    padding: 4px 0;
+                    color: #222;
+                    font-family: Arial;
+                }
+            }
+            .gridxQuickFilterTextBoxEmpty {
+                .dijitInputInner {
+                    color: #666;
+                }
+            }
+            .dijitToolbar {
+                .gridxQuickFilterDropDownButton {
+                    .dijitButtonNode {
+                        border: none;
+                        background: none;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+    .gridxQuickFilterInputContainer {
+        margin: 0;
+    }
+    .gridxQuickFilterInput {
+        position: relative;
+        .dijitInputInner::-ms-clear {
+            display: none;
+        }
+        .dijitPlaceHolder {
+            color: #777;
+        }
+        .dijitTextBoxFocused {
+            .dijitPlaceHolder {
+                display: none;
+            }
+        }
+        .dijitInputContainer {
+            padding: 0 14px 0 5px;
+        }
+    }
+    .gridxQuickFilter {
+        .dijitButton {
+            span {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .dijitArrowButton{
+            .dijitArrowButtonInner{
+                background-position: -151px 53%;
+            }
+        }
+    }
+    .gridxQuickFilterClear {
+        top: 3px;
+        height: 8px;
+        width: 8px;
+        right: 18px;
+        background: transparent url(images/gridx_sprite.png) no-repeat -36px -20px;
+    }
+    .gridxQuickFilterClear:hover {
+        background-position: -52px -20px;
+    }
+    .gridxQuickFilterDropDownButton {
+        .dijitArrowButtonInner {
+            height: 25px;
+            width: 9px;
+        }
+    }
+    .gridxTouch {
+        .gridxBarQuickFilter {
+            border-bottom: 1px solid #d9d9d9;
+        }
+    }
+    .gridxFilterRulesLabel {
+        font-size: 15px;
+        font-weight: bolder;
+        margin-top: 10px;
+        margin: 20px 0 15px 0;
+    }
+    .gridxFilterRules {
+        height: 152px;
+        width: 690px;
+        margin-bottom: 10px;
+        overflow: auto;
+        width: 726px;
+        height: 160px;
+        .gridxFilterPaneForm {
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .gridxFilterPaneColumnSelect .dijitValidationContainer,
+        .gridxFilterPaneConditionSelect .dijitValidationContainer{
+            display: none;
+        }
+    }
+    .gridxFilterPaneRemoveBtnIcon {
+        background: transparent url(images/gridx_sprite.png) no-repeat -112px -16px;
+        width: 16px;
+        height: 16px;
+    }
+    .dijitButtonDisabled {
+        .gridxFilterPaneRemoveBtnIcon {
+            background: transparent url(images/gridx_sprite.png) no-repeat -80px -16px;
+        }
+        .gridxFilterPaneAddBtnIcon {
+            background: transparent url(images/gridx_sprite.png) no-repeat -97px -16px;
+        }
+    }
+    .gridxFilterPaneAddBtnIcon {
+        background: transparent url(images/gridx_sprite.png) no-repeat -129px -16px;
+        width: 16px;
+        height: 16px;
+    }
+    .gridxFilterPaneRemoveBtn {
+        position: relative;
+        top: 0px;
+        .dijitButtonNode {
+            min-width: 0;
+        }
+    }
+    .gridxFilterPaneAddBtn {
+        position: relative;
+        top: 0px;
+        .dijitButtonNode {
+            min-width: 0;
+        }
+    }
+    .gridxFilterPaneForm {
+        .gridxFilterPaneConditionSelect {
+            margin: 0 14px;
+        }
+    }
+    .gridxFilterSingleRule {
+        .gridxFilterPaneRemoveBtn {
+            display: none;
+        }
+    }
+    .gridxFilterMaxRuleCount {
+        .gridxFilterPaneAddBtn {
+            display: none;
+        }
+    }
+    .gridxFilterDialogOneLine {
+        width: auto !important;
+        .idxLabel {
+            display: none;
+        }
+        .matchCaseCheckbox .idxLabel{
+            display: inline-block;
+        }
+        .gridxFilterPaneFieldWrapper {
+            width: 220px;
+
+            .dijitValidationContainer{
+                margin: 6px 5px 0 3px;
+            }
+
+        }
+        .gridxFilterPaneRemoveBtn {
+            margin-right: 15px;
+        }
+        form {
+            & > label {
+                margin-right: 10px;
+            }
+        }
+    }
+    .gridxFilterTooltipTitle {
+        font-size: 1.5em;
+        color: #222;
+    }
+    .gridxFilterTooltip {
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin-top: 10px;
+            th {
+                background: #ededed;
+                background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+                background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+                background: -o-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+                background: -ms-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+                background: linear-gradient(top,  #ffffff 0%,#ededed 100%);
+                font-family: Arial;
+                font-size: 11px;
+                font-weight: bold;
+                color: #444;
+                text-shadow: 1px 0 0 #fff;
+                padding: 10px 7px;
+                vertical-align: middle;
+            }
+            td {
+                border: 1px solid #ccc;
+                padding: 7px 7px;
+            }
+        }
+        .gridxFilterTooltipRemoveBtn {
+            background: transparent url(images/gridx_sprite.png) no-repeat -145px -16px;
+        }
+        .gridxFilterTooltipRemoveBtn:hover {
+            background: transparent url(images/gridx_sprite.png) no-repeat -162px -16px;
+        }
+    }
+    .gridxFilterPaneSelectWrapper {
+        .dijitValidationContainer {
+            display: none;
+        }
+    }
+}
+.dj_a11y.@{theme-name} {
+    .gridxFilterBarCloseBtn {
+        margin-top: 4px;
+    }
+}
+.@{theme-name} .gridxQuickFilterButton {
+    margin: 0.2em 5px;
+}
+.@{theme-name} .gridx .gridxFilterBar .dijitButtonHover .gridxFilterBarBtnIcon,
+.@{theme-name} .gridx .gridxFilterBar .dijitButtonActive .gridxFilterBarBtnIcon {
+    /*background-position: -16px -16px;*/
+}
+.@{theme-name} .gridxQuickFilter .dijitButtonHover,
+.@{theme-name} .gridxQuickFilter .dijitButtonActive {
+    background: none;
+}
+.@{theme-name} .gridxQuickFilter .dijitButton .dijitButtonNode,.@{theme-name} .gridxQuickFilter .dijitComboButton .dijitButtonNode {
+    padding: 5px !important;
+    border-width: 0;
+    background: none;
+    box-shadow: none;
+}
+.@{theme-name} .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.@{theme-name} .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.@{theme-name} .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode,
+.@{theme-name} .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode {
+    padding: 5px !important;
+    border-width: 0px;
+}
+.@{theme-name} .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode,
+.@{theme-name} .gridxQuickFilter .dijitComboButtonActive .dijitArrowButton,
+.@{theme-name} .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.@{theme-name} .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode {
+/*    background: #fefefe;
+    background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc));
+    background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: linear-gradient(top,  #fefefe 0%,#cccccc 100%);*/
+}
+.@{theme-name} .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.@{theme-name} .gridxQuickFilter .dijitComboButtonActive .dijitButtonNodeActive,
+.@{theme-name} .gridxQuickFilter .dijitComboButtonActive .dijitDownArrowButtonActive {
+    background: #dbdbdb;
+    background: -moz-linear-gradient(top,  #dbdbdb 0%, #f4f4f4 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%,#f4f4f4));
+    background: -webkit-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+    background: -o-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+    background: -ms-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+    background: linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+}
+.@{theme-name} .dijitButtonHover .gridxQuickFilterIcon,
+.@{theme-name} .dijitButtonActive .gridxQuickFilterIcon,
+.@{theme-name} .dijitComboButtonHover .gridxQuickFilterIcon,
+.@{theme-name} .dijitComboButtonActive .gridxQuickFilterIcon {
+    background: transparent url(svg/filter.svg) no-repeat 0 0;
+    background-size: 100% 100%;
+}
+.dj_ie8{
+    .@{theme-name} {
+        .gridx{
+            .gridxFilterBar {
+                .dijitButton {
+                    .gridxFilterBarBtnIcon{
+                        background-image: url(images/filter.png);
+                    }
+                }
+            }
+        }
+        .gridxQuickFilterIcon{
+            /*background: transparent url(images/filter.png) no-repeat 0px 0px;*/
+            background-image: url(images/filter.png);
+        }
+    }
+}
+.dj_ie {
+    .@{theme-name} {
+        .gridx {
+            .gridxHeader {
+                .gridxQuickFilterInput {
+                    .dijitInputInner {
+                        height: auto;
+                        padding:4px 3px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}
+.@{theme-name} .gridxQuickFilterDropDownButton,.@{theme-name} .gridx .gridxHeader .gridxQuickFilterDropDownButton span {
+    margin: 0;
+    padding: 0;
+}
+.@{theme-name} .gridxFilterPaneText .gridxFilterPaneTextWrapper,.@{theme-name} .gridxFilterPaneCombo .gridxFilterPaneComboWrapper,.@{theme-name} .gridxFilterPaneNumber .gridxFilterPaneNumberWrapper,.@{theme-name} .gridxFilterPaneDate .gridxFilterPaneDateWrapper,.@{theme-name} .gridxFilterPaneDateRange .gridxFilterPaneDateRangeWrapper,.@{theme-name} .gridxFilterPaneTime .gridxFilterPaneTimeWrapper,.@{theme-name} .gridxFilterPaneTimeRange .gridxFilterPaneTimeRangeWrapper,.@{theme-name} .gridxFilterPaneSelect .gridxFilterPaneSelectWrapper,.@{theme-name} .gridxFilterPaneRadio .gridxFilterPaneRadioWrapper {
+    display: inline-block;
+}
+.@{theme-name} .gridxFilterPaneForm .gridxFilterPaneColumnSelect,.@{theme-name} .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+    margin: 0;
+    margin-right: 20px;
+}
+.@{theme-name} .gridxFilterDialogOneLine .gridxFilterPaneAddBtn .dijitButtonNode,.@{theme-name} .gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn .dijitButtonNode {
+    min-width: auto;
+    padding: 4px;
+}
+.@{theme-name} .gridxFilterPaneRangeStart,.@{theme-name} .gridxFilterPaneRangeEnd {
+    width: 106px;
+}
+.@{theme-name} .gridxFilterPaneTrueRadio,.@{theme-name} .gridxFilterPaneFalseRadio {
+    display: inline;
+    width: 90px;
+}

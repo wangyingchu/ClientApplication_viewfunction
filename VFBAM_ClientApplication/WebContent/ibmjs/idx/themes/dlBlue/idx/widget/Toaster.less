@@ -1,0 +1,141 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} .oneuiToaster {
+    position: fixed;
+    background: @container-background-color;
+    bottom: 0;
+    right: 20px;
+    width: 275px;
+    border: 1px solid @border-color;
+    .box-shadow(0px 0px 5px rgba(29, 30, 30, .3))
+}
+.dj_ie8 .@{theme-name} .oneuiToaster .status{
+	background-image: @message-icons-color-png;
+}
+.@{theme-name} {
+    .oneuiToaster {
+        .reveal {
+            display: none;
+            height: 29px;
+            line-height: 29px;
+            padding: 5px 0 5px 15px;
+            background-color: @primary-color;
+            a {
+            	color: #fff;
+            }
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 25px 15px 0;
+            overflow: hidden;
+        }
+        li {
+            border-top: 1px solid @disabled-border-color;
+            overflow: hidden;
+            background-color: @container-background-color;
+        }
+        li:first-child {
+            border-top: 0;
+        }
+        .content {
+            overflow: hidden;
+            padding: 15px 0 0;
+            font-size:1.1em;
+            text-align: left;
+        }
+        .meta_data {
+            clear:both;
+            height: 25px;
+            line-height: 25px;
+            padding: 5px 0 5px 40px;
+            color: @disabled-text-color;
+            font-size: .9em;
+            .timestamp {
+                float: right;
+            }
+        }
+        .status {
+            height: 28px;
+            width: 28px;
+            background-image: @message-icons-color;
+            float: left;
+            clear: left;
+            margin: 0 15px 0 0;
+            .idxToasterMsgAltText{
+                display: none;
+            }
+        }
+        .information {
+            width: 200px;
+            float: left;
+        }
+        .status.success {
+            background-position: -100px 0px;
+        }
+        .status.error {
+            background-position: 0px 0px;
+        }
+        .status.info {
+            background-position: -66px 0px;
+        }
+        .status.warning {
+            background-position: -33px 0px;
+        }
+        .close {
+            background: url("../../dijit/@{image-layout-tab-close}");
+            width:16px;
+            height:16px;
+            display: inline-block;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            .closeText {
+                display: none;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+        }
+        .close:hover {
+            cursor: pointer;
+            background-position: -27px 0px;
+        }
+        .close:active {
+            cursor: pointer;
+            background-position: -14px 0px;
+        }
+    }
+    .oneuiToaster.overflow {
+        .reveal {
+            display: block;
+        }
+    }
+    .oneuiToaster.dijitHidden {
+        ul {
+            display:none;
+            visibility:hidden;
+        }
+    }
+}
+.dj_ie6 {
+    .@{theme-name} {
+        .oneuiToaster {
+            .status {
+                background: url('images/msgIcons_8bit.png') no-repeat;
+            }
+        }
+    }
+}
+.dijit_a11y {
+    .oneuiToaster {
+        .close {
+            .closeText {
+                display: block;
+            }
+        }
+        .status .idxToasterMsgAltText{
+            display: block;
+        }
+    }
+}

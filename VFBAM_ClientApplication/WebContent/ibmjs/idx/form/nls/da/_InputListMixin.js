@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Vælg mindst et element."
 //end v1.x content
 });
+

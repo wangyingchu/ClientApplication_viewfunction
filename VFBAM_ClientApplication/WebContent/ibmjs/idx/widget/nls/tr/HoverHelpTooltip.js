@@ -10,3 +10,4 @@ define({
 	learnMoreLabel: "Daha fazla bilgi"
 //end v1.x content
 });
+

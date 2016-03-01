@@ -17,7 +17,6 @@
 			dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
 		</script>
 		<style id="idxStyles" type="text/css">
-			@import "../../themes/oneui/oneui.css";
 			@import "../../tests/test.css";
 		</style>
 		
@@ -39,9 +38,10 @@
 				'Some messages are long and some are short. This one is a medium length. <span class="attrib">Jack Smith</span>'
 			]; 
             function preParse(modules){
+				var i = 0;
                 message = function(){
                     var whichmsg = Math.floor(Math.random() * msgs.length),
-						whichtype = Math.floor(Math.random() * types.length);
+						whichtype = (i++)%(types.length);
 					
                     return {
 						type: types[whichtype],
@@ -53,7 +53,17 @@
                     dijit.byId("toaster").add(message());
                 }
             }
-			dojoRequireModules(modules, null, currentDojoVersion.async, preParse);
+			function postParse(){
+				var toaster = dijit.byId("toaster");
+				
+				toaster.onViewAll = function(messages){
+					for(var i = 0; i < messages.length; i++){
+						console.log(messages[i])
+					};
+					alert("toaster 'view all' clicked, there are " + messages.length + " messages!");
+				}
+			}
+			dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 		</script>
 		<script type="text/javascript" src="../../tests/commonTest.js"></script>
     </head>
@@ -64,13 +74,17 @@
         </script>
         <a name="maincontent"></a>
         <div class="testMain" id="main">
-            <h1 class="testTitle">idx One UI Toaster tests</h1>
+            <h1 class="testTitle">Toaster Test</h1>
             <p>
                 <button onclick="addMessage();">
                     Add a message
                 </button>
             </p>
-            <div id="toaster" data-dojo-type="idx.widget.Toaster" data-dojo-props="messageTimeout:5000, persistMessages: true, maxMsgHeight: 500">
+            <div id="toaster" data-dojo-type="idx.widget.Toaster" data-dojo-props="
+				messageTimeout:5000, 
+				persistMessages: true, 
+				maxMsgHeight: 500
+				">
             </div>
         </div>
     </body>

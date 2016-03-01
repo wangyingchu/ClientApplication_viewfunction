@@ -1,0 +1,32 @@
+.idxComboLink.idxLinkDerived {
+  white-space: no-wrap;
+  display: inline;
+}
+.idxComboLinkArrowButton {
+  white-space: no-wrap;
+  display: inline;
+}
+.idxComboLink .idxComboLinkSeparator {
+  border: none;
+  border-right: solid 1px @fwDarkest;
+  height: 1em;
+  width: 6px;
+  margin-right: 2px;
+}
+.idxAppMarquee .idxComboLinkAnchor {
+  .setBannerText(@bannerType);
+  color: @textStrong;
+}
+.idxComboLinkDisabled .idxComboLinkAnchor,
+.idxAppMarquee .idxComboLinkDisabled .idxComboLinkAnchor {
+	.setBannerText(@bannerType);
+  color: @textDisabled;
+}
+.idxComboLinkDisabled .idxComboLinkAnchor:hover,
+.idxAppMarquee .idxComboLinkDisabled .idxComboLinkAnchor:hover {
+  text-decoration: none;
+  cursor: default;
+}
+.idxComboLinkDisabled .dijitArrowButtonInner {
+  cursor: auto;
+}

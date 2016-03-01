@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "檢視全部 ({num})",
+	viewAll: "檢視全部 ({num})&lrm;",
 	viewDetails: "更多詳細資料",
 	refresh: "重新整理",
 	showDetails: "顯示詳細資料",
 	hideDetails: "隱藏詳細資料"
 //end v1.x content
 });
+

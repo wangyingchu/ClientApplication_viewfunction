@@ -1,0 +1,16 @@
+<iframe id="monitorIframe4" style='border:none;width:9999px;height:9999px;overflow:hidden' frameborder='0' scrolling='no'></iframe>
+<script type="text/javascript" >
+	var iframe = document.getElementById("monitorIframe4");
+	(function( ele ){
+		setTimeout(function(){
+			//ele.src = "http://bl.ocks.org/Caged/raw/6476579/";
+		},5);
+	})( iframe );
+	
+</script>
+<a role='button' tabindex='0' 
+	onclick='flipCardHandler(this)' 
+	onkeydown='if(event.keyCode == 13){flipCardHandler(this)}' 
+	style='position:absolute;top:30px;right:20px;cursor:pointer;font-size:13px;font-weight:bold;text-decoration:underline;color:blue'>
+	back
+</a>

@@ -7,6 +7,7 @@
 
 define({      
 //begin v1.x content
-	invalidMessage: "Trebuie selectat cel puţin un articol."
+	invalidMessage: "Trebuie să fie selectat cel puţin un articol."
 //end v1.x content
 });
+

@@ -13,11 +13,11 @@
 <script type="text/javascript">
 dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
 dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
+dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
 </script>
 
 <style type="text/css" id="idxStyles">
 @import "../../tests/test.css";
-@import "../../themes/oneui/oneui.css";
 </style>
 
 <script type="text/javascript">
@@ -57,7 +57,7 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 
     <div dojoType="dijit.layout.ContentPane" style="width: 500px; height: 100px; background-color: gray;"> 	
        <div class="idxAppFrame idxAppFrameCenter idxTabMenuLauncher" dojoType="dijit.layout.ContentPane"> 	
-	      <div class="idxAppFrameBody idxTabMenu idxTabMenuLauncher idxConsoleLayoutTabs" dojoType="idx.layout.OpenMenuTabContainer" id="suiteadmin">
+	      <div id="open_menu_tab_container_1" class="idxAppFrameBody idxTabMenu idxTabMenuLauncher idxConsoleLayoutTabs" dojoType="idx.layout.OpenMenuTabContainer" id="suiteadmin">
 				<div dojoType="dijit.layout.ContentPane" title="Tab-1">
 			    	1 tab stuff here
 			    </div>		
@@ -86,7 +86,7 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 
     <div class="idxTabMenuLauncher" dojoType="dijit.layout.ContentPane" splitter="true" style="width:400px; height: 100px; background-color: gray;">
 
-	   <div dojoType="idx.layout.OpenMenuTabContainer" class="idxTabMenu idxConsoleLayoutTabs">
+	   <div id="open_menu_tab_container_2" dojoType="idx.layout.OpenMenuTabContainer" class="idxTabMenu idxConsoleLayoutTabs">
 				<div dojoType="dijit.layout.ContentPane" title="Tab-1">
 			    	1 tab stuff here
 			    </div>		
@@ -111,7 +111,7 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 	<p>OpenMenuTabContainer with classes: idxTabMenu and overrides numInit of 4.</p>
 
     <div class="idxTabMenuLauncher" dojoType="dijit.layout.ContentPane" splitter="true" style="width:400px; height: 100px;">
-	   <div dojoType="idx.layout.OpenMenuTabContainer" class="idxTabMenu" numInit="4"   >
+	   <div id="open_menu_tab_container_3" dojoType="idx.layout.OpenMenuTabContainer" class="idxTabMenu" numInit="4"   >
 				<div dojoType="dijit.layout.ContentPane" title="Tab-1">
 			    	1 tab stuff here
 			    </div>		
@@ -135,7 +135,7 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 	<p>OpenMenuTabContainer with special styling or container. OpenMenu will just be arrow and numInit=1 which is overridden and set to 3. </p>
 
     <div dojoType="dijit.layout.ContentPane" splitter="true" style="width:400px; height: 100px;">
-	<div dojoType="idx.layout.OpenMenuTabContainer" numinit="1"  >
+	<div id="open_menu_tab_container_4" dojoType="idx.layout.OpenMenuTabContainer" numinit="1"  >
 				<div dojoType="dijit.layout.ContentPane" title="Tab-1">
 			    	1 tab stuff here
 			    </div>		
@@ -160,7 +160,7 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 	<p>OpenMenuTabContainer with useMenu false. </p>
 
     <div dojoType="dijit.layout.ContentPane" splitter="true" style="width:400px; height: 100px;">
-	<div dojoType="idx.layout.OpenMenuTabContainer"  useMenu="false"   >
+	<div id="open_menu_tab_container_5" dojoType="idx.layout.OpenMenuTabContainer"  useMenu="false"   >
 				<div dojoType="dijit.layout.ContentPane" title="Tab-1">
 			    	1 tab stuff here
 			    </div>		

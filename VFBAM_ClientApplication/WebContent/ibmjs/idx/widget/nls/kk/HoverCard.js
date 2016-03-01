@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Қосымша әрекеттер"
 //end v1.x content
 });
+

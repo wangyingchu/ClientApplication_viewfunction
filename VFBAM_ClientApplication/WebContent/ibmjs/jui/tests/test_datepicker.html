@@ -1,0 +1,50 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jUI DatePicker</title>
+        <link rel="stylesheet" href="../themes/less/dthink.css">
+		<style>
+			body{
+				font-family:'Helvetica Neue', Helvetica, Arial;
+			}
+		</style>
+        <script src="../requirejs/require.js">
+        </script>
+        <script src="../requirejs/config.js">
+        </script>
+		<script src="../jquery-ui/jquery-1.10.2.js">
+        </script>
+        <script>
+            require(["jui/datepicker"], function(Datepicker){
+                $(function(){
+					$("#inlineDatepicker").datepicker();
+                	$("#datepicker").datepicker();
+                });
+           })
+        </script>
+		<script src="commonTest.js"></script>
+    </head>
+    <body>
+        <h1>Datepicker Tests</h1>
+		<p>While the datepicker is open, the following key commands are available:</p>
+		<ul style="font-size: 14px; padding: 0 20px;">
+			<li>PAGE UP: Move to the previous month.</li>
+			<li>PAGE DOWN: Move to the next month.</li>
+			<li>CTRL+PAGE UP: Move to the previous year.<span style="color:#d9182d">(Overriden by browser behavior in Chrome)</span></li>
+			<li>CTRL+PAGE DOWN: Move to the next year.<span style="color:#d9182d">(Overriden by browser behavior in Chrome)</span></li>
+			<li>CTRL+HOME: Move to the current month. Open the datepicker if closed.</li>
+			<li>CTRL+LEFT: Move to the previous day.</li>
+			<li>CTRL+RIGHT: Move to the next day.</li>
+			<li>CTRL+UP: Move to the previous week.</li>
+			<li>CTRL+DOWN: Move the next week.</li>
+			<li>ENTER: Select the focused date.</li>
+			<li>CTRL+END: Close the datepicker and erase the date.</li>
+			<li>ESCAPE: Close the datepicker without selection.</li>
+		</ul>
+		<h3>Inline Datepicker.</h3>
+		<span id="inlineDatepicker"></span>
+		<h3>Dropdown Datepicker.</h3>
+        <p>Date: <input type="text" id="datepicker"></p>
+    </body>
+</html>

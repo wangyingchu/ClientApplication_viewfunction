@@ -1,0 +1,167 @@
+/* Tree 
+ * 
+ * Styling Tree mostly means styling the TreeRow (dijitTreeRow)
+ * There are 4 basic states to style:
+ * 
+ * Tree Row:
+ * 1. tree row (default styling): 
+ * 		.dijitTreeRow - styles for each row of the tree
+ *
+ * 2. hovered tree row (mouse hover on a tree row)
+ * 		.dijitTreeRowHover - styles when mouse over on one row
+ * 
+ * 3. active tree row (mouse down on a tree row)
+ * 		.dijitTreeRowActive - styles when mouse down on one row
+ * 
+ * 4. selected tree row
+ * 		dijitTreeRowSelected - style when the row has been selected
+ * 
+ * Tree Expando:
+ * 	    dijitTreeExpando - the expando at the left of the text of each tree row
+ * 
+ * Drag and Drop on TreeNodes: (insert line on dijitTreeContent node so it'll aligned w/ target element)
+ * 		.dijitTreeNode .dojoDndItemBefore/.dojoDndItemAfter - use border style simulate a separate line
+ */
+
+@import "variables";
+
+.@{theme-name} .dijitTreeNode {
+    zoom: 1;	/* force layout on IE (TODO: may not be needed anymore) */
+}
+.@{theme-name} .dijitTreeIsRoot {
+    background-image: none;
+}
+
+/* Styling for basic tree node (unhovered, unselected)
+ * Also use this styling when dropping between items on the tree (in other words, don't
+ * use hover effect)
+ */
+.@{theme-name} .dijitTreeRow,
+.@{theme-name} .dijitTreeNode .dojoDndItemBefore,
+.@{theme-name} .dijitTreeNode .dojoDndItemAfter {
+	/* so insert line shows up on IE when dropping after a target element */
+	padding: 3px 0 1px;
+
+	background-color: @tree-default-background-color;
+	border-color: @tree-default-border-color;
+	border-width: @tree-default-border-width;
+	color: @tree-default-text-color;
+	text-decoration: @tree-default-text-decoration;
+	font-weight: @tree-default-font-weight;
+	
+	.transition-property(color, background-color, border-color);
+	.transition-duration(.1s);
+	.transition-timing-function(ease-out);
+}
+
+.@{theme-name} .dijitTreeRowSelected {
+	background-color: @tree-selected-background-color;
+	padding: 3px 0 1px;
+	border-color: @tree-selected-border-color;
+	border-width: @tree-selected-border-width;
+	text-decoration: @tree-selected-text-decoration;
+	font-weight: @tree-selected-font-weight;
+	color: @tree-selected-text-color;
+}
+.@{theme-name} .dijitTreeRowHover {
+	background-color: @tree-hovered-background-color;
+	padding: 3px 0 1px;
+	border-color: @tree-hovered-border-color;
+	border-width: @tree-hovered-border-width;
+	text-decoration: @tree-hovered-text-decoration;
+	color: @tree-hovered-text-color;
+	font-weight: @tree-hovered-font-weight;
+	.transition-duration(.1s);
+}
+.@{theme-name} .dijitTreeRowActive {
+	background-color:@tree-pressed-background-color;
+	padding: 3px 0 1px;
+	border-color: @tree-pressed-border-color;
+	border-width: @tree-pressed-border-width;
+	color: @tree-pressed-text-color;
+	font-weight: @tree-hovered-font-weight;
+	text-decoration: @tree-pressed-text-decoration;
+}
+.@{theme-name} .dijitTreeRowFocused {
+	background-repeat: repeat;
+}
+
+/* expando (open/closed) icon */
+
+.@{theme-name} .dijitTreeExpando {
+	background-image: url(@image-tree-expand);
+    width: 16px;
+    height: 16px;
+	background-position: -35px 0;		/* for dijitTreeExpandoOpened */
+}
+.dj_ie6 .@{theme-name} .dijitTreeExpando {
+	background-image: url(@image-tree-expand-ie6);
+}
+.@{theme-name} .dijitTreeRowHover .dijitTreeExpandoOpened {
+	background-position: -53px 0;
+}
+.@{theme-name} .dijitTreeExpandoClosed {
+	background-position: 1px 0;
+}
+.@{theme-name} .dijitTreeRowHover .dijitTreeExpandoClosed {
+	background-position: -17px 0;
+}
+.@{theme-name} .dijitTreeExpandoLeaf,
+.dj_ie6 .@{theme-name} .dijitTreeExpandoLeaf {
+	background-image:none;
+}
+.@{theme-name} .dijitTreeExpandoLoading {
+	background-image: url(@image-loading-animation);
+}
+
+/* Drag and Drop on TreeNodes
+ * Put insert line on dijitTreeContent node so it's aligned w/
+ * (ie, indented equally with) target element, even
+ * though dijitTreeRowNode is the actual "drag object"
+ */
+.@{theme-name} .dijitTreeNode .dojoDndItemBefore .dijitTreeContent {
+	border-top: 2px solid @dnd-dropseparator-color;		// TODO: normal separator is just 1px, why is this 2px?
+}
+.@{theme-name} .dijitTreeNode .dojoDndItemAfter .dijitTreeContent {
+	border-bottom: 2px solid @dnd-dropseparator-color;	// TODO: normal separator is just 1px, why is this 2px?
+}
+
+/**
+ *
+ */
+.@{theme-name} .dijitFolderOpened{
+    background-image: url("./images/folder_open_blue4.png");
+}
+
+.@{theme-name} .dijitFolderClosed{
+    background-image: url("./images/folder_closed_blue4.png");
+}
+
+.@{theme-name} .dijitLeaf{
+    background-image: url("./images/file_blue4.png");
+}
+
+.@{theme-name} .dijitTreeExpando{
+  background-image: url("images/leftNavArrows.png");
+  background-position: -16px 0;
+  height: 16px;
+  width: 16px;
+}
+
+.@{theme-name} .dijitTreeRowHover .dijitTreeExpando{
+  background-position: -16px 0;
+}
+
+.@{theme-name} .dijitTreeExpandoClosed{
+  background-position: 0 0;
+}
+
+.@{theme-name} .dijitTreeRowHover .dijitTreeExpandoClosed{
+  background-position: 0 0;
+}
+
+
+.@{theme-name}  .dijitTreeExpandoLeaf,
+.dj_ie6 .@{theme-name} .dijitTreeExpandoLeaf {
+  background-image: none;
+}

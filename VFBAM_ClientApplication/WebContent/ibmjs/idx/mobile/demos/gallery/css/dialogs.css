@@ -29,7 +29,9 @@
 	position: relative;
 	margin: 14px 0 7px;
 	top: 0;
+	height: 50px !important;
 }
+
 .mblSimpleDialog .mblListItem {
 	text-align: left;
 }

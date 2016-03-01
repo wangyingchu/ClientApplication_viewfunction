@@ -1,0 +1,58 @@
+@import "../../dijit/variables";
+
+.@{theme-name} {
+    .idxPropertyGridHidden {
+        display: none;
+        visibility: hidden;
+    }
+    .idxPropertyGridTable {
+        border: 0px none transparent;
+        border-collapse: collapse;
+        border-top: 1px solid @property-grid-border-color;
+    }
+    th.idxPropertyRowLabel {
+        text-align: left;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-bottom: 14px;
+        padding-top: 14px;
+        background-color: @property-grid-label-background-color;
+        border: 0px none transparent;
+        border-bottom: 1px solid @property-grid-border-color;
+        white-space: nowrap;
+        color: @property-grid-text-color;
+    }
+    td.idxPropertyRowValue {
+        width: 100%;
+		background-color: @property-grid-value-background-color;
+        text-align: left;
+		vertical-align: middle;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-bottom: 2px;
+        padding-top: 2px;
+        border: 0px none transparent;
+        border-bottom: 1px solid @property-grid-border-color;
+        color: @property-grid-text-color;
+    }
+    span.idxPropertyRowLabel {
+        white-space: nowrap;
+        padding: 0px;
+        margin: 0px;
+    }
+    span.idxPropertyRowSep {
+        white-space: nowrap;
+        padding: 0px;
+        margin: 0px;
+    }
+}
+.dijitRtl {
+    .@{theme-name} {
+        th.idxPropertyRowLabel {
+            text-align: right;
+        }
+        td.idxPropertyRowValue {
+            text-align: right;
+        }
+    }
+}

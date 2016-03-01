@@ -599,9 +599,8 @@
 }
 .oneui .dijitSliderReadOnly *, .oneui .dijitSliderDisabled * {
   border-color: #d3d3d3;
-  color: #cccccc;
+  color: #555555;
   font-size: 10px;
-  font-family: Arial;
 }
 
 .dj_ie6 .oneui .dijitSlider .dijitSliderProgressBarH,

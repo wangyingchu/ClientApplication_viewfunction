@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Selectie van alle rijen in/uitschakelen"		
 //end v1.x content
 });
+

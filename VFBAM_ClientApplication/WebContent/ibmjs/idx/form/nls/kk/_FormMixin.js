@@ -10,3 +10,4 @@ define({
 	legendText: "Қажетті"
 //end v1.x content
 });
+

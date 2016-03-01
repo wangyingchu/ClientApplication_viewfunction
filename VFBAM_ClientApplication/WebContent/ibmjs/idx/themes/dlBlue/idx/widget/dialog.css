@@ -1,0 +1,102 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxDialog {
+  border: 1px solid #a4a6ab;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  background: none repeat scroll 0 0 #ffffff;
+  width: 500px;
+  overflow: auto;
+}
+.dlBlue .idxDialog .dijitDialogPaneContent {
+  background: none repeat scroll 0 0 #ffffff;
+  position: relative;
+  padding: 0;
+}
+.dlBlue .idxDialog .dijitDialogPaneContentArea {
+  /* trick to get action bar (gray bar at bottom with OK/cancel buttons) to span from* left to right but still indent dialog content*/
+}
+.dlBlue .idxDialog .dijitDialogPaneActionBar {
+  margin: 0 20px;
+  min-height: 40px;
+  padding: 10px 0 20px;
+  border: 0 none;
+  _height: 14px;
+}
+.dlBlue .idxDialog .dijitDialogPaneActionBar .idxDialogActionBarLead {
+  float: left;
+  margin-top: 5px;
+}
+.dlBlue .idxDialog .dijitDialogPaneActionBar .idxDialogActionBarEnd {
+  float: right;
+}
+.dlBlue .idxDialog .dijitDialogPaneActionBar .dijitButton {
+  margin: 0 0 0 5px;
+}
+.dlBlue .idxDialog .dijitDialogPaneActionBar .referenceLinkHidden {
+  visibility: hidden;
+  display: none;
+}
+.dlBlue .idxDialog .dijitDialogTitleBar {
+  display: none;
+}
+.dlBlue .idxDialog .dijitDialogTitle {
+  margin: 0;
+  padding: 20px 20px 1px;
+  overflow: auto;
+  cursor: move;
+}
+.dlBlue .idxDialog .dijitDialogInstruction {
+  margin: 1px 18px 19px;
+  padding: 1px 2px 1px;
+  overflow: auto;
+}
+.dlBlue .idxDialog .dijitDialogPaneContentWrapper {
+  border-top: 1px solid #a4a6ab;
+  border-bottom: 1px solid #a4a6ab;
+  margin: 0 20px;
+  padding: 10px 0;
+}
+.dlBlue .idxDialog .dijitDialogCloseIcon {
+  display: none;
+}
+.dlBlue .dijitDialogFixed .dijitDialogTitle {
+  cursor: default;
+}
+.dlBlue .idxDialogRtl .dijitDialogCloseIcon {
+  right: auto;
+  left: 5px;
+}
+.dlBlue .idxDialogRtl .dijitDialogPaneActionBar {
+  text-align: left;
+}
+.dlBlue .idxDialogRtl .dijitDialogPaneActionBar .dijitButton {
+  margin: 0 5px 0 0;
+}
+.dlBlue .idxDialogRtl .dijitDialogPaneActionBar .idxDialogActionBarLead {
+  float: right;
+}
+.dlBlue .idxDialogRtl .dijitDialogPaneActionBar .idxDialogActionBarEnd {
+  float: left;
+}
+.dlBlue .idxDialogRtl .dijitTabContainerCompact .dijitTabContainerTop-tabs {
+  padding-right: 30px;
+}
+.dlBlue .idxDialog .idxCompact .dijitTabContainer .dijitTabContainerTop-container,
+.dlBlue .idxDialog .idxCompact .dijitTabContainer .dijitTabContainerTop-container {
+  border-left: 0 none;
+  border-right: 0 none;
+  border-bottom: 0 none;
+}
+.dlBlue .idxDialog .compact .dijitTabContainer .dijitTabContainerTop-tabs {
+  padding-left: 0;
+  padding-right: 0;
+}
+.dlBlue .idxDialog .compact .dijitTabContainerTop-tabs .dijitTab,
+.dlBlue .idxDialog .compact .dijitTabContainerTop-tabs .dijitTabChecked,
+.dlBlue .idxDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedHover,
+.dlBlue .idxDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedActive {
+  padding: 7px 10px;
+}

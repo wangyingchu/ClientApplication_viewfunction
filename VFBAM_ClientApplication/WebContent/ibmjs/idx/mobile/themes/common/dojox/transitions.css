@@ -2,6 +2,9 @@
 @import url(transitions/cover.css);
 @import url(transitions/cube.css);
 @import url(transitions/reveal.css);
+@import url(transitions/slide.css);
+@import url(transitions/flip.css);
+@import url(transitions/fade.css);
 @import url(transitions/slidev.css);
 @import url(transitions/coverv.css);
 @import url(transitions/revealv.css);

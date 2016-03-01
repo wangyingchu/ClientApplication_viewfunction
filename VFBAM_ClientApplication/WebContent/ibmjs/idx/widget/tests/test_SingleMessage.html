@@ -17,9 +17,13 @@
 	</script>
 	
 	<style id="idxStyles" type="text/css">
-		@import "../../themes/oneui/oneui.css";
 		@import "../../tests/test.css";
 		@import "../../tests/_pagefooter/_PageFooter.css";
+	</style>
+	<style type="text/css">
+		.dlBlue .idxSingleMessage{
+			margin-bottom: 10px;
+		}
 	</style>
 	
 	<script type="text/javascript">
@@ -41,11 +45,13 @@
 			"idx.form.Select",
 			"idx.tests._pagefooter._PageFooter",
 			"dojo/dom",
+			"dojo/dom-geometry",
 			"dojo/dom-construct"]; 
 		var _PageFooter = null;
 		var dojoOn = null;
-		var autoWidthMessage = null, SingleMessage = null;
+		var autoWidthMessage = null, SingleMessage = null, domGeometry = null;
 		function preParse(modules){
+			domGeometry = modules["dojo/dom-geometry"];
 			_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
 			dojoOn = modules["dojo/on"];
 			dom = modules["dojo/dom"] ? modules["dojo/dom"] : dojo;
@@ -57,6 +63,7 @@
 		function postParse(modules){
 			autoWidthMessage = dijit.byId('autoWidthMessage');
 			dojoOn(window, 'resize', function(){
+				if ( !dijit.byId('autoWidthMessage') ) debugger;
 				autoWidthMessage.resize();
 			});
 			
@@ -88,10 +95,9 @@
 </head>
 
 <body style="width: 100%; height: 100%; margin: 0; padding: 0px;">
-	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 	<script type="text/javascript">applyThemeToBody("oneui");</script>
 	<a name="maincontent"></a>
-	<div class="testMain" id="main">
+	<div class="testMain" id="main" role="main">
 		<h1 class="testTitle">idx.widget.SingleMessage Test</h1>
 		<h2>Create SingleMessage Dynamically</h2>
 		<select id="select0" data-dojo-type="idx.form.Select"
@@ -114,8 +120,20 @@
 		</button>
 		<div id="singleMessageContainer"></div>
 		<h2>Message types - Error</h2>
-		<div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="type: 'error', title: 'Error message with short timestamp',
-			dateFormat:{selector: 'time', timePattern: 'hh:mm a'}, messageId: 'CAT123456', messageNumber: 7, style: 'width: 970px;', description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'"></div>
+		<div data-dojo-type="idx.widget.SingleMessage" id="singleMessage0" data-dojo-props="
+			type: 'error', 
+			title: 'Error message with short timestamp',
+			dateFormat:{selector: 'time', timePattern: 'hh:mm a'}, 
+			messageId: 'CAT123456', 
+			messageNumber: 7, 
+			style: 'width: 970px;',
+			showDetailsLink : true,
+			onMoreDetails :function(e) {
+				window.open('http://www.ibm.com');
+			}, 
+			description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'
+			
+		"></div>
 		<div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="type: 'error', title: 'Error message with long timestamp',
 			dateFormat:{datePattern: 'dd MMMM y &nbsp', timePattern: 'hh:mm a'}, messageId: 'CAT123456', messageNumber: 7, style: 'width: 970px;', description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'"></div>
 		<div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="type: 'error', title: 'Error message without View All link', showAction: false,
@@ -180,7 +198,7 @@
 			</div>
 			<div role="main" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='id:"border1-center", region:"center"'>
 				Main area
-				<div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="type: 'error', style: 'margin-left: 0; margin-right: 0;', title: 'Error message with short timestamp long long long long long long long long long long long long long long long long long long long long long long long',
+				<div id="mainSingleMessage" data-dojo-type="idx.widget.SingleMessage" data-dojo-props="type: 'error', style: 'margin-left: 0; margin-right: 0;', title: 'Error message with short timestamp long long long long long long long long long long long long long long long long long long long long long long long',
 				dateFormat:{selector: 'time', timePattern: 'hh:mm a'}, messageNumber: 7, messageId: 'CAT123456', description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'"></div>
 			</div>
 			<div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='id:"border1-right", region:"right", style:"width: 100px;", minSize:150, maxSize:350, splitter:true'>

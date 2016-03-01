@@ -976,13 +976,12 @@ return dDeclare("idx.layout.HeaderPane",[iContentPane,dLayoutWidget,dTemplatedMi
     var aHeight = ((laSize.h > raSize.h) ? laSize.h : raSize.h);
   
     dDomStyle.set(this._leftTitleNode, {width: ltSize.w + "px", height: ltSize.h + "px"});
-    dDomStyle.set(this._rightTitleNode, {width: rtSize.w + "px", height: rtSize.h + "px"});
+    dDomStyle.set(this._rightTitleNode, {width: rtSize.w + 1 + "px", height: rtSize.h + "px"});
     dDomStyle.set(this._leftActionsNode, {width: laSize.w + "px", height: laSize.h + "px"});
     dDomStyle.set(this._rightActionsNode, {width: raSize.w + "px", height: raSize.h + "px"});
     
     dDomStyle.set(this._headerTitleNode, {height: tHeight + "px"});
     dDomStyle.set(this._headerActionsNode, {height: aHeight + "px"});
-
    	this.borderLayout.layout();
 
     // determine if we have a single child

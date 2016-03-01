@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Kapat"
 //end v1.x content
 });
+

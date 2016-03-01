@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "További műveletek"
 //end v1.x content
 });
+

@@ -17,21 +17,21 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
 dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
+dojoCSSImport("../../../../@dojopath@/dojox/layout/resources/ResizeHandle.css", "idxStyles");
 </script>
 <style type="text/css" id="idxStyles">
 @import "../../themes/oneui/oneui.css";
 @import "../../tests/test_nls.css";
 
-.oneui .idxResizeHandleText {
-	display: block;
-	padding: 5px;
-}
 </style>
 <script type="text/javascript" id="postDojo">
-require(["idx/widget/ResizeHandle"]);
+require(["dojo/parser","idx/widget/ResizeHandle"]);
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">widget/nls/ResizeHandle</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>
@@ -42,7 +42,9 @@ require(["idx/widget/ResizeHandle"]);
 </tbody></table>
 <hr/>
 <div style="padding: 10px;">
+<div style="width: 350px; height: 200px; border: 2px solid black; position: relative;">
 	<div data-dojo-type="idx.widget.ResizeHandle"></div>
+</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,17 @@
+.gridxRtl .gridxRowSelected .gridxCell {
+  border-top-color: @fwDark;
+  background: none;
+  background-color: transparent;
+}
+.gridxRtl .gridxRowSelected:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.gridxRtl .gridxRowSelected:last-child .gridxCell {
+  border-bottom-color: @fwDark;
+}
+.gridxRtl .gridxRowSelected + .gridxRow .gridxCell {
+  border-top-color: @fwDark;
+}
+.dj_rtl & .gridxAlternatingRows .gridxRowSelected + .gridxRow .gridxCell {
+  border-top-color: @fwBackground;
+}

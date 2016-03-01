@@ -74,3 +74,8 @@
 .dijitRtl .oneui .idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowAppName .idxAppMarqueeVendorName {
   padding-left: 0px;
 }
+
+.dijitRtl .oneui .idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitStackController	{
+  float: right;
+}
+

@@ -1,0 +1,305 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+.idxAppMarqueeOptions {
+  background-image: url('images/blank.gif?app=leader&vendor=trailer&body=center&borderDesign=sidebar');
+}
+
+.idxAppMarquee_idxDefaults {
+  background-image: url('images/blank.gif?preferAppLogo=false');
+}
+
+div.idxAppMarquee {
+  width: 100%;
+  height: 38px;
+  position: relative;
+  .setBanner (@bannerType; @bannerColor1; @bannerColor2; @bannerImage; @bannerRepeat; @bannerPosition; @bannerColor);
+  color: @textStrong;
+  
+  > span {
+	color: rgba(red(@separator), green(@separator), blue(@separator), .15);
+	font-weight: normal;
+	}
+}
+
+.idxAppFrameMarquee div.idxAppMarquee {
+  background: none;
+  background-color: transparent;
+  background-image: none;
+  background-repeat: none;
+  width: auto;
+  height: auto;
+  position: static;
+}
+
+div.idxAppMarqueeUnused {
+	line-height: 0px;
+	font-size: 0px;
+}
+
+div.idxAppMarqueeHeader {
+  overflow: hidden;
+  position: absolute;
+}
+
+div.idxAppMarqueeLeft {
+  overflow: hidden;
+  position: absolute;
+  padding-left: 30px;
+}
+
+.idxAppFrameMarquee div.idxAppMarqueeLeft {
+  padding-left: 0px;
+}
+
+div.idxAppMarqueeRight {
+  overflow: hidden;
+  position: absolute;
+  padding-right: 28px;
+  background: none black;
+}
+
+.idxAppFrameMarquee div.idxAppMarqueeRight {
+  padding-right: 23px;
+  .setBannerLogo (@logo, @customLogo)
+}
+
+div.idxAppMarqueeFooter {
+  overflow: hidden;
+  position: absolute;
+  line-height: 0px;
+}
+
+div.idxAppMarqueeCenter {
+  overflow: hidden;
+  position: absolute;
+  vertical-align: middle;
+}
+
+div.idxAppMarqueeBody {
+	.setBannerText (@bannerType);
+	.textColors(@bannerText);
+  overflow: hidden;
+  position: absolute;
+  color: @textStrong;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  top: auto;
+  bottom: 10px;
+  right: 12px;
+  left: 15px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.idxAppMarquee .idxAppMarqueeAppLogo  {
+	display: none;
+	visibility: hidden;
+}
+
+.idxAppMarquee .idxAppMarqueeAppName,
+.idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppName {
+	position: absolute;
+	top: -10000px;
+	width: 0px;
+	height: 0px;		
+}
+
+.idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppLogo {
+	visibility: visible;
+	display: block;
+	position: absolute;
+  	bottom: 8px;
+  	left: 30px;
+}
+
+.oneui.dijit_a11y .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppLogo {
+	visibility: hidden;
+	display: none;
+}
+
+.idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppLogo {
+	left: 0px;
+}
+
+.idxAppMarquee.idxAppMarqueeShowAppName .idxAppMarqueeAppName,
+.oneui.dijit_a11y .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppName {
+  top: auto;
+  width: auto;
+  height: auto;
+  display: block;
+  visibility: visible;
+  white-space: nowrap;
+  vertical-align: middle;
+  position: absolute;	
+  font-style: normal;
+  font-size: 1.08em;
+	.TextShadow(@shadowAlpha);
+  bottom: 11px;
+  font-weight: bold;
+}
+
+.idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowAppName .idxAppMarqueeAppName {
+  padding-left: 0px; 
+}
+
+.idxAppMarquee.idxAppMarqueeShowAppName .idxAppMarqueeAppLogo {
+	display: none;
+	visibility: hidden;
+}
+
+.idxAppMarquee .idxAppMarqueeVendorLogo  {
+	display: none;
+	visibility: hidden;
+}
+
+.idxAppMarquee .idxAppMarqueeVendorName,
+.idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorName {
+	position: absolute;
+	top: -10000px;
+	width: 0px;
+	height: 0px;		
+}
+
+.idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorLogo {
+	visibility: visible;
+	display: block;
+	position: absolute;
+  	right: 25px;
+ 	bottom: 11px;
+}
+
+&.dijit_a11y .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorLogo {
+	visibility: hidden;
+	display: none;
+}
+
+.idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorLogo {
+  right: 25px;
+}
+
+.idxAppMarquee.idxAppMarqueeShowVendorName .idxAppMarqueeVendorName,
+.oneui.dijit_a11y .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorName {
+	top: auto;
+	width: auto;
+	height: auto;
+    display: block;
+    visibility: visible;
+	white-space: nowrap;
+    position: static;
+    line-height: 38px;
+    height: 38px;
+    font-size: 16px;
+    text-align: right;
+    margin: 0px;
+}
+
+.idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowVendorName .idxAppMarqueeVendorName {
+    padding-right: 0px;
+}
+
+.idxAppMarquee.idxAppMarqueeShowVendorName .idxAppMarqueeVendorLogo {
+	display: none;
+	visibility: hidden;
+}
+
+/* Links */
+
+.idxAppMarquee .idxLinkDerived,
+.idxAppMarquee .idxDropDownLinkAnchor {
+	.setBannerText (@bannerType);
+	.textColors(@bannerText);
+  	color: @textDefault;
+	font-weight: normal;
+	.TextShadow(@shadowAlpha);
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.idxAppMarquee .idxLinkDerived:hover,
+.idxAppMarquee .idxDropDownLinkAnchor:hover {
+	text-decoration: underline;
+	.setBannerText (@bannerType);
+	.textColors(@bannerText);
+  	color: @textStrong;
+	}
+	
+.idxAppMarquee .idxDropDownLink .dijitArrowButtonInner {
+	margin-left: 1px;
+	background-image: url('images/idx/app/headerIcons.png');
+	background-position: -3px -5px;	
+	}
+	
+.idxAppMarquee .idxDropDownLink .idxDropDownLinkAnchor {
+	margin: 0;
+}
+
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody	{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  bottom: 0px;
+  top: 0px;
+  vertical-align: middle;
+  line-height: 37px;
+}
+
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody > *	{
+  vertical-align: middle;
+}
+
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitStackController	{
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton	{
+  height: 38px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton .dijitButtonNode {
+  background-image: none;
+  background-color: transparent;
+  margin: 0px;
+  padding: 11px 15px 11px 15px;
+  vertical-align: middle;
+  .setBannerText (@bannerType);
+	.textColors(@bannerText);
+  	color: @textDefault;
+  font-weight: bold;
+  .TextShadow(@shadowAlpha);
+  font-family: inherit;
+  border: 0px none transparent;
+  border-style: solid;
+  border-width: 0 1px;
+  outline: medium none;
+  .transition(inherit, 0s);
+}
+
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonChecked .dijitButtonNode,
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonActive.dijitToggleButtonChecked .dijitButtonNode,
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonCheckedActive .dijitButtonNode,
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonActive .dijitButtonNode,
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonChecked.dijitToggleButtonHover .dijitButtonNode {
+    background-position: 0 0;
+    border-color: rgba(0,0,0,.5);
+    border-width: 0 1px;
+    .transition(inherit, 0s);
+}
+
+.idxConsoleLayout>.idxAppFrame>.idxAppFrameHeader>.idxAppFrameMarquee>.idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonHover .dijitButtonNode {    
+	.setBannerMenuHover(@bannerType);
+	border-color: transparent;
+    .transition(inherit, 0s);
+}

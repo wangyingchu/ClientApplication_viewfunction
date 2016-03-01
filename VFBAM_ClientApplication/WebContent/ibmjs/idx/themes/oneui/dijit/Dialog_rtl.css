@@ -19,7 +19,7 @@
 }
 .dijitRtl .oneui .dijitTooltipAbove,
 .dijitRtl .oneui .dijitTooltipBelow {
-	margin-right: -10px;
+	margin-left: 0px;
 }
 .dijitRtl .oneui .dijitTooltipABRight .dijitTooltipConnector{
 	right: 9px;

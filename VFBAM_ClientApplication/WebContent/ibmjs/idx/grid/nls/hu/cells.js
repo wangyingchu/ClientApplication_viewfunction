@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Az összes sor kijelölésének megfordítása"		
 //end v1.x content
 });
+

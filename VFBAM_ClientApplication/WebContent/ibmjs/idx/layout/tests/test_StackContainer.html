@@ -143,7 +143,7 @@
 		}
 		function postParse() {
 			// make the container
-			var container = new StackContainer({ id: "sc" },"myStackContainer2");
+			var container = new StackContainer({ id: "sc", "aria-label": "Label for Stack Container" },"myStackContainer2");
 			container.addChild(new ContentPane({
 					id: "page1Prog",
 					title: "Button # 1",
@@ -205,7 +205,7 @@
 			<button id="next" data-dojo-type="dijit.form.Button" data-dojo-props='iconClass:"dijitArrowButtonInner", showLabel: false, onClick:function(){ dijit.byId("myStackContainer").forward() }'>&gt;</button>
 		</span>
 	
-		<div id="myStackContainer" data-dojo-type="dijit.layout.StackContainer" class="stackContainerBox">
+		<div id="myStackContainer" data-dojo-type="dijit.layout.StackContainer" class="stackContainerBox" aria-label="Label for container">
 			<div id="page1" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title: "Button # 1"'>IT WAS the best of times, it <input value="was the worst" /> of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way -- in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only</div>
 			<div id="page2" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title: "Button # 2"'>There were a king with a large jaw and a queen with a plain face, on the throne of England; there were a king with a large jaw and a queen with a fair face, on the throne of <a href="http://www.france.com">France</a>. In both countries it was clearer than crystal to the lords of the State preserves of loaves and fishes, that things in general were settled for ever.</div>
 			<div id="page3" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title: "Button # 3"'>It was the year of Our Lord one thousand seven hundred and seventy- five. Spiritual revelations were conceded to England at that favoured period, as at this. Mrs. Southcott had recently attained her five-and- twentieth blessed birthday, of whom a prophetic private in the Life Guards had heralded the sublime appearance by announcing that arrangements were made for the swallowing up of London and Westminster. Even the Cock-lane ghost had been laid only a round dozen of years, after rapping out its messages, as the spirits of this very year last past (supernaturally deficient in originality) rapped out theirs. Mere messages in the earthly order of events had lately come to the English Crown and People, from a congress of British subjects in America:</div>
@@ -230,7 +230,7 @@
 			<button id="nextPR" data-dojo-type="dijit.form.Button" data-dojo-props='iconClass:"dijitArrowButtonInner", showLabel: false, onClick:function(){ dijit.byId("myStackContainerPR").forward() }'>&gt;</button>
 		</span>
 		
-		<div id="myStackContainerPR" data-dojo-type="dijit.layout.StackContainer" class="stackContainerBox">
+		<div id="myStackContainerPR" data-dojo-type="dijit.layout.StackContainer" class="stackContainerBox" aria-label="Label for Stack Container">
 			<div id="page2PR" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title: "Button # 1", style:"padding: 1em;"'>
 				<div>
 					Here's a BorderContainer:

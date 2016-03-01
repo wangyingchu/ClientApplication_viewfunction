@@ -1,0 +1,36 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  /** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .idxTypeAhead {
+    border: 1px solid #ADAAAD;
+    zIndex: 1000;
+    overflow: auto;
+    max-height: 300px;
+}
+.@{theme-name} {
+    .idxTypeAhead {
+        .typeAheadTable {
+            width: 100%;
+            border-collapse: collapse;
+            tr.typeAheadTableRow {
+                background-color: #FFFFFF;
+                color: @text-color;
+                cursor: pointer;
+            }
+            tr.typeAheadTableRowOdd {
+                /*background-color: #F4F9FD;*/
+            }
+            td.typeAheadTableCell {
+                padding: 6px;
+            }
+            td.typeAheadCloseNode {
+                text-align: right;
+                padding-right: 8px;
+            }
+            tr.typeAheadTableRowSelected {
+                td.typeAheadTableCell {
+                    color: @text-color;
+                    background-color: @typeahead-hovered-background-color;
+                }
+            }
+        }
+    }
+}

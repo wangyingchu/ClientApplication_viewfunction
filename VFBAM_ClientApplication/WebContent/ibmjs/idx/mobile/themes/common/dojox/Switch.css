@@ -1,13 +1,32 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
 
 /* dojox.mobile.Switch */
+
+/* Reset common styles. */
+.oneui .mblSwitch,
+.oneui .mblSwitch * {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
+}
+
 /* Switch - common */
-.mblSwitch {
+.oneui .mblSwitch {
 	position:relative;
 	display:inline-block;
 	overflow:hidden;
@@ -18,28 +37,28 @@
 	-webkit-tap-highlight-color:rgba(255,255,255,0);
 }
 
-.mblListItem .mblSwitch {
+.oneui .mblListItem .mblSwitch {
 	position:absolute;
 	top:8px;
 	right:12px;
 }
 
-.mblSwitchInner {
+.oneui .mblSwitchInner {
 	position:absolute;
 	top:0;
 	height:27px;
 }
 
-.mblSwitchAnimation .mblSwitchInner {
+.oneui .mblSwitchAnimation .mblSwitchInner {
 	-webkit-transition-duration:.1s;
 	-webkit-transition-property:left;
 }
 
-.mblSwitchOn .mblSwitchInner {
+.oneui .mblSwitchOn .mblSwitchInner {
 	left:0;
 }
 
-.mblSwitchBg {
+.oneui .mblSwitchBg {
 	position:absolute;
 	top:0;
 	-webkit-box-sizing:border-box;
@@ -51,7 +70,7 @@
 	line-height:29px;
 }
 
-.mblSwitchBgLeft {
+.oneui .mblSwitchBgLeft {
 	left:0;
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#085884),to(#008abf));
 	box-shadow:inset 0 3px 8px rgba(0,0,0,0.13);
@@ -59,23 +78,24 @@
 	text-shadow:0 1px 1px rgba(0,0,0,.35);
 }
 
-.mblSwitchBgRight {
+.oneui .mblSwitchBgRight {
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#dbdbdb),to(#f4f4f4));
 	box-shadow:inset 0 3px 8px rgba(0,0,0,0.13);
 	color:#515151;
 }
 
-.mblSwitchKnob {
+.oneui .mblSwitchKnob {
 	position:absolute;
 	top:0;
 	-webkit-box-sizing:border-box;
 	height:30px;
 	border:1px solid #999;
+	background-image:-webkit-gradient(linear,center top,center bottom,from(#f4f4f4),to(#dbdbdb));
 	background-image:-webkit-linear-gradient(top,#f4f4f4 0%,#dbdbdb 100%);
 	font-size:1px;
 }
 
-.mblSwitchText {
+.oneui .mblSwitchText {
 	position:relative;
 	top:0;
 	padding:0;
@@ -85,198 +105,198 @@
 	line-height:28px;
 }
 
-.mblSwitchTextLeft {
+.oneui .mblSwitchTextLeft {
 	left:0;
 }
 
-.mblSwitchTextRight {
+.oneui .mblSwitchTextRight {
 	left:40px;
 }
 
 /* Square Shape */
-.mblSwSquareShape {
+.oneui .mblSwSquareShape {
 	width:94px;
 }
 
-.mblSwSquareShape.mblSwitchOff .mblSwitchInner {
+.oneui .mblSwSquareShape.mblSwitchOff .mblSwitchInner {
 	left:-53px;
 }
 
-.mblSwSquareShape .mblSwitchBg {
+.oneui .mblSwSquareShape .mblSwitchBg {
 	border-radius:2px;
 }
 
-.mblSwSquareShape .mblSwitchBgRight {
+.oneui .mblSwSquareShape .mblSwitchBgRight {
 	left:53px;
 }
 
-.mblSwSquareShape .mblSwitchKnob {
+.oneui .mblSwSquareShape .mblSwitchKnob {
 	left:53px;
 	width:41px;
 	border-radius:2px;
 }
 
-.mblSwSquareShape .mblSwitchText {
+.oneui .mblSwSquareShape .mblSwitchText {
 	width:53px;
 }
 
-.mblSwSquareShape .mblSwitchTextRight {
+.oneui .mblSwSquareShape .mblSwitchTextRight {
 	left:40px;
 }
 
 /* Round Shape1 */
-.mblSwRoundShape1 {
+.oneui .mblSwRoundShape1 {
 	width:77px;
 }
 
-.mblSwRoundShape1.mblSwitchOff .mblSwitchInner {
+.oneui .mblSwRoundShape1.mblSwitchOff .mblSwitchInner {
 	left:-50px;
 }
 
-.mblSwRoundShape1 .mblSwitchBg {
+.oneui .mblSwRoundShape1 .mblSwitchBg {
 	width:77px;
 	border-radius:14px;
 }
 
-.mblSwRoundShape1 .mblSwitchBgRight {
+.oneui .mblSwRoundShape1 .mblSwitchBgRight {
 	left:50px;
 }
 
-.mblSwRoundShape1 .mblSwitchKnob {
+.oneui .mblSwRoundShape1 .mblSwitchKnob {
 	left:50px;
 	width:27px;
 	border-radius:13px;
 }
 
-.mblSwRoundShape1 .mblSwitchText {
+.oneui .mblSwRoundShape1 .mblSwitchText {
 	width:50px;
 }
 
-.mblSwRoundShape1 .mblSwitchTextRight {
+.oneui .mblSwRoundShape1 .mblSwitchTextRight {
 	left:26px;
 }
 
 /* Round Shape2 */
-.mblSwRoundShape2 {
+.oneui .mblSwRoundShape2 {
 	width:94px;
 }
 
-.mblSwRoundShape2.mblSwitchOff .mblSwitchInner {
+.oneui .mblSwRoundShape2.mblSwitchOff .mblSwitchInner {
 	left:-51px;
 }
 
-.mblSwRoundShape2 .mblSwitchBg {
+.oneui .mblSwRoundShape2 .mblSwitchBg {
 	border-radius:14px;
 }
 
-.mblSwRoundShape2 .mblSwitchBgRight {
+.oneui .mblSwRoundShape2 .mblSwitchBgRight {
 	left:51px;
 }
 
-.mblSwRoundShape2 .mblSwitchKnob {
+.oneui .mblSwRoundShape2 .mblSwitchKnob {
 	left:51px;
 	width:43px;
 	border-radius:13px;
 }
 
-.mblSwRoundShape2 .mblSwitchText {
+.oneui .mblSwRoundShape2 .mblSwitchText {
 	width:51px;
 }
 
-.mblSwRoundShape2 .mblSwitchTextRight {
+.oneui .mblSwRoundShape2 .mblSwitchTextRight {
 	left:42px;
 }
 
 /* Arc Shape1 */
-.mblSwArcShape1 {
+.oneui .mblSwArcShape1 {
 	width:77px;
 }
 
-.mblSwArcShape1.mblSwitchOff .mblSwitchInner {
+.oneui .mblSwArcShape1.mblSwitchOff .mblSwitchInner {
 	left:-50px;
 }
 
-.mblSwArcShape1 .mblSwitchBg {
+.oneui .mblSwArcShape1 .mblSwitchBg {
 	width:77px;
 	border-radius:5px/14px;
 }
 
-.mblSwArcShape1 .mblSwitchBgRight {
+.oneui .mblSwArcShape1 .mblSwitchBgRight {
 	left:50px;
 }
 
-.mblSwArcShape1 .mblSwitchKnob {
+.oneui .mblSwArcShape1 .mblSwitchKnob {
 	left:50px;
 	width:27px;
 	border-radius:5px/13px;
 }
 
-.mblSwArcShape1 .mblSwitchText {
+.oneui .mblSwArcShape1 .mblSwitchText {
 	width:50px;
 }
 
-.mblSwArcShape1 .mblSwitchTextRight {
+.oneui .mblSwArcShape1 .mblSwitchTextRight {
 	left:26px;
 }
 
 /* Arc Shape2 */
-.mblSwArcShape2 {
+.oneui .mblSwArcShape2 {
 	width:94px;
 }
 
-.mblSwArcShape2.mblSwitchOff .mblSwitchInner {
+.oneui .mblSwArcShape2.mblSwitchOff .mblSwitchInner {
 	left:-51px;
 }
 
-.mblSwArcShape2 .mblSwitchBg {
+.oneui .mblSwArcShape2 .mblSwitchBg {
 	border-radius:5px/14px;
 }
 
-.mblSwArcShape2 .mblSwitchBgRight {
+.oneui .mblSwArcShape2 .mblSwitchBgRight {
 	left:51px;
 }
 
-.mblSwArcShape2 .mblSwitchKnob {
+.oneui .mblSwArcShape2 .mblSwitchKnob {
 	left:51px;
 	width:43px;
 	border-radius:5px/13px;
 }
 
-.mblSwArcShape2 .mblSwitchText {
+.oneui .mblSwArcShape2 .mblSwitchText {
 	width:51px;
 }
 
-.mblSwArcShape2 .mblSwitchTextRight {
+.oneui .mblSwArcShape2 .mblSwitchTextRight {
 	left:42px;
 }
 
 /* Default Shape */
-.mblSwDefaultShape {
+.oneui .mblSwDefaultShape {
 	width:94px;
 }
 
-.mblSwDefaultShape.mblSwitchOff .mblSwitchInner {
+.oneui .mblSwDefaultShape.mblSwitchOff .mblSwitchInner {
 	left:-53px;
 }
 
-.mblSwDefaultShape .mblSwitchBg {
+.oneui .mblSwDefaultShape .mblSwitchBg {
 	border-radius:2px;
 }
 
-.mblSwDefaultShape .mblSwitchBgRight {
+.oneui .mblSwDefaultShape .mblSwitchBgRight {
 	left:53px;
 }
 
-.mblSwDefaultShape .mblSwitchKnob {
+.oneui .mblSwDefaultShape .mblSwitchKnob {
 	left:53px;
 	width:41px;
 	border-radius:2px;
 }
 
-.mblSwDefaultShape .mblSwitchText {
+.oneui .mblSwDefaultShape .mblSwitchText {
 	width:53px;
 }
 
-.mblSwDefaultShape .mblSwitchTextRight {
+.oneui .mblSwDefaultShape .mblSwitchTextRight {
 	left:40px;
 }

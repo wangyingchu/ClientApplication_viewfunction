@@ -54,6 +54,27 @@
 						widget.set('labelAlignment', 'vertical');
 						doh.t(widget.get("labelAlignment") == "vertical");
 					});
+					
+				    doh.register('validation', function(){
+					    var widget = dijit.byId('FilteringSelect1');
+					    console.log(widget.get('value'));
+					    widget.set('required', true);
+					    doh.f(widget.validate());
+					    widget.set('value', 'CA');
+					    doh.t(widget.validate());
+					 });    
+					   
+					doh.register("setValue", function(){
+					    var widget = dijit.byId('FilteringSelect1');
+					    widget.set("value", "CA");
+					    doh.t(widget.get("value") === "CA");
+					    widget.set("value", "ss");
+					    doh.t(widget.get("value") === "");
+					    doh.f(widget.validate());
+					    doh.t(widget.get('state') === "Error");
+					    widget.reset();
+					});
+					
 				}else{
 					// Register performance testcases
 					var createWidget = function(div){
@@ -78,13 +99,13 @@
 									label: "label",
 									items: [{
 										value: "AL",
-										label: "Alabama",
+										label: "Alabama"
 									}, {
 										value: "AK",
 										label: "Alaska"
 									}, {
 										value: "AZ",
-										label: "Arizona",
+										label: "Arizona"
 									}, {
 										value: "AR",
 										label: "Arkansas"
@@ -120,6 +141,7 @@
 			data-dojo-props='name:"FilteringSelect1",
 			label: "Test composite FilteringSelect: ",
 			hint: "some hint",
+			value: "",
 			pageSize: 30
 		'>
 			<option value="AK">Alaska</option>
@@ -129,7 +151,7 @@
 			<option value="AE">Armed Forces Europe</option>
 			<option value="AP">Armed Forces Pacific</option>
 			<option value="AA">Armed Forces the Americas</option>
-			<option value="CA" selected>California</option>
+			<option value="CA">California</option>
 			<option value="CO">Colorado</option>
 			<option value="CT">Connecticut</option>
 			<option value="DE">Delaware</option>

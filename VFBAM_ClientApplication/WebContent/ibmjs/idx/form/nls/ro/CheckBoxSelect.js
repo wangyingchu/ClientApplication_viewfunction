@@ -7,6 +7,7 @@
 
 define({      
 //begin v1.x content
-	missingMessage: "Trebuie selectat cel puţin un articol."
+	missingMessage: "Trebuie să fie selectat cel puţin un articol."
 //end v1.x content
 });
+

@@ -6,10 +6,12 @@
 		aria-labelledby="${id}_MatchOptionLabel"
 		><option value="all">${module.nls.relationAll}</option
 		><option value="any">${module.nls.relationAny}</option
-	></select
-	><div class="gridxFilterRulesLabel">${module.nls.rules}</div
-	><div class="gridxFilterRules"
-		data-dojo-attach-point='_ruleContainer'
-	></div
-	><input type="submit" value='' tabindex='-1' class="dijitOffScreen" role='presentation' data-dojo-attach-point='submitBtn'
-/></form>
+	></select>
+	<div data-dojo-type='idx/form/CheckBox' data-dojo-props='label:"${module.nls.matchCase}"' 
+		data-dojo-attach-point='matchCaseCheckbox' data-dojo-attach-event='onClick:_onCheckboxClick'
+		class='matchCaseCheckbox'></div>
+	<div class="gridxFilterRulesLabel">${module.nls.rules}</div>
+	<div class="gridxFilterRules"
+		data-dojo-attach-point='_ruleContainer'></div>
+	<input type="submit" value='' tabindex='-1' class="dijitOffScreen" role='presentation' data-dojo-attach-point='submitBtn'/>
+</form>

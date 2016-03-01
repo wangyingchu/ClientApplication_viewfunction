@@ -1,0 +1,59 @@
+/*
+ *	Licensed Materials - Property of IBM
+ * 	(C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+ *	US Government Users Restricted Rights - Use, duplication or
+ *	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+//	
+//	Information and education on how to use .less can be found at lesscss.org.
+//	The IDX toolkit does not include the less.js file required to compile the .less files
+//	to .css so you will need to download that file at lesscss.org.
+//	
+//	.less files are not required to use the IDX toolkit.
+//	The .less files contained in the theme use these variables to output their .css counterparts
+//	which are then used by the IDX toolkit.
+//	
+
+@import "variables";
+@import "generateColors";
+@import "mixins";
+
+.@{themeName} {
+
+.brandColors (@brandColor);
+.frameworkColors (@framework);
+.frameworkContrast (@framework);
+.textColors (@fwBackground);
+	
+// oneui overrides to dijit styles
+
+	@import "dijit/dijitMain";
+	@import "dijit/dijitMain_rtl"; 
+	
+// styles and oneui overrides for dojox widgets
+
+	@import "dojox/grid/oneuiGrid";
+	@import "dojox/grid/oneuiGrid_rtl";
+	@import "dojox/html/ellipsis";
+	
+// styles specific to general IDX widgets
+
+	@import "idx/common";
+	@import "idx/document";
+	@import "idx/app/app";
+	@import "idx/form/form";
+	@import "idx/form/form_rtl";
+	@import "idx/grid/grid";
+	@import "idx/gridx/Gridx";
+	@import "idx/gridx/Gridx_rtl";
+	@import "idx/layout/layout";
+	@import "idx/widget/widget";
+	
+// styles for common icons
+
+	@import "images/icons/editorIcons";
+	@import "images/icons/editorIcons_rtl";
+	@import "images/icons/commonIcons";
+	@import "images/icons/commonIcons_rtl";
+}

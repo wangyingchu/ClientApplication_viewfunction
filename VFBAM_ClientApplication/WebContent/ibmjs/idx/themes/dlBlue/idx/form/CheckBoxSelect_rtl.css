@@ -1,0 +1,15 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxCheckBoxSelect.dijitRtl .idxCheckBoxSelectWrapLabel {
+  text-align: right;
+}
+.dlBlue .idxCheckBoxSelectMenu .dijitMenuItemRtl td.dijitMenuItemIconCell {
+  margin: 0;
+  padding: 6px 10px;
+  width: 16px;
+}
+.dlBlue .dijitMenuPopup .idxCheckBoxSelectMenu .dijitMenuItemRtl .dijitMenuItemLabel,
+.dlBlue .dijitMenuPopup .idxCheckBoxSelectMenu .dijitCheckedMenuItemRtl .dijitMenuItemLabel,
+.dlBlue .dijitMenuPopup .idxCheckBoxSelectMenu .oneuiMenuHeadingRtl .oneuiMenuHeadingLabel {
+  text-align: right;
+  padding: 6px 10px;
+}

@@ -1,0 +1,262 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxAppMarqueeOptions {
+  background-image: url(../images/blank.gif?app=leader&vendor=leader&body=center&borderDesign=sidebar);
+}
+.dlBlue .idxAppMarqueeDefaultVendorLogo {
+  background-image: url(../images/blank.gif?relativePath=dlBlue/idx/app/images/banner_bee.svg);
+}
+.dlBlue .idxAppMarquee_idxDefaults {
+  background-image: url(../images/blank.gif?preferAppLogo=false);
+}
+.dj_ie8.dlBlue .idxAppMarqueeDefaultVendorLogo {
+  background-image: url(../images/blank.gif?relativePath=dlBlue/idx/app/images/banner_bee.png);
+}
+.dlBlue div.idxAppMarquee {
+  width: 100%;
+  height: 38px;
+  position: relative;
+  background-color: #003f69;
+  color: #ffffff;
+}
+.dlBlue .idxAppFrameMarquee div.idxAppMarquee {
+  background: none;
+  background-color: transparent;
+  background-image: none;
+  background-repeat: none;
+  width: auto;
+  height: auto;
+  position: static;
+}
+.dlBlue div.idxAppMarqueeUnused {
+  line-height: 0px;
+  font-size: 0px;
+}
+.dlBlue div.idxAppMarqueeHeader {
+  overflow: hidden;
+  position: absolute;
+}
+.dlBlue div.idxAppMarqueeLeft {
+  overflow: hidden;
+  position: absolute;
+  padding-left: 30px;
+  line-height: 38px;
+  vertical-align: middle;
+}
+.dlBlue div.idxAppMarqueeRight {
+  overflow: hidden;
+  position: absolute;
+  background: #003f69;
+}
+.dlBlue div.idxAppMarqueeFooter {
+  overflow: hidden;
+  position: absolute;
+  line-height: 0px;
+}
+.dlBlue div.idxAppMarqueeCenter {
+  overflow: hidden;
+  position: absolute;
+  vertical-align: middle;
+}
+.dlBlue div.idxAppMarqueeBody {
+  overflow: hidden;
+  position: absolute;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  top: auto;
+  bottom: 10px;
+  right: 12px;
+  left: 15px;
+  white-space: nowrap;
+  text-align: left;
+  color: #ffffff;
+}
+.dlBlue div.idxAppMarqueeBody > span {
+  color: #ffffff;
+  font-weight: normal;
+}
+.dlBlue .idxAppFrameMarquee div.idxAppMarqueeLeft {
+  padding-left: 0px;
+}
+.dlBlue .idxAppFrameMarquee div.idxAppMarqueeRight {
+  background: #003f69;
+}
+.dlBlue .idxAppMarquee .idxAppMarqueeAppLogo {
+  display: none;
+  visibility: hidden;
+  vertical-align: middle;
+}
+.dlBlue .idxAppMarquee .idxAppMarqueeAppName,
+.dlBlue .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppName {
+  position: absolute;
+  top: -10000px;
+  width: 0px;
+  height: 0px;
+}
+.dlBlue .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppLogo {
+  visibility: visible;
+  display: inline-block;
+  position: static;
+}
+.dlBlue.dijit_a11y .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppLogo {
+  visibility: hidden;
+  display: none;
+}
+.dlBlue .idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppLogo {
+  left: 0px;
+}
+.dlBlue .idxAppMarquee.idxAppMarqueeShowAppName .idxAppMarqueeAppName,
+.dlBlue.dijit_a11y .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppName {
+  color: #ffffff;
+  top: auto;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  position: static;
+  visibility: visible;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 13px;
+}
+.dlBlue .idxAppMarquee.idxAppMarqueeShowAppName .idxAppMarqueeAppLogo {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxAppMarquee .idxAppMarqueeVendorLogo {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxAppMarquee .idxAppMarqueeVendorName,
+.dlBlue .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorName {
+  position: absolute;
+  top: -10000px;
+  width: 0px;
+  height: 0px;
+}
+.dlBlue .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorLogo {
+  visibility: visible;
+  display: inline-block;
+  position: static;
+  vertical-align: middle;
+  margin-right: 10px;
+  line-height: 38px;
+  border: none 0px transparent;
+}
+.dlBlue.dijit_a11y .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorLogo {
+  visibility: hidden;
+  display: none;
+}
+.dlBlue .idxAppMarquee.idxAppMarqueeShowVendorName .idxAppMarqueeVendorName,
+.dlBlue.dijit_a11y .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorName {
+  top: auto;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  visibility: visible;
+  white-space: nowrap;
+  position: static;
+  height: 13px;
+  font-size: 13px;
+  line-height: 13px;
+  text-align: left;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.dlBlue .idxAppMarquee.idxAppMarqueeShowVendorName .idxAppMarqueeVendorLogo {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxAppMarquee .idxLinkDerived,
+.dlBlue .idxAppMarquee .idxDropDownLinkAnchor {
+  color: #ffffff;
+  font-weight: normal;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.dlBlue .idxAppMarquee .idxLinkDerived:hover,
+.dlBlue .idxAppMarquee .idxDropDownLinkAnchor:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+.dlBlue .idxAppMarquee .idxDropDownLink .dijitArrowButtonInner {
+  margin-left: 1px;
+  background-image: url('images/headerIcons.png');
+  background-position: -3px -5px;
+}
+.dlBlue .idxAppMarquee .idxDropDownLink .idxDropDownLinkAnchor {
+  margin: 0;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  bottom: 0px;
+  top: 0px;
+  vertical-align: middle;
+  line-height: 38px;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody  > * {
+  vertical-align: middle;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitStackController {
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton {
+  height: 38px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton .dijitButtonNode {
+  background-image: none;
+  background-color: transparent;
+  margin: 0px;
+  padding: 11px 15px 11px 15px;
+  vertical-align: middle;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: inherit;
+  border: 0px none transparent;
+  border-style: solid;
+  border-width: 0 1px;
+  outline: medium none;
+  -o-transition: 0s;
+  -ms-transition: 0s;
+  -moz-transition: 0s;
+  -webkit-transition: 0s;
+  transition: 0s;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonChecked .dijitButtonNode,
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonActive.dijitToggleButtonChecked .dijitButtonNode,
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonCheckedActive .dijitButtonNode,
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonActive .dijitButtonNode,
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonChecked.dijitToggleButtonHover .dijitButtonNode {
+  background-position: 0 0;
+  background-color: #444444;
+  border-color: #585858;
+  border-width: 0 1px;
+  -webkit-box-shadow: 1px 0px #111111, -1px 0px #111111;
+  -moz-box-shadow: 1px 0px #111111, -1px 0px #111111;
+  box-shadow: 1px 0px #111111, -1px 0px #111111;
+  -o-transition: 0s;
+  -ms-transition: 0s;
+  -moz-transition: 0s;
+  -webkit-transition: 0s;
+  transition: 0s;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitToggleButton.dijitToggleButtonHover .dijitButtonNode {
+  border-color: transparent;
+  -o-transition: 0s;
+  -ms-transition: 0s;
+  -moz-transition: 0s;
+  -webkit-transition: 0s;
+  transition: 0s;
+}

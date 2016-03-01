@@ -21,19 +21,14 @@
 	border: 1px dotted darkblue;
 }
 
-.oneui .gridxPagerDescription{
-	font: italic 12px Georgia;
-	color: #666666;
-}
-
 .oneui .gridxPager .gridxPagerStepper {
 	text-align: center;
 }
 
-.oneui .gridxPagerStepperBtn,	
+.oneui .gridxPagerStepperBtn,
 .oneui .gridxPagerSizeSwitchBtn {
 	margin: 0 5px;
-	font: normal 12px arial;
+	font-family: arial;
 	color: #00649d;
 }
 
@@ -54,7 +49,7 @@
 
 .oneui .gridxPagerStepperBtnActive,
 .oneui .gridxPagerSizeSwitchBtnActive {
-	font: bold 12px arial;
+	font-weight: bold;
 	color: #222;
 }
 
@@ -62,23 +57,32 @@
 	color: #666;
 }
 
+.oneui .gridxGotoPageDialog {
+	width: 300px !important;
+}
+
 /*DD*/
-.oneui .gridxPager .gridxPagerSizeSwitchDD {
+.oneui .gridx .gridxPagerSizeSwitchDD {
 	text-align: right;
 }
 
-.oneui .gridxPager .gridxPagerStepperDD {
+.oneui .gridx .gridxPagerStepperDD {
 	text-align: center;
 }
 
-.oneui .gridxPager .gridxPagerLabel {
-	font: italic 12px Georgia;
+.oneui .gridx .gridxPagerLabel {
+	font-family: Georgia;
+	font-style: italic;
 	color: #767676;
 	margin: 0 5px;
 }
 
 .oneui .gridxGotoPageDialog {
 	width: 300px;
+}
+
+.oneui .gridxPagerStepperWidget {
+	width: auto;
 }
 
 /* Have to use idx.form.Select because OneUI theme can not fit dijit.form.Select.

@@ -1,0 +1,264 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxSingleMessage {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  border: 2px solid;
+  overflow: hidden;
+  position: relative;
+}
+.dlBlue .idxMessageStack {
+  padding: 10px 0 10px 0;
+}
+.dlBlue .idxMessageStack .idxSingleMessage {
+  margin: 0 5px 0 5px;
+}
+.dlBlue .idxSingleMessage .dojoxEllipsisIFrame {
+  display: none;
+}
+.dlBlue .idxMessageTitle {
+  font-weight: bold;
+}
+.dlBlue .idxMessageContent .idxMessageTitle {
+  overflow: hidden;
+  display: inline-block;
+}
+.dlBlue .idxMessageContent .idxMessageId {
+  overflow: hidden;
+  display: inline-block;
+}
+.dlBlue .idxMessageIcon {
+  background-image: url('../idx/widget/images/MsgIcons.svg');
+}
+.dlBlue .idxMessageHead .a11yDescription {
+  position: absolute;
+  clip: rect(0px 0px 0px 0px);
+  width: 0px;
+  heigth: 0px;
+  overflow: hidden;
+}
+.dlBlue .idxMessageAltText {
+  display: none;
+}
+.dlBlue .dijitInline .idxMessageAltText {
+  margin-top: -25px;
+}
+.dlBlue .errorMessage,
+.dlBlue .criticalMessage {
+  background: #faebec;
+  border-color: #d9182d;
+}
+.dlBlue .errorMessage .idxMessageIcon,
+.dlBlue .criticalMessage .idxMessageIcon {
+  background-position: 0px 0px;
+}
+.dlBlue .errorMessage .idxMessageIconWraper,
+.dlBlue .criticalMessage .idxMessageIconWraper {
+  background: #d9182d;
+}
+.dlBlue .warningMessage {
+  background: #fff8d9;
+  border-color: #ffe268;
+}
+.dlBlue .warningMessage .idxMessageIcon {
+  background-position: -33px 0px;
+}
+.dlBlue .warningMessage .idxMessageIconWraper {
+  background: #ffe268;
+}
+.dlBlue .successMessage {
+  background: #d9ede5;
+  border-color: #269c6c;
+}
+.dlBlue .successMessage .idxMessageIcon {
+  background-position: -100px 0px;
+}
+.dlBlue .successMessage .idxMessageIconWraper {
+  background: #269c6c;
+}
+.dlBlue .informationMessage {
+  background: #d9e8f0;
+  border-color: #267bac;
+}
+.dlBlue .informationMessage .idxMessageIcon {
+  background-position: -66px 0px;
+}
+.dlBlue .informationMessage .idxMessageIconWraper {
+  background: #267bac;
+}
+.dlBlue .attentionMessage {
+  background: #fef2dd;
+  border-color: #f76606;
+  border-color: rgba(247, 102, 6, 0.75);
+}
+.dlBlue .attentionMessage .idxMessageIcon {
+  background-position: -33px 0px;
+}
+.dlBlue .attentionMessage .idxMessageIconWraper {
+  background: #ffe268;
+}
+.dlBlue .complianceMessage {
+  background: #edf8eb;
+  border-color: #2e9700;
+  border-color: rgba(46, 151, 0, 0.75);
+}
+.dlBlue .complianceMessage .idxMessageIcon {
+  background-position: -100px 0px;
+}
+.dlBlue .complianceMessage .idxMessageIconWraper {
+  background: #269c6c;
+}
+.dlBlue .idxMessageCloseIcon {
+  background: url('../app/images/headerIcons.png') -191px -5px;
+  cursor: pointer;
+}
+.dlBlue .idxMessageCloseIcon:hover {
+  background-position: -214px -5px;
+}
+.dlBlue .idxMessageRightAligned {
+  position: absolute;
+  right: 0;
+  height: 48px;
+  line-height: 48px;
+}
+.dlBlue .idxMessageSplitter {
+  height: 12px;
+  margin: 0 15px 10px 15px;
+  display: block;
+  clear: both;
+}
+.dlBlue .idxMessageBody {
+  margin: 0 20px;
+}
+.dlBlue .idxMessageViewDetails {
+  margin-left: 10px;
+}
+.dlBlue .idxMessageRefresh {
+  color: #267BAC;
+  margin: 15px 20px;
+  text-align: right;
+  cursor: pointer;
+}
+.dlBlue .idxMessageRefresh:hover {
+  text-decoration: underline;
+}
+.dlBlue .idxMessageIconWraper {
+  line-height: 48px;
+  height: 48px;
+}
+.dlBlue .idxMessageContent,
+.dlBlue .idxMessageFakeContent {
+  cursor: pointer;
+  height: 48px;
+  padding: 16px 0 16px 20px;
+  box-sizing: border-box;
+}
+.dlBlue .idxMessageIcon {
+  background-repeat: no-repeat;
+  display: -moz-inline-box;
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  margin: 6px 15px;
+}
+.dlBlue .idxMessageTimestamp,
+.dlBlue .idxMessageAction,
+.dlBlue .idxMessageSeparator {
+  float: left;
+  word-break: keep-all;
+  margin: 0 10px;
+}
+.dlBlue .idxMessageSeparator {
+  margin: 0;
+  display: none;
+}
+.dlBlue .idxMessageCloseIcon {
+  background-repeat: no-repeat;
+  display: -moz-inline-box;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-right: 20px;
+}
+.dlBlue .dojoxEllipsis,
+.dlBlue .dojoxEllipsisShown {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+}
+.dlBlue .dojoxEllipsisIFrame {
+  white-space: normal;
+  border: none;
+  width: 100%;
+  display: block;
+  height: 1px;
+  margin-top: -1px;
+  clear: both;
+}
+.dlBlue .dojoxEllipsisContainer {
+  width: 100%;
+}
+.dlBlue .dojoxEllipsisShown:after {
+  content: "\2026";
+}
+/**
+ * DL blue theme for png background image 
+ */
+.dj_ie8 .dlBlue .idxMessageIcon {
+  background-image: url('../idx/widget/images/MsgIcons.png');
+}
+.dlBlue .idxMessageContent:hover .idxMessageTitle,
+.dlBlue .idxMessageFakeContent:hover .idxMessageTitle {
+  text-decoration: underline;
+}
+.dlBlue .idxMessageContent:hover .idxMessageId,
+.dlBlue .idxMessageFakeContent:hover .idxMessageId {
+  text-decoration: underline;
+}
+.dj_ie6 .dlBlue .idxMessageIcon {
+  margin: 8px 4px 8px 7px;
+  background-image: url('images/msgIcons_8bit.png');
+}
+.dj_ie6 .dlBlue .criticalMessage .idxMessageIcon,
+.dj_ie6 .dlBlue .attentionMessage .idxMessageIcon,
+.dj_ie6 .dlBlue .complianceMessage .idxMessageIcon {
+  background-image: url('images/alertIcons_8bit.png');
+}
+.dj_ie6 .dlBlue .idxMessageAction,
+.dj_ie7 .dlBlue .idxMessageAction {
+  margin-right: 15px;
+}
+.dj_ie9 .dlBlue .idxMessageSeparator,
+.dj_ie9 .dlBlue .idxMessageAction {
+  margin-top: 10px;
+}
+.dlBlue .idxMessageCollapsed .idxMessageSplitter,
+.dlBlue .idxMessageCollapsed .idxMessageBody,
+.dlBlue .idxMessageCollapsed .idxMessageRefresh {
+  display: none;
+}
+.dj_ie6 .dlBlue .idxMessageHead,
+.dj_ie6 .dlBlue .idxSingleMessage {
+  position: relative;
+  zoom: 1;
+}
+.dj_ie6 .dlBlue .idxMessageTimeStampMargin,
+.dj_ie7 .dlBlue .idxMessageTimeStampMargin {
+  margin-right: 15px;
+}
+.dijit_a11y .idxMessageAltText {
+  display: block;
+  margin-top: 0;
+}
+.dj_ie9 .dlBlue .idxMessageIcon:focus,
+.dj_ie9 .dlBlue .idxMessageContent:focus,
+.dj_ie9 .dlBlue .idxMessageAction:focus,
+.dj_ie9 .dlBlue .idxMessageCloseIcon:focus,
+.dj_ie9 .dlBlue .idxMessageDetail:focus,
+.dj_ie9 .dlBlue .idxMessageViewDetails:focus,
+.dj_ie9 .dlBlue .idxMessageRefresh span:focus {
+  outline: 1px dotted #000000;
+}

@@ -21,9 +21,9 @@ define([
 	"dijit/_base/wai", 
 	"idx/widget/HoverHelpTooltip",
 	"../util",
-	"../string",
-	"./_FocusManager"
-], function(declare, lang, aspect, domAttr, dom, domConstruct, domGeometry, i18n, query, domClass, domStyle, on, wai, HoverHelpTooltip, iUtil, iString, _focusManager) {
+	"../string"
+	//"./_FocusManager" // Not able to extend in dojo1.10
+], function(declare, lang, aspect, domAttr, dom, domConstruct, domGeometry, i18n, query, domClass, domStyle, on, wai, HoverHelpTooltip, iUtil, iString) {
 	/**
 	 * @public
 	 * @name idx.form._CompositeMixin
@@ -43,8 +43,7 @@ define([
 	 * @aguments idx.form._FocusManager
 	 */
 
-	//lang.extend(HoverHelpTooltip._MasterHoverHelpTooltip, {hoverFocus: false});
-
+	
 	return declare("idx.form._CompositeMixin", null, 
 	/**@lends idx.form._CompositeMixin#*/
 	{
@@ -107,7 +106,7 @@ define([
 		 * @type idx.form.FocusManager
 		 * @private
 		 */
-		_focusManager: _focusManager,
+		/** _focusManager: _focusManager **/
 		
 		
 		/**
@@ -118,10 +117,20 @@ define([
 		
 		_errorIconWidth: 27,
 		
+		postMixInProperties: function(){
+			this.tooltipPosition = ["after-centered", "above"];
+			this.inherited(arguments);
+		},
+		
 		/**
 		 * Handles resizing form widgets.
 		 */
 		resize: function() {
+			
+			if(this._holdResize()){
+				return;
+			}
+			domStyle.set(this.domNode, {visibility: "hidden"});
 			// if percentage style width then clear the label and field widths so the parent container
 			// has the opportunity to resize
 			if (iUtil.isPercentage(this._styleWidth)) {
@@ -136,22 +145,40 @@ define([
 			}
 			this._resizeTimeout = setTimeout(lang.hitch(this, this._resize), 250);
 		},
-		
+		/**
+		 * Check if resize action should be hold, by widget visibility and applied width
+		 */
+		_holdResize: function(widgetInvisible){
+			if(!this.domNode){return true;}
+			if(!(this.labelWidth || this.fieldWidth || this._styleWidth)){
+				domStyle.set(this.labelWrap, {width: ""});
+				domStyle.set(this.oneuiBaseNode, {width: ""});				
+				return true;
+			}
+			var swFixed = (this._styleWidth && !iUtil.isPercentage(this._styleWidth)),
+				fwFixed = (this.fieldWidth && !iUtil.isPercentage(this.fieldWidth)),
+				lwFixed = (this.labelWidth && !iUtil.isPercentage(this.labelWidth)),
+				widthFixed = swFixed || (fwFixed&&lwFixed),				
+				widgetInvisible = domGeometry.getContentBox(this.domNode).w <= 0;
+				
+			return (widthFixed && this._resized) || // If widget width is fixed, and widget has been resized of fit, then skip.
+				(!widthFixed) && widgetInvisible; // If widget is invisible with percentage width, then skip.
+		},
 		/**
 		 * Handles deferring the resize until the widget is started.  This function returns true
 		 * if the resize should be deferred.
 		 */
 		_deferResize: function() {
-			// check if the widget has been started -- there is no point in resizing until the widget's 
-			// DOM node is properly placed in the DOM since "realWidth" cannot be computed before that
-			if (! this._started) {
+			// check if the widget has no fixed width -- there is no point in resizing until the widget's 
+			// DOM node is properly placed in the DOM since percentage width cannot be computed  before that
+			if (!this._started) {
 				// if we have not yet created a resize callback on "startup", then use aspect to do that
-				if (! this._resizeHandle) {
+				if (!this._resizeHandle) {
 					this._resizeHandle = aspect.after(this, "startup", lang.hitch(this, this._resize));
 				}
 				return true; // defer until startup
-				
-			} else {
+			}
+			else {
 				// if we are started and previously created a resizeHandle, then remove it
 				if (this._resizeHandle) {
 					this._resizeHandle.remove();
@@ -171,18 +198,16 @@ define([
 			if (deferring) {
 				return;
 			}
+			if(this._holdResize()){
+				return;
+			}
 			
 			var labelWidth = this.labelWidth,
 				fieldWidth = this.fieldWidth,
 				styleWidth = this._styleWidth;
 
-			if(!(labelWidth || fieldWidth || styleWidth)){
-				domStyle.set(this.labelWrap, {width: ""});
-				domStyle.set(this.oneuiBaseNode, {width: ""});				
-				return;
-			}
-			
-			var	realWidth = domGeometry.getContentBox(this.domNode).w;
+			var	realWidth = domGeometry.getContentBox(this.domNode).w,
+				realWidth = ((realWidth <= 0) && styleWidth)? iUtil.normalizedLength(styleWidth,this.domNode) : realWidth;
 
 			if (!styleWidth) {
 				if (iUtil.isPercentage(labelWidth)) domStyle.set(this.labelWrap, "width", "");
@@ -199,10 +224,12 @@ define([
 					domStyle.set(this.labelWrap, "width", "");
 				}
 				if(fieldWidth){
-					if(iUtil.isPercentage(fieldWidth)){
+					var isFieldWidthPercentage = iUtil.isPercentage(fieldWidth);
+					if(isFieldWidthPercentage){
 						fieldWidth = Math.floor(realWidth * parseInt(fieldWidth)/100);
 					}
-					domStyle.set(this.oneuiBaseNode, "width", iUtil.normalizedLength(fieldWidth,this.domNode) - this._errorIconWidth - 2 + "px");
+					domStyle.set(this.oneuiBaseNode, "width", 
+						iUtil.normalizedLength(fieldWidth,this.domNode) - (isFieldWidthPercentage ? (this._errorIconWidth + 2) : 0) + "px");
 				} else {
 					domStyle.set(this.oneuiBaseNode, "width", "");
 				}
@@ -217,10 +244,19 @@ define([
 				if(styleWidth){
 					domStyle.set(this.oneuiBaseNode, "width", realWidth - this._errorIconWidth - 2 + "px");
 				}else if(fieldWidth && !iUtil.isPercentage(fieldWidth)){
-					domStyle.set(this.oneuiBaseNode, "width", iUtil.normalizedLength(fieldWidth,this.domNode) - this._errorIconWidth - 2 + "px");
+					domStyle.set(this.oneuiBaseNode, "width", iUtil.normalizedLength(fieldWidth,this.domNode) + "px");
 				} else {
 					domStyle.set(this.oneuiBaseNode, "width", "");
 				}
+			}
+			this._resizeHint();
+			domStyle.set(this.domNode, {visibility: ""});
+			this._resized = true;
+		},
+		_resizeHint: function(){
+			if(this.hint && (this.hintPosition == "outside") && this._created){
+				var inputWidth = domStyle.get(this.fieldWrap || this.oneuiBaseNode, "width")/*valication icon placeholder*/;
+				domStyle.set(this.compHintNode, "width", inputWidth? inputWidth + "px" : "");
 			}
 		},
 		_setStyleAttr: function(style){
@@ -237,6 +273,7 @@ define([
 		 * Unit of "pt","em","px" will be normalized to "px", and "px" by default for numeral value.
 		 */
 		_setLabelWidthAttr: function(/*String | Integer*/width){
+			domStyle.set(this.labelWrap, "width", typeof width === "number" ? width + "px" : width);
 			this._set("labelWidth", width);
 			this._created && this._resize();
 		},
@@ -248,6 +285,9 @@ define([
 		 * Unit of "pt","em","px" will be normalized to "px", and "px" by default for numeral value.
 		 */
 		_setFieldWidthAttr: function(/*String | Integer*/width){
+			if(!iUtil.isPercentage(width)){
+				domStyle.set(this.oneuiBaseNode, "width", typeof width === "number" ? width + "px" : width);
+			}
 			this._set("fieldWidth", width);
 			this._created && this._resize();
 		},
@@ -307,25 +347,28 @@ define([
 		_setHelpAttr: function(/*String*/ helpText){
 			this.help = helpText; // set the help to what the caller provided
 			this._help = helpText = iString.nullTrim(helpText); // set the internal value to the trimmed version
-			if(helpText){
-				if(!this.helpNode){
+			if (helpText) {
+				if (!this.helpNode) {
 					this.helpNode = domConstruct.toDom("<div class='dijitInline idxTextBoxHoverHelp'><span class='idxHelpIconAltText'>?</span></div>");
 					domConstruct.place(this.helpNode, this.compLabelNode, "after");
 					this.helpTooltip = new HoverHelpTooltip({
 						connectId: [this.helpNode],
 						label: helpText,
 						position: ['above', 'below'],
-						forceFocus: false
+						forceFocus: false,
+						textDir: this.textDir
 					});
 					this._setupHelpListener();
 					
-				}else{
+				}
+				else {
 					this._setupHelpListener();
 					this.helpTooltip.set("label", helpText);
 					domClass.remove(this.helpNode, "dijitHidden");
 				}
-			}else{
-				if(this.helpNode){
+			}
+			else {
+				if (this.helpNode) {
 					this.helpTooltip.set("label", "");
 					domClass.add(this.helpNode, "dijitHidden");
 				}
@@ -341,8 +384,11 @@ define([
 		 */
 		_setLabelAttr: function(/*String*/ label){
 			this.compLabelNode.innerHTML = label;
-			domClass.toggle(this.labelWrap, "dijitHidden", /^\s*$/.test(label));
+			var islabelEmpty = /^\s*$/.test(label);
+			domAttr[islabelEmpty?"remove":"set"](this.compLabelNode, "for", this.id);
+			domClass.toggle(this.labelWrap, "dijitHidden", islabelEmpty);
 			this._set("label", label);
+			this.compLabelNode.setAttribute("id", this.id + "_label");
 		},
 		
 		/**
@@ -365,6 +411,12 @@ define([
 				this._set("state", "Incomplete");
 			}
 		},
+		_setValueAttr: function(){
+			// summary:
+			//		Hook so set('value', ...) works.
+			this.inherited(arguments);
+			this.validate(this.focused);
+		},
 		
 		/**
 		 * Set position of the hint text. If position is "outside", update the content
@@ -380,9 +432,10 @@ define([
 		 */
 		_setHintPositionAttr: function(/*String*/ position){
 			if(!this.compHintNode){ return; }
-			domClass.toggle(this.compHintNode, "dijitVisible", position != "inside");
 			this._set("hintPosition", position);
+			domClass.toggle(this.compHintNode, "dijitVisible", position != "inside");
 			this.set("hint", this.hint);
+			this._resizeHint();
 		},
 		
 		/**
@@ -392,29 +445,40 @@ define([
 		 * The text will be displayed inside or below the TextBox per the "position" attribute.
 		 */
 		_setHintAttr: function(/*String*/ hint){
-			if(!this.compHintNode){ return; }
 			this.set("placeHolder", this.hintPosition == "inside" ? hint : "");
+			if(!this.compHintNode){ return; }
 			this.compHintNode.innerHTML = this.hintPosition == "inside" ? "" : hint;
 			
 			if(this.hintPosition == "outside"){
 				domAttr.set(this.compHintNode, "id", this.id + "_hint_outside");
 			}
-			wai.setWaiState(this.focusNode, "describedby", this.id + "_hint_" + this.hintPosition);
+			if(this._placeholder === undefined || this._placeholder === false){
+				wai.setWaiState(this.focusNode, "describedby", this.id + "_hint_" + this.hintPosition);
+			}
 			this._set("hint", hint);
+			this._resizeHint();
 		},
 		
 		_setPlaceHolderAttr: function(v){
 			this._set("placeHolder", v);
-			if(!this._phspan){
-				this._attachPoints.push('_phspan');
-				this._phspan = dojo.create('span',{
-					className:'dijitPlaceHolder dijitInputField',
-					id: this.id + "_hint_inside"
-				},this.focusNode,'after');
+			if(v === null || v === undefined){
+				v = "";
 			}
-			this._phspan.innerHTML = "";
-			this._phspan.appendChild(document.createTextNode(v));
-			this._phspan.style.display=(this.placeHolder&&!this.focused&&!this.textbox.value)?"":"none";
+			if(this.focusNode.placeholder !== undefined && this._placeholder !== false){
+				domAttr.set(this.focusNode, "placeholder", v);
+				this._placeholder = v;
+			}else{
+				if(!this._phspan){
+					this._attachPoints.push('_phspan');
+					this._phspan = domConstruct.create('span',{
+						className:'dijitPlaceHolder dijitInputField',
+						id: this.id + "_hint_inside"
+					},this.focusNode,'after');
+				}
+				this._phspan.innerHTML = "";
+				this._phspan.appendChild(document.createTextNode(v));
+				this._phspan.style.display=(this.placeHolder&&!this.focused&&!this.textbox.value)?"":"none";
+			}
 		},
 		
 		/**
@@ -443,7 +507,23 @@ define([
 			this.set("state", this.required ? "Incomplete" : "");
 			this.message = "";
 			this.inherited(arguments);
+		},
+		/**
+		 * Validate value, directly get focus and show error if turn out to be invalid.
+		 * @public
+		 */
+		validateAndFocus: function(){
+			if(this.validate && !this.disabled){
+				var hasBeenBlurred = this._hasBeenBlurred;
+				this._hasBeenBlurred = true;
+				var valid = this.validate();
+				if(!valid){
+					this.focus();
+				}
+				this._hasBeenBlurred = hasBeenBlurred
+				return valid;
+			}
+			return true;
 		}
-		
 	});
 });

@@ -34,6 +34,7 @@ require([
 		var launcher = registry.byId("testLauncher");
 		var workspace = launcher.getWorkspaces("testWorkspace")[0];
 		var loadingButton = dom.byId("testLoadingButton");
+		window.test_dir = dojo.isBodyLtr() ? "ltr" : "rtl";
 		loadingButton.onclick = function(){
 			var node = document.createElement("div");
 			node.innerHTML = workspace.loadingMessage; 
@@ -48,8 +49,11 @@ require([
 	});
 });
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">app/nls/WorkspaceType</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>

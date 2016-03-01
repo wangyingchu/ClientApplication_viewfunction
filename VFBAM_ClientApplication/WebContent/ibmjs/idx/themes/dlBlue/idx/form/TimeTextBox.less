@@ -1,0 +1,48 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxTimeTextBoxWrap .dijitValidationContainer {
+    height: auto;
+}
+.dj_ie6 {
+    .@{theme-name} {
+        .idxTimeTextBoxWrap {
+            .dijitTimeTextBox {
+                .dijitInputField {
+                    .dijitPlaceHolder {
+                        padding-top: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+.@{theme-name} {
+    .idxTimeTextBoxWrap {
+        .dijitTimeTextBox {
+            .idxTimeIcon {
+                display: block;
+            }
+            .idxTimeIcon_a11y {
+                display: none;
+            }
+        }
+        .idxHintOutside {
+            width: auto;
+        }
+    }
+    .idxDateTimeTextBoxWrap {
+        .dijitTimeTextBox {
+            width: 12em;
+        }
+    }
+}
+.dj_a11y {
+    .idxTimeTextBoxWrap {
+        .dijitTimeTextBox {
+            .idxTimeIcon {
+                display: none;
+            }
+            .idxTimeIcon_a11y {
+                display: block;
+            }
+        }
+    }
+}

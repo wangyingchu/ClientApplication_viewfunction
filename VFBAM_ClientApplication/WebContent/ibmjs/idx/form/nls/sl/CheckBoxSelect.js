@@ -10,3 +10,4 @@ define({
 	missingMessage: "Izbrati morate vsaj en element."
 //end v1.x content
 });
+

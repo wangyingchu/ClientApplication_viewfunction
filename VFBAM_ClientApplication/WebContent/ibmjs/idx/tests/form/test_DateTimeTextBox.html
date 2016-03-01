@@ -63,7 +63,25 @@
 						doh.t(dijit.byId("datetextbox"));
 						doh.t(dijit.byId("timetextbox"));
 					});
-		
+		            
+		            doh.register("Validation", function(){
+		                    var widget = dijit.byId("datetextbox");
+		                    widget.set("required", true);
+		                    doh.f(widget.validate());
+		                    widget.set("value", "1956-12-11");
+		                    doh.t(widget.validate());
+		                    widget.set("value", "ssss");
+		                    doh.f(widget.validate());
+		                    
+		                    var widget2 = dijit.byId("timetextbox");
+		                    widget2.set("required", true);
+		                    doh.f(widget2.validate());
+		                    widget2.set("value", "T14:30");
+		                    doh.t(widget2.validate());
+		                    widget2.set("value", "ssss");
+		                    doh.f(widget2.validate());
+		             });
+		            
 					doh.register("getValue & setValue", function(){
 							var widget = dijit.byId("datetextbox");
 							doh.f(widget.get("value"));
@@ -82,6 +100,9 @@
 							dp.set("value", new Date());
 							
 							doh.t(form.validate());
+							dp.set("value", "ssss");
+							doh.t(form.validate());
+							doh.t(dp.validate());
 						}
 					);
 				}else{

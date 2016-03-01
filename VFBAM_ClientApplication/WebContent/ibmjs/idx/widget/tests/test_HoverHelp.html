@@ -52,7 +52,7 @@ dojoRequireModules(modules, null, currentDojoVersion.async, preParse);
 <script type="text/javascript">applyThemeToBody()</script>
 <a name="maincontent"></a>
 <div style="margin: 8px;">
-	<div dojoType="idx.widget.HoverHelp" jsId="hoverHelp"></div>
+	<div dojoType="idx.widget.HoverHelp" jsId="hoverHelp" clickToOpen="true"></div>
 </div>
 
 <table>
@@ -132,10 +132,29 @@ dojoRequireModules(modules, null, currentDojoVersion.async, preParse);
 	</script>
 </div></td><td style="font-size: 80%;"><i>Disables the hover help widget.</i></td></tr>
 <tr><td style="text-align: right;font-weight: bold;white-space: nowrap;">Click to Open:</td><td><div dojoType="dijit.form.CheckBox">
+	<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+		this.set("checked", hoverHelp.get("clickToOpen"));
+	</script>
 	<script type="dojo/connect" event="onChange">
 		hoverHelp.set("clickToOpen", this.get("checked"));
 	</script>
 </div></td><td style="font-size: 80%;"><i>Check this to force click-to-open behavior.</i></td></tr>
+<tr><td style="text-align: right;font-weight: bold;white-space: nowrap;">ShowCloseIcon:</td><td><div dojoType="dijit.form.CheckBox">
+	<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+		this.set("checked", hoverHelp.get("showCloseIcon"));
+	</script>
+	<script type="dojo/connect" event="onChange">
+		hoverHelp.set("showCloseIcon", this.get("checked"));
+	</script>
+</div></td><td style="font-size: 80%;"><i>Check this to show close icon.</i></td></tr>
+<tr><td style="text-align: right;font-weight: bold;white-space: nowrap;">AllowLimitedSize:</td><td><div dojoType="dijit.form.CheckBox">
+	<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+		this.set("checked", hoverHelp.get("allowLimitedSize"));
+	</script>
+	<script type="dojo/connect" event="onChange">
+		hoverHelp.set("allowLimitedSize", this.get("checked"));
+	</script>
+</div></td><td style="font-size: 80%;"><i>Check this to set a limit on the size of tooltip container.</i></td></tr>
 <tr><td style="vertical-align: top; text-align: right;font-weight: bold;white-space: nowrap;">Resources:</td><td style="vertical-align: top;"><div style="width: 30em;" dojoType="dijit.form.Textarea">{ }
     <script type="dojo/connect" event="onChange">
 		hoverHelp.set("resources", iUtil.fromJson(this.value));

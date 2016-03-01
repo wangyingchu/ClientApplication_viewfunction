@@ -1,0 +1,52 @@
+.dlBlue .idxTooltipDialogCloseIcon {
+  background-image: url("images/popupClose.png");
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: -13px;
+  top: -13px;
+  z-index: 10001;
+  line-height: 0;
+  cursor: pointer;
+}
+.dlBlue .idxTooltipDialogCloseIcon .idxTooltipDialogCloseText {
+  display: none;
+  position: absolute;
+  right: 18px;
+  top: 20px;
+}
+.dlBlue .dijitTooltipDialog.dijitTooltipRight .idxTooltipDialogCloseIcon {
+  right: -8px;
+  top: -8px;
+}
+.dlBlue .dijitTooltipDialog.dijitTooltipLeft .idxTooltipDialogCloseIcon {
+  left: -8px;
+  top: -8px;
+}
+.dlBlue .dijitTooltipDialog.dijitTooltipAbove .idxTooltipDialogCloseIcon {
+  right: -8px;
+  top: -8px;
+}
+.dlBlue .dijitTooltipDialog.dijitTooltipBelow .idxTooltipDialogCloseIcon {
+  right: -8px;
+  top: -4px;
+}
+.dj_a11y .dlBlue .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxTooltipDialogCloseText,
+.dj_a11y.dlBlue .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxTooltipDialogCloseText {
+  display: block;
+}
+.dijitRtl .dlBlue .dijitTooltipDialog.dijitTooltipRight .idxTooltipDialogCloseIcon {
+  right: -8px;
+}
+.dijitRtl .dlBlue .dijitTooltipDialog.dijitTooltipLeft .idxTooltipDialogCloseIcon {
+  right: auto;
+  left: -8px;
+}
+.dijitRtl .dlBlue .dijitTooltipDialog.dijitTooltipAbove .idxTooltipDialogCloseIcon {
+  right: auto;
+  left: -18px;
+}
+.dijitRtl .dlBlue .dijitTooltipDialog.dijitTooltipBelow .idxTooltipDialogCloseIcon {
+  right: auto;
+  left: -21px;
+}

@@ -1,0 +1,51 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxRadioButtonSetItem {
+    cursor: default;
+    padding: 4px 4px 4px 0;
+    white-space: nowrap;
+}
+.@{theme-name} {
+    .idxRadioButtonSetItem {
+        .dijitRadio {
+            margin-right: 5px;
+        }
+        label {
+            vertical-align: middle;
+        }
+    }
+    .idxRadioButtonSetItemDisabled label{
+    	color: @disabled-text-color;
+    }
+    .idxRadioButtonSetWrap {
+        .idxLabel {
+            margin: 7px 0 0 0;
+        }
+        .idxCompContainer {
+            padding: 2px 28px 3px 8px;
+            position: relative;
+        }
+        .dijitValidationContainer {
+            display: none;
+        }
+    }
+    .idxRadioButtonSetWrapError {
+        .idxCompContainer {
+            background: @error-background-color;
+            border: 1px solid @error-color;
+            padding: 1px 38px 2px 7px;
+            .border-radius (@tooltip-border-radius);
+        }
+        .dijitValidationContainer {
+            display: block;
+            position: absolute;
+            top: 1px;
+            right: 2px;
+            .dijitValidationIcon {
+                margin: 0;
+            }
+        }
+    }
+}
+.dj_ie6 .@{theme-name} .idxRadioButtonSetItem label,.dj_ie7 .@{theme-name} .idxRadioButtonSetItem label {
+    top: 1px;
+    position: relative;
+}

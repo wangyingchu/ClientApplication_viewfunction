@@ -1,0 +1,89 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.idxAppFrameOptions {
+  background-image: url('images/blank.gif?marquee=header&body=center&marqueeSizing=fixed&borderDesign=headline');
+}
+
+div.idxAppFrame {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+div.idxAppFrameHeader {
+  position: absolute;
+  overflow: hidden;
+  padding: 0px;
+  height: 38px;
+  border: none;
+  .setBanner (@bannerType; @bannerColor1; @bannerColor2; @bannerImage; @bannerRepeat; @bannerPosition; @bannerColor);
+}
+
+div.idxAppFrameFooter {
+  position: absolute;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  height: 0px;
+  border: none;
+  background: none;
+}
+
+div.idxAppFrameLeft {
+  position: absolute;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  width: 0px;
+  border: none;
+  background: none;
+}
+
+div.idxAppFrameRight {
+  position: absolute;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  width: 0px;
+  border: none;
+  background: none;
+}
+
+div.idxAppFrameCenter {
+  position: absolute;
+  overflow: hidden;
+}
+
+div.idxAppFrameMarquee {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 30px;
+  float: left;
+  overflow: hidden;
+  padding: 0px;
+  background: none;
+  .setBannerText (@bannerType);
+	.textColors(@bannerText);
+  color: @textStrong;
+}
+
+div.idxAppFrameBody {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: hidden;
+  padding: 0px;
+  background: none;
+}
+

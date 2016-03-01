@@ -12,20 +12,40 @@
 @import url(transitions/fade.css);
 
 /* dojox.mobile.View */
-.mblView {
+
+/* Reset common styles. */
+.oneui .mblView,
+.oneui .mblScrollBarWrapper,
+.oneui .mblScrollBarWrapper * {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
+}
+
+.oneui .mblView {
   position: relative;
   top: 0px;
   left: 0px;
   width: 100%;
   color: black;
 }
-.mblView.mblIn {
+.oneui .mblView.mblIn {
   position: absolute;
 }
-.mblFixedHeaderBar {
+.oneui .mblFixedHeaderBar {
   z-index: 1;
 }
-.mblFixedBottomBar {
+.oneui .mblFixedBottomBar {
   position: absolute !important;
   width: 100%;
   z-index: 1;

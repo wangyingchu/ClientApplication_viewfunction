@@ -13,9 +13,11 @@ define({
 	Success: "نجاح",
 	Confirmation: "تأكيد",
 	Question: "سؤال",
+	Progress: "التقدم",
 	closeButtonLabel: "اغلاق",
 	cancelButtonLabel: "الغاء",
 	executeButtonLabel: "حسنا",
 	checked: "عدم السؤال مرة أخرى"
 //end v1.x content
 });
+

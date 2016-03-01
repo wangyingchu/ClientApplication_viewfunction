@@ -307,7 +307,9 @@ define([
 		_setLabelAttr: function(/*String*/ label){
 			// Overwrite idx.form._CompositeMixin to add aria-label attribute.
 			this.compLabelNode.innerHTML = label;
-			query(".idxLabel", this.domNode).toggleClass("dijitHidden", /^\s*$/.test(label));
+			var islabelEmpty = /^\s*$/.test(label);
+			islabelEmpty && domAttr.remove(this.compLabelNode, "for");
+			domClass.toggle(this.labelWrap, "dijitHidden", islabelEmpty);
 			this._set("label", label);
 			domAttr.set(this.stateNode, "aria-label", label);
 		},

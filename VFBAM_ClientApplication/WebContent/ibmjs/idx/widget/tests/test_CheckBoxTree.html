@@ -18,7 +18,6 @@
 	</script>
 	
 	<style id="idxStyles" type="text/css">
-		@import "../../themes/oneui/oneui.css";
 		@import "../../tests/test.css";
 		@import "../../tests/_pagefooter/_PageFooter.css";
 	</style>
@@ -33,6 +32,8 @@
 	
 	<script type="text/javascript" id="postDojo">
 		var modules = [
+			"dojo/_base/lang",
+            "dijit/form/Button",
 			"idx.widget.CheckBoxTree",
 			"dijit.tree.ForestStoreModel",
 			"dojo.data.ItemFileWriteStore",
@@ -46,6 +47,13 @@
 			dijit.byId("mytree").onClick = function(a, c){
 				console.log(this.getSelectedItems());
 			};
+			var lang = modules["dojo/_base/lang"];
+			dijit.byId("mytree").onClick = lang.hitch(this, function(item, node) {
+				var checked = node.getChecked();
+				console.log("node checked state is " + checked);
+				// checked is now false when the user sees a checked box on screen
+			});
+
 		}
 		dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 	</script>
@@ -53,9 +61,9 @@
 </head>
 <body style="width: 100%; height: 100%; margin: 0; padding: 0px;">
 	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
-	<script type="text/javascript">applyThemeToBody("oneui");</script>
+	<script type="text/javascript">applyThemeToBody();</script>
 	<a name="maincontent"></a>
-	<div class="testMain">
+	<div class="testMain" role="main">
 		<h1 class="testTitle">idx.widget.CheckBoxTree Test</h1>
 		<h2>CheckBoxTree with DnD feature off</h2>
 		<h3>Mouse</h3>
@@ -82,8 +90,27 @@
 		<tr style="vertical-align: top;">
 			<td style="width: 50%;">
 				<h2>CheckBoxTree with dijit.tree.TreeStoreModel</h2>
-				<div id="mytree" data-dojo-type="idx.widget.CheckBoxTree" data-dojo-props='model:continentModel, autoExpand:true, onLoad:function(){ console.log("loaded mytree (first tree)"); }'>
+
+
+				<div id="mytree" data-dojo-type="idx.widget.CheckBoxTree" 
+					data-dojo-props='model:continentModel, autoExpand:true, 
+
+					onLoad:function(){
+						this.rootNode.updateState(true);
+						console.log("loaded mytree (first tree), checked all the item when startup"); 
+					}'>
 				</div>
+
+                <div>
+                    <button data-dojo-type="dijit.form.Button" data-dojo-props="
+                        onClick: function(){
+                            var disabled = dijit.byId('mytree').rootNode.get('disabled');
+                            dijit.byId('mytree').rootNode.set('disabled', !disabled);
+                        }
+                    ">
+                        Toggle Disable Tree Root Node
+                    </button>
+                </div>
 			</td>
 			<td style="width: 50%;">
 				<h2>CheckBoxTree with dijit.tree.ForestStoreModel</h2>

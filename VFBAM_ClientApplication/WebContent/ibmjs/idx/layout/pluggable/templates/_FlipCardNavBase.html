@@ -1,0 +1,27 @@
+<div class="idxFlipCardNavBase fullSize">
+	<div data-dojo-attach-point="navBar" class="idxFlipCardNavBar fullHeight" role="navigation">
+        <div id="${id}_scroll" class="scrollablePane" data-dojo-type="idx/layout/pluggable/navigator/_ScrollablePane" 
+        	data-dojo-attach-point="scrollablePane">
+            <div class="scrollableContainer" data-dojo-attach-point="scrollableContainer">
+                <div data-dojo-attach-point="navBarActions" class="idxFlipCardNavBarActions"></div>
+                <div data-dojo-attach-point="navBarTop" class="idxFlipCardNavBarTop"></div>
+                <div data-dojo-attach-point="navBarBottom" class="idxFlipCardNavBarBottom"></div>
+            </div>
+        </div>
+
+        <div data-dojo-type="idx/layout/_ExpandoPane" data-dojo-attach-point="expandoNode" class="centerExpando"
+             data-dojo-props='title: "Details",
+                startExpanded: false,
+                region: "left",
+                splitter: false
+             '>
+        </div>
+	</div>
+
+	<div data-dojo-attach-point="contentNode" class="idxFlipCardContent fullSize">
+        <div data-dojo-type="idx/layout/_ContentPane" data-dojo-attach-point="containerNode" class="centerContainer"
+             data-dojo-props='region: "center", splitter: false'>
+        </div>
+
+	</div>
+</div>

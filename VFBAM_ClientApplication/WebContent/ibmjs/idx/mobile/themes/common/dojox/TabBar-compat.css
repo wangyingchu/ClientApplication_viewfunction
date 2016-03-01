@@ -1,6 +1,6 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
@@ -8,7 +8,7 @@
 /* dojox.mobile.TabBar */
 
 /* barType="tabBar" */
-.mblTabBarTabBar {
+.oneui .mblTabBarTabBar {
 	background-size: 1px 100%;
 	background-repeat: repeat-x;
 	background-image: url(compat/tab-tab-bar-bg.png);
@@ -18,7 +18,7 @@
 
 /* barType="segmentedControl" */
 
-.mblTabBarSegmentedControl .mblTabBarButton {
+.oneui .mblTabBarSegmentedControl .mblTabBarButton {
 	background-size: 1px 100%;
 	background-repeat: repeat-x;
 	background-image: url(compat/tab-seg-button-bg.png);
@@ -26,7 +26,7 @@
 	background-image: linear-gradient(to bottom, #f4f4f4, #dbdbdb);
 }
 
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButton {
+.oneui .mblHeading .mblTabBarSegmentedControl .mblTabBarButton {
 	background-size: 1px 100%;
 	background-repeat: repeat-x;
 	background-image: url(compat/heading-tab-seg-button-bg.png);
@@ -34,7 +34,7 @@
 	background-image: linear-gradient(to bottom, #3e3e3e, #121213);
 }
 
-.mblTabBarSegmentedControl .mblTabBarButtonSelected {
+.oneui .mblTabBarSegmentedControl .mblTabBarButtonSelected {
 	background-size: 1px 100%;
 	background-repeat: repeat-x;
 	background-image: url(compat/tab-seg-sel-button-bg.png);
@@ -42,7 +42,7 @@
 	background-image: linear-gradient(to bottom, #e2e2e2, #a4a4a4);
 }
 
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButtonSelected {
+.oneui .mblHeading .mblTabBarSegmentedControl .mblTabBarButtonSelected {
 	background-size: 1px 100%;
 	background-repeat: repeat-x;
 	background-image: url(compat/heading-tab-seg-sel-button-bg.png);
@@ -51,7 +51,7 @@
 }
 
 /* barType="slimTab" */
-.mblTabBarSlimTab {
+.oneui .mblTabBarSlimTab {
 	background-size: 1px 100%;
 	background-repeat: repeat-x;
 	background-image: url(compat/tab-slim-bar-bg.png);
@@ -60,7 +60,7 @@
 }
 
 /* barType="tallTab" */
-.mblTabBarTallTab {
+.oneui .mblTabBarTallTab {
 	background-size: 1px 100%;
 	background-repeat: repeat-x;
 	background-image: url(compat/tab-tall-bar-bg.png);

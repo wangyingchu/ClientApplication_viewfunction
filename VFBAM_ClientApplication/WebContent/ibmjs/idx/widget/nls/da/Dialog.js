@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Luk"
 //end v1.x content
 });
+

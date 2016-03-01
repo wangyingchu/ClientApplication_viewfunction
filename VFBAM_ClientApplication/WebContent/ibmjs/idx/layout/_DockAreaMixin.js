@@ -8,11 +8,12 @@ define([
 	"dojo/_base/connect",
 	"dojo/keys",
 	"dijit/registry",
+	"dijit/focus",
 	"dijit/layout/_LayoutWidget",
 	"dijit/layout/ContentPane",
 	"idx/html",
 	"idx/util"
-], function(dojo_declare, dojo_lang, dojo_array, dojo_window, dojo_html, dojo_event, dojo_connect, dojo_keys, dijit_registry, dijit_layout_LayoutWidget, dijit_layout_ContentPane, idx_html, idx_util){
+], function(dojo_declare, dojo_lang, dojo_array, dojo_window, dojo_html, dojo_event, dojo_connect, dojo_keys, dijit_registry, dijit_focus, dijit_layout_LayoutWidget, dijit_layout_ContentPane, idx_html, idx_util){
 /**
  * @public
  * @name idx.layout._DockAreaMixin
@@ -109,7 +110,7 @@ return dojo_declare("idx.layout._DockAreaMixin", [dijit_layout_LayoutWidget],
 		dockable.onDock(this.region);
 		this.resetDockArea();
 		this.layout();
-		dockable.focusNode && dockable.focusNode.focus();
+		dijit_focus.focus(dockable.focusNode);
 	},
 
 	/**

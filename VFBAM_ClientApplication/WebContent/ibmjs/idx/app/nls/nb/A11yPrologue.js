@@ -1,9 +1,9 @@
 define({     
 //begin v1.x content
 	keySequence_InternetExplorer: "ALT pluss ${accessKey}",
-	keySequence_Firefox: "ALT pluss SKIFT pluss ${accessKey} på Windows og Linux eller CONTROL pluss ${accessKey} på Mac",
-	keySequence_Safari: "CONTROL pluss OPT pluss ${accessKey} på Mac eller ALT pluss ${accessKey} på Windows",
-	keySequence_Chrome: "ALT pluss ${accessKey} på Windows og Linux eller CONTROL pluss OPT på Mac",
+	keySequence_Firefox: "ALT pluss SKIFT pluss ${accessKey} på Windows og Linux eller Ctrl pluss ${accessKey} på Mac",
+	keySequence_Safari: "Ctrl pluss Tilvalgstast pluss ${accessKey} på Mac eller ALT pluss ${accessKey} på Windows",
+	keySequence_Chrome: "ALT pluss ${accessKey} på Windows og Linux eller Ctrl pluss Tilvalgstast pluss ${accessKey} på Mac",
 	shortcutListMessage: "Snarveiene for denne siden:",
 	a11yPrologueLabel: "Prolog for tilgjengelighet",
     a11yStatementLabel: "Erklæring om tilgjengelighet",

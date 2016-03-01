@@ -48,7 +48,7 @@ var _idx_aliases = [
 	[/^idx\/gridx\/core\/(.+)$/, function(match, p1){
 		return "gridx/core/" + p1;
 	}],
-	[/^idx\/gridx\/modules\/(?!(Sort|dnd\/.*|filter\/(QuickFilter|FilterBar|FilterDialogPane|FilterPane)|pagination\/(PaginationBar(DD)?|GotoPagePane))$)/,
+	[/^idx\/gridx\/modules\/(?!(Sort|dnd\/.*|filter\/(QuickFilter|FilterBar|FilterDialogPane|FilterPane)|pagination\/(PaginationBar(DD)?|GotoPagePane)|support\/.*)$)/,
 		//Transform all modules except those in oneui
 		function(match){
 			return match.substr(4);
@@ -66,7 +66,8 @@ var _idx_packages = [
     {name: "dojo", location: "./" },
 	{name: "dijit", location: "../dijit" },
 	{name: "dojox", location: "../dojox" },
-	{name: "gridx", location: "../gridx" },
+//    {name: "gridx", location: "../gridx" },
+	{name: "gridx", location: "../../ibmjs/gridx" },
 	{name: "idx", location: "../../ibmjs/idx" },
 	{name: "idxx", location: "../../ibmjs/idxx" },
 	{name: "ibm", location: "../../ibmjs/ibm" },
@@ -80,14 +81,13 @@ var _idx_packages = [
 	{name: "internal/dojox/robot", location: "../InternalUse_DoNotDistribute/dojox/robot"}	  	      	
 ];
 
+
 var dojoVersions = {
-   "1.8.4-sync": {label: 'Dojo 1.8.4 (sync)\u200e', 
-	  		name: 'Dojo 1.8.4 (sync)\u200e', 
-	  		code: "1.8.4-sync", 
+	"dojoBuild": {label: 'IDX Dojo Dev Build', 
+	  		name: 'Dojo 1.9.1', 
+	  		code: "1.9.1", 
 	  		async: false,
-	  		path: 'dojo_1.8.4',
-	  		dohPath: 'InternalUse_DoNotDistribute/util/doh',
-	  		dohRunnerPath: "dojo_1.8.4/InternalUse_DoNotDistribute/util/doh/runner.html",
+	  		path: 'dojoBuild',
 	  		dohBootPath: "../../../dojo/dojo.js",
 	  		dojoConfig: {
 		  	      tlmSiblingOfDojo: false,
@@ -101,26 +101,46 @@ var dojoVersions = {
 		 	      packages: _idx_packages
 	  		}
    },
-   "1.8.4-amd": {label: 'Dojo 1.8.4 (AMD)\u200e', 
-		  	name: 'Dojo 1.8.4 (AMD)\u200e', 
-		  	code: "1.8.4-amd",
+   "1.9.1-sync": {label: 'Dojo 1.9.1 (sync)\u200e', 
+	  		name: 'Dojo 1.9.1 (sync)\u200e', 
+	  		code: "1.9.1-sync", 
+	  		async: false,
+	  		path: 'dojo_idt',
+	  		dohPath: 'InternalUse_DoNotDistribute/util/doh',
+	  		dohRunnerPath: "dojo_idt/InternalUse_DoNotDistribute/util/doh/runner.html",
+	  		dohBootPath: "../../../dojo/dojo.js",
+	  		dojoConfig: {
+		  	      tlmSiblingOfDojo: false,
+		  	      async: false,
+		  	      parseOnLoad: false,
+		  	      has: {
+		  	      	"dojo-firebug": false, //setting to true causes IE7 to explode 
+		  	      	"dojo-debug-messages": true
+		  	      },
+				  aliases: _idx_aliases,
+		 	      packages: _idx_packages
+	  		}
+   },
+   "1.9.1-amd": {label: 'Dojo 1.9.1 (AMD)\u200e', 
+		  	name: 'Dojo 1.9.1 (AMD)\u200e', 
+		  	code: "1.9.1-amd",
 		  	async: true,
-		  	path: 'dojo_1.8.4',
+		  	path: 'dojo_idt',
 		  	dohPath: 'InternalUse_DoNotDistribute/util/doh',
-		  	dohRunnerPath: "dojo_1.8.4/InternalUse_DoNotDistribute/util/doh/runner.html",
+		  	dohRunnerPath: "dojo_idt/InternalUse_DoNotDistribute/util/doh/runner.html",
 		  	dohBootPath: "../../../dojo/dojo.js",
 		  	dojoConfig: {
 			      tlmSiblingOfDojo: false,
 			      parseOnLoad: false,
 			      async: true,
 			      has: {
-			      	"dojo-firebug": true,
-			      	"dojo-debug-messages": true
+			      	"dojo-firebug": false,
+			      	"dojo-debug-messages": false
 			      },
 			      aliases: _idx_aliases,
 			      packages: _idx_packages
 			}
-},
+   },
   "custom": {label: 'custom', 
 	  		name: 'custom', 
 	  		code: "custom", 
@@ -140,8 +160,12 @@ var dojoVersions = {
   }
 };
 
-var defaultDojoVersion = dojoVersions["1.8.4-amd"];
+var defaultDojoVersion = dojoVersions["1.9.1-amd"];;
 var currentDojoVersion = defaultDojoVersion;
+var locale = (navigator.language || navigator.userLanguage).toLowerCase();
+if(locale == "pt"){
+	currentDojoVersion.dojoConfig.locale = "pt-pt";
+}
 
 //permission denied issue for iframe cross domain
 try{
@@ -368,7 +392,7 @@ function dojoRequireModules(modules, i18nModules, async, preParse, postParse) {
 			}
 		});
 	} else {
-		var requires = ["dojo/parser","dojo/_base/declare","dojo/domReady!"];
+		var requires = ["dojo/parser","dojo/_base/declare"];
 		var offset = requires.length;
 		var i18nArgs = "";
 		var postModules = { };
@@ -392,17 +416,21 @@ function dojoRequireModules(modules, i18nModules, async, preParse, postParse) {
 				postModules[dependency] = null;
 			}
 		}
-		require(requires, function(parser) {
-				for (var index = 0; index < requires.length; index++) {
-					postModules[requires[index]] = arguments[index];
-				}	
-				if (preParse) {
-					preParse.call(null, postModules);
-				}
-				if (!skipParsing) parser.parse();
-				if (postParse) {
-					postParse.call(null, postModules);
-				}
+		require(["dojo/domReady!"], function() {
+			require(["dojo/uacss", "dijit/hccss", "dojo/parser"], function() {
+				require(requires, function(parser) {
+					for (var index = 0; index < requires.length; index++) {
+						postModules[requires[index]] = arguments[index];
+					}	
+					if (preParse) {
+						preParse.call(null, postModules);
+					}
+					if (!skipParsing) parser.parse();
+					if (postParse) {
+						postParse.call(null, postModules);
+					}
+				});
+			});
 		});
 	}
 }

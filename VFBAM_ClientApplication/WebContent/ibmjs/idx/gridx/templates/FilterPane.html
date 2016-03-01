@@ -1,17 +1,15 @@
 <div class="gridxFilterPaneForm"
 	><span data-dojo-type="idx/form/Select"
 		id="${id}_ColumnSelect"
-		aria-labelledby="${id}_ColumnLabel"
 		class="gridxFilterPaneColumnSelect"
-		data-dojo-props="fieldWidth: '200px'"
+		data-dojo-props='fieldWidth: "200px", label:"${_columnAriaLabel}"'
 		data-dojo-attach-point='sltColumn'
 		data-dojo-attach-event='onChange: _onColumnChange'
 	></span
 	><span data-dojo-type="idx/form/Select"
 		id="${id}_ConditionSelect"
-		aria-labelledby="${id}_ConditionLabel"
 		class="gridxFilterPaneConditionSelect"
-		data-dojo-props="fieldWidth: '200px'"
+		data-dojo-props="fieldWidth: '150px', label:'${_conditionAriaLabel}'"
 		data-dojo-attach-point='sltCondition'
 		data-dojo-attach-event='onChange: _onConditionChange'
 	></span
@@ -20,87 +18,269 @@
 		><input type="text"
 			data-dojo-type="idx/form/TextBox"
 			style=""
-			aria-labelledby="${id}_ValueLabel"
 			data-dojo-attach-point='tbSingle'
 			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '190px',
 			intermediateChanges: true
 	"/></div
 
 	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneComboWrapper"
-		><input type="text" data-dojo-type="idx/form/ComboBox" style="" aria-labelledby="${id}_ValueLabel"
+		><input type="text" data-dojo-type="idx/form/ComboBox" style="" 
 			data-dojo-attach-point='comboText'
 			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '190px',
 			intermediateChanges: true,
 			autoComplete: false,
 			queryExpr: '*${module.nls.startsWithExpr}'
-	"/></div
-
-	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneNumberWrapper"
-		><input type="text" data-dojo-type="idx/form/NumberTextBox" style="" aria-labelledby="${id}_ValueLabel"
+	"/></div>
+	<!-- number -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneNumberWrapper"
+		><input type="text" data-dojo-type="idx/form/NumberTextBox" style="" 
 			data-dojo-attach-point='tbNumber'
 			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '190px',
 			intermediateChanges: true
-	"/></div
-
-	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneDateWrapper"
-		><span data-dojo-type="idx/form/DateTextBox" aria-labelledby="${id}_ValueLabel" style=""
+	"/></div>
+	<!-- number range -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneNumberRangeWrapper">
+		<input type="text" data-dojo-type="idx/form/NumberTextBox" style="" 
+			data-dojo-attach-point='tbNumberStart'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true"/>
+			
+		<input type="text" data-dojo-type="idx/form/NumberTextBox" style="" 
+			data-dojo-attach-point='tbNumberEnd'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true"/>
+		</div>
+		
+	<!-- hex -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneHexWrapper"
+		><input type="text" data-dojo-type="idx/form/TextBox" style="" 
+			data-dojo-attach-point='tbHex'
+			data-dojo-props="
+				label:'${_valueAriaLabel}',
+				required: true,
+				fieldWidth: '190px',
+				intermediateChanges: true,
+				invalidMessage: 'Value must be valid hex number',
+				isValid: function(){return /^[0-9|a-f|A-F]*$/.test(this.get('value'));}
+	"/></div>
+	<!-- hex range -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneHexRangeWrapper">
+		<input type="text" data-dojo-type="idx/form/TextBox" style="" 
+			data-dojo-attach-point='tbHexStart'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true,
+			invalidMessage: 'Value must be valid hex number',
+			isValid: function(){return /^[0-9|a-f|A-F]*$/.test(this.get('value'));}"/>
+			
+		<input type="text" data-dojo-type="idx/form/TextBox" style="" 
+			data-dojo-attach-point='tbHexEnd'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true,
+			invalidMessage: 'Value must be valid hex number',
+			isValid: function(){return /^[0-9|a-f|A-F]*$/.test(this.get('value'));}"/>
+	</div>	
+	<!-- date -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneDateWrapper">
+		<span data-dojo-type="idx/form/DateTextBox" 
+			style=""
 			data-dojo-attach-point='dtbSingle'
 			data-dojo-props="
-			fieldWidth: '200px',
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '190px',
 			intermediateChanges: true
-		"></span
-	></div
-
-	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneDateRangeWrapper"
+		"></span>
+	</div>
+	
+	<!-- date past-->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneDatePastWrapper">
+		<input type="text" data-dojo-type="idx/form/NumberTextBox" style="" 
+			data-dojo-attach-point='tbDatePast'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true
+		"/>
+		<!-- <div class='gridxSpace' style='width: 10%; float: left; height: 1px;'></div> -->
+		<div data-dojo-type="dijit.form.Select"
+			data-dojo-attach-point='sltDateInterval'
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true
+		>
+			<span value="day" selected="selected">${i18n.day}</span>
+			<span value="month">${i18n.month}</span>
+			<!-- <option value="FL">Florida</option> -->
+			<!-- <option value="CA">California</option> -->
+		</div>
+	</div>
+	
+	<!-- date range -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneDateRangeWrapper"
 		><span data-dojo-type="idx/form/DateTextBox"
 			class="gridxFilterPaneRangeStart"
 			aria-label="${module.nls.beginDateRangeLabel}"
 			data-dojo-attach-point='dtbStart'
-			data-dojo-props="
-			placeHolder: 'Start',
-			fieldWidth: '90px',
+			data-dojo-props='
+			label:"${module.nls.beginDateRangeLabel}",
+			required: true,
+			placeHolder: "Start",
+			fieldWidth: "82px",
 			intermediateChanges: true
-		"></span
+		'></span
 		><span data-dojo-type="idx/form/DateTextBox"
 			class="gridxFilterPaneRangeEnd"
 			aria-label="${module.nls.endDateRangeLabel}"
 			data-dojo-attach-point='dtbEnd'
-			data-dojo-props="
-			placeHolder: 'End',
-			fieldWidth: '90px',
+			data-dojo-props='
+			label:"${module.nls.endDateRangeLabel}",
+			required: true,
+			placeHolder: "End",
+			fieldWidth: "82px",
 			intermediateChanges: true
-		"></span
-	></div
+		'></span
+	></div>
+	
+	<!-- datetime -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneDatetimeWrapper">
+		<span data-dojo-type="idx/form/DateTextBox" 
+			style=""
+			data-dojo-attach-point='dtbDatetimeSingle'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true
+		"></span>
+		<span data-dojo-type="idx/form/TimeTextBox"
+			data-dojo-attach-point='ttbDatetimeSingle'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true">
+		</span>
+	</div>
 
-	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneTimeWrapper"
-		><span data-dojo-type="idx/form/TimeTextBox"
-			aria-labelledby="${id}_ValueLabel"
+	<!-- datetime past-->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneDatetimePastWrapper">
+		<input type="text" data-dojo-type="idx/form/NumberTextBox" style="" 
+			data-dojo-attach-point='tbDatetimePast'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true
+		"/>
+		<!-- <div class='gridxSpace' style='width: 10%; float: left; height: 1px;'></div> -->
+		<div data-dojo-type="dijit.form.Select"
+			data-dojo-attach-point='sltDatetimeInterval'
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true
+		>
+			<span value="hour">${i18n.hour}</span>
+			<span value="day" selected="selected">${i18n.day}</span>
+			<span value="month">${i18n.month}</span>
+			<span value="year">${i18n.year}</span>
+			<!-- <option value="FL">Florida</option> -->
+			<!-- <option value="CA">California</option> -->
+		</div>
+	</div>
+	
+	<!-- datetime range -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneDatetimeRangeWrapper">
+		<span data-dojo-type="idx/gridx/support/DateTimeRange"
+			style=""
+			data-dojo-attach-point='dtbDatetimeRange'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '190px',
+			intermediateChanges: true"></span>
+	</div>
+	<!-- time -->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneTimeWrapper">
+		<span data-dojo-type="idx/form/TimeTextBox"
 			data-dojo-attach-point='ttbSingle'
 			data-dojo-props="
-			fieldWidth: '200px',
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '190px',
 			intermediateChanges: true
 		"></span
-	></div
+	></div>
 
-	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneTimeRangeWrapper"
+	<!-- time past-->
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneTimePastWrapper">
+		<input type="text" data-dojo-type="idx/form/NumberTextBox" style="" 
+			data-dojo-attach-point='tbTimePast'
+			data-dojo-props="
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true
+		"/>
+		<!-- <div class='gridxSpace' style='width: 10%; float: left; height: 1px;'></div> -->
+		<div data-dojo-type="dijit.form.Select"
+			data-dojo-attach-point='sltTimeInterval'
+			label:'${_valueAriaLabel}',
+			required: true,
+			fieldWidth: '82px',
+			intermediateChanges: true
+		>
+			<span value="hour">${i18n.hour}</span>
+		</div>
+	</div>
+
+
+	<div class="gridxFilterPaneFieldWrapper gridxFilterPaneTimeRangeWrapper"
 		><span data-dojo-type="idx/form/TimeTextBox"
 			class="gridxFilterPaneRangeStart"
 			aria-label="${module.nls.beginTimeRangeLabel}"
 			data-dojo-attach-point='ttbStart'
-			data-dojo-props="
-			placeHolder: 'Start',
-			fieldWidth: '90px',
+			data-dojo-props='
+			label:"${module.nls.beginTimeRangeLabel}",
+			required: true,
+			placeHolder: "Start",
+			fieldWidth: "82px",
 			intermediateChanges: true
-		"></span
+		'></span
 		><span data-dojo-type="idx/form/TimeTextBox" style=""
 			class="gridxFilterPaneRangeEnd"
 			aria-label="${module.nls.endTimeRangeLabel}"
 			data-dojo-attach-point='ttbEnd'
-			data-dojo-props="
-			placeHolder: 'End',
-			fieldWidth: '90px',
+			data-dojo-props='
+			label:"${module.nls.endTimeRangeLabel}",
+			required: true,
+			placeHolder: "End",
+			fieldWidth: "82px",
 			intermediateChanges: true
-		"></span
+		'></span
 	></div
 
 	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneRadioWrapper"
@@ -119,7 +299,7 @@
 	></div
 
 	><div class="gridxFilterPaneFieldWrapper gridxFilterPaneSelectWrapper"
-		><span data-dojo-type="idx/form/Select" aria-labelledby="${id}_ValueLabel"
+		><span data-dojo-type="idx/form/Select"
 			data-dojo-props="fieldWidth: '180px'"
 			data-dojo-attach-point='sltSingle'
 			style=""></span

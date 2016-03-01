@@ -20,6 +20,7 @@
 		 + '&paths=doh,../@DOHPATH@'                                    // map 'doh' package to doh directory under dojo root
 		 + '&registerModulePath=idx,../../ibmjs/idx'                    // map 'idx' package to idx directory from dojo root
 		 + '&testModule=idx.tests.module'                         		// doh module to load
+		 + '&dohPlugins=../../../../ibmjs/idx/tests/reportWriter.js'
 		 + '&dojo=@VER@">';                                             // also pass dojo= to be passed to each test page
 		
         importStatement = importStatement.replace(/@DOJOPATH@/g, currentDojoVersion.path);

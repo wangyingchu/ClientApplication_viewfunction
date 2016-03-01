@@ -1,0 +1,31 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+/************ Flip Card Widget Base ************/
+.FlipCardContainerNoScroll {
+  overflow: hidden;
+}
+.FlipCardHiddenElement {
+  display: none;
+  visibility: hidden;
+}
+.borderBox,
+.fullHeight,
+.fullWidth,
+.fullSize {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+.fullHeight,
+.fullSize {
+  height: 100%;
+}
+.fullWidth,
+.fullSize {
+  width: 100%;
+}

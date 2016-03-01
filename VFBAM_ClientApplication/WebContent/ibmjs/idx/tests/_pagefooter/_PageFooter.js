@@ -46,7 +46,7 @@ define([
 			}else if(query.length == 1){
 				window.location.href = href + "dir=" + rtl;
 			}else{
-				window.location.href = href + "?dir=" + rtl;
+				window.location.href = href + (index2 > -1 ? "&dir=" : "?dir=") + rtl;
 			}
 		}
 	});

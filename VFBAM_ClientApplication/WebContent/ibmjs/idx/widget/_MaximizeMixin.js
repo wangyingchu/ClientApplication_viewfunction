@@ -1,4 +1,5 @@
 define([
+	"dojo/_base/array",
 	"dojo/_base/declare",
     "dojo/_base/lang",
     "dojo/dom-construct",
@@ -9,7 +10,8 @@ define([
     "dijit/focus",
     "dijit/_base/focus",
     "../util"
-], function (dDeclare,			// (dojo/_base/declare)
+], function (dArray,			// dojo/_base/array
+	         dDeclare,			// (dojo/_base/declare)
 	         dLang,				// (dojo/_base/lang)
 	         dDomConstruct,		// (dojo/dom-construct)
 	         dDomStyle,			// (dojo/dom-style) for (dDomStyle.get/set)
@@ -78,6 +80,8 @@ return dDeclare("idx.widget._MaximizeMixin",null,
 					this._anchor = dDomConstruct.create("DIV");
 					dDomStyle.set(this._anchor, "position", "relative");
 					dDomStyle.set(this._anchor, "zIndex", 99999);
+					dDomStyle.set(this._anchor, "left", dDomStyle.get(target, "paddingLeft")*(-1)+"px");
+					dDomStyle.set(this._anchor, "top", dDomStyle.get(target, "paddingTop")*(-1)+"px");
 				}
 				dDomConstruct.place(this._placeHolder, node, "before");
 				dDomConstruct.place(this._anchor, target.firstChild, "before");
@@ -95,13 +99,28 @@ return dDeclare("idx.widget._MaximizeMixin",null,
 				cachedStyle = cachedStyle.cssText;
 			}
 			this._cachedOriginalStyle = cachedStyle;
-			
+			this._cachedOriginalTargetHeight = target.style.height;
+			// cache the value of overflow property for the target node
+			this._cachedOriginalTargetOverflowProp = dDomStyle.get(target, "overflow");
+			//set the value of overflow property to "hidden" for the target to avoid problems(width value) caused by scrollbars
+			dDomStyle.set(target,"overflow","hidden");
+			dDomStyle.set(target,"height",dDomStyle.get(target, "height")+"px");
+			var ele = this._anchor;
+			while (ele.nextElementSibling) {
+				ele = ele.nextElementSibling;
+				ele._cachedDisplayProp = dDomStyle.get(ele, "display") //cache the value of display property
+				dDomStyle.set(ele, "display", "none");
+			}
+
 			dDomStyle.set(node, "position", "absolute");
 			if(this.inPlace){
 				dDomStyle.set(node, "zIndex", 99999);
 			}
-			var _w = dDomStyle.get(target, "width");
-			var _h = dDomStyle.get(target, "height");
+
+			// the maximum box should include paddings
+			var _w = dDomStyle.get(target, "width") + dDomStyle.get(target, "paddingLeft") + dDomStyle.get(target, "paddingRight");
+			var _h = dDomStyle.get(target, "height") + dDomStyle.get(target, "paddingTop") + dDomStyle.get(target, "paddingBottom");
+
 			if(this.useAnimation) {
 				var t = np.y - tp.y;
 				var l = np.x - tp.x;
@@ -195,6 +214,15 @@ return dDeclare("idx.widget._MaximizeMixin",null,
 					this._maximizedItem.parentNode.removeChild(this._placeHolder);
 					this._anchor.parentNode.removeChild(this._anchor);
 				}
+				dDomStyle.set(this._maximizedItem.parentNode,"overflow",this._cachedOriginalTargetOverflowProp); //restore overflow property
+				this._maximizedItem.parentNode.style.height = this._cachedOriginalTargetHeight; //restore height
+				dArray.forEach(this._maximizedItem.parentNode.childNodes, function(item) {
+					if (item._cachedDisplayProp !== undefined) {
+						dDomStyle.set(item, "display", item._cachedDisplayProp); //restore the value of display property
+						delete item._cachedDisplayProp;
+					}
+				});
+
 				this._maximizedItem = null;
 				dFocus.focus(focus); // restore focus
 			}

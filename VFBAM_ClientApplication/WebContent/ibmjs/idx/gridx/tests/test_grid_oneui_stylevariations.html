@@ -1,126 +1,27 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Gridx OneUI Style Variations</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-	<style type="text/css">
-		.testDataWarningStatus,
-		.testDataCriticalStatus,
-		.testDataNormalStatus {
-			background-image: url("support/data/status.png");
-			background-repeat: no-repeat;
-			width: 20px;
-			height: 20px;
-			display: inline-block;
-			vertical-align: middle;
-		}
-
-		.testDataWarningStatus {
-			background-position: 0 -2px;
-		}
-
-		.testDataNormalStatus {
-			background-position: -18px -2px;
-		}
-
-		.testDataCriticalStatus {
-			background-position: -36px -2px;
-		}
-
-		.testToolbarButtonCut,
-		.testToolbarButtonCopy,
-		.testToolbarButtonPaste {
-			background-image: url("support/data/toolbarbuttons.png");
-			background-repeat: no-repeat;
-			width: 16px;
-			height: 16px;
-			background-position: -4px -6px;
-		}
-
-		.gridxRtl .testToolbarButtonCut,
-		.gridxRtl .testToolbarButtonCopy,
-		.gridxRtl .testToolbarButtonPaste {
-			background-image: url("support/data/toolbarbuttons_rtl.png");
-		}
-
-		.testToolbarButtonCopy {
-			background-position: -29px -5px;
-		}
-
-		.testToolbarButtonPaste {
-			background-position: -55px -5px;
-		}
-
-		.dijitButtonHover .testToolbarButtonCut,
-		.dijitButtonActive .testToolbarButtonCut,
-		.dijitButtonHover .testToolbarButtonCopy,
-		.dijitButtonActive .testToolbarButtonCopy,
-		.dijitButtonHover .testToolbarButtonPaste,
-		.dijitButtonActive .testToolbarButtonPaste {
-			background-image: url("../../icons/images/editorIconsHover.png");
-			background-repeat: no-repeat;
-			width: 16px;
-			height: 16px;
-			background-position: -54px -1px;
-		}
-
-		.gridxRtl .dijitButtonHover .testToolbarButtonCut,
-		.gridxRtl .dijitButtonActive .testToolbarButtonCut,
-		.gridxRtl .dijitButtonHover .testToolbarButtonCopy,
-		.gridxRtl .dijitButtonActive .testToolbarButtonCopy,
-		.gridxRtl .dijitButtonHover .testToolbarButtonPaste,
-		.gridxRtl .dijitButtonActive .testToolbarButtonPaste {
-			background-image: url("../../icons/images/editorIconsHover_rtl.png");
-		}
-
-
-		.dijitButtonHover .testToolbarButtonCopy, 
-		.dijitButtonActive .testToolbarButtonCopy {
-			background-position: -72px -1px;
-		}
-
-		.dijitButtonHover .testToolbarButtonPaste,
-		.dijitButtonActive .testToolbarButtonPaste {
-			background-position: -90px -1px;
-		}
-
+	<script type="text/javascript" src="support/common.js"></script>
+	<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
+	<script type="text/javascript" src="support/commonImport.js"></script>
+	<style id="idxStyles" type="text/css">
+		@import "../../../gridx/resources/Gridx.css";
+		@import "../../themes/oneui/dijit/document.css";
+		@import "../../themes/oneui/oneui.css";
+		@import "../../tests/test.css";
+		@import "support/common.css";
 		.gridx {
 			width: 800px;
 			height: 350px;
 			margin-bottom: 20px;
 		}
 	</style>
-	<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
-	<script type="text/javascript">
-		dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx_rtl.css", "idxStyles");
-	</script>
-	<style id="idxStyles" type="text/css">
-		@import "../../themes/oneui/dijit/document.css";
-		@import "../../themes/oneui/oneui.css";
-		@import "../../tests/test.css";
-	</style>
-	<link rel='stylesheet' href="support/common.css" />
-
-	<script type="text/javascript">
-		var dojoConfig = currentDojoVersion.dojoConfig;
-		dojoConfig.parseOnLoad = true;
-		dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
-	</script>
-	<script type="text/javascript" src="support/common.js"></script>
 	<script type="text/javascript" src='test_grid_oneui_stylevariations.js'></script>
-	<script type="text/javascript" src="../../tests/commonTest.js"></script>
 </head>
 <body class='oneui'>
-	<script type="text/javascript">applyThemeToBody("oneui");</script><!-- only oneui theme is supported -->
-	<h1 class='title' tabindex='0' onfocus='this.style.color="blue"' 
-		onblur='this.style.color=""'>
-		Gridx OneUI Style Variations
-	</h1>
-	<br/><br/>
+	<h1>Gridx OneUI Style Variations</h1>
 	<h2>Style A</h2>
 	<p>Airy grid with cell outlines.</p>
 	<div jsid="gridA" data-dojo-type="gridx.Grid" data-dojo-props="
@@ -130,8 +31,7 @@
 		autoWidth: true,
 		selectRowTriggerOnCell: true,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/extendedSelect/Row',
 			'gridx/modules/ColumnResizer',
@@ -153,8 +53,7 @@
 		autoWidth: true,
 		bodyRowHoverEffect: false,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/VirtualVScroller',
@@ -163,7 +62,7 @@
 			'idx/gridx/modules/filter/QuickFilter',
 			'idx/gridx/modules/Sort'
 		]
-	"></div-->
+	"></div>
 
 	<h2>Style C</h2>
 	<p>Airy grid with row striping and column outlines.<p>
@@ -175,8 +74,7 @@
 		autoWidth: true,
 		selectRowTriggerOnCell: true,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/extendedSelect/Row',
@@ -198,8 +96,7 @@
 		autoWidth: true,
 		selectRowTriggerOnCell: true,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/extendedSelect/Row',
@@ -221,8 +118,7 @@
 		autoWidth: true,
 		bodyRowHoverEffect: false,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/VirtualVScroller',
@@ -244,8 +140,7 @@
 		selectRowTriggerOnCell: true,
 		bodyRowHoverEffect: false,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/VirtualVScroller',
@@ -267,8 +162,7 @@
 		selectRowTriggerOnCell: true,
 		bodyRowHoverEffect: false,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/VirtualVScroller',
@@ -290,8 +184,7 @@
 		selectRowTriggerOnCell: true,
 		bodyRowHoverEffect: false,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/VirtualVScroller',
@@ -312,8 +205,7 @@
 		autoWidth: true,
 		selectRowTriggerOnCell: true,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/extendedSelect/Row',
@@ -336,8 +228,7 @@
 		selectRowTriggerOnCell: true,
 		bodyRowHoverEffect: false,
 		modules: [
-			'gridx/modules/Focus',
-			'gridx/modules/filter/Filter',
+			'gridx/modules/Filter',
 			'gridx/modules/CellWidget',
 			'gridx/modules/ColumnResizer',
 			'gridx/modules/VirtualVScroller',
@@ -347,6 +238,5 @@
 			'idx/gridx/modules/Sort'
 		]
 	"></div>
-
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+	Licensed Materials - Property of IBM
+	(C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<title>FlipCardContainer Dynamic Tests</title>
+		
+		<script type="text/javascript" src="../../../tests/dojoVersion.js"></script>
+		<script type="text/javascript" src="basicImportor.js"></script>
+
+		<style id="idxStyles" type="text/css">
+            html, body {
+			    width: 100%;
+			    height: 100%;
+			    margin: 0; 
+			    padding: 0;
+			}
+			
+		</style>
+	
+		<script type="text/javascript">
+			var globalApp = null;
+			require(["./test_FlipCardContainer_dynamic.js"], function( app ){
+				app.init();
+				globalApp = app;
+			});
+		</script>
+		<script type="text/javascript" src="../../../tests/commonTest.js"></script>
+
+	</head>
+	<body >
+		<script type="text/javascript">applyThemeToBody( null, "../../../themes/");</script><!-- only oneui theme is supported -->
+		
+		<div style="width: 100%; height: 100%; margin: 0px; padding: 0px;">
+			<div style="width: 100%; height: 100%;">
+				<div id="flipcardNode"></div>
+			</div>
+		</div>
+		
+		<div style="display:none">
+			<div id="sample_grid_action">
+				<div style="font-weight:bold"> Customize your own page, Now you can start to add grid column, add card, organize cards ..... </div>
+				<div> </div>
+				<div style="margin:3px">
+					<button onclick="globalApp.addCardItem()">Add Card Item</button>
+					<button onclick="globalApp.addGridColumn()">Add Grid Column</button>
+					<button onclick="globalApp.shrinkGridColumn()">Remove Grid Column(right)</button>
+					<button onclick="globalApp.reOrganizeCardItems()">Organize Card Items</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

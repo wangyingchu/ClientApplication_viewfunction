@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Ортақ пайдалану",
+	actionSettings: "Параметрлер",
 	actionHelp: "Анықтама",
 	searchEntry: "Іздеу",
-	searchSubmit: "Іздеу"
+	searchSubmit: "Іздеу",
+	primarySearchLabelSuffix: "негізгі іздеу",
+	secondarySearchLabelSuffix: "көмекші іздеу",
+	homeButton: "Басты"
 //end v1.x content
 });
+

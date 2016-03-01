@@ -76,7 +76,7 @@ define([
 	
 		templateString: '<div class="dijitSplitter dojoxToggleSplitter" dojoAttachEvent="onkeypress:_onKeyPress,onmousedown:_startDrag,onmouseenter:_onMouse,onmouseleave:_onMouse">' +
 							'<div dojoAttachPoint="toggleNode" class="dijitSplitterThumb dojoxToggleSplitterIcon" tabIndex="0" role="separator" ' +
-								'dojoAttachEvent="onmousedown:_onToggleNodeMouseDown,onclick:_toggle,onmouseenter:_onToggleNodeMouseMove,onmouseleave:_onToggleNodeMouseMove,onfocus:_onToggleNodeMouseMove,onblur:_onToggleNodeMouseMove">' +
+								'dojoAttachEvent="onmousedown:_onToggleNodeMouseDown,onclick:_toggle,onmouseenter:_onToggleNodeMouseMove,onmouseleave:_onToggleNodeMouseMove">' +
 								'<span class="dojoxToggleSplitterA11y" dojoAttachPoint="a11yText"></span></div>' +
 						'</div>',
 		
@@ -198,7 +198,7 @@ define([
 				domStyle.set(this.domNode, "cursor", "");
 				domStyle.set(paneNode, styleProps);
 			}else if(this.state == "collapsed"){
-				paneStyle  = dojo.getComputedStyle(paneNode); 
+				paneStyle  = domStyle.getComputedStyle(paneNode); 
 				openProps = this._getStyleProps(paneNode, "full", paneStyle);
 				this._openStyleProps = openProps;
 				
@@ -207,7 +207,7 @@ define([
 			}else{
 				// change to closed state
 				if(!this.collapsedSize){
-					paneStyle  = dojo.getComputedStyle(paneNode); 
+					paneStyle  = domStyle.getComputedStyle(paneNode); 
 					openProps = this._getStyleProps(paneNode, "full", paneStyle);
 					this._openStyleProps = openProps;
 				}
@@ -227,7 +227,7 @@ define([
 			//		Create an object with the style property name: values 
 			//		that will need to be applied to the child pane render the given state
 			if(!paneStyle){
-				paneStyle  = dojo.getComputedStyle(paneNode);
+				paneStyle  = domStyle.getComputedStyle(paneNode);
 			}
 			var styleProps = {}, 
 				dim = this.horizontal ? "height" : "width";
@@ -265,10 +265,11 @@ define([
 				on = this.state == "full" || this.state == "collapsed",
 				focused = this.focused;
 			
-			domClass.toggle(toggleNode, baseClass + "IconOpen", on && !focused);
-			domClass.toggle(toggleNode, baseClass + "IconClosed", !on && !focused);
-			domClass.toggle(toggleNode, baseClass + "IconOpenHover", on && focused);
-			domClass.toggle(toggleNode, baseClass + "IconClosedHover", !on && focused);
+			// #13730 remove hover class for state change
+			domClass.toggle(toggleNode, baseClass + "IconOpen", on /*&& !focused*/);
+			domClass.toggle(toggleNode, baseClass + "IconClosed", !on /*&& !focused*/);
+			//domClass.toggle(toggleNode, baseClass + "IconOpenHover", on && focused);
+			//domClass.toggle(toggleNode, baseClass + "IconClosedHover", !on && focused);
 			
 			// For a11y
 			if(region == "top" && on || region == "bottom" && !on){
@@ -297,15 +298,15 @@ define([
 			var evtName;
 			switch(state){
 				case "full":
-					dijit.setWaiState(this.domNode, "expanded", true);
+					dijit.setWaiState(this.toggleNode, "expanded", true);
 					evtName = "onOpen";
 					break;
 				case "collapsed":
-					dijit.setWaiState(this.domNode, "expanded", true);
+					dijit.setWaiState(this.toggleNode, "expanded", true);
 					evtName = "onCollapsed";
 					break;
 				default:
-					dijit.setWaiState(this.domNode, "expanded", false);
+					dijit.setWaiState(this.toggleNode, "expanded", false);
 					evtName = "onClosed";
 			}
 			this[evtName](this.child);

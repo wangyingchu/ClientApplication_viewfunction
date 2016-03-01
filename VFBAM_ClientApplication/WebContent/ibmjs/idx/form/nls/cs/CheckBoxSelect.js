@@ -10,3 +10,4 @@ define({
 	missingMessage: "Musí být vybrána alespoň jedna položka."
 //end v1.x content
 });
+

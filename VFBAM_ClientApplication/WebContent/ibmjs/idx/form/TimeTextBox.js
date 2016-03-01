@@ -8,6 +8,8 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/has",
+	"dojo/on",
 	"dojo/dom-style",
 	"dojo/dom-class",
 	"dojo/dom-construct",
@@ -18,9 +20,23 @@ define([
 	"./_CssStateMixin",
 	"./_DateTimeTextBox",
 	"./_CompositeMixin",
-	"dojo/text!./templates/DropDownBox.html"
-], function(declare, lang, domStyle, domClass, domConstruct, domAttr, keys, _TimePicker, HoverHelpTooltip, 
-			_CssStateMixin, _DateTimeTextBox, _CompositeMixin, template){
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	"idx/has!#idx_form_TimeTextBox-desktop?dojo/text!./templates/DropDownBox.html"  // desktop widget, load the template
+		+ ":#idx_form_TimeTextBox-mobile?"										// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/DropDownBox.html"						// global desktop platform, load template
+		+ ":#mobile?"														// global mobile platform, don't load
+		+ ":dojo/text!./templates/DropDownBox.html", 							// no dojo/has features, load the template
+		
+	"idx/has!#idx_form_TimeTextBox-mobile?./plugins/mobile/TimeTextBoxPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_TimeTextBox-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/mobile/TimeTextBoxPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+		
+], function(declare, lang, has, on, domStyle, domClass, domConstruct, domAttr, keys, _TimePicker, HoverHelpTooltip,
+			_CssStateMixin, _DateTimeTextBox, _CompositeMixin, 
+			_TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
 	var oneuiForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	var iForm = lang.getObject("idx.form", true);
 
@@ -31,20 +47,19 @@ define([
 	* @augments idx.form._CompositeMixin
 	* @augments idx.form._CssStateMixin
 	*/ 
-	return iForm.TimePicker = oneuiForm.TimeTextBox = declare("idx.form.TimeTextBox", [_DateTimeTextBox, _CompositeMixin, _CssStateMixin], {
+	var TimeTextBox = declare("idx.form.TimeTextBox_base", [_DateTimeTextBox, _CompositeMixin, _CssStateMixin], {
 	/**@lends idx.form.TimeTextBox*/ 
 		// summary:
 		//		A validating, serializable, range-bound time text box with a drop down time picker
-		
+		templateString: desktopTemplate,
 		// instantValidate: Boolean
 		//		Fire validation when widget get input by set true, 
 		//		fire validation when widget get blur by set false
 		instantValidate: false,
 		baseClass: "idxTimeTextBoxWrap",
 		oneuiBaseClass: "dijitTextBox dijitComboBox dijitTimeTextBox",
-		popupClass: "dijit._TimePicker",
 		_selector: "time",
-		templateString: template,
+		popupClass: "dijit._TimePicker",
 
 		// value: Date
 		//		The value of this widget as a JavaScript Date object.  Note that the date portion implies time zone and daylight savings rules.
@@ -79,7 +94,7 @@ define([
 					if (this.message && this._hasBeenBlurred && (!this._refocusing)) {
 						this.displayMessage(this.message);
 					}
-				})
+				});
 			}
 			//domAttr.set(this.oneuiBaseNode, "title", this.iconTitle || this._nlsResources.idxTimeIconTitle || "Click to open time picker");
 			
@@ -94,6 +109,12 @@ define([
 					alt: this.iconAlt || this._nlsResources.idxTimeIconTitle || "Click to open time picker",
 					className: "idxPickerIcon idxTimeIcon",
 					src: this._blankGif
+				}, iconNode);
+				
+				//a11y
+				var iconImage_a11y = domConstruct.create("div", {
+					className: "idxPickerIcon_a11y idxTimeIcon_a11y",
+					innerHTML: "&#128338;"
 				}, iconNode);
 				
 				domStyle.set(this.oneuiBaseNode, "position", "relative");
@@ -147,6 +168,7 @@ define([
 					});
 			}
 		},
+		
 		/**
 		* Overridable method to display validation errors/hints
 		*/
@@ -171,4 +193,43 @@ define([
 			}
 		}
 	});
+	
+	if(has("mobile") || has("platform-plugable")){
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/TimeTextBox", {	
+			desktop: "inherited",	// no plugin for desktop, use inherited methods  
+			mobile: MobilePlugin	// use the mobile plugin if loaded
+		});
+		
+		TimeTextBox = declare([TimeTextBox,_TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			
+			
+			templatePath: require.toUrl("idx/form/templates/DropDownBox.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			
+			openDropDown: function(callback){
+				return this.doWithPlatformPlugin(arguments, "openDropDown", "openDropDown", callback);
+			},
+			closeDropDown: function(){
+				return this.doWithPlatformPlugin(arguments, "closeDropDown", "closeDropDown");
+			},
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			}
+			// _onBlur: function(e){
+				// return this.doWithPlatformPlugin(arguments, "_onBlur", "onBlur", e);
+			// }
+		});
+	}
+	return iForm.TimeTextBox = declare("idx.form.TimeTextBox", TimeTextBox);
 });

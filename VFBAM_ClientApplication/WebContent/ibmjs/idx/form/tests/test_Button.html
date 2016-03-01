@@ -5,7 +5,7 @@
 	US Government Users Restricted Rights - Use, duplication or
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<html>
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Button Widget Demo</title>
@@ -111,40 +111,40 @@
 			
 			<h2>Buttons</h2>
 			<p class="box">
-				<button data-dojo-type="dijit.form.Button" data-dojo-props='onClick:function(){ console.log("clicked simple"); }, value:"Primary"'>
+				<button id="primary" data-dojo-type="dijit.form.Button" data-dojo-props='onClick:function(){ console.log("clicked simple"); }, value:"Primary"'>
 					Primary
 				</button>
-				<button disabled data-dojo-type="dijit.form.Button" data-dojo-props='onClick:function(){ console.log("clicked simple"); }, value:"Primary"'>
+				<button id="primary_disabled" disabled data-dojo-type="dijit.form.Button" data-dojo-props='onClick:function(){ console.log("clicked simple"); }, value:"Primary"'>
 					Primary Disabled
 				</button>
-				<button data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxButtonCompact", onClick:function(){ console.log("clicked simple"); }, value:"Primary"'>
+				<button id="primary_compact" data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxButtonCompact", onClick:function(){ console.log("clicked simple"); }, value:"Primary"'>
 					Compact
 				</button>
 				<br/><br/>
-				<button data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSecondaryButton", onClick:function(){ console.log("clicked simple"); }, value:"Secondary"'>
+				<button id="secondary" data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSecondaryButton", onClick:function(){ console.log("clicked simple"); }, value:"Secondary"'>
 					Secondary 
 				</button>
-				<button disabled data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSecondaryButton", onClick:function(){ console.log("clicked simple"); }, value:"Secondary"'>
+				<button id="secondary_disabled" disabled data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSecondaryButton", onClick:function(){ console.log("clicked simple"); }, value:"Secondary"'>
 					Secondary Disabled
 				</button>
-				<button data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSecondaryButton idxButtonCompact", onClick:function(){ console.log("clicked simple"); }, value:"Secondary"'>
+				<button id="secondary_compact" data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSecondaryButton idxButtonCompact", onClick:function(){ console.log("clicked simple"); }, value:"Secondary"'>
 					Compact
 				</button>
 				<br/><br/>
-				<button data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSpecialButton", onClick:function(){ console.log("clicked simple"); }, value:"Special"'>
+				<button id="special" data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSpecialButton", onClick:function(){ console.log("clicked simple"); }, value:"Special"'>
 					Special
 				</button>
-				<button disabled data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSpecialButton", onClick:function(){ console.log("clicked simple"); }, value:"Special"'>
+				<button id="special_disabled" disabled data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSpecialButton", onClick:function(){ console.log("clicked simple"); }, value:"Special"'>
 					Special Disabled
 				</button>
-				<button data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSpecialButton idxButtonCompact", onClick:function(){ console.log("clicked simple"); }, value:"Special"'>
+				<button id="special_compact" data-dojo-type="dijit.form.Button" data-dojo-props='baseClass:"dijitButton idxSpecialButton idxButtonCompact", onClick:function(){ console.log("clicked simple"); }, value:"Special"'>
 					Compact
 				</button>
 				<div id="progBtn"></div>
 			</p>
 			<h2>Combo Buttons</h2>
 			<p class="box">
-				<button title="creative title 1" data-dojo-type="dijit.form.ComboButton" data-dojo-props='optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
+				<button id="combo_button_1" title="creative title 1" data-dojo-type="dijit.form.ComboButton" data-dojo-props='optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
 					<span>Combo Button</span>
 					<span data-dojo-type="idx.widget.Menu">
 						<span data-dojo-type="dijit.MenuItem"  data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave",
@@ -153,7 +153,7 @@
 							data-dojo-props='onClick:function(){ console.log("not actually saving anything, just a test!"); }'>Create from template</span>
 					</span>
 				</button>
-				<button title="creative title 2" data-dojo-type="dijit.form.ComboButton" data-dojo-props='dropDownPosition:["above"], optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
+				<button id="combo_button_2" title="creative title 2" data-dojo-type="dijit.form.ComboButton" data-dojo-props='dropDownPosition:["above"], optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
 					<span>Combo Button</span>
 					<span data-dojo-type="idx.widget.Menu">
 						<span data-dojo-type="dijit.MenuItem"  data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave",
@@ -162,7 +162,7 @@
 							data-dojo-props='onClick:function(){ console.log("not actually saving anything, just a test!"); }'>Create from template</span>
 					</span>
 				</button>
-				<button title="creative title 3" data-dojo-type="dijit.form.ComboButton" data-dojo-props='dropDownPosition:["before"], optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
+				<button id="combo_button_3" title="creative title 3" data-dojo-type="dijit.form.ComboButton" data-dojo-props='dropDownPosition:["before"], optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
 					<span>Combo Button</span>
 					<span data-dojo-type="idx.widget.Menu">
 						<span data-dojo-type="dijit.MenuItem"  data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave",
@@ -171,7 +171,7 @@
 							data-dojo-props='onClick:function(){ console.log("not actually saving anything, just a test!"); }'>Create from template</span>
 					</span>
 				</button>
-				<button title="creative title 4" data-dojo-type="dijit.form.ComboButton" data-dojo-props='dropDownPosition:["after"], optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
+				<button id="combo_button_4" title="creative title 4" data-dojo-type="dijit.form.ComboButton" data-dojo-props='dropDownPosition:["after"], optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
 					<span>Combo Button</span>
 					<span data-dojo-type="idx.widget.Menu">
 						<span data-dojo-type="dijit.MenuItem"  data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave",
@@ -180,7 +180,7 @@
 							data-dojo-props='onClick:function(){ console.log("not actually saving anything, just a test!"); }'>Create from template</span>
 					</span>
 				</button>
-				<button title="creative title 5" disabled data-dojo-type="dijit.form.ComboButton" data-dojo-props='optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
+				<button id="combo_button_disabled" title="creative title 5" disabled data-dojo-type="dijit.form.ComboButton" data-dojo-props='optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
 					<span>Combo Button Disabled</span>
 					<span data-dojo-type="idx.widget.Menu">
 						<span data-dojo-type="dijit.MenuItem"  data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave",
@@ -190,7 +190,7 @@
 					</span>
 				</button>
 				<br/>
-				<button title="creative title 6" data-dojo-type="dijit.form.ComboButton" data-dojo-props='baseClass:"dijitComboButton idxButtonCompact", optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
+				<button id="combo_button_compact" title="creative title 6" data-dojo-type="dijit.form.ComboButton" data-dojo-props='baseClass:"dijitComboButton idxButtonCompact", optionsTitle:"save options", onClick:function(){ console.log("clicked combo save") }'>
 					<span>Combo Button Compact</span>
 					<span data-dojo-type="idx.widget.Menu">
 						<span data-dojo-type="dijit.MenuItem"  data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave",
@@ -202,7 +202,7 @@
 			</p>
 			<h2>DropDown Buttons</h2>
 			<p class="box">
-				<button title="edit title 1" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props=''>
+				<button id="dropdown_button_1" title="edit title 1" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props=''>
 					<span>DropDown</span>
 					<span data-dojo-type="idx.widget.Menu" >
 						<span data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut",
@@ -228,7 +228,7 @@
 						</span>
 					</span>
 				</button>
-				<button title="edit title 2" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='dropDownPosition:["above"]'>
+				<button id="dropdown_button_2" title="edit title 2" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='dropDownPosition:["above"]'>
 					<span>DropDown</span>
 					<span data-dojo-type="idx.widget.Menu" >
 						<span data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut",
@@ -254,7 +254,7 @@
 						</span>
 					</span>
 				</button>
-				<button title="edit title 3" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='dropDownPosition:["before"]'>
+				<button id="dropdown_button_3" title="edit title 3" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='dropDownPosition:["before"]'>
 					<span>DropDown</span>
 					<span data-dojo-type="idx.widget.Menu" >
 						<span data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut",
@@ -280,7 +280,7 @@
 						</span>
 					</span>
 				</button>
-				<button title="edit title 4" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='dropDownPosition:["after"]'>
+				<button id="dropdown_button_4" title="edit title 4" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='dropDownPosition:["after"]'>
 					<span>DropDown</span>
 					<span data-dojo-type="idx.widget.Menu" >
 						<span data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut",
@@ -306,7 +306,7 @@
 						</span>
 					</span>
 				</button>
-				<button title="edit title 5" value="Edit" disabled data-dojo-type="dijit.form.DropDownButton" data-dojo-props=''>
+				<button id="dropdown_button_disabled" title="edit title 5" value="Edit" disabled data-dojo-type="dijit.form.DropDownButton" data-dojo-props=''>
 					<span>DropDown Disabled</span>
 					<span data-dojo-type="idx.widget.Menu" >
 						<span data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut",
@@ -333,7 +333,7 @@
 					</span>
 				</button>
 				<br/>
-				<button title="edit title 6" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='baseClass:"dijitDropDownButton idxButtonCompact"'>
+				<button id="dropdown_button_compact" title="edit title 6" value="Edit" data-dojo-type="dijit.form.DropDownButton" data-dojo-props='baseClass:"dijitDropDownButton idxButtonCompact"'>
 					<span>DropDown Compact</span>
 					<span data-dojo-type="idx.widget.Menu" >
 						<span data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut",
@@ -363,23 +363,23 @@
 			<h2>Toggle buttons</h2>
 			<p>The button CSS as well as the icon CSS can change on toggle </p>
 			<div class="box">
-				<button checked data-dojo-type="dijit.form.ToggleButton" data-dojo-props='
+				<button id="toggle_button_1" checked data-dojo-type="dijit.form.ToggleButton" data-dojo-props='
 					onChange:function(val){
 						console.log("toggled button checked="+val);
 						this.set("label", val ? "toggle on state" : "toggle off state");
 					}, iconClass:"dijitCheckBoxIcon"'>
 					Toggle on state
 				</button>
-				<button disabled data-dojo-type="dijit.form.ToggleButton"
+				<button id="toggle_button_disabled" disabled data-dojo-type="dijit.form.ToggleButton"
 					data-dojo-props='onChange:function(val){ console.log("toggled button checked="+val); }, iconClass:"dijitCheckBoxIcon"'>
 					Toggle me
 				</button>
-				<button data-dojo-type="dijit.form.ToggleButton"
+				<button id="toggle_button_2" data-dojo-type="dijit.form.ToggleButton"
 					data-dojo-props='onChange:function(val){ console.log("toggled button checked="+val); }, iconClass:"dijitRadioIcon"'>
 					Toggle me
 				</button>
 				<br/>
-				<button checked data-dojo-type="dijit.form.ToggleButton" data-dojo-props='
+				<button id="toggle_button_compact" checked data-dojo-type="dijit.form.ToggleButton" data-dojo-props='
 					baseClass:"dijitToggleButton idxButtonCompact", 
 					onChange:function(val){
 						console.log("toggled button checked="+val);

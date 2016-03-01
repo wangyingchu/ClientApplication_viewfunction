@@ -1,12 +1,10 @@
 define([
 	"dojo/_base/declare",
 	"gridx/modules/dnd/Row",
-	"gridx/core/_Module",
 	"./Avatar"
-], function(declare, Row, _Module, Avatar){
+], function(declare, Row, Avatar){
 
-	return _Module.register(
-	declare([Row], {
+	return declare([Row], {
 		avatar: Avatar
-	}));
+	});
 });

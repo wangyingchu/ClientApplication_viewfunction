@@ -10,3 +10,4 @@ define({
 	legendText: "Wymagane"
 //end v1.x content
 });
+

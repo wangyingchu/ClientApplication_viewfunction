@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Sulje"
 //end v1.x content
 });
+

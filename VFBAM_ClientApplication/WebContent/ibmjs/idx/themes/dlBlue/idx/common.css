@@ -1,0 +1,132 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dj_safari .dlBlue a {
+  color: #00649d;
+  text-decoration: none;
+}
+.dlBlue .idxFloatLeading {
+  float: left;
+}
+.dlBlue .idxFloatTrailing {
+  float: right;
+}
+.dlBlue .idxTextAlignLeading {
+  text-align: left;
+}
+.dlBlue .idxTextAlignTrailing {
+  text-align: right;
+}
+.dijitRtl .dlBlue .idxFloatLeading {
+  float: right;
+}
+.dijitRtl .dlBlue .idxFloatTrailing {
+  float: left;
+}
+.dijitRtl .dlBlue .idxTextAlignLeading {
+  text-align: right;
+}
+.dijitRtl .dlBlue .idxTextAlignTrailing {
+  text-align: left;
+}
+.dlBlue a:link {
+  color: #267bac;
+  text-decoration: none;
+}
+.dlBlue a:visited {
+  color: #745285;
+}
+.dlBlue a:hover {
+  color: #48c0ef;
+  text-decoration: underline;
+}
+.dlBlue a:active {
+  color: #003f69;
+}
+.idxTextAlternative {
+  display: none;
+}
+.dijit_a11y .idxTextAlternative {
+  display: inline;
+}
+.dijit_a11y .dlBlue .idxSignIcon.dijitContentPaneLoading {
+  color: black;
+}
+.dlBlue .idxSignIcon {
+  background-image: url(images/msgIcons_24bit.png);
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  padding: 0 !important;
+}
+.dlBlue .idxSimpleIconContainer {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dlBlue .idxSimpleIconText {
+  padding: 0px 0px 0px 5px;
+}
+.dlBlue .idxInformIcon {
+  background-position: -96px -18px;
+}
+.dlBlue .idxWarnIcon {
+  background-position: -24px -18px;
+}
+.dlBlue .idxErrorIcon {
+  background-position: 0 -18px;
+}
+.dlBlue .idxConfirmIcon {
+  background-position: -48px -18px;
+}
+.dlBlue .idxDialogIconWarning {
+  background-position: -24px -18px;
+}
+.dlBlue .idxDialogIconInformation {
+  background-position: -96px -18px;
+}
+.dlBlue .idxDialogIconError {
+  background-position: 0 -18px;
+}
+.dlBlue .idxDialogIconText {
+  margin-left: 0px;
+}
+.dlBlue .idxDetailsPaneText {
+  border-style: none none solid;
+  border-width: 0px;
+  text-align: center;
+  display: block !important;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #666;
+  padding: 15px;
+}
+.dlBlue .idxSignIcon.dijitContentPaneLoading {
+  width: 50px;
+  height: 50px;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  background: url(images/loadingAnimation38px.gif) no-repeat;
+  padding-left: 45px !important;
+  padding-top: 12px !important;
+}
+.dijitRtl .dlBlue .idxSimpleIconText {
+  padding: 0px 5px 0px 0px;
+}
+.dijitRtl .dlBlue .idxSignIcon.dijitContentPaneLoading {
+  background-position: top right;
+  padding-right: 45px !important;
+}
+.dlBlue .idxDialogIconWarning,
+.dlBlue .idxDialogIconInformation,
+.dlBlue .idxDialogIconError {
+  background-image: url('images/msgIcons_24bit.png');
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+.dijitRtl .dlBlue .idxDialogIconWarning,
+.dijitRtl .dlBlue .idxDialogIconInformation,
+.dijitRtl .dlBlue .idxDialogIconError {
+  margin-right: 0px;
+  margin-left: 4px;
+}

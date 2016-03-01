@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Περισσότερες ενέργειες"
 //end v1.x content
 });
+

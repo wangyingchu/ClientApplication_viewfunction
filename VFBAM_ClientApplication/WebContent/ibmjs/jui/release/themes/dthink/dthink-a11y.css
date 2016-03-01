@@ -1,0 +1,145 @@
+.jui-a11y{
+	
+}
+/* Button */
+.jui-a11y button.ui-button {
+	border: medium outset #FFF;
+	padding: 2px 7px
+}
+.jui-a11y input.ui-button::-moz-focus-inner,
+.jui-a11y button.ui-button::-moz-focus-inner {
+  border: 1px dotted #FFFFFF;
+  padding: 0;
+}
+
+.jui-a11y .ui-button-primary .ui-button-text {
+	font-weight: bold;
+}
+.jui-a11y .ui-button.ui-state-disabled{
+	opacity: .35;
+	filter: Alpha(Opacity=35);
+}
+.jui-a11y .ui-button.ui-state-disabled .ui-button-text{
+	color: #444444;
+}
+.jui-a11y .ui-button-text-icon-primary {
+	padding: 2px 7px 2px 12px;
+}
+.jui-a11y .ui-button-text-icons {
+	padding: 2px 12px;
+}
+.jui-a11y .ui-button-icon-only{
+	width: auto;
+}
+.jui-a11y .ui-button-icon-only .ui-button-text, 
+.jui-a11y .ui-button-icons-only .ui-button-text {
+	text-indent: 0px;
+}
+/* RadioButtonSet and CheckBoxSet */
+.jui-a11y .ui-buttonset .ui-button-radio.ui-state-active .ui-button-text:before{
+	content:"●";
+	position: absolute;
+	left: .6em;
+	top: .5em;
+}
+.jui-a11y .ui-buttonset .ui-button-checkbox.ui-state-active .ui-button-text:before{
+	content:"√";
+	position: absolute;
+	left: .5em;
+	top: .6em;
+}
+
+/* Accordion */
+.jui-a11y .ui-accordion .ui-accordion-header .ui-accordion-header-icon:before {
+	content: ">";
+	text-indent: 0px;
+	left: .5em;
+	position: absolute;
+}
+.jui-a11y .ui-accordion .ui-accordion-header.ui-state-active .ui-accordion-header-icon:before {
+	content: "v";
+}
+/* Autocomplete */
+.jui-a11y .ui-autocomplete-input {
+	border: 2px inset #FFF;
+	padding: 5px 9px;
+}
+/* Menu */
+.jui-a11y .ui-menu {
+	border: 1px outset #FFF;
+}
+.jui-a11y .ui-menu-item .ui-menu-icon:before{
+	content: ">";
+	text-indent: 0px;
+	float: right;
+} 
+/* Spinner */
+.jui-a11y .ui-spinner{
+	border: 2px inset #FFF;
+}
+.jui-a11y .ui-spinner-button{
+	padding: 0;
+}
+.jui-a11y .ui-spinner-button .ui-button-text .ui-icon{
+	text-indent: 0px;
+}
+/* Tooltip */
+.jui-a11y .ui-tooltip{
+	border: 1px outset #FFF;
+}
+/* Dialog */
+.jui-a11y .ui-dialog button.ui-dialog-titlebar-close:before{
+	content: "×";
+	font-size: 1em;
+	color: #000;
+	
+}
+.jui-a11y  .ui-dialog button.ui-dialog-titlebar-close .ui-button-text{
+	display: none;	
+}
+/* Slider */
+.jui-a11y .ui-slider .ui-slider-handle{
+	border: 0.4em outset #FFFFFF;
+    height: 0.6em;
+    width: 0.6em;
+}
+.jui-a11y .ui-slider-horizontal .ui-slider-range{
+	border-top: 1.2em outset #FFF;
+}
+.jui-a11y .ui-slider-vertical .ui-slider-range{
+	border-left: 1.2em outset #FFF;
+}
+/* Progressbar */
+.jui-a11y .ui-progressbar .ui-progressbar-value{
+	border-top: 2em outset #FFF;
+}
+/* Datepicker*/
+.jui-a11y .ui-datepicker td a.ui-state-highlight{
+	border: 3px outset #FFF;
+	padding: 1px;
+}
+.jui-a11y .ui-datepicker .ui-datepicker-current-day a{
+	border: 1px outset;
+	text-decoration: underline;
+}
+.jui-a11y .ui-datepicker .ui-datepicker-prev .ui-icon:before{
+	content: "<";
+	position: absolute;
+	left: 4px;
+	top: -1px;
+	text-indent: 0px;
+}
+.jui-a11y .ui-datepicker .ui-datepicker-next .ui-icon:before{
+	content: ">";
+	position: absolute;
+	right: 4px;
+	top: -1px;
+	text-indent: 0px;
+}
+.jui-a11y .ui-datepicker .ui-datepicker-next.ui-state-hover .ui-icon:before{
+	right: 3px;
+}
+
+.jui-a11y .ui-tabs-active.ui-state-focus{
+	outline: 1px dotted black;
+}

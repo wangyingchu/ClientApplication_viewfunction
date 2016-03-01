@@ -33,12 +33,14 @@
 	<script type="text/javascript" id="postDojo">
 		var modules = [
 			"idx.form.RadioButtonSet",
+			"dojo.query",
 			"dijit.form.Button",
 			"dijit.form.Form",
 			"idx.tests._pagefooter._PageFooter"]; 
-		var _PageFooter = null;
+		var _PageFooter = null, Query = null;
 		function preParse(modules){
 			_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+			Query = modules["dojo/query"];
 			new _PageFooter();
 		}
 		function postParse(modules){
@@ -53,10 +55,10 @@
 	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 	<script type="text/javascript">applyThemeToBody("oneui");</script>
 	<a name="maincontent"></a>
-	<div class="testMain">
+	<div class="testMain" role="main">
 		<h1 class="testTitle">idx.form.RadioButtonSet Test</h1>
 		<h2>Horizontal label alignment, Vertical group alignment</h2>
-		<select jsId="rbs1" multiple="true" data-dojo-type="idx.form.RadioButtonSet" data-dojo-props="
+		<select jsId="rbs1" id="rbs1" multiple="true" data-dojo-type="idx.form.RadioButtonSet" data-dojo-props="
 			name: 'rbs1',
 			label: 'Normal:',
 			help: 'Field help goes here.',
@@ -168,7 +170,7 @@
 			<option value="CA" disabled="true">California</option>
 		</select>
 	
-		<select jsId="rbs9" multiple="true" data-dojo-type="idx.form.RadioButtonSet" data-dojo-props="
+		<select id="rbs9" jsId="rbs9" multiple="true" data-dojo-type="idx.form.RadioButtonSet" data-dojo-props="
 			name: 'rbs9',
 			label: 'Disabled:',
 			disabled: true,

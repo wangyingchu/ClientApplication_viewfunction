@@ -1,14 +1,16 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/_base/sniff",
 	"dojo/_base/array",
 	"dojo/_base/html",
 	"dojo/_base/xhr",
 	"dojo/io/script",
 	"dijit/_Widget",
 	"dijit/_TemplatedMixin",
+	"dojo/has!dojo-bidi?../bidi/widget/PersonCard",
 	"dojo/text!./templates/PersonCard.html"
-], function(dojo_declare, dojo_lang, dojo_array, dojo_html, dojo_xhr, dojo_io_script, dijit_Widget, dijit_TemplatedMixin, templateString){
+], function(dojo_declare, dojo_lang, has, dojo_array, dojo_html, dojo_xhr, dojo_io_script, dijit_Widget, dijit_TemplatedMixin, bidiExtension, templateString){
 
 /**
  * @name idx.widget.PersonCard
@@ -16,7 +18,8 @@ define([
  * @augments dijit._Widget
  * @augments dijit._TemplatedMixin
  */
-return dojo_declare("idx.widget.PersonCard", [dijit_Widget, dijit_TemplatedMixin],
+var baseClassName = has("dojo-bidi")? "idx.widget.PersonCard_" : "idx.widget.PersonCard";
+var PersonCard = dojo_declare(baseClassName, [dijit_Widget, dijit_TemplatedMixin],
 /** @lends idx.widget.PersonCard# */
 {
 
@@ -96,11 +99,14 @@ return dojo_declare("idx.widget.PersonCard", [dijit_Widget, dijit_TemplatedMixin
 
 	_setValueAttr: function(value){
 		this.value = value;
-		this.containerNode.innerHTML = ""; // clear content
+		if ( this.containerNode )
+			this.containerNode.innerHTML = ""; // clear content
 		if(value && this.spec){
 			dojo_array.forEach(this.spec, function(prop){
 				this.render(prop, value);
 			}, this);
+			// Add Clear Div to solve the image with float, avoid the height uncalculate
+			dojo_html.create("div", {"class": "idxClearFloat"}, this.containerNode);
 		}
 	},
 
@@ -158,5 +164,5 @@ return dojo_declare("idx.widget.PersonCard", [dijit_Widget, dijit_TemplatedMixin
 	}
 
 });
-
+return has("dojo-bidi")? dojo_declare("idx.widget.PersonCard",[PersonCard,bidiExtension]) : PersonCard;
 });

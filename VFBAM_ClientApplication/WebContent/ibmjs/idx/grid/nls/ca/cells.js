@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Commutar la selecció de totes les files"		
 //end v1.x content
 });
+

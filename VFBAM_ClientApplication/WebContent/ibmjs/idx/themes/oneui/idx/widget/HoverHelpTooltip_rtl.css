@@ -7,15 +7,16 @@
 
 .dijitRtl .oneui .idxOneuiHoverHelpTooltipAbove,
 .dijitRtl .oneui .idxOneuiHoverHelpTooltipBelow {
-	margin-right: -10px;
+	margin-left: 10px;
 }
 .dijitRtl .oneui .idxOneuiHoverHelpTooltipABRight .idxOneuiHoverHelpTooltipConnector{
 	right: 9px;
 }
 
 .dijitRtl .oneui .idxOneuiHoverHelpTooltipLearnLink span{
-	background:url("images/hoverLearnMoreArrow_rtl.png") no-repeat left center;
-	padding-left: 13px;
+	/*background:url("images/hoverLearnMoreArrow_rtl.png") no-repeat left center;
+	padding-left: 13px;*/
+	padding-right: 0;
 	padding-top: 1px;	
 }
 

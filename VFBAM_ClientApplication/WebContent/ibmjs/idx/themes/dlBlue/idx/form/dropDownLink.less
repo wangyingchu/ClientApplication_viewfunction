@@ -1,0 +1,40 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxDropDownLink.idxLinkDerived {
+    white-space: nowrap;
+    display: inline;
+}
+.@{theme-name} {
+    .idxDropDownLink {
+        .idxDropDownLinkAnchor {
+            margin-right: 2px;
+            cursor: pointer;
+        }
+        .dijitArrowButtonInner {
+            cursor: pointer;
+            background-image: url("../../dijit/@{image-form-button-arrows-color}");
+        }
+    }
+    .idxDropDownLinkDisabled {
+        .dijitArrowButtonInner {
+            cursor: auto;
+            background-position: @arrow-disabled-down;
+            background-image: url("../../dijit/@{image-form-button-arrows}");
+        }
+    }
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxDropDownLink {
+            .idxDropDownLinkAnchor {
+                margin-right: 0px;
+                margin-left: 4px;
+            }
+        }
+    }
+}
+.@{theme-name} .idxDropDownLinkDisabled .idxDropDownLinkAnchor,.@{theme-name} .idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor {
+    color: @disabled-text-color;
+}
+.@{theme-name} .idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover,.@{theme-name} .idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover {
+    text-decoration: none;
+    cursor: default;
+}

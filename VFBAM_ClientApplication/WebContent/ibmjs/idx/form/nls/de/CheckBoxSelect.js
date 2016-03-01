@@ -10,3 +10,4 @@ define({
 	missingMessage: "Es muss mindestens ein Element ausgewählt werden."
 //end v1.x content
 });
+

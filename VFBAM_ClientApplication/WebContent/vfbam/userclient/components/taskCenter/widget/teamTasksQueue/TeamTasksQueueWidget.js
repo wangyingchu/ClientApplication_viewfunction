@@ -14,25 +14,32 @@ require([
         teamTaskQueueGridMap:null,
         teamTaskQueue_RolesMap:null,
         postCreate: function(){
-            console.log("TeamTasksQueueWidget created");
+        	var that=this;
+            var timer = new dojox.timing.Timer(1500);
+            timer.onTick = function(){
+            	that.initTeamTaskQueueGridsContainer(that);
+                timer.stop();
+            };
+            timer.start();
+            this.toolsDockChangeHandler= Application.MessageUtil.listenToMessageTopic(APP_TASKCENTER_TOOLSDOCKCHANGE_EVENT,dojo.hitch(this, "handleSizeChange"));
+            this.reloadRoleQueueTaskListHandler= Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT,dojo.hitch(this, "reloadSingleRoleQueue"));
+            this.taskDataUpdateHandler=Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_TASKDATAUPDATED_EVENT,dojo.hitch(this,"refreshUpdatedTaskData"));
+        },
+        initTeamTaskQueueGridsContainer:function(context){
+        	console.log("TeamTasksQueueWidget created");
             var contentBox = domGeom.getContentBox(dojo.byId("app_taskCenter_mainContainer"));
             var realHeight=contentBox.h-52;
             var currentHeightStyle=""+realHeight +"px";
             var styletxt="height:"+currentHeightStyle+"; width: 99%;";
-            if(dojo.isChrome){
-                styletxt="height:"+currentHeightStyle+"; width: 10px;";
-            }
-            this.application_operationPanelContainer = new idx.layout.MoveableTabContainer({
+            context.application_operationPanelContainer = new idx.layout.MoveableTabContainer({
                 style:styletxt
             });
-            this.application_operationPanelContainer .placeAt(this.teamTaskQueueGridsContainerNode);
-            this.teamTaskQueueGridList=[];
-            this.teamTaskQueueGridMap={};
-            this.teamTaskQueue_RolesMap={};
-            this.renderTeamTaskQueues();
-            this.toolsDockChangeHandler= Application.MessageUtil.listenToMessageTopic(APP_TASKCENTER_TOOLSDOCKCHANGE_EVENT,dojo.hitch(this, "handleSizeChange"));
-            this.reloadRoleQueueTaskListHandler= Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_RELOADROLEQUEUETASKLIST_EVENT,dojo.hitch(this, "reloadSingleRoleQueue"));
-            this.taskDataUpdateHandler=Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_TASKDATAUPDATED_EVENT,dojo.hitch(this,"refreshUpdatedTaskData"));
+            context.application_operationPanelContainer.placeAt(context.teamTaskQueueGridsContainerNode);
+            context.application_operationPanelContainer.startup();
+            context.teamTaskQueueGridList=[];
+            context.teamTaskQueueGridMap={};
+            context.teamTaskQueue_RolesMap={};
+            context.renderTeamTaskQueues();
         },
         handleSizeChange:function(){
             this.application_operationPanelContainer.resize();
@@ -48,7 +55,7 @@ require([
             };
             var that=this;
             var loadCallback=function(data){
-                if(data){
+            	if(data){
                     dojo.forEach(data,function(currentRoleQueueData){
                         var currentQueueDisplayName=currentRoleQueueData.displayName;
                         var currentQueueName=currentRoleQueueData.queueName;
@@ -69,16 +76,9 @@ require([
                         });
                         that.application_operationPanelContainer.addChild(currentContentPane);
                     });
-                    that.application_operationPanelContainer.startup();
-                    var intervalID =setInterval(function(){
-                        if(dojo.isChrome) {
-                            dojo.setStyle(that.application_operationPanelContainer.domNode, 'width', '99%');
-                        }
-                        that.application_operationPanelContainer.resize();
-                        window.clearInterval(intervalID);
-                    },300);
+                    that.application_operationPanelContainer.resize();
                     if(that.containerInitFinishCounterFuc){
-                        that.containerInitFinishCounterFuc();
+                       that.containerInitFinishCounterFuc();
                     }
                 }
             };

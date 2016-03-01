@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Alle Zeilen auswählen/abwählen"		
 //end v1.x content
 });
+

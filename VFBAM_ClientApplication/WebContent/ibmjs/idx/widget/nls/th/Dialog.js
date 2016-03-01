@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "ปิด"
 //end v1.x content
 });
+

@@ -13,9 +13,11 @@ define({
 	Success: "Gelukt",
 	Confirmation: "Bevestiging",
 	Question: "Vraag",
+	Progress: "Voortgang",
 	closeButtonLabel: "Sluiten",
 	cancelButtonLabel: "Annuleren",
 	executeButtonLabel: "OK",
 	checked: "Niet nogmaals vragen"
 //end v1.x content
 });
+

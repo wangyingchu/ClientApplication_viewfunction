@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Markera/avmarkera alla rader"		
 //end v1.x content
 });
+

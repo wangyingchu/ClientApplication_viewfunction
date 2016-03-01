@@ -10,3 +10,4 @@ define({
 	learnMoreLabel: "Aflaţi mai multe"
 //end v1.x content
 });
+

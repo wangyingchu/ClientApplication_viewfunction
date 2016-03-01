@@ -10,14 +10,14 @@
 @import url(../../common/dojox/TabBar.css);
 
 /* Adjustments for TabBar when used in a Heading. */
-.mblHeading .mblTabBar {
+.oneui .mblHeading .mblTabBar {
 	 float: none;
 	 display: inline-block;
 	 margin-top: 2px;
 	 background: transparent;
 }
 
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButton {
+.oneui .mblHeading .mblTabBarSegmentedControl .mblTabBarButton {
 	font-family: Helvetica Neue, Helvetica, sans-serif;
 	font-size: 12px;
 	outline: none;
@@ -26,16 +26,18 @@
 	box-shadow: inset 0 1px 0 rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.33);
 	color: #fff;
 	background-color: #2d2d2d;
+	background-image:-webkit-gradient(linear,center bottom,center top,from(#121212),to(#464646));
 	background-image: -webkit-linear-gradient(bottom, #121212, #464646); 
 	height: 27px;
 	line-height: 27px;
 	width: auto;
 }
 
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButtonSelected {
+.oneui .mblHeading .mblTabBarSegmentedControl .mblTabBarButtonSelected {
+	background-image:-webkit-gradient(linear,center bottom,center top,from(#323232),to(#5c5c5c));
 	background-image: -webkit-linear-gradient(bottom, #323232, #5c5c5c); 
 }
 
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButtonLabel {
+.oneui .mblHeading .mblTabBarSegmentedControl .mblTabBarButtonLabel {
 	padding: 0 29px;
 }

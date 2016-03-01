@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Megosztás",
+	actionSettings: "Beállítások",
 	actionHelp: "Súgó",
 	searchEntry: "Keresés",
-	searchSubmit: "Keresés"
+	searchSubmit: "Keresés",
+	primarySearchLabelSuffix: "elsődleges keresés",
+	secondarySearchLabelSuffix: "másodlagos keresés",
+	homeButton: "Kezdőlap"
 //end v1.x content
 });
+

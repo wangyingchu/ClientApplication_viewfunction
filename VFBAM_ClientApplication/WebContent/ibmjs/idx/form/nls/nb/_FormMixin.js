@@ -10,3 +10,4 @@ define({
 	legendText: "Obligatorisk"
 //end v1.x content
 });
+

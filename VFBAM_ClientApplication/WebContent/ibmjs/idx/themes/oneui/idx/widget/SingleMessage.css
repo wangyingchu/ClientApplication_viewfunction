@@ -13,7 +13,7 @@
 	margin: 10px 5px 10px 5px;
 	overflow: hidden;
 	position: relative;
-	width: 100%;
+	/*width: 100%;*/
 }
 
 .oneui .idxMessageStack .idxSingleMessage{
@@ -59,10 +59,14 @@
 
 .oneui .idxMessageTitle{
 	font-weight: bold;
+	overflow: hidden;
+	display: inline-block;
 }
 
 .oneui .idxMessageId{
 	margin-top: 1px;
+	overflow: hidden;
+	display: inline-block;
 }
 
 .oneui .idxMessageContent:hover .idxMessageTitle,
@@ -93,6 +97,14 @@
 
 .oneui .idxMessageIcon{
 	background-image: url('images/msgIcons_24bit.png');
+}
+
+.oneui .idxMessageHead .a11yDescription{
+	position: absolute;
+	clip: rect(0px 0px 0px 0px);
+	width:0px;
+	heigth:0px;
+	overflow:hidden;
 }
 
 .dj_ie6 .oneui .idxMessageIcon{
@@ -227,8 +239,8 @@
 	margin-top: 10px;
 }
 
-.oneui .idxMessageTimestamp, .idxMessageAction, .idxMessageContent,
-.oneui .idxMessageIcon, .idxMessageSeparator, .idxMessageFakeContent{
+.oneui .idxMessageTimestamp, .oneui .idxMessageAction, .oneui .idxMessageContent,
+.oneui .idxMessageIcon, .oneui .idxMessageSeparator, .oneui .idxMessageFakeContent{
 	float: left;
 	word-break: keep-all;
 }
@@ -295,4 +307,8 @@
 .dj_ie9 .oneui .idxMessageRefresh span:focus
 {
 	outline: 1px dotted #000000;
+}
+
+.oneui .idxMessageIconWraper{
+	float:left;
 }

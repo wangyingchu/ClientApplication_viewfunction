@@ -1,0 +1,20 @@
+.jui-tabs .ui-state-default{
+	background: #008ABF;
+	color: white;
+}
+.jui-tabs .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited{
+	color: white;
+}
+
+.jui-tabs .ui-tabs-active{
+	background: white;
+	color: #555;
+}
+
+.jui-tabs .ui-tabs-active a{
+	color: #555;
+}
+
+.jui-tabs .ui-tabs-nav{
+	background: white;
+}

@@ -19,6 +19,7 @@
 @import url(dojox/Carousel.css);
 @import url(dojox/CheckBox.css);
 @import url(dojox/ComboBox.css);
+@import url(dojox/ContentPane.css);
 @import url(dojox/EdgeToEdgeCategory.css);
 @import url(dojox/EdgeToEdgeList.css);
 @import url(dojox/FixedSplitter.css);
@@ -26,6 +27,7 @@
 @import url(dojox/Heading.css);
 @import url(dojox/IconMenu.css);
 @import url(dojox/PageIndicator.css);
+@import url(dojox/Pane.css);
 @import url(dojox/ProgressBar.css);
 @import url(dojox/ProgressIndicator.css);
 @import url(dojox/RadioButton.css);

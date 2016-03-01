@@ -61,6 +61,28 @@
 						widget.set("hint", "changed hint text");
 						doh.t(widget.get("hint") === "changed hint text");
 					});
+					
+					doh.register('validation', function(){
+					    var widget = dijit.byId('combobox1');
+					    widget.set('value',null);
+					    widget.set('required', true);
+					    doh.f(widget.validate());
+					    widget.set('value', 'CA');
+					    doh.t(widget.validate());
+					 });    
+					 
+					doh.register('Message', function(){
+					    var widget = dijit.byId('combobox1');
+					    doh.t(widget.getErrorMessage()=== "Hawaii is an invalid option!");
+					});
+					
+					doh.register('setValue', function(){
+					    var widget = dijit.byId('combobox1');
+					    widget.set('value', 'Canada');
+					    doh.t(widget.get('value') === 'Canada');
+					});
+					
+					
 				}else{
 					// Register performance testcases
 					var createWidget = function(div){
@@ -85,13 +107,13 @@
 									label: "label",
 									items: [{
 										value: "AL",
-										label: "Alabama",
+										label: "Alabama"
 									}, {
 										value: "AK",
 										label: "Alaska"
 									}, {
 										value: "AZ",
-										label: "Arizona",
+										label: "Arizona"
 									}, {
 										value: "AR",
 										label: "Arkansas"
@@ -128,9 +150,6 @@
 					id: "combobox1",
 					label: "Test composite ComboBox: ",
 					hint: "some hint",
-					isValid: function(){
-						return this.get("value") != "Hawaii";
-					},
 					invalidMessage: "Hawaii is an invalid option!"
 			'>
 				<option value="AK">Alaska</option>
@@ -140,7 +159,7 @@
 				<option value="AE">Armed Forces Europe</option>
 				<option value="AP">Armed Forces Pacific</option>
 				<option value="AA">Armed Forces the Americas</option>
-				<option value="CA" selected>California</option>
+				<option value="CA">California</option>
 				<option value="CO">Colorado</option>
 				<option value="CT">Connecticut</option>
 				<option value="DE">Delaware</option>

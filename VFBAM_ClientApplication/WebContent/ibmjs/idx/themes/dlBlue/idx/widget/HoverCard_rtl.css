@@ -1,0 +1,42 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dijitRtl .dlBlue .idxPreviewContent .idxPreviewTitle,
+.dijitRtl .dlBlue .idxPreviewContent > p {
+  padding: 0 110px 0 0;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardWithoutPreviewImg .idxPreviewContent .idxPreviewTitle,
+.dijitRtl .dlBlue .idxOneuiHoverCardWithoutPreviewImg .idxPreviewContent > p {
+  padding: 0;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCard .idxPersonCardContainer > div {
+  padding: 0 120px 0 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardMoreActions {
+  float: left;
+  padding: 5px 10px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardLeft .idxOneuiHoverCardCloseIcon {
+  right: auto;
+  left: 12px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardBelow .idxOneuiHoverCardCloseIcon {
+  right: auto;
+  left: 9px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardAbove .idxOneuiHoverCardCloseIcon {
+  right: auto;
+  left: 9px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardABRight .idxOneuiHoverCardConnector {
+  right: 20px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardActionIcons {
+  float: right;
+}
+.dijitRtl .dlBlue .idxOneuiHoverCardActionIcons .idxOneuiHoverCardFooterButton {
+  margin: 0 0 0 10px;
+}
+.dlBlue .idxOneuiHoverCardMenuRtl {
+  float: left;
+}

@@ -1,0 +1,24 @@
+.jui .ui-datepicker .ui-state-default, 
+.jui .ui-widget-content .ui-state-default, 
+.jui .ui-widget-header .ui-state-default{
+	background: none repeat scroll 0 0 #008ABF;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+.jui .ui-state-hover, 
+.jui .ui-widget-content .ui-state-hover, 
+.jui .ui-widget-header .ui-state-hover, 
+.jui .ui-state-focus, 
+.jui .ui-widget-content .ui-state-focus, 
+.jui .ui-widget-header .ui-state-focus {
+    background: none repeat scroll 0 0 #00B0DA;
+    color: #FFFFFF;
+    font-weight: normal;
+}
+
+.jui .ui-datepicker-header{
+	background: none repeat scroll 0 0 #008ABF;
+	color: #FFFFFF;
+}

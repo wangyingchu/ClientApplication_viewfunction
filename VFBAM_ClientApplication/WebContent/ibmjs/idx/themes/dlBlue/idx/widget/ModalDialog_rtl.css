@@ -1,0 +1,42 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dijitRtl .dlBlue .idxModalDialog .dijitDialogTitleBar .dijitDialogCloseIcon,
+.dijitRtl .dlBlue .idxConfirmDialog .dijitDialogTitleBar .dijitDialogCloseIcon {
+  right: auto;
+  left: 5px;
+}
+.dijitRtl .dlBlue .idxModalDialog .messageSummary .messageIcon,
+.dijitRtl .dlBlue .idxConfirmDialog .messageSummary .messageIcon {
+  float: right;
+  margin: 0 0 0 15px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+.dlBlue.idx_i18n_il .idxModalDialogRtl .messageSummary img,
+.dlBlue.idx_i18n_il .idxConfirmDialogRtl .messageSummary img {
+  background-image: url('images/msgIcons_24bit_rtl_il.png');
+}
+.dlBlue .idxModalDialogRtl .messageDialogFooter .messageCheckBox,
+.dlBlue .idxConfirmDialogRtl .messageDialogFooter .messageCheckBox {
+  float: right;
+}
+.dlBlue .idxModalDialogRtl .messageDialogFooter .messageAction,
+.dlBlue .idxConfirmDialogRtl .messageDialogFooter .messageAction {
+  float: left;
+}
+.dlBlue .idxModalDialogRtl .messageRef,
+.dlBlue .idxConfirmDialogRtl .messageRef {
+  float: right;
+  margin-left: 10px;
+}
+.dlBlue .idxModalDialogRtl .messageTimeStamp,
+.dlBlue .idxConfirmDialogRtl .messageTimeStamp {
+  float: right;
+}
+.dlBlue .idxModalDialogRtl .dijitTabContainerCompactRtl .dijitTabContainerTop-tabs,
+.dlBlue .idxConfirmDialogRtl .dijitTabContainerCompactRtl .dijitTabContainerTop-tabs {
+  padding-right: 30px;
+}

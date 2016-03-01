@@ -5,7 +5,7 @@
 	US Government Users Restricted Rights - Use, duplication or
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <title>Mega menu tests</title>
@@ -20,6 +20,7 @@
 
         <style id="idxStyles" type="text/css">
             @import "../../themes/oneui/oneui.css";
+            @import "../../tests/_pagefooter/_PageFooter.css";
             @import "../../tests/test.css";
         </style>
 		
@@ -88,6 +89,7 @@
 
 		<script type="text/javascript" id="postDojo">
 			var modules = [
+				"dojo._base.html",
 				"idx.widget.Menu",
 				"idx.widget.MenuBar",
 				"idx.widget.MenuDialog",
@@ -99,10 +101,13 @@
 				"dijit.registry",
 				"dijit.Tooltip",
 				"dojo.dom",
+				"dojo.dom-geometry",
 				"dojo.parser",
-				"dojo.ready"];
+				"dojo.ready",
+				"idx.tests._pagefooter._PageFooter"]; 
 				
-			var OneuiMenu,
+			var html,
+				OneuiMenu,
 				OneuiMenuBar,
 				OneuiMenuDialog,
 				OneuiMenuHeading,
@@ -113,10 +118,13 @@
 				registry,
 				Tooltip,
 				dom,
+				domGeom,
 				parser,
-				ready;
+				ready,
+				_PageFooter;
 				
 			function preParse(modules){
+				html = modules["dojo/_base/html"];
 				OneuiMenu = modules["idx/widget/Menu"];
 				OneuiMenuBar = modules["idx/widget/MenuBar"];
 				OneuiMenuDialog = modules["idx/widget/MenuDialog"];
@@ -128,8 +136,10 @@
 				registry = modules["dijit/registry"];
 				Tooltip = modules["dijit/Tooltip"];
 				dom = modules["dojo/dom"];
+				domGeom = modules["dojo/dom-geometry"];
 				parser = modules["dojo/parser"];
 				ready = modules["dojo/ready"];
+				_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
 			}
 				
 			function postParse(modules){
@@ -143,49 +153,49 @@
 						});
 					}
 				
-				bind("testpopup_trigger_elem_4_nnaa_id", false, false, "above-alt");
+				bind("testpopup_trigger_elem_4_nnaa_id", false, false, html._isBodyLtr()?"above-alt":"above");
 				bind("testpopup_trigger_elem_4_nnac_id", false, false, "above-centered");
-				bind("testpopup_trigger_elem_4_nnar_id", false, false, "above");
-				bind("testpopup_trigger_elem_4_nnld_id", false, false, "before");
-				bind("testpopup_trigger_elem_4_nnrd_id", false, false, "after");
-				bind("testpopup_trigger_elem_4_nnlc_id", false, false, "before-centered");
-				bind("testpopup_trigger_elem_4_nnrc_id", false, false, "after-centered");
-				bind("testpopup_trigger_elem_4_nnba_id", false, false, "below-alt");
+				bind("testpopup_trigger_elem_4_nnar_id", false, false, html._isBodyLtr()?"above":"above-alt");
+				bind("testpopup_trigger_elem_4_nnld_id", false, false, html._isBodyLtr()?"before":"after");
+				bind("testpopup_trigger_elem_4_nnrd_id", false, false, html._isBodyLtr()?"after":"before");
+				bind("testpopup_trigger_elem_4_nnlc_id", false, false, html._isBodyLtr()?"before-centered":"after-centered");
+				bind("testpopup_trigger_elem_4_nnrc_id", false, false, html._isBodyLtr()?"after-centered":"before-centered");
+				bind("testpopup_trigger_elem_4_nnba_id", false, false, html._isBodyLtr()?"below-alt":"below");
 				bind("testpopup_trigger_elem_4_nnbc_id", false, false, "below-centered");
-				bind("testpopup_trigger_elem_4_nnbr_id", false, false, "below");
+				bind("testpopup_trigger_elem_4_nnbr_id", false, false, html._isBodyLtr()?"below":"below-alt");
 				
-				bind("testpopup_trigger_elem_4_ynaa_id", true, false, "above-alt");
+				bind("testpopup_trigger_elem_4_ynaa_id", true, false, html._isBodyLtr()?"above-alt":"above");
 				bind("testpopup_trigger_elem_4_ynac_id", true, false, "above-centered");
-				bind("testpopup_trigger_elem_4_ynar_id", true, false, "above");
-				bind("testpopup_trigger_elem_4_ynld_id", true, false, "before");
-				bind("testpopup_trigger_elem_4_ynrd_id", true, false, "after");
-				bind("testpopup_trigger_elem_4_ynlc_id", true, false, "before-centered");
-				bind("testpopup_trigger_elem_4_ynrc_id", true, false, "after-centered");
-				bind("testpopup_trigger_elem_4_ynba_id", true, false, "below-alt");
+				bind("testpopup_trigger_elem_4_ynar_id", true, false, html._isBodyLtr()?"above":"above-alt");
+				bind("testpopup_trigger_elem_4_ynld_id", true, false, html._isBodyLtr()?"before":"after");
+				bind("testpopup_trigger_elem_4_ynrd_id", true, false, html._isBodyLtr()?"after":"before");
+				bind("testpopup_trigger_elem_4_ynlc_id", true, false, html._isBodyLtr()?"before-centered":"after-centered");
+				bind("testpopup_trigger_elem_4_ynrc_id", true, false, html._isBodyLtr()?"after-centered":"before-centered");
+				bind("testpopup_trigger_elem_4_ynba_id", true, false, html._isBodyLtr()?"below-alt":"below");
 				bind("testpopup_trigger_elem_4_ynbc_id", true, false, "below-centered");
-				bind("testpopup_trigger_elem_4_ynbr_id", true, false, "below");
+				bind("testpopup_trigger_elem_4_ynbr_id", true, false, html._isBodyLtr()?"below":"below-alt");
 				
-				bind("testpopup_trigger_elem_4_nyaa_id", false, true, "above-alt");
+				bind("testpopup_trigger_elem_4_nyaa_id", false, true, html._isBodyLtr()?"above-alt":"above");
 				bind("testpopup_trigger_elem_4_nyac_id", false, true, "above-centered");
-				bind("testpopup_trigger_elem_4_nyar_id", false, true, "above");
-				bind("testpopup_trigger_elem_4_nyld_id", false, true, "before");
-				bind("testpopup_trigger_elem_4_nyrd_id", false, true, "after");
-				bind("testpopup_trigger_elem_4_nylc_id", false, true, "before-centered");
-				bind("testpopup_trigger_elem_4_nyrc_id", false, true, "after-centered");
-				bind("testpopup_trigger_elem_4_nyba_id", false, true, "below-alt");
+				bind("testpopup_trigger_elem_4_nyar_id", false, true, html._isBodyLtr()?"above":"above-alt");
+				bind("testpopup_trigger_elem_4_nyld_id", false, true, html._isBodyLtr()?"before":"after");
+				bind("testpopup_trigger_elem_4_nyrd_id", false, true, html._isBodyLtr()?"after":"before");
+				bind("testpopup_trigger_elem_4_nylc_id", false, true, html._isBodyLtr()?"before-centered":"after-centered");
+				bind("testpopup_trigger_elem_4_nyrc_id", false, true, html._isBodyLtr()?"after-centered":"before-centered");
+				bind("testpopup_trigger_elem_4_nyba_id", false, true, html._isBodyLtr()?"below-alt":"below");
 				bind("testpopup_trigger_elem_4_nybc_id", false, true, "below-centered");
-				bind("testpopup_trigger_elem_4_nybr_id", false, true, "below");
+				bind("testpopup_trigger_elem_4_nybr_id", false, true, html._isBodyLtr()?"below":"below-alt");
 				
-				bind("testpopup_trigger_elem_4_yyaa_id", true, true, "above-alt");
+				bind("testpopup_trigger_elem_4_yyaa_id", true, true, html._isBodyLtr()?"above-alt":"above");
 				bind("testpopup_trigger_elem_4_yyac_id", true, true, "above-centered");
-				bind("testpopup_trigger_elem_4_yyar_id", true, true, "above");
-				bind("testpopup_trigger_elem_4_yyld_id", true, true, "before");
-				bind("testpopup_trigger_elem_4_yyrd_id", true, true, "after");
-				bind("testpopup_trigger_elem_4_yylc_id", true, true, "before-centered");
-				bind("testpopup_trigger_elem_4_yyrc_id", true, true, "after-centered");
-				bind("testpopup_trigger_elem_4_yyba_id", true, true, "below-alt");
+				bind("testpopup_trigger_elem_4_yyar_id", true, true, html._isBodyLtr()?"above":"above-alt");
+				bind("testpopup_trigger_elem_4_yyld_id", true, true, html._isBodyLtr()?"before":"after");
+				bind("testpopup_trigger_elem_4_yyrd_id", true, true, html._isBodyLtr()?"after":"before");
+				bind("testpopup_trigger_elem_4_yylc_id", true, true, html._isBodyLtr()?"before-centered":"after-centered");
+				bind("testpopup_trigger_elem_4_yyrc_id", true, true, html._isBodyLtr()?"after-centered":"before-centered");
+				bind("testpopup_trigger_elem_4_yyba_id", true, true, html._isBodyLtr()?"below-alt":"below");
 				bind("testpopup_trigger_elem_4_yybc_id", true, true, "below-centered");
-				bind("testpopup_trigger_elem_4_yybr_id", true, true, "below");
+				bind("testpopup_trigger_elem_4_yybr_id", true, true, html._isBodyLtr()?"below":"below-alt");
 				
 				dom.byId("testpopup_leftClickToOpen_default").innerHTML = "" + testpopupmd.leftClickToOpen;
 				dom.byId("testpopup_hoverToOpen_default").innerHTML = "" + testpopupmd.hoverToOpen;
@@ -196,6 +206,8 @@
 				dom.byId("testpopup_hoverToOpen").selectedIndex = "-1";
 				dom.byId("testpopup_popupPosition").selectedIndex = "-1";
 				dom.byId("testpopup_useConnector").selectedIndex = "-1";
+				
+				new _PageFooter();
 			}
 			
 			dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
@@ -236,7 +248,7 @@
 		
 		<script type="text/javascript" src="../../tests/commonTest.js"></script>
     </head>
-    <body role="main" id="body_id"  style="width: 100%; height: 100%; margin: 0; padding: 0px;">
+    <body role="main" id="body_id" class="oneui" style="width: 100%; height: 100%; margin: 0; padding: 0px;">
 		<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 		<script type="text/javascript">applyThemeToBody("oneui");</script><!-- only oneui theme is supported -->
 	
@@ -256,7 +268,7 @@
 	            </ul>
 	        </p>
 			
-	        <div data-dojo-type="idx.widget.MenuBar">
+	        <div id="test_1" data-dojo-type="idx.widget.MenuBar">
 	        	
 	            <div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>dijit.Menu</span>
@@ -278,7 +290,7 @@
 	            
 				<div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>MenuDialog +static</span>
-	                <div data-dojo-type="idx.widget.MenuDialog">
+	                <div id="test_1_menudialog_1" data-dojo-type="idx.widget.MenuDialog">
 	                    <div class="arbitraryMenuDialog">
 	                        <h3>Drop-down idx.widget.MenuDialog</h3>
 	                        <p>
@@ -290,7 +302,7 @@
 	            
 				<div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>+interactive</span>
-	                <div data-dojo-type="idx.widget.MenuDialog" reset="resetTextInput('testmbar_field1_id'); resetTextInput('testmbar_field2_id')">
+	                <div id="test_1_menudialog_2" data-dojo-type="idx.widget.MenuDialog" reset="resetTextInput('testmbar_field1_id'); resetTextInput('testmbar_field2_id')">
 	                    <div class="arbitraryMenuDialog">
 	                        <h3>Drop-down idx.widget.MenuDialog</h3>
 	                        <p>
@@ -304,7 +316,7 @@
 	                        	<br/>
 	                        	Field #2: <input id="testmbar_field2_id" type="text" name="field2" value="Field #2 initial value" tabindex="1"/>(tabindex 1)
 	                        </p>
-	                        <button onclick="registry.getEnclosingWidget(this).onExecute();" tabindex="3">Call onExecute()</button>
+	                        <button id="test_1_menudialog_2_execute" onclick="registry.getEnclosingWidget(this).onExecute();" tabindex="3">Call onExecute()</button>
 	                        <button onclick="registry.getEnclosingWidget(this).onCancel();" tabindex="4">Call onCancel()</button>
 	                        <div data-dojo-type="dijit.Tooltip" data-dojo-props="connectId:'testmbar_field1_id',position:['below']">
 	                            <p>
@@ -317,7 +329,7 @@
 	            
 				<div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>+connector</span>
-	                <div data-dojo-type="idx.widget.MenuDialog" data-dojo-props="useConnector:true">
+	                <div id="test_1_menudialog_3" data-dojo-type="idx.widget.MenuDialog" data-dojo-props="useConnector:true">
 	                    <div class="arbitraryMenuDialog">
 	                        <h3>Drop-down idx.widget.MenuDialog</h3>
 	                        <p>
@@ -329,7 +341,7 @@
 	            
 				<div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>+menus</span>
-	                <div data-dojo-type="idx.widget.MenuDialog" id="testmbar_cascade_l1mdlg">
+	                <div id="test_1_menudialog_4" data-dojo-type="idx.widget.MenuDialog" id="testmbar_cascade_l1mdlg">
 	                    <p style="padding:5px">
 	                        <a href="javascript:alert('Boo!');">Dummy focussable link</a>
 	                    </p>
@@ -340,7 +352,7 @@
 	                        <div data-dojo-type="dijit.MenuItem" onclick="alert('Menu item clicked');">Menu item</div>
 	                        <div data-dojo-type="dijit.PopupMenuItem">
 	                            <span>idx.widget.Menu</span>
-	                            <div data-dojo-type="idx.widget.Menu">
+	                            <div id="testmbar_cascade_simplemenu" data-dojo-type="idx.widget.Menu">
 	                                <div data-dojo-type="dijit.MenuItem" onclick="alert('Menu item clicked');">Menu item</div>
 	                                <div data-dojo-type="dijit.MenuItem" onclick="alert('Menu item clicked');">Menu item</div>
 	                                <div data-dojo-type="dijit.MenuItem" onclick="alert('Menu item clicked');">Menu item</div>
@@ -496,7 +508,7 @@
 	            </li>
 	        </ul>
 			
-	        <div data-dojo-type="idx.widget.Menu">
+	        <div id="test_2" data-dojo-type="idx.widget.Menu">
 	        	
 	            <div data-dojo-type="dijit.MenuItem" onclick="alert('Menu item clicked');">Menu item</div>
 				
@@ -511,7 +523,7 @@
 				
 	            <div data-dojo-type="dijit.PopupMenuItem">
 	                <span>idx.widget.MenuDialog</span>
-	                <div data-dojo-type="idx.widget.MenuDialog">
+	                <div id="test_2_menudialog_1" data-dojo-type="idx.widget.MenuDialog">
 	                    <div class="arbitraryMenuDialog">
 	                        <h3>Cascaded idx.widget.MenuDialog</h3>
 	                        <p>
@@ -554,7 +566,7 @@
 			<!-- IFrame below must have a name attribute set to work properly in all browsers. -->
 	        <iframe id="testpopup_trigger_elem_3_id" name="testpopup_trigger_elem_3_id" frameborder="0" style="width:400px;height:200px;margin: 10px 0px 0px 300px;" src="test_DummyIframeContent.html"></iframe>
 	        <br />
-	        <button onclick="dom.byId('testpopup_trigger_elem_3_id').src='test_DummyIframeContent.html';">
+	        <button id="reload_iframe" onclick="dom.byId('testpopup_trigger_elem_3_id').src='test_DummyIframeContent.html';">
 	            Reload iframe
 	        </button>
 	        <br />
@@ -570,11 +582,11 @@
 	                    <br/>
 	                    and the directional elements.
 	                </p>
-	                <button onclick="registry.getEnclosingWidget(this).onExecute();" tabindex="3">Call onExecute()</button>
+	                <button id="testpopup_menudialog_id_execute" onclick="registry.getEnclosingWidget(this).onExecute();" tabindex="3">Call onExecute()</button>
 	                <button onclick="registry.getEnclosingWidget(this).onCancel();" tabindex="4">Call onCancel()</button>
 	            </div>
 	        </div>
-	        <div class="testOptions">
+	        <div id="menudialog_properties" class="testOptions">
 	            <p>
 	                MenuDialog properties:
 	            </p>
@@ -619,7 +631,7 @@
 	        <p>
 	            The following directional elements use the same dialog but fix all the display settings:
 	        </p>
-	        <table style="margin-left: 300px;"><tr><td>
+	        <table id="menudialog_display_settings" style="margin-left: 300px;"><tr><td>
 	            <table>
 	                <tr>
 	                    <td></td>
@@ -753,7 +765,7 @@
 	            </li>
 	        </ul>
 			
-	        <div data-dojo-type="idx.widget.MenuBar">
+	        <div id="test_4" data-dojo-type="idx.widget.MenuBar">
 	        	
 	            <div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>dijit.Menu</span>
@@ -766,7 +778,7 @@
 				
 	            <div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>idx.widget.MenuDialog + idx.widget.Menu + menuForDialog:true</span>
-	                <div data-dojo-type="idx.widget.MenuDialog">
+	                <div id="test_4_menudialog_1" data-dojo-type="idx.widget.MenuDialog">
 	                    <div id="testmenu_menu_id" data-dojo-type="idx.widget.Menu">
 	                        <div id="testmenu_menu_heading_1" data-dojo-type="idx.widget.MenuHeading" data-dojo-props="column:'0',label:'Column #0 (empty)'">Error - label property did not work.</div>
 	                        <div id="testmenu_menu_heading_2" data-dojo-type="idx.widget.MenuHeading" data-dojo-props="column:'1'">Column #1 (cut, copy)</div>
@@ -794,11 +806,11 @@
 	        </div>
 			
 	        <br />
-	        <button onclick="registry.byId('testmenu_menu_item_4').column='0';registry.byId('testmenu_menu_id').refresh();">
+	        <button id="test_4_move_item" onclick="registry.byId('testmenu_menu_item_4').column='0';registry.byId('testmenu_menu_id').refresh();">
 	            Move menu item
 	        </button>
 	        <br />
-	        <button onclick="registry.byId('testmenu_menu_id').columnNodes[1].style.background='pink';">
+	        <button id="test_4_color_column" onclick="registry.byId('testmenu_menu_id').columnNodes[1].style.background='pink';">
 	            Colour column 2 of the menu
 	        </button>
 			
@@ -817,7 +829,7 @@
 	            </ul>
 	        </p>
 			
-	        <div data-dojo-type="dijit.MenuBar">
+	        <div id="test_5" data-dojo-type="dijit.MenuBar">
 	        	
 	            <div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>dijit.Menu</span>
@@ -986,7 +998,7 @@
 	            </ul>
 	        </p>
 	
-	        <div data-dojo-type="dijit.MenuBar">
+	        <div id="test_5_2" data-dojo-type="dijit.MenuBar">
 	
 	            <div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>empty dijit.Menu</span>
@@ -1031,7 +1043,7 @@
 				
 	            <div data-dojo-type="dijit.PopupMenuBarItem">
 	                <span>idx.widget.MenuDialog +idx.widget.Menu[menuForDialog:false]</span>
-	                <div data-dojo-type="idx.widget.MenuDialog">
+	                <div id="test_5_2_menudialog_1" data-dojo-type="idx.widget.MenuDialog">
 	                    <p style="padding:5px">
 	                        <a href="javascript:alert('Boo!');">Dummy focussable link</a>
 	                    </p>
@@ -1063,7 +1075,7 @@
 	            </li>
 	        </ul>
 			
-	        <div data-dojo-type="dijit.Menu">
+	        <div id="test_6" data-dojo-type="dijit.Menu">
 	        	
 	            <div data-dojo-type="dijit.MenuItem" onclick="alert('Menu item clicked');">Menu item</div>
 				
@@ -1078,7 +1090,7 @@
 				
 	            <div data-dojo-type="dijit.PopupMenuItem">
 	                <span>idx.widget.MenuDialog</span>
-	                <div data-dojo-type="idx.widget.MenuDialog">
+	                <div id="test_6_menudialog_1" data-dojo-type="idx.widget.MenuDialog">
 	                    <div class="arbitraryMenuDialog">
 	                        <h3>Cascaded idx.widget.MenuDialog</h3>
 	                        <p>

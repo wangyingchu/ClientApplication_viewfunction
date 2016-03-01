@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Κλείσιμο"
 //end v1.x content
 });
+

@@ -8,7 +8,7 @@ define(["dojo/dom", "dojo/on", "dojo/_base/xhr",
 		dom.byId("rightPane").appendChild(prog.domNode);
 		prog.start();
 		xhr.get({
-			url : 'views/ajaxLoad.html',
+			url : 'gallery/views/ajaxLoad.html',
 			handleAs : 'text',
 			timeout: 30000,
 			load : function(data) {

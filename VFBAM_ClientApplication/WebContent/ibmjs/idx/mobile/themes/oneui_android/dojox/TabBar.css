@@ -9,7 +9,7 @@
 
 @import url(../../common/dojox/TabBar.css);
 
-.mblHeading .mblTabBarFlatTab {
+.oneui .mblHeading .mblTabBarFlatTab {
 	border: none;
 	background: transparent;
 	margin-left: 50px;
@@ -17,7 +17,7 @@
 	height: 48px;
 }
 
-.mblHeading .mblTabBarFlatTab .mblTabBarButton {
+.oneui .mblHeading .mblTabBarFlatTab .mblTabBarButton {
 	outline: none;
 	color: rgba(255, 255, 255, 0.8);
 	padding: 0 42px;
@@ -28,12 +28,12 @@
 	border: none;
 }
 
-.mblHeading .mblTabBarFlatTab .mblTabBarButton .mblTabBarButtonLabel {
+.oneui .mblHeading .mblTabBarFlatTab .mblTabBarButton .mblTabBarButtonLabel {
 	color: inherit;
 	font-weight: inherit;
 }
 
-.mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected {
+.oneui .mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected {
 	color: #fff;
 	font-weight: 900;
 	padding: 0 41px;
@@ -41,15 +41,17 @@
 	border-color: #101010;
 	border-style: solid;
 	background: #454545;
+	background-image: -webkit-gradient(linear, center bottom, center top, from(#1f1f1f), to(#6b6b6b), color-stop(0.1, #313131), color-stop(0.9, #5c5c5c), color-stop(0.95, #6b6b6b));
 	background-image: -webkit-linear-gradient(bottom, #1f1f1f, #1f1f1f 2px, #313131 2px, #5c5c5c 47px, #6b6b6b 47px, #6b6b6b 48px);
 	-webkit-border-image: -webkit-linear-gradient(bottom, #0f0f0f, #353535) 1 100%;
 }
 
-.mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected .mblTabBarButtonLabel {
+.oneui .mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected .mblTabBarButtonLabel {
 	color: inherit;
 	font-weight: inherit;
 }
 
-.mblHeading .mblTabBarFlatTab .mblTabBarButton:active {
+.oneui .mblHeading .mblTabBarFlatTab .mblTabBarButton:active {
+	background-image: -webkit-gradient(linear, center bottom, center top, from(#2688ac), to(#6b6b6b), color-stop(0.1, #2688ac), color-stop(0.9, #5c5c5c), color-stop(0.95, #6b6b6b));
 	background-image: -webkit-linear-gradient(bottom, #2688ac, #2688ac 2px, #33b5e5 2px, #33b5e5);
 }

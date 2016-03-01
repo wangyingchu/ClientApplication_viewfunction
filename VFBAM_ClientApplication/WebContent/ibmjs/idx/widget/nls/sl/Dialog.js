@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Zapri"
 //end v1.x content
 });
+

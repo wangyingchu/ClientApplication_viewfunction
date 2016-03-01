@@ -10,3 +10,4 @@ define({
 	missingMessage: "Du må velge minst ett element."
 //end v1.x content
 });
+

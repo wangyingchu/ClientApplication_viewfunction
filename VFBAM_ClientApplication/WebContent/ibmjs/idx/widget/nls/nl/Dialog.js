@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Sluiten"
 //end v1.x content
 });
+

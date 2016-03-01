@@ -10,3 +10,4 @@ define({
 	learnMoreLabel: "További tudnivalók"
 //end v1.x content
 });
+

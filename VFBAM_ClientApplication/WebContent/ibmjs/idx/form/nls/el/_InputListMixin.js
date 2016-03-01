@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Πρέπει να επιλεγεί τουλάχιστον ένα στοιχείο."
 //end v1.x content
 });
+

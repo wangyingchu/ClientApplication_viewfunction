@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "All ({num}) көру",
+	viewAll: "Барлығын көру ({num})&lrm;",
 	viewDetails: "Толық ақпараттар",
 	refresh: "Жаңарту",
 	showDetails: "Мәліметтерді көрсету",
 	hideDetails: "Мәліметтерді жасыру"
 //end v1.x content
 });
+

@@ -1,0 +1,106 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxSecondaryButton .dijitButtonNode {
+  font-weight: normal;
+}
+.dlBlue .idxSecondaryButton .dijitButtonNode {
+  background-color: #6f7076;
+  border: 1px solid #6f7076;
+  color: #ffffff;
+}
+.dlBlue .idxSecondaryButtonHover .dijitButtonNode {
+  background-color: #878a8c;
+  border: 1px solid #878a8c;
+  color: #ffffff;
+}
+.dlBlue .idxSecondaryButtonActive .dijitButtonNode {
+  background-color: #393a3f;
+  border: solid 1px #393a3f;
+  color: #ffffff;
+}
+.dlBlue .idxSecondaryButtonDisabled .dijitButtonNode {
+  background-color: #cdced2;
+  border: solid 1px #cdced2;
+  color: #4c4d53;
+}
+.dlBlue .idxSecondaryButton.dijitToggleButtonChecked .dijitButtonNode {
+  background-color: #393a3f;
+}
+.dlBlue .idxSecondaryButton.dijitToggleButtonDisabled .dijitButtonNode {
+  background-color: #cdced2;
+}
+.dlBlue .idxSecondaryButtonHover.dijitComboButton .dijitButtonNode {
+  background-color: #6f7076;
+}
+.dlBlue .idxSecondaryButtonHover.dijitComboButton .dijitButtonNodeHover,
+.dlBlue .idxSecondaryButtonHover.dijitComboButton .dijitDownArrowButtonHover {
+  background-color: #878a8c;
+}
+.dlBlue .idxSecondaryButtonActive.dijitComboButton .dijitButtonNode {
+  background-color: #6f7076;
+}
+.dlBlue .idxSecondaryButtonActive.dijitComboButton .dijitButtonNodeActive,
+.dlBlue .idxSecondaryButtonActive.dijitComboButton .dijitDownArrowButtonActive {
+  background-color: #393a3f;
+}
+.dlBlue .idxSpecialButton .dijitButtonNode {
+  background-color: #00649d;
+  background-image: -moz-linear-gradient(top, #008abf, #085884);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#008abf), to(#085884));
+  background-image: -webkit-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: -o-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: -ms-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: linear-gradient(top, #008abf 0%, #085884 100%);
+  border: 1px solid #0a5f8e;
+  color: #ffffff;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.35);
+}
+.dlBlue .idxSpecialButtonHover .dijitButtonNode {
+  background-color: #206b93;
+  background-image: -moz-linear-gradient(top, #1a95c5, #206b93);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a95c5), to(#206b93));
+  background-image: -webkit-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: -o-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: -ms-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: linear-gradient(top, #1a95c5 0%, #206b93 100%);
+}
+.dlBlue .idxSpecialButtonActive .dijitButtonNode {
+  background-color: #0a4e74;
+  background-image: -moz-linear-gradient(top, #085884, #008abf);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#085884), to(#008abf));
+  background-image: -webkit-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: -o-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: -ms-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: linear-gradient(top, #085884 0%, #008abf 100%);
+  color: #f2fafe;
+}
+.dlBlue .idxSpecialButtonDisabled .dijitButtonNode {
+  color: #ddd;
+}
+.dlBlue .dijitButton .dijitButtonNode {
+  min-width: 87px;
+}
+.dlBlue .dijitToggleButton .dijitButtonNode {
+  min-width: 99px;
+}
+.dlBlue .dijitToggleButton.idxButtonCompact .dijitButtonNode {
+  min-width: 55px;
+}
+.dlBlue .dijitTabDropDownText {
+  display: none;
+  visibility: hidden;
+}
+.dj_ie .dlBlue .idxSpecialButton .dijitButtonNode {
+  border: 1px solid #0a4e74;
+}
+.dj_ie .dlBlue .idxSpecialButtonDisabled .dijitButtonNode {
+  color: #ddd;
+}
+.dlBlue .dijitComboButton.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitDropDownButton.idxButtonCompact .dijitButtonText {
+  padding: 0 10px 0 0;
+}
+.dlBlue .dijitButton.idxButtonCompact .dijitButtonNode,
+.dlBlue .idxSecondaryButton.idxButtonCompact .dijitButtonNode,
+.dlBlue .idxSpecialButton.idxButtonCompact .dijitButtonNode {
+  min-width: 65px;
+}

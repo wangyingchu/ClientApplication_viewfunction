@@ -5,6 +5,7 @@ define([
 	"dojo/_base/lang",
 	"dojo/_base/array",
 	"dojo/_base/event",
+	"dojo/i18n",
 	"dojo/dom-construct",
 	"dojo/dom-geometry",
 	"dojo/dom-attr",
@@ -12,17 +13,17 @@ define([
 	"dojo/string",
 	"dojo/parser",
 	"dojo/query",
+	"dojo/keys",
 	"gridx/core/_Module",
 	"dojo/text!../../templates/FilterBar.html",
-	"dojo/i18n!gridx/nls/FilterBar",
-	"dojo/i18n!../../nls/FilterBar",
-	"gridx/modules/filter/Filter",
+	"gridx/modules/Filter",
 	"./FilterDialogPane",
 	"idx/widget/HoverHelpTooltip",
 	"idx/widget/Dialog",
 	"idx/widget/ConfirmationDialog",
 	"dijit/Dialog",
 	"dijit/form/Button",
+	"dojo/i18n!../../nls/FilterBar",
 	"idx/form/Select",
 	"idx/form/TextBox",
 	"idx/form/NumberTextBox",
@@ -30,9 +31,9 @@ define([
 	"idx/form/TimeTextBox",
 	"idx/form/ComboBox",
 	"dijit/form/RadioButton"
-], function(kernel, declare, registry, lang, array, event,
-		dom, domGeo, domAttr, css, string, parser, query, _Module, template,
-		oldNls, newNls, F, FilterDialogPane, HoverHelpTooltip,
+], function(kernel, declare, registry, lang, array, event, i18n,
+		dom, domGeo, domAttr, css, string, parser, query, keys, _Module, template,
+		F, FilterDialogPane, HoverHelpTooltip,
 		Dialog, ConfirmationDialog, DijitDialog, Button){
 
 	/*=====
@@ -84,8 +85,21 @@ define([
 		},
 
 		preload: function(){
+			F.before = F.lessEqual;
+			F.after = F.greaterEqual;
+			this.nls = lang.mixin(this.grid.nls, i18n.getLocalization('idx.gridx', 'FilterBar', this.grid.lang));
+			
+			if(this.arg('experimental')){
+				this.conditions = lang.mixin({}, this.conditions);
+				this.conditions.number = ['equal','greater','less','greaterEqual','lessEqual','notEqual', 'range', 'isEmpty'];
+				this.conditions.hex = ['equal','greater','less','greaterEqual','lessEqual','notEqual', 'range', 'isEmpty'];
+				this.conditions.date = ['equal','before','after','range','isEmpty', 'past'];
+				this.conditions.time = ['equal','before','after','range','isEmpty', 'past'];
+				this.conditions.datetime = ['equal','before','after','range','isEmpty', 'past'];
+			}
 			var rules = this.arg('filterData');
-			if(rules){
+			if (rules) {
+				this._preFilterData = rules;
 				this.grid.filter.setFilter(this._createFilterExpr(rules), 1);
 			}
 		},
@@ -115,7 +129,12 @@ define([
 		//		If set to Infinity, then never show the confirm dialog.
 		//		Default value is 2.
 		ruleCountToConfirmClearFilter: 2,
-	
+		
+		// experimental: Boolean
+		//		Some newly added conditions(like numberRange) may not have complete nls,
+		//		which means they should not be used in a production environment,
+		//		mark experimental = true to open them.
+		experimental: false,
 	/*=====
 		// itemsName: String
 		//		The general name of the items listed in the grid.
@@ -144,16 +163,16 @@ define([
 		
 	=====*/
 
-		nls: lang.mixin(oldNls, newNls),
-
 		// condition:
 		//		Name of all supported conditions.
 		//		Hard coded here or dynamicly generated is up to the implementer. Anyway, users should be able to get this info.
 		conditions: {
-			string: ['contain','equal','startWith', 'endWith', 'notEqual','notContain', 'notStartWith', 'notEndWith', 'isEmpty'],
-			number: ['equal','greater','less','greaterEqual','lessEqual','notEqual','isEmpty'],
-			date: ['equal','before','after','range','isEmpty'],
-			time: ['equal','before','after','range','isEmpty'],
+			'string': ['contain','equal','startWith', 'endWith', 'notEqual','notContain', 'notStartWith', 'notEndWith', 'isEmpty'],
+			'number': ['equal','greater','less','greaterEqual','lessEqual','notEqual','isEmpty'],
+			'hex': ['equal','greater','less','greaterEqual','lessEqual','notEqual','isEmpty'],
+			'date': ['equal','before','after','range','isEmpty'],
+			'time': ['equal','before','after','range','isEmpty'],
+			'datetime': ['equal','before','after','range','isEmpty'],
 			'enum': ['equal', 'notEqual', 'isEmpty'],
 			'boolean': ['equal','isEmpty']
 		},
@@ -167,8 +186,6 @@ define([
 					innerHTML: string.substitute(template, t),
 					'class': 'gridxFilterBar'
 				});
-			F.before = F.lessEqual;
-			F.after = F.greaterEqual;
 			parser.parse(dn);
 			css.toggle(dn, 'gridxFilterBarHideCloseBtn', !t.arg('closeButton'));
 			t.grid.vLayout.register(t, 'domNode', 'headerNode', -1);
@@ -177,6 +194,7 @@ define([
 			t.refresh();
 			t.connect(dn, 'onclick', 'onDomClick');
 			t.connect(dn, 'onmousemove', 'onDomMouseMove');
+			t.connect(dn, 'onmouseout', 'onDomMouseOut');
 			t.loaded.callback();
 		},
 
@@ -235,6 +253,11 @@ define([
 			this._showTooltip(e.clientX);
 		},
 
+		onDomMouseOut: function(e){
+			//Make sure to not hide tooltip when mouse moves to tooltip itself.
+			setTimeout(lang.hitch(this, '_hideTooltip'), 10);
+		},
+
 		_createFilterExpr: function(filterData){
 			var exps = [];
 			array.forEach(filterData.conditions, function(data){
@@ -259,14 +282,20 @@ define([
 			// summary:
 			//		Apply the filter data.
 			var t = this,
+				_this = t,
 				model = t.model,
+				g = this.grid,
 				filter = t._createFilterExpr(filterData);
+
 			t.filterData = filterData;
 			t.grid.filter.setFilter(filter);
 			model.when({}).then(function(){
-				t._currentSize = model.size();
-				t._totalSize = model._cache.size();
-				t._buildFilterState();
+				// _this._currentSize = _this.model.size();
+				// _this._totalSize = _this.model._cache.totalSize >= 0 ? _this.model._cache.totalSize : _this.model._cache.size();
+				_this._currentSize = g.tree? _this.model._sizeAll() : _this.model.size();
+				_this._totalSize = g.tree? _this.model._sizeAll('', true) :
+										(_this.model._cache.totalSize >= 0 ? _this.model._cache.totalSize : _this.model._cache.size());
+				_this._buildFilterState();
 			});
 		},
 
@@ -281,7 +310,10 @@ define([
 				}
 				cfmDlg.show();
 			}else{
-				t._filterDialog.hide();
+				/*fix #12818*/
+				if(t._filterDialog){
+					t._filterDialog.hide();
+				}
 				t.clearFilter(true);
 			}
 		},
@@ -305,7 +337,15 @@ define([
 				});
 			filterDialogPane._btnFilter = btnFilter;
 			filterDialogPane._btnClear = btnClear;
-			args.buttons = [btnFilter, btnClear];
+			if (t._preFilterData) {
+				var btnRestore = new Button({
+					label: nls.restoreFilterButton,
+					onClick: lang.hitch(t, t._restoreFilterData)
+				});
+				args.buttons = [btnFilter, btnRestore, btnClear];
+			} else {
+				args.buttons = [btnFilter, btnClear];
+			}
 			args['class'] = 'gridxFilterDialog gridxFilterDialogOneLine';
 			args._onKey = function(){
 				DijitDialog.prototype._onKey.apply(this, arguments);
@@ -313,7 +353,17 @@ define([
 			var dlg = new Dialog(args);
 			return dlg;
 		},
-
+		
+		_restoreFilterData:  function() {
+			var t = this,
+				nls = t.nls,
+				filterDialogPane = this._filterDialogPane;
+	
+			if (this._preFilterData) {
+				filterDialogPane.setData(this._preFilterData);
+			}
+		},
+		
 		_createConfirmDialog: function(){
 			var t = this,
 				nls = t.nls,
@@ -334,7 +384,11 @@ define([
 		clearFilter: function(noConfirm){
 			if(noConfirm){
 				this.filterData = null;
-				this.grid.filter.setFilter();
+				if (this.grid.filter.clearFilter) {
+					this.grid.filter.clearFilter();
+				} else {
+					this.grid.filter.setFilter();
+				}
 				this._buildFilterState();
 			}else{
 				this.confirmToClear();
@@ -349,9 +403,17 @@ define([
 			//		grid.filterBar.refresh();
 			this.btnClose.style.display = this.closeButton ? '': 'none';
 			this.btnFilter.domNode.style.display = this.arg('defineFilterButton') ? '': 'none';
-			this._currentSize = this.model.size();
-			this._totalSize = this.model._cache.size();
-			this._buildFilterState();
+			var _this = this,
+				g = this.grid;
+				
+			this.model.when({}, function(){
+				// _this._currentSize = _this.model.size();
+				// _this._totalSize = _this.model._cache.size();
+				_this._currentSize = g.tree? _this.model._sizeAll() : _this.model.size();
+				_this._totalSize = g.tree? _this.model._sizeAll('', true) :
+										(_this.model._cache.totalSize >= 0 ? _this.model._cache.totalSize : _this.model._cache.size());
+				_this._buildFilterState();
+			});
 		},
 
 		show: function(){
@@ -471,8 +533,10 @@ define([
 				dn = t.domNode;
 			t.btnFilter = registry.byNode(query('.dijitButton', dn)[0]);
 			t.btnClose = query('.gridxFilterBarCloseBtn', dn)[0];
-			t.btnClearFilter = query('a', dn)[0];
+			t.connect(t.btnClose, 'onkeydown', '_onCloseKey');
+			t.btnClearFilter = query('a[action="clear"]', dn)[0];
 			t.statusNode = query('.gridxFilterBarStatus', dn)[0].firstChild;
+			t.connect(t.btnClearFilter, 'onkeydown', '_onClearKey');
 		},
 		
 		_buildFilterState: function(){
@@ -481,8 +545,14 @@ define([
 			var t = this,
 				nls = t.nls;
 			if(t.filterData && t.filterData.conditions.length){
-				t.statusNode.innerHTML = string.substitute(t.arg('hasFilterMessage', nls.filterBarMsgHasFilterTemplate),
-					[t._currentSize, t._totalSize, t.arg('itemsName', nls.defaultItemsName)]);
+				if(this.grid.filter.arg('serverMode')){	//in serverMode filter, we will neglect the totalSize
+															//use the summary nls in pagination instead
+					t.statusNode.innerHTML = string.substitute(t.arg('hasFilterMessage', nls.summary),
+						[t._currentSize]);
+				}else{
+					t.statusNode.innerHTML = string.substitute(t.arg('hasFilterMessage', nls.filterBarMsgHasFilterTemplate),
+						[t._currentSize, t._totalSize, t.arg('itemsName', nls.defaultItemsName)]);
+				}
 				t.btnClearFilter.style.display = '';
 				t._buildTooltip();
 			}else{
@@ -593,21 +663,37 @@ define([
 		},
 
 		_getRuleString: function(condition, value, type){
-			var valueString = value;
+			var valueString = value, tpl;
+			
+			// condition = condition && condition.toLowerCase();
+			
 			if(condition == 'isEmpty'){
 				valueString = '';
-			}else if(/^date|^time/i.test(type)){
+			}else if(/^date|^time/i.test(type) && condition !== 'past'){
 				var f = this._formatDate;
 				if(/^time/i.test(type)){
 					f = this._formatTime;
 				}
+				if(/^datetime/i.test(type)){
+					f = this._formatDatetime;
+				}
 				if(condition == 'range'){
-					var tpl = this.arg('rangeTemplate', this.nls.rangeTemplate);
+					tpl = this.arg('rangeTemplate', this.nls.rangeTemplate);
 					valueString = string.substitute(tpl, [f(value.start), f(value.end)]);
 				}else{
 					valueString = f(value);
 				}
+			}else if(condition === 'range'){
+				tpl = this.arg('rangeTemplate', this.grid.nls.rangeTemplate);
+				valueString = string.substitute(tpl, [value.start, value.end]);
+			}else if(condition === 'past' && value.interval && value.amount !== undefined){
+				var interval = value.interval;
+				tpl = this.grid.nls['past' + interval[0].toUpperCase() + interval.substring(1) + 'sConditionTemplate'];
+				if(tpl){
+					valueString = string.substitute(tpl, [value.amount]);
+				}
 			}
+			
 			return this._getConditionDisplayName(condition) + ' ' + valueString;
 		},
 
@@ -619,12 +705,31 @@ define([
 		_getConditionOptions: function(colId){
 			var t = this,
 				cache = t._conditionOptions = t._conditionOptions || {};
-			return cache[colId] || (cache[colId] = array.map(t._getColumnConditions(colId), function(s){
+			
+			var ret = cache[colId] || (cache[colId] = array.map(t._getColumnConditions(colId), function(s){
 				return {
 					label: t._getConditionDisplayName(s),
 					value: s
 				};
 			}));
+			
+			//change on 2013/9/9 add isNotEmpty condition to string type
+			//support BTT
+			if(t.grid._columnsById[colId]){
+				var dt = t.grid._columnsById[colId].dataType || 'string';
+				//only serverMode will add isNotEmpty condition to string dataType
+				if(
+					// t.grid.filter.arg('serverMode')&& 
+					dt.toLowerCase() === 'string'){
+					ret = lang.clone(ret);
+					ret.push({
+						// label: 'is not empty',		//NO nls!
+						label: t.nls.conditionIsNotEmpty,
+						value: 'isNotEmpty'
+					});
+				}
+			}
+			return ret;
 		},
 
 		_getFilterExpression: function(condition, data, type, colId){
@@ -632,12 +737,18 @@ define([
 			var col = this.grid._columnsById[colId],
 				dc = col.dateParser || this._stringToDate,
 				tc = col.timeParser || this._stringToTime,
-				converter = {date: dc, time: tc},
+				dtc = col.datetimeParser || this._stringToDatetime,
+				hexc = this._hexToInt,
+				cs = this.grid.filter.arg('caseSensitive'),
+				converter = {date: dc, time: tc, datetime: dtc, hex: hexc},
 				c = data.condition,
 				exp,
 				isNot = false;
-			type = c == 'isEmpty' ? 'string' : type; //isEmpty always treat type as string
-			if(c == 'range'){
+			type = (c == 'isEmpty' || c == 'isNotEmpty') ? 'string' : type; //isEmpty always treat type as string
+			if(c === 'range' || c === 'past'){
+				if (c === 'past') {
+					this._buildPastCondition(data);
+				}
 				var startValue = F.value(data.value.start, type),
 					endValue = F.value(data.value.end, type), 
 					columnValue = F.column(colId, type, converter[type]);
@@ -648,7 +759,7 @@ define([
 					c = c.replace(/^not/g, '');
 					c = c.charAt(0).toLowerCase() + c.substring(1);
 				}
-				exp = F[c](F.column(colId, type, converter[type]), c == 'isEmpty' ? null : F.value(data.value, type));
+				exp = F[c](F.column(colId, type, converter[type], false, cs), (c == 'isEmpty' || c == 'isNotEmpty') ? null : F.value(data.value, type, null, cs), cs);
 				if(isNot){
 					exp = F.not(exp);
 				}
@@ -656,39 +767,122 @@ define([
 			return exp;
 		},
 
-		_stringToDate: function(s, pattern){
-			pattern = pattern || /(\d{4})\/(\d\d?)\/(\d\d?)/;
+		// _stringToDate: function(s, pattern){
+			// pattern = pattern || /(\d{4})\/(\d\d?)\/(\d\d?)/;
+			// pattern.test(s);
+			// var d = new Date();
+			// d.setFullYear(parseInt(RegExp.$1, 10));
+			// d.setMonth(parseInt(RegExp.$2, 10) - 1);
+			// d.setDate(parseInt(RegExp.$3, 10));
+			// return d;
+		// },
+		_stringToDate: function(s){
+			if(s instanceof Date){return s;}
+
+			if(typeof s === 'string'){
+				var d = new Date(s);
+
+				if(typeof d.getTime() === 'number'){
+					return d;
+				}
+			}
+
+			var pattern = /(\d{4})\/(\d\d?)\/(\d\d?)/;
 			pattern.test(s);
 			var d = new Date();
-			d.setFullYear(parseInt(RegExp.$1, 10));
-			d.setMonth(parseInt(RegExp.$2, 10) - 1);
+			d.setFullYear(parseInt(RegExp.$1));
+			d.setMonth(parseInt(RegExp.$2) - 1);
+			d.setDate(parseInt(RegExp.$3));
 			return d;
 		},
-
+		
 		_stringToTime: function(s, pattern){
 			pattern = pattern || /(\d\d?):(\d\d?):(\d\d?)/;
-			pattern.test(s);
-			var d = new Date();
-			d.setHours(parseInt(RegExp.$1, 10));
-			d.setMinutes(parseInt(RegExp.$2, 10));
-			d.setSeconds(parseInt(RegExp.$3, 10));
-			return d;
+			if(pattern.test(s)){
+				var d = new Date();
+				d.setHours(parseInt(RegExp.$1, 10));
+				d.setMinutes(parseInt(RegExp.$2, 10));
+				d.setSeconds(parseInt(RegExp.$3, 10));
+				return d;
+			}
+			return 'invalid time';
 		},
+		
+		_stringToDatetime: function(s){
+			if(s instanceof Date){return s;}
 
+			return new Date(s);
+		},
+		
+		_hexToInt: function(s){
+			return parseInt(s, 16);
+		},
+		
 		_formatDate: function(date){
 			//this may be customized by grid layout definition
-			var m = date.getMonth() + 1, d = date.getDate();
-			return m + '/' + d + '/' + date.getFullYear();
+			date = typeof date === 'object' ? date : new Date(date);
+			
+			// Defect 13844 
+			// set tooltip date to locale format
+			//var m = date.getMonth() + 1, d = date.getDate();
+			//return m + '/' + d + '/' + date.getFullYear();
+			return lang.getObject("dojo.date.locale", false).format(date, {fullYear: true, selector: "date"});
 		},
 
 		_formatTime: function(time){
 			//this may be customized by grid layout definition
+			time = typeof time === 'object' ? time : new Date(time);
 			var h = time.getHours(), m = time.getMinutes();
 			if(h < 10){h = '0' + h;}
 			if(m < 10){m = '0' + m;}
 			return h + ':' + m + ':00';
 		},
+		
+		_formatDatetime: function(datetime){
+			// Defect 13844 
+			// set tooltip date to locale format
+			/*datetime = typeof datetime === 'object' ? datetime : new Date(datetime);
+			var m = datetime.getMonth() + 1, d = datetime.getDate();
+			//this may be customized by grid layout definition
+			var h = datetime.getHours(), min = datetime.getMinutes();
+			if(h < 10){h = '0' + h;}
+			if(min < 10){min = '0' + min;}
+			return m + '/' + d + '/' + datetime.getFullYear() + ' ' + h + ':' + min + ':00';*/
+			return lang.getObject("dojo.date.locale", false).format(datetime, {fullYear: true});
+			
+		},
+		
+		_buildPastCondition: function(data) {
+			var cur = new Date(),
+				past = new Date(),
+				interval = data.value.interval,
+				val = data.value.amount;
 
+			switch(interval){
+				case 'hour':
+					if (cur.getHours() < val) {
+						past.setHours(0);
+						past.setMinutes(0);
+					} else {
+						past.setHours(cur.getHours() - val);
+					}
+					break;
+				case 'day':
+					past.setDate(cur.getDate() - val);
+					break;
+				case 'month':
+					past.setMonth(cur.getMonth() - val);
+					break;
+				case 'year':
+					past.setFullYear(cur.getFullYear() - val);
+					break;
+			}
+
+			data.value.start = past;
+			data.value.end = cur;
+			// return {start: past, end: cur, amount: val, interval: interval};
+		},
+		
 		_initFocus: function(){
 			var focus = this.grid.focus;
 			if(focus){
@@ -723,10 +917,8 @@ define([
 		},
 
 		_doFocusClearLink: function(evt){
-			this.btnFilter.focus();
-			var link = query('a[action="clear"]')[0];
-			if(link){
-				link.focus();
+			if(this.btnClearFilter.style.display != 'none'){
+				this.btnClearFilter.focus();
 				if(evt){event.stop(evt);}
 				return true;
 			}
@@ -743,8 +935,21 @@ define([
 			return true;
 		},
 
+		_onCloseKey: function(evt){
+			if(evt.keyCode === keys.ENTER){
+				this.hide();
+			}
+		},
+
+		_onClearKey: function(evt){
+			if(evt.keyCode === keys.ENTER){
+				this.clearFilter();
+			}
+		},
+
 		destroy: function(){
 			this._filterDialog && this._filterDialog.destroyRecursive();
+			this._cfmDlg && this._cfmDlg.destroyRecursive();
 			this.btnFilter.destroy();
 			dom.destroy(this.btnClose);
 			dom.destroy(this.btnClearFilter);

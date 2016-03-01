@@ -1,0 +1,55 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxRtl .gridxPagerDescription {
+  text-align: right;
+}
+.dlBlue .gridxRtl .gridxPagerSizeSwitchTD,
+.dlBlue .gridxRtl .gridxPager .gridxPagerGoto,
+.dlBlue .gridxRtl .gridxGotoPage .gridxGotoPageBtns {
+  text-align: left;
+}
+.dlBlue .gridxRtl .gridxPagerSizeSwitchDD {
+  text-align: left;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage {
+  background-image: url('svg/next-right-forward.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage {
+  background-image: url('svg/back-left-previous.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+  background-image: url('svg/next-right-forward-disabled.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable {
+  background-image: url('svg/back-left-previous-disabled.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerSizeSwitchDD {
+  text-align: left;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage {
+  background-image: url('images/next-right-forward.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage {
+  background-image: url('images/back-left-previous.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+  background-image: url('images/next-right-forward-disabled.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxRtl .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable {
+  background-image: url('images/back-left-previous-disabled.png');
+  background-size: 100%;
+  background-position: 0 0;
+}

@@ -1,0 +1,324 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+.idxOneuiHoverCard,
+.idxOneuiHoverCardDialog {
+ /* the outermost dom node, holding the connector and container */
+
+ background: transparent;
+ /* make the area on the sides of the arrow transparent */
+
+}
+.idxOneuiHoverCardCloseIcon {
+ background-image: url('images/idx/widget/popupClose.png');
+ width: 28px;
+ height: 28px;
+ position: absolute;
+ right: -13px;
+ top: -13px;
+ z-index: 10001;
+ line-height: 0;
+ cursor: pointer;
+}
+.idxOneuiHoverCardCloseIcon .closeText {
+ display: none;
+ position: absolute;
+ right: 18px;
+ top: 20px;
+}
+.dj_a11y & .idxOneuiHoverCardCloseIcon .closeText {
+ display: block;
+}
+.idxOneuiHoverCardRight .idxOneuiHoverCardCloseIcon {
+ right: -13px;
+ top: -13px;
+}
+.idxOneuiHoverCardLeft .idxOneuiHoverCardCloseIcon {
+ left: -13px;
+ top: -13px;
+}
+.idxOneuiHoverCardAbove .idxOneuiHoverCardCloseIcon {
+ right: -13px;
+ top: -6px;
+}
+.idxOneuiHoverCardBelow .idxOneuiHoverCardCloseIcon {
+ right: -10px;
+ top: -6px;
+}
+.idxOneuiHoverCardGrip {
+ background: transparent url('images/idx/widget/hoverCardDragHandle.png') no-repeat left center;
+ margin: 15px auto 0;
+ height: 5px;
+ width: 62px;
+ cursor: move;
+ /*
+	cursor: -webkit-grab; 
+	cursor: -moz-grab;
+	*/
+
+}
+.idxOneuiHoverCardGripActive {
+ background: transparent url('images/idx/widget/hoverCardDragHandleOnClick.png') no-repeat left center;
+ cursor: move;
+ /*
+	cursor: -webkit-grabbing; 
+	cursor: -moz-grabbing;
+	*/
+
+}
+.idxOneuiHoverCardGripHover {
+ background: transparent url('images/idx/widget/hoverCardDragHandleOnClick.png') no-repeat left center;
+}
+.dj_ie & .idxOneuiHoverCardGrip {
+ /*in IE, for style sheets, the base URI is that of the source element, not that of the style sheet*/
+
+ cursor: move;
+}
+.dj_ie & .idxOneuiHoverCardGripActive {
+ cursor: move;
+}
+.dj_ie7 & .idxOneuiHoverCardGrip {
+ padding-top: 1px;
+}
+.dj_ie7 & .idxOneuiHoverCardGripActive {
+ padding-top: 1px;
+}
+.idxOneuiHoverCardBody {
+ border: 3px solid @fwDarkest;
+ .BorderRadius(3px);
+ .BoxShadow(1px 0px 6px @shadowBox);
+ background-color: @fwBackground;
+}
+.idxOneuiHoverCardContainer {
+ max-width: 600px;
+ min-width: 360px;
+ min-height: 132px;
+ max-height: 500px;
+ font-size: 1em;
+ overflow: auto;
+}
+.dj_ie7 & .idxOneuiHoverCardBody {
+ /*width: 359px;
+	max-width: 600px;
+	min-width: 360px;*/
+
+ /*box shadow not supported in IE7*/
+
+}
+.idxPreviewTitle,
+.idxOneuiHoverCardContainer .idxPersonCardFn {
+ font-weight: normal;
+ font-family: @serif;
+ font-size: 22px;
+ color: @linkHover;
+}
+.idxOneuiHoverCardContainer .idxPersonCardFn {
+ padding-top: 7px;
+ padding-bottom: 0px;
+ margin-bottom: -3px;
+}
+.idxPreviewContent {
+ padding: 17px 20px 0 139px;
+ /*139px to account for image and no-text wrapping */
+
+ position: relative;
+ font-size: 14px;
+ color: @textDefault;
+}
+.dj_ie & .idxPreviewContent {
+ padding: 17px 20px 0 139px;
+}
+.idxOneuiHoverCardWithoutPreviewImg {
+ min-width: 250px;
+}
+.idxOneuiHoverCardWithoutPreviewImg .idxPreviewContent {
+ padding: 16px 20px 0;
+}
+.idxOneuiHoverCardWithoutPreviewImg .idxPreviewImg {
+ display: none;
+}
+.idxOneuiHoverCardContainer .idxPersonCardContainer {
+ border: 0;
+}
+.idxOneuiHoverCardContainer .idxPersonCardContainer > div {
+ margin-left: 0px;
+ /*to override personCard.css*/
+
+ padding-left: 135px;
+ padding-bottom: 0px;
+ padding-right: 15px;
+}
+.dj_ie7 & .idxOneuiHoverCardContainer .idxPersonCardContainer > div {
+ padding-right: 10px;
+}
+.dj_ie9 & .idxOneuiHoverCardContainer .idxPersonCardContainer > div {
+ padding-bottom: 2px;
+}
+.idxPreviewContent p {
+ margin-top: -1px;
+ margin-bottom: 0px;
+ font-size: 12px;
+}
+.idxPreviewImg {
+ margin: 17px 20px 20px;
+ position: absolute;
+ height: 92px;
+ width: 92px;
+ padding: 3px;
+ background-color: @fwBackground;
+ border: 1px solid @fwBase;
+ float: left;
+}
+.idxOneuiHoverCardContainer .idxPersonCardPhoto {
+ margin: 12px 15px 15px;
+}
+.idxPreviewImg img,
+.idxOneuiHoverCardContainer .idxPersonCardPhoto img {
+ border: 1px solid @fwBase;
+}
+.idxOneuiHoverCardFooter {
+ /*background-color: #eeeeee;*/
+
+ border-top: 1px solid @fwBase;
+ height: 30px;
+ /*width: 359px;*/
+
+}
+.idxOneuiHoverCardMenu {
+ float: right;
+ padding: 5px 6px;
+}
+.idxOneuiHoverCardMenu .dijitButtonText {
+ padding: 0 5px;
+}
+.idxOneuiHoverCardMenu .dijitButtonNode {
+ border: none;
+}
+.idxOneuiHoverCardActionIcons {
+ padding: 6px 0 7px 20px;
+ float: left;
+}
+.dj_webkit & .idxOneuiHoverCardActionIcons {
+ padding: 4px 0 7px 20px;
+}
+.dj_ie & .idxOneuiHoverCardActionIcons {
+ padding: 7px 0 7px 20px;
+}
+.dj_ie8 & .idxOneuiHoverCardActionIcons {
+ padding: 5px 0 7px 20px;
+}
+.idxOneuiHoverCardFooterButton {
+ margin-right: 10px;
+ vertical-align: top;
+}
+.idxOneuiHoverCardFooterButton .dijitButtonNode {
+ width: 16px;
+ height: 16px;
+ border: 0px;
+}
+.idxOneuiHoverCardActionLink {
+ float: right;
+ padding: 5px 10px;
+}
+.idxOneuiHoverCardConnector {
+ /* the arrow piece */
+
+ border: 0;
+ z-index: 2;
+ background-image: url('images/idx/widget/popupSharkfin.png');
+ background-repeat: no-repeat;
+ width: 18px;
+ height: 18px;
+}
+.dj_ie6 & .idxOneuiHoverCardConnector {
+ background-image: url('images/idx/widget/popupSharkfin_8bit.gif');
+}
+.idxOneuiHoverCardABRight .idxOneuiHoverCardConnector {
+ /* above or below tooltip, but the arrow appears on the right,
+		and the right edges of target and tooltip are aligned rather than the left */
+
+ left: auto !important;
+ right: 3px;
+}
+.idxOneuiHoverCardBelow .idxOneuiHoverCardConnector {
+ /* the arrow piece for tooltips below an element */
+
+ top: -8px;
+ left: 13px;
+ background-position: -18px 0;
+}
+.idxOneuiHoverCardBelow {
+ /* leave room for arrow above content */
+
+ padding-top: 7px;
+ padding-left: 0px;
+ padding-right: 3px;
+}
+.idxOneuiHoverCardAbove .idxOneuiHoverCardConnector {
+ /* the arrow piece for tooltips above an element */
+
+ bottom: -6px;
+ left: 10px;
+ background-position: 0px 0;
+}
+.dj_ie7 & .idxOneuiHoverCardAbove .idxOneuiHoverCardConnector,
+.dj_ie6 & .idxOneuiHoverCardAbove .idxOneuiHoverCardConnector {
+ bottom: -1px;
+}
+.idxOneuiHoverCardAbove {
+ /* leave room for arrow below content */
+
+ padding: 9px 0;
+}
+.idxOneuiHoverCardLeft {
+ padding-right: -4px;
+}
+.idxOneuiHoverCardLeft .idxOneuiHoverCardConnector {
+ /* the arrow piece for tooltips to the left of an element, bottom borders aligned */
+
+ right: -15px;
+ background-position: -36px 0;
+}
+.idxOneuiHoverCardRight {
+ padding-left: 9px;
+}
+.idxOneuiHoverCardRight .idxOneuiHoverCardConnector {
+ /* the arrow piece for tooltips to the right of an element, bottom borders aligned */
+
+ left: -6px;
+ background-position: -54px 0;
+}
+.idxOneuiHoverCard {
+ position: absolute;
+ z-index: 1000;
+ display: block;
+ /* make visible but off screen */
+
+ left: 0;
+ top: -10000px;
+ overflow: visible;
+}
+.idxOneuiHoverCardFocusNode {
+ padding: 2px 2px 2px 2px;
+}
+.idxOneuiHoverCardConnector {
+ position: absolute;
+}
+.dijit_a11y & .idxOneuiHoverCardConnector {
+ display: none;
+ /* won't show b/c it's background-image; hide to avoid border gap */
+
+}
+.idxOneuiHoverCardData {
+ display: none;
+}
+.idxOneuiHoverCardActionIcons .placeHolderIcon {
+ background-image: url('images/idx/widget/hoverActionIconPlaceholder.png');
+ background-repeat: no-repeat;
+ height: 16px;
+ text-align: center;
+ width: 16px;
+}

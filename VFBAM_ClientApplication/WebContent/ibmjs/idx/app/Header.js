@@ -81,6 +81,11 @@ define(["dojo/_base/array",
 	/** @lends idx.app.Header.prototype */
 	{
 		/**
+		 * The base CSS class for the widget.
+		 */
+		baseClass: "idxHeader",
+		
+		/**
 		 * The IBM Brand/product name.
 		 * @type string
 		 */
@@ -230,7 +235,7 @@ define(["dojo/_base/array",
 		 * @type dijit.Menu | dijit.MenuItem
 		 */
 		settings: undefined,
-	
+		
 		/**
 		 * True (the default) if a drop-down arrow affordance is to be shown on the
 		 * site settings icon when a popup menu of site settings items is supplied.
@@ -244,7 +249,7 @@ define(["dojo/_base/array",
 		 * If a single dijit.MenuItem is supplied, a simple site help action
 		 * will be presented and onClick will be triggered on the menu item when
 		 * that action is selected.
-		 * @type dijit.MenuBarItem | dijit.MenuBarPopupItem
+		 * @type dijit.Menu | dijit.MenuItem
 		 */
 		help: undefined,
 	
@@ -389,7 +394,8 @@ define(["dojo/_base/array",
 		//  primaryBannerNode: container (div) for all primary banner content
 		//  navigationNode: contains a menu bar of navigation action items
 		//  userNode: contains the user identity and actions display
-		//  secondaryBannerNode: container (div) for all secondary banner content
+		//  leadingSecondaryBannerNode: container (div) for all leading secondary banner content
+		//  trailingSecondaryBannerNode: container (div) for all trailing secondary banner content
 		//
 		// Widget and content nodes:
 		//  primaryTitleTextNode: contains primary title text/markup
@@ -406,7 +412,8 @@ define(["dojo/_base/array",
 		// Other nodes used internally:
 		//  containerNode: hidden node used for declarative construction
 		//  _mainContainerNode: container for the primary and secondary banners
-		//  _globalActionsNode: container for all global actions
+		//  _leadingGlobalActionsNode: container for leading global actions
+		//  _trailingGlobalActionsNode: container for trailing global actions
 		//  _secondaryTitleSeparatorNode: text separating secondary title and subtitle
 		//  _contextActionsNode: container for all context actions
 		//
@@ -422,6 +429,27 @@ define(["dojo/_base/array",
 		                '<div data-dojo-attach-point="_mainContainerNode">' +
 						'</div>' +
 						'</div>',
+
+		/**
+	 	 * The primary textbox widget.
+		 * @type object
+		 */
+		 _primarySearchTextBox: null,
+		 
+		 /**
+	 	 * The secondary textbox widget.
+		 * @type object
+		 */
+		 _secondarySearchTextBox: null,
+
+		/**
+		 * Return the textbox widget.
+		 * @param {boolean} isSecondary indicating which widget should be returned
+		 * the primary textbox or the secondary textbox
+		 */		
+		getTextBoxWidget: function(isSecondary) {
+			return isSecondary ? this._secondarySearchTextBox : this._primarySearchTextBox;
+		},
 
 		/**
 		 * Return the user identity display name, calling supplied functions
@@ -513,7 +541,10 @@ define(["dojo/_base/array",
 		 */
 		_prepareMenu: function(menu, cssclasses, trigger, around, trailing, handles){
 			if (!handles) handles = [];
-			
+			//Defect #12296: Place menu back to it's popupWraper after Header refresh.
+			if(menu._popupWrapper){
+				menu.placeAt(menu._popupWrapper);
+			}
 			if(cssclasses){
 				if(cssclasses[0]){
 					var handle2 = null;
@@ -705,6 +736,7 @@ define(["dojo/_base/array",
 			var show_primary_title = this.primaryTitle,
 				show_primary_logo = true,
 				show_primary_help = this.help,
+				show_primary_sharing = this.sharing,
 				show_primary_settings = this.settings,
 				show_primary_user = this.user,
 				show_primary_navigation = this.navigation,
@@ -716,7 +748,7 @@ define(["dojo/_base/array",
 				show_secondary_content = show_content && (this.contentTabsInline || !show_secondary_title),
 				show_secondary_border = this.secondaryBannerType && (this.secondaryBannerType.toLowerCase() == "white"),
 				show_tertiary_content = show_content && !show_secondary_content,
-			    show_primary_items = show_primary_title || show_primary_logo || show_primary_help || show_primary_settings || show_primary_user || show_primary_navigation || show_primary_search,  
+			    show_primary_items = show_primary_title || show_primary_logo || show_primary_help || show_primary_settings || show_primary_sharing || show_primary_user || show_primary_navigation || show_primary_search,  
 			    show_secondary_items = show_secondary_title || show_secondary_actions || show_secondary_search || show_secondary_content,
 				show_tertiary_items = show_tertiary_content,
 				show_lip;
@@ -784,38 +816,52 @@ define(["dojo/_base/array",
 					me._injectTemplate(me._mainContainerNode,
 										 '<div class="idxHeaderPrimary">' +
 										 '<div class="idxHeaderPrimaryInner" data-dojo-attach-point="primaryBannerNode">' +
-										 '<ul data-dojo-attach-point="_globalActionsNode" role="menubar">' +
+										 '<ul class="idxHeaderPrimaryActionsLeading" data-dojo-attach-point="_leadingGlobalActionsNode">' +
+										 '</ul>' +
+										 '<ul class="idxHeaderPrimaryActionsTrailing" data-dojo-attach-point="_trailingGlobalActionsNode">' +
 										 '</ul>' +
 										 '</div>' +
 										 '</div>');
 				}
 				
+				if(show_primary_logo && me._logoPosition == "leading"){
+					me._renderLogo(me._leadingGlobalActionsNode);
+				}
+				
 				if(show_primary_title){
-					me._renderPrimaryTitle(me._globalActionsNode);
-				}
-				
-				if(show_primary_logo){
-					me._renderLogo(me._globalActionsNode);
-				}
-				
-				if(show_primary_help){
-					me._renderHelp(me._globalActionsNode, show_primary_settings || show_primary_user);
-				}
-				
-				if(show_primary_settings){
-					me._renderSettings(me._globalActionsNode, show_primary_user);
-				}
-				
-				if(show_primary_user){
-					me._renderUser(me._globalActionsNode);
+					me._renderPrimaryTitle(me._leadingGlobalActionsNode);
 				}
 				
 				if(show_primary_search){
-					me._renderPrimarySearch(me._globalActionsNode);
+					me._renderPrimarySearch(me._trailingGlobalActionsNode);
 				}			
 				
+				if(show_primary_user){
+					me._renderUser(me._trailingGlobalActionsNode);
+				}
+				
+				if(show_primary_sharing){
+					me._renderSharing(me._trailingGlobalActionsNode, show_primary_user);
+				}
+				
+				if(show_primary_settings){
+					me._renderSettings(me._trailingGlobalActionsNode, show_primary_user);
+				}
+
+				if(show_primary_help){
+					me._renderHelp(me._trailingGlobalActionsNode, show_primary_settings || show_primary_sharing || show_primary_user);
+				}
+				/*if((me.user&&me.user.actions) || me.sharing || me.settings || me.help){
+					me._trailingGlobalActionsNode.setAttribute("role", "menubar");
+				}*/
+				
+				if(show_primary_logo && me._logoPosition != "leading"){
+					me._renderLogo(me._trailingGlobalActionsNode);
+				}
+				
 				if(show_primary_navigation){
-					me._renderNavigation(me.primaryBannerNode);
+					var navNode = domconstruct.create("li", {"class": "idxHeaderPrimaryNav"}, me._leadingGlobalActionsNode, "last");
+					me._renderNavigation(navNode);
 				}
 				
 				// create the blue lip
@@ -831,27 +877,31 @@ define(["dojo/_base/array",
 				if(show_secondary_items){
 					me._injectTemplate(me._mainContainerNode,
 										 '<div class="idxHeaderSecondary"> ' +
-										 '<div class="idxHeaderSecondaryInner" data-dojo-attach-point="secondaryBannerNode">' + 
+										 '<div class="idxHeaderSecondaryInner" data-dojo-attach-point="secondaryBannerNode"> ' +
+										 '<div class="idxHeaderSecondaryLeading" data-dojo-attach-point="leadingSecondaryBannerNode">' + 
+										 '</div>' + 
+										 '<div class="idxHeaderSecondaryTrailing" data-dojo-attach-point="trailingSecondaryBannerNode">' +
+										 '</div>' + 
 										 '</div>' + 
 										 '</div>');
 				}
 				
-				if(show_secondary_search){
-					me._renderSecondarySearch(me.secondaryBannerNode);
-				}			
-
 				if(show_secondary_title){
-					me._renderSecondaryTitle(me.secondaryBannerNode);
+					me._renderSecondaryTitle(me.leadingSecondaryBannerNode);
 				}
 				
 				if(show_secondary_content){
-					me._renderContent(me.secondaryBannerNode, false);
+					me._renderContent(me.leadingSecondaryBannerNode, false);
 				}
 
 				if(show_secondary_actions){
-					me._renderContextActions(me.secondaryBannerNode);
+					me._renderContextActions(me.trailingSecondaryBannerNode);
 				}
 				
+				if(show_secondary_search){
+					me._renderSecondarySearch(me.trailingSecondaryBannerNode);
+				}			
+
 				if(show_secondary_border){
 					me._renderSecondaryInnerBorder(me.secondaryBannerNode);
 				}
@@ -907,6 +957,13 @@ define(["dojo/_base/array",
 			}
 			this._clearHandles("_settingsHandles");
 			
+			if (this.sharing) {
+				this.sharing = registry.byId(this.sharing);
+				if (this.sharing) this.sharing.placeAt(this.containerNode);
+			}
+			
+			this._clearHandles("_sharingHandles");
+			
 			if (this.user && this.user.actions) {
 				this.user.actions = registry.byId(this.user.actions);
 				if (this.user.actions) this.user.actions.placeAt(this.containerNode);
@@ -935,12 +992,15 @@ define(["dojo/_base/array",
 			});
 			
 			// clear out some nodes
-			this._globalActionsNode = null;
+			this._leadingGlobalActionsNode = null;
+			this._trailingGlobalActionsNode = null;
 			this.primaryTitleTextNode = null;
 			this.primaryBannerNode = null;
-			this.secondaryBannerNode = null;
+			this.leadingSecondaryBannerNode = null;
+			this.trailingSecondaryBannerNode = null;
 			this._helpNode = null;
 			this._settingsNode = null;
+			this._sharingNode = null;
 			this.userNode = null;
 			this.userImageNode = null;
 			this.userTextNode = null;
@@ -990,6 +1050,13 @@ define(["dojo/_base/array",
 			}
 			this._clearHandles("_settingsHandles");
 			
+			if (this.sharing) {
+				if (this.sharing.destroyRecursive) this.sharing.destroyRecursive();
+				else if (this.sharing.destroy) this.sharing.destroy();
+				this.sharing = null;
+			}
+			this._clearHandles("_sharingHandles");
+			
 			if (this.help) {
 				if (this.help.destroyRecursive) this.help.destroyRecursive();
 				else if (this.help.destroy) this.help.destroy();
@@ -1028,6 +1095,11 @@ define(["dojo/_base/array",
 		 */
 		buildRendering: function(){
 			this.inherited(arguments);
+			var cssOptions 
+				= iUtil.getCSSOptions(this.baseClass + "Options", this.domNode, null, {logo:"trailing"});
+			this._logoPosition = cssOptions.logo;
+			console.log("LOGO POSITION: " + this._logoPosition);
+			
 			this._setup();
 		},
 		
@@ -1189,6 +1261,18 @@ define(["dojo/_base/array",
 		 * Setter to handle re-rendering the widget if needed.
 		 * @private
 		 */
+		_setShowSharingDropDownArrowAttr: function(value) {
+			var previous = this.showSharingDropDownArrow;
+			this.showSharingDropDownArrow = value;
+			if (this._sharingNode) {
+				domclass.toggle(this._sharingNode, "idxHeaderDropDown", this.showSharingDropDownArrow);
+			}			
+		},
+		 
+		/**
+		 * Setter to handle re-rendering the widget if needed.
+		 * @private
+		 */
 		_setShowUserDropDownArrowAttr: function(value) {
 			var previous = this.showUserDropDownArrow;
 			this.showUserDropDownArrow = value;
@@ -1291,6 +1375,22 @@ define(["dojo/_base/array",
 		},
 		
 		/**
+		 * Handler for setting the sharing.  This ensures
+		 * that the header gets refreshed if needed or that at
+		 * least the header gets marked as requiring a refresh.
+		 *
+		 * @param {Widget} widget The widget to use for the sharing
+		 * @private
+		 */
+		_setSharingAttr: function(widget) {
+			var previous = this.sharing;
+			this.sharing = widget;
+			if (!iUtil.widgetEquals(previous, widget)) {
+				this._refresh();
+			}		
+		},
+		
+		/**
 		 * Handler for setting the help.  This ensures
 		 * that the header gets refreshed if needed or that at
 		 * least the header gets marked as requiring a refresh.
@@ -1366,6 +1466,9 @@ define(["dojo/_base/array",
 			case "settings":
 				this.set("settings", child);
 				break;
+			case "sharing":
+				this.set("sharing", child);
+				break;
 			case "help":
 				this.set("help", child);
 				break;
@@ -1401,6 +1504,10 @@ define(["dojo/_base/array",
 			
 			if (child === this.settings) {
 				this.set("settings", null);
+			}
+			
+			if (child === this.sharing) {
+				this.set("sharing", null);
 			}
 			
 			// defer the base implementation
@@ -1440,9 +1547,9 @@ define(["dojo/_base/array",
 		
 		_renderPrimaryTitle: function(domNode){
 			this._injectTemplate(domNode,
-			         			 '<li>' +
+			         			 '<li role="presentation">' +
 			         			 '<span>' +
-			         			 '<div class="idxHeaderPrimaryTitle" data-dojo-attach-point="primaryTitleTextNode">' +
+			         			 '<div class="idxHeaderPrimaryTitle" id="${id}_PrimaryTitle" data-dojo-attach-point="primaryTitleTextNode">' +
 			         			 '${primaryTitle}' +
 			         			 '</div>' +
 			         			 '</span>' +
@@ -1450,8 +1557,9 @@ define(["dojo/_base/array",
 		},
 		
 		_renderLogo: function(domNode){
+			console.log("RENDERING LOGO....");
 			this._injectTemplate(domNode,
-			         			 '<li class="idxHeaderPrimaryAction idxHeaderEnd">' +
+			         			 '<li role="presentation" class="idxHeaderPrimaryAction idxHeaderLogoItem">' +
 			         			 '<span>' +
 			         			 '<div class="idxHeaderLogoBox">' +
 			         			 '<div class="idxHeaderLogo" alt="${_nls.ibmlogo}">' +
@@ -1461,8 +1569,15 @@ define(["dojo/_base/array",
 			         			 '</span>' +
 			         			 '</li>'); 
 		},
-		
+		_renderSeparator: function(domNode){
+			this._injectTemplate(domNode,
+				'<li role="presentation" class="idxHeaderPrimaryAction idxHeaderSeparator"><span></span></li>');
+		},
 		_renderHelp: function(domNode, addSeparator){
+			if(addSeparator){
+				this._renderSeparator(domNode);
+			}
+
 			this._injectTemplate(domNode,
 			         			 '<li class="idxHeaderPrimaryAction idxHeaderHelp">' +
 			         			 '<a tabindex="0" href="javascript://" data-dojo-attach-point="_helpNode" title="${_nls.actionHelp}" role="presentation">' +
@@ -1475,25 +1590,51 @@ define(["dojo/_base/array",
 			         			 '</a>' +
 			         			 '</li>');
 			
-			if(addSeparator){
-				this._injectTemplate(domNode,
-				                     '<li class="idxHeaderPrimaryAction idxHeaderSeparator" role="separator"><span></span></li>');
-			}
-
 			if(this.help){
 				this.help = registry.byId(this.help);
 				this._clearHandles("_helpHandles");
 				this._helpHandles = this._prepareMenu(this.help, [ "oneuiHeaderGlobalActionsMenu", "oneuiHeaderGlobalActionsSubmenu" ], this._helpNode, this._helpNode, true);
 				domclass.toggle(this._helpNode, "idxHeaderDropDown", this.showHelpDropDownArrow);
-				this._helpNode.setAttribute("role", "menuitem");
+				this._helpNode.setAttribute("role", "button");
 				this._helpNode.setAttribute("aria-haspopup", true);
 			}
 		},
 		
 		_renderSettings: function(domNode, addSeparator){
+			if(addSeparator){
+				this._renderSeparator(domNode);
+			}
+
 			this._injectTemplate(domNode,
 			         			 '<li class="idxHeaderPrimaryAction idxHeaderTools">' +
-			         			 '<a tabindex="0" href="javascript://" data-dojo-attach-point="_settingsNode" title="${_nls.actionShare}" role="presentation">' +
+			         			 '<a tabindex="0" href="javascript://" data-dojo-attach-point="_settingsNode" title="${_nls.actionSettings}" role="presentation">' +
+									 '<span class="idxHeaderSettingsIcon">' +
+									 	'<span class="idxTextAlternative">${_nls.actionSettings}</span>' +
+									 '</span>' +
+							         '<span class="idxHeaderDropDownArrow">' +
+									 	'<span class="idxTextAlternative">(v)</span>' +
+							         '</span>' +
+			         			 '</a>' +
+			         			 '</li>'); 
+			
+			if(this.settings){
+				this.settings = registry.byId(this.settings);
+				this._clearHandles("_settingsHandles");
+				this._settingsHandles = this._prepareMenu(this.settings, [ "oneuiHeaderGlobalActionsMenu", "oneuiHeaderGlobalActionsSubmenu" ], this._settingsNode, this._settingsNode, true);
+				domclass.toggle(this._settingsNode, "idxHeaderDropDown", this.showSettingsDropDownArrow);
+				this._settingsNode.setAttribute("role", "button");
+				this._settingsNode.setAttribute("aria-haspopup", true);
+			}
+		},
+
+		_renderSharing: function(domNode, addSeparator){
+			if(addSeparator){
+				this._renderSeparator(domNode);
+			}
+
+			this._injectTemplate(domNode,
+			         			 '<li class="idxHeaderPrimaryAction idxHeaderTools">' +
+			         			 '<a tabindex="0" href="javascript://" data-dojo-attach-point="_sharingNode" title="${_nls.actionShare}" role="presentation">' +
 									 '<span class="idxHeaderShareIcon">' +
 									 	'<span class="idxTextAlternative">${_nls.actionShare}</span>' +
 									 '</span>' +
@@ -1503,18 +1644,13 @@ define(["dojo/_base/array",
 			         			 '</a>' +
 			         			 '</li>'); 
 			
-			if(addSeparator){
-				this._injectTemplate(domNode,
-				                     '<li class="idxHeaderPrimaryAction idxHeaderSeparator" role="separator"><span></span></li>');
-			}
-
-			if(this.settings){
-				this.settings = registry.byId(this.settings);
-				this._clearHandles("_settingsHandles");
-				this._settingsHandles = this._prepareMenu(this.settings, [ "oneuiHeaderGlobalActionsMenu", "oneuiHeaderGlobalActionsSubmenu" ], this._settingsNode, this._settingsNode, true);
-				domclass.toggle(this._settingsNode, "idxHeaderDropDown", this.showSettingsDropDownArrow);
-				this._settingsNode.setAttribute("role", "menuitem");
-				this._settingsNode.setAttribute("aria-haspopup", true);
+			if(this.sharing){
+				this.sharing = registry.byId(this.sharing);
+				this._clearHandles("_sharingHandles");
+				this._sharingHandles = this._prepareMenu(this.sharing, [ "oneuiHeaderGlobalActionsMenu", "oneuiHeaderGlobalActionsSubmenu" ], this._sharingNode, this._sharingNode, true);
+				domclass.toggle(this._sharingNode, "idxHeaderDropDown", this.showSharingDropDownArrow);
+				this._sharingNode.setAttribute("role", "button");
+				this._sharingNode.setAttribute("aria-haspopup", true);
 			}
 		},
 		
@@ -1540,7 +1676,7 @@ define(["dojo/_base/array",
 				this._clearHandles("_actionsHandles");
 				this._actionsHandles = this._prepareMenu(this.user.actions, [ "oneuiHeaderGlobalActionsMenu", "oneuiHeaderGlobalActionsSubmenu" ], this.userNode, this.userNode, true);
 				domclass.toggle(this.userNode, "idxHeaderDropDown", this.showUserDropDownArrow);
-				this.userNode.setAttribute("role", "menuitem");
+				this.userNode.setAttribute("role", "button");
 				this.userNode.setAttribute("aria-haspopup", true);
 			}
 		},
@@ -1557,7 +1693,11 @@ define(["dojo/_base/array",
 				var children = this.navigation.getChildren();
 				if((children.length == 1) && (children[0].label == "")){
 					// if there is just a single menu bar item with no text, make it a "home" icon
-					domclass.toggle(children[0].containerNode, "idxHeaderNavigationHome", true);
+					var homeItem = children[0];
+					domclass.toggle(homeItem.containerNode, "idxHeaderNavigationHome", true);
+					domclass.toggle(homeItem.containerNode, "idxHeaderNavigationHomeButtonOnly", !homeItem.popup);
+					domattr.set(homeItem.domNode, "title", this._nls.homeButton);
+					domconstruct.place("<span class='idxTextAlternative'>" + this._nls.homeButton + "</span>", homeItem.containerNode, "first");
 				}else if(this.showNavigationDropDownArrows){
 					for(var i = 0; i < children.length; i++){
 						if(children[i].popup){
@@ -1587,7 +1727,7 @@ define(["dojo/_base/array",
 		
 		_renderPrimarySearch: function(domNode){
 			this._injectTemplate(domNode,
-			                     '<li role="search" class="idxHeaderSearchContainer">' +
+			                     '<li class="idxHeaderSearchContainer">' +
 			                     '<input type="text" data-dojo-attach-point="primarySearchTextNode" />' + 
 			                     '<input type="image" data-dojo-attach-point="primarySearchButtonNode" />' +
 			                     '</li>');
@@ -1606,9 +1746,11 @@ define(["dojo/_base/array",
 				title: entryprompt
 			},
 			this.primarySearchTextNode);
+			text.domNode.setAttribute("role", "search");
+			text.domNode.setAttribute("aria-label", this.id + " " + this._nls.primarySearchLabelSuffix);
 			text.own(aspect.after(text, "onChange", function(){ me._onPrimarySearchChange(text.attr("value")); }));
-			text.own(aspect.after(text, "onKeyUp", function(event){ if(event.keyCode == keys.ENTER){ me._onPrimarySearchSubmit(text.attr("value")); } }));
-			  
+			text.own(text.on("keyup", function(event){ if(event.keyCode == keys.ENTER){ me._onPrimarySearchSubmit(text.attr("value")); } }));
+			this._primarySearchTextBox = text;
 			var button = new Button({
 				label: submitprompt,
 				showLabel: false,
@@ -1621,7 +1763,7 @@ define(["dojo/_base/array",
 		_renderSecondaryTitle: function(domNode){
 			this._injectTemplate(domNode,
 			                     '<span class="idxHeaderSecondaryTitleContainer">' +
-								 '<span class="idxHeaderSecondaryTitle" data-dojo-attach-point="secondaryTitleTextNode">' +
+								 '<span class="idxHeaderSecondaryTitle" id="${id}_SecondaryTitle"  data-dojo-attach-point="secondaryTitleTextNode">' +
 			                     '${secondaryTitle}' +
 			                     '</span>' +
 			                     '<span class="idxHeaderSecondarySubtitle" data-dojo-attach-point="_secondaryTitleSeparatorNode">' +
@@ -1655,7 +1797,9 @@ define(["dojo/_base/array",
 		
 		_renderSecondarySearch: function(domNode){
 			this._injectTemplate(domNode,
-			                     '<div role="search" class="idxHeaderSearchContainer">' +
+			                     '<div role="search" aria-label="' +
+								 this.id +
+								 ' ${_nls.secondarySearchLabelSuffix}" class="idxHeaderSearchContainer">' +
 			                     '<input type="text" data-dojo-attach-point="secondarySearchTextNode" />' + 
 			                     '<input type="image" data-dojo-attach-point="secondarySearchButtonNode" />' +
 			                     '</div>');
@@ -1675,8 +1819,8 @@ define(["dojo/_base/array",
 			},
 			this.secondarySearchTextNode);
 			text.own(aspect.after(text,"onChange",function(){ me._onSecondarySearchChange(text.attr("value")); }));
-			text.own(aspect.after(text,"onKeyUp",function(event){ if(event.keyCode == keys.ENTER){ me._onSecondarySearchSubmit(text.attr("value")); } }));
-			
+			text.own(text.on("keyup", function(event){ if(event.keyCode == keys.ENTER){ me._onSecondarySearchSubmit(text.attr("value")); } }));
+			this._secondarySearchTextBox = text;
 			var button = new Button({
 				label: submitprompt,
 				showLabel: false,
@@ -1711,6 +1855,7 @@ define(["dojo/_base/array",
 			this.contentControllerNode),
 			me = this;
 			
+			
 			this._clearHandles("_controllerHandles");
 			this._controllerHandles = this._prepareMenu(controller._menuBtn, [ "oneuiHeader2ndLevMenu", "oneuiHeader2ndLevSubmenu" ]);
 			this._controllerHandles.push(aspect.after(controller, "_bindPopup", function(page, tabNode, popupNode, popup){
@@ -1718,6 +1863,8 @@ define(["dojo/_base/array",
 			}, true));
 			
 			controller.startup();
+			// override the incredibly large width on the no-wrap tabstrip from Dojo
+			domstyle.set(controller.containerNode, "width", "auto");
 			this._controller = controller;
 			
 			// if the content container is already started, ensure the controller initialises correctly

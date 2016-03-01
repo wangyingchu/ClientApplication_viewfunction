@@ -206,13 +206,14 @@ define(["dojo/_base/declare",
 	 * Handles cleanup of handles.
 	 */
 	destroy: function() {
+		var handle = null;
 		for (var linkType in this._linkHandles) {
-			var handle = this._linkHandles[linkType];
+			handle = this._linkHandles[linkType];
 			if (handle) handle.remove();
 			delete this._linkHandles[linkType];
 		}
 		for (var shortcutID in this._shortcutHandles) {
-			var handle = this._shortcutHandles[shortcutID];
+			handle = this._shortcutHandles[shortcutID];
 			if (handle) handle.remove();
 			delete this._shortcutHandles[shortcutID];
 		}
@@ -609,13 +610,13 @@ define(["dojo/_base/declare",
 			// get the widget ID
 			widgetID = widget.get("id");
 		} 
-
+		var result = null;
 		// check if we have a stack container (special case for IE)
 		if (widget instanceof dStackContainer) {
 			// work around stack container problem with internet explorer
 			var child = widget.get("selectedChildWidget");
 			if ((child) && (child.domNode)) {
-				var result = this._focusWidget(child.domNode);
+				result = this._focusWidget(child.domNode);
 				if (!result && event) dEvent.stop(event);
 				return result;
 			}
@@ -624,7 +625,7 @@ define(["dojo/_base/declare",
 		// check if the widget is focusable
 		if (! widget.isFocusable()) {
 			// if not then focus its node
-			var result = this._focusNode(widget.domNode);
+			result = this._focusNode(widget.domNode);
 			if (!result && event) dEvent.stop(event);
 			return result;
 		}
@@ -780,6 +781,7 @@ define(["dojo/_base/declare",
 	 */
 	_setupLink: function(linkType, targetNode, accessKey, description, linkNode, refNode, pos) {
 		if (! this._started) return;
+		var handle = null;
 		if (targetNode) {
 			var resolvedNode = this._resolveNode(targetNode);
 			
@@ -818,7 +820,7 @@ define(["dojo/_base/declare",
 			linkNode.innerHTML = innerHTML;
 
 			var clickableNode = dDom.byId(nodeID);
-			var handle = this._linkHandles[linkType];
+			handle = this._linkHandles[linkType];
 			if (handle) {
 				handle.remove();
 				delete this._linkHandles[linkType];
@@ -830,7 +832,7 @@ define(["dojo/_base/declare",
 			}
 
 		} else {
-			var handle = this._linkHandles[linkType];
+			handle = this._linkHandles[linkType];
 			if (handle) {
 				handle.remove();
 				delete this._linkHandles[linkType];
@@ -849,7 +851,9 @@ define(["dojo/_base/declare",
 	 * @function
 	 */
 	_setupShortcut: function(target, accessKey, description, itemNode, refNode, pos, shortcutID) {
-		if (! this._started) return;		
+		if (! this._started) return;	
+		
+		var handle = null;	
 		if (target) {
 			if (! itemNode) {
 				// create the item
@@ -931,7 +935,7 @@ define(["dojo/_base/declare",
 			
 			var clickableNode = dDom.byId(nodeID);
 			
-			var handle = this._shortcutHandles[shortcutID];
+			handle = this._shortcutHandles[shortcutID];
 			if (handle) {
 				handle.remove();
 				delete this._shortcutHandles[shortcutID];
@@ -944,7 +948,7 @@ define(["dojo/_base/declare",
 
 			
 		} else {
-			var handle = this._shortcutHandles[shortcutID];
+			handle = this._shortcutHandles[shortcutID];
 			if (handle) {
 				handle.remove();
 				delete this._shortcutHandles[shortcutID];

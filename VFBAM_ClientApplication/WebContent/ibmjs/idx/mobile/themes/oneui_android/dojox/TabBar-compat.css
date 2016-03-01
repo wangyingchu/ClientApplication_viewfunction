@@ -8,14 +8,14 @@
 @import url(domButtons/DomButtonWhiteCross-compat.css);
 @import url(../../common/dojox/TabBar-compat.css);
 
-.mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected {
+.oneui .mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected {
 	background-image: url(compat/heading-tab-sel-bg.png);
 }
 
-.mblHeading .mblTabBarFlatTab .mblTabBarButton:active {
+.oneui .mblHeading .mblTabBarFlatTab .mblTabBarButton:active {
 	background-image: url(compat/heading-tab-active-bg.png);
 }
 
-.dj_gecko .mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected {
+.oneui.dj_gecko .mblHeading .mblTabBarFlatTab .mblTabBarButtonSelected {
 	font-weight: 700;
 }

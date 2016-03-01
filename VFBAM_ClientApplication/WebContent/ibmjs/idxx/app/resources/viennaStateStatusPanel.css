@@ -1,0 +1,47 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2011, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or 
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+.vienna .stateStatusPanel .stateStatusPanelContainer {
+}
+
+.vienna .stateStatusPanel .stateStatusPanelText {
+}
+
+.dj_ie7 .vienna .stateStatusPanel .stateStatusPanelText {
+}
+
+.vienna .stateStatusPanelContainer .linkWithPopup {
+}
+
+.vienna .stateStatusPanel .stateStatusPanelText .linkWithPopupDropDownButton {
+}
+
+.vienna .stateStatusPanelPopup {
+}
+
+.vienna .stateStatusPanelPopup .dojoxGrid {
+}
+
+.vienna .stateStatusPanelPopup .dojoxGridTreeModel .dojoxGridExpando {
+}
+
+.vienna .stateStatusPanel .stateStatusPanelAlert {
+}
+
+.vienna .stateStatusPanel .stateStatusPanelAlert .linkWithPopup .dijitDropDownButton .dijitButtonText {
+}
+
+.vienna .stateStatusPanel .stateStatusPanelAlertText {
+}
+
+/* wln added following classes ... */
+.vienna .iconOK_16x16 {
+}
+
+.vienna .iconError_glow_23x24 {
+}
+.vienna .iconError_16x16 {
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jUI Localization</title>
+	<link rel="stylesheet" href="../themes/less/dthink.css">
+	<style>
+		body{
+			font-family:'Helvetica Neue', Helvetica, Arial;
+		}
+	</style>
+	<script src="../requirejs/require.js"></script>
+	<script src="../requirejs/config.js"></script>
+	<script>
+	
+	require(["jui/dialog", "jui/autocomplete", "jui/tests/locales"], function(Dialog, Autocomplete, locales){
+		$(function() {
+			var dialog = new Dialog({
+				buttons: {
+					OK: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			}, "#dialog");	
+			dialog.close();
+					
+			var localeSelect = new Autocomplete({
+				source: locales,
+				button: {
+					label: "Show Dialog"
+				},
+				action: function(e, selectedLocale){
+					dialog.option("locale", selectedLocale);
+					dialog.open();
+				}
+			}, "#localeSelect");
+			$("#localeSelect .ui-autocomplete-input").attr("placeholder", "Choose locale...")
+		});
+	})
+	</script>
+</head>
+<body>
+<h1>Dialog Localization Tests</h1>
+<p>Tooltip of close icon in dialog should be localized </p>
+<div id="localeSelect" style="width: 300px"></div>
+<div id="dialog" title="Localized Dialog">
+	<div>This is the i18n enabled dialog, see localized text hovered on the 'x' close icon.</div>
+</div>
+</body>
+</html>

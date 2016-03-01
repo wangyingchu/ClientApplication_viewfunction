@@ -1,0 +1,172 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+.idxOneuiHoverHelpTooltip,
+.idxOneuiHoverHelpTooltipDialog {
+  /* the outermost dom node, holding the connector and container */
+
+  background: transparent;
+  /* make the area on the sides of the arrow transparent */
+
+}
+
+.idxOneuiHoverHelpTooltip.dijitPopup {
+	.BoxShadow(none);
+}
+.idxOneuiHoverHelpTooltipCloseIcon {
+  background-image: url('images/idx/widget/popupClose.png');
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: -13px;
+  top: -13px;
+  z-index: 10001;
+  line-height: 0;
+  cursor: pointer;
+}
+.idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText {
+  display: none;
+  position: absolute;
+  right: 18px;
+  top: 20px;
+}
+.dj_a11y & .idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText,
+.dj_a11y.idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText {
+  display: block;
+}
+.idxOneuiHoverHelpTooltipLearnLink {
+  margin-top: 15px;
+}
+.idxOneuiHoverHelpTooltipLearnLink span {
+  background: url('images/idx/widget/hoverLearnMoreArrow.png') no-repeat right center;
+  padding-right: 13px;
+  padding-top: 1px;
+}
+.idxOneuiHoverHelpTooltipRight .idxOneuiHoverHelpTooltipCloseIcon {
+  right: -8px;
+  top: -8px;
+}
+.idxOneuiHoverHelpTooltipLeft .idxOneuiHoverHelpTooltipCloseIcon {
+  left: -8px;
+  top: -8px;
+}
+.idxOneuiHoverHelpTooltipAbove .idxOneuiHoverHelpTooltipCloseIcon {
+  right: -8px;
+  top: -8px;
+}
+.idxOneuiHoverHelpTooltipBelow .idxOneuiHoverHelpTooltipCloseIcon {
+  right: -8px;
+  top: -4px;
+}
+.idxOneuiHoverHelpTooltipContainer {
+  /* the part with the text */
+
+  background-color: @fwBackground;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  border: 3px solid @fwDarkest;
+  padding: 7px;
+  .BorderRadius(4px);
+  .BoxShadow(0 1px 6px @shadowBox);
+  font-size: 1em;
+  color: @textDefault;
+  max-width: 600px;
+}
+.dj_ie & .idxOneuiHoverHelpTooltipContainer {
+  padding: 7px 9px;
+}
+.dj_ie6 & .idxOneuiHoverHelpTooltipContainer {
+  background-image: none;
+}
+.idxOneuiHoverHelpTooltipConnector {
+  /* the arrow piece */
+
+  border: 0;
+  z-index: 2;
+  background-image: url('images/idx/widget/popupSharkfin.png');
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 18px;
+}
+.dj_ie6 & .idxOneuiHoverHelpTooltipConnector {
+  background-image: url('images/idx/widget/popupSharkfin_8bit.gif');
+}
+.idxOneuiHoverHelpTooltipABRight .idxOneuiHoverHelpTooltipConnector {
+  /* above or below tooltip, but the arrow appears on the right,
+		and the right edges of target and tooltip are aligned rather than the left */
+
+  left: auto !important;
+  right: 3px;
+}
+.idxOneuiHoverHelpTooltipBelow .idxOneuiHoverHelpTooltipConnector {
+  /* the arrow piece for tooltips below an element */
+
+  top: -6px;
+  left: 13px;
+  background-position: -18px 0;
+}
+.idxOneuiHoverHelpTooltipBelow {
+  /* leave room for arrow above content */
+
+  padding: 9px 5px 5px 5px;
+  margin-left: -14px;
+}
+.idxOneuiHoverHelpTooltipAbove .idxOneuiHoverHelpTooltipConnector {
+  /* the arrow piece for tooltips above an element */
+
+  bottom: -4px;
+  left: 10px;
+  background-position: 0px 0;
+}
+.idxOneuiHoverHelpTooltipAbove {
+  /* leave room for arrow below content */
+
+  margin-left: -10px;
+  margin-top: -1px;
+  padding: 5px 5px 11px 5px;
+}
+.idxOneuiHoverHelpTooltipLeft {
+  padding: 5px 10px 5px 5px;
+}
+.idxOneuiHoverHelpTooltipLeft .idxOneuiHoverHelpTooltipConnector {
+  /* the arrow piece for tooltips to the left of an element, bottom borders aligned */
+
+  right: -5px;
+  background-position: -36px 0;
+}
+.idxOneuiHoverHelpTooltipRight {
+  padding: 5px 5px 5px 9px;
+}
+.idxOneuiHoverHelpTooltipRight .idxOneuiHoverHelpTooltipConnector {
+  /* the arrow piece for tooltips to the right of an element, bottom borders aligned */
+
+  left: -6px;
+  background-position: -54px 0;
+}
+.idxOneuiHoverHelpTooltip {
+  position: absolute;
+  z-index: 2000;
+  display: block;
+  /* make visible but off screen */
+
+  left: 0;
+  top: -10000px;
+  overflow: visible;
+}
+.idxOneuiHoverHelpTooltipFocusNode {
+  padding: 2px 2px 2px 2px;
+}
+.idxOneuiHoverHelpTooltipConnector {
+  position: absolute;
+}
+.dijit_a11y & .idxOneuiHoverHelpTooltipConnector {
+  display: none;
+  /* won't show b/c it's background-image; hide to avoid border gap */
+
+}
+.idxOneuiHoverHelpTooltipData {
+  display: none;
+}

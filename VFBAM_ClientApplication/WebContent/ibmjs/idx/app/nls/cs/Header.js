@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Sdílet",
+	actionSettings: "Nastavení",
 	actionHelp: "Nápověda",
-	searchEntry: "Hledání",
-	searchSubmit: "Hledat"
+	searchEntry: "Hledat",
+	searchSubmit: "Hledat",
+	primarySearchLabelSuffix: "primární hledání",
+	secondarySearchLabelSuffix: "sekundární hledání",
+	homeButton: "Domů"
 //end v1.x content
 });
+

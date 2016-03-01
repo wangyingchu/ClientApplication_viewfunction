@@ -10,3 +10,4 @@ define({
 	legendText: "필수"
 //end v1.x content
 });
+

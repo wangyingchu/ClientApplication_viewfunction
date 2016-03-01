@@ -1,0 +1,78 @@
+.idxButtonBar_idxDefaults {
+  background-image: url('images/blank.gif?directionSensitive=false');
+}
+.idxButtonBar .dijitButton .dijitButtonNode,
+.idxButton Bar .dijitDropDownButton .dijitButtonNode {
+  min-width: 45px;
+}
+.idxButtonBar {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 0px;
+  height: auto;
+}
+.idxButtonBarLeading {
+  height: auto;
+}
+.idxButtonBarTrailing {
+  height: auto;
+}
+.idxButtonBarHidden {
+  display: none;
+  visibility: hidden;
+}
+.idxButtonBarPrimary {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 1px;
+}
+.idxButtonBarSecondary {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 1px;
+}
+.idxButtonBarSpacer {
+  width: 5px;
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+.dj_ie7 & .idxButtonBarSpacer {
+  display: inline;
+}
+.dj_ie7 & .idxButtonBar table.dijitComboButton {
+  vertical-align: bottom;
+}
+.idxButtonBarSeparator {
+  filter: none;
+  background: none;
+  background-color: @fwDarker;
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  vertical-align: middle;
+  margin-left: 9px;
+  margin-right: 9px;
+}
+.dj_ie7 & .idxButtonBarPrimary,
+.dj_ie7 & .idxButtonBarSecondary,
+.dj_ie7 & .idxButtonBar,
+.dj_ie7 & .idxButtonBarSeparator {
+  display: inline;
+}
+.idxButtonBarSeparatorHidden {
+  visibility: hidden;
+  display: none;
+}
+.dj_ie7 & .idxButtonBarSeparatorHidden {
+  display: none;
+}
+.idxButtonBar .dijitToggleButton,
+.idxButtonBar .dijitButton,
+.idxButtonBar .dijitDropDownButton,
+.idxButtonBar .dijitComboButton {
+  margin: 0px;
+}

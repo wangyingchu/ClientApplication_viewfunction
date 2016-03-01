@@ -1,0 +1,133 @@
+.idxOneuiTriStateCheckBox,
+.idxOneuiTriStateCheckBoxIcon {
+	background-image: url("images/idx/form/checkboxRadioButtonStates.png");
+  background-repeat: no-repeat;
+  width: 14px;
+  height: 14px;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.dj_ie6 & .idxOneuiTriStateCheckBox,
+.dj_ie6 & .idxOneuiTriStateCheckBoxIcon {
+	background-image: url("images/idx/form/checkboxRadioButtonStates8bit.png");
+}
+.idxOneuiTriStateCheckBoxWrap .idxLabel {
+  padding: 0 4px 0 0;
+}
+.idxOneuiTriStateCheckBox {
+  /* unchecked */
+
+  background-position: -17px;
+}
+.idxOneuiTriStateCheckBoxChecked {
+  /* checked */
+
+  background-position: -1px;
+}
+.idxOneuiTriStateCheckBoxMixed {
+  /* mixed */
+
+  background-position: -33px;
+}
+.idxOneuiTriStateCheckBoxDisabled {
+  /* disabled and unchecked */
+
+  background-position: -65px;
+}
+.idxOneuiTriStateCheckBoxCheckedDisabled {
+  /* disabled and checked */
+
+  background-position: -49px;
+}
+.idxOneuiTriStateCheckBoxMixedDisabled {
+  /* disabled and mixed */
+
+  background-position: -81px;
+}
+.idxOneuiTriStateCheckBoxHover {
+  /* hovering over and unchecked */
+
+  background-position: -113px;
+}
+.idxOneuiTriStateCheckBoxCheckedHover {
+  /* hovering over and checked */
+
+  background-position: -97px;
+}
+.idxOneuiTriStateCheckBoxMixedHover {
+  /* hovering over and mixed */
+
+  background-position: -33px;
+}
+.idxOneuiTriStateCheckBoxActive {
+  /* hovering over an unchecked enabled checkbox */
+
+  background-position: -161px;
+}
+.idxOneuiTriStateCheckBoxCheckedActive {
+  /* hovering over an unchecked enabled checkbox */
+
+  background-position: -145px;
+}
+.idxOneuiTriStateCheckBoxMixedActive {
+  /* hovering over an unchecked enabled checkbox */
+
+  background-position: -129px;
+}
+.idxOneuiTriStateCheckBoxFocused {
+  outline: 1px dotted @focusOutline;
+}
+.dijit_a11y & .idxOneuiTriStateCheckBoxHover .idxOneuiTriStateCheckBoxInner,
+.dijit_a11y & .idxOneuiTriStateCheckBoxFocused .idxOneuiTriStateCheckBoxInner {
+  /* focused or hovering over */
+
+  border: thin dotted;
+}
+.dijit_a11y & .idxOneuiTriStateCheckBoxDisabled .idxOneuiTriStateCheckBoxInner {
+  /* focused or hovering over */
+
+  opacity: 0.5;
+}
+.dj_ie &.dijit_a11y & .idxOneuiTriStateCheckBoxDisabled .idxOneuiTriStateCheckBoxInner {
+  /* disabled */
+
+}
+.idxOneuiTriStateCheckBoxInner {
+  /* inner text */
+
+  visibility: hidden;
+  display: none;
+  position: absolute;
+  text-align: center;
+}
+.dijit_a11y & .idxOneuiTriStateCheckBoxInner {
+  /* inner text */
+
+  visibility: visible;
+  display: block;
+}
+.idxOneuiTriStateCheckBoxInput {
+  /* place the actual input on top, but all-but-invisible */
+
+  opacity: 0.01;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 14px;
+  height: 14px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.dj_ie & .idxOneuiTriStateCheckBoxInput {
+  filter: alpha(opacity=0);
+}
+.idxOneuiTriStateCheckBoxWrap .idxLabel {
+  margin-top: 2px;
+}
+.idxOneuiTriStateCheckBoxWrap .dijitValidationContainer {
+  height: 15px;
+  margin: 2px 0;
+}
+.idxOneuiTriStateCheckBoxWrap .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}

@@ -19,21 +19,56 @@ define([
 	"dojo/has",	
 	"dojo/keys",
 	"dojo/query",
+	"dojo/when",
 	"dijit/registry",
 	"idx/widget/HoverHelpTooltip",
 	"dijit/form/Select",
 	"dijit/form/_FormSelectWidget",
 	"dijit/form/_FormValueWidget",
 	"dijit/_HasDropDown",
+	"dijit/_WidgetsInTemplateMixin",
 	"../util",
 	"./_CompositeMixin",
 	"./_CssStateMixin",
-	"dojo/text!./templates/Select.html"
-], function(declare, array, event, win, lang, kernel, domGeometry, domClass, domStyle, domAttr, has, keys, query, registry,
-			HoverHelpTooltip, Select, _FormSelectWidget, _FormValueWidget, _HasDropDown, iUtil, _CompositeMixin, _CssStateMixin, template){
+	// ====================================================================================================================
+	// ------
+	// Load _TemplatePlugableMixin and PlatformPluginRegistry if on "mobile" or if on desktop, but using the 
+	// platform-plugable API.  Any prior call to PlaformPluginRegistry.setGlobalTargetPlatform() or 
+	// PlatformPluginRegistry.setRegistryDefaultPlatform() sets "platform-plugable" property for dojo/has.
+	// ------
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	// ------
+	// We want to load the desktop template unless we are using the mobile implementation.
+	// ------
+	"idx/has!#idx_form_Select-desktop?dojo/text!./templates/Select.html"  // desktop widget, load the template
+		+ ":#idx_form_Select-mobile?"									// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/Select.html"					// global desktop platform, load template
+		+ ":#mobile?"													// global mobile platform, don't load
+		+ ":dojo/text!./templates/Select.html", 						// no dojo/has features, load the template
+			
+	// ------
+	// Load the mobile plugin according to build-time/runtime dojo/has features
+	// ------
+	"idx/has!#idx_form_Select-mobile?./plugins/phone/SelectPlugin"			// mobile widget, load the plugin
+		+ ":#idx_form_Select-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/phone/SelectPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+
+	// ====================================================================================================================
+], function(declare, array, event, win, lang, kernel, domGeometry, domClass, domStyle, domAttr, has, keys, query, when, registry,
+			HoverHelpTooltip, Select, _FormSelectWidget, _FormValueWidget, _HasDropDown, _WidgetsInTemplateMixin, iUtil, _CompositeMixin, 
+			_CssStateMixin,	TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
+	
+	
+	var baseClassName = "idx.form.Select";
+	if (has("mobile") || has("platform-plugable")) {
+		baseClassName = baseClassName + "Base";
+	}
 	
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
-	
+
 	/**
 	 * @name idx.form.Select
 	 * @class idx.form.Select is implemented according to IBM One UI(tm) <b><a href="http://dleadp.torolab.ibm.com/uxd/uxd_oneui.jsp?site=ibmoneui&top=x1&left=y28&vsub=*&hsub=*&openpanes=0000010000">Drop-Down Lists Standard</a></b>.
@@ -49,13 +84,13 @@ define([
 	 * @augments idx.form._CompositeMixin
 	 * @augments idx.form._ValidationMixin
 	 */
-	return iForm.Select = declare("idx.form.Select", [Select, _CompositeMixin, _CssStateMixin],
+	iForm.Select = declare(baseClassName, [Select, _CompositeMixin, _CssStateMixin],
 	/**@lends idx.form.Select.prototype*/
 	{
 		// summary:
 		//		One UI version Select control
 		
-		templateString: template,
+		templateString: desktopTemplate,
 		
 		baseClass: "idxSelectWrap",
 		
@@ -100,13 +135,22 @@ define([
 		openDropDown: function(){
 			this.inherited(arguments);
 			this._exchangeAttribute("aria-expanded");
+			//Defect 14094 move the "aria-owns" and "popupactive" attributes
+			this._exchangeAttribute("aria-owns");
+			this._exchangeAttribute("popupactive");
 		},
 		
 		postCreate: function(){
 			var tempDomNode = this.domNode;
 			this.domNode = this.oneuiBaseNode;
 			this.inherited(arguments);
+			// comment out for Defect 10859
+			//domAttr.set(this.domNode, "aria-activedescendant", domAttr.get(this.domNode,"id") );
 			this.domNode = tempDomNode;
+			
+			//this.domNode.setAttribute("role", "region");
+			//this.domNode.setAttribute("aria-label",this.id+"_arialable");
+
 			this._resize();
 		},
 		
@@ -179,15 +223,17 @@ define([
 				this._pendingValue = newValue;
 				return;
 			}
+			
 			var opts = this.getOptions() || [];
 			if(!lang.isArray(newValue)){
 				newValue = [newValue];
 			}
 			array.forEach(newValue, function(i, idx){
-				if(!lang.isObject(i)){
+				
+				if(!lang.isObject(i) && !(typeof i === "number") ){
 					i = i + "";
 				}
-				if(typeof i === "string"){
+				if(typeof i === "string" || typeof i === "number" ){
 					newValue[idx] = array.filter(opts, function(node){
 						return node.value === i;
 					})[0] || {value: "", label: ""};
@@ -218,9 +264,8 @@ define([
 				if ( selectContent.length > 0)
 					selectContent = selectContent[0];
 				domClass.add(selectContent, "dojoxEllipsis");
-			}			
+			}
 			var _previousValue = this.get("value");
-			
 			_FormValueWidget.prototype._setValueAttr.apply(this, [ this.multiple ? val : val[0], priorityChange ]);
 			this._updateSelection();
 			
@@ -232,6 +277,37 @@ define([
 			}
 		},
 		
+		/**
+		 * private function for supporting multichannel feature
+		 */
+		_createDropDown: function(){
+			var self = this;
+			return new Select._Menu({ 
+				id: this.id + "_menu", 
+				parentWidget: this,
+				_onUpArrow: function( evt ){
+					
+					if ( evt.altKey && this.focusedChild && !this._getNext(this.focusedChild, -1) ){
+						self.closeDropDown(true);
+					}
+					else{
+						this.focusPrev();	
+					}
+					
+				},
+				_onDownArrow: function( evt ){
+					if ( evt.altKey && this.focusedChild && !this._getNext(this.focusedChild, 1) ){
+						self.closeDropDown(true);
+					}
+					else{
+						this.focusNext();	
+					}
+				}
+			});
+		},
+		/**
+		 * 
+		 */
 		_fillContent: function(){
 			// summary:
 			//		Overwrite dijit.form._FormSelectWidget._fillContent to support empty value.
@@ -262,10 +338,14 @@ define([
 			}else if(this.multiple && typeof this.value == "string"){
 				this._set("value", this.value.split(","));
 			}
-			
 			// Create the dropDown widget
-			this.dropDown = new dijit.form._SelectMenu({ id: this.id + "_menu", parentWidget: this });
-			domClass.add(this.dropDown.domNode, this.baseClass + "Menu");
+			when(this._createDropDown(), lang.hitch(this, function(dropDown) {
+				if (dropDown) {
+					this.dropDown = dropDown;
+					domClass.add(this.dropDown.domNode, this.baseClass + "Menu");
+				}
+			}));
+			
 		},
 		
 		_getValueFromOpts: function(){
@@ -397,6 +477,9 @@ define([
 //			domStyle.set(this.oneuiBaseNode, "width", widthInPx + "px");
 //		},
 		resize: function(){
+			if(this._holdResize()){
+				return;
+			}
 			if (iUtil.isPercentage(this._styleWidth)) {
 				domStyle.set(this.containerNode, "width","");
 			}
@@ -412,7 +495,7 @@ define([
 					contentBoxWidth = domGeometry.getContentBox(this.oneuiBaseNode).w;
 				if ( styleSettingWidth.indexOf("px") || dojo.isNumber(styleSettingWidth) ){
 					styleSettingWidth = parseInt(styleSettingWidth);
-					contentBoxWidth = ( styleSettingWidth < contentBoxWidth )? styleSettingWidth : contentBoxWidth;
+					contentBoxWidth = ( styleSettingWidth < contentBoxWidth || contentBoxWidth <= 0 )? styleSettingWidth : contentBoxWidth;
 				}
 					
 				domStyle.set(this.containerNode, "width", contentBoxWidth - 40 + "px");
@@ -429,8 +512,9 @@ define([
 			}
 			if(val && val[0]){
 				isFocused = array.some(this._getChildren(), function(child){
-					var isSelected = val[0] === child.option.value;
-					if(isSelected){
+					// child.option == undefined when this is an instance of MenuSeparator
+					var isSelected = ( child.option && (val[0] === child.option.value) );
+					if ( isSelected ){
 						this.dropDown.focusChild(child);
 					}
 					return isSelected;
@@ -451,4 +535,68 @@ define([
 		}
 
 	});
+	
+	if ( has("mobile") || has("platform-plugable")) {
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/Select", 
+				{	
+					desktop: "inherited",	// no plugin for desktop, use inherited methods  
+				 	mobile: MobilePlugin	// use the mobile plugin if loaded
+				});
+		
+		iForm.Select = declare("idx.form.Select",[iForm.Select, TemplatePlugableMixin, _WidgetsInTemplateMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			templatePath: require.toUrl("idx/form/templates/Select.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			
+			/**
+			 * Stub Plugable method
+			 */
+			onCloseButtonClick: function(){
+				return this.doWithPlatformPlugin(arguments, "onCloseButtonClick", "onCloseButtonClick");
+			},
+			/**
+			 * 
+			 * @param {Object} item
+			 * @param {Object} checked
+			 */
+			onCheckStateChanged: function(item, checked){
+				return this.doWithPlatformPlugin(arguments, "onCheckStateChanged", "onCheckStateChanged",item, checked);
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			_onDropDownMouseDown: function(){
+				return this.doWithPlatformPlugin(arguments, "_onDropDownMouseDown", "_onDropDownMouseDown");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			_createDropDown : function(){
+				return this.doWithPlatformPlugin(arguments, "_createDropDown", "_createDropDown");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage",message);
+			},
+			/**
+			 * Stub Plugable method
+			 * @param {Object} helpText
+			 */
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "_setHelpAttr",helpText);
+			}
+		});
+	}
+	
+	
+	return iForm.Select;
 });

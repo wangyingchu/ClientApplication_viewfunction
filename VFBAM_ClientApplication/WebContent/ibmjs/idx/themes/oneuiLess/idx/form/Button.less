@@ -1,0 +1,44 @@
+/* secondary Button and special Button */
+.idxSecondaryButton .dijitButtonNode {
+  font-weight: normal;
+}
+.idxSpecialButton .dijitButtonNode {
+.gradient(@brand, @brandDarkest);
+ .gradient(@brand, @brandDarkest);
+  border: 1px solid @brandDarker;
+  .textColors(mix(@brand, @brandDarkest));
+  color: @textStrong;
+  .TextShadow(@shadowAlpha);
+}
+.idxSpecialButtonHover .dijitButtonNode {
+  .gradient(@brand, @brand);
+}
+.idxSpecialButtonActive .dijitButtonNode {
+  .gradient(@brandDarkest, @brand);
+  color: @brandLightest;
+}
+.idxSpecialButtonDisabled .dijitButtonNode {
+  color: @brandLighter;
+}
+.dj_ie & .idxSpecialButtonDisabled .dijitButtonNode {
+  color: @brandLighter;
+}
+/* Compact */
+.dijitComboButton.idxButtonCompact .dijitButtonText,
+.dijitDropDownButton.idxButtonCompact .dijitButtonText {
+  padding: 0 10px 0 0;
+}
+.dijitButton .dijitButtonNode {
+  min-width: 87px;
+}
+.dijitToggleButton .dijitButtonNode {
+  min-width: 99px;
+}
+.dijitButton.idxButtonCompact .dijitButtonNode,
+.idxSecondaryButton.idxButtonCompact .dijitButtonNode,
+.idxSpecialButton.idxButtonCompact .dijitButtonNode {
+  min-width: 65px;
+}
+.dijitToggleButton.idxButtonCompact .dijitButtonNode {
+  min-width: 55px;
+}

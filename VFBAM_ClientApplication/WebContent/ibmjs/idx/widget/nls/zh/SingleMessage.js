@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "查看全部 ({num})",
+	viewAll: "全部查看 ({num})&lrm;",
 	viewDetails: "更多详细信息",
 	refresh: "刷新",
 	showDetails: "显示详细信息",
 	hideDetails: "隐藏详细信息"
 //end v1.x content
 });
+

@@ -1,0 +1,175 @@
+.idxBanner {
+	padding: 0;
+	width: 100%;
+	height: 42px;
+	.setBanner (@bannerType; @bannerColor1; @bannerColor2; @bannerImage; @bannerRepeat; @bannerPosition; @bannerColor);
+	.setBannerText (@bannerType);
+	.textColors(@bannerText);
+	
+	.idxBannerContainer {
+		color: @textStrong;
+		font-weight: 700;
+		font-size: 1.08em;
+	}
+	.idxBannerLogoArea .idxBannerLogo {
+		display: inline-block;
+		width: 85px;
+		height: 33px;
+		background: transparent url('images/idx/widget/bannerLogo.png') left top no-repeat;
+	}
+	
+	.idxBannerInnerContainer {
+		display: table;
+		width: 100%;
+		.idxBannerLogoArea,
+		.idxBannerContainer,
+		.idxBannerTrailer {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		
+		.idxBannerContainer {
+			padding-left: 30px;
+		}
+		
+		.idxBannerLogoArea {
+			width: 85px;
+			border-left: 1px solid rgba(red(@separator), green(@separator), blue(@separator), .25);	
+		}
+		
+		.idxBannerTrailer {
+			width: 1px;
+			white-space: nowrap;
+			padding-right: 15px;
+		}
+	}
+	
+	.idxBannerInnerContainer {
+		height: 38px;
+	}
+	.idxBannerBottomBar {
+	  .setLip(@lip);
+	  margin: 0;
+	  width: 100%;
+	  height: 4px;
+	}
+	.idxBannerTrailer {
+	  margin: 10px 15px 0 0;
+	}
+	.idxBannerHelpButtonIcon {
+	  margin-top: 4px;
+	  padding: 0 0 0 15px;
+	  width: 16px;
+	  height: 16px;
+	  border-left: 1px solid;
+	  border-color: rgba(red(@separator), green(@separator), blue(@separator), .5);
+	  background-image: url('images/idx/widget/help.png');
+	  background-position: right;
+	  background-repeat: no-repeat;
+	}
+	.dijitButton,
+	.dijitDropDownButton,
+	.dijitButtonNode,
+	.dijitButtonActive .dijitButtonNodeHover,
+	.dijitDropDownButton .dijitButtonNodeHover,
+	.dijitDropDownButton .dijitDownArrowButtonHover {
+	  border: none!important;
+	  .BorderRadius(0) !important;
+	  background: none!important;
+	  .BoxShadow(none) !important;
+	}
+	.dijitButton .dijitButtonNode,
+	.dijitDropDownButton .dijitButtonNode {
+	  padding: 0;
+	  min-width: 0;
+	}
+	.dijitButtonFocused .dijitButtonNode,
+	.dijitDropDownButtonFocused .dijitButtonNode {
+	  outline-color: rgba(red(@separator), green(@separator), blue(@separator), .75);;
+	}
+	.dijitArrowButtonInner {
+	  background-image: url('images/idx/widget/bannerArrow.png');
+	  background-position: center;
+	}
+	.dijitButtonContents {
+	  border: none!important;
+	  border-radius: 0 0 0 0!important;
+	}
+	.dijitButtonContents .dijitButtonText,
+	a,
+	a:link,
+	a:visited {
+	  padding-right: 10px;
+	  color: @textDefault;
+	  text-shadow: 0 1px @shadowAlpha;
+	  font-weight: 400;
+	}
+	a,
+	a:link,
+	a:visited {
+	  padding-right: 15px;
+	  padding-left: 15px;
+	  border-right: 1px solid transparent;
+	  border-left: 1px solid transparent;
+	}
+	.dijitButtonContents .dijitButtonText:hover,
+	a:hover {
+	  color: @textStrong;
+	  text-decoration: none;
+	}
+	a:hover {
+	  padding-top: 14px;
+	  padding-bottom: 11px;
+	  border-color: darken(@bannerColor1, 10%);
+	  .setBanner (@bannerType; darken(@bannerColor1, 5%); darken(@bannerColor2, 5%); @bannerImage; @bannerRepeat; @bannerPosition; @bannerColor);
+	  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#585858',endColorstr='#1a1a1a',GradientType=0);
+	}
+	a.idxLinkSelected,
+	a.idxLinkSelected:hover {
+	  padding-top: 14px;
+	  padding-bottom: 9px;
+	  border-color: (lighten(@bannerColor2, 8.75%));
+	  .gradient(lighten(@bannerColor1, 10%), lighten(@bannerColor2, 10%));
+	  color: @textStrong;
+	  cursor: auto;
+	}
+}
+
+///////////////////////////////////////////////////////////
+
+.dj_ie & .idxBanner {
+  height: 42px;
+  
+  .idxBannerLogoArea .idxBannerLogo {
+	  margin-bottom: 0;
+	}
+	.idxBannerLogoArea .idxBannerLogo {
+	  float: left;
+	}
+	
+	.idxBannerTrailer {
+	  margin-bottom: -5px;
+	}
+}
+
+.dijitRtl & .idxBanner {
+	.idxBannerTrailer {
+	  float: left;
+	  padding: 6px 0 0 15px;
+	}
+	.idxBannerContainer {
+	  float: right;
+	  margin: 0 30px 0 0;
+	}
+	
+	.idxBannerHelpButtonIcon {
+	  padding: 0 15px 0 0;
+	  border-right: 1px solid;
+	  border-left: 0;
+	  background-position: left;
+	}
+	.dijitArrowButtonInner {
+	  margin-right: 2px;
+	}
+}
+

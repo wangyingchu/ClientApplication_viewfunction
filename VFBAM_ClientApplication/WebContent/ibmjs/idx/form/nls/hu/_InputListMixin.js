@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Legalább egy elemet ki kell választani."
 //end v1.x content
 });
+

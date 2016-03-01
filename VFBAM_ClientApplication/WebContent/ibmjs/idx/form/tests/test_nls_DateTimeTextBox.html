@@ -38,8 +38,11 @@ require([
 	});
 });
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">form/nls/_DateTimeTextBox</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>
@@ -51,6 +54,14 @@ require([
 		Mouse hover on the Date Picker Icon in the input box of DateTextBox widget and then a message will show.<br/><br/>
 		Verify that the "idxDateIconTitle" message is translated and show correctly.
 	</td></tr>
+	<tr><td>dateTitle</td><td>
+		Mouse hover on the date input of DateTimeTextBox widget and then a message will show.<br/><br/>
+		Verify that the "input date" message is translated and show correctly.
+	</td></tr>
+	<tr><td>
+		Mouse hover on the time input of DateTimeTextBox widget and then a message will show.<br/><br/>
+		Verify that the "input time" message is translated and show correctly.
+	</td></tr>
 </tbody></table>
 <hr/>
 <div style="padding: 10px;">
@@ -60,7 +71,6 @@ require([
 		hintPosition: "inside",
 		label: "Date:",
 		labelAlignment: "horizontal",
-		labelWidth: 40,
 		showPickerIcon: true
 	'/>
 	<br/>
@@ -72,9 +82,17 @@ require([
 		hintPosition: "inside",
 		label: "Time:",
 		labelAlignment: "horizontal",
-		labelWidth: 40,
 		showPickerIcon: true
 	'/>
+	
+	<h2>idx.form.DateTimeTextBox</h2>
+			
+	<input id="datetimetextbox" data-dojo-type="idx.form.DateTimeTextBox" data-dojo-props="
+		showPickerIcon: true, 
+		label: 'Date and Time:',
+		labelAlignment: 'horizontal'
+	"/>
+
 </div>
 </body>
 </html>

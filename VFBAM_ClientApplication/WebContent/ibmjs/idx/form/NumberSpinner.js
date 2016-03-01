@@ -8,19 +8,33 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/has",
 	"dojo/_base/event", // event.stop
-	"dojo/dom-style",
-	"dojo/dom-class",
 	"dojo/keys",
 	"dijit/_base/wai",
-	"idx/widget/HoverHelpTooltip",
+	"dojo/dom-style",
+	"dojo/dom-class",
 	"dijit/form/_Spinner",
 	"dijit/form/NumberTextBox",
+	"idx/widget/HoverHelpTooltip",
 	"./_CssStateMixin",
 	"./_CompositeMixin",
-	"./TextBox",
-	"dojo/text!./templates/Spinner.html"
-], function(declare, lang, event, domStyle, domClass, keys, wai, HoverHelpTooltip, _Spinner, NumberTextBox, _CssStateMixin, _CompositeMixin, TextBox, template){
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	"idx/has!#idx_form_NumberSpinner-desktop?dojo/text!./templates/Spinner.html"  // desktop widget, load the template
+		+ ":#idx_form_NumberSpinner-mobile?"										// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/Spinner.html"						// global desktop platform, load template
+		+ ":#mobile?"														// global mobile platform, don't load
+		+ ":dojo/text!./templates/Spinner.html", 							// no dojo/has features, load the template
+		
+	"idx/has!#idx_form_NumberSpinner-mobile?./plugins/mobile/NumberSpinnerPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_NumberSpinner-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/mobile/NumberSpinnerPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+		
+], function(declare, lang, has, event, keys, wai, domStyle, domClass, _Spinner, NumberTextBox, HoverHelpTooltip, 
+	_CssStateMixin, _CompositeMixin, _TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	
     /**
@@ -41,15 +55,14 @@ define([
 	 * 		new idx.form.NumberSpinner({ constraints:{ max:300, min:100 }}, "someInput");
 	 */
 	 
-	return iForm.NumberSpinner = declare("idx.form.NumberSpinner", [_Spinner, NumberTextBox.Mixin,  _CompositeMixin, _CssStateMixin], {
+	var NumberSpinner = declare([_Spinner, NumberTextBox.Mixin,  _CompositeMixin, _CssStateMixin], {
 		/**@lends idx.form.NumberSpinner*/
-		
 		// instantValidate: Boolean
 		//		Fire validation when widget get input by set true, 
 		//		fire validation when widget get blur by set false
 		instantValidate: false,
-		templateString: template,
-		baseClass: "oneuiNumberSpinnerWrap",
+		templateString: desktopTemplate,
+		baseClass: "idxNumberSpinnerWrap",
 		oneuiBaseClass: "dijitTextBox dijitSpinner",
 		cssStateNodes: {
 			"inputNode": "dijitInputContainer",
@@ -67,7 +80,7 @@ define([
 				this.connect(this, "_onInput", function(){
 					this.validate(true);
 				});
-				this._getPatternAttr(this.constraints);
+				this._computeRegexp(this.constraints);
 			}else{
 				this.connect(this, "_onFocus", function(){
 					if (this.message && this._hasBeenBlurred && (!this._refocusing)) {
@@ -120,6 +133,29 @@ define([
 			wai.setWaiState(this.downArrowNode, "describedby", this.id + "_unit");
 		},
 		
+		_isEmpty: function(){
+			var v = this.get("value");
+			return (v !== undefined) && isNaN(v);
+		},
+		_onKeyPress: function(e){
+			if(this.disabled || this.readOnly){
+				return;
+			}
+			if((e.charOrCode == keys.HOME || e.charOrCode == keys.END) && !(e.ctrlKey || e.altKey || e.metaKey)
+			&& typeof this.get('value') != 'undefined' /* gibberish, so HOME and END are default editing keys*/){
+				var value = this.constraints[(e.charOrCode == keys.HOME ? "min" : "max")];
+				if(typeof value == "number"){
+					this._setValueAttr(value, false);
+				}
+				// eat home or end key whether we change the value or not
+				event.stop(e);
+			}
+		},
+		/**
+		 * Show error message using a hoverHelpTooltip, hide the tooltip if message is empty.
+		 * @param {string} message
+		 * Error message
+		 */
 		displayMessage: function(/*String*/ message, /*Boolean*/ force){
 			if(message){
 				if(!this.messageTooltip){
@@ -140,27 +176,47 @@ define([
 				this.messageTooltip && this.messageTooltip.close();
 			}
 		},
-		_isEmpty: function(){
-			var v = this.get("value");
-			return (v !== undefined) && isNaN(v);
-		},
-		_onKeyPress: function(e){
-			if((e.charOrCode == keys.HOME || e.charOrCode == keys.END) && !(e.ctrlKey || e.altKey || e.metaKey)
-			&& typeof this.get('value') != 'undefined' /* gibberish, so HOME and END are default editing keys*/){
-				var value = this.constraints[(e.charOrCode == keys.HOME ? "min" : "max")];
-				if(typeof value == "number"){
-					this._setValueAttr(value, false);
-				}
-				// eat home or end key whether we change the value or not
-				event.stop(e);
-			}
-		},
 		_onInputContainerEnter: function(){
 			domClass.toggle(this.oneuiBaseNode, "dijitSpinnerInputContainerHover", true);
 		},
-		
 		_onInputContainerLeave: function(){
 			domClass.toggle(this.oneuiBaseNode, "dijitSpinnerInputContainerHover", false);
 		}
 	});
+	
+	if(has("mobile") || has("platform-plugable")){
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/NumberSpinner", {	
+			desktop: "inherited",	// no plugin for desktop, use inherited methods  
+			mobile: MobilePlugin	// use the mobile plugin if loaded
+		});
+		
+		NumberSpinner = declare([NumberSpinner,_TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			
+			
+			templatePath: require.toUrl("idx/form/templates/Spinner.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			 			
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			},
+			isFocusable: function(){
+				return this.syncDoWithPlatformPlugin(arguments, "isFocusable", "isFocusable");
+			},
+			_arrowPressed: function(nodePressed, direction, increment){
+				return this.doWithPlatformPlugin(arguments, "_arrowPressed", "arrowPressed", nodePressed, direction, increment);
+			}
+		});
+	}
+	return iForm.NumberSpinner = declare("idx.form.NumberSpinner", NumberSpinner);
 });

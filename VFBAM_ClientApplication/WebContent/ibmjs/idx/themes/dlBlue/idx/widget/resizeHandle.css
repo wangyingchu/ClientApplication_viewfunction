@@ -1,0 +1,35 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dj_ie8.dlBlue .idxResizeHandle,
+.dj_ie8.dlBlue .idxResizeHandle.dojoxResizeHandle {
+  background-image: url(images/resize.png);
+}
+.dijitRtl .dj_ie8.dlBlue .idxResizeHandle,
+.dijitRtl .dj_ie8.dlBlue .idxResizeHandle.dojoxResizeHandle {
+  background-image: url(images/resize_rtl.png);
+}
+.dijitRtl .dlBlue .idxResizeHandle,
+.dijitRtl .dlBlue .idxResizeHandle.dojoxResizeHandle {
+  background-image: url(images/resize_rtl.svg);
+}
+.dlBlue .idxResizeHandle,
+.dlBlue .idxResizeHandle.dojoxResizeHandle {
+  background-image: url(images/resize.svg);
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .idxResizeHandleText {
+  display: none;
+}
+.dlBlue.dijit_a11y .idxResizeHandleText {
+  display: inline-block;
+  font-size: 150%;
+  padding: 0px;
+  margin: 0px;
+  line-height: 100%;
+  text-align: right;
+  vertical-align: bottom;
+}
+.dijitRtl .dlBlue.dijit_a11y .idxResizeHandleText {
+  text-align: left;
+}

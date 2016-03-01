@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "การเลือกแถวทั้งหมดแบบสลับไปมา"		
 //end v1.x content
 });
+

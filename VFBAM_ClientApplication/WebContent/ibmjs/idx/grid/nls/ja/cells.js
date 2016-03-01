@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "すべての行の選択を切り替える"		
 //end v1.x content
 });
+

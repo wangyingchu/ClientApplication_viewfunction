@@ -1,0 +1,145 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxComposite {
+  margin: 1px;
+  padding: 1px;
+}
+.dlBlue .idxSelectWrap .dijitSelect {
+  margin: 0;
+}
+.dlBlue .idxComposite .idxLabel {
+  text-align: left;
+  line-height: 18px;
+}
+.dlBlue .idxComposite .idxHint {
+  display: none;
+}
+.dlBlue .idxComposite .idxHintOutside {
+  position: static;
+  width: 15em;
+}
+.dlBlue .idxComposite .idxUnit {
+  padding: 6px 0 5px 5px;
+}
+.dlBlue .idxComposite .dijitSpinner .dijitSpinnerButtonContainer .dijitArrowButton {
+  width: auto;
+  border-color: #ffffff;
+}
+.dlBlue .idxComposite .dijitValidationContainer {
+  visibility: hidden;
+  height: 25px;
+  width: 15px;
+  vertical-align: top;
+  margin: 0 0 0 5px;
+  display: inline-block;
+  /*.dijitValidationIcon {
+                height: 15px;
+                width: 15px;
+                margin: 5px 0;
+                background-image: url("../idx/widget/images/msgIcons_24bit.png");
+                background-position: -2px -2px;
+            }*/
+}
+.dlBlue .idxComposite .dijitValidationContainer input {
+  background-color: transparent !important;
+  width: 0px;
+  border: 0px;
+}
+.dlBlue .idxComposite .dijitSpinnerButtonContainer {
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  padding: 0 2px;
+  border-color: #ffffff;
+}
+.dlBlue .idxComposite input.dijitValidationInner {
+  direction: ltr !important;
+  height: auto !important;
+  text-align: left !important;
+  text-indent: -1em !important;
+}
+.dlBlue .idxLabel {
+  vertical-align: top;
+  padding: 0 10px 0 0;
+  margin: 3px 0 2px 0;
+}
+.dlBlue .idxLabel .idxRequiredIcon {
+  display: none;
+}
+.dlBlue .dijitRequired .idxLabel .idxRequiredIcon {
+  display: inline-block;
+  color: #b8471b;
+  font-family: Verdana;
+  font-size: 1em;
+}
+.dlBlue .idxTextareaWrap .dijitValidationContainer {
+  /*display: none;*/
+}
+.dlBlue .idxTextareaWrap .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.dlBlue .idxTextareaWrapError .dijitValidationContainer {
+  display: inherit;
+}
+.dlBlue .idxNoOutline {
+  outline-style: none;
+}
+.dlBlue .idxFormBodyRow {
+  margin: 0;
+  padding: 2px 0;
+}
+.dlBlue .idxFormBodyRow .idxComposite {
+  vertical-align: top;
+}
+.dlBlue .idxDndAvatar {
+  background-color: transparent;
+}
+.dlBlue .idxDndAvatar .dropIndicator {
+  width: 32px;
+  height: 32px;
+  background: url("images/move_32.svg") no-repeat;
+  vertical-align: middle;
+}
+.dlBlue .idxDndAvatarBody {
+  padding: 7px 10px;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.8);
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font: Arial bold 12px;
+  color: #ffffff;
+}
+.dlBlue .idxComposite.dijitError .dijitValidationContainer {
+  visibility: visible;
+  display: inline-block;
+  zoom: 1;
+  /* display:inline;*/
+}
+.dlBlue .idxDndAvatar.idxDndAvatarCanDrop .dropIndicator {
+  background: transparent;
+}
+.dlBlue .idxCheckBoxListWrap .idxLabel,
+.dlBlue .idxRadioButtonSetWrap .idxLabel {
+  vertical-align: top;
+}
+.dj_ie6 .dlBlue {
+  /*.idxComposite {
+            .dijitValidationContainer {
+                .dijitValidationIcon {
+                    background-image: url("../idx/widget/images/msgIcons_8bit.png");
+                }
+            }
+        }*/
+}
+.dj_ie6 .dlBlue .idxTextBoxWrap .dijitTextBox {
+  padding: 3px 10px;
+}
+.dj_ie6 .dlBlue .idxTextBoxWrap .dijitTextBox .dijitInputField {
+  padding: 0;
+}
+.dj_ie7 .dlBlue .idxTextareaWrap .dijitInputContainer {
+  display: inline;
+}
+.dj_a11y .idxComposite .dijitValidationContainer input.dijitValidationInner {
+  text-indent: 0 !important;
+}

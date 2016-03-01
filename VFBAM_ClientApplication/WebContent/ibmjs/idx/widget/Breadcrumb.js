@@ -188,7 +188,7 @@ Breadcrumb.Separator = dojo_declare(
 		postMixInProperties: function() {
 			this.inherited(arguments);
 			this.res = {
-				arrowSeparater: " > "
+				arrowSeparater: " <span class='altText'> &gt; </span> "
 			};
 		},
 
@@ -196,7 +196,7 @@ Breadcrumb.Separator = dojo_declare(
 		 * Render a separator.
 		 */
 		render: function() {
-			var div = dojo_html.create("DIV", {
+			var div = dojo_html.create("DIV", { "class": "separator",
 				innerHTML: this.res.arrowSeparater
 			});
 			return div;

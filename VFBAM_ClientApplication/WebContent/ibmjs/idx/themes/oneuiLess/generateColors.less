@@ -1,0 +1,179 @@
+////////////////////////////////////////////////////////
+//
+//	Generate Brand Palette
+//
+//	This mixin creates the brand color palette
+//	used throughout brandable elements in the
+//	IDX Toolkit.
+//
+//	These elements include
+//
+//		* The blue lip below the single banner
+//		* The secondary banner
+//		* The special button
+//		* Tab focus indicator
+//
+////////////////////////////////////////////////////////
+
+.brandColors (@brandColor) {
+	@brandLightest: hsv(hsvhue(@brandColor)*1, hsvsaturation(@brandColor)*.3, hsvvalue(@brandColor)*1.32);
+	@brandLighter: hsv(hsvhue(@brandColor)*1, hsvsaturation(@brandColor)*.4, hsvvalue(@brandColor)*1.27);
+	@brandLight: hsv(hsvhue(@brandColor)*1, hsvsaturation(@brandColor)*.65, hsvvalue(@brandColor)*1.03);
+	@brand: @brandColor;
+	@brandDark: hsv(hsvhue(@brandColor)*1.01, hsvsaturation(@brandColor)*.98, hsvvalue(@brandColor)*.92);
+	@brandDarker: hsv(hsvhue(@brandColor)*1.02, hsvsaturation(@brandColor)*.93, hsvvalue(@brandColor)*.75);
+	@brandDarkest: hsv(hsvhue(@brandColor)*1.02, hsvsaturation(@brandColor)*.94, hsvvalue(@brandColor)*.69);
+}
+
+
+////////////////////////////////////////////////////////
+//
+//	Generate Framework Palette
+//
+//	This mixin creates the color palette
+//	used throughout layout and container elements 
+//	in the IDX Toolkit.
+//
+//	These elements include
+//
+//		* Buttons
+//		* Outlines and separators
+//		* Titlepanes
+//		* Tabs
+//
+////////////////////////////////////////////////////////
+
+.frameworkColors (@baseColor) {
+	@fwLightest: lighten(@baseColor, 17.5%);
+	@fwLighter: lighten(@baseColor, 8.5%);
+	@fwLight: lighten(@baseColor, 2.5%);
+	@fwBase: @baseColor;
+	@fwDark: darken(@baseColor, 3.5%);
+	@fwDarker: darken(@baseColor, 9.5%);
+	@fwDarkest: darken(@baseColor, 18.5%);
+}
+
+.frameworkContrast (@baseColor) when (luma(@baseColor) < 50) {
+	@fwContrast: #333;
+}
+.frameworkContrast (@baseColor) when (luma(@baseColor) >= 50) {
+	@fwContrast: #eee;
+}
+
+
+////////////////////////////////////////////////////////
+//
+//	Generate Text Colors
+//
+//	This mixin creates the text colors based on
+//	the background color behind the text. A default
+//	for the app can be set at the root level and
+//	overrides can be made when necessary.
+//
+//	The colors that are generated are AAA compliant
+//	for accessibility. This creates a potential issue,
+//	however, since there are no viable accessibile
+//	colors when the luma value of the color is between
+//	34 and 59. Colors are generated, but they will
+//	not pass accessibility tests. To fix this issue
+//	if it happens, you need change the background
+//	color of the element that is causing the exception.
+//
+////////////////////////////////////////////////////////
+
+//////////	Colors for dark backgrounds	//////////
+
+
+.textColors (@contentBackground) when (luma(@contentBackground) =< 49) {
+  @textDefault: #ffffff;
+  @textStrong: #ffffff;
+  @textSecondary: #ffffff;
+  @textDisabled: #ffffff;
+  @linkColor: #078dc1;
+  @linkHover: #3eb3e0;
+  @linkVisited: #69bfe0;
+  @textActive: #dd731c;
+  @shadowSolid: #000000;
+  @shadowAlpha: rgba(255,255,255,.15);
+}
+.textColors (@contentBackground) when (luma(@contentBackground) =< 27) {
+  @textDefault: #ffffff;
+  @textStrong: #ffffff;
+  @textSecondary: #eeeeee;
+  @textDisabled: #dddddd;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) =< 20) {
+  @textDefault: #eeeeee;
+  @textStrong: #ffffff;
+  @textSecondary: #dddddd;
+  @textDisabled: #cccccc;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) =< 13) {
+  @textDefault: #eeeeee;
+  @textStrong: #ffffff;
+  @textSecondary: #cccccc;
+  @textDisabled: #bbbbbb;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) =< 7) {
+  @textDefault: #dddddd;
+  @textStrong: #ffffff;
+  @textSecondary: #bbbbbb;
+  @textDisabled: #aaaaaa;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) = 0) {
+  @textDefault: #dddddd;
+  @textStrong: #ffffff;
+  @textSecondary: #bbbbbb;
+  @textDisabled: #999999;
+}
+
+//////////	Colors for light backgrounds	//////////
+
+.textColors (@contentBackground) when (luma(@contentBackground) >= 50) {
+  @textDefault: #000000;
+  @textStrong: #000000;
+  @textSecondary: #000000;
+  @textDisabled: #000000;
+  @linkColor: #00649d;
+  @linkHover: #05386b;
+  @linkVisited: #745285;
+  @textActive: #a03115;
+  @shadowSolid: #ffffff;
+  @shadowAlpha: rgba(0,0,0,.15);
+}
+.textColors (@contentBackground) when (luma(@contentBackground) >= 67) {
+  @textDefault: #000000;
+  @textStrong: #000000;
+  @textSecondary: #111111;
+  @textDisabled: #111111;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) >= 73) {
+  @textDefault: #000000;
+  @textStrong: #000000;
+  @textSecondary: #111111;
+  @textDisabled: #222222;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) >= 80) { 
+  @textDefault: #111111;
+  @textStrong: #000000;
+  @textSecondary: #222222;
+  @textDisabled: #333333;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) >= 87) { 
+  @textDefault: #222222;
+  @textStrong: #000000;
+  @textSecondary: #333333;
+  @textDisabled: #444444;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) >= 93) { 
+  @textDefault: #222222;
+  @textStrong: #000000;
+  @textSecondary: #333333;
+  @textDisabled: #444444;
+}
+.textColors (@contentBackground) when (luma(@contentBackground) = 100) {
+  @textDefault: #222222;
+  @textStrong: #000000;
+  @textSecondary: #444444;
+  @textDisabled: #555555;
+}

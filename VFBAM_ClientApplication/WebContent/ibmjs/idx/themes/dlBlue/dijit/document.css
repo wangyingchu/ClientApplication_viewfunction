@@ -1,0 +1,72 @@
+@import url("../../../../../dojo_idt/dojo/resources/dojo.css");
+/* ======= Styling for the document itself (overriding dojo.css) ======== */
+.dlBlue {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #393a3f;
+}
+/* Headings */
+.dlBlue h1,
+.dlBlue h2 {
+  font-weight: 200;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.dlBlue h1 {
+  font-size: 1.923em;
+  margin-bottom: 0.727em;
+}
+.dlBlue h2 {
+  font-size: 1.538em;
+  margin-top: 1em;
+  margin-bottom: 0.60em;
+}
+.dlBlue h3,
+.dlBlue h4,
+.dlBlue h5,
+.dlBlue h6 {
+  font-size: 1.231em;
+  font-weight: normal;
+}
+/* paragraphs, quotes and lists */
+.dlBlue p {
+  line-height: 20px;
+}
+/* pre and code */
+.dlBlue pre,
+.dlBlue code {
+  font-family: inherit;
+  background-color: #267bac;
+  border: 1px solid #efeff1;
+}
+/* tables */
+.dlBlue table.dojoTabular thead,
+.dlBlue table.dojoTabular tfoot {
+  background-color: #267bac;
+  border: 1px solid #efeff1;
+}
+/* placeholder */
+.dlBlue .dijitPlaceHolder {
+  color: #58595b;
+  font-style: normal;
+}
+.dlBlue .dijitInputField .dijitPlaceHolder,
+.dlBlue .dijitInputContainer .dijitPlaceHolder {
+  color: #58595b;
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-style: normal;
+}
+.dlBlue input::-webkit-input-placeholder,
+.dlBlue textarea::-webkit-input-placeholder {
+  color: #58595b;
+  font-family: Helvetica Neue, Arial, sans-serif;
+}
+.dlBlue input::-moz-placeholder,
+.dlBlue textarea::-moz-placeholder {
+  color: #58595b;
+  font-family: Helvetica Neue, Arial, sans-serif;
+}
+.dlBlue input:-ms-input-placeholder,
+.dlBlue textarea:-ms-input-placeholder {
+  color: #58595b;
+  font-family: Helvetica Neue, Arial, sans-serif;
+}

@@ -9,11 +9,6 @@
   background-image: url(../images/blank.gif?directionSensitive=false);
 }
 
-.oneui .idxButtonBar .dijitButton .dijitButtonNode,
-.oneui .idxButton Bar .dijitDropDownButton .dijitButtonNode {
-	min-width: 45px;
-}
-
 .oneui .idxButtonBar {
   	display: inline-block;
  	white-space: nowrap;

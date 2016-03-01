@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>IDX ThemeTester</title>
+	<!-- Dijit Basic styles -->
+	<link href="../../../dojo_idt/dojo/resources/dojo.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../../../dojo_idt/dijit/themes/dijit.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../../../dojo_idt/dijit/themes/dijit_rtl.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../../../dojo_idt/dojox/html/resources/ellipsis.css" rel="stylesheet" type="text/css" media="all">
+	<link href="themeTester.css" rel="stylesheet" type="text/css" media="all">
+	
+	<script type="text/javascript" src="../tests/dojoVersion.js"></script>
+	<script type="text/javascript">
+		var dojoConfig = currentDojoVersion.dojoConfig;
+		dojoConfig.async = true;
+	</script>
+	<script type="text/javascript" src="../../../dojo_idt/dojo/dojo.js"></script>
+	<script>
+		require(["dojo/parser", "dijit/registry", "dojo/domReady!"],function(parser, registry){
+			parser.parse();
+			showDialog = function(){
+				registry.byId("dlblueDialog").show();
+			}
+		})
+	</script>
+	<script type="text/javascript" src="../tests/commonTest.js"></script>
+</head>
+<body style="width: 100%; height: 100%; margin: 0; padding: 0px;" role="main">
+	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
+	<script type="text/javascript">applyThemeToBody("dlBlue", "./");</script>
+	<a name="maincontent"></a>
+	<section>
+	<h1>IDX dlBlue ThemeTester</h1>
+	<!-- Tabs -->
+	<h2 class="demoHeaders">Tabs</h2>
+	<div data-dojo-type="dijit/layout/TabContainer"  data-dojo-props='
+		style: "height: 125px"
+		'>
+		<div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props='title:"First"'>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean semper sagittis velit. 
+			Cras in mi. Duis porta mauris ut ligula. Proin porta rutrum lacus. Etiam consequat scelerisque quam. 
+			Nulla facilisi. Maecenas luctus venenatis nulla. In sit amet dui non mi semper iaculis. 
+			Sed molestie tortor at ipsum. Morbi dictum rutrum magna. Sed vitae risus.
+		</div>
+		<div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props='title:"Second"'>
+			I'm tab 2.
+		</div>
+		<div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props='title:"Third", closable: true'>
+			I'm tab 3.
+		</div>
+	</div>
+	<!--<div data-dojo-type="dijit/layout/TabContainer"  data-dojo-props='
+		style: "width: 550px;height: 300px;", tabPosition:"left"
+		'>
+		<div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props='title:"First"'>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean semper sagittis velit. 
+			Cras in mi. Duis porta mauris ut ligula. Proin porta rutrum lacus. Etiam consequat scelerisque quam. 
+			Nulla facilisi. Maecenas luctus venenatis nulla. In sit amet dui non mi semper iaculis. 
+			Sed molestie tortor at ipsum. Morbi dictum rutrum magna. Sed vitae risus.
+		</div>
+		<div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props='title:"Second"'>
+			I'm tab2.
+		</div>
+		<div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props='title:"Third", closable: true'>
+			I'm tab2.
+		</div>
+	</div>-->
+	
+	<!-- Button -->
+	<h2 class="demoHeaders">Buttons</h2>
+	
+	<table style="width: 500px;">
+		<tr>
+			<td><button data-dojo-type="dijit/form/Button">Primary</button></td>
+			<td><button data-dojo-type="dijit/form/Button" disabled>Disabled</button></td>
+			<td><button data-dojo-type="dijit/form/Button" 
+				data-dojo-props='baseClass:"dijitButton idxSecondaryButton"'>Secondary</button></td>
+			<td><button data-dojo-type="dijit/form/Button" disabled
+				data-dojo-props='baseClass:"dijitButton idxSecondaryButton"'>Disabled</button></td>
+		</tr>
+		
+		<tr>
+			<td><button data-dojo-type="dijit/form/DropDownButton">
+				<span>Primary</span>
+				<span data-dojo-type="idx/widget/Menu" >
+					<span data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut"'>Cut</span>
+					<span data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCopy"'>Copy</span>
+					<span data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste"'>Paste</span>
+				</span>
+			</button></td>
+			<td><button data-dojo-type="dijit/form/DropDownButton" disabled>
+				<span>Disabled</span>
+			</button></td>
+			<td><button data-dojo-type="dijit/form/DropDownButton" data-dojo-props='baseClass:"dijitDropDownButton idxSecondaryButton"'>
+				<span>Secondary</span>
+				<span data-dojo-type="idx/widget/Menu" >
+					<span data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut"'>Cut</span>
+					<span data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCopy"'>Copy</span>
+					<span data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste"'>Paste</span>
+				</span>
+			</button></td>
+			<td><button data-dojo-type="dijit/form/DropDownButton" data-dojo-props='baseClass:"dijitDropDownButton idxSecondaryButton"' disabled>
+				<span>Disabled</span>
+			</button></td>
+		</tr>
+		
+		<tr>
+			<td><button data-dojo-type="dijit/form/ComboButton">
+				<span>Primary</span>
+				<span data-dojo-type="idx/widget/Menu">
+					<span data-dojo-type="dijit/MenuItem"  
+						data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave"''>Create blank</span>
+					<span data-dojo-type="dijit/MenuItem">Create from template</span>
+				</span>
+			</button></td>
+			<td><button data-dojo-type="dijit/form/ComboButton" disabled>
+				<span>Disabled</span>
+			</button></td>
+			<td><button data-dojo-type="dijit/form/ComboButton"  data-dojo-props='baseClass:"dijitComboButton idxSecondaryButton"'>
+				<span>Secondary</span>
+				<span data-dojo-type="idx/widget/Menu">
+					<span data-dojo-type="dijit/MenuItem"  
+						data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconSave"''>Create blank</span>
+					<span data-dojo-type="dijit/MenuItem">Create from template</span>
+				</span>
+			</button></td>
+			<td><button data-dojo-type="dijit/form/ComboButton"  data-dojo-props='baseClass:"dijitComboButton idxSecondaryButton"' disabled>
+				<span>Disabled</span>
+			</button></td>
+		</tr>
+		
+		<tr>
+			<td><button checked data-dojo-type="dijit/form/ToggleButton" data-dojo-props='
+				iconClass:"dijitCheckBoxIcon"'>Primary</button></td>
+			<td><button data-dojo-type="dijit/form/ToggleButton" disabled checked data-dojo-props='
+				iconClass:"dijitCheckBoxIcon"'>Disabled</button></td>
+			<td><button checked data-dojo-type="dijit/form/ToggleButton" data-dojo-props='
+				baseClass:"dijitToggleButton idxSecondaryButton", iconClass:"dijitCheckBoxIcon"'>Secondary</button></td>
+			<td><button data-dojo-type="dijit/form/ToggleButton" disabled checked data-dojo-props='
+				baseClass:"dijitToggleButton idxSecondaryButton", iconClass:"dijitCheckBoxIcon"'>Disabled</button></td>
+		</tr>
+	</table>
+	
+	<!-- Text Input -->
+	<h2 class="demoHeaders">Text Inputs</h2>
+		<input data-dojo-type="idx/form/TextBox" data-dojo-props='
+			hint: "TextBox",
+			value: "",
+			fieldWidth: 200,
+			required: true
+		'/>
+		<input data-dojo-type="idx/form/TextBox" data-dojo-props='
+			value: "Disabled",
+			fieldWidth: 200,
+			disabled: true
+		'/>
+		<br>
+		<textarea data-dojo-type="idx/form/Textarea" data-dojo-props='
+			rows: 2,
+			trim: true,
+			hint: "Textarea",
+			fieldWidth: 202,
+			required: true
+		'></textarea>
+		<textarea data-dojo-type="idx/form/Textarea" data-dojo-props='
+			rows: 2,
+			trim: true,
+			value: "Disabled",
+			fieldWidth: 202,
+			disabled: true
+		'></textarea>
+		<br>
+		<input data-dojo-type="idx/form/CurrencyTextBox" data-dojo-props='
+			hint: "Currency Input",
+			value: "",
+			currency: "USD",
+			fieldWidth: 168,
+			required: true
+		'/>
+		<input data-dojo-type="idx/form/CurrencyTextBox" data-dojo-props='
+			hint: "Input number",
+			value: "100000",
+			disabled: true,
+			fieldWidth: 168,
+			currency: "USD"
+		'/>
+	
+	<!-- Spinner -->
+	<h2 class="demoHeaders">Spinner</h2>
+	<input data-dojo-type="idx/form/NumberSpinner" data-dojo-props='
+		hint: "Number Spinner",
+		fieldWidth: 200,
+		required: true,
+		value: ""
+	'/>
+	
+	<input data-dojo-type="idx/form/NumberSpinner" data-dojo-props='
+		hint: "Disabled",
+		fieldWidth: 200,
+		disabled: true,
+		value: "1000"
+	'/>
+	
+	<!-- DropDown -->
+	<h2 class="demoHeaders">DropDowns</h2>
+	<select data-dojo-type="idx/form/Select" data-dojo-props='
+		required: true,
+		fieldWidth: 200,
+		value: "CA"
+	'>
+		<option value="">None</option>
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	<select data-dojo-type="idx/form/Select" data-dojo-props='
+		disabled: true,
+		fieldWidth: 200,
+		value: "CA"
+	'>
+		<option value="">None</option>
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	<br>
+	<select data-dojo-type="idx/form/CheckBoxSelect" data-dojo-props="
+		required: true,
+		fieldWidth: 200,
+		value: ['CA', 'FL']">
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	<select data-dojo-type="idx/form/CheckBoxSelect" data-dojo-props="
+		disabled: true,
+		fieldWidth: 200,
+		value: ['CA', 'FL']">
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	<br>
+	<input data-dojo-type="idx/form/DateTextBox" data-dojo-props='
+		hint: "MM/DD/YYYY",
+		required: true,
+		value: "",
+		fieldWidth: 203,
+		showPickerIcon: true
+	'/>
+	<input data-dojo-type="idx/form/DateTextBox" data-dojo-props='
+		hint: "MM/DD/YYYY",
+		disabled: true,
+		displayedValue: "7/30/2014",
+		fieldWidth: 203,
+		showPickerIcon: true
+	'/>
+	<br>
+	<input data-dojo-type="idx/form/TimeTextBox" data-dojo-props='
+		hint: "HH:MM",
+		required: true,
+		value: "",
+		fieldWidth: 203,
+		showPickerIcon: true
+	'/>
+	<input data-dojo-type="idx/form/TimeTextBox" data-dojo-props='
+		disabled: true,
+		displayedValue: "12:30 AM",
+		fieldWidth: 203,
+		showPickerIcon: true
+	'/>
+	<br>
+	<div style="display:inline-block; margin:5px;width:225px;">
+		<div dojoType="idx/form/DropDownLink" label="DropDown Link" style='margin：5px;'>
+			<div dojoType="dijit/Menu">
+				<div dojoType="dijit/MenuItem" label="Menu Item 1"></div>
+				<div dojoType="dijit/MenuItem" label="Menu Item 2"></div>
+				<div dojoType="dijit/MenuItem" label="Menu Item 3"></div>
+		 		<div dojoType="dijit/MenuItem" label="Menu Item 4"></div>
+			</div>
+		</div>
+	</div>
+	<div style="display:inline-block; margin:5px">
+		<div dojoType="idx/form/DropDownLink" label="DropDown Link Disabled" disabled style='margin：5px;'>
+		</div>
+	</div>
+	<br>
+	<!-- Combo -->
+	<h2 class="demoHeaders">Combos</h2>
+	<select data-dojo-type="idx/form/ComboBox"
+		data-dojo-props='name:"combobox",
+		value: "",
+		hint: "ComboBox",
+		required: true,
+		fieldWidth: 200
+	'>
+		<option value="AK">Alaska</option>
+		<option value="AS">American Samoa</option>
+		<option value="AZ">Arizona</option>
+		<option value="AR">Arkansas</option>
+		<option value="AE">Armed Forces Europe</option>
+		<option value="AP">Armed Forces Pacific</option>
+		<option value="AA">Armed Forces the Americas</option>
+		<option value="CA">California</option>
+		<option value="CO">Colorado</option>
+		<option value="CT">Connecticut</option>
+		<option value="DE">Delaware</option>
+		<option value="DC">District of Columbia</option>
+		<option value="FM">Federated States of Micronesia</option>
+		<option value="FL">Florida</option>
+		<option value="GA">Georgia</option>
+		<option value="GU">Guam</option>
+		<option value="HI">Hawaii</option>
+		<option value="ID">Idaho</option>
+		<option value="IL">Illinois</option>
+		<option value="IN">Indiana</option>
+		<option value="IA">Iowa</option>
+		<option value="KS">Kansas</option>
+		<option value="KY">Kentucky</option>
+		<option value="LA">Louisiana</option>
+		<option value="ME">Maine</option>
+		<option value="MH">Marshall Islands</option>
+		<option value="MD">Maryland</option>
+		<option value="MA">Massachusetts</option>
+		<option value="MI">Michigan</option>
+		<option value="MN">Minnesota</option>
+		<option value="MS">Mississippi</option>
+		<option value="MO">Missouri</option>
+		<option value="MT">Montana</option>
+		<option value="NE">Nebraska</option>
+		<option value="NV">Nevada</option>
+		<option value="NH">New Hampshire</option>
+		<option value="NJ">New Jersey</option>
+		<option value="NM">New Mexico</option>
+		<option value="NY">New York</option>
+		<option value="NC">North Carolina</option>
+		<option value="ND">North Dakota</option>
+		<option value="MP">Northern Mariana Islands</option>
+		<option value="OH">Ohio</option>
+		<option value="OK">Oklahoma</option>
+		<option value="OR">Oregon</option>
+		<option value="PA">Pennsylvania</option>
+		<option value="PR">Puerto Rico</option>
+		<option value="RI">Rhode Island</option>
+		<option value="SC">South Carolina</option>
+		<option value="SD">South Dakota</option>
+		<option value="TN">Tennessee</option>
+		<option value="TX">Texas</option>
+		<option value="UT">Utah</option>
+		<option value="VT">Vermont</option>
+		<option value="VI">Virgin Islands, U.S.</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="WV">West Virginia</option>
+		<option value="WI">Wisconsin</option>
+		<option value="WY">Wyoming</option>
+	</select>
+	<select data-dojo-type="idx/form/ComboBox"
+		data-dojo-props='name:"combobox",
+		value: "Disabled",
+		hint: "Select state",
+		disabled: true,
+		fieldWidth: 200
+	'></select>
+	<br>
+	<div style="display:inline-block; margin:5px;width:225px;">
+		<div dojoType="idx/form/ComboLink" label="Combo Link">
+			<div dojoType="dijit/Menu">
+				<div dojoType="dijit/MenuItem" label="Menu Item 1"></div>
+				<div dojoType="dijit/MenuItem" label="Menu Item 2"></div>
+				<div dojoType="dijit/MenuItem" label="Menu Item 3"></div>
+		 		<div dojoType="dijit/MenuItem" label="Menu Item 4"></div>
+			</div>
+		</div>
+	</div>
+	<div style="display:inline-block; margin:5px">
+		<div dojoType="idx/form/ComboLink" label="Combo Link Disabled" disabled>
+		</div>
+	</div>
+	<!-- CheckBox -->
+	<h2 class="demoHeaders">CheckBoxes</h2>
+	<p>Single CheckBox</p>
+	<input data-dojo-type="idx/form/CheckBox"
+			data-dojo-props='
+			checked: true,
+			label: "CheckBox"
+	'></input>
+	<input data-dojo-type="idx/form/CheckBox"
+			data-dojo-props='
+			checked: true,
+			disabled: true,
+			label: "Checked Disabled"
+	'></input>
+	<input data-dojo-type="idx/form/CheckBox"
+			data-dojo-props='
+			label: "Unchecked Disabled",
+			disabled: true
+	'></input>
+	<input data-dojo-type="idx/form/TriStateCheckBox"
+			data-dojo-props='
+			checked: "mixed",
+			label: "Half-checked CheckBox"
+	'></input>
+	<input data-dojo-type="idx/form/TriStateCheckBox"
+			data-dojo-props='
+			checked: "mixed",
+			disabled: true,
+			label: "Half-checked Disabled"
+	'></input>
+	<br>
+	<p>CheckBox Group</p>
+	<select multiple="true" data-dojo-type="idx/form/CheckBoxList" data-dojo-props="required:true,groupAlignment: 'vertical'">
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	<select multiple="true" data-dojo-type="idx/form/CheckBoxList" data-dojo-props="value:['VA','FL'],disabled:true,groupAlignment: 'vertical'">
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	<br>
+
+	<!-- RadioButton -->
+	<h2 class="demoHeaders">Radios</h2>
+	<p>RadioButton Group</p>
+	<select data-dojo-type="idx/form/RadioButtonSet">
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	<select data-dojo-type="idx/form/RadioButtonSet" disabled value="TN">
+		<option value="TN">Tennessee</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="FL">Florida</option>
+		<option value="CA">California</option>
+	</select>
+	
+	<!-- Menu -->
+	<h2 class="demoHeaders">Menu</h2>
+	<div data-dojo-type="idx/widget/Menu">
+		<div data-dojo-type="dijit/MenuItem">Menu</div>
+		<div data-dojo-type="dijit/MenuSeparator"></div>
+		<div data-dojo-type="dijit/MenuItem" data-dojo-props='disabled:true'>Disabled Item</div>
+		<div data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCut",accelKey:"Ctrl+X"'>Cut</div>
+		<div data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconCopy",accelKey:"Ctrl+C"'>Copy</div>
+		<div data-dojo-type="dijit/MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",accelKey:"Ctrl+V"'>Paste</div>
+		<div data-dojo-type="dijit/MenuSeparator"></div>
+		<div data-dojo-type="dijit/PopupMenuItem" >
+			<span>Enabled Submenu</span>
+			<div data-dojo-type="idx/widget/Menu" >
+				<div data-dojo-type="dijit/MenuItem">Submenu Item One</div>
+				<div data-dojo-type="dijit/MenuItem">Submenu Item Two</div>
+				<div data-dojo-type="dijit/PopupMenuItem" >
+					<span>Deeper Submenu</span>
+					<div data-dojo-type="idx/widget/Menu" >
+						<div data-dojo-type="dijit/MenuItem">Sub-sub-menu Item One</div>
+						<div data-dojo-type="dijit/MenuItem">Sub-sub-menu Item Two</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-dojo-type="dijit/PopupMenuItem" data-dojo-props='disabled:true'>
+			<span>Disabled Submenu</span>
+			<div data-dojo-type="idx/widget/Menu" data-dojo-props='style:"display: none;"'>
+				<div data-dojo-type="dijit/MenuItem">Submenu Item One</div>
+				<div data-dojo-type="dijit/MenuItem">Submenu Item Two</div>
+			</div>
+		</div>
+		<div data-dojo-type="dijit/MenuSeparator"></div>
+		<div data-dojo-type="dijit.CheckedMenuItem" data-dojo-props='checked:true, onChange:function(val){ console.log("Now set to " + val); }'>Checked</div>
+		<div data-dojo-type="dijit.CheckedMenuItem">Not Checked</div>
+		<div data-dojo-type="dijit.CheckedMenuItem" data-dojo-props='checked:true, disabled:true'>Checked Disabled</div>
+		<div data-dojo-type="dijit/MenuSeparator"></div>
+		<div data-dojo-type="dijit/PopupMenuItem">
+			<span>Bigger Submenu</span>
+			<div id="c_bigsubmenu" data-dojo-type="idx/widget/Menu" data-dojo-props='style:"display: none;"'>
+				<div data-dojo-type="dijit/MenuItem">Item One</div>
+				<div data-dojo-type="dijit/MenuItem">Item Two</div>
+				<div data-dojo-type="dijit/MenuItem">Item Three</div>
+				<div data-dojo-type="dijit/MenuItem">Item Four</div>
+				<div data-dojo-type="dijit/MenuItem">Item Five</div>
+				<div data-dojo-type="dijit/MenuItem">Item Six</div>
+				<div data-dojo-type="dijit/MenuItem">Item Seven</div>
+				<div data-dojo-type="dijit/MenuItem">Item Eight</div>
+				<div data-dojo-type="dijit/MenuItem">Item Nine</div>
+				<div data-dojo-type="dijit/MenuItem">Item Ten</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Popup -->
+	<h2 class="demoHeaders">Popups</h2>
+	<button dojoType="dijit/form/Button" onClick="showDialog();">Show Dialog</button>
+	<br><br>
+	<div data-dojo-type="idx/widget/Dialog" data-dojo-props='
+		id: "dlblueDialog",
+		title: "Dialog",
+		instruction: "Instructional information goes here.",
+		reference: {
+			name: "DojoToolkit",
+			link: "http://dojotoolkit.org/"
+		}
+	'>
+		<div data-dojo-type="dijit/layout/ContentPane">
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean semper sagittis velit. 
+			Cras in mi. Duis porta mauris ut ligula. Proin porta rutrum lacus. Etiam consequat scelerisque quam. 
+			Nulla facilisi. Maecenas luctus venenatis nulla. In sit amet dui non mi semper iaculis. 
+			Sed molestie tortor at ipsum. Morbi dictum rutrum magna. Sed vitae risus.
+		</div>
+	</div>
+	<input data-dojo-type="idx/form/TextBox" data-dojo-props='
+		label: "Input with help:",
+		help: "Hover to show help messages",
+		hint: "Required",
+		value: "",
+		labelWidth: 130,
+		fieldWidth: 200,
+		required: true
+	'/>
+	<!--<p>Click to show help: 
+	<span id="hoverHelp0" data-dojo-type="idx/widget/HoverHelp" data-dojo-props=' 
+	   message:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean semper sagittis velit. Cras in mi.", 
+	   title: "Title", 
+	   href: "reference-guide/", 
+	   baseHref: "http://www.dojotoolkit.org/", 
+	   profile: "standard", 
+	   showDelay: 500, 
+	   clickToOpen: true 
+	'> 
+	</span>
+	</p>-->
+	<!-- Slider -->
+	<h2 class="demoHeaders">Sliders</h2>
+	<div data-dojo-type="idx/form/HorizontalSlider" data-dojo-props='
+		value:70,
+		maximum:100,
+		minimum:0,
+		pageIncrement:100,
+		showButtons:true,
+		intermediateChanges:true,
+		slideDuration:500,
+		fieldWidth: 400
+		'>
+	</div>
+	<div data-dojo-type="idx/form/HorizontalSlider" data-dojo-props='
+		disabled: true,
+		value:70,
+		maximum:100,
+		minimum:0,
+		pageIncrement:100,
+		showButtons:true,
+		intermediateChanges:true,
+		slideDuration:500,
+		fieldWidth: 400
+		'>
+	</div>
+	<br>
+	<div data-dojo-type="idx/form/VerticalSlider" data-dojo-props='
+		value:60,
+		maximum:100,
+		minimum:0,
+		discreteValues:11,
+		style: {height:"300px"}
+		'>
+	</div>
+	<div data-dojo-type="idx/form/VerticalSlider" data-dojo-props='
+		disabled: true,
+		value:60,
+		maximum:100,
+		minimum:0,
+		discreteValues:11,
+		style: {height:"300px"}
+		'>
+	</div>
+	
+	</section>
+</body>
+</html>

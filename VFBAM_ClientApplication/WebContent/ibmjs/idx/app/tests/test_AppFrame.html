@@ -18,6 +18,7 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 
 <style type="text/css" id="idxStyles">
 @import "../../themes/oneui/oneui.css";
+@import "../../themes/dlBlue/dlBlue.css";
 @import "../../tests/test.css";
 </style>
 
@@ -47,35 +48,35 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 <script type="text/javascript">applyThemeToBody()</script>
 
 <a name="maincontent"></a>
-<div style="width: 100%; height: 100%; margin: 0; padding: 0"
-     dojoType="idx.app.AppFrame">
+<div style="width: 100%; height: 100%; margin: 0; padding: 0" id="appFrame"
+     data-dojo-type="idx/app/AppFrame">
 
-  <div dojoType="dijit.layout.ContentPane"
-       style="color: white; padding: 4px; font-size: 14pt;" region="marquee"> 
+  <div data-dojo-type="dijit/layout/ContentPane"
+       data-dojo-props="style: 'line-height: 100%; vertical-align: middle;', region: 'marquee'"> 
      This is some text in the marquee of the AppFrame
   </div>
 
-  <div dojoType="dijit.layout.ContentPane" region="body"
-       style="color: white; padding: 4px; font-size: 12pt;"> 
+  <div data-dojo-type="dijit/layout/ContentPane" 
+       data-dojo-props="region: 'body'" > 
      This is some text in the body of the AppFrame.  The code
      used to generate it this looks something like this:
 
-     <pre style="color: black; font-size: 10pt;">
+     <pre style="border: none; background-color: #ffffff; color: black; font-size: 10pt;">
 
 &lt;div style="width: 100%; height: 100%; margin: 0; padding: 0"
-     dojoType="idx.app.AppFrame"&gt;
+     data-dojo-type="idx/app/AppFrame"&gt;
 
-  &lt;div dojoType="dijit.layout.ContentPane"
-       style="color: white; padding: 4px; font-size: 14pt;" region="marquee"&gt; 
+  &lt;div data-dojo-type="dijit/layout/ContentPane"
+       data-dojo-props="style: 'line-height: 100%; vertical-align: middle;', region: 'marquee'"&gt; 
      This is some text in the marquee of the AppFrame
   &lt;/div&gt;
 
-  &lt;div dojoType="dijit.layout.ContentPane" region="body"
-       style="color: white; padding: 4px; font-size: 12pt;"&gt; 
+  &lt;div data-dojo-type="dijit/layout/ContentPane" 
+		  data-dojo-props="region: 'body'"&gt; 
      This is some text in the body of the AppFrame.  The code
      used to generate it this looks something like this:
 
-     &lt;pre style="color: black; font-size: 10pt;"&gt;
+     &lt;pre style="border: none; background-color: #ffffff; color: black; font-size: 10pt;"&gt;
      ...
      &lt;/pre&gt;
   &lt;/div&gt;

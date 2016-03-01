@@ -27,6 +27,7 @@ define([
 	"dijit/focus",
 	"dijit/layout/ContentPane",
 	"dijit/Dialog", 
+	"idx/widget/_DialogResizeMixin",
 	"dijit/layout/TabContainer", 
 	"dijit/TitlePane", 
 	"dijit/form/Button",
@@ -34,7 +35,8 @@ define([
 	"dojo/i18n!./nls/ModalDialog"
 ], function(kernel, array, declare, html, event, lang, 
 		query, domAttr, domClass, domStyle, i18n, keys, on, ready, locale, 
-		wai, manager, a11y, focus, ContentPane, Dialog, TabContainer, TitlePane, Button, template){
+		wai, manager, a11y, focus, ContentPane, Dialog, _DialogResizeMixin,
+		TabContainer, TitlePane, Button, template){
 	var iMessaging = lang.getObject("idx.oneui.messaging", true); // for backward compatibility with IDX 1.2
 	
 	/**
@@ -45,7 +47,7 @@ define([
 	* @augments dijit.Dialog
 	* @see The <a href="http://livedocs.dojotoolkit.org/dijit/info">dijit.Dialog</a>.
 	*/ 
-	return iMessaging.ModalDialog = declare("idx.widget.ModalDialog", [Dialog], {
+	return iMessaging.ModalDialog = declare("idx.widget.ModalDialog", [Dialog, _DialogResizeMixin], {
 	/**@lends idx.widget.ModalDialog*/ 
 		templateString: template,
 		widgetsInTemplate: true,
@@ -89,7 +91,20 @@ define([
 		 * Timestamp of Message
 		 * @type String | Date
 		 */
-		messageTimeStamp: "",
+		messageTimeStamp: new Date(),
+		/**
+		 * The options being used for format the timestamp.
+		 * Example:
+		 * <pre>
+		 * dateFormat: {
+		 * 	formatLength: "medium",
+		 * }
+		 * </pre>
+		 * @type dojo.date.locale.__FormatOptions
+		 */
+		dateFormat: {
+			formatLength: "short"
+		},
 		/**
 		 * Close button label
 		 * @type String
@@ -116,16 +131,26 @@ define([
 		 */
 		showCancel: true,
 		
+		executeOnEnter: true,
+		
 		/** @ignore */
 		postMixInProperties: function(){
 			//	Set "Information" as default messaging type.no 
 			this._nlsResources = i18n.getLocalization("idx.widget", "ModalDialog", this.lang);
+			this._a11yImageMapping = {
+				error: "X",
+				warning: "!",
+				information: "i",
+				success: "√",
+				confirmation: "!",
+				question: "?",
+				progress: "◇"
+			}
+			this.messageIconText = this._a11yImageMapping[(this.type || "information").toLowerCase()];
 			var type = this._messagingTypeMap[(this.type || "information").toLowerCase()],
 				title = this._nlsResources[type] || "Information";
 			lang.mixin(this, {title: title, type: type});
 			lang.mixin(this.params, {type: type});
-			this.messageTimeStamp = this.messageTimeStamp || "";
-			this.messageTime = this.messageTime || false;
 			//	Set error modal dialog as 'alertdialog' role by default.
 			if(!this.alert && (this.type == "Error")){
 				this.alert = true;
@@ -138,7 +163,7 @@ define([
 			if(!this.messageId && this.reference){
 				domStyle.set(this.reference, "display", "none");
 			}
-			(this.timestamp && !this.messageTime && !this.messageTimeStamp) && domStyle.set(this.timestamp, "display", "none");
+			domAttr.set(this.iconText, "innerHTML", this.messageIconText);
 			if(this.info && lang.isArray(this.info)){
 				this.tabs = new TabContainer({
 					useMenu: false,
@@ -151,7 +176,7 @@ define([
 						title: item.title,
 						content: item.content
 					});
-					wai.setWaiRole(contentPane.domNode, "document");
+					//wai.setWaiRole(contentPane.domNode, "document");
 					this.tabs.addChild(contentPane);
 				}, this);
 			}
@@ -179,7 +204,7 @@ define([
 					this.tabs.resize();
 				});
 			}else{
-				wai.setWaiRole(this.containerNode, "document");
+				//wai.setWaiRole(this.containerNode, "document");
 				if(this.info){
 					this.set("content", this.info);
 				}
@@ -202,6 +227,7 @@ define([
 		},
 		_onKey: function(evt){
 			this.inherited(arguments);
+			if(!this.executeOnEnter){return;}
 			var node = evt.target;
 			if(domAttr.has(node, "href")){return;}
 			if(node == this.closeAction.focusNode || node == this.confirmAction.focusNode){return;}
@@ -217,15 +243,6 @@ define([
 			}
 			event.stop(evt);
 		},
-		/**
-		* Call back after the dialog show completed
-		*/
-		onShow: function(){
-			this.timestamp && (this.timestamp.innerHTML = ((this.messageTimeStamp && (typeof this.messageTimeStamp == "object")) ? 
-				locale.format(this.messageTimeStamp, {formatLength: 'medium'}) : this.messageTimeStamp) || 
-				locale.format(new Date(), {formatLength: 'medium'}));
-			this.inherited(arguments);
-		},
 		/** @ignore */
 		startup: function(){
 			if(this.tabs){
@@ -234,13 +251,17 @@ define([
 			this.inherited(arguments);
 		},
 		_setTypeAttr: function(type){
+		    var oldType = this.type;
 			this.type = type;
 			var title = this._nlsResources[this.type] || "Information";
 			this.set("title", title);
 			
+			var oldTypeName = this._messagingTypeMap[(oldType || "information").toLowerCase()];
 			var typeName = this._messagingTypeMap[(this.type || "information").toLowerCase()];
-			domClass.remove(this.icon, "message" + typeName + "Icon");
-			domClass.add(this.icon, "message" + typeName + "Icon");
+			domClass.remove(this.domNode, "idx" + oldTypeName + "MessageDialog");
+			domClass.add(this.domNode, "idx" + typeName + "MessageDialog");
+			// Add type class to domNode
+			
 		},
 		_setTextAttr: function(text){
 			this.description.innerHTML = this.text = text;
@@ -269,8 +290,8 @@ define([
 		* hide the dialog
 		*/
 		hide: function(){
-			this.inherited(arguments);
 			this._firstFocusItem = null;
+			return this.inherited(arguments);
 		},
 		
 		/**
@@ -304,6 +325,22 @@ define([
 		 */
 		_setLabelCancelAttr: function(label){
 			this.closeAction.set("label", label || this._nlsResources.cancelButtonLabel || "Cancel");
+		},
+		_setMessageTimeStampAttr: function(date){
+			this._set(this.messageTimeStamp, date);
+			if(!this.timestamp)return;
+			if(this.messageTime && date){
+				this.timestamp.innerHTML = locale.format(this.messageTimeStamp, this.dateFormat);
+			}else{
+				domStyle.set(this.timestamp, "display", "none");
+			}
+		},
+		/**
+		 * Callback of reference click, overriden by user
+		 */
+		onReference: function(event){
+			
+			return true;
 		}
 	
 	});

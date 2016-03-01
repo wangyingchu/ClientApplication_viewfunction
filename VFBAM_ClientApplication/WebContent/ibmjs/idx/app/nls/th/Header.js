@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "แบ่งใช้",
+	actionSettings: "ค่าติดตั้ง",
 	actionHelp: "วิธีใช้",
 	searchEntry: "ค้นหา",
-	searchSubmit: "ค้นหา"
+	searchSubmit: "ค้นหา",
+	primarySearchLabelSuffix: "การค้นหาหลัก",
+	secondarySearchLabelSuffix: "การค้นหารอง",
+	homeButton: "โฮม"
 //end v1.x content
 });
+

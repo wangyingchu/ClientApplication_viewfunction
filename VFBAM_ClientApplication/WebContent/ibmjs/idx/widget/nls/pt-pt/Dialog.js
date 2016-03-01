@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Fechar"
 //end v1.x content
 });
+

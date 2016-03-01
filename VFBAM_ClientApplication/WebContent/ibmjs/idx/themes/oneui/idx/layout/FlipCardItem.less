@@ -1,0 +1,801 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+
+.oneui {
+	.portletItem.relationshipFigure {
+        border: 1px solid yellow;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+        -moz-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+        -ms-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+        box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+    }
+    .portletItemMinimum {
+        height: 30px !important;
+    }
+    .portletItem.portletItemDisappear {
+        display:none;
+    }
+    .portletItem.portletItemInvisible {
+        visibility:hidden;
+        opacity:0;
+    }
+    .portletItem {
+	    padding: 0;
+	    overflow: visible;
+	    position: relative;
+	    background-color: transparent;
+	    margin:10px;
+    
+        .itemActionBar {
+            position: absolute;
+            right: 10px;
+            z-index: 2;
+            .dijitButton {
+                margin: 0.2em 0 0.2em 5px;
+            }
+        }
+        		
+        .portletItemAction {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 600;
+            .dijitButtonNode {
+                min-width:10px;
+                background: transparent;
+                border:medium none;
+                padding:0;
+                -webkit-border-radius: 1px;
+                -moz-border-radius: 1px;
+                -ms-border-radius: 1px;
+                border-radius: 1px;
+                -webkit-box-shadow: 0 0 0 rgba( 0,0,0,0);
+                -moz-box-shadow: 0 0 0 rgba( 0,0,0,0);
+                -ms-box-shadow: 0 0 0 rgba( 0,0,0,0);
+                box-shadow: 0 0 0 rgba( 0,0,0,0);
+            }
+            .actionIcon {
+                width: 20px;
+                height: 20px;
+                background: url("images/defaultActIcon.png") no-repeat center center;
+            }
+        }
+        .portletItemAction.dijitButtonHover {
+            .dijitButtonNode {
+                background-color: #fafafa;
+                background-image: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%);
+                background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb));
+                background-image: -webkit-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background-image: -o-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background-image: -ms-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background-image: linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+            }
+        }
+        .portletItemAction.dijitButtonActive {
+            .dijitButtonNode {
+                background-color: #f2f2f2;
+                background-image: -moz-linear-gradient(top,  #f2f2f2 0%, #ededed 100%);
+                background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f2f2), color-stop(100%,#ededed));
+                background-image: -webkit-linear-gradient(top,  #f2f2f2 0%,#ededed 100%);
+                background-image: -o-linear-gradient(top,  #f2f2f2 0%,#ededed 100%);
+                background-image: -ms-linear-gradient(top,  #f2f2f2 0%,#ededed 100%);
+                background-image: linear-gradient(top,  #f2f2f2 0%,#ededed 100%);
+            }
+        }
+        .portletItemNode_settings {
+            right:5px;
+            .backActIcon {
+                background: url("images/cardSettings.png") no-repeat center center;
+            }
+            .settingsIcon {
+                background: url("images/cardSettings.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_settings.dijitButtonHover {
+            .settingsIcon {
+                background: url("images/cardSettingsHover.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_settingsDetail {
+            .settingsDetailIcon {
+                background: url("images/cardSettingsDetail.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_settingsDetail.dijitButtonHover {
+            .settingsDetailIcon {
+                background: url("images/cardSettingsDetailHover.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_max {
+            .maxIcon {
+                background: url("images/cardMax.png") no-repeat center center;
+            }
+            .restoreIcon {
+                background: url("images/cardMax.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_max.dijitButtonHover {
+            .maxIcon {
+                background: url("images/cardMaxHover.png") no-repeat center center;
+            }
+            .restoreIcon {
+                background: url("images/cardMaxHover.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_min {
+            .minIcon {
+                background: url("images/cardMin.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_min.dijitButtonHover {
+            .minIcon {
+                background: url("images/cardMinHover.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_stack {
+            .stackIcon {
+                background: url("images/cardStack.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_stack.dijitButtonHover {
+            .stackIcon {
+                background: url("images/cardStackHover.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_flipAction {
+            .flipActionIcon {
+                background: url("images/cardFlip.gif") no-repeat center center;
+            }
+        }
+        .portletItemNode_close {
+            .closeIcon {
+                background-image: url("../form/images/buttonIcons.png");
+                background-position: 2px 2px;
+            }
+        }
+        .dndBarNode {
+            position:absolute;
+            top:20px;
+            width:100%;
+            height:15px;
+            z-index:800;
+        }
+        
+        .fpPortlet {
+       	    .refreshActionNode{
+				background: url("./images/refresh.png") no-repeat 0 0;
+			}
+			
+			.loadActionNode{
+				background: url("./images/switchLoad.png") no-repeat 0 0;
+			}
+        }
+        .fpPortlet.portletItemContent {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border: 1px solid #ccc;
+            .fpPortletIcon {
+                background-image: url("images/spriteRoundedIconsSmall.gif");
+            }
+            .fpCloseNode {
+                background-position: right 0px;
+            }
+            .fpCloseNodeHover {
+                background-position: right -15px;
+            }
+            .dijitOpen {
+                .fpArrowDown {
+                    background-position: -15px top;
+                }
+            }
+            .dijitClosed {
+                .fpArrowDown {
+                    background-position: 0 top;
+                }
+            }
+            .fpPortletSettingsIcon {
+                background-image: url("images/icons.png");
+                background-position: 0 1px;
+            }
+            .fpPortletSettingsContainer {
+                border-bottom: 1px solid #BFBFBF;
+                padding: 4px;
+            }
+            .dijitDialogPaneContent {
+                .fpPortletSettingsContainer {
+                    border-bottom: none;
+                }
+            }
+            .dojoxFeedPortletList {
+                padding-left: 25px;
+                margin: 0px;
+                li {
+                    padding-top: 4px;
+                }
+            }
+            .dojoxFeedPortletExpandableList {
+                padding-left: 0px;
+                margin: 0px;
+                list-style: none;
+                li {
+                    margin-bottom: 5px;
+                }
+            }
+            .dojoxFeedPortletPreview {
+                max-height: 300px;
+                max-width: 400px;
+                overflow: hidden;
+                * {
+                    max-height: 295px;
+                    max-width: 395px;
+                }
+            }
+            .dojoxPortletFeedSettings {
+                padding: 5px;
+                border-bottom: 1px solid #9D9D9D;
+            }
+            .dojoxPortletToggleIcon {
+                margin-right: 6px;
+                cursor: pointer;
+                img {
+                    width: 15px;
+                    height: 14px;
+                }
+            }
+            .dojoxPortletItemCollapsed {
+                .dojoxPortletToggleIcon {
+                    background: url("images/plusButton.gif") no-repeat 0 0;
+                }
+                .dojoxPortletItemSummary {
+                    display: none;
+                }
+            }
+            .dojoxPortletItemOpen {
+                .dojoxPortletToggleIcon {
+                    background: url("images/minusButton.gif") no-repeat 0 0;
+                }
+                .dojoxPortletItemSummary {
+                    display: block;
+                }
+            }
+            .dojoxPortletItemSummary {
+                margin-left: 20px;
+            }
+            
+            .fpPortletContentOuter{
+            	border: none;
+            }
+
+            .fpPortletTitle {
+                font-weight: bold;
+                font-size: 0.9em;
+                padding: 3px 6px 3px 7px;
+                border: none;
+                background-color: #f2f2f2;
+               	height: 24px;
+				width: 100%;
+                .fpPortletIcon {
+                    width: 17px;
+                    height: 15px;
+                    cursor: pointer;
+                    background-repeat: no-repeat;
+                }
+            }
+            .fpPortletTitleFocus {
+                background: transparent;
+            }
+            .fpPortletTitleFocusNode {
+                .flipCardActionBar {
+                    background: transparent;
+                    border:medium none;
+                    display: inline-block;
+                    .dijitMenuItem {
+                        padding: 0px 5px;
+                    }
+                    .dijitMenuItemHover {
+                        border:medium none;
+                    }
+                    .dijitMenuItemActive {
+                        border:medium none;
+                    }
+                    .dijitMenuItemSelected {
+                        border:medium none;
+                    }
+                    .dijitMenuItem.portletMenuBarAction {
+                        .portletActionIconNode {
+                            width:15px;
+                            height:15px;
+                            background-repeat: no-repeat;
+                        }
+                        .portletActionIconNode.contentActionIconNode {
+                            background: url("images/defaultActIcon.png") no-repeat 0 0;
+                        }
+                    }
+                    .portletContentAction {
+                        .portletActionIconNode.flipToDetailIcon {
+                            background-image: url("../form/images/buttonIcons.png");
+                            background-position: 2px -192px;
+                        }
+                        .portletActionIconNode.flipToMainIcon {
+                            background-image: url("../form/images/buttonIcons.png");
+                            background-position: 2px -208px;
+                        }
+                    }
+                }
+                .portletContentAction {
+                    display: inline-block;
+                }
+            }
+            .fpPortletTitle.css3Animations {
+                -webkit-perspective: 500px;
+                -moz-perspective: 500px;
+                -o-perspective: 500px;
+                -ms-perspective: 500px;
+                perspective: 500px;
+                .fpPortletTitleFocusNode {
+                    -webkit-backface-visibility: hidden;
+                    -moz-backface-visibility: hidden;
+                    -ms-backface-visibility: hidden;
+                    backface-visibility: hidden;
+                    -webkit-transform-style: preserve-3d;
+                    -moz-transform-style: preserve-3d;
+                    -ms-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+                    -webkit-transition: -webkit-transform 1.0s linear;
+                    -moz-transition: -moz-transform 1.0s linear;
+                    -ms-transition: -ms-transform 1.0s linear;
+                    transition: transform 1.0s linear;
+                    -webkit-transform-origin: 50% 2px 0;
+                    -moz-transform-origin: 50% 2px 0;
+                    -ms-transform-origin: 50% 2px 0;
+                    transform-origin: 50% 2px 0;
+                    position:absolute;
+                }
+                .fpPortletTitleFocus {
+                    -webkit-transform: rotateX(0);
+                    -moz-transform: rotateX(0);
+                    -ms-transform: rotateX(0);
+                    transform: rotateX(0);
+                    visibility: visible;
+                }
+                .fpPortletTitleFocusBack {
+                    -webkit-transform: rotateX(180deg);
+                    -moz-transform: rotateX(180deg);
+                    -ms-transform: rotateX(180deg);
+                    transform: rotateX(180deg);
+                    visibility: hidden;
+                }
+            }
+            .fpPortletTitle.css3Animations.settings {
+                .fpPortletTitleFocus {
+                    -webkit-transform: rotateX(180deg);
+                    -moz-transform: rotateX(180deg);
+                    -ms-transform: rotateX(180deg);
+                    transform: rotateX(180deg);
+                    visibility: hidden;
+                }
+                .fpPortletTitleFocusBack {
+                    -webkit-transform: rotateX(360deg);
+                    -moz-transform: rotateX(360deg);
+                    -ms-transform: rotateX(360deg);
+                    transform: rotateX(360deg);
+                    visibility: visible;
+                }
+            }
+        }
+        .fpPortlet.portletItemContent.defaultSkin {
+            background-color: gray;
+            border-color: gray;
+            -webkit-box-shadow: 0 2px 5px gray;
+            -moz-box-shadow: 0 2px 5px gray;
+            -ms-box-shadow: 0 2px 5px gray;
+            box-shadow: 0 2px 5px gray;
+        }
+        .fpPortlet-nonmovable.portletItemContent {
+            .fpPortletTitle {
+                cursor: default;
+            }
+        }
+        .fpResizeHandle {
+            float: right;
+            position: absolute;
+            right: 2px;
+            bottom: 2px;
+            width: 13px;
+            height: 13px;
+            z-index: 900;
+            background-image: url('images/resize.png');
+            line-height: 0px;
+        }
+        .fpResizeHandle.dojoxResizeNW {
+            cursor: nw-resize;
+        }
+        .fpResizeHandle.dojoxResizeNE {
+            cursor: ne-resize;
+        }
+        .fpResizeHandle.dojoxResizeW {
+            cursor: w-resize;
+        }
+        .fpResizeHandle.dojoxResizeN {
+            cursor: n-resize;
+        }
+        .fpResizeHandleClone {
+            position:absolute;
+            top:0;
+            left:0;
+            border:1px dashed #666;
+            z-index:900;
+        }
+        .fpPortlet.portletItemContent.css3Animations {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: -webkit-transform 1.0s linear;
+            -moz-transition: -moz-transform 1.0s linear;
+            -ms-transition: -ms-transform 1.0s linear;
+            transition: transform 1.0s linear;
+        }
+        .contentResizer.css3Animations {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-origin: -100px 50% 0;
+            -moz-transform-origin: -100px 50% 0;
+            -ms-transform-origin: -100px 50% 0;
+            transform-origin: -100px 50% 0;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+            -webkit-transform: rotateY(0);
+            -moz-transform: rotateY(0);
+            -ms-transform: rotateY(0);
+            transform: rotateY(0);
+        }
+        .contentResizerFlip.css3Animations {
+            -webkit-transform: rotateY(360deg);
+            -moz-transform: rotateY(360deg);
+            -ms-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+        }
+        .portletItemContent {
+            .contentNoVisible {
+                visibility: hidden;
+            }
+            .contentHide {
+                display: none;
+            }
+        }
+        .animationHidden {
+            display: none;
+        }
+    }
+    .portletItem.portletItemMinimum {
+        .portletItemNode_settings {
+            .settingsIcon {
+                background: url("images/cardMinReverse.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_settings.dijitButtonHover {
+            .settingsIcon {
+                background: url("images/cardMinReverseHover.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_min {
+            .minIcon {
+                background: url("images/cardMinReverse.png") no-repeat center center;
+            }
+        }
+        .portletItemNode_min.dijitButtonHover {
+            .minIcon {
+                background: url("images/cardMinReverseHover.png") no-repeat center center;
+            }
+        }
+    }
+    .portletItem.css3Animations {
+        -webkit-perspective: 500px;
+        -moz-perspective: 500px;
+        -o-perspective: 500px;
+        -ms-perspective: 500px;
+        perspective: 500px;
+        .fpPortlet.portletItemContent.mainContent {
+            -webkit-transform: rotateY(0);
+            -moz-transform: rotateY(0);
+            -ms-transform: rotateY(0);
+            transform: rotateY(0);
+            z-index: 1;
+        }
+        .fpPortlet.portletItemContent.detailContent {
+            -webkit-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+            z-index: 0;
+        }
+        .portletItemAction {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-origin: -100px 50% 0;
+            -moz-transform-origin: -100px 50% 0;
+            -ms-transform-origin: -100px 50% 0;
+            transform-origin: -100px 50% 0;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+            -webkit-transform: rotateX(180deg);
+            -moz-transform: rotateX(180deg);
+            -ms-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+            visibility: hidden;
+        }
+        .portletItemAction.actionsDetail {
+            -webkit-transform: rotateX(0);
+            -moz-transform: rotateX(0);
+            -ms-transform: rotateX(0);
+            transform: rotateX(0);
+            visibility: inherit;
+        }
+        .portletItemAction.actionsMain {
+            -webkit-transform: rotateX(0);
+            -moz-transform: rotateX(0);
+            -ms-transform: rotateX(0);
+            transform: rotateX(0);
+            visibility: inherit;
+        }
+        .portletItemAction.actionsMain.mainActDetail {
+            -webkit-transform: rotateX(180deg);
+            -moz-transform: rotateX(180deg);
+            -ms-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+            visibility: hidden;
+            width: 0;
+            margin: 0;
+        }
+    }
+    .portletItemFlip.css3Animations {
+        .fpPortlet.portletItemContent.mainContent {
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            z-index: 0;
+        }
+        .fpPortlet.portletItemContent.detailContent {
+            -webkit-transform: rotateY(0deg);
+            -moz-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+            z-index: 1;
+        }
+    }
+    .portletItem.css3Animations.css3AnimationsFlipping {
+        .portletItemAction {
+            display:none;
+        }
+        .contentResizer {
+            display:none;
+        }
+    }
+    .portletItem.css3Animations.contentTitleAnimating {
+        .fpPortlet.portletItemContent {
+            .fpPortletTitle {
+                border: 2px solid #ccc;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                border-radius: 5px;
+                -webkit-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+                -moz-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+                -ms-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+                box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+                -webkit-animation-name: titleflip;
+                -webkit-animation-duration: 1s;
+                -webkit-animation-timing-function: ease-in-out;
+                -webkit-animation-delay: 0s;
+                -webkit-animation-iteration-count: 1;
+                -webkit-animation-direction: normal;
+                -moz-animation-name: titleflip;
+                -moz-animation-duration: 1s;
+                -moz-animation-timing-function: ease-in-out;
+                -moz-animation-delay: 0s;
+                -moz-animation-iteration-count: 1;
+                -moz-animation-direction: normal;
+                -ms-animation-name: titleflip;
+                -ms-animation-duration: 1s;
+                -ms-animation-timing-function: ease-in-out;
+                -ms-animation-delay: 0s;
+                -ms-animation-iteration-count: 1;
+                -ms-animation-direction: normal;
+                animation-name: titleflip;
+                animation-duration: 1s;
+                animation-timing-function: ease-in-out;
+                animation-delay: 0s;
+                animation-iteration-count: 1;
+                animation-direction: normal;
+            }
+        }
+    }
+    .portletItem.css3AnimationsForResize {
+        -webkit-transition: all 1s ease-in-out;
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
+        -ms-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+    }
+    .portletItem.css3AnimationsDisabled {
+        .fpPortlet.portletItemContent.mainContent {
+            display:block;
+        }
+        .fpPortlet.portletItemContent.detailContent {
+            display:none;
+        }
+    }
+    .portletItemFlip.css3AnimationsDisabled {
+        .fpPortlet.portletItemContent.mainContent {
+            display:none;
+        }
+        .fpPortlet.portletItemContent.detailContent {
+            display:block;
+        }
+    }
+}
+.dj_ie10 {
+    .oneui {
+        .portletItem.css3Animations {
+            -ms-perspective: 0;
+            perspective: 0;
+        }
+        .portletItem {
+            .fpPortlet.portletItemContent {
+                .fpPortletTitle.css3Animations {
+                    -ms-perspective: 0;
+                    perspective: 0;
+                }
+            }
+        }
+    }
+}
+.dijitRtl {
+    .oneui {
+        .portletItem {
+            .fpResizeHandle {
+                float: right;
+                left: 0px;
+                right: auto;
+            }
+            .fpResizeHandle.dojoxResizeNW {
+                cursor: ne-resize;
+            }
+            .fpResizeHandle.dojoxResizeNE {
+                cursor: nw-resize;
+            }
+        }
+    }
+}
+.oneui .portletItem.portletItemMaximum .fpResizeHandle,.oneui .portletItem.portletItemMinimum .fpResizeHandle {
+    display: none;
+}
+.dj_ie9 .oneui .portletItem .portletItemAction,.dj_ie8 .oneui .portletItem .portletItemAction {
+    display:none;
+}
+.dj_ie9 .oneui .portletItem .portletItemAction.actionsDetail,.dj_ie8 .oneui .portletItem .portletItemAction.actionsDetail {
+    display:block;
+}
+.dj_ie9 .oneui .portletItem .portletItemAction.actionsMain,.dj_ie8 .oneui .portletItem .portletItemAction.actionsMain {
+    display:block;
+}
+.dj_ie9 .oneui .portletItem .portletItemAction.actionsMain.mainActDetail,.dj_ie8 .oneui .portletItem .portletItemAction.actionsMain.mainActDetail {
+    display:none;
+}
+
+@-webkit-keyframes titleflip{
+  0% {
+    -webkit-transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+  50% {
+    -webkit-transform: rotateX(80deg) skew(-45deg,1deg) scale(0.98,0.6);
+  }
+  100% {
+    -webkit-transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+}
+@-moz-keyframes titleflip{
+  0% {
+    -moz-transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+  50% {
+    -moz-transform: rotateX(80deg) skew(-45deg,1deg) scale(0.98,0.6);
+  }
+  100% {
+    -moz-transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+}
+@-ms-keyframes titleflip{
+  0% {
+    -ms-transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+  50% {
+    -ms-transform: rotateX(80deg) skew(-45deg,1deg) scale(0.98,0.6);
+  }
+  100% {
+    -ms-transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+}
+@keyframes titleflip{
+  0% {
+    transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+  50% {
+    transform: rotateX(80deg) skew(-45deg,1deg) scale(0.98,0.6);
+  }
+  100% {
+    transform: rotateX(0) skew(0deg,0deg) scale(1,1);
+  }
+}
+.dj_ie9 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle .fpPortletTitleFocus,.dj_ie8 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle .fpPortletTitleFocus {
+    display:block;
+}
+.dj_ie9 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle .fpPortletTitleFocusBack,.dj_ie8 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle .fpPortletTitleFocusBack {
+    display:none;
+}
+.dj_ie9 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle.settings .fpPortletTitleFocus,.dj_ie8 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle.settings .fpPortletTitleFocus {
+    display:none;
+}
+.dj_ie9 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle.settings .fpPortletTitleFocusBack,.dj_ie8 .oneui .portletItem .fpPortlet.portletItemContent .fpPortletTitle.settings .fpPortletTitleFocusBack {
+    display:block;
+}
+.dj_webkit {
+    .oneui {
+        .portletItem.css3Animations {
+            .fpPortlet.portletItemContent.detailContent {
+                .fpPortletTitle {
+                    display:none;
+                }
+            }
+        }
+        .portletItemFlip.css3Animations {
+            .fpPortlet.portletItemContent.detailContent {
+                .fpPortletTitle {
+                    display:block;
+                }
+            }
+        }
+    }
+}
+.oneui .portletItem.css3AnimationsDisabled,.oneui .portletItem.css3AnimationsDisabled .portletItemContent,.oneui .portletItem.css3AnimationsDisabled &>*,.oneui .portletItem.css3AnimationsDisabled .fpPortletTitle &>* {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+}
+.dj_a11y.oneui {
+    .portletItem {
+        .portletItemAction {
+            overflow: hidden;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <!--
   Licensed Materials - Property of IBM
   (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
@@ -29,17 +29,20 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 </script>
  
 <script type="text/javascript" id="postDojo">
-var modules = ["dojo.parser",
-			   "idx.app.AppFrame",
-			   "idx.app.AppMarquee",
-			   "idx.form.Link",
-			   "dijit.form.TextBox",
-			   "dijit.form.CheckBox",
-			   "dijit.layout.ContentPane"];
+var modules = ["dojo/parser",
+			   "dojo/has",
+			   "dojo/sniff",
+			   "idx/app/AppFrame",
+			   "idx/app/AppMarquee",
+			   "idx/form/Link",
+			   "dijit/form/TextBox",
+			   "dijit/form/CheckBox",
+			   "dijit/layout/ContentPane"];
 			   
 dojoRequireModules(modules, null, currentDojoVersion.async);
 </script>
 <script type="text/javascript" src="../../tests/commonTest.js"></script>
+
 </head>
 <body style="width: 100%; height: 100%; margin: 0; padding: 0px;">
 <a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
@@ -49,19 +52,24 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 <div style="width: 100%; height: 100%; margin: 0; padding: 0"
      dojoType="idx.app.AppFrame">
 
-  <div dojoType="idx.app.AppMarquee" region="marquee"
-       jsId="appMarquee1"
-       appName="IBM Extensions Toolkit for Dojo"
-       appLogo="../../../../images/header.png"
-       vendorName="IBM &#0174;"
-       vendorLogo="../../../../images/vendorLogoWhite.png">
+  <div data-dojo-type="idx/app/AppMarquee"
+	   data-dojo-id="appMarquee1"
+	   data-dojo-props="id: 'appMarquee1', region: 'marquee', appName: 'IBM Front End Toolkit (&lrm;IDX)&lrm;',
+						appLogo: '../../../../images/header.png', vendorName: 'IBM &#0174;'">
 
        <!-- WHATEVER CONTENT YOU WANT CAN GO HERE FOR THE MARQUEE -->
-       <span dojoType="idx.form.Link">About</span>
-       <span>|</span>
-       <span dojoType="idx.form.Link">Help</span>
-       <span>|</span>
-       <span dojoType="idx.form.Link">Logout</span>
+	   <div class="idxFloatLeading">
+	    <span data-dojo-type="idx/form/Link">Configuration</span>
+		<span data-dojo-type="idx/form/Link">Data Sources</span>
+		<span data-dojo-type="idx/form/Link">Visualization</span>	   
+	   </div>
+       <div class="idxFloatTrailing">
+	    <span data-dojo-type="idx/form/Link">About</span>
+		<span role="presentation">|</span>
+		<span data-dojo-type="idx/form/Link">Help</span>
+		<span role="presentation">|</span>
+		<span data-dojo-type="idx/form/Link">Logout</span>
+	   </div>
   </div>
 
   <div dojoType="dijit.layout.ContentPane" region="body"
@@ -73,72 +81,69 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Use App Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
-				this._defaultAppLogo = appMarquee1.get("appLogo");
-			</script>
-			<script type="dojo/connect" event="onChange">
-				if (this.get("checked")) {
-					appMarquee1.set("appLogo", this._defaultAppLogo);
-				} else {
-					appMarquee1.set("appLogo", null);
-				}
-			</script>
+			<div data-dojo-type="dijit/form/CheckBox" data-dojo-props="checked: true">
+				<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+					this._defaultAppLogo = appMarquee1.get("appLogo");
+				</script>
+				<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+					if (this.get("checked")) {
+						appMarquee1.set("appLogo", this._defaultAppLogo);
+					} else {
+						appMarquee1.set("appLogo", null);
+					}
+				</script>
 			</div>
 			</tr>
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Prefer App Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
-				this.set("checked", appMarquee1.get("preferAppLogo"));
-			</script>
-			<script type="dojo/connect" event="onChange">
-				if (this.get("checked")) {
-					appMarquee1.set("preferAppLogo", true);
-				} else {
-					appMarquee1.set("preferAppLogo", false);
-				}
-			</script>
+			<div id="cbAppLogo" data-dojo-type="dijit/form/CheckBox" data-dojo-props="checked: true">
+				<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+					this.set("checked", appMarquee1.get("preferAppLogo"));
+				</script>
+				<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+					if (this.get("checked")) {
+						appMarquee1.set("preferAppLogo", true);
+					} else {
+						appMarquee1.set("preferAppLogo", false);
+					}
+				</script>
 			</div>
 			</tr>
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Set App Name Text: </td>
 			<td>
-			<div dojoType="dijit.form.TextBox" intermediateChanges="true"
-			    style="width: 40em;">
-				<script type="dojo/connect" event="onChange">
+			<div data-dojo-type="dijit/form/TextBox" 
+				 data-dojo-id="tbAppName"
+				 data-dojo-props="id: 'tbAppName', intermediateChanges: true, style: 'width: 40em;'">
+				<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
 					appMarquee1.set('appName', this.get("value"));
 				</script>
-				<script type="dojo/connect" event="startup">
+				<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
 					this.set("value", appMarquee1.get("appName"));
 				</script>
 			</div>
 		</tr>	
 		<tr>
-			<td style="font-weight: bold; text-align: right;">Use Vendor Logo: </td>
+			<td style="font-weight: bold; text-align: right;">Enable Default Vendor Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
-				this._defaultVendorLogo = appMarquee1.get("vendorLogo");
-			</script>
-			<script type="dojo/connect" event="onChange">
-				if (this.get("checked")) {
-					appMarquee1.set("vendorLogo", this._defaultVendorLogo);
-				} else {
-					appMarquee1.set("vendorLogo", null);
-				}
+			<div data-dojo-type="dijit/form/CheckBox" 
+				 data-dojo-id="cbVendorLogo"
+				 data-dojo-props="id: 'cbVendorLogo', checked: true">
+			<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+				var value = this.get("checked");
+				appMarquee1.set("enableDefaultVendorLogo", value);
 			</script>
 			</div>
-			</tr>
+		</tr>
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Prefer Vendor Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
+			<div data-dojo-type="dijit/form/CheckBox" data-dojo-props="checked: true">
+			<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
 				this.set("checked", appMarquee1.get("preferVendorLogo"));
 			</script>
-			<script type="dojo/connect" event="onChange">
+			<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
 				if (this.get("checked")) {
 					appMarquee1.set("preferVendorLogo", true);
 				} else {
@@ -150,12 +155,13 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Set Vendor Name Text: </td>
 			<td>
-			<div dojoType="dijit.form.TextBox" intermediateChanges="true"
-			    style="width: 40em;">
-				<script type="dojo/connect" event="onChange">
+			<div data-dojo-type="dijit/form/TextBox" 
+				 data-dojo-id="tbVendorName" 
+				 data-dojo-props="id: 'tbVendorName', intermediateChanges: true, style: 'width: 40em;'">
+				<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
 					appMarquee1.set('vendorName', this.get("value"));
 				</script>
-				<script type="dojo/connect" event="startup">
+				<script type="dojo/connect" data-dojo-method="startup" data-dojo-advice="after">
 					this.set("value", appMarquee1.get("vendorName"));
 				</script>
 			</div>
@@ -165,30 +171,35 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 	</table>
 	<p>
 	Here is a stand-alone AppMarquee (not within an AppFrame "marquee" region):
-    <div dojoType="idx.app.AppMarquee" region="marquee"
-       jsId="appMarquee2"
-       appName="IBM Extensions Toolkit for Dojo"
-       appLogo="../../../../images/header.png"
-       vendorName="IBM &#0174;"
-       vendorLogo="../../../../images/vendorLogoWhite.png">
+    <div data-dojo-type="idx/app/AppMarquee" 
+		 data-dojo-id="appMarquee2"
+		 data-dojo-props="id: 'appMarquee2', region: 'marquee', appName: 'IBM Front End Toolkit (IDX)',
+						  appLogo: '../../../../images/header.png', vendorName: 'IBM &#0174;'">
 
        <!-- WHATEVER CONTENT YOU WANT CAN GO HERE FOR THE MARQUEE -->
-       <span dojoType="idx.form.Link">About</span>
-       <span>|</span>
-       <span dojoType="idx.form.Link">Help</span>
-       <span>|</span>
-       <span dojoType="idx.form.Link">Logout</span>
+	   <div class="idxFloatLeading">
+	    <span data-dojo-type="idx/form/Link">Configuration</span>
+		<span data-dojo-type="idx/form/Link">Data Sources</span>
+		<span data-dojo-type="idx/form/Link">Visualization</span>	   
+	   </div>
+       <div class="idxFloatTrailing">
+	    <span data-dojo-type="idx/form/Link">About</span>
+		<span role="presentation">|</span>
+		<span data-dojo-type="idx/form/Link">Help</span>
+		<span role="presentation">|</span>
+		<span data-dojo-type="idx/form/Link">Logout</span>
+	   </div>
   </div>
 	<table>
 	<tbody>
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Use App Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
+			<div data-dojo-type="dijit/form/CheckBox" data-dojo-props="checked: true">
+			<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
 				this._defaultAppLogo = appMarquee2.get("appLogo");
 			</script>
-			<script type="dojo/connect" event="onChange">
+			<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
 				if (this.get("checked")) {
 					appMarquee2.set("appLogo", this._defaultAppLogo);
 				} else {
@@ -200,11 +211,11 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Prefer App Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
-				this.set("checked", appMarquee1.get("preferAppLogo"));
+			<div data-dojo-type="dijit/form/CheckBox" data-dojo-props="checked: true">
+			<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+				this.set("checked", appMarquee2.get("preferAppLogo"));
 			</script>			
-			<script type="dojo/connect" event="onChange">
+			<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
 				if (this.get("checked")) {
 					appMarquee2.set("preferAppLogo", true);
 				} else {
@@ -216,40 +227,34 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Set App Name Text: </td>
 			<td>
-			<div dojoType="dijit.form.TextBox" intermediateChanges="true"
-			    style="width: 40em;">
-				<script type="dojo/connect" event="onChange">
-					appMarquee2.set('appName', this.get("value"));
+			<div data-dojo-type="dijit/form/TextBox" 
+				 data-dojo-props="style: 'width: 40em;', intermediateChanges: true">
+				<script data-dojo-type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+					if (this._started) appMarquee2.set('appName', this.get("value"));
 				</script>
-				<script type="dojo/connect" event="startup">
+				<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
 					this.set("value", appMarquee2.get("appName"));
 				</script>
 			</div>
 		</tr>	
 		<tr>
-			<td style="font-weight: bold; text-align: right;">Use Vendor Logo: </td>
+			<td style="font-weight: bold; text-align: right;">Enable Default Vendor Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
-				this._defaultVendorLogo = appMarquee2.get("vendorLogo");
-			</script>
-			<script type="dojo/connect" event="onChange">
-				if (this.get("checked")) {
-					appMarquee2.set("vendorLogo", this._defaultVendorLogo);
-				} else {
-					appMarquee2.set("vendorLogo", null);
-				}
+			<div data-dojo-type="dijit/form/CheckBox" data-dojo-props="checked: true">
+			<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+				var value = this.get("checked");
+				appMarquee2.set("enableDefaultVendorLogo", value);
 			</script>
 			</div>
-			</tr>
+		</tr>
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Prefer Vendor Logo: </td>
 			<td>
-			<div dojoType="dijit.form.CheckBox" checked="true">
-			<script type="dojo/connect" event="startup">
+			<div data-dojo-type="dijit/form/CheckBox" data-dojo-props="checked: true">
+			<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
 				this.set("checked", appMarquee1.get("preferVendorLogo"));
 			</script>			
-			<script type="dojo/connect" event="onChange">
+			<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
 				if (this.get("checked")) {
 					appMarquee2.set("preferVendorLogo", true);
 				} else {
@@ -261,12 +266,12 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 		<tr>
 			<td style="font-weight: bold; text-align: right;">Set Vendor Name Text: </td>
 			<td>
-			<div dojoType="dijit.form.TextBox" intermediateChanges="true"
-			    style="width: 40em;">
-				<script type="dojo/connect" event="onChange">
+			<div data-dojo-type="dijit/form/TextBox" 
+				 data-dojo-props="style: 'width: 40em;', intermediateChanges: true">
+				<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
 					appMarquee2.set('vendorName', this.get("value"));
 				</script>
-				<script type="dojo/connect" event="startup">
+				<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
 					this.set("value", appMarquee2.get("vendorName"));
 				</script>
 			</div>

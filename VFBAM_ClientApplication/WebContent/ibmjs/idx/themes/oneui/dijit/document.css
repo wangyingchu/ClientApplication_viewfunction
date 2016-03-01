@@ -172,6 +172,11 @@
 }
 
 /* ======= .oneui default linked text; content area ======== */
+.dj_safari .oneui a {
+    color: #00649d;
+    text-decoration: none;
+}
+
 .oneui a:link {
     color: #00649d;
     text-decoration: none;

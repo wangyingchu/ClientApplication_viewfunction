@@ -38,17 +38,41 @@
 	margin: 0;
 }
 
-.oneuiMenuDialog .dijitTooltipConnector {
+.oneuiMenuDialog .dijitTooltipConnector,
+.oneui.dijit_a11y .oneuiMenuDialog .dijitTooltipConnector.idxConnector,
+.oneui.dijit_a11y .oneuiMenuDialog.oneuiMenuDialogConnector .dijitTooltipConnector.idxConnector {
 	display: none;
 	background: none;
 }
 
-.oneuiMenuDialog.oneuiMenuDialogConnected .dijitTooltipConnector {
+.oneuiMenuDialog.oneuiMenuDialogConnected .dijitTooltipConnector,
+.dj_gecko .oneui.dijit_a11y .oneuiMenuDialog.oneuiMenuDialogConnected .dijitTooltipConnector.idxConnector {
 	display: block;
 	background-image: url(images/menuDialogConnector.png);
 	width: 16px;
 	height: 16px;
 	margin: 0;
+}
+
+.dj_gecko .oneui.dijit_a11y .oneuiMenuDialog.oneuiMenuDialogConnected.dijitTooltipAbove .dijitTooltipConnector.idxConnector {
+	margin-bottom: -7px;
+	margin-top: auto;
+	padding: 0px;
+}
+.dj_gecko .oneui.dijit_a11y .oneuiMenuDialog.oneuiMenuDialogConnected.dijitTooltipBelow .dijitTooltipConnector.idxConnector {
+	margin-top: -7px;
+	margin-bottom: auto;
+	padding: 0px;
+}
+.dj_gecko .oneui.dijit_a11y .oneuiMenuDialog.oneuiMenuDialogConnected.dijitTooltipLeft .dijitTooltipConnector.idxConnector {
+	margin-right: -8px;
+	margin-left: auto;
+	padding: 0px;
+}
+.dj_gecko .oneui.dijit_a11y .oneuiMenuDialog.oneuiMenuDialogConnected.dijitTooltipRight .dijitTooltipConnector.idxConnector {
+	margin-left: -7px;
+	margin-right: auto;
+	padding: 0px;
 }
 
 .oneuiMenuDialog.oneuiMenuDialogConnected.dijitTooltipAbove {

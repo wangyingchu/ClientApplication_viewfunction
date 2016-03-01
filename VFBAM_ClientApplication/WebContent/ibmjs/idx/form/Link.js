@@ -1,5 +1,6 @@
 define([
 	"dojo/_base/declare",
+	"dojo/has",
     "dijit/_Widget",
     "dijit/_TemplatedMixin",
     "dijit/_CssStateMixin",
@@ -8,8 +9,11 @@ define([
     "dojo/dom-class",
     "dojo/keys",
     "dojo/_base/event",
+    "dojo/Stateful",
+    "dojo/has!dojo-bidi?../bidi/form/Link",
     "dojo/text!./templates/Link.html"
 ], function (dDeclare,			// (dojo/_base/declare)
+			 has,				// (dojo/has)
 			 dWidget,			// (dijit/_Widget)
 			 dTemplatedMixin,		// (dijit/_TemplatedMixin)
 			 dCssStateMixin,	// (dijit/_CssStateMixin)
@@ -17,7 +21,9 @@ define([
 			 dDomAttr,			// (dojo/dom-attr) for (dDomAttr.set)
 			 dDomClass,			// (dojo/dom-class) for (dDomClass.add)
 			 dKeys,				// (dojo/keys)
-			 dEvent,			// (dojo/_base/event) for (dEvent.stop)
+			 dEvent,			// (dojo/_base/event) for (dEvent.stop),
+			 dStateful,			// (dojo/Stateful)
+			 bidiExtension,		// (../bidi/form/Link)
 			 templateText) 		// (dojo/text!./templates/Link.html)
 {
 	/**
@@ -27,7 +33,8 @@ define([
 	 * @augments dijit._Widget
 	 * @augments dijit._TemplatedMixin
 	 */
-return dDeclare("idx.form.Link", [dWidget,dTemplatedMixin,dCssStateMixin],
+var baseClassName = has("dojo-bidi")? "idx.form.Link_" : "idx.form.Link";
+var linkBase = dDeclare(baseClassName, [dWidget,dTemplatedMixin,dCssStateMixin,dStateful],
 		/**@lends idx.form.Link#*/
 {
 	/**
@@ -151,6 +158,16 @@ return dDeclare("idx.form.Link", [dWidget,dTemplatedMixin,dCssStateMixin],
 	},
 
 	/**
+	 * Sets the alternative text
+	 * @param {String} value
+	 * @private
+	 */
+	 _setAltAttr: function(/*String*/ value){
+	 	this.alt = value;
+	 	dDomAttr.set(this.focusNode, "alt", value);
+	 },
+
+	/**
 	 * Updates tabIndex.
 	 * @private
 	 */
@@ -204,5 +221,5 @@ return dDeclare("idx.form.Link", [dWidget,dTemplatedMixin,dCssStateMixin],
 		}
 	}
 });
-
+return has("dojo-bidi")? dDeclare("idx.form.Link",[linkBase,bidiExtension]) : linkBase;
 });

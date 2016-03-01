@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Přepnout výběr všech řádků"		
 //end v1.x content
 });
+

@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Жабу"
 //end v1.x content
 });
+

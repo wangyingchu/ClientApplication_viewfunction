@@ -1,0 +1,108 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/.oneui .idxFlipCardNavDynamic .dojoxExpandoContent .gridx {
+    width: 100%;
+}
+.oneui {
+    .idxFlipCardNavDynamic {
+        .dojoxExpandoContent {
+            .gridx {
+                .gridxLayerContextVSize {
+                    -webkit-transition: all 1s ease-in-out;
+                    -moz-transition: all 1s ease-in-out;
+                    -o-transition: all 1s ease-in-out;
+                    -ms-transition: all 1s ease-in-out;
+                    transition: all 1s ease-in-out;
+                }
+                .gridxLayerHSlide {
+                    -webkit-transition: all 1s ease-in-out;
+                    -moz-transition: all 1s ease-in-out;
+                    -o-transition: all 1s ease-in-out;
+                    -ms-transition: all 1s ease-in-out;
+                    transition: all 1s ease-in-out;
+                }
+                .gridxLayerVSlide {
+                    -webkit-transition: all 1s ease-in-out;
+                    -moz-transition: all 1s ease-in-out;
+                    -o-transition: all 1s ease-in-out;
+                    -ms-transition: all 1s ease-in-out;
+                    transition: all 1s ease-in-out;
+                }
+                .gridxSlideRefresh {
+                    -webkit-transition: all 1s ease-in-out;
+                    -moz-transition: all 1s ease-in-out;
+                    -o-transition: all 1s ease-in-out;
+                    -ms-transition: all 1s ease-in-out;
+                    transition: all 1s ease-in-out;
+                }
+                .gridxLayerWrapper {
+                    .gridxRowTable {
+                        width:100%;
+                        .gridxCell {
+                            border: medium none;
+                        }
+                    }
+                    .gridxLayerCellFocus {
+                        outline: 1px dashed #00008B;
+                    }
+                }
+                .gridxLayerUnderlay {
+                    position: absolute;
+                    background-color: #F7F7F7;
+                    top:0;
+                    left:0height:0;
+                    width:100%;
+                    .gridxRow {
+                        .gridxCell {
+                            background-color: #F7F7F7;
+                            border: medium none;
+                        }
+                    }
+                }
+                .gridxBody {
+                    background-color:#fff;
+                    .gridxRowTable {
+                        width:100%;
+                        .gridxCell {
+                            border: medium none;
+                        }
+                        .gridxCustomRow {
+                            background-color:#F9F9F9;
+                            color: gray;
+                            width:250px;
+                            padding:0px;
+                        }
+                    }
+                }
+                .gridxLayerHasChildren {
+                    background-position: -44px -4px;
+                }
+                .gridxLayerLevelUp {
+                    background-position: -84px -4px;
+                }
+                .gridxRow {
+                    .gridxCell {
+                        .gridxTreeExpandoIcon {
+                            background-image: url("images/leftNavArrows.png");
+                            background-repeat: no-repeat;
+                            background-position: 0 0;
+                        }
+                        .gridxTreeExpandoCellOpen {
+                            .gridxTreeExpandoIcon {
+                                background-position: -16px 0;
+                            }
+                        }
+                    }
+                }
+                .gridxRow.fcNavItemGroupStatic {
+                    .gridxCell {
+                        .gridxTreeExpandoIcon {
+                            display:none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.oneui .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerUnderlay .gridxRow .gridxCell .gridxLayerHasChildren,.oneui .idxFlipCardNavDynamic .dojoxExpandoContent .gridx .gridxLayerUnderlay .gridxRow .gridxCell .gridxLayerLevelUp {
+    background: none;
+}

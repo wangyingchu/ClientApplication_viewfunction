@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT com ${accessKey}",
 	keySequence_Firefox: "ALT com SHIFT com ${accessKey} no Windows e Linux ou CONTROL com ${accessKey} no Mac",
 	keySequence_Safari: "CONTROL com OPT com ${accessKey} no Mac ou ALT com ${accessKey} no Windows",
-	keySequence_Chrome: "ALT com ${accessKey} no Windows e Linux ou CONTROL com OPT no Mac",
+	keySequence_Chrome: "ALT com ${accessKey} no Windows e Linux ou CONTROL com OPT e ${accessKey} no Mac",
 	shortcutListMessage: "Os atalhos para esta página são:",
 	a11yPrologueLabel: "Prólogos de Acessibilidade",
     a11yStatementLabel: "Instrução de Acessibilidade",

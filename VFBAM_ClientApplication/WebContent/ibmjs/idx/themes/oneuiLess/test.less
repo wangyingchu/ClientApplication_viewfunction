@@ -1,0 +1,24 @@
+@base: #008abf;
+@bhue: hsvhue(@base);
+    @bsat: hsvsaturation(@base);
+    @bval: hsvvalue(@base);
+    
+
+
+.gradient(@c) {
+    
+    @topColor: @c;
+    //@bottomColor: hsv(hsvhue(@c), hsvsaturation(c), hsvvalue(c));
+        
+    //background:-webkit-linear-gradient(top,@topColor 0%,@bottomColor 100%);
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    .gradient(@base);
+    border: 1px solid darken(@base, 13%);
+    border-width: @bhue;
+    min-width: @bsat;
+    max-width: @bval;
+}

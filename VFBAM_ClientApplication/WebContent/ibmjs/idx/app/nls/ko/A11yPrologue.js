@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT+${accessKey}",
 	keySequence_Firefox: "Windows 및 Linux에서는 ALT+SHIFT+${accessKey} 또는 Mac에서는 CONTROL+${accessKey}",
 	keySequence_Safari: "Mac에서는 CONTROL+OPT+${accessKey} 또는 Windows에서는 ALT+${accessKey}",
-	keySequence_Chrome: "Windows 및 Linux에서는 ALT+${accessKey} 또는 Mac에서는 OPT",
+	keySequence_Chrome: "Windows 및 Linux에서 ALT+${accessKey} 또는 Mac에서는 CONTROL+OPT+${accessKey}",
 	shortcutListMessage: "이 페이지에 대한 바로 가기:",
 	a11yPrologueLabel: "액세스 용이성 도입부",
     a11yStatementLabel: "액세스 용이성 명령문",

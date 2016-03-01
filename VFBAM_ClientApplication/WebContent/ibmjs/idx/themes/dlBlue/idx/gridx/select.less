@@ -1,0 +1,58 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .gridx .gridxRowSelected .gridxCell {
+    border-top-color: #bbb;
+}
+.@{theme-name} {
+    .gridx {
+        .gridxRowSelected:first-child {
+            .gridxCell {
+                border-top-color: transparent;
+            }
+        }
+        .gridxRowSelected:last-child {
+            .gridxCell {
+                border-bottom-color: #bbb;
+            }
+        }
+
+        .gridxRowSelected .gridxCell{
+            background-color: @gridx-row-selected-background-color;
+        }
+
+        .gridxColumnSelected {
+            background-color: @gridx-row-selected-background-color;
+        }
+
+        /* cell select */
+        .gridxRow .gridxCellSelected {
+            background-color: @gridx-row-selected-background-color;
+        }
+
+        .gridxHeader .gridxRowHeaderHeader .gridxHeaderCellFocus {
+            border-color: transparent;
+        }
+
+        .dijitCheckBoxPartial {
+            background-position: -33px;
+        }
+    }
+    .gridxRowSelected {
+        + .gridxRow {
+            .gridxCell {
+                border-top-color: #bbb;
+            }
+        }
+    }
+}
+/*
+ * Defect 12039
+ * Set the RowTable background to gridxCell not the whole table
+ * .oneui .gridx .gridxRowSelected .gridxRowTable {
+ * 
+ * */
+/* Indirect Select */
+.@{theme-name} .gridxIndirectSelectionCheckBox {
+    margin: 0;
+}
+
+

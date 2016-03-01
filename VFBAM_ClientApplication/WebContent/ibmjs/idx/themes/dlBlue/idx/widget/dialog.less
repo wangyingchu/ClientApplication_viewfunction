@@ -1,0 +1,111 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} .idxDialog {
+    border: 1px solid @border-color;
+    .border-radius(1px);
+    .box-shadow(@tooltip-shadow);
+    background: none repeat scroll 0 0 @dialog-background-color;
+    width: 500px;
+    overflow: auto;
+}
+.@{theme-name} {
+    .idxDialog {
+        .dijitDialogPaneContent {
+            background: none repeat scroll 0 0 @dialog-background-color;
+            position: relative;
+            padding:0;
+        }
+        .dijitDialogPaneContentArea {
+            /* trick to get action bar (gray bar at bottom with OK/cancel buttons) to span from* left to right but still indent dialog content*/;
+        }
+        .dijitDialogPaneActionBar {
+            margin: 0 @dialog-padding;
+            min-height: 40px;
+            padding: 10px 0 @dialog-padding;
+            border:0 none;
+            _height:14px;
+            .idxDialogActionBarLead {
+                float: left;
+                margin-top:5px;
+            }
+            .idxDialogActionBarEnd {
+                float: right;
+            }
+            .dijitButton {
+                margin: 0 0 0 5px;
+            }
+            .referenceLinkHidden {
+                visibility: hidden;
+                display: none;
+            }
+        }
+        .dijitDialogTitleBar {
+            display: none;
+        }
+        .dijitDialogTitle {
+            margin: 0;
+            padding: @dialog-padding @dialog-padding 1px;
+            overflow: auto;
+            cursor: move;
+        }
+        .dijitDialogInstruction {
+            margin: 1px 18px 19px;
+            padding: 1px 2px 1px;
+            overflow: auto;
+        }
+        .dijitDialogPaneContentWrapper {
+            border-top: 1px solid @border-color;
+            border-bottom: 1px solid @border-color;
+            margin: 0 @dialog-padding;
+            padding: 10px 0;
+        }
+        .dijitDialogCloseIcon {
+            display: none;
+        }
+    }
+    .dijitDialogFixed {
+        .dijitDialogTitle {
+            cursor: default;
+        }
+    }
+    .idxDialogRtl {
+        .dijitDialogCloseIcon {
+            right: auto;
+            left: 5px;
+        }
+        .dijitDialogPaneActionBar {
+            text-align: left;
+            .dijitButton {
+                margin: 0 5px 0 0;
+            }
+            .idxDialogActionBarLead {
+                float: right;
+            }
+            .idxDialogActionBarEnd {
+                float: left;
+            }
+        }
+        .dijitTabContainerCompact {
+            .dijitTabContainerTop-tabs {
+                padding-right: 30px;
+            }
+        }
+    }
+}
+.@{theme-name} .idxDialog .idxCompact .dijitTabContainer .dijitTabContainerTop-container,.@{theme-name} .idxDialog .idxCompact .dijitTabContainer .dijitTabContainerTop-container {
+    border-left: 0 none;
+    border-right: 0 none;
+    border-bottom: 0 none;
+}
+.@{theme-name} .idxDialog .compact {
+	.dijitTabContainer .dijitTabContainerTop-tabs{
+	    padding-left: 0;
+	    padding-right: 0;
+	}
+}
+.@{theme-name} .idxDialog .compact .dijitTabContainerTop-tabs .dijitTab,
+.@{theme-name} .idxDialog .compact .dijitTabContainerTop-tabs .dijitTabChecked, 
+.@{theme-name} .idxDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedHover, 
+.@{theme-name} .idxDialog .compact .dijitTabContainerTop-tabs .dijitTabCheckedActive{
+	padding: 7px 10px;
+}

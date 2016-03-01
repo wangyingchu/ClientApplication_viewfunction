@@ -14,3 +14,53 @@
 	outline: 1px dotted #000000;
 }
 
+.oneui .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNode {
+    background-image: url('../form/images/checkboxRadioButtonStates.png');
+    background-repeat: no-repeat;
+    background-position: -17px center;
+    width: 14px;
+    height: 14px;
+    margin: 0 5px 0 0;
+    padding: 0;
+}
+
+.oneui .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeChecked{
+    background-position: -1px;
+}
+
+.oneui .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent > .idxOneuiTriStateCheckBox{
+    background-position: -97px;
+}
+
+.oneui .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeMixed{
+    background-position: -33px;
+}
+
+.oneui .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeDisabled{
+    background-position: -65px;
+}
+
+.oneui .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeCheckedDisabled{
+    background-position: -49px;
+}
+
+.oneui .idxCheckBoxTree .dijitTreeRow > .dijitTreeContent > .dijitTreeNodeMixedDisabled{
+    background-position: -81px;
+}
+
+.oneui .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent > .dijitTreeNode:hover {
+    /* hovering over and unchecked */
+
+    background-position: -113px;
+}
+.oneui .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent > .dijitTreeNodeChecked:hover {
+    /* hovering over and checked */
+
+    background-position: -97px;
+}
+.oneui .idxCheckBoxTree .dijitTreeRowHover > .dijitTreeContent > .dijitTreeNodeMixed:hover {
+    /* hovering over and mixed */
+
+    background-position: -129px;
+}
+

@@ -1,0 +1,41 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneTitleActions,
+.dlBlue .idxHeaderPaneRtl .idxTitlePaneActions {
+  left: 0px;
+  right: auto;
+}
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxCloseIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxCloseIcon,
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxCloseIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxTitlePaneActions .idxCloseIcon {
+  background: url("images/headerpane_close_active.png") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxRefreshIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxRefreshIcon,
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxRefreshIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxTitlePaneActions .idxRefreshIcon {
+  background: url("images/headerpane_refresh_active.png") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxHelpIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxHelpIcon,
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxHelpIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxTitlePaneActions .idxHelpIcon {
+  background: url("images/headerpane_help_active.png") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxMaximizeIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxMaximizeIcon,
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxMaximizeIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxTitlePaneActions .idxMaximizeIcon {
+  background: url("images/headerpane_maximize_active.png") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxRestoreIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxRestoreIcon,
+.dlBlue .idxHeaderPaneRtl .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxRestoreIcon,
+.dlBlue .idxHeaderPaneRtl .dijitTitlePaneTitleActive .idxTitlePaneActions .idxRestoreIcon {
+  background: url("svg/headerpane_restore_active.svg") no-repeat 0 0;
+}

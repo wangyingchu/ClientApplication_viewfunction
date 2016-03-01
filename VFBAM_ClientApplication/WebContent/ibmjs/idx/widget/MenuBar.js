@@ -8,7 +8,8 @@
 define(["dojo/_base/declare",
         "dojo/_base/lang",
 		"dijit/MenuBar",
-    	"./_MenuOpenOnHoverMixin"],
+    	"./_MenuOpenOnHoverMixin",
+    	"idx/widgets"],
 		function(declare,
 				 lang,
 				 MenuBar,
@@ -40,6 +41,15 @@ define(["dojo/_base/declare",
 	return oneuiRoot.MenuBar = declare("idx.widget.MenuBar", [MenuBar, _MenuOpenOnHoverMixin], 
 	/** @lends idx.widget.MenuBar.prototype */
 	{
+		/**
+		 * Provide an IDX base class to distinguish from Dijit MenuBar in CSS selectors.
+		 */
+		idxBaseClass: "idxMenuBar",
+		
+		/**
+		 * Default openOnHover to true for MenuBar for backwards compatibility.
+		 */
+		openOnHover: true
 	});
 	
 });

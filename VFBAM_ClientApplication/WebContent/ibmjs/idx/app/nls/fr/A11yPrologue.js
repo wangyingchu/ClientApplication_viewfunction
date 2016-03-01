@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT + ${accessKey}",
 	keySequence_Firefox: "ALT + MAJ + ${accessKey} sous Windows et Linux ou CONTROL + ${accessKey} sous Mac",
 	keySequence_Safari: "CONTROL + OPT + ${accessKey} sous Mac ou ALT + ${accessKey} sous Windows",
-	keySequence_Chrome: "ALT + ${accessKey} sous Windows et Linux ou CONTROL + OPT sous Mac",
+	keySequence_Chrome: "ALT + ${accessKey} sous Windows et Linux ou CONTROL + OPT + ${accessKey} sous Mac",
 	shortcutListMessage: "Les raccourcis de cette page sont les suivants :",
 	a11yPrologueLabel: "Prologue d'accessibilité",
     a11yStatementLabel: "Instruction d'accessibilité",

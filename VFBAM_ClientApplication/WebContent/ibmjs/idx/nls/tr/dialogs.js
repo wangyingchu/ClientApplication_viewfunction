@@ -6,7 +6,9 @@ define({
 	confirmation: "Doğrulama",
 	progress: "Aşama",
 	loading: "Yükleniyor",
-	close: "Kapat"
+	close: "Kapat",
+	idxErrorDialog_detailTabLabel: "Bu Sorunu Gider",
+	idxErrorDialog_moreTabLabel: "Ek Yardım Al"
 //end v1.x content
 });
 

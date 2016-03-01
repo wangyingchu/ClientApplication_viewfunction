@@ -22,12 +22,13 @@ define([
 	"dijit/_Widget",
 	"dijit/_TemplatedMixin",
 	"dijit/_WidgetsInTemplateMixin",
+	"dojo/has!dojo-bidi?../bidi/widget/SingleMessage",
 	"dojo/text!./templates/SingleMessage.html",
 	"dojo/i18n!./nls/SingleMessage",
 	"dojo/i18n!dijit/nls/common",
 	"dojox/html/ellipsis"
-], function(declare, array, event, lang, has, locale, domClass, domAttr, domStyle, domGeometry, i18n, keys, focus, _Widget, _TemplatedMixin,
-			_WidgetsInTemplateMixin, template, singleMessageNls, commonNls){
+], function(declare, array, event, lang, has, locale, domClass, domAttr, domStyle, domGeometry, i18n, keys,focus, _Widget, _TemplatedMixin,
+			_WidgetsInTemplateMixin, bidiExtension, template, singleMessageNls, commonNls){
 	var iMessaging = lang.getObject("idx.oneui.messaging", true); // for backward compatibility with IDX 1.2
 	
 	/**
@@ -69,7 +70,8 @@ define([
 	 *    dateFormat:{datePattern: 'dd MMMM y &nbsp', timePattern: 'hh:mm a'}, messageId: 'CAT123456', messageNumber: 7, style: 'width: 970px;', description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'"></div>
 	 * </pre>
 	 */
-	return iMessaging.SingleMessage = declare("idx.widget.SingleMessage", [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin],
+	var baseClassName = has("dojo-bidi")? "idx.widget.SingleMessage_" : "idx.widget.SingleMessage";
+	iMessaging.SingleMessage = declare(baseClassName, [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin],
 	/**@lends idx.widget.SingleMessage.prototype*/
 	{
 		templateString: template,
@@ -93,15 +95,6 @@ define([
 		 */
 		type: "error",
 
-		/**
-		 * The flag indicating if the WAI-ARIA role of "alert" should be added to the 
-		 * widget's DOM node.  By default, this occurs for errors and warnings, but 
-		 * this flag allows the caller to force the "alert" role for other types of
-		 * messages. 
-		 * @type Boolean
-		 * @default false 
-		 */
-		forceAlertRole: false,
 		
 		/**
 		 * The timestamp of a Single Message. The timestamp format can be configured with 'dateFormat'.
@@ -260,12 +253,39 @@ define([
 			domAttr.set(this.closeNode, "title", commonNls.itemClose);
 			domAttr.set(this.closeNode.childNodes[0], "title", commonNls.itemClose);
 			this.set("title", this.title);
-			
-			if (this.type == "error" || this.type == "warning" || this.forceAlertRole) {
-				domAttr.set(this.domNode, "role", "alert");
+						
+			if ( has("safari") ){
+				//domAttr.remove(this.viewDetailsNode, "href");
+				domAttr.remove(this.actionNode, "href");
 			}
+			var ariaLiveMap = {
+				"error": "assertive", 
+				"warning": "assertive", 
+				"information": "polite", 
+				"success": "polite", 
+				"critical": "assertive", 
+				"attention": "assertive", 
+				"compliance": "polite"
+			}
+			var ariaLiveValue = ariaLiveMap[this.type.toLowerCase()];
+			if ( ariaLiveValue ){
+				domAttr.set(this.domNode, "aria-live", ariaLiveValue);
+			}
+			
+			if (this.clipNode){
+				this.clipNode.innerHTML = this.type + "," + this.title;
+			}
+			
+			// defect 13436, the follwing code should be removed when the dojo fix the a11yclick defect
+			// bug fix for a11yclick trigger in ie10 and ie11 when right click
+			this.closeNode.dojoClick = false;
 		},
 		
+		startup: function(){
+			this.inherited(arguments);
+			this.resize();
+			//this.titleNode.focus();
+		},
 		_setActionTextAttr: function(value){
 			this._set("actionText", value);
 			domAttr.set(this.actionNode, "innerHTML", lang.replace(value, {num: this.messageNumber}));
@@ -375,8 +395,13 @@ define([
 			domAttr.set(this.titleNode, {"innerHTML": ''});
 			if(this.collapsed){
 				var idWidth = domGeometry.getMarginBox(this.idNode).w;
-				var width = domGeometry.getContentBox(this.domNode).w - domGeometry.getMarginBox(this.iconNode).w
-							- domGeometry.getMarginBox(this.infoNode).w - idWidth;
+				var focusPadding = parseInt(domStyle.get(this.focusNode, "paddingLeft")) 
+					+ parseInt( domStyle.get(this.focusNode, "paddingRight") );
+				var width = domGeometry.getContentBox(this.domNode).w 
+					- domGeometry.getMarginBox(this.iconNode).w
+					- domGeometry.getMarginBox(this.infoNode).w 
+					- idWidth
+					- focusPadding;
 				domAttr.set(this.titleNode, {"innerHTML": '<div class="messageTitles">' + this.title + '&nbsp&nbsp</div>'});
 				var currentWidth = domStyle.get(this.titleNode, "width");
 				if(width > 20){
@@ -389,21 +414,26 @@ define([
 					}
 					domStyle.set(this.titleNode, {"width": width + "px"});
 					domAttr.set(this.titleNode, {"innerHTML": '<div class="messageTitles dojoxEllipsis">' + this.title + '&nbsp&nbsp</div>'});
-					//console.log("idWidth:" + idWidth + ",width:" + width + ", currentWidth:" + currentWidth);
 					domStyle.set(this.fakeFocusNode, {"width": width + idWidth + "px"});
 				}else{
 					domAttr.set(this.titleNode, {"innerHTML": '<div class="messageTitles">' + this.title + '&nbsp&nbsp</div>'});
 				}
 			}else{
 				var idWidth = domGeometry.getMarginBox(this.fakeIdNode).w;
-				var width = domGeometry.getContentBox(this.domNode).w - domGeometry.getMarginBox(this.iconNode).w
-							- domGeometry.getMarginBox(this.infoNode).w - idWidth;
+				var width = domGeometry.getContentBox(this.domNode).w 
+					- domGeometry.getMarginBox(this.iconNode).w
+					- domGeometry.getMarginBox(this.infoNode).w 
+					- idWidth;
 				var currentWidth = domStyle.get(this.fakeTitleNode, "width");
 				if(width > 20){
 					width = width - 10;
 				}
 				domStyle.set(this.fakeFocusNode, {"width": width + idWidth + "px"});
 			}
+			this._enforceTitleDirection();
+		},
+		
+		_enforceTitleDirection: function(){
 		},
 		
 		_setCollapsedAttr: function(value){
@@ -441,6 +471,13 @@ define([
 			this.onClose(e);
 			this.destroy();
 		},
+		
+		_onKeyClose: function(e){
+			if(e.keyCode === keys.ENTER || e.keyCode === keys.SPACE){
+				this._onClose(e);
+			}
+		},
+		
 		/**
 		 * Ajust the content of the SingleMessage.
 		 */
@@ -490,6 +527,7 @@ define([
 		onMoreDetails: function(e){
 		}
 	});
+	return has("dojo-bidi")? declare("idx.widget.SingleMessage",[iMessaging.SingleMessage,bidiExtension]) : iMessaging.SingleMessage;
 });
 
 

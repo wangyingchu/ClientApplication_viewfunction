@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jUI Slider</title>
+	<link rel="stylesheet" href="../themes/less/dthink.css">
+	<style>
+	body{
+		font-family:'Helvetica Neue', Helvetica, Arial;
+		padding: 10px 20px;
+	}
+	</style>
+	<script src="../requirejs/require.js">
+	</script>
+	<script src="../requirejs/config.js">
+	</script>
+	<script src="../jquery-ui/jquery-1.10.2.js">
+	</script>
+	<script>
+	require(["jui/slider"], function(){
+		$(function() {
+			//default
+			$( "#slider" ).slider();
+			
+			//steps
+			$( "#slider_steps" ).slider({
+				value:100,
+				min: 0,
+				max: 500,
+				step: 50,
+				slide: function( event, ui ) {
+					$( "#amount_steps" ).val( "$" + ui.value );
+				}
+			});
+			$( "#amount_steps" ).val( "$" + $( "#slider_steps" ).slider( "value" ) );
+			
+			//range
+			$( "#slider_range" ).slider({
+				range: true,
+				min: 0,
+				max: 500,
+				values: [ 75, 300 ],
+				slide: function( event, ui ) {
+					$( "#amount_range" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				}
+			});
+			$( "#amount_range" ).val( "$" + $( "#slider_range" ).slider( "values", 0 ) +
+				" - $" + $( "#slider_range" ).slider( "values", 1 ) );
+				
+			//range min
+			$( "#slider_range_min" ).slider({
+				range: "min",
+				value: 37,
+				min: 1,
+				max: 700,
+				slide: function( event, ui ) {
+					$( "#amount_range_min" ).val( "$" + ui.value );
+				}
+			});
+			$( "#amount_range_min" ).val( "$" + $( "#slider_range_min" ).slider( "value" ) );
+			
+			//range max
+			$( "#slider_range_max" ).slider({
+				range: "max",
+				min: 1,
+				max: 10,
+				value: 2,
+				slide: function( event, ui ) {
+					$( "#amount_range_max" ).val( ui.value );
+				}
+			});
+			$( "#amount_range_max" ).val( $( "#slider_range_max" ).slider( "value" ) );
+			
+			//vertical slider
+			$( "#slider_vertical" ).slider({
+				orientation: "vertical",
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 60,
+				slide: function( event, ui ) {
+					$( "#amount_vertical" ).val( ui.value );
+				}
+			});
+			$( "#amount_vertical" ).val( $( "#slider_vertical" ).slider( "value" ) );
+		});
+	})
+	</script>
+	<script src="commonTest.js"></script>
+
+</head>
+<body>
+	<h1>Slider Tests</h1>
+	<p>The basic slider is horizontal and has a single handle that can be moved with the mouse or by using the arrow keys.</p>
+	<h3>Slider Basic Case:</h3>
+	<div id="slider"></div>
+	
+	<h3> Slider Steps Case: </h3>
+	<p>
+		<label for="amount_steps">Donation amount ($50 increments):</label>
+		<input type="text" id="amount_steps" style="border:0; color:#f6931f; font-weight:bold;" />
+	</p>
+	<div id="slider_steps"></div>
+	
+	<h3> Slider Range Case: </h3>
+	<p>
+		<label for="amount_range">Price range:</label>
+		<input type="text" id="amount_range" style="border:0; color:#f6931f; font-weight:bold;" />
+	</p>
+	<div id="slider_range"></div>
+	
+	<h3> Slider Range Min Case: </h3>
+	<p>
+		<label for="amount_range_min">Maximum price:</label>
+		<input type="text" id="amount_range_min" style="border:0; color:#f6931f; font-weight:bold;" />
+	</p>
+	<div id="slider_range_min"></div>
+	
+	<h3> Slider Range Max Case: </h3>
+	<p>
+		<label for="amount_range_max">Minimum number of bedrooms:</label>
+		<input type="text" id="amount_range_max" style="border:0; color:#f6931f; font-weight:bold;" />
+	</p>
+	<div id="slider_range_max"></div>
+	
+	<h3> Slider Vertical Case: </h3>
+	<p>
+		<label for="amount_vertical">Volume:</label>
+		<input type="text" id="amount_vertical" style="border:0; color:#f6931f; font-weight:bold;" />
+	</p>
+	<div id="slider_vertical" style="height:200px;"></div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} {
+	.dijitTree{
+		.idxOneuiTriStateCheckBoxWrap{
+			margin-top: 0;
+    		padding-top: 0;
+		}
+		.dijitTreeLabel:focus {
+            outline: 1px dotted #000000;
+        }
+	}
+	.idxCheckBoxTree {
+		.dijitTreeIcon{
+			width: 16px;
+			height: 16px;
+		}
+		.dijitTreeRow {
+			 > .dijitTreeContent {
+				> .dijitTreeNode {
+					background-image: url("../../dijit/form/images/checkboxRadioButtonStates.png");
+					background-repeat: no-repeat;
+					background-position: -15px center;
+					width: 15px;
+					height: 15px;
+					margin: 0 5px 0 0;
+					padding: 0;
+				}
+				
+				> .dijitTreeNodeChecked{
+					background-position: 0px;
+				}
+				
+				> .dijitTreeNodeMixed{
+			 		background-position: -90px;
+			 	}
+			 	
+			 	> .dijitTreeNodeDisabled{
+			 		background-position: -75px;
+			 	}
+			 	
+			 	> .dijitTreeNodeCheckedDisabled{
+			 		background-position: -60px;
+			 	}
+			 	
+			 	 > .dijitTreeNodeMixedDisabled{
+			 	 	background-position: -150px;
+			 	 }
+			}			
+		}
+		
+		.dijitTreeRowHover{
+			> .dijitTreeContent{
+				> .idxOneuiTriStateCheckBox{
+					background-position: -45px;
+				}
+				
+				> .dijitTreeNode:hover {
+					background-position: -45px;
+				}
+				
+				> .dijitTreeNodeChecked:hover {
+					background-position: -30px;
+				}
+				
+				.dijitTreeNodeMixed:hover {
+					background-position: -120px;
+				}
+			}
+			
+		}
+	}
+}

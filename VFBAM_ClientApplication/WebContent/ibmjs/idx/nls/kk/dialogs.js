@@ -6,7 +6,9 @@ define({
 	confirmation: "Құптау",
 	progress: "Орындалу",
 	loading: "Қотару",
-	close: "Жабу"
+	close: "Жабу",
+	idxErrorDialog_detailTabLabel: "Осы мәселені түзету",
+	idxErrorDialog_moreTabLabel: "Қосымша көмек алу"
 //end v1.x content
 });
 

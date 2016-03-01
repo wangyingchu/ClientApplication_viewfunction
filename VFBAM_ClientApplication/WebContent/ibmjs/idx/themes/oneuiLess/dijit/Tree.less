@@ -1,0 +1,125 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/* Tree 
+ * 
+ * Styling Tree mostly means styling the TreeRow (dijitTreeRow)
+ * There are 4 basic states to style:
+ * 
+ * Tree Row:
+ * 1. tree row (default styling): 
+ * 		.dijitTreeRow - styles for each row of the tree
+ *
+ * 2. hovered tree row (mouse hover on a tree row)
+ * 		.dijitTreeRowHover - styles when mouse over on one row
+ * 
+ * 3. active tree row (mouse down on a tree row)
+ * 		.dijitTreeRowActive - styles when mouse down on one row
+ * 
+ * 4. selected tree row
+ * 		dijitTreeRowSelected - style when the row has been selected
+ * 
+ * Tree Expando:
+ * 	    dijitTreeExpando - the expando at the left of the text of each tree row
+ * 
+ * Drag and Drop on TreeNodes: (insert line on dijitTreeContent node so it'll aligned w/ target element)
+ * 		.dijitTreeNode .dojoDndItemBefore/.dojoDndItemAfter - use border style simulate a separate line
+ */
+.dijitTreeNode {
+  zoom: 1;
+  /* force layout on IE (TODO: may not be needed anymore) */
+
+}
+.dijitTreeIsRoot {
+  background-image: none;
+}
+/* Styling for basic tree node (unhovered, unselected)
+ * Also use this styling when dropping between items on the tree (in other words, don't
+ * use hover effect)
+ */
+.dijitTreeRow, 
+.dijitTreeNode .dojoDndItemBefore, 
+.dijitTreeNode .dojoDndItemAfter {
+  /* so insert line shows up on IE when dropping after a target element */
+
+  margin: 0;
+  padding: 3px 0;
+  /* replaced by border for selected/hovered row */
+
+  background-color: none;
+  background-color: transparent;
+  border-width: 0;
+  .transition(background-color, border-color; .25s; ease-out);
+}
+.dj_ie6 & .dijitTreeRow {
+  background-image: none;
+}
+.dijitTreeRowSelected {
+  background-repeat: repeat-x;
+  background-color: @selected;
+  .textColors(@selected);
+  color: @textStrong;
+}
+.dijitTreeRowHover {
+  background-color: @hover;
+  .textColors(@hover);
+  color: @textStrong;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+}
+.dijitTreeRowActive {
+  background-color: @hover;
+  .textColors(@hover);
+  color: @textStrong;
+}
+.dj_ie6 & .dijitTreeRowActive {
+  background-image: none;
+}
+.dijitTreeRowFocused {
+  background-repeat: repeat;
+}
+/* expando (open/closed) icon */
+.dijitTreeExpando {
+  background-image: url('images/dijit/leftNavArrows.png');
+  width: 16px;
+  height: 16px;
+  background-position: -16px 0;
+  /* for dijitTreeExpandoOpened */
+}
+.dj_ie6 & .dijitTreeExpando {
+  background-image: url('images/dijit/leftNavArrows8bit.png');/*leftNavArrows8bit*/
+}
+.dijitTreeRowHover .dijitTreeExpandoOpened {
+  background-position: -16px 0;
+}
+.dijitTreeExpandoClosed {
+  background-position: 0 0;
+}
+.dijitTreeRowHover .dijitTreeExpandoClosed {
+  background-position: 0 0;
+}
+.dijitTreeExpandoLeaf, 
+.dj_ie6 & .dijitTreeExpandoLeaf {
+  background-image: none;
+}
+.dijitTreeExpandoLoading {
+  background-image: url('images/dijit/loadingAnimation16px.gif');
+}
+/* Drag and Drop on TreeNodes
+ * Put insert line on dijitTreeContent node so it's aligned w/
+ * (ie, indented equally with) target element, even
+ * though dijitTreeRowNode is the actual "drag object"
+ */
+.dijitTreeNode .dojoDndItemBefore .dijitTreeContent {
+  border-top: 2px solid @fwContrast;
+  padding-top: 2px;
+}
+.dijitTreeNode .dojoDndItemAfter .dijitTreeContent {
+  border-bottom: 2px solid @fwContrast;
+  padding-bottom: 4px;
+}

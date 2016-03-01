@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Další akce"
 //end v1.x content
 });
+

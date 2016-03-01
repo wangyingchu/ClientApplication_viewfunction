@@ -1,35 +1,55 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
 /* dojox.mobile.Accordion */
-.mblAccordion {
+
+/* Reset common styles. */
+.oneui .mblAccordion,
+.oneui .mblAccordionTitle,
+.oneui .mblAccordionTitle * {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
+}
+
+.oneui .mblAccordion {
 	border-bottom-width:1px;
 	border-bottom-style:outset;
 	border-bottom-color:#ddd;
 }
 
-.mblAccordionRoundRect {
+.oneui .mblAccordionRoundRect {
 	margin:7px 9px 16px;
 	padding:0;
 	border:1px solid #aaa;
 	border-radius:5px;
 }
 
-.mblAccordionRoundRect .mblAccordionTitle:first-child {
+.oneui .mblAccordionRoundRect .mblAccordionTitle:first-child {
 	border-top-right-radius:5px;
 	border-top-left-radius:5px;
 }
 
-.mblAccordionRoundRect .mblAccordionTitleLast,.mblAccordionRoundRect .mblAccordionPane:last-child {
+.oneui .mblAccordionRoundRect .mblAccordionTitleLast,.mblAccordionRoundRect .mblAccordionPane:last-child {
 	border-bottom-width:0;
 	border-bottom-right-radius:5px;
 	border-bottom-left-radius:5px;
 }
 
-.mblAccordionTitle {
+.oneui .mblAccordionTitle {
 	position:relative;
 	width:100%;
 	height:44px;
@@ -44,11 +64,11 @@
 	line-height:44px;
 }
 
-.mblAccordionTitle:first-child {
+.oneui .mblAccordionTitle:first-child {
 	border-top:none;
 }
 
-.mblAccordionTitleAnchor {
+.oneui .mblAccordionTitleAnchor {
 	display:block;
 	height:100%;
 	color: #222;
@@ -57,13 +77,13 @@
 	white-space:nowrap;
 }
 
-.mblAccordionIconParent {
+.oneui .mblAccordionIconParent {
 	float:left;
 	margin:15px 9px 0 14px;
 	line-height:normal;
 }
 
-.mblAccordionIconParent1 {
+.oneui .mblAccordionIconParent1 {
 	display:block;
 }
 
@@ -80,6 +100,6 @@
 	display:none;
 }
 
-.mblAccordionTitleSelected .mblAccordionIconParent2 {
+.oneui .mblAccordionTitleSelected .mblAccordionIconParent2 {
 	display:block;
 }

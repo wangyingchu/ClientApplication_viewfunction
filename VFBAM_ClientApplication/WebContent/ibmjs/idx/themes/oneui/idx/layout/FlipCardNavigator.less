@@ -1,0 +1,104 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/.oneui .idxFlipCardNavigator .dojoxExpandoContent .dijitMenu {
+    border: none;
+}
+.oneui {
+    .idxFlipCardNavigator {
+        .dojoxExpandoContent {
+            .dijitMenuTable {
+                width: 98%;
+                .dijitMenuItem {
+                    color: white;
+                    background-color: #A9A7A5;
+                    border: none;
+                    .dijitMenuExpand {
+                        background-position: -42px 0;
+                    }
+                }
+                .dijitMenuItemHover {
+                    background-color: #939290;
+                    background-image: url("images/standardGradient.png");
+                    background-repeat: repeat-x;
+                    _background-image: none;
+                }
+                .dijitMenuItemActive {
+                    background-color: #939290;
+                    background-image: url("images/standardGradient.png");
+                    background-repeat: repeat-x;
+                    _background-image: none;
+                }
+                .dijitMenuItemIconCell {
+                    border: none !important;
+                }
+                .dijitMenuItemLabel {
+                    border: none;
+                    padding-left: 5px;
+                }
+                .dijitMenuArrowCell {
+                    border: none;
+                }
+                .fcNavExpanderMenuItem {
+                    background-color: #A9A7A5;
+                    color: #eee;
+                    text-shadow: 1px 0 0 #000;
+                    border: none;
+                    font-size: 1em;
+                    .dijitMenuItemIconCell {
+                        width: 15px;
+                    }
+                    .dijitMenuItemLabel {
+                        padding: 10px 0px 8px;
+                    }
+                }
+                .oneuiMenuHeadingLabel {
+                    padding: 10px 0px 8px 15px;
+                    background-color: #A9A7A5;
+                    font-size: 1em;
+                    color: #eee;
+                    text-shadow: 1px 0 0 #000;
+                    border: none;
+                }
+                .dijitMenuItem.menuItemHidden {
+                    display: none;
+                }
+            }
+        }
+        .flipCardMenuContainer {
+            position: relative;
+            overflow: hidden;
+            .flipCardNavigationMenu {
+                -webkit-transition: all 1s ease-in-out;
+                -moz-transition: all 1s ease-in-out;
+                -o-transition: all 1s ease-in-out;
+                -ms-transition: all 1s ease-in-out;
+                transition: all 1s ease-in-out;
+                -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+                -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+                box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+                position: absolute;/* animation effect for MenuItem in FlipCard NavExpand pane*/
+                .flipCardActionMenuItem {
+                    color: white;
+                    background-color: #A9A7A5;
+                    td.dijitMenuItemLabel {
+                        padding: 8px 0;
+                    }
+                }
+                .flipCardActionMenuItem.dijitMenuItemHover {
+                    background-color: #939290;
+                }
+                .flipCardActionMenuItem.dijitMenuItemActive {
+                    background-color: #939290;
+                }
+            }
+            .flipCardNavigationMenu.slideOut {
+                left:-300px;
+            }
+            .flipCardNavigationMenu.popupContentMenu {
+                left: 0;
+                top: 0;
+            }
+            .flipCardNavigationMenu.popupContentMenu.slideOut {
+                left:300px;
+            }
+        }
+    }
+}

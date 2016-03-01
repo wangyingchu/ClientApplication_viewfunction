@@ -277,6 +277,7 @@ define(["dojo/_base/lang",
     	} else {
     		bundleName = scopes[index];
     	}
+		if (bundleName.length == 0) continue;
     	var bundle = iResources._getBundle(pkg,bundleName,locale);
     	if (!bundle) continue;
     	for (var field in bundle) {
@@ -289,6 +290,42 @@ define(["dojo/_base/lang",
 
   	// return the resources
     return resourcesByScope;     
+  };
+
+    /**
+   * @public 
+   * @function
+   * @name idx.resources.getDependencies
+   *
+   * @description Obtains the array of "dojo/i18n!" dependencies for the specified scope.
+   * 
+   * @param {String} scope The optional string to override resources in a specific scope.  If not
+   *                       specified then the global scope is assumed.
+   * @returns {String[]} Returns the array of "dojo/i18n!" dependencies.
+   */
+  iResources.getDependencies = function(/*String?*/ scope) {
+    scope = iResources._normalizeScope(scope);
+	var dependencies = [];
+	var scopes = scope.split("/");
+    var index = 0;
+    var pkg = "";
+    var prefix = "";
+	var bundleName = "";
+	var dependency = "";
+    for (index = 0; index < scopes.length; index++) {
+    	bundleName = "base";
+    	if (index < scopes.length-1) {
+    		pkg = pkg + prefix + scopes[index];
+    		prefix = "/";
+    	} else {
+    		bundleName = scopes[index];
+    	}
+		if (bundleName.length == 0) continue;
+		dependency = "dojo/i18n!" + pkg + prefix + "nls/" +  bundleName;
+		dependencies.push(dependency);
+    }
+
+	return dependencies;
   };
 
   /**

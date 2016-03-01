@@ -8,18 +8,33 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dijit/_base/wai",
+	"dojo/has",
 	"dojo/dom-style",
 	"dojo/dom-class",
-	"dijit/_base/wai",
 	"dojo/currency",
 	"dijit/form/CurrencyTextBox",
 	"dijit/form/NumberTextBox",
 	"idx/widget/HoverHelpTooltip",
 	"./_CssStateMixin",
-	"./TextBox",
 	"./_CompositeMixin",
-	"dojo/text!./templates/CurrencyTextBox.html"
-], function(declare, lang, domStyle, domClass, wai, currency, CurrencyTextBox, NumberTextBox, HoverHelpTooltip, _CssStateMixin, TextBox, _CompositeMixin, template){
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	"idx/has!#idx_form_CurrencyTextBox-desktop?dojo/text!./templates/CurrencyTextBox.html"  // desktop widget, load the template
+		+ ":#idx_form_CurrencyCurrencyTextBox-mobile?"										// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/CurrencyTextBox.html"						// global desktop platform, load template
+		+ ":#mobile?"														// global mobile platform, don't load
+		+ ":dojo/text!./templates/CurrencyTextBox.html", 							// no dojo/has features, load the template
+		
+	"idx/has!#idx_form_CurrencyTextBox-mobile?./plugins/mobile/CurrencyTextBoxPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_CurrencyTextBox-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/mobile/CurrencyTextBoxPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+], function(declare, lang, wai, has, domStyle, domClass, currency, 
+	DijitCurrencyTextBox, DijitNumberTextBox, HoverHelpTooltip, 
+	_CssStateMixin, _CompositeMixin, _TemplatePlugableMixin, 
+	PlatformPluginRegistry, desktopTemplate, MobilePlugin){
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	
 	/**
@@ -39,14 +54,14 @@ define([
 	 */
 	 
 	 
-	return iForm.CurrencyTextBox = declare("idx.form.CurrencyTextBox", [CurrencyTextBox, _CompositeMixin, _CssStateMixin], {
+	var CurrencyTextBox = declare([DijitCurrencyTextBox, _CompositeMixin, _CssStateMixin], {
 		/**@lends idx.form.CurrencyTextBox.prototype*/
 		
 		instantValidate: false,
 		
-		templateString: template,
+		templateString: desktopTemplate,
 		
-		baseClass: "oneuiTextBoxWrap",
+		baseClass: "idxCurrencyTextBoxWrap",
 		
 		oneuiBaseClass: "dijitTextBox dijitCurrencyTextBox",
 		
@@ -63,7 +78,7 @@ define([
 				this.connect(this, "_onInput", function(){
 					this.validate(true);
 				});
-				this._getPatternAttr(this.constraints);
+				this._computeRegexp(this.constraints);
 			}else{
 				this.connect(this, "_onFocus", function(){
 					if (this.message && this._hasBeenBlurred && (!this._refocusing)) {
@@ -82,6 +97,10 @@ define([
 			this._refocusing = true;
 			this.focus();
 			this._refocusing = false;
+		},
+		_isEmpty: function(){
+			var v = this.get("value");
+			return (v !== undefined) && isNaN(v);
 		},
 		/**
 		 * Show error message using a hoverHelpTooltip, hide the tooltip if message is empty.
@@ -108,10 +127,6 @@ define([
 				this.messageTooltip && this.messageTooltip.close();
 			}
 		},
-		_isEmpty: function(){
-			var v = this.get("value");
-			return (v !== undefined) && isNaN(v);
-		},
 		
 		_setCurrencyAttr: function(/*String*/ currency){
 			this.currencyLabel.innerHTML = currency;
@@ -121,7 +136,44 @@ define([
 		},
 		
 		_setConstraintsAttr: function(/*Object*/ constraints){
-			NumberTextBox.prototype._setConstraintsAttr(arguments, [currency._mixInDefaults(lang.mixin(constraints, {exponent: false}))]);
+			DijitNumberTextBox.prototype._setConstraintsAttr.apply(this, [lang.mixin(constraints, {exponent: false})]);
 		}
 	});
+	
+	if(has("mobile") || has("platform-plugable")){
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/CurrencyTextBox", {	
+			desktop: "inherited",	// no plugin for desktop, use inherited methods  
+			mobile: MobilePlugin	// use the mobile plugin if loaded
+		});
+		
+		CurrencyTextBox = declare([CurrencyTextBox,_TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			
+			
+			templatePath: require.toUrl("idx/form/templates/CurrencyTextBox.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			 			
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			},
+			
+			_setCurrencyAttr: function(currency){
+				return this.doWithPlatformPlugin(arguments, "_setCurrencyAttr", "setCurrencyAttr", currency);
+			},
+			_setConstraintsAttr: function(constraints){
+				return this.doWithPlatformPlugin(arguments, "_setConstraintsAttr", "setConstraintsAttr", constraints);
+			}
+		});
+	}
+	return iForm.CurrencyTextBox = declare("idx.form.CurrencyTextBox", CurrencyTextBox);
 })

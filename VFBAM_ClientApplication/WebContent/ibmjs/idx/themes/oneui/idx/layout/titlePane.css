@@ -38,29 +38,26 @@
 
 .oneui .idxTitlePaneActions {
   padding: 0px;
-  margin: 0px;
+  top:3px;
   width: auto;
   height: auto;
-  display: inline;
-  float: right;
   font-weight: normal;
   text-shadow: 0px 0px 0px;
+  position: absolute;
+  right: 7px
 }
 
 .oneui .dijitRtl .idxTitlePaneActions {
-  float: left;
+  left: 7px;
+  right:auto;
 }
 
 .dj_ie7 .oneui .idxTitlePaneActions {
-  float: none;
-  position: absolute;
   right: 7px;
 }
 
 .dj_ie7 .oneui .dijitRtl .idxTitlePaneActions {
-  float: none;
-  position: absolute;
-  left: 0px;
+  left: 7px;
   right: auto;
 }
 
@@ -101,6 +98,10 @@
 
 .dijit_a11y .idxTitlePane .idxTitlePaneA11yText {
 	display: inline;
+}
+
+.oneui .idxTitlePane.idxTitlePaneMaxMode .dijitTitlePaneContentOuter{
+	overflow:auto;
 }
 
 .oneui .idxTitlePane .dijitTitlePaneContentInner.dijitTitlePaneSingleChild,

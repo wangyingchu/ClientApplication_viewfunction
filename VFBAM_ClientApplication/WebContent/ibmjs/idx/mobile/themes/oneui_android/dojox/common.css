@@ -8,19 +8,19 @@
 @import url(../../common/dojox/common.css);
 
 /* Colors for buttons when used in a Heading. */
-.mblHeading .mblColorDefault {
+.oneui .mblHeading .mblColorDefault {
 	color: #fff;
 	background: transparent;
 }
 
-.mblHeading .mblColorDefault45 {
+.oneui .mblHeading .mblColorDefault45 {
 	background: transparent; 
 }
 
-.mblHeading .mblColorDefaultSel {
+.oneui .mblHeading .mblColorDefaultSel {
 	background: transparent; 
 }
 
-.mblHeading .mblColorDefaultSel45 {
+.oneui .mblHeading .mblColorDefaultSel45 {
 	background: transparent; 
 }

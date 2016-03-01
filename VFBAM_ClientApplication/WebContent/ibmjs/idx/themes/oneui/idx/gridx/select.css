@@ -8,8 +8,11 @@
 /* row select */
 .oneui .gridx .gridxRowSelected .gridxCell {
 	border-top-color: #bbb;
+	/*
+	 * Defect 12039 comment out this style 
 	background: none;
-	background-color: transparent;
+	background-color: transparent; 
+	*/
 }
 
 .oneui .gridx .gridxRowSelected:first-child .gridxCell {
@@ -23,7 +26,13 @@
 	border-top-color: #bbb;
 }
 
-.oneui .gridx .gridxRowSelected .gridxRowTable {
+/*
+ * Defect 12039
+ * Set the RowTable background to gridxCell not the whole table
+ * .oneui .gridx .gridxRowSelected .gridxRowTable {
+ * 
+ * */
+.oneui .gridx .gridxRowSelected .gridxCell{
 	background-color: #ddf2f9;
 }
 
@@ -43,5 +52,10 @@
 }
 
 .oneui .gridx .gridxHeader .gridxRowHeaderHeader .gridxHeaderCellFocus {
-	border-color: transparent;
+	/*border-color: transparent;*/
+	border: 1px dashed darkblue;
+}
+
+.oneui .gridx .dijitCheckBoxPartial {
+	background-position: -33px;
 }

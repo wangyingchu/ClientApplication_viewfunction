@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Velg eller opphev valget av alle rader"		
 //end v1.x content
 });
+

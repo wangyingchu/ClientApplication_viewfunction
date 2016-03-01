@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "تبديل الاختيار لكل الصفوف"		
 //end v1.x content
 });
+

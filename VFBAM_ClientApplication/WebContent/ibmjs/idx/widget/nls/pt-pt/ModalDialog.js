@@ -13,9 +13,11 @@ define({
 	Success: "Êxito",
 	Confirmation: "Confirmação",
 	Question: "Pergunta",
+	Progress: "Progresso",
 	closeButtonLabel: "Fechar",
 	cancelButtonLabel: "Cancelar",
 	executeButtonLabel: "OK",
 	checked: "Não perguntar novamente"
 //end v1.x content
 });
+

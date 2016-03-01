@@ -46,14 +46,14 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 <script type="text/javascript">applyThemeToBody()</script>
 <a name="maincontent"></a>
 <div dojoType="idx.layout.DockContainer" topicId="test1" style="width:100%;height:100%;">
-	<div dojoType="idx.layout.VerticalEqualDockPane" region="leading" splitter="true" snap="true" open="true" style="width:300px;">
-		<div dojoType="idx.layout.DockPane" title="test1" topicId="test1">
+	<div id="vertical_equal_dock_pane" dojoType="idx.layout.VerticalEqualDockPane" region="leading" splitter="true" snap="true" open="true" style="width:300px;">
+		<div id="dock_pane_1" dojoType="idx.layout.DockPane" title="test1" topicId="test1">
 			aaaaa
 		</div>
-		<div dojoType="idx.layout.DockPane" title="test2" topicId="test1">
+		<div id="dock_pane_2" dojoType="idx.layout.DockPane" title="test2" topicId="test1">
 			bbbbb
 		</div>
-		<div dojoType="idx.layout.DockPane" title="test3" topicId="test1">
+		<div id="dock_pane_3" dojoType="idx.layout.DockPane" title="test3" topicId="test1">
 			ccccc
 		</div>
 	</div>

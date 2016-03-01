@@ -92,3 +92,26 @@
   bottom: 0px;
 }
 
+.oneui.dijit_a11y div.idxAppFrameCenter {
+	border: 1px solid black;
+}
+.oneui.dijit_a11y div.idxAppFrameHeader {
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+.oneui.dijit_a11y div.idxAppFrameFooter {
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+.oneui.dijit_a11y div.idxAppFrameLeft {
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+}
+.oneui.dijit_a11y div.idxAppFrameRight {
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+}

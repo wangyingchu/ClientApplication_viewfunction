@@ -15,18 +15,21 @@
 .oneui .idxConfirmDialogRtl .messageSummary img {
 	float:right;
 	margin:0 0 0 10px;
+}
+[lang|="ar"] .oneui .idxModalDialogRtl .messageSummary img.messageQuestionIcon,
+[lang|="ar"] .oneui .idxConfirmDialogRtl .messageSummary img.messageQuestionIcon {
 	background-image: url(images/msgIcons_24bit_rtl.png);
 }
-.dj_ie6 .oneui .idxModalDialogRtl .messageSummary img,
-.dj_ie6 .oneui .idxConfirmDialogRtl .messageSummary img {
+[lang|="ar"] .dj_ie6 .oneui .idxModalDialogRtl .messageSummary img.messageQuestionIcon,
+[lang|="ar"] .dj_ie6 .oneui .idxConfirmDialogRtl .messageSummary img.messageQuestionIcon {
 	background-image: url(images/msgIcons_8bit_rtl.png);
 }
-.oneui.idx_i18n_il .idxModalDialogRtl .messageSummary img,
-.oneui.idx_i18n_il .idxConfirmDialogRtl .messageSummary img{
+[lang|="ar"] .oneui.idx_i18n_il .idxModalDialogRtl .messageSummary img.messageQuestionIcon,
+[lang|="ar"] .oneui.idx_i18n_il .idxConfirmDialogRtl .messageSummary img.messageQuestionIcon{
 	background-image: url('images/msgIcons_24bit_rtl_il.png');
 }
-.dj_ie6 .idx_i18n_il .idxModalDialogRtl .messageSummary img,
-.dj_ie6 .idx_i18n_il .idxConfirmDialogRtl .messageSummary img{
+[lang|="ar"] .dj_ie6 .idx_i18n_il .idxModalDialogRtl .messageSummary img.messageQuestionIcon,
+[lang|="ar"] .dj_ie6 .idx_i18n_il .idxConfirmDialogRtl .messageSummary img.messageQuestionIcon{
 	background-image: url('images/msgIcons_8bit_rtl_il.png');
 }
 

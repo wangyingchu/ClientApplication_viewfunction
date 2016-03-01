@@ -1,12 +1,30 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
 
 /* dojox.mobile.CheckBox */
-.mblCheckBox {
+
+/* Reset common styles. */
+.oneui .mblCheckBox {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
+}
+
+.oneui .mblCheckBox {
 	position:relative;
 	margin:-.5em 3px .2em 8px;
 	width:1.2em;
@@ -16,6 +34,7 @@
 	border-style:outset;
 	border-radius:2px;
 	background-color: #fbfbfb;
+	background-image:-webkit-gradient(linear,center top,center bottom,from(#d6d6d6),to(#fbfbfb));
 	background-image:-webkit-linear-gradient(top,#d6d6d6 0%,#fbfbfb 100%);
 	font:inherit;
 	cursor:pointer;
@@ -24,15 +43,17 @@
 	-webkit-tap-highlight-color:rgba(255,255,255,0);
 }
 
-.mblCheckBoxSelected {
+.oneui .mblCheckBoxSelected {
 }
 
-.mblCheckBoxChecked,.mblCheckBox:checked {
+.oneui .mblCheckBoxChecked,
+.oneui .mblCheckBox:checked {
 	border-color:#bbb;
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#d4d4d4),to(#fdfdfd));
 }
 
-.mblCheckBoxChecked::after,.mblCheckBox:checked::after {
+.oneui .mblCheckBoxChecked::after,
+.oneui .mblCheckBox:checked::after {
 	position:absolute;
 	top:0;
 	left:.3em;
@@ -46,12 +67,16 @@
 	-webkit-transform-origin:50% 50%;
 }
 
-.mblCheckBoxChecked.mblCheckBoxSelected,.mblCheckBox:checked.mblCheckBoxSelected {
+.oneui .mblCheckBoxChecked.mblCheckBoxSelected,
+.oneui .mblCheckBox:checked.mblCheckBoxSelected {
 }
 
-.mblCheckBoxChecked.mblCheckBoxSelected::after,.mblCheckBox:checked.mblCheckBoxSelected::after {
+.oneui .mblCheckBoxChecked.mblCheckBoxSelected::after,
+.oneui .mblCheckBox:checked.mblCheckBoxSelected::after {
 }
 
-.mblCheckBox:disabled,.mblCheckBoxChecked:disabled,.mblCheckBox:checked:disabled {
+.oneui .mblCheckBox:disabled,
+.oneui .mblCheckBoxChecked:disabled,
+.oneui .mblCheckBox:checked:disabled {
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#f4f4f4));
 }

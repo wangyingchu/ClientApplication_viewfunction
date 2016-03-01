@@ -37,8 +37,8 @@
 }
 
 .oneui .idxOneuiHoverHelpTooltipLearnLink span {
-	background: url("images/hoverLearnMoreArrow.png") no-repeat right center;
-	padding-right: 13px;
+	/*background: url("images/hoverLearnMoreArrow.png") no-repeat right center;
+	padding-right: 13px;*/
 	padding-top: 1px;
 }
 
@@ -75,7 +75,8 @@
 	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 	font-size: 1em;
 	color: #222222;
-	max-width: 600px;
+	word-break: break-word;
+	word-wrap:break-word;
 }
 
 .dj_ie .oneui .idxOneuiHoverHelpTooltipContainer {
@@ -103,7 +104,7 @@
 	/* above or below tooltip, but the arrow appears on the right,
 		and the right edges of target and tooltip are aligned rather than the left */
 	left: auto !important;
-	right: 3px;
+	right: 13px;
 }
 
 .oneui .idxOneuiHoverHelpTooltipBelow .idxOneuiHoverHelpTooltipConnector { 
@@ -158,9 +159,13 @@
 	z-index: 2000;
 	display: block;
 	/* make visible but off screen */
-	left: 0;
+	left: auto;
 	top: -10000px;
 	overflow: visible;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	max-width: 600px;
 }
 
 .oneui .idxOneuiHoverHelpTooltipFocusNode {

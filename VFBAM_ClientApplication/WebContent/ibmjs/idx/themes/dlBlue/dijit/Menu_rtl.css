@@ -1,0 +1,8 @@
+.dlBlue .dijitMenuItemRtl .dijitMenuExpand {
+  background-position: -80px -3px;
+  margin-right: 0;
+  margin-left: 3px;
+}
+.dlBlue .dijitMenuItemRtl .dijitMenuItemIcon {
+  margin: 0 4px 0 0;
+}

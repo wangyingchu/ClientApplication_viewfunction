@@ -1,0 +1,61 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxPersonCard {
+  padding: 5px;
+  color: #666;
+}
+.dlBlue .idxPersonCardContainer {
+  border-bottom: 1px solid #ccc;
+}
+.dlBlue .idxPersonCardContainer > div {
+  padding: 2px;
+  margin-left: 137px;
+}
+.dlBlue .idxPersonCardContainer .idxClearFloat {
+  clear: both;
+  height: 0px;
+  padding: 0px;
+}
+.dlBlue .idxPersonCardPhoto {
+  margin: 0 20px 13px 20px;
+  height: 90px;
+  width: 90px;
+  padding: 3px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  float: left;
+}
+.dlBlue .idxPersonCardFn {
+  font-family: Georgia, Times New Roman, Serif;
+  font-size: 22px;
+  color: #00649d;
+}
+.dlBlue .idxPersonCardTitle {
+  font-size: .9em;
+  color: #222;
+}
+.dlBlue .idxPersonCardOrg {
+  font-size: .9em;
+}
+.dlBlue .idxPersonCardAdr {
+  font-size: .8em;
+}
+.dlBlue .idxPersonCardTel {
+  font-size: .8em;
+}
+.dlBlue .idxPersonCardEmail {
+  font-size: .9em;
+}
+.dlBlue .idxPersonCardSametime {
+  font-size: .9em;
+}
+.dijitRtl .dlBlue .idxPersonCardContainer > div {
+  margin-left: 0px;
+  margin-right: 137px;
+}
+.dijitRtl .dlBlue .idxPersonCardPhoto {
+  float: right;
+}
+.dijitRtl .dlBlue .idxPersonCard .awareness {
+  background-position: right center;
+  padding-right: 18px;
+}

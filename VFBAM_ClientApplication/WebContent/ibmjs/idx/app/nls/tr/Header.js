@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Paylaş",
+	actionSettings: "Ayarlar",
 	actionHelp: "Yardım",
 	searchEntry: "Ara",
-	searchSubmit: "Ara"
+	searchSubmit: "Ara",
+	primarySearchLabelSuffix: "birincil arama",
+	secondarySearchLabelSuffix: "ikincil arama",
+	homeButton: "Ana Sayfa"
 //end v1.x content
 });
+

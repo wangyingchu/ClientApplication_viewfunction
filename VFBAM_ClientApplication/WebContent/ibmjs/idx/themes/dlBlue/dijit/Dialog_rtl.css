@@ -1,0 +1,8 @@
+/* Dialog */
+.dlBlue .dijitDialogRtl .dijitDialogCloseIcon {
+  right: auto;
+  left: 15px;
+}
+.dlBlue .dijitDialogRtl .dijitDialogPaneActionBar {
+  text-align: left;
+}

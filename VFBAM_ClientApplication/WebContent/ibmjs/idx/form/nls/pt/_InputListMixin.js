@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Pelo menos um item deve ser selecionado."
 //end v1.x content
 });
+

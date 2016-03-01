@@ -1,0 +1,623 @@
+@import "../../dijit/variables";
+.dj_ie8.@{theme-name} {
+    .idxAccordionWizardViewportVisited {
+        .idxAccordionWizardViewportVisitedIcon {
+            background: url(images/wiz_step_complete_16.png) 0 no-repeat;
+		}
+	}
+    .idxAccordionWizardViewportStepVisitedMarker {
+        background: url(images/wiz_substep_complete_16.png) 0 no-repeat;
+	}
+}
+
+.dj_ie8.@{theme-name} {
+    .idxWizard {
+        .idxWizardTOC {
+            .idxWizardTOCList {
+                .idxWizardNavListItem.idxWizardVisited.idxWizardSelected {
+                    .idxWizardIcon {
+                        background: url(images/wiz_current_step_16.png) 0 no-repeat;					
+					}
+				}
+			}
+		}
+	}
+}
+
+.@{theme-name} {
+    .idxWizard {
+        width: 100%;
+        height: 100%;
+        .idxWizardBorderContainer {
+            width: 100%;
+            height: 100%;
+        }
+		.idxWizardBorderContainer.dijitBorderContainerNoGutter > .idxSplitterV {
+			border: 0px none transparent;
+			border-left: 0px none transparent;
+			border-right: 0px none transparent;
+			background-image: none;
+			background-color: #EFEFE1;
+			.idxSplitterThumbOuter {
+				background-image: none;
+				background-color: #EFEFE1;
+				.dijitSplitterThumb {
+					background-image: url(images/wizardToggleArrowsV.png);
+				}
+			}
+		}
+		.idxWizardBorderContainer.dijitBorderContainerNoGutter > .idxSplitterV.dijitSpliterVHover {
+			background-image: none;
+			background-color: #EFEFE1;
+			.idxSplitterThumbOuter {
+				background-image: none;
+				background-color: #EFEFE1;
+				.dijitSplitterThumb {
+					background-image: url(images/wizardToggleArrowsV.png);
+				}
+			}
+		}
+        .idxWizardPane {
+            padding: 16px 25px 25px 25px;
+        }
+		.idxWizardMain {
+			.idxWizardStackTitle {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				right: 0px;
+				height: 45px;
+				padding: 25px 25px 0px 25px;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				font-size: 20px;
+				color: #808287;
+				font-weight: 200;
+				display: inline-block;
+				overflow: hidden;
+			}
+			.idxWizardStack {
+				position: absolute;
+				top: 45px;
+				left: 0px;
+				right: 0px;
+				bottom: 0px;
+				overflow: auto;
+				padding: 0px 0px 0px 0px;
+			}
+		}		
+        .idxWizardButtonContainer {
+            border-top: 1px solid #B8BABE;
+            text-align: right;
+            padding: 25px;
+			height: auto;
+        }
+        .idxWizardTOC {
+			background-color: #EFEFE1;
+			overflow: hidden;
+            width: 230px;
+            padding: 0px;
+			
+			.idxWizardTOCWrapper:hover {
+				overflow: auto;
+			}
+			.idxWizardTOCWrapper {
+				overflow: hidden;
+				position: absolute;
+				top: 25px;
+				bottom: 25px;
+				left: 0px;
+				right: 0px;
+			}
+            .idxWizardTOCList {
+				font-size: 13px;
+				color: #4C4D53;
+				list-style: none outside none;
+                padding: 0px 25px;
+                margin: 0px;
+                li {
+					line-height: 24px;
+                }
+                .idxWizardNavListItem {
+					color: #4C4D53;
+                    .idxWizardText {
+                        color: #222222;
+                        padding-left: 18px;
+                    }
+                }
+                .idxWizardNavListItem.idxWizardSubstep {
+                    margin-left: 10px;
+                }
+                .idxWizardNavListItem.idxWizardVisited {
+                    .idxWizardIcon {
+                        background: url(images/wiz_step_complete_16.svg) 0 no-repeat;
+                        width: 16px;
+                        height: 16px;
+                        position: absolute;
+                    }
+                }
+                .idxWizardNavListItem.idxWizardVisited.idxWizardSelected {
+                    .idxWizardIcon {
+                        background: url(images/wiz_current_step_16.svg) 0 no-repeat;
+                        width: 16px;
+                        height: 16px;
+                        position: absolute;
+                    }
+                }
+                .idxWizardNavListItem.idxWizardDisabled {
+                    .idxWizardText {
+                        color: #808287;
+                    }
+                }
+                .idxWizardNavListItem:hover {
+                    background-color: #cce8f2;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .idxAccordionWizard {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        .idxAccordionWizardViewport {
+            .idxAccordionWizardViewportVisitedSymbol {
+                width: 100%;
+                text-align: center;
+                vertical-align: middle;
+                font-weight: bold;
+                font-size: 125%;
+                display: none;
+                visibility: hidden;
+            }
+            .idxAccordionWizardViewportStepVisitedSymbol {
+                display: none;
+                visibility: hidden;
+            }
+        }
+        .idxAccordionWizardBorderContainer {
+            width: 100%;
+            height: 100%;
+        }
+        .idxAccordionWizardAnimating {
+            .idxAccordionWizardViewport {
+                -webkit-transition: left 600ms;
+                transition: left 600ms;
+            }
+            .idxAccordionWizardViewportContent {
+                -webkit-transition: visibility 1s;
+                transition: visibility 1s;
+            }
+        }
+        .idxAccordionWizardViewportAnimating {
+            .idxWizardPane {
+                -webkit-transition: visibility 1s, left 600ms;
+                transition: visibility 1s, left 600ms;
+            }
+        }
+        .idxAccordionWizardButtonPane {
+            text-align: right;
+            padding: 10px;
+        }
+    }
+    .idxAccordionWizardAccordion {
+        display: block;
+        overflow: hidden;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    .idxAccordionWizardAccordionPane {
+        display: block;
+        overflow: hidden;
+        border: 1px solid #CCCCCC;
+    }
+    .idxAccordionWizardViewport {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        height: 100%;
+        background-color: white;
+    }
+    .idxAccordionWizardViewportTitleBar {
+        background-color: @accordion-wizard-default-step-background-color;
+        width: 2em;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        right: auto;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    .idxAccordionWizardViewportDisabled {
+        .idxAccordionWizardViewportTitleBar {
+            background-color: @accordion-wizard-disabled-step-background-color;
+            background-image: none;
+        }
+        .idxAccordionWizardViewportTitleBarText {
+            text-shadow: none;
+            filter: none;
+            color: @accordion-wizard-disabled-step-text-color;
+        }
+    }
+    .idxAccordionWizardViewportLeading {
+        .idxAccordionWizardViewportTitleBar {
+            border-right: 1px solid @accordion-wizard-default-step-border-color;
+            border-left: 1px solid rgba(0, 0, 0, 0);
+        }
+    }
+    .idxAccordionWizardViewportTrailing {
+        .idxAccordionWizardViewportTitleBar {
+            border-left: 1px solid @accordion-wizard-default-step-border-color;
+            border-right: 1px solid rgba(0, 0, 0, 0);
+        }
+    }
+    .idxAccordionWizardViewportCurrent {
+        .idxAccordionWizardViewportTitleBar {
+            background-color: @accordion-wizard-current-step-background-color;
+            border-color: rgba(0, 0, 0, 0);
+        }
+        .idxAccordionWizardViewportTitleBarText {
+            color: @accordion-wizard-current-step-text-color;
+            text-shadow: 1px 0 1px rgba(0, 0, 0, 0.2);
+        }
+	}
+    .idxAccordionWizardViewportVisited.idxAccordionWizardViewportCurrent {
+        .idxAccordionWizardViewportVisitedIcon {
+            background: url(images/wiz_step_complete_white_16.svg) 0 no-repeat;
+        }
+    }
+	
+    .idxAccordionWizardViewportVisitedIcon {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        top: auto;
+        right: auto;
+        width: 2em;
+        height: 2em;
+        display: inline-block;
+    }
+    .idxAccordionWizardViewportVisited {
+        .idxAccordionWizardViewportVisitedIcon {
+            background: url(images/wiz_step_complete_16.svg) 0 no-repeat;
+            width: 16px;
+            height: 16px;
+            margin: 4px;
+        }
+    }
+    .idxAccordionWizardViewportTitleBarText {
+        //font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+        position: absolute;
+        bottom: 30px;
+        left: 0px;
+        right: 0px;
+        text-align: left;
+        text-shadow: 1px 0 1px rgba(0, 0, 0, 0.2);
+        transform: rotate(-90deg);
+        transform-orgin: center bottom 0;
+        -webkit-transform: rotate(-90deg);
+        -webkit-transform-orgin: center bottom 0;
+        -moz-transform: rotate(-90deg);
+        -moz-transform-orgin: center bottom 0;
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        color: #333333;
+        white-space: nowrap;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+    }
+    .idxAccordionWizardViewportContent {
+        position: absolute;
+        left: 2em;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        overflow: hidden;
+        padding: 0px;
+    }
+    .idxAccordionWizardViewportTitle {
+        font-size: 26px;
+        display: block;
+        width: 90%;
+        margin: 0px;
+        padding: 20px;
+        padding-bottom: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    .idxAccordionWizardViewportHasSubsteps {
+        .idxAccordionWizardViewportSubstepList {
+            visibility: visible;
+            display: block;
+        }
+        .idxAccordionWizardViewportContainer {
+            .idxWizardPane {
+                padding-top: 20px;
+            }
+        }
+    }
+    .idxAccordionWizardViewportSubstepList {
+        visibility: hidden;
+        display: none;
+        margin: 0px;
+        padding: 0px;
+        overflow: visible;
+        white-space: nowrap;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        padding-left: 20px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    .idxAccordionWizardViewportSubstepBorder {
+        height: 3px;
+        border-top: 1px solid @accordion-wizard-default-substep-border-color;
+        border-bottom: 2px solid transparent;
+        display: block;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    .idxAccordionWizardViewportStepTab {
+        float: left;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 8px;
+        padding-bottom: 0px;
+        margin-right: 10px;
+    }
+    .idxAccordionWizardViewportStepTab.idxAccordionWizardViewportStepDisabled {
+        color: @accordion-wizard-disabled-step-text-color;
+    }
+    .idxAccordionWizardViewportStepVisitedMarker {
+        background: url(images/wiz_substep_complete_16.svg) 0 no-repeat;
+        display: block;
+        position: absolute;
+        top: -8px;
+        width: 16px;
+        height: 16px;
+        overflow: visible;
+    }
+    .idxAccordionWizardViewportStepMarker {
+        display: block;
+        position: absolute;
+        top: 0px;
+        border-top: 3px solid @accordion-wizard-current-substep-border-color;
+        height: 3px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .idxAccordionWizardViewportContainer {
+        margin: 0px;
+        padding: 0px;
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        .idxWizardPane {
+            width: 100%;
+            margin: 0px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            overflow: auto;
+            display: block;
+            visibility: visible;
+            padding: 20px;
+            padding-top: 10px;
+        }
+    }
+    .idxAccordionWizardLeadingOverflow {
+        border-right: 1px solid @accordion-wizard-default-step-border-color;
+        border-left: 1px solid rgba(0, 0, 0, 0);
+        left: 0px;
+    }
+    .idxAccordionWizardTrailingOverflow {
+        border-left: 1px solid @accordion-wizard-default-step-border-color;
+        border-right: 1px solid rgba(0, 0, 0, 0);
+        right: 0px;
+    }
+    .idxAccordionWizardViewportAnimating {
+        .idxAccordionWizardViewportStepMarker {
+            -webkit-transition: left 600ms;
+            transition: left 600ms;
+        }
+    }
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxWizard {
+            .idxWizardButtonContainer {
+                text-align: left;
+            }
+            .idxWizardTOC {
+                .idxWizardTOCList {
+                    .idxWizardNavListItem.idxWizardSubstep {
+                        margin-right: 25px;
+                    }
+                    .idxWizardNavListItem {
+                        .idxWizardText {
+                            padding-right: 18px;
+                        }
+                    }
+                }
+            }
+        }
+        .idxAccordionWizardViewportTitleBar {
+            right: 0px;
+            left: auto;
+        }
+        .idxAccordionWizardViewportLeading {
+            .idxAccordionWizardViewportTitleBar {
+                border-left: 1px solid #CCCCCC;
+                border-right: 1px solid rgba(0, 0, 0, 0);
+            }
+        }
+        .idxAccordionWizardViewportTrailing {
+            .idxAccordionWizardViewportTitleBar {
+                border-right: 1px solid #CCCCCC;
+                border-left: 1px solid rgba(0, 0, 0, 0);
+            }
+        }
+        .idxAccordionWizardViewportVisitedIcon {
+            left: auto;
+            right: 0px;
+        }
+        .idxAccordionWizardViewportTitleBarText {
+            text-align: right;
+            transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+        }
+        .idxAccordionWizardViewportContent {
+            right: 2em;
+            left: 0px;
+        }
+        .idxAccordionWizardViewportSubstepList {
+            padding-left: 0px;
+            padding-right: 20px;
+        }
+        .idxAccordionWizardViewportStepTab {
+            float: right;
+            margin-right: 0px;
+            margin-left: 10px;
+        }
+        .idxAccordionWizardLeadingOverflow {
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid rgba(0, 0, 0, 0);
+            left: auto;
+            right: 0px;
+        }
+        .idxAccordionWizardTrailingOverflow {
+            border-right: 1px solid #CCCCCC;
+            border-left: 1px solid rgba(0, 0, 0, 0);
+            right: auto;
+            left: 0px;
+        }
+        .idxAccordionWizard {
+            .idxAccordionWizardAnimating {
+                .idxAccordionWizardViewport {
+                    -webkit-transition: right 600ms;
+                    transition: right 600ms;
+                }
+            }
+            .idxAccordionWizardViewportAnimating {
+                .idxWizardPane {
+                    -webkit-transition: visibility 1s, right 600ms;
+                    transition: visibility 1s, right 600ms;
+                }
+            }
+            .idxAccordionWizardButtonPane {
+                text-align: left;
+                padding: 10px;
+            }
+        }
+        .idxAccordionWizardViewportAnimating {
+            .idxAccordionWizardViewportStepMarker {
+                -webkit-transition: right 600ms;
+                transition: right 600ms;
+            }
+        }
+    }
+}
+.dijit_a11y.@{theme-name} {
+    .idxAccordionWizardViewportDisabled {
+        .idxAccordionWizardViewportTitleBar {
+            opacity: 0.5;
+        }
+    }
+    .idxAccordionWizardViewportCurrent {
+        .idxAccordionWizardViewportTitleBar {
+            border-right: 1px solid #000000;
+        }
+    }
+    .idxAccordionWizard {
+        .idxAccordionWizardViewportVisited {
+            .idxAccordionWizardViewportVisitedSymbol {
+                display: block;
+                visibility: visible;
+            }
+        }
+        .idxAccordionWizardViewportStepVisitedSymbol {
+            margin-top: -0.5em;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 125%;
+            display: block;
+            visibility: visible;
+        }
+    }
+    .idxAccordionWizardViewportStepTab.idxAccordionWizardViewportCurrentStep {
+        text-decoration: underline;
+    }
+    .idxAccordionWizardViewportStepTab.idxAccordionWizardViewportStepDisabled {
+        opacity: 0.5;
+    }
+}
+.@{theme-name} .idxAccordionWizardLeadingOverflow,.@{theme-name} .idxAccordionWizardTrailingOverflow {
+    background-color: @accordion-wizard-default-step-background-color;
+    position: absolute;
+    width: 2em;
+    top: 0px;
+    bottom: 0px;
+    display: block;
+    text-align: left;
+    vertical-align: bottom;
+    z-index: 100;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.@{theme-name} .idxAccordionWizardLeadingOverflowLabel,.@{theme-name} .idxAccordionWizardTrailingOverflowLabel {
+    font-size: 13px;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+    right: 0px;
+    color: @accordion-wizard-default-step-text-color;
+    transform: rotate(-90deg);
+    transform-orgin: center bottom 0;
+    -webkit-transform: rotate(-90deg);
+    -webkit-transform-orgin: center bottom 0;
+    -moz-transform: rotate(-90deg);
+    -moz-transform-orgin: center bottom 0;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    white-space: nowrap;
+    text-shadow: 1px 0 1px rgba(0, 0, 0, 0.2);
+}
+.dijitRtl .@{theme-name} .idxAccordionWizardLeadingOverflowLabel,.dijitRtl .@{theme-name} .idxAccordionWizardTrailingOverflowLabel {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+}

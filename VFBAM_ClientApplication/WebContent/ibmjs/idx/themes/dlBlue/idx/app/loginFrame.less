@@ -1,0 +1,120 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+
+@import "../../dijit/variables";
+.@{theme-name} .idxLoginFrame {
+	background-color: #003F69;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 100%;
+	width: 100%;
+	color: #CDCED2;
+	font-size: 13px;
+}
+.@{theme-name} .idxLoginFrame .dijitRequired .idxLabel .idxRequiredIcon {
+	color: #FCB614;
+}
+
+.@{theme-name} .idxLoginFrameBox {
+    width:480px;
+    padding:20px 25px;
+    border: 0px none transparent;
+	background-color: #003F69;
+    margin: 100px auto 0;
+}
+.@{theme-name} .idxLoginFrameBoxWithShadow {
+	background-color: #003F69;
+}
+.@{theme-name} .idxLoginFrameSubTitle {
+	margin-top: 0px;
+	margin-bottom: 25px;
+}
+
+.@{theme-name} .idxLoginFrame .idxLoginFrameField {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.@{theme-name} .idxLoginFrameBox .idxInactivityMessage,
+.@{theme-name} .idxLoginFrameBox .idxLoginFrameButtonBar {
+    margin-top: 10px;
+	margin-bottom: 10px;
+}
+.@{theme-name} .idxLoginFrameSubTitle,
+.@{theme-name} .idxLoginFrameBox .idxLoginFrameInactivityMessage {
+    color: #CDCED2;
+}
+.@{theme-name} .idxLoginFrameBoxInner > form {
+	margin-top: -10px;
+}
+.@{theme-name} {
+    .idxLoginFrameBox {
+        .idxLoginFrameCopyright {
+            margin-top: 30px;
+        }
+    }
+    .idxLoginFrameCopyright {
+        font-family: @base-font-family;
+		font-size: 10px;
+        color: #CDCED2;
+    }
+    .idxLoginFrameTitle {
+        font-size: 24px;
+		color: #FFFFFF;
+        margin: 0px;
+    }
+    .idxLoginFrameInput {
+        border: 1px solid #9FABBB;
+        float: none;
+        text-align:left;
+    }
+	.idxLoginFrameButtonBar {
+		.idxButtonSecondary {
+			.dijitButtonNode {
+				background-color: #003F69;
+				border-color: transparent;
+			}
+		}
+	}
+}
+html {
+    & > body {
+        .idxLoginFrameBox {
+            padding: 12px;
+        }
+    }
+}
+* {
+    html {
+        body {
+            .idxLoginFrameBoxInner {
+                padding:12px;
+				background-color: #003F69;
+            }
+        }
+    }
+    .idxLoginFrameBoxInner {
+        input {
+            position: relative;
+            z-index: 1;
+        }
+        a {
+            position: relative;
+            z-index: 1;
+        }
+        button {
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+.dj_ie {
+    .@{theme-name} {
+        .idxLoginFrame {
+            .dijitValidationTextBoxRtl {
+                padding-right: 1px;
+            }
+        }
+    }
+}

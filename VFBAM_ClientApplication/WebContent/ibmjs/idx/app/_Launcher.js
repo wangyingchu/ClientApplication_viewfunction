@@ -222,7 +222,7 @@ define(["dojo/_base/declare",
      // check the suffix index
      if (maxSuffixIndex >= 0) {
     	 var titleSuffixIndex = maxSuffixIndex + 1;
-    	 var titleSuffix = " (" + titleSuffixIndex + ") ";
+    	 var titleSuffix = " (&lrm;" + titleSuffixIndex + ")&lrm; ";
     	 wsTitle = {baseTitle: wsTitle, title: (wsTitle+titleSuffix), titleSuffixIndex: titleSuffixIndex};
      }
      // open the workspace
@@ -940,11 +940,22 @@ define(["dojo/_base/declare",
    *                    not recognized.
    */
   getMaxOpenWorkspaceCount: function(typeID) {
-    //var wsType = this._workspaceTypesByName[typeID];
-    //if (! wsType) return -1;
-    //return wsType.get("maxOpen");
-
-    return  this. _workspaceTypesByID["TASK_DETAIL"].get("maxOpen")   ;
+      /* orginal IDX logic
+       var wsType = this._workspaceTypesByName[typeID];
+       if (! wsType) return -1;
+       return wsType.get("maxOpen");
+       */
+      /* fix method 1
+      var spaceMaxOpenCount=-1;
+      dojo.forEach(this._workspaceTypes,function(currentWorkspaceType){
+          var workspaceTypeId=currentWorkspaceType.get("workspaceTypeID");
+          if(workspaceTypeId==typeID){
+              spaceMaxOpenCount=currentWorkspaceType.get("maxOpen");
+          }
+      });
+      */
+      /* fix method 1*/
+      return  this. _workspaceTypesByID[typeID].get("maxOpen");
   }
 });
 

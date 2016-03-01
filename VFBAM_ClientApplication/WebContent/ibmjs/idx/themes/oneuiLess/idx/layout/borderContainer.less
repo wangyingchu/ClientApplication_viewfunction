@@ -1,0 +1,386 @@
+.dijitSplitterV.idxSplitterV {
+  width: 5px;
+  border: 1px solid transparent;
+}
+.dijitSplitterH.idxSplitterH {
+  height: 5px;
+  border: 1px solid transparent;
+  text-align: center;
+}
+.idxSplitterH .dijitSplitterThumb {
+  height: 5px;
+  width: 46px;
+  left: 23px;
+  top: 0px;
+}
+.idxSplitterV .dijitSplitterThumb {
+  height: 46px;
+  width: 5px;
+  left: 0px;
+  top: 23px;
+}
+.idxSplitterNoResize {
+  cursor: default !important;
+}
+.idxSplitterH.dijitHover {
+  border-color: @fwDarkest;
+  .gradient(@fwBackground, @fwBase);
+}
+.idxSplitterH.dijitSplitterActive {
+  border-top-color: @fwDarkest;
+  border-bottom-color: @fwBackground;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.idxSplitterH.dijitHover .idxSplitterThumbOuter {
+  .gradient(@fwBackground, @fwBase);
+}
+.idxSplitterH.dijitSplitterActive .idxSplitterThumbOuter {
+	.gradient(@fwDark, @fwLighter);
+}
+.idxSplitterV.dijitHover {
+	.gradientV(left, right, 1, @fwBackground, @fwBase);
+  border-color: @fwDarkest;
+}
+.idxSplitterV.dijitSplitterActive {
+  border-left-color: @fwDarkest;
+  border-right-color: @fwBackground;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+.idxSplitterV.dijitHover .idxSplitterThumbOuter {
+	.gradientV(left, right, 1, @fwBackground, @fwBase);
+}
+.idxSplitterV.dijitSplitterActive .idxSplitterThumbOuter {
+	.gradientV(left, right, 1, @fwDark, @fwLighter);
+}
+.idxSplitterThumbOuter {
+  position: absolute;
+}
+.idxSplitterV .idxSplitterThumbOuter {
+  width: 5px;
+  height: 92px;
+}
+.dijitSplitterVHover {
+	.gradientV(left, right, 1, @fwBackground, @fwBase);
+}
+.idxSplitterH .idxSplitterThumbOuter {
+  height: 5px;
+  width: 92px;
+}
+.idxBorderContainer .idxSplitter {
+  position: absolute;
+}
+.idxBorderContainerToggle .dijitSplitContainer-dijitContentPane,
+.idxBorderContainerToggle .dijitBorderContainer-dijitContentPane,
+.idxBorderContainerToggle .dijitSplitContainerNoGutter-dijitContentPane,
+.idxBorderContainerToggle .dijitBorderContainerNoGutter-dijitContentPane {
+  padding: 0px;
+}
+.idxSplitter .dijitSplitterThumb {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  position: absolute;
+}
+.dj_ie & .idxSplitter {
+  border: none;
+}
+.dijit_a11y & .idxSplitterThumbCollapse,
+.dijit_a11y & .idxSplitterThumbExpand {
+  border: double 3px black !important;
+}
+/* Arrow image - Up and Down */
+.idxSplitterBottomNormal .idxSplitterThumbCollapse,
+.idxSplitterTopNormal .idxSplitterThumbExpand,
+.idxSplitterTopCollapsed .idxSplitterThumbCollapse,
+.idxSplitterBottomExpanded .idxSplitterThumbExpand,
+.idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbExpandHover,
+.idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterBottomExpanded .idxSplitterThumbExpandHover,
+.idxSplitterTopNormal .idxSplitterThumbCollapse,
+.idxSplitterBottomNormal .idxSplitterThumbExpand,
+.idxSplitterBottomCollapsed .idxSplitterThumbCollapse,
+.idxSplitterTopExpanded .idxSplitterThumbExpand,
+.idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterTopExpanded .idxSplitterThumbExpandHover,
+.idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterTopExpanded .idxSplitterThumbExpandHover {
+  background-image: url('images/idx/layout/toggleArrowsH.png');
+}
+/* Arrow image - left and right */
+.idxSplitterLeftNormal .idxSplitterThumbCollapse,
+.idxSplitterRightNormal .idxSplitterThumbExpand,
+.idxSplitterRightCollapsed .idxSplitterThumbCollapse,
+.idxSplitterLeftExpanded .idxSplitterThumbExpand,
+.idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbExpandHover,
+.idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterLeftExpanded .idxSplitterThumbExpandHover,
+.idxSplitterRightNormal .idxSplitterThumbCollapse,
+.idxSplitterLeftNormal .idxSplitterThumbExpand,
+.idxSplitterLeftCollapsed .idxSplitterThumbCollapse,
+.idxSplitterRightExpanded .idxSplitterThumbExpand,
+.idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbExpandHover,
+.idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterRightExpanded .idxSplitterThumbExpandHover {
+  background-image: url('images/idx/layout/toggleArrowsV.png');
+}
+/* down arrow */
+.idxSplitterBottomNormal .idxSplitterThumbCollapse,
+.idxSplitterTopNormal .idxSplitterThumbExpand,
+.idxSplitterTopCollapsed .idxSplitterThumbCollapse,
+.idxSplitterBottomExpanded .idxSplitterThumbExpand {
+  background-position: 0 0;
+}
+/* down arrow locked/hover */
+.idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbExpandHover {
+  background-position: 0 0;
+}
+/* down arrow hover */
+.idxSplitterBottomNormal .idxSplitterThumbCollapseHover,
+.idxSplitterTopNormal .idxSplitterThumbExpandHover,
+.idxSplitterTopCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterBottomExpanded .idxSplitterThumbExpandHover {
+  background-position: 0 -10px;
+}
+/* up arrow */
+.idxSplitterTopNormal .idxSplitterThumbCollapse,
+.idxSplitterBottomNormal .idxSplitterThumbExpand,
+.idxSplitterBottomCollapsed .idxSplitterThumbCollapse,
+.idxSplitterTopExpanded .idxSplitterThumbExpand {
+  background-position: 0 -5px;
+}
+/* up arrow locked/hover */
+.idxBorderContainerLocked .idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterTopExpanded .idxSplitterThumbExpandHover {
+  background-position: 0 -5px;
+}
+/* up arrow hover */
+.idxSplitterTopNormal .idxSplitterThumbCollapseHover,
+.idxSplitterBottomNormal .idxSplitterThumbExpandHover,
+.idxSplitterBottomCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterTopExpanded .idxSplitterThumbExpandHover {
+  background-position: 0 -15px;
+}
+/* left arrow */
+.idxSplitterLeftNormal .idxSplitterThumbCollapse,
+.idxSplitterRightNormal .idxSplitterThumbExpand,
+.idxSplitterRightCollapsed .idxSplitterThumbCollapse,
+.idxSplitterLeftExpanded .idxSplitterThumbExpand {
+  background-position: -5px 0;
+}
+/* left arrow locked/hover */
+.idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbExpandHover {
+  background-position: -5px 0;
+}
+/* left arrow hover */
+.idxSplitterLeftNormal .idxSplitterThumbCollapseHover,
+.idxSplitterRightNormal .idxSplitterThumbExpandHover,
+.idxSplitterRightCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterLeftExpanded .idxSplitterThumbExpandHover {
+  background-position: -15px 0;
+}
+/* right arrow */
+.idxSplitterRightNormal .idxSplitterThumbCollapse,
+.idxSplitterLeftNormal .idxSplitterThumbExpand,
+.idxSplitterLeftCollapsed .idxSplitterThumbCollapse,
+.idxSplitterRightExpanded .idxSplitterThumbExpand {
+  background-position: 0 0;
+}
+/* right arrow locked/hover */
+.idxBorderContainerLocked .idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbExpandHover {
+  background-position: 0 0;
+}
+/* right arrow hover */
+.idxSplitterRightNormal .idxSplitterThumbCollapseHover,
+.idxSplitterLeftNormal .idxSplitterThumbExpandHover,
+.idxSplitterLeftCollapsed .idxSplitterThumbCollapseHover,
+.idxSplitterRightExpanded .idxSplitterThumbExpandHover {
+  background-position: -10px 0;
+}
+/* double arrows */
+/* vertical */
+.idxSplitterRightCollapsed .idxSplitterThumbExpand,
+.idxSplitterLeftExpanded .idxSplitterThumbCollapse,
+.idxSplitterLeftCollapsed .idxSplitterThumbExpand,
+.idxSplitterRightExpanded .idxSplitterThumbCollapse,
+.idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbCollapseHover,
+.idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterLeftExpanded .idxSplitterThumbCollapseHover,
+.idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterRightExpanded .idxSplitterThumbCollapseHover {
+  background-image: url('images/idx/layout/toggleArrows2V.png');
+}
+.idxSplitterBottomExpanded .idxSplitterThumbCollapse,
+.idxSplitterBottomCollapsed .idxSplitterThumbExpand,
+.idxSplitterBottomExpanded .idxSplitterThumbCollapseHover,
+.idxSplitterBottomCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterTopExpanded .idxSplitterThumbCollapse,
+.idxSplitterTopCollapsed .idxSplitterThumbExpand,
+.idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterTopExpanded .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbCollapseHover,
+.idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbCollapseHover {
+  background-image: url('images/idx/layout/toggleArrows2H.png');
+}
+.idxSplitterBottomExpanded .idxSplitterThumbCollapse,
+.idxSplitterTopCollapsed .idxSplitterThumbExpand,
+.idxBorderContainerLocked .idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterBottomExpanded .idxSplitterThumbCollapseHover {
+  background-position: 0 0;
+}
+.idxSplitterBottomCollapsed .idxSplitterThumbExpand,
+.idxSplitterTopExpanded .idxSplitterThumbCollapse,
+.idxBorderContainerLocked .idxSplitterBottomCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterTopExpanded .idxSplitterThumbCollapseHover {
+  background-position: 0 -5px;
+}
+.idxSplitterRightCollapsed .idxSplitterThumbExpand,
+.idxSplitterLeftExpanded .idxSplitterThumbCollapse,
+.idxBorderContainerLocked .idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterLeftExpanded .idxSplitterThumbCollapseHover {
+  background-position: -5px 0;
+}
+.idxSplitterLeftCollapsed .idxSplitterThumbExpand,
+.idxSplitterRightExpanded .idxSplitterThumbCollapse,
+.idxBorderContainerLocked .idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.idxBorderContainerLocked .idxSplitterRightExpanded .idxSplitterThumbCollapseHover {
+  background-position: 0 0;
+}
+.idxSplitterTopCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterBottomExpanded .idxSplitterThumbCollapseHover {
+  background-position: 0 -10px;
+}
+.idxSplitterBottomCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterTopExpanded .idxSplitterThumbCollapseHover {
+  background-position: 0 -15px;
+}
+.idxSplitterRightCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterLeftExpanded .idxSplitterThumbCollapseHover {
+  background-position: -15px 0;
+}
+.idxSplitterLeftCollapsed .idxSplitterThumbExpandHover,
+.idxSplitterRightExpanded .idxSplitterThumbCollapseHover {
+  background-position: -10px 0;
+}
+/* bidirectional styles */
+.idxSplitterThumbExpand {
+  display: none;
+}
+.idxSplitterBidiToggleH .idxSplitterThumbCollapse {
+  left: 0px;
+}
+.idxSplitterBidiToggleH .idxSplitterThumbExpand {
+  display: block;
+  left: 46px;
+}
+.idxSplitterBidiToggleV .idxSplitterThumbCollapse {
+  top: 0px;
+}
+.idxSplitterBidiToggleV .idxSplitterThumbExpand {
+  display: block;
+  top: 46px;
+}
+/* locked style */
+.idxBorderContainerLocked .idxSplitter {
+  cursor: default;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.idxBorderContainerLocked .dijitSplitterThumb {
+  cursor: default;
+}
+.idxBorderContainerLocked .idxSplitter .idxSplitterBarTop,
+.idxBorderContainerLocked .idxSplitter .idxSplitterBarBottom,
+.idxSplitterNoResize .idxSplitterBarTop,
+.idxSplitterNoResize .idxSplitterBarBottom {
+  display: none;
+}
+/*--------split container inside of a border container--------*/
+.dijitSplitContainer.dijitBorderContainer-child {
+  border: 0px none transparent;
+}
+/*-------split container inside of a split container---------*/
+.dijitBorderContainer-child.dijitSplitContainer .dijitSplitContainer-child.dijitSplitContainer {
+  border: 0px;
+}
+/*--------border container inside of a header-------------*/
+.idxHeaderPaneContent.idxHeaderPaneSingleChild .idxHeaderPane-child.dijitBorderContainer {
+  border: 0px;
+}
+/*------- nested border container -----------------------------*/
+.dijitBorderContainer.dijitBorderContainer-child,
+.dijitBorderContainerNoGutter.dijitBorderContainer-child {
+  border: 0px;
+}
+/* no gutter splitter borders */
+.dijitBorderContainerNoGutter > .idxSplitterH {
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+}
+.dijitBorderContainerNoGutter > .idxSplitterV {
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+}
+.dijitSplitContainerSizerV {
+  border: none;
+  background-color: transparent;
+  cursor: ns-resize;
+  height: 5px;
+}
+.dijitSplitContainerSizerH {
+  border: none;
+  background-color: transparent;
+  cursor: ew-resize;
+  width: 5px;
+}
+.dijitSplitContainerSizerH:hover {
+	.gradient(@fwBackground, @fwBase);
+}
+.dijitSplitContainerSizerV:hover {
+	.gradientV(left, right, 1, @fwBackground, @fwBase);
+}
+.dijitBorderContainer.dijitBorderContainer-child > .idxSplitterH,
+.dijitBorderContainer.dijitBorderContainer-child > .idxSplitterV,
+.dijitBorderContainerNoGutter.dijitBorderContainer-child > .idxSplitterH,
+.dijitBorderContainerNoGutter.dijitBorderContainer-child > .idxSplitterV {
+  border: 0px none transparent;
+}

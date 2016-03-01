@@ -1,0 +1,68 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxGridIconPassed,
+.dlBlue .idxGridIconFailed,
+.dlBlue .idxGridIconError {
+  background-image: url('images/msgIcons12_24bit.png');
+  background-repeat: no-repeat;
+  width: 12px;
+  height: 12px;
+  text-indent: 16px;
+  white-space: nowrap;
+}
+.dlBlue .idxGridIconPassed {
+  background-position: -48px 0;
+}
+.dlBlue .idxGridIconText {
+  margin-left: 16px;
+}
+.dlBlue .idxGridIconEdit {
+  background-image: url('images/edit_pencil_watermark.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  width: 100%;
+  height: 100;
+  text-align: left;
+}
+.dlBlue .idxGridIconFailed {
+  background-position: 0 0;
+}
+.dlBlue .idxGridIconError {
+  background-position: 0 0;
+}
+.dlBlue .idxGridIconFlag {
+  background-image: url('images/flag_red.png');
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 14px;
+  background-position: center center;
+  margin: 0 auto;
+}
+.dlBlue .idxGridIconHierarchical {
+  background-image: url('images/16_squarebullet.png');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-origin: content-box;
+  width: 100%;
+  height: 100;
+  text-align: left;
+  margin-left: 20px;
+}
+.dijitRtl .dlBlue .idxGridIconText {
+  margin-left: 0px;
+  margin-right: 16px;
+}
+.dijitRtl .dlBlue .idxGridIconEdit {
+  background-position: left;
+  text-align: right;
+}
+.dijitRtl .dlBlue .idxGridIconHierarchical {
+  background-position: right;
+  margin-left: 0px;
+  margin-right: 20px;
+  text-align: right;
+}
+.dj_ie7 .dlBlue .idxGridIconHierarchical {
+  padding-left: 20px;
+  padding-left: 0px;
+  padding-right: 20px;
+}

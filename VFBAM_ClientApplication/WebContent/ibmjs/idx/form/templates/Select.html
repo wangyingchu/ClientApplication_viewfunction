@@ -1,11 +1,11 @@
 <div id="widget_${id}" class="dijitInline dijitReset dijitLeft idxComposite" dojoAttachPoint="_popupStateNode"
-	><div class="idxLabel dijitInline dijitHidden" dojoAttachPoint="labelWrap"><span class="idxRequiredIcon">*&nbsp</span><label for="${id}" dojoAttachPoint="compLabelNode"></label></div
+	><div class="idxLabel dijitInline dijitHidden" dojoAttachPoint="labelWrap"><span class="idxRequiredIcon">*&nbsp</span><label dojoAttachPoint="compLabelNode" id="${id}_label"></label></div
 	><div class="dijitInline" dojoAttachPoint="fieldWrap"
-		><table class="dijit dijitReset dijitInline dijitLeft" dojoAttachPoint="_aroundNode,_buttonNode,tableNode,focusNode,stateNode,oneuiBaseNode" cellspacing='0' cellpadding='0' role="listbox" aria-haspopup="true"
+		><table class="dijit dijitReset dijitInline dijitLeft" dojoAttachPoint="_aroundNode,_buttonNode,tableNode,focusNode,stateNode,oneuiBaseNode" cellspacing='0' cellpadding='0' aria-labelledby="${id}_label" role="listbox" aria-haspopup="true"
 			><tbody role="presentation"
 				><tr role="presentation"
 					><td class="dijitReset dijitStretch dijitButtonContents dijitButtonNode" role="presentation"
-						><span class="dijitReset dijitInline dijitButtonText" dojoAttachPoint="containerNode"></span
+						><span class="dijitReset dijitInline dijitButtonText" dojoAttachPoint="containerNode" role="presentation"></span
 						><input type="hidden" ${!nameAttrSetting}  dojoAttachPoint="valueNode" value="${value}" aria-hidden="true"/
 					></td
 					><td class="dijitReset dijitRight dijitButtonNode dijitArrowButton dijitDownArrowButton" dojoAttachPoint="titleNode" role="presentation"

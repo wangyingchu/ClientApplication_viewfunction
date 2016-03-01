@@ -1,0 +1,228 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxHeaderPrimaryTitle {
+  font-size: 1.08em;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary li.idxHeaderSeparator span {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxHeaderUserName {
+  color: #dddddd;
+  font-weight: bold;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxHeaderUserName:hover {
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeError {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeWarning {
+  background-color: #ffaa00;
+  color: #222222;
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeInformation {
+  background-color: #008abf;
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeSuccess {
+  background-color: #0c7f00;
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .idxHeaderSecondaryTitleContainer .idxHeaderSecondaryTitle {
+  font-size: 1.33em;
+  color: #ffffff;
+  font-weight: bold;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .idxHeaderSecondaryTitleContainer .idxHeaderSecondarySubtitle {
+  font-size: 1.17em;
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerSmBreadcrumb a {
+  font-size: 0.92em;
+  text-decoration: none;
+  color: #ffffff !important;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerSmBreadcrumb a:link {
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerSmBreadcrumb a:visited {
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerSmBreadcrumb a:hover {
+  text-decoration: underline;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerSmBreadcrumb a:active {
+  font-weight: bold;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerLgBreadcrumb a {
+  color: #ffffff;
+  font-size: 1.17em;
+  text-decoration: none;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerLgBreadcrumb a:link {
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerLgBreadcrumb a:visited {
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerLgBreadcrumb a:hover {
+  text-decoration: underline;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .headerLgBreadcrumb a:active {
+  font-weight: bold;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryGray .idxHeaderSecondary .idxHeaderSecondaryTitleContainer .idxHeaderSecondaryTitle {
+  color: #000000;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryGray .idxHeaderSecondary .idxHeaderSecondaryTitleContainer .idxHeaderSecondarySubtitle {
+  color: #000000;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryGray .idxHeaderSecondary .idxHeaderSecondaryAdditionalContext {
+  color: #222222;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryWhite .idxHeaderSecondary .idxHeaderSecondaryTitleContainer .idxHeaderSecondaryTitle {
+  font-size: 2.17em;
+  font-weight: bold;
+  color: #222222;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryBlue .idxHeaderSecondary .idxHeaderSecondaryAdditionalContext {
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .dijitPlaceHolder {
+  font-style: normal;
+}
+.dlBlue .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabContent {
+  font-weight: bold;
+  color: #ffffff;
+}
+.dlBlue .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+  color: #222222;
+  font-weight: bold;
+}
+.dlBlue .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent {
+  color: #ffffff;
+  font-weight: bold;
+}
+.dlBlue .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabCheckedHover .dijitTabContent {
+  color: #000000;
+  font-weight: bold;
+}
+.dlBlue .oneuiContentContainer .idxTabSeparator {
+  text-shadow: none;
+  color: #065B86;
+}
+.dlBlue .idxHeaderSecondaryGray .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabContent {
+  color: #424242;
+  font-weight: bold;
+}
+.dlBlue .idxHeaderSecondaryGray .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+  color: #444444;
+  font-weight: bold;
+}
+.dlBlue .idxHeaderSecondaryGray .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent {
+  color: #444444;
+  font-weight: bold;
+}
+.dlBlue .idxHeaderSecondaryGray .oneuiContentContainer .idxTabSeparator {
+  color: #dbdbdb;
+}
+.dlBlue .tableSummary {
+  color: #767676;
+  font-family: Georgia;
+  font-style: italic;
+}
+.dlBlue .tableFilterSummary {
+  color: #666;
+  font-family: Georgia;
+  font-style: italic;
+}
+.dlBlue .tableCell {
+  color: #333;
+}
+.dlBlue .tableCellAccent {
+  color: #333;
+  font-weight: bold;
+}
+.dlBlue .inputHint {
+  color: #ccc;
+}
+.dlBlue .tableHeaderHover {
+  color: #000;
+  font-weight: bold;
+  text-shadow: 1px 0 0 #ffffff;
+}
+.dlBlue .currentPageRowView {
+  color: #222;
+  font-weight: bold;
+}
+.dlBlue .tableColumnHeader {
+  font-weight: bold;
+  color: #444444;
+  text-shadow: 1px 0 0 #ffffff;
+}
+.dlBlue .idxMenuCategory {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+.dlBlue .idxMenuCategoryItem {
+  font-size: 0.92em;
+}
+.dlBlue .idxHeaderContainer .dijitMenuBar .dijitMenuItem,
+.dlBlue .idxHeaderContainer .dijitMenuBar .oneuiMenuHeading {
+  color: #dddddd;
+  font-weight: bold;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+.dlBlue .idxHeaderContainer .dijitMenuBar .idxHeaderNavCurrentPage.dijitMenuItem,
+.dlBlue .idxHeaderContainer .dijitMenuActive .dijitMenuItemHover,
+.dlBlue .idxHeaderContainer .dijitMenuActive .dijitMenuItemSelected,
+.dlBlue .idxHeaderContainer .dijitMenuPassive .dijitMenuItemHover,
+.dlBlue .idxHeaderContainer .dijitMenuPassive .dijitMenuItemSelected {
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .dijitReset .dijitMenuItemLabel,
+.dlBlue .idxHeaderContainer .dijitReset .oneuiMenuHeadingLabel {
+  color: #222222;
+}
+.dlBlue .idxHeaderContainer .dijitReset.dijitHover .dijitMenuItemLabel,
+.dlBlue .idxHeaderContainer .dijitReset.dijitHover .oneuiMenuHeadingLabel {
+  color: #222222;
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeError,
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeWarning,
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeInformation,
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .idxBadgeSuccess {
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  width: 14px;
+  height: 14px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: 1px;
+  font-size: 0.92em;
+  text-decoration: none;
+}
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .dijitPlaceHolder,
+.dlBlue .idxHeaderContainer .idxHeaderPrimary .dijitInputInner {
+  color: #dddddd;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .dijitPlaceHolder,
+.dlBlue .idxHeaderContainer .idxHeaderSecondary .dijitInputInner {
+  color: #ffffff;
+}
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryGray .idxHeaderSecondary .dijitPlaceHolder,
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryGray .idxHeaderSecondary .dijitInputInner,
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryWhite .idxHeaderSecondary .dijitPlaceHolder,
+.dlBlue .idxHeaderContainer .idxHeaderSecondaryWhite .idxHeaderSecondary .dijitInputInner {
+  color: #FFFFFF;
+}

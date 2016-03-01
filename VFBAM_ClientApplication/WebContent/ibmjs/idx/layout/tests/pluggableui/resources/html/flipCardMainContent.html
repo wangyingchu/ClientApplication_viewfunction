@@ -1,0 +1,11 @@
+<script type="text/javascript"> 
+	function myHandler(newValue){
+		alert("onChange value: " + newValue);
+	}
+</script>
+
+<div style="width:500px;padding:10px">
+	This is a sample card content
+</div>
+<input data-dojo-type="dijit/Calendar" data-dojo-props='onChange:myHandler'></input>
+

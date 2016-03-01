@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT плюс ${accessKey}",
 	keySequence_Firefox: "ALT плюс SHIFT плюс ${accessKey} в Windows и Linux или CONTROL плюс ${accessKey} на Mac",
 	keySequence_Safari: "CONTROL плюс OPT плюс ${accessKey} на Mac или ALT плюс ${accessKey} в Windows",
-	keySequence_Chrome: "ALT плюс ${accessKey} в Windows и Linux или CONTROL плюс OPT на Mac",
+	keySequence_Chrome: "ALT плюс ${accessKey} в Windows и Linux или CONTROL плюс OPT плюс ${accessKey} на Mac",
 	shortcutListMessage: "Ярлыки для этой страницы:",
 	a11yPrologueLabel: "Вводная информация о доступности",
     a11yStatementLabel: "Заявление о доступности",

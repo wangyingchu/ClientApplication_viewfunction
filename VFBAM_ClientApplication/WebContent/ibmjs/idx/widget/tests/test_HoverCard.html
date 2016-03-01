@@ -19,7 +19,6 @@
 	</script>
 
     <style id="idxStyles" type="text/css">
-        @import "../../themes/oneui/oneui.css";
         @import "../../tests/test.css";
 		@import "http://localhost:59449/stwebapi/main.css";
     </style>
@@ -68,35 +67,14 @@
 			}
 		}
 		function postParse(modules) {
-//			var PersonCard = modules["idx/widget/PersonCard"];
-//			var dom = modules["dojo/dom"] ? modules["dojo/dom"] : dojo;
-//			var popup = modules["dijit/popup"] || dijit.popup;
-//			
-//			var personCard2 = PersonCard({query: {email: "ksetzer@us.ibm.com"},
-//				url: "https://w3-connections.ibm.com/profiles/json/profile.do", jsonp: "callback",
-//				spec: ["photo","fn","title","org","adr.work","tel.work","email.internet","sametime.awareness"]},
-//				dom.byId("personCard2"));
-//		
-//			var personCard3 = PersonCard({query: {email: "bwmorris@us.ibm.com"},
-//				url: "https://w3-connections.ibm.com/profiles/json/profile.do", jsonp: "callback",
-//				spec: ["photo","fn","title","org","adr.work","tel.work","email.internet","sametime.awareness"],
-//				style: "background-color: #FFFFFF;"});
-//			var node = dom.byId("personCard3");
-//			node.onmouseover = function(event){
-//				popup.open({popup: personCard3, around: node});
-//			};
-//			node.onmouseout = function(event){
-//				popup.close(personCard3);
-//			};
-
 			var HoverCard = modules["idx/widget/HoverCard"];
 			var ContentPane = modules["dijit/layout/ContentPane"];
 			var hoverCardContent = new ContentPane({
 				style: "width: 200px; height: 100px;",
-				content: "Lorem ipsum upsum"
+				content: "<div role='document' tabindex=0>Lorem ipsum upsum</div>"
 			});
-			hoverCardContent.startup();
 			
+			hoverCardContent.startup();
 			var progHoverCard = new HoverCard({
 				target: "progHoverCardLink",
 				content: hoverCardContent,
@@ -106,9 +84,9 @@
 					{label: "Item 3", onClick: fClick}
 				],
 				actions: [
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""}
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:"1"},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:"2"},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:"3"}
 				]
 			}, "progHoverCardNode");
 			progHoverCard.startup();
@@ -120,8 +98,9 @@
 <script type="text/javascript" src="http://localhost:59449/stwebapi/getStatus.js"></script>
 	
 </head>
-<body class="oneui" style="padding:15px">
-<a class="dijitOffScreen" href="#maincontent">Skip to main content</a> <script type="text/javascript">applyThemeToBody("oneui");</script>
+<body style="padding:15px">
+<a class="dijitOffScreen" href="#maincontent">Skip to main content</a> 
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 
 <a name="maincontent"></a>
 
@@ -165,10 +144,11 @@
 					{label: "Item 3", onClick: fClick}
 				],
 				actions: [
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""}
-				]
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""}
+				],
+				position: ["above","below"]
 			'>
 			<div data-dojo-type="idx.widget._Preview" data-dojo-props='
 				id: "previewL",
@@ -188,9 +168,9 @@
 					{label: "Item 3", onClick: fClick}
 				],
 				actions: [
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""}
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""}
 				],
 				content: "previewS"
 			'>
@@ -211,11 +191,12 @@
 					{label: "Item 3", onClick: fClick}
 				],
 				actions: [
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""}
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""}
 				],
-				content: "previewWithoutImg"
+				content: "previewWithoutImg",
+				position: ["above","below"]
 		'></div>
 		<div id="five_hc" data-dojo-type="idx.widget.HoverCard"
 			data-dojo-props='
@@ -226,9 +207,9 @@
 					{label: "Item 3", onClick: fClick}
 				],
 				actions: [
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-					{iconClass: "placeHolderIcon", onClick: fClick, text:""}
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""}
 				]
 		'>
 			<div style="width: 400px; height: 250px;padding:5px"></div>
@@ -269,9 +250,9 @@
 				{label: "Item 3", onClick: fClick}
 			],
 			actions: [
-			{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-			{iconClass: "placeHolderIcon", onClick: fClick, text:""},
-			{iconClass: "placeHolderIcon", onClick: fClick, text:""}
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""},
+					{iconClass: "dijitSliderIncrementIconH", onClick: fClick, text:""}
 			]
 		'>
 		</div>

@@ -1,0 +1,44 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dijitRtl .dlBlue .oneuiToaster {
+  right: auto;
+  left: 20px;
+}
+.dijitRtl .dlBlue .oneuiToaster .content {
+  text-align: right;
+}
+.dijitRtl .dlBlue .oneuiToaster .content .timestamp {
+  float: left;
+}
+.dijitRtl .dlBlue .oneuiToaster .content .meta_data {
+  padding: 5px 40px 5px 0;
+}
+.dijitRtl .dlBlue .oneuiToaster .close {
+  left: 12px;
+  right: auto;
+}
+.dijitRtl .dlBlue .oneuiToaster .status {
+  float: right;
+  margin: 0 0 0 15px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+.dijitRtl .dlBlue .oneuiToaster .reveal {
+  padding: 5px 15px 5px 0;
+}
+.dijitRtl .dlBlue.idx_i18n_il .oneuiToaster .status {
+  background: url('images/msgIcons_24bit_rtl_il.png') no-repeat;
+}
+.dijitRtl .oneuiToaster .close .closeText {
+  right: auto;
+  left: 20px;
+}
+.dj_ie6-rtl .dlBlue .oneuiToaster .status {
+  background: url('images/msgIcons_8bit_rtl.png') no-repeat;
+}
+.dj_ie6-rtl .idx_i18n_il .oneuiToaster .status {
+  background: url('images/msgIcons_8bit_rtl_il.png') no-repeat;
+}

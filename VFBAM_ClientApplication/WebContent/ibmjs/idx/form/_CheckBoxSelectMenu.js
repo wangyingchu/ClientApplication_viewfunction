@@ -30,7 +30,7 @@ define([
 			//		otherwise, we won't respond correctly to heights/overflows
 			this.inherited(arguments);
 			var o = (this.menuTableNode = this.domNode),
-			n = (this.domNode = domConstruct.create("div", {style: {overflowX: "hidden", overflowY: "scroll"}}));
+			n = (this.domNode = domConstruct.create("div", {style: {overflowX: "hidden", overflowY: "auto"}}));
 			if(o.parentNode){
 				o.parentNode.replaceChild(n, o);
 			}
@@ -50,6 +50,7 @@ define([
 			//
 			// mb: Object
 			//		The margin box to set this dropdown to.
+			
 			if(mb){
 				domGemometry.setMarginBox(this.domNode, mb);
 				if("w" in mb){
@@ -58,16 +59,6 @@ define([
 					// browser/OS specific width.
 					this.menuTableNode.style.width = "100%";
 				}
-			}
-		},
-		
-		onClose: function(){
-			this.inherited(arguments);
-			if(this.menuTableNode){
-				// Erase possible width: 100% setting from _SelectMenu.resize().
-				// Leaving it would interfere with the next openDropDown() call, which
-				// queries the natural size of the drop down.
-				this.menuTableNode.style.width = "";
 			}
 		},
 		

@@ -1,0 +1,129 @@
+/* BorderContainer 
+
+Splitters and gutters separate panes within a BorderContainer. Splitters can be moved up and down (horizonal splitters) or left and right (vertical splitters), while Gutters are static. A "thumb" is the slit on a Splitter that indicates it is movable. 
+
+Styling the BorderContainer widget consists of the following: 
+
+.dijitBorderContainer - for border and padding of the entire border container
+
+.dijitSplitContainer-child, .dijitBorderContainer-child - for border or child panes of the border container. By default borders are put on all children of BorderContainer.  
+
+.dijitBorderContainer-dijitTabContainerTop,
+.dijitBorderContainer-dijitTabContainerBottom,
+.dijitBorderContainer-dijitTabContainerLeft,
+.dijitBorderContainer-dijitTabContainerRight,
+.dijitBorderContainer-dijitAccordionContainer   -for border of the border containers within TabContainer or AccordionContainer widget
+
+.dijitBorderContainer-dijitBorderContainer - for border and padding of nested BorderContainers
+
+Splitters and gutters:  
+
+.dijitSplitterH, .dijitGutterH - for height, background, and border of a horizontal splitter and gutter 
+.dijitSplitterH .dijitSplitterThumb - for color, height/width of the thumb on a horizontal splitter
+.dijitSplitterV, .dijitGutterV - - for height, background, and border of a vertical splitter and gutter 
+.dijitSplitterV .dijitSplitterThumb - for color, height/width of the thumb on a vertical splitter
+.dijitSplitterHHover - for background-color of a hovered horizontal splitter
+.dijitSplitterHHover .dijitSplitterThumb - for background-color of a hovered thumb on a horizontal splitter
+.dijitSplitterVHover  - for background-color of a hovered vertical splitter
+.dijitSplitterVHover .dijitSplitterThumb - for background-color of a hovered thumb on a vertical splitter
+.dijitSplitterHActive - for background-color of an active horizontal splitter
+.dijitSplitterVActive - for background-color of an active horizontal splitter
+*/
+.dlBlue .dijitBorderContainer {
+  /* matches the width of the splitters between panes */
+  padding: 5px;
+}
+.dlBlue .dijitSplitContainer-child,
+.dlBlue .dijitBorderContainer-child {
+  /* By default put borders on all children of BorderContainer,
+	 *  to give illusion of borders on the splitters themselves.
+	 */
+  border: 1px #a4a6ab solid;
+}
+.dlBlue .dijitBorderContainer-dijitTabContainerTop,
+.dlBlue .dijitBorderContainer-dijitTabContainerBottom,
+.dlBlue .dijitBorderContainer-dijitTabContainerLeft,
+.dlBlue .dijitBorderContainer-dijitTabContainerRight,
+.dlBlue .dijitBorderContainer-dijitAccordionContainer {
+  /* except that TabContainer defines borders on it's sub-nodes (tablist and dijitTabPaneWrapper),
+	 * so override rule setting border on domNode
+	 */
+  border: none;
+}
+.dlBlue .dijitBorderContainer-dijitBorderContainer {
+  /* make nested BorderContainers look like a single big widget with lots of splitters */
+  border: 0;
+  padding: 0;
+}
+/* Splitters and gutters */
+.dlBlue .dijitSplitterH,
+.dlBlue .dijitGutterH {
+  background: none;
+  border: 0;
+  height: 5px;
+}
+.dj_ios .dlBlue .dijitSplitterH,
+.dj_android .dlBlue .dijitSplitterH {
+  height: 11px;
+}
+.dlBlue .dijitSplitterH .dijitSplitterThumb {
+  background: #a4a6ab none;
+  height: 1px;
+  top: 2px;
+  width: 19px;
+}
+.dj_ios .dlBlue .dijitSplitterH .dijitSplitterThumb,
+.dj_android .dlBlue .dijitSplitterH .dijitSplitterThumb {
+  top: 5px;
+}
+.dlBlue .dijitSplitterV,
+.dlBlue .dijitGutterV {
+  background: none;
+  border: 0;
+  width: 5px;
+  margin: 0;
+}
+.dj_ios .dlBlue .dijitSplitterV,
+.dj_android .dlBlue .dijitSplitterV {
+  width: 11px;
+}
+.dlBlue .dijitSplitterV .dijitSplitterThumb {
+  background: #a4a6ab none;
+  height: 19px;
+  left: 2px;
+  width: 1px;
+  margin: 0;
+}
+.dj_ios .dlBlue .dijitSplitterV .dijitSplitterThumb,
+.dj_android .dlBlue .dijitSplitterV .dijitSplitterThumb {
+  left: 5px;
+}
+/* hovered splitter */
+.dlBlue .dijitSplitterHHover,
+.dlBlue .dijitSplitterVHover {
+  font-size: 1px;
+  background-color: #267bac;
+}
+.dlBlue .dijitSplitterHHover {
+  background-image: -moz-linear-gradient(left, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+  background-image: -webkit-linear-gradient(left, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+  background-image: -o-linear-gradient(left, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+  background-image: linear-gradient(left, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+}
+.dlBlue .dijitSplitterVHover {
+  background-image: -moz-linear-gradient(top, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+  background-image: -webkit-linear-gradient(top, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+  background-image: -o-linear-gradient(top, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+  background-image: linear-gradient(top, #ffffff 0px, rgba(255, 255, 255, 0) 50%, #ffffff 100%);
+}
+.dlBlue .dijitSplitterHHover .dijitSplitterThumb,
+.dlBlue .dijitSplitterVHover .dijitSplitterThumb {
+  background: #48c0ef none;
+}
+/* active splitter */
+.dlBlue .dijitSplitterHActive,
+.dlBlue .dijitSplitterVActive {
+  font-size: 1px;
+  background-color: #368aba;
+  background-image: none;
+}

@@ -5,6 +5,7 @@ define([
 	"dojo/_base/html",
 	"dojo/_base/event",
 	"dojo/keys",
+	"dojo/sniff",
 	"dojo/dom-geometry",
 	"dijit/_base/wai",
 	"dijit/layout/BorderContainer",
@@ -14,8 +15,9 @@ define([
 	"idx/util",
 	"dojo/text!./templates/_ToggleSplitter.html",
 	"dojo/i18n!../nls/base",
+	"dojo/i18n!./nls/base",
 	"dojo/i18n!./nls/BorderContainer"
-], function(dojo_declare, dojo_lang, dojo_array, dojo_html, dojo_event, dojo_keys, dojo_geometry,dijit_wai, dijit_layout_BorderContainer, dijit_CssStateMixin, dijit_Widget, idx_resources, idx_util, templateString){
+], function(dojo_declare, dojo_lang, dojo_array, dojo_html, dojo_event, dojo_keys, dojo_has, dojo_geometry,dijit_wai, dijit_layout_BorderContainer, dijit_CssStateMixin, dijit_Widget, idx_resources, idx_util, templateString){
 	
 /**
  * @name idx.layout.BorderContainer
@@ -45,13 +47,10 @@ var BorderContainer = dojo_declare("idx.layout.BorderContainer", [dijit_layout_B
 	 * @default true
 	 */
 	toggleable: true,
+	
 	_setToggleableAttr: function(value) {
 		this.toggleable = value;
-		if (this.toggleable) {
-			dojo_html.addClass(this.domNode, this.idxBaseClass + "Toggle");
-		} else {
-			dojo_html.removeClass(this.domNode, this.idxBaseClass + "Toggle");
-		}
+		dojo_html.toggleClass(this.domNode, this.idxBaseClass + "Toggle", this.toggleable);
 	},
 	
 	/**
@@ -149,25 +148,44 @@ var BorderContainer = dojo_declare("idx.layout.BorderContainer", [dijit_layout_B
 	 */
 	_setupChild: function(child) {
 		this.inherited(arguments);
-		
-		if (child.get("splitter") && !child.get("open")) {
+		var isOpen = child.get("open");
+		if (child.get("splitter") && (isOpen === false || isOpen === "false")) {
 			this.collapse(child.get("region"));
 		}
 	},
 
 	/**
-	 * Overrides base function to allow for "leading" and "trailing" 
-	 * as a parameter.
+	 * Overrides base function to allow for "left" and "right" or "leading" and "trailing" 
+	 * regardless of how the regions on the ContentPane's are defined.
 	 * 
 	 * @param region The name of the region which may be "left", "right", "top", "bottom", "center", "leading" or
 	 *               or "trailing".
 	 */
 	getSplitter: function(/*String*/ region) {
 		var ltr = this.isLeftToRight();
-		if(region == "leading"){ region = ltr ? "left" : "right"; }
-		if(region == "trailing"){ region = ltr ? "right" : "left"; }
-		arguments[0] = region;
-		return this.inherited(arguments);
+		var altRegion = null;
+		switch (region) {
+			case "left":
+				altRegion = ltr ? "leading" : "trailing";
+				break;
+			case "right":
+				altRegion = ltr ? "trailing" : "leading";
+				break;
+			case "leading":
+				altRegion = ltr ? "left" : "right";
+				break;
+			case "trailing":
+				altRegion = ltr ? "right" : "left";
+				break;
+		}
+		var filteredArray = dojo_array.filter(this.getChildren(), function(child){
+			return ((child.region == region) || (altRegion && child.region == altRegion));
+		});
+		if (filteredArray && filteredArray.length) {
+			return filteredArray[0]._splitterWidget;
+		} else {
+			return null;
+		}
 	},
 	
 	/**
@@ -254,16 +272,20 @@ var BorderContainer = dojo_declare("idx.layout.BorderContainer", [dijit_layout_B
 	/**
 	 * Callback to be called when a child widget gets restored or expanded from collapsed state.
 	 * @param {String} region
+	 * @param {String} logicalRegion 
+	 * @param {String} layoutPriority
 	 */
-	onPanelOpen: function(region) {
+	onPanelOpen: function(region, logicalRegion, layoutPriority) {
 		
 	},
 	
 	/**
 	 * Callback to be called when a child widget gets collapsed.
 	 * @param {String} region
+	 * @param {String} logicalRegion
+	 * @param {String} layoutPriority
 	 */
-	onPanelClose: function(region) {
+	onPanelClose: function(region, logicalRegion, layoutPriority) {
 		
 	},
 
@@ -300,7 +322,7 @@ var BorderContainer = dojo_declare("idx.layout.BorderContainer", [dijit_layout_B
 var Splitter = dojo_declare("idx.layout._Splitter", [dijit_layout_BorderContainer._Splitter, dijit_CssStateMixin],
 /**@lends idx.layout._Splitter#*/
 {
-	_onKeyPress: function(/*Event*/ e){
+	_onKeyDown: function(/*Event*/ e){
 		var horizontal = this.horizontal;
 		var dk = dojo_keys;
 		switch(e.charOrCode){
@@ -320,7 +342,27 @@ var Splitter = dojo_declare("idx.layout._Splitter", [dijit_layout_BorderContaine
 				// fall through
 		}
 		this.inherited(arguments);
+	},
+	/**
+	 * Starts dragging to expand
+	 * @param {Object} e
+	 * @private
+	 */
+	_startDrag: function(e) {
+		this.inherited(arguments);
+		this.container.onDragStart(this.region);
+	},
+	
+	// extend
+	/**
+	 * Ends dragging to expand
+	 * @private
+	 */
+	_stopDrag: function() {
+		this.inherited(arguments);
+		this.container.onDragEnd(this.region);
 	}
+	
 });
 
 /**
@@ -329,7 +371,7 @@ var Splitter = dojo_declare("idx.layout._Splitter", [dijit_layout_BorderContaine
  * @augments idx.layout._Splitter
  * @augments dijit._CssStateMixin
  */
-var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, dijit_CssStateMixin],
+var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [dijit_layout_BorderContainer._Splitter, dijit_CssStateMixin],
 /**@lends idx.layout._ToggleSplitter#*/
 {
 	
@@ -388,7 +430,8 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 		this.inherited(arguments);
 		
 		dojo_html.addClass(this.domNode, "idxSplitter" + (this.horizontal ? "H" : "V"));
-		if (this.child.get("bidiToggle") === true) {
+		var isBidiToggle = this.child.get("bidiToggle");
+		if (isBidiToggle === true || isBidiToggle === "true") {
 			dojo_html.addClass(this.domNode, "idxSplitterBidiToggle");
 			dojo_html.addClass(this.domNode, "idxSplitterBidiToggle" + (this.horizontal ? "H" : "V"));
 		}
@@ -401,15 +444,15 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 		this.connect(this.container, "layout", "_positionThumb");
 
 		// setup "fixed" attribute
-		var fixedAttr = this.child.get("fixed");
-		if (fixedAttr === "true") {
+		var isFixed = this.child.get("fixed");
+		if (isFixed === true || isFixed == "true") {
 			this._resizable = false;
 			dojo_html.addClass(this.domNode, "idxSplitterNoResize");
 		}
 		
 		// setup "snap" attribute
-		var snapAttr = this.child.get("snap");
-		if (snapAttr === "true") {
+		var isSnap = this.child.get("snap");
+		if (isSnap === true || isSnap === "true") {
 			this._snap = true;
 		}
 		
@@ -519,6 +562,27 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 			this._expand();
 		}
 	},
+	_onKeyDown: function(/*Event*/ e){
+		var horizontal = this.horizontal;
+		var dk = dojo_keys;
+		switch(e.charOrCode){
+			case horizontal ? dk.UP_ARROW : dk.LEFT_ARROW:
+				if (this.container._locked) {
+					dojo_event.stop(e);
+					return;
+				}
+				break;
+			case horizontal ? dk.DOWN_ARROW : dk.RIGHT_ARROW:
+				if (this.container._locked) {
+					dojo_event.stop(e);
+					return;
+				}
+				break;
+			default:
+				// fall through
+		}
+		this.inherited(arguments);
+	},
 
 	/**
 	 * Handles SPACE and ENTER keys to toggle for expanding.
@@ -548,17 +612,33 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 
 		dojo_html.style(this.child.domNode, this._styleAttr, this._paneSize + "px");
 		dojo_html.style(this.child.domNode, "visibility", "visible");
+		//scroll bar hidden issue in IE
+        if(this._isMSIE()){
+            dojo_html.style(this.child.domNode, "display", "");
+        }
+        
 		this.container.layout();
 
 		this.set("state", "Normal");
 
 		dojo_html.style(this.domNode, "cursor", "");
-
-		this.container.onPanelOpen(this.region);
+		
+		var logicalRegion = this._getLogicalRegion(this.region);
+		this.container.onPanelOpen(this.region, logicalRegion, this.child.layoutPriority);
 
 		this._updateThumbTitles();
 	},
 
+	_getLogicalRegion: function(region) {
+		if (region!="left" && region!="right") return region;
+		
+		if (this.container.isLeftToRight()) {
+			return (region == "left" ? "leading" : "trailing");
+		} else {
+			return (region == "right" ? "leading" : "trailing");
+		}
+	},
+	
 	/**
 	 * Collapse the region.
 	 * @param {Object} startSize
@@ -571,22 +651,37 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 			return;
 		}
 		
+		if (this.child) {
+			this.child.set("open", false);
+		}
+		
 		if (startSize) {
 			this._paneSize = startSize;
 		} else if (state == "Normal") {
-			this._paneSize = dojo_html.style(this.child.domNode, this._styleAttr);
+			this._paneSize = this._getPaneSize();
 		}
 		
 		dojo_html.style(this.child.domNode, this._styleAttr, "0px");
-		dojo_html.style(this.child.domNode, "visibility","hidden");
+		dojo_html.style(this.child.domNode, "visibility", "hidden");
+		//scroll bar hidden issue in IE
+		if(this._isMSIE()){
+		    dojo_html.style(this.child.domNode, "display", "none");
+		}
 		this.container.layout();
 		
 		this.set("state", "Collapsed");
 		dojo_html.style(this.domNode, "cursor", "default");
 		
-		this.container.onPanelClose(this.region);
+		var logicalRegion = this._getLogicalRegion(this.region);
+		this.container.onPanelClose(this.region, logicalRegion, this.child.layoutPriority);
 		this._updateThumbTitles();
 	},
+	
+	//dojo has not well support IE version check for IE11 currently, should remove when it's ready
+	_isMSIE: function(){
+        var ua = navigator.userAgent.toLowerCase();
+        return ((/msie/.test(ua)||/trident/.test(ua)) && !/opera/.test(ua));
+    },
 
 	/**
 	 * Expands the region.
@@ -604,20 +699,35 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 		}
 
 		if (state == "Normal") {
-			this._paneSize = dojo_html.style(this.child.domNode, this._styleAttr);
+			this._paneSize = this._getPaneSize();
 		}
 
 		var newVal = this._computeMaxSize();
 		dojo_html.style(this.child.domNode, this._styleAttr, newVal + "px");
 		dojo_html.style(this.child.domNode, "visibility", "visible");
+		//scroll bar hidden issue in IE
+        if(this._isMSIE()){
+            dojo_html.style(this.child.domNode, "display", "");
+        }
 
 		this.set("state", "Expanded");
 		this.container.layout();
 
 		if (state == "Collapsed") { // check old state
-			this.container.onPanelOpen(this.region);
+			var logicalRegion = this._getLogicalRegion(this.region);
+			this.container.onPanelOpen(this.region, logicalRegion, this.child.layoutPriority);
 		}
 		this._updateThumbTitles();
+	},
+	
+	/**
+	 * Returns the size of this pane, taking account of orientation and px vs %
+	 * @private
+	 */
+	_getPaneSize: function() {
+		var attr = this._styleAttr[0];	// w/h
+		var size = dojo_html.marginBox(this.child.domNode)[attr];
+		return size;
 	},
 	
 	/**
@@ -658,7 +768,7 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 			return;
 		}
 		
-		this._startSize = dojo_html.style(this.child.domNode, this._styleAttr);
+		this._startSize = this._getPaneSize();
 		
 		this.inherited(arguments);
 		this.container.onDragStart(this.region);
@@ -671,7 +781,7 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 	 */
 	_stopDrag: function() {
 		this.inherited(arguments);
-		var s = dojo_html.style(this.child.domNode, this._styleAttr);
+		var s = this._getPaneSize();
 		if (s <= this._snapSize) {
 			this._collapse(this._startSize);
 		} else {
@@ -687,12 +797,6 @@ var _ToggleSplitter = dojo_declare("idx.layout._ToggleSplitter", [Splitter, diji
 
 });
 
-dojo_lang.extend(dijit_Widget, {
-	fixed: false,
-	bidiToggle: false,
-	snap: false,
-	open: true
-});
 
 
 BorderContainer._ToggleSplitter = _ToggleSplitter;

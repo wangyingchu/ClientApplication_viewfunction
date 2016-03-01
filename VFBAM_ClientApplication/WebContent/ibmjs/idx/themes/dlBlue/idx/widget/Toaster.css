@@ -1,0 +1,116 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .oneuiToaster {
+  position: fixed;
+  background: #ffffff;
+  bottom: 0;
+  right: 20px;
+  width: 275px;
+  border: 1px solid #a4a6ab;
+  -webkit-box-shadow: 0px 0px 5px rgba(29, 30, 30, 0.3);
+  -moz-box-shadow: 0px 0px 5px rgba(29, 30, 30, 0.3);
+  box-shadow: 0px 0px 5px rgba(29, 30, 30, 0.3);
+}
+.dj_ie8 .dlBlue .oneuiToaster .status {
+  background-image: url('../idx/widget/images/MsgIcons_color.png');
+}
+.dlBlue .oneuiToaster .reveal {
+  display: none;
+  height: 29px;
+  line-height: 29px;
+  padding: 5px 0 5px 15px;
+  background-color: #267bac;
+}
+.dlBlue .oneuiToaster .reveal a {
+  color: #fff;
+}
+.dlBlue .oneuiToaster ul {
+  list-style: none;
+  margin: 0;
+  padding: 25px 15px 0;
+  overflow: hidden;
+}
+.dlBlue .oneuiToaster li {
+  border-top: 1px solid #cdced2;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+.dlBlue .oneuiToaster li:first-child {
+  border-top: 0;
+}
+.dlBlue .oneuiToaster .content {
+  overflow: hidden;
+  padding: 15px 0 0;
+  font-size: 1.1em;
+  text-align: left;
+}
+.dlBlue .oneuiToaster .meta_data {
+  clear: both;
+  height: 25px;
+  line-height: 25px;
+  padding: 5px 0 5px 40px;
+  color: #4c4d53;
+  font-size: .9em;
+}
+.dlBlue .oneuiToaster .meta_data .timestamp {
+  float: right;
+}
+.dlBlue .oneuiToaster .status {
+  height: 28px;
+  width: 28px;
+  background-image: url('../idx/widget/images/MsgIcons_color.svg');
+  float: left;
+  clear: left;
+  margin: 0 15px 0 0;
+}
+.dlBlue .oneuiToaster .information {
+  width: 200px;
+  float: left;
+}
+.dlBlue .oneuiToaster .status.success {
+  background-position: -100px 0px;
+}
+.dlBlue .oneuiToaster .status.error {
+  background-position: 0px 0px;
+}
+.dlBlue .oneuiToaster .status.info {
+  background-position: -66px 0px;
+}
+.dlBlue .oneuiToaster .status.warning {
+  background-position: -33px 0px;
+}
+.dlBlue .oneuiToaster .close {
+  background: url("../../dijit/layout/images/tabClose.png");
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.dlBlue .oneuiToaster .close .closeText {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.dlBlue .oneuiToaster .close:hover {
+  cursor: pointer;
+  background-position: -27px 0px;
+}
+.dlBlue .oneuiToaster .close:active {
+  cursor: pointer;
+  background-position: -14px 0px;
+}
+.dlBlue .oneuiToaster.overflow .reveal {
+  display: block;
+}
+.dlBlue .oneuiToaster.dijitHidden ul {
+  display: none;
+  visibility: hidden;
+}
+.dj_ie6 .dlBlue .oneuiToaster .status {
+  background: url('images/msgIcons_8bit.png') no-repeat;
+}
+.dijit_a11y .oneuiToaster .close .closeText {
+  display: block;
+}

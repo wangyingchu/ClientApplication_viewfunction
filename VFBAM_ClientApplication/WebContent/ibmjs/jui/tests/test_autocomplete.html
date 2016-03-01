@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jUI Autocomplete</title>
+	<link rel="stylesheet" href="../themes/less/dthink.css">
+	<style>
+		body{
+			font-family:'Helvetica Neue', Helvetica, Arial;
+		}
+	</style>
+    <script src="../requirejs/require.js">
+    </script>
+    <script src="../requirejs/config.js">
+    </script>
+	<script src="../jquery-ui/jquery-1.10.2.js">
+    </script>
+	<script>
+	
+	require(["jui/autocomplete"], function(){
+		$(function() {
+			var availableTags = [
+				"Am I able to request seats for my flight",
+				"Am I Able to write off insurance premiums",
+				"Am I able to control my dreams",
+				"Am I able to use a Skype Phone with no landline",
+				"Am I able to update my address",
+				"Am I able to change my laptop graphic card"
+			];
+			$( "#question" ).autocomplete({
+				source: availableTags,
+				appendTo: ".jui-autocomplete",
+				button: {
+					label: "Search"
+				},
+				action: function(e, value){alert(value)}
+			});
+			
+			$( "#combo" ).autocomplete({
+				source: [
+					"ActionScript",
+					"AppleScript",
+					"Asp",
+					"BASIC",
+					"C",
+					"C++",
+					"Clojure",
+					"COBOL",
+					"ColdFusion",
+					"Erlang",
+					"Fortran",
+					"Groovy",
+					"Haskell",
+					"Java",
+					"JavaScript",
+					"Lisp",
+					"Perl",
+					"PHP",
+					"Python",
+					"Ruby",
+					"Scala",
+					"Scheme"
+				]
+			});
+		});
+	})
+	</script>
+</head>
+<body>
+<h1>Autocomplete Tests</h1>
+<p>Two kinds of Auto-Complete are provided.</p>
+<h2>Autocomplete input with an action button.</h2>
+<div id="question" style="width:400px;"></div>
+<h2>Autocomplete input only.</h2>
+<div class="ui-widget">
+	<label for="combo">Only Input:</label><input id="combo">
+</div>
+</body>
+</html>

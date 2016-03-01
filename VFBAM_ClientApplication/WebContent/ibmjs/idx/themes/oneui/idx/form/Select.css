@@ -25,6 +25,18 @@
 	vertical-align: top;
 }
 
+.oneui .idxSelectWrap .dijitValidationContainer{
+   display: none;
+}
+
+.oneui .idxSelectWrapError .dijitValidationContainer{
+	display: inline-block;
+}
+
+.oneui .idxSelectWrapMenu .dijitMenuItemIconCell{
+	padding:1px;
+	width:6px;
+}
 /*
  * Incompelete
  */

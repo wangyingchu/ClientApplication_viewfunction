@@ -1,0 +1,70 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+//  ProgressBar
+//  
+//  Styling of the ProgressBar consists of the following:
+//  
+//  1. the base progress bar
+//   	.dijitProgressBar -	sets margins for the progress bar
+//  
+//  2. the empty bar
+//   	.dijitProgressBarEmpty  - sets background img and color for bar or parts of bar that are not finished yet
+//   	Also sets border color for whole bar
+//  
+//  3. tile mode
+//  		.dijitProgressBarTile
+//   	inner container for finished portion when in 'tile' (image) mode 
+//  	
+//  4. full bar mode
+//  		.dijitProgressBarFull
+//   	adds border to right side of the filled portion of bar
+//  
+//  5. text for label of  bar
+//   	.dijitProgressBarLabel - sets text color, which must contrast with both the "Empty" and "Full" parts. 
+//  	
+//  6. indeterminate mode
+//   	.dijitProgressBarIndeterminate .dijitProgressBarTile 
+//  		sets animated gif for the progress bar in 'indeterminate' mode
+//  
+
+.dijitProgressBarEmpty {
+  /* outer container and background of the bar that's not finished yet*/
+  background-color: @fwBackground;
+  border-color: @fwDarker;
+  min-height:14px
+   
+}
+.dijitProgressBarTile {
+  /* inner container for finished portion when in 'tile' (image) mode */
+  background-color:@brand;
+}
+
+.dijitProgressBarFull {
+  border-right: 1px solid @fwDarker;
+  border-top:1px solid @brandLight;
+  border-bottom:1px solid @brandDark;
+  .transition(width; .25s);
+  height:13px;
+
+}
+.dijitProgressBarLabel {
+  /* Set to a color that contrasts with both the "Empty" and "Full" parts. */
+  color: @textStrong;
+}
+.dijitProgressBarIndeterminate .dijitProgressBarTile {
+  /* use an animated gif for the progress bar in 'indeterminate' mode;
+		background-color won't appear unless user has turned off background images */
+
+  background: @fwLightest url('images/dijit/progressBarAnim.gif') repeat-x top;
+  .textColors(@brand);
+  color: @textStrong;
+}
+.dijitProgressBarIndeterminate .dijitProgressBarFull {
+	border:none;
+	height:15px;
+}

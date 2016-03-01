@@ -1,0 +1,58 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxEditController {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 0px;
+}
+.dj_ie7 {
+    .@{theme-name} {
+        .idxEditController {
+            display: inline;
+            top: 0px;
+        }
+    }
+}
+.dj_webkit {
+    .@{theme-name} {
+        .idxEditController {
+            top: 0px;
+        }
+    }
+}
+.dj_ie8 {
+    .@{theme-name} {
+        .idxEditController {
+            top: 0px;
+        }
+    }
+}
+.dj_ie9 {
+    .@{theme-name} {
+        .idxEditController {
+            top: 0px;
+        }
+    }
+}
+.@{theme-name} {
+    .idxButtonBar.idxEditControllerButtonBar {
+        display: none;
+        visibility: hidden;
+        vertical-align: middle;
+    }
+    .idxEditControllerEditLink {
+        display: inline;
+        visibility: visible;
+        vertical-align: middle;
+    }
+}
+.@{theme-name} .idxEditControllerReadOnly .idxEditControllerEditLink,.@{theme-name} .idxEditControllerEditMode .idxEditControllerEditLink {
+    display: none;
+    visibility: hidden;
+}
+.@{theme-name} .idxEditControllerEditMode .idxEditControllerButtonBar,.@{theme-name} .idxEditControllerEditMode .idxButtonBar.idxEditControllerButtonBar {
+    display: inline-block;
+    visibility: visible;
+}
+.dj_ie7 .@{theme-name} .idxEditControllerEditMode .idxEditControllerButtonBar,.dj_ie7 .@{theme-name} .idxEditControllerEditMode .idxButtonBar.idxEditControllerButtonBar {
+    display: inline;
+}

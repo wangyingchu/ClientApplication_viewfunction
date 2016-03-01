@@ -13,8 +13,11 @@ define([
 	"dojo/_base/event",
 	"dojo/_base/window",
 	"dojo/mouse",
+	"dojo/on",
+	"dojo/touch",
+	"dijit/a11yclick",
 	"dijit/tree/_dndSelector"
-], function(declare, connect, array, lang, event, win, mouse, _dndSelector){
+], function(declare, connect, array, lang, event, win, mouse, on, touch, a11yclick, _dndSelector){
 
 	// module:
 	//		oneui/checkboxtree/_dndSelector
@@ -29,7 +32,7 @@ define([
 		// tags:
 		//		protected
 		
-		constructor: function(tree, params){
+		constructor: function(){
 			// summary:
 			//		Initialization
 			// tags:
@@ -37,30 +40,21 @@ define([
 
 			this.selection={};
 			this.anchor = null;
+
 			this.events.push(
-				connect.connect(this.tree, "_onNodeStateChange", this, "_onNodeStateChange"),
-				connect.connect(this.tree.domNode, "onmousedown", this,"onMouseDown"),
-				connect.connect(this.tree.domNode, "onmouseup", this,"onMouseUp"),
-				connect.connect(this.tree.domNode, "onmousemove", this,"onMouseMove")
+				// listeners setup here but no longer used (left for backwards compatibility
+				on(this.tree.domNode, touch.press, lang.hitch(this,"onMouseDown")),
+				on(this.tree.domNode, touch.release, lang.hitch(this,"onMouseUp")),
+
+				// listeners used in this module
+				on(this.tree, "_onNodeStateChange", this, "_onNodeStateChange"),
+				on(this.tree.domNode, touch.move, lang.hitch(this,"onMouseMove")),
+				on(this.tree.domNode, a11yclick.press, lang.hitch(this,"onClickPress")),
+				on(this.tree.domNode, a11yclick.release, lang.hitch(this,"onClickRelease"))
 			);
 		},
 		//	candidateNode: oneui._TreeNode
 		candidateNode: null,
-		_setDifference: function(xs,ys){
-			// summary:
-			//		Returns a copy of xs which lacks any objects
-			//		occurring in ys. Checks for membership by
-			//		modifying and then reading the object, so it will
-			//		not properly handle sets of numbers or strings.
-
-			array.forEach(ys, function(y){y.__exclude__ = true;	});
-			
-			var ret = array.filter(xs, function(x){return !x.__exclude__;});
-			
-			// clean up after ourselves.
-			array.forEach(ys, function(y){delete y['__exclude__']});
-			return ret;
-		},
 		// mouse events
 		onMouseDown: function(e){
 			// summary:
@@ -84,11 +78,33 @@ define([
 		onMouseUp: function(){
 			this.candidateNode = null;
 		},
+		
+		// setSelection: function(/*dijit/Tree._TreeNode[]*/ newSelection){
+		// 	var oldSelection = this.getSelectedTreeNodes();
+		// 	array.forEach(this._setDifference(oldSelection, newSelection), lang.hitch(this, function(node){
+		// 		if(node.domNode){
+		// 			if(node.checked){return;}
+		// 			node.setSelected(false);
+		// 			if(this.anchor == node){
+		// 				delete this.anchor;
+		// 			}
+		// 			delete this.selection[node.id];
+		// 		}else{
+		// 			delete this.selection[node.id];
+		// 		}
+				
+		// 	}));
+		// 	array.forEach(this._setDifference(newSelection, oldSelection), lang.hitch(this, function(node){
+		// 		node.setSelected(true);
+		// 		this.selection[node.id] = node;
+		// 	}));
+		// 	this._updateSelectionProperties();
+		// },
 	
 		_onNodeStateChange: function(/*oneui._TreeNode*/ node, /*Boolean*/ checked){
 			// If selected an unchecked item, clean the selection first.
 			var nodes = this.getSelectedTreeNodes();
-			if(nodes.length == 1 && nodes[0].checkboxNode.checked === false){
+			if(nodes.length == 1 && nodes[0].checkboxNode && nodes[0].checkboxNode.checked === false){
 				this.selectNone();
 			}
 			// Add/Remove node

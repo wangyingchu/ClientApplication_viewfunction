@@ -10,3 +10,4 @@ define({
 	learnMoreLabel: "Les mer"
 //end v1.x content
 });
+

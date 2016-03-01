@@ -1,0 +1,72 @@
+/* ProgressBar
+ * 
+ * Styling of the ProgressBar consists of the following:
+ * 
+ * 1. the base progress bar
+ *		.dijitProgressBar -	sets margins for the progress bar
+ *
+ * 2. the empty bar
+ *		.dijitProgressBarEmpty  - sets background img and color for bar or parts of bar that are not finished yet
+ *		Also sets border color for whole bar
+ *
+ * 3. tile mode
+ * 		.dijitProgressBarTile
+ *		inner container for finished portion when in 'tile' (image) mode 
+ * 	
+ * 4. full bar mode
+ * 		.dijitProgressBarFull
+ *		adds border to right side of the filled portion of bar
+ *
+ * 5. text for label of  bar
+ *		.dijitProgressBarLabel - sets text color, which must contrast with both the "Empty" and "Full" parts. 
+ * 	
+ * 6. indeterminate mode
+ *		.dijitProgressBarIndeterminate .dijitProgressBarTile 
+ * 		sets animated gif for the progress bar in 'indeterminate' mode
+ */
+.dj_ie6 .dlBlue .dijitProgressBarTile {
+  background-image: none;
+}
+.dlBlue .dijitProgressBar {
+  margin: 2px 0 2px 0;
+}
+.dlBlue .dijitProgressBar:after {
+  content: "";
+  position: absolute;
+  background: transparent;
+  border: 1px solid #fff;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.dlBlue .dijitProgressBarEmpty {
+  /* outer container and background of the bar that's not finished yet*/
+  background-color: #ffffff;
+  border-color: #267bac;
+}
+.dlBlue .dijitProgressBarTile {
+  /* inner container for finished portion when in 'tile' (image) mode */
+  background-color: #368aba;
+  background-attachment: scroll;
+}
+.dlBlue .dijitProgressBarFull {
+  border: 0px solid #267bac;
+  border-right-width: 1px;
+  -webkit-transition-property: width;
+  -moz-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  line-height: 1.846em;
+}
+.dlBlue .dijitProgressBarLabel {
+  /* Set to a color that contrasts with both the "Empty" and "Full" parts. */
+  color: #393a3f;
+  line-height: 1.846em;
+}
+.dlBlue .dijitProgressBarIndeterminate .dijitProgressBarTile {
+  /* use an animated gif for the progress bar in 'indeterminate' mode;
+		background-color won't appear unless user has turned off background images */
+}

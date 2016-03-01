@@ -13,9 +13,11 @@ define({
 	Success: "Сәттілік",
 	Confirmation: "Құптау",
 	Question: "Сұрақ",
+	Progress: "Орындалу",
 	closeButtonLabel: "Жабу",
 	cancelButtonLabel: "Болдырмау",
 	executeButtonLabel: "OK",
 	checked: "Қайтадан сұрауға болмайды"
 //end v1.x content
 });
+

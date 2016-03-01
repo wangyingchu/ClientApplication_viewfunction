@@ -60,6 +60,8 @@
     width: 15px;
     vertical-align: top;
     margin: 0 0 0 5px;
+	display: inline-block;
+	float: none;
 }
 
 .oneui .idxComposite .dijitValidationContainer .dijitValidationIcon {
@@ -102,6 +104,15 @@
 .oneui .idxTextareaWrap .dijitValidationContainer .dijitValidationIcon{
 	margin: 0;
 }
+
+.oneui .idxTextareaWrap .dijitValidationContainer{
+	display: none;
+}
+
+.oneui .idxTextareaWrapError .dijitValidationContainer{
+	display: inherit;
+}
+
 .oneui .idxComposite .dijitValidationContainer input {
 	background-color: transparent !important;
 	width: 0px;
@@ -125,6 +136,9 @@
 }
 .oneui .idxComposite.dijitError .dijitValidationContainer{
 	visibility: visible;
+	display:inline-block;			/* webkit and FF3 */
+	#zoom: 1; /* set hasLayout:true to mimic inline-block */
+	#display:inline; /* don't use .dj_ie since that increases the priority */
 }
 /** FileInput is not in V1 
 .oneuiFileInputWrap .dijitValidationContainer{
@@ -177,7 +191,7 @@
 .oneui .idxDndAvatar .dropIndicator {
   width:16px;
   height: 16px;
-  background: url("images/dndSource_16px.png");
+  background: url("images/dndSource_16px.png") no-repeat;
   vertical-align: top;
 }
 .oneui .idxDndAvatar.idxDndAvatarCanDrop .dropIndicator {

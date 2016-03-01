@@ -13,9 +13,11 @@ define({
 	Success: "Успешно",
 	Confirmation: "Подтверждение",
 	Question: "Вопрос",
+	Progress: "Ход выполнения",
 	closeButtonLabel: "Закрыть",
 	cancelButtonLabel: "Отмена",
 	executeButtonLabel: "OK",
 	checked: "Больше не спрашивать"
 //end v1.x content
 });
+

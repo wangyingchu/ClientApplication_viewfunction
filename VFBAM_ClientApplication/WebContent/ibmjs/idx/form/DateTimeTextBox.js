@@ -8,21 +8,46 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/has",
+	"dojo/i18n", // i18n.getLocalization
 	"dojo/dom-attr",
 	"dojo/dom-class",
 	"dojo/dom-geometry",
 	"dojo/dom-style",
+	"dojo/dom-construct",
 	"dojo/query", 
+	"dojo/on",
+	"dijit/_base/wai", 
 	"dijit/_TemplatedMixin",
 	"dijit/_WidgetsInTemplateMixin",
 	"dijit/form/_FormValueWidget",
+	"../widget/HoverHelpTooltip",
 	"../util",
+	"../string",
 	"./_CompositeMixin",
 	"./DateTextBox",
 	"./TimeTextBox",
-	"dojo/text!./templates/DateTimeTextBox.html"
-], function(declare, lang, domAttr, domClass, domGeometry, domStyle, query, _TemplatedMixin, _WidgetsInTemplateMixin, _FormValueWidget, iUtil, _CompositeMixin, DateTextBox, TimeTextBox, template){
-	var iForm = lang.getObject("idx.form", true); // for backward compatibility with IDX 1.2
+	"dojo/i18n!./nls/DateTimeTextBox",
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	"idx/has!#idx_form_DateTimeTextBox-desktop?dojo/text!./templates/DateTimeTextBox.html"  // desktop widget, load the template
+		+ ":#idx_form_DateTimeTextBox-mobile?"										// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/DateTimeTextBox.html"						// global desktop platform, load template
+		+ ":#mobile?"														// global mobile platform, don't load
+		+ ":dojo/text!./templates/DateTimeTextBox.html", 							// no dojo/has features, load the template
+		
+	"idx/has!#idx_form_DateTimeTextBox-mobile?./plugins/mobile/DateTimeTextBoxPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_DateTimeTextBox-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/mobile/DateTimeTextBoxPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+		
+], function(declare, lang, has, i18n, domAttr, domClass, domGeometry, domStyle, domConstruct, query, on,
+		wai, _TemplatedMixin, _WidgetsInTemplateMixin, _FormValueWidget, 
+		HoverHelpTooltip, iUtil, iString, _CompositeMixin, DateTextBox, TimeTextBox, DateTimeTextBox_nls,
+		_TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
+	var oneuiForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
+	var iForm = lang.getObject("idx.form", true);
 
 	// module:
 	//		idx/form/DateTimeTextBox
@@ -35,26 +60,27 @@ define([
 	 * @augments dijit.form._FormValueWidget
 	 * @augments dijit._Templated
 	 */
-	return iForm.DateTimePicker = declare("idx.form.DateTimeTextBox", [_FormValueWidget, _TemplatedMixin, _WidgetsInTemplateMixin], {
+	var DateTimeTextBox = declare("idx.form.DateTimeTextBox_base", [_FormValueWidget, _TemplatedMixin, _WidgetsInTemplateMixin], {
 	/**@lends idx.form.DateTextBox*/ 
-		templateString: template,
-		
 		/**
 		* base class of this oneui widget
 		*/
 		baseClass: "idxDateTimeTextBoxWrap",
-	
+		templateString: desktopTemplate,
 		/**
 		 * Specifies if the value is required.
 		 */
 		required: false,
 		readOnly: false,
+		selectOnClick: false,
 		
 		value: null,
 		
+		instantValidate: false,
 		showPickerIcon: false,
 		dateHint: "",
 		timeHint: "",
+		datePackage: "",
 		/**
 		 * Layout of the label and the field, "horizontal" or "vertical", implemented according to 
 		 * IBM One UI(tm) <b><a href="http://dleadp.torolab.ibm.com/uxd/uxd_oneui.jsp?site=ibmoneui&top=x1&left=y16&vsub=*&hsub=*&openpanes=0000011100">Field & Label Alignment</a></b>
@@ -62,6 +88,11 @@ define([
 		 * @default "horizontal"
 		 */
 		labelAlignment: "horizontal",
+		
+		postMixInProperties: function(){
+			this._nlsResources = i18n.getLocalization("idx.form", "DateTimeTextBox", this.lang);
+			this.inherited(arguments);
+		},
 	
 		/**
 		 * Sets up event handlers.
@@ -69,15 +100,28 @@ define([
 		postCreate: function() {
 			this.inherited(arguments);
 			
+			this.own(on(this.dateTextBox, "change", lang.hitch(this, "onChange")));
+			this.own(on(this.timeTextBox, "change", lang.hitch(this, "onChange")));
+			
+			this.connect(this.dateTextBox, "_onInput", "_onInput");
+			this.connect(this.timeTextBox, "_onInput", "_onInput");
 			this.connect(this.dateTextBox, "_setValueAttr", "_updateValueAttr");
 			this.connect(this.timeTextBox, "_setValueAttr", "_updateValueAttr");
 			
 			//a11y
-			domAttr.set(this.dateTextBox.focusNode, "title", "Input Date");
-			domAttr.set(this.timeTextBox.focusNode, "title", "Input Time");
+			domAttr.set(this.dateTextBox.focusNode, "title", this._nlsResources.dateTitle);
+			domAttr.set(this.timeTextBox.focusNode, "title", this._nlsResources.timeTitle);
+			
 			this._resize();
 		},
-	
+		
+		onChange: function(e){
+			//TODO
+		},
+		
+		_onInput: function(e){
+			//TODO
+		},
 		/**
 		 * Validates both date and time values.
 		 * @param {Boolean} f
@@ -182,9 +226,12 @@ define([
 		 * @private
 		 */
 		_setRequiredAttr: function(required) {
-			this.required = required;
 			this.dateTextBox.set("required", required);
 			this.timeTextBox.set("required", required);
+			
+			wai.setWaiState(this.focusNode, "required", required + "");
+			this.set("state", required?"Required":"");
+			this._set("required", required);
 		},
 		
 		/**
@@ -221,8 +268,14 @@ define([
 			}
 			d = d || new Date(0);
 			t = t || new Date(0);
-			var dt = new Date(d.getTime() + t.getTime());
+			// var dt = new Date(d.getTime() + t.getTime());
+			var dt = new Date(d.getFullYear(), d.getMonth(), d.getDate(), t.getHours(), t.getMinutes(), t.getSeconds(), t.getMilliseconds());
 			return dt;
+			// return this._convertDateToUTC(dt);
+		},
+		
+		_convertDateToUTC: function(date) { 
+		    return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); 
 		},
 	
 		/**
@@ -255,6 +308,36 @@ define([
 			this.compLabelNode.innerHTML = label;
 			domClass.toggle(this.labelWrap, "dijitHidden", /^\s*$/.test(label));
 			this._set("label", label);
+		},
+		
+		_setDateLabelAttr: function(/*String*/ label){
+			this.dateTextBox.set("label", label);
+		},
+		
+		_setTimeLabelAttr: function(/*String*/ label){
+			this.timeTextBox.set("label", label);
+		},
+		
+		_getDateLabelAttr: function(/*String*/ label){
+			return this.dateTextBox.get("label");
+		},
+		
+		_getTimeLabelAttr: function(/*String*/ label){
+			return this.timeTextBox.get("label");
+		},
+		
+		_setDateConstraintsAttr: function(constraints) {
+            this.dateTextBox.set("constraints", constraints);
+        },
+        
+        _setTimeConstraintsAttr: function(constraints) {
+            this.timeTextBox.set("constraints", constraints);
+        },
+		
+		_setSelectOnClickAttr: function(/*String*/ flag){
+			this._set("selectOnClick", flag);
+			this.dateTextBox.set("selectOnClick", flag);
+			this.timeTextBox.set("selectOnClick", flag);
 		},
 		
 		_onMouseDown: function(e) {
@@ -319,11 +402,37 @@ define([
 		 * @param {string | number} width 
 		 * Unit of "pt","em","px" will be normalized to "px", and "px" by default for numeral value.
 		 */
-		_setFieldWidthAttr: function(/*String | Integer*/width){
-			if(!width || this.labelAlignment == "vertical"){ return; }
-			this._set("fieldWidth", width);
-			this._created && this._resize();
-		}
+		_setFieldWidthAttr: null,
 		
+		_setHelpAttr: function(/*String*/ helpText){
+			//_CompositeMixin.prototype._setHelpAttr.apply(this, arguments);
+		},
+		
+		_setupHelpListener: function() {
+			_CompositeMixin.prototype._setupHelpListener.apply(this, arguments);
+		}
 	});
+	
+	
+	if(has("mobile") || has("platform-plugable")){
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/DateTimeTextBox", {	
+			desktop: "inherited",	// no plugin for desktop, use inherited methods  
+			mobile: MobilePlugin	// use the mobile plugin if loaded
+		});
+		
+		DateTimeTextBox = declare([DateTimeTextBox,_TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			
+			templatePath: require.toUrl("idx/form/templates/DropDownBox.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry
+		});
+	}
+	return iForm.DateTimeTextBox = declare("idx.form.DateTimeTextBox", DateTimeTextBox);
 });

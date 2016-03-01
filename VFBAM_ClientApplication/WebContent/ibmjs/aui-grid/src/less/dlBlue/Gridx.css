@@ -1,0 +1,928 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridx {
+  border: none;
+}
+.dlBlue .gridxHeader,
+.dlBlue .gridxFooter {
+  background: none;
+}
+.dlBlue .gridx .dijitButton .dijitButtonNode {
+  min-width: 0px;
+}
+.dlBlue .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxHeaderCellFocus {
+  border-top: none;
+  border-bottom: none;
+  border-left: 1px solid transparent;
+  border-right: 1px solid #ccc;
+  outline: none;
+  background: #ECF8FD;
+  /*                        background: #fafafa;
+                        background: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%);
+                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb));
+                        background: -webkit-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                        background: -o-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                        background: -ms-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                        background: linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);*/
+}
+.dlBlue .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz- none;
+  -o-user-select: none;
+  user-select: none;
+}
+.dlBlue .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxCell {
+  border-top-color: #bbbbbb;
+}
+.dlBlue .gridx .gridxBodyRowHoverEffect .gridxRowOver + .gridxRow .gridxCell {
+  border-top-color: #bbb;
+}
+.dlBlue .gridx .gridxBodyRowHoverEffect .gridxRowOver:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.dlBlue .gridxGotoPage .gridxGotoPageInputBox .dijitTextBox {
+  width: 70px;
+}
+.dlBlue .gridxHeaderRow {
+  overflow: hidden;
+  /*border: 1px solid #ccc;*/
+  border: medium none;
+  clear: both;
+  background: #e3e4e6;
+  /*        background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+        background: -o-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+        background: -ms-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+        background: linear-gradient(top,  #ffffff 0%,#ededed 100%);*/
+}
+.dlBlue .gridxHeaderRow .gridxCell {
+  border-top: none;
+  border-bottom: none;
+  /*border-right: 1px solid #ccc;*/
+  border: medium none;
+  padding: 14px 7px;
+  /*font-weight: bold;*/
+  font-weight: normal;
+  font-size: 13px;
+  color: #231f20;
+  vertical-align: top;
+  text-shadow: 1px 1px 1px #fff;
+}
+.dlBlue .gridxHeaderRow .gridxLockedCell {
+  background: #e3e4e6;
+  /*            background: #ededed;
+            background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+            background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+            background: -o-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+            background: -ms-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+            background: linear-gradient(top,  #ffffff 0%,#ededed 100%);*/
+}
+.dlBlue .gridxHeaderRowInner {
+  background: none;
+  border-color: transparent;
+  border-width: 0 2px 0 0;
+}
+.dlBlue .gridxDesktop .gridxHeaderRow .gridxCell:hover {
+  background-color: #dbf3fc;
+  /*                background: #fafafa;
+                background: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb));
+                background: -webkit-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background: -o-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background: -ms-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background: linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);*/
+}
+.dlBlue .gridxRowHeaderHeaderCell {
+  background: #e3e4e6;
+}
+.dlBlue .gridxRowHeaderCell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid #b8babe;
+}
+.dlBlue .gridxRowHeaderRow:first-child .gridxRowHeaderCell {
+  border-top-color: transparent;
+}
+.dlBlue .gridxRowHeaderHeader {
+  background: #e3e4e6;
+  border: medium none;
+  /*border-right-color: #d9d9d9;*/
+}
+.dlBlue .gridxRowHeaderBody {
+  /*border-left: 1px solid #d9d9d9;*/
+  border-right-width: 0px;
+}
+.dlBlue .gridxRowHeaderBody .gridxRowOver {
+  /*background: #fafafa;*/
+  /*            background: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb));
+            background: -webkit-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+            background: -o-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+            background: -ms-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+            background: linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);*/
+}
+.dlBlue .gridxRow {
+  background: none;
+}
+.dlBlue .gridxRow .gridxRowTable {
+  background-color: #ffffff;
+  border-left: none;
+}
+.dlBlue .gridxRow .gridxCell {
+  padding: 10px 7px;
+  border-width: 1px 0;
+  border-color: #b8babe #b8babe transparent transparent;
+  font-style: Arial;
+  color: #333;
+  vertical-align: top;
+}
+.dlBlue .gridxMain {
+  /*      border-left: 1px solid #d9d9d9;
+        border-right: 1px solid #d9d9d9;*/
+}
+.dlBlue .gridxVScroller {
+  border-right: 1px solid #d9d9d9;
+}
+.dlBlue .gridxRow:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.dlBlue .gridxRow:last-child .gridxCell {
+  border-bottom-color: #d9d9d9;
+}
+.dlBlue .gridxAlternatingRows .gridxRowOdd .gridxRowTable {
+  background-color: #f2f7fa;
+}
+.dlBlue .gridxAlternatingRows .gridxBody .gridxRow .gridxCell {
+  border-top-color: #ffffff;
+}
+.dlBlue .gridxAlternatingRows .gridxBodyRowHoverEffect .gridxRowOver + .gridxRow .gridxCell {
+  border-top-color: #ffffff;
+}
+.dlBlue .gridxWholeRow .gridxBody .gridxRow .gridxCell {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.dlBlue .gridxWholeRow .gridxLayerWrapper .gridxRow .gridxCell {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.dlBlue .gridxHScroller {
+  border-style: solid;
+  border-color: #b8babe;
+  border-width: 0 0px 1px 0px;
+}
+.dlBlue .compact .gridxHeaderRow .gridxCell {
+  padding: 10px 7px;
+  font-size: 11px;
+}
+.dlBlue .compact .gridxBody .gridxCell {
+  padding: 7px;
+  font-size: 11px;
+}
+.dlBlue .gridxFullPage .gridxHeader .gridxHeaderRow {
+  border-top-color: #dadada;
+  border-bottom: 1px solid #ccc;
+}
+.dlBlue .gridxFullPage .gridxLayerContext {
+  border: none;
+}
+.dlBlue .gridxBodyLastRow .gridxCell {
+  border-bottom-color: #d9d9d9;
+}
+.dlBlue .gridxLayerContext {
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+}
+.dlBlue .gridxLayerWrapper .gridxRow .gridxCell {
+  background-color: #f7f7f7;
+}
+.dlBlue .gridxLayerVSlide {
+  border-top: 1px solid #d9d9d9;
+}
+.dijit_a11y.dlBlue .gridxHeaderRow .gridxCell {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.dijit_a11y.dlBlue .gridxHeader .gridxHeaderRow .gridxHeaderCellFocus {
+  border: 1px dashed darkblue;
+}
+.dlBlue .gridxRowHeaderHeader,
+.dlBlue .gridxRowHeaderRow {
+  background: #FFFFFF;
+  /*background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+    background: -ms-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+    background: linear-gradient(top,  #ffffff 0%,#ededed 100%);*/
+}
+.dj_ie .dlBlue .gridxLastRow .gridxCell {
+  border-bottom-color: #d9d9d9;
+}
+.dj_ie .dlBlue .gridxRow .gridxCellFocus {
+  border-bottom: 1px dashed darkblue;
+}
+.dj_webkit .dlBlue .gridx .gridxRow:first-child .gridxCellFocus,
+.dj_ie7 .dlBlue .gridx .gridxRow:first-child .gridxCellFocus {
+  border-top-color: darkblue;
+}
+/*
+ * Set the RowHover style to each of the gridxCells not the whole gridRowTable
+ * .oneui .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable*/
+.dlBlue .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable .gridxCell {
+  background-color: #dbf3fc;
+}
+.dlBlue .gridxFullPage .gridxHeader .gridxHeaderRow,
+.dlBlue .gridxFullPage .gridxMain,
+.dlBlue .gridxFullPage .gridxHeader .gridxHeaderRow .gridxCell,
+.dlBlue .gridxFullPage .gridxBody .gridxRow .gridxCell {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxFilterBar {
+  /*border: 1px solid #ccc;*/
+  border-bottom: 1px solid #b8babe;
+  box-sizing: border-box;
+  height: 26px;
+  padding: 0;
+  width: auto;
+  background-color: #f7f7f7;
+  /*padding: 3px 0;*/
+  position: relative;
+}
+.dlBlue .gridxFilterBar [action="clear"] {
+  font-family: Arial;
+  font-style: normal;
+}
+.dlBlue .gridxFilterBar .dijitButton {
+  float: none;
+  margin: 0 10px;
+}
+.dlBlue .gridxFilterBar .dijitButton .dijitArrowButtonInner {
+  height: 25px;
+  width: 9px;
+}
+.dlBlue .gridxFilterBarStatus {
+  border: none;
+  font: italic 12px Georgia;
+  color: #222;
+  background: none;
+  display: inline-block;
+  padding: 0;
+  filter: none;
+}
+.dlBlue .gridxFilterBarStatusText {
+  display: inline-block;
+  margin-right: 10px;
+}
+.dlBlue .gridxFilterBarCloseBtn {
+  width: 8px;
+  height: 8px;
+  background: transparent url(images/gridx_sprite.png) no-repeat -36px -20px;
+  margin: 9px;
+  font-family: Arial;
+  font-style: normal;
+}
+.dlBlue .gridxFilterBarCloseBtn:hover {
+  background-position: -52px -20px;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton span {
+  margin: 0;
+  padding: 0;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton .gridxFilterBarBtnIcon {
+  background: transparent url(svg/filter.svg) no-repeat 0px 0px;
+  background-size: 100% 100%;
+  height: 16px;
+  margin: 4px;
+  width: 16px;
+  /*background: transparent url(images/gridx_sprite.png) no-repeat 0px -16px;*/
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton .dijitButtonNode {
+  border: 1px solid transparent;
+  background: none;
+  padding: 0;
+  box-shadow: none;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton .dijitButtonText {
+  display: none;
+}
+.dlBlue .gridx .gridxQuickFilterIcon {
+  width: 16px;
+  height: 16px;
+  background: transparent url(svg/filter.svg) no-repeat 0px 0px;
+  background-size: 100% 100%;
+  margin: 0;
+}
+.dlBlue .gridx .gridxHeader .gridxQuickFilterInput .dijitInputInner {
+  padding: 4px 0;
+  color: #222;
+  font-family: Arial;
+}
+.dlBlue .gridx .gridxHeader .gridxQuickFilterTextBoxEmpty .dijitInputInner {
+  color: #666;
+}
+.dlBlue .gridx .gridxHeader .dijitToolbar .gridxQuickFilterDropDownButton .dijitButtonNode {
+  border: none;
+  background: none;
+  padding: 0;
+}
+.dlBlue .gridxQuickFilterInputContainer {
+  margin: 0;
+}
+.dlBlue .gridxQuickFilterInput {
+  position: relative;
+}
+.dlBlue .gridxQuickFilterInput .dijitInputInner::-ms-clear {
+  display: none;
+}
+.dlBlue .gridxQuickFilterInput .dijitPlaceHolder {
+  color: #777;
+}
+.dlBlue .gridxQuickFilterInput .dijitTextBoxFocused .dijitPlaceHolder {
+  display: none;
+}
+.dlBlue .gridxQuickFilterInput .dijitInputContainer {
+  padding: 0 14px 0 5px;
+}
+.dlBlue .gridxQuickFilter .dijitButton span {
+  padding: 0;
+  margin: 0;
+}
+.dlBlue .gridxQuickFilter .dijitArrowButton .dijitArrowButtonInner {
+  background-position: -151px 53%;
+}
+.dlBlue .gridxQuickFilterClear {
+  top: 3px;
+  height: 8px;
+  width: 8px;
+  right: 18px;
+  background: transparent url(images/gridx_sprite.png) no-repeat -36px -20px;
+}
+.dlBlue .gridxQuickFilterClear:hover {
+  background-position: -52px -20px;
+}
+.dlBlue .gridxQuickFilterDropDownButton .dijitArrowButtonInner {
+  height: 25px;
+  width: 9px;
+}
+.dlBlue .gridxTouch .gridxBarQuickFilter {
+  border-bottom: 1px solid #d9d9d9;
+}
+.dlBlue .gridxFilterRulesLabel {
+  font-size: 15px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin: 20px 0 15px 0;
+}
+.dlBlue .gridxFilterRules {
+  height: 152px;
+  width: 690px;
+  margin-bottom: 10px;
+  overflow: auto;
+  width: 726px;
+  height: 160px;
+}
+.dlBlue .gridxFilterRules .gridxFilterPaneForm {
+  position: relative;
+  padding: 5px 0;
+}
+.dlBlue .gridxFilterRules .gridxFilterPaneColumnSelect .dijitValidationContainer,
+.dlBlue .gridxFilterRules .gridxFilterPaneConditionSelect .dijitValidationContainer {
+  display: none;
+}
+.dlBlue .gridxFilterPaneRemoveBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -112px -16px;
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .dijitButtonDisabled .gridxFilterPaneRemoveBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -80px -16px;
+}
+.dlBlue .dijitButtonDisabled .gridxFilterPaneAddBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -97px -16px;
+}
+.dlBlue .gridxFilterPaneAddBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -129px -16px;
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .gridxFilterPaneRemoveBtn {
+  position: relative;
+  top: 0px;
+}
+.dlBlue .gridxFilterPaneRemoveBtn .dijitButtonNode {
+  min-width: 0;
+}
+.dlBlue .gridxFilterPaneAddBtn {
+  position: relative;
+  top: 0px;
+}
+.dlBlue .gridxFilterPaneAddBtn .dijitButtonNode {
+  min-width: 0;
+}
+.dlBlue .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  margin: 0 14px;
+}
+.dlBlue .gridxFilterSingleRule .gridxFilterPaneRemoveBtn {
+  display: none;
+}
+.dlBlue .gridxFilterMaxRuleCount .gridxFilterPaneAddBtn {
+  display: none;
+}
+.dlBlue .gridxFilterDialogOneLine {
+  width: auto !important;
+}
+.dlBlue .gridxFilterDialogOneLine .idxLabel {
+  display: none;
+}
+.dlBlue .gridxFilterDialogOneLine .matchCaseCheckbox .idxLabel {
+  display: inline-block;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneFieldWrapper {
+  width: 220px;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneFieldWrapper .dijitValidationContainer {
+  margin: 6px 5px 0 3px;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn {
+  margin-right: 15px;
+}
+.dlBlue .gridxFilterDialogOneLine form > label {
+  margin-right: 10px;
+}
+.dlBlue .gridxFilterTooltipTitle {
+  font-size: 1.5em;
+  color: #222;
+}
+.dlBlue .gridxFilterTooltip table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.dlBlue .gridxFilterTooltip table th {
+  background: #ededed;
+  background: -moz-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: -o-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: linear-gradient(top, #ffffff 0%, #ededed 100%);
+  font-family: Arial;
+  font-size: 11px;
+  font-weight: bold;
+  color: #444;
+  text-shadow: 1px 0 0 #fff;
+  padding: 10px 7px;
+  vertical-align: middle;
+}
+.dlBlue .gridxFilterTooltip table td {
+  border: 1px solid #ccc;
+  padding: 7px 7px;
+}
+.dlBlue .gridxFilterTooltip .gridxFilterTooltipRemoveBtn {
+  background: transparent url(images/gridx_sprite.png) no-repeat -145px -16px;
+}
+.dlBlue .gridxFilterTooltip .gridxFilterTooltipRemoveBtn:hover {
+  background: transparent url(images/gridx_sprite.png) no-repeat -162px -16px;
+}
+.dlBlue .gridxFilterPaneSelectWrapper .dijitValidationContainer {
+  display: none;
+}
+.dj_a11y.dlBlue .gridxFilterBarCloseBtn {
+  margin-top: 4px;
+}
+.dlBlue .gridxQuickFilterButton {
+  margin: 0.2em 5px;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButtonHover .gridxFilterBarBtnIcon,
+.dlBlue .gridx .gridxFilterBar .dijitButtonActive .gridxFilterBarBtnIcon {
+  /*background-position: -16px -16px;*/
+}
+.dlBlue .gridxQuickFilter .dijitButtonHover,
+.dlBlue .gridxQuickFilter .dijitButtonActive {
+  background: none;
+}
+.dlBlue .gridxQuickFilter .dijitButton .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButton .dijitButtonNode {
+  padding: 5px !important;
+  border-width: 0;
+  background: none;
+  box-shadow: none;
+}
+.dlBlue .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode {
+  padding: 5px !important;
+  border-width: 0px;
+}
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitArrowButton,
+.dlBlue .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode {
+  /*    background: #fefefe;
+    background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc));
+    background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: linear-gradient(top,  #fefefe 0%,#cccccc 100%);*/
+}
+.dlBlue .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitButtonNodeActive,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitDownArrowButtonActive {
+  background: #dbdbdb;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(100%, #f4f4f4));
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -o-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -ms-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+}
+.dlBlue .dijitButtonHover .gridxQuickFilterIcon,
+.dlBlue .dijitButtonActive .gridxQuickFilterIcon,
+.dlBlue .dijitComboButtonHover .gridxQuickFilterIcon,
+.dlBlue .dijitComboButtonActive .gridxQuickFilterIcon {
+  background: transparent url(svg/filter.svg) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.dj_ie8 .dlBlue .gridx .gridxFilterBar .dijitButton .gridxFilterBarBtnIcon {
+  background-image: url(images/filter.png);
+}
+.dj_ie8 .dlBlue .gridxQuickFilterIcon {
+  /*background: transparent url(images/filter.png) no-repeat 0px 0px;*/
+  background-image: url(images/filter.png);
+}
+.dj_ie .dlBlue .gridx .gridxHeader .gridxQuickFilterInput .dijitInputInner {
+  height: auto;
+  padding: 4px 3px;
+  vertical-align: middle;
+}
+.dlBlue .gridxQuickFilterDropDownButton,
+.dlBlue .gridx .gridxHeader .gridxQuickFilterDropDownButton span {
+  margin: 0;
+  padding: 0;
+}
+.dlBlue .gridxFilterPaneText .gridxFilterPaneTextWrapper,
+.dlBlue .gridxFilterPaneCombo .gridxFilterPaneComboWrapper,
+.dlBlue .gridxFilterPaneNumber .gridxFilterPaneNumberWrapper,
+.dlBlue .gridxFilterPaneDate .gridxFilterPaneDateWrapper,
+.dlBlue .gridxFilterPaneDateRange .gridxFilterPaneDateRangeWrapper,
+.dlBlue .gridxFilterPaneTime .gridxFilterPaneTimeWrapper,
+.dlBlue .gridxFilterPaneTimeRange .gridxFilterPaneTimeRangeWrapper,
+.dlBlue .gridxFilterPaneSelect .gridxFilterPaneSelectWrapper,
+.dlBlue .gridxFilterPaneRadio .gridxFilterPaneRadioWrapper {
+  display: inline-block;
+}
+.dlBlue .gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.dlBlue .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  margin: 0;
+  margin-right: 20px;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneAddBtn .dijitButtonNode,
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn .dijitButtonNode {
+  min-width: auto;
+  padding: 4px;
+}
+.dlBlue .gridxFilterPaneRangeStart,
+.dlBlue .gridxFilterPaneRangeEnd {
+  width: 106px;
+}
+.dlBlue .gridxFilterPaneTrueRadio,
+.dlBlue .gridxFilterPaneFalseRadio {
+  display: inline;
+  width: 90px;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxPager {
+  background: transparent;
+  padding: 0 7px;
+  height: 32px;
+  border: none;
+}
+.dlBlue .gridxPagerInner {
+  height: 100%;
+}
+.dlBlue .gridxPagerNodeFocus {
+  border: 1px dotted darkblue;
+}
+.dlBlue .gridxPager .gridxPagerStepper {
+  text-align: center;
+}
+.dlBlue .gridxPagerSizeSwitchBtn:last-child {
+  margin-right: 0;
+}
+.dlBlue .gridxPagerSizeSwitchSeparator {
+  color: #666;
+}
+.dlBlue .gridxGotoPageDialog {
+  width: 300px !important;
+  width: 300px;
+}
+.dlBlue .gridx .gridxPagerSizeSwitchDD {
+  text-align: right;
+}
+.dlBlue .gridx .gridxPagerStepperDD {
+  text-align: center;
+}
+.dlBlue .gridx .gridxPagerLabel {
+  font-family: Georgia;
+  font-style: italic;
+  color: #767676;
+  margin: 0 5px;
+}
+.dlBlue .gridxPagerStepperWidget {
+  width: auto;
+}
+.dlBlue .gridxLinkPager,
+.gridxLinkSizer {
+  padding: 8px 0;
+}
+.dlBlue .gridxPagerStepperBtn,
+.dlBlue .gridxPagerSizeSwitchBtn {
+  margin: 0 5px;
+  font-family: arial;
+  color: #00649d;
+}
+.dlBlue .gridxPagerStepperBtn.gridxPagerPrevPage {
+  background-image: url('svg/back-left-previous.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxPagerStepperBtn.gridxPagerNextPage {
+  background-image: url('svg/next-right-forward.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+  background-image: url('svg/back-left-previous-disabled.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable {
+  background-image: url('svg/next-right-forward-disabled.svg');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxPagerStepperBtn.gridxPagerPrevPage {
+  background-image: url('images/back-left-previous.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxPagerStepperBtn.gridxPagerNextPage {
+  background-image: url('images/next-right-forward.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+  background-image: url('images/back-left-previous-disabled.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dj_ie8 .dlBlue .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable {
+  background-image: url('images/next-right-forward-disabled.png');
+  background-size: 100%;
+  background-position: 0 0;
+}
+.dlBlue .gridxPagerStepperBtn:focus,
+.dlBlue .gridxPagerSizeSwitchBtn:focus {
+  outline: 1px dotted darkblue;
+}
+.dlBlue .gridxPagerStepperBtnHover,
+.dlBlue .gridxPagerSizeSwitchBtnHover {
+  text-decoration: underline;
+  color: #05386b;
+}
+.dlBlue .gridxPagerStepperBtnActive,
+.dlBlue .gridxPagerSizeSwitchBtnActive {
+  font-weight: bold;
+  color: #222;
+}
+/* Have to use idx.form.Select because OneUI theme can not fit dijit.form.Select.
+ * But the validation part of idx.form.Select must be hidden.
+ */
+.dlBlue .gridxPagerSizeSwitchWidget .dijitValidationContainer {
+  display: none;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxTitleBar {
+  background: none;
+  border-top: none;
+  padding: 5px 7px;
+}
+.dlBlue .gridxSummary {
+  background: none;
+  border-top: none;
+  padding: 5px 7px;
+  font-family: Georgia;
+  font-style: italic;
+  color: #767676;
+}
+.dlBlue .gridxHeader .dijitToolbar {
+  background: none;
+  border: none;
+  padding: 5px;
+  padding-left: 0px;
+}
+.dlBlue .gridx .dijitToolbar .dijitButton span {
+  padding: 0;
+  margin: 0;
+}
+.dlBlue .gridx .dijitToolbar .dijitButton .dijitButtonNode {
+  padding: 5px !important;
+}
+.dlBlue .gridx .dijitToolbar .dijitButtonHover .dijitButtonNode {
+  /*                    background: #fefefe;
+                    background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc));
+                    background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+                    background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+                    background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+                    background: linear-gradient(top,  #fefefe 0%,#cccccc 100%);*/
+}
+.dlBlue .gridx .dijitToolbar .dijitButtonActive .dijitButtonNode {
+  background: #dbdbdb;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(100%, #f4f4f4));
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -o-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -ms-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+}
+.dlBlue .gridxBar {
+  background: none;
+  height: 44px;
+}
+.dlBlue .gridxQuickFilterInput {
+  width: auto;
+}
+.dlBlue .gridx .dijitToolbar .dijitButtonHover,
+.dlBlue .gridx .dijitToolbar .dijitButtonActive {
+  background: none;
+}
+.dlBlue .gridx .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.dlBlue .gridx .dijitToolbar .dijitButtonActive .dijitButtonNode {
+  padding: 4px !important;
+  border-radius: 3px;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridx .gridxRowSelected .gridxCell {
+  border-top-color: #bbb;
+}
+.dlBlue .gridx {
+  /* cell select */
+}
+.dlBlue .gridx .gridxRowSelected:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.dlBlue .gridx .gridxRowSelected:last-child .gridxCell {
+  border-bottom-color: #bbb;
+}
+.dlBlue .gridx .gridxRowSelected .gridxCell {
+  background-color: #ecf8fd;
+}
+.dlBlue .gridx .gridxColumnSelected {
+  background-color: #ecf8fd;
+}
+.dlBlue .gridx .gridxRow .gridxCellSelected {
+  background-color: #ecf8fd;
+}
+.dlBlue .gridx .gridxHeader .gridxRowHeaderHeader .gridxHeaderCellFocus {
+  border-color: transparent;
+}
+.dlBlue .gridx .dijitCheckBoxPartial {
+  background-position: -33px;
+}
+.dlBlue .gridxRowSelected + .gridxRow .gridxCell {
+  border-top-color: #bbb;
+}
+/*
+ * Defect 12039
+ * Set the RowTable background to gridxCell not the whole table
+ * .oneui .gridx .gridxRowSelected .gridxRowTable {
+ * 
+ * */
+/* Indirect Select */
+.dlBlue .gridxIndirectSelectionCheckBox {
+  margin: 0;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxDnDAnchor {
+  background-color: #333;
+}
+.dlBlue .gridxDndAvatar {
+  background: none;
+  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  z-index: 999;
+}
+.dlBlue .gridxDndAvatar .gridxDnDItemCount {
+  position: relative;
+  top: -7px;
+  left: 4px;
+  padding: 10px;
+  background-color: black;
+  background-color: #000000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-style: Arial;
+  font-weight: bold;
+  color: #f3f3f3;
+}
+.dlBlue .gridxDnDIcon {
+  top: -7px;
+  left: -11px;
+}
+.dlBlue.dojoDndMove .gridxDnDIcon {
+  background: transparent url('images/gridx_sprite.png') no-repeat -65px -17px;
+}
+.dlBlue.dojoDndCopy .gridxDnDIcon,
+.dlBlue.dojoDndMove .dojoDndAvatarCanDrop .gridxDnDIcon,
+.dlBlue.dojoDndCopy .dojoDndAvatarCanDrop .gridxDnDIcon {
+  background: none;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxArrowButtonNode {
+  background-image: url("images/gridx-sort-icon.png") !important;
+  background-repeat: no-repeat;
+  background-size: auto 11px;
+  height: 10px;
+  margin: 5px 7px 0 0;
+  padding: 0;
+  width: 10px;
+  display: none;
+}
+.dlBlue .gridxSortUp .gridxArrowButtonNode {
+  display: block;
+  background-position: -72px -3px;
+}
+.dlBlue .gridxSortDown .gridxArrowButtonNode {
+  display: block;
+  background-position: -12px 0px;
+}
+.dlBlue .gridxSortSingle {
+  display: none;
+}
+.dlBlue .gridxArrowButtonChar {
+  display: none;
+}
+.dlBlue .gridxSortNested {
+  display: block;
+  margin: 2px 5px;
+  float: right;
+  font-size: 10px;
+}
+.dijit_a11y.dlBlue .gridxArrowButtonChar {
+  display: block;
+}
+.dlBlue .gridxHeaderRow .gridxCell:hover .gridxArrowButtonNode {
+  display: block;
+  background-position: -134px 0px;
+}
+.dlBlue .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxArrowButtonNode {
+  display: block;
+  background-position: -145px 0px;
+}
+.dlBlue .gridxHeaderRow .gridxCell:hover .gridxSortUp .gridxArrowButtonNode {
+  background-position: -196px 0px;
+}
+.dlBlue .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortUp .gridxArrowButtonNode {
+  display: block;
+  background-position: -206px 0px;
+}
+.dlBlue .gridxHeaderRow .gridxCell:hover .gridxSortDown .gridxArrowButtonNode {
+  background-position: -165px 0px;
+}
+.dlBlue .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortDown .gridxArrowButtonNode {
+  background-position: -176px 0px;
+}
+.dlBlue .gridxHeaderRow .gridxCell:hover .gridxSortAscendOnly {
+  background-position: -41px -4px;
+}
+.dlBlue .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortAscendOnly {
+  background-position: -19px -4px;
+}
+.dlBlue .gridxHeaderRow .gridxCell:hover .gridxSortDescendOnly {
+  background-position: -82px -4px;
+}
+.dlBlue .gridxHeaderRow .gridxCell.gridxHeaderCellFocus .gridxSortDescendOnly {
+  background-position: -102px -4px;
+}
+.dlBlue .gridxHeaderRow .gridxCell:hover .gridxSortUp .gridxSortAscendOnly {
+  background-position: -51px -4px;
+}
+.dlBlue .gridxHeaderCellFocus .gridxSortUp .gridxSortAscendOnly {
+  background-position: -51px -4px;
+}
+.dlBlue .gridxHeaderRow .gridxCell:hover .gridxSortDown .gridxSortDescendOnly {
+  background-position: -19px -4px;
+}
+.dlBlue .gridxHeaderCellFocus .gridxSortDown .gridxSortDescendOnly {
+  background-position: -19px -4px;
+}

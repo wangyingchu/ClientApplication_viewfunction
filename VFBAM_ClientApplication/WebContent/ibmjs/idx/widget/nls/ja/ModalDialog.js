@@ -13,9 +13,11 @@ define({
 	Success: "成功",
 	Confirmation: "確認",
 	Question: "質問",
+	Progress: "進行",
 	closeButtonLabel: "閉じる",
 	cancelButtonLabel: "キャンセル",
 	executeButtonLabel: "OK",
 	checked: "今後この質問をしない"
 //end v1.x content
 });
+

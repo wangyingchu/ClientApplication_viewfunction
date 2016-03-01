@@ -10,3 +10,4 @@ define({
 	learnMoreLabel: "Dodatkowe informacje"
 //end v1.x content
 });
+

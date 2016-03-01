@@ -57,6 +57,12 @@
 						dojo.parser.parse();
 						doh.t(dijit.byId("hslider"));
 					});
+					
+					doh.register("setMaxium", function(){
+					    var widget = dijit.byId("hslider");
+					    widget.set('maximum', 200);
+					    doh.t(widget.get('maximum') === 200);
+					});
 		
 					doh.register("getValue & setValue",
 						function(){
@@ -64,8 +70,17 @@
 							doh.t(widget.get("value") == 70);
 							widget.set('value', 30);
 							doh.t(widget.get("value") == 30);
-						}
-					);
+							widget.set('value', 150);
+							doh.t(widget.get('value') === 150);
+					});
+					
+					doh.register("setLabel", function(){
+					     var widget = dijit.byId("hslider");
+					     widget.set("label", "H Slider")
+					     doh.t(widget.get("label") === "H Slider");
+					});
+					
+					
 				}else{
 					// Register performance tests
 				}

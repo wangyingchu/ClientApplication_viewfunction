@@ -13,9 +13,11 @@ define({
 	Success: "Sikeres",
 	Confirmation: "Megerősítés",
 	Question: "Kérdés",
+	Progress: "Folyamat",
 	closeButtonLabel: "Bezárás",
 	cancelButtonLabel: "Mégse",
 	executeButtonLabel: "OK",
 	checked: "Ne kérdezze meg újra"
 //end v1.x content
 });
+

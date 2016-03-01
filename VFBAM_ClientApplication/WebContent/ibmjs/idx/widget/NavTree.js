@@ -90,8 +90,6 @@ define(["dojo/_base/declare",						// dDeclare
 			 * Override to update the badge icon class as well. 
 			 */
 			_updateItemClasses: function(item) {
-				this.inherited(arguments);
-
 				// update the badge icon class
 				var oldClass = this._badgeIconClass;
 				this._badgeIconClass = this.tree.getBadgeIconClass(item, this.isExpanded);
@@ -105,6 +103,7 @@ define(["dojo/_base/declare",						// dDeclare
 				} else {
 					dDomClass.add(this.badgeNode, this.idxBaseClass + "NoBadgeIcon");
 				}
+				this.inherited(arguments);
 			}
 		});
 
@@ -424,7 +423,7 @@ define(["dojo/_base/declare",						// dDeclare
 				};
 				
 				this.own(dAspect.after(this.model, "onBadgesChanged", dLang.hitch(this, "_onBadgesChanged"), true));
-				this.own(dAspect.after(this.model, "onSelectabilityChanged", dLang.hitch(this, "_onSelectabilityChanged"), true));
+				this.own(dAspect.after(this.model, "onSelectabilityChanged", dLang.hitch(this, "_onSelectabilityChanged"), true));				
 			},
 			
 			/**
@@ -759,7 +758,7 @@ define(["dojo/_base/declare",						// dDeclare
 				// whether or not the user has specified a label
 				this.showRoot = Boolean(this.label);
 			},
-			
+						
 			/**
 			 * Override to trigger calling the "onSelectionChanged" function when a new node is selected.
 			 */
@@ -768,7 +767,9 @@ define(["dojo/_base/declare",						// dDeclare
 					if (this.model.isSelectable(item)) {
 						this._onSelectionChanged(evt);
 					} else {
-						if (node.isExpandable) this._onExpandoClick({node:node});
+						if (node.isExpandable) {
+							this._onExpandoClick({node:node});
+						}
 					}
 				}
 			},
@@ -786,7 +787,7 @@ define(["dojo/_base/declare",						// dDeclare
 					var item = node.get("item");
 					items.push(item);
 				}
-				this.onSelectionChanged(items,nodes,this);
+				this.onSelectionChanged(items,nodes,this,evt);
 			},
 			
 			/**
@@ -794,7 +795,7 @@ define(["dojo/_base/declare",						// dDeclare
 			 * with an array of nodes and a reference to the tree itself.  Typically
 			 * the arrays have a single item in them for the NavTree.
 			 */
-			onSelectionChanged: function(items,nodes,tree) {
+			onSelectionChanged: function(items,nodes,tree,evt) {
 				
 			},
 			

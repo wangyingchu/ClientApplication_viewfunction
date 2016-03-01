@@ -1,0 +1,18 @@
+.jui-menu{
+	background: #ffffff;
+	border: 3px solid #008abf;
+	padding: 0;
+}
+.jui-menu .ui-state-disabled{
+	margin: 0;
+}
+.jui-menu .ui-menu-item a{
+	color: #008abf;
+	padding: 4px 10px;
+}
+.jui-menu .ui-menu-item a.ui-state-focus, 
+.jui-menu .ui-menu-item a.ui-state-active{
+	background: #008abf;
+	color: #ffffff;
+	border: 1px solid #008abf;
+}

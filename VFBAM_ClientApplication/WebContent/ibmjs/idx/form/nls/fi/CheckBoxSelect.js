@@ -10,3 +10,4 @@ define({
 	missingMessage: "Vähintään yksi objekti on valittava."
 //end v1.x content
 });
+

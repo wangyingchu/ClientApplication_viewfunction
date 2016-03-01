@@ -1,0 +1,184 @@
+/**Common styles for modal dialog as type of error/warning/information.**/
+.idxModalDialog,
+.idxConfirmDialog {
+  border: 4px solid;
+  border-color: rgba(red(@fwContrast), green(@fwContrast), blue(@fwContrast), .4);
+  .BorderRadius(4px);
+  .BoxShadow(0px 0px 4px 1px @shadowBox);
+}
+.idxModalDialog,
+.idxConfirmDialog {
+  background: @fwBackground;
+  width: 500px !important;
+}
+.idxModalDialog .dijitDialogTitleBar,
+.idxConfirmDialog .dijitDialogTitleBar {
+  display: none;
+}
+.idxModalDialog .messageSummary,
+.idxConfirmDialog .messageSummary {
+  overflow: auto;
+  margin: 20px 20px 16px;
+  /*border-top: 1px solid #769DC0;*/
+
+  _height: 48px;
+  /* position:relative; */
+
+  display: table;
+}
+.idxModalDialog .messageSummary .messageDescription,
+.idxConfirmDialog .messageSummary .messageDescription {
+  word-wrap: break-word;
+  /* float:left; */
+
+  /*width: 75%;*/
+
+  /*font-weight: bold;*/
+
+  display: table-cell;
+  vertical-align: middle;
+}
+.idxModalDialog .messageSummary img,
+.idxConfirmDialog .messageSummary img {
+  float: left;
+  margin: 0 10px 0 0;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url('images/idx/widget/msgIcons_24bit.png');
+}
+.dj_ie6 & .idxModalDialog .messageSummary img {
+  background-image: url('images/idx/widget/msgIcons_8bit.png');
+}
+.idxModalDialog .messageErrorIcon,
+.idxConfirmDialog .messageErrorIcon {
+  background-position: 0px -18px;
+}
+.idxModalDialog .messageInformationIcon,
+.idxConfirmDialog .messageInformationIcon {
+  background-position: -96px -18px;
+}
+.idxModalDialog .messageWarningIcon,
+.idxConfirmDialog .messageWarningIcon {
+  background-position: -24px -18px;
+}
+.idxModalDialog .messageSuccessIcon,
+.idxConfirmDialog .messageSuccessIcon {
+  background-position: -72px -18px;
+}
+.idxModalDialog .messageConfirmationIcon,
+.idxConfirmDialog .messageConfirmationIcon {
+  background-position: -24px -18px;
+}
+.idxModalDialog .messageQuestionIcon,
+.idxConfirmDialog .messageQuestionIcon {
+  background-position: -48px -18px;
+}
+.idxModalDialog .messageWrapper,
+.idxConfirmDialog .messageWrapper {
+  border-top: 1px solid @fwDarkest;
+  margin: 1px 20px 1px;
+  /*padding: 10px 1px;*/
+
+}
+.idxModalDialog .dijitDialogPaneContent,
+.idxConfirmDialog .dijitDialogPaneContent {
+  border-top: medium none;
+  padding: 10px 0px;
+}
+.idxModalDialog .dijitTitlePane,
+.idxConfirmDialog .dijitTitlePane {
+  margin-bottom: 8px;
+}
+.idxModalDialog .messageDialogFooter,
+.idxConfirmDialog .messageDialogFooter {
+  /*background-color: #F7F7F7;*/
+
+  margin: 0px 20px;
+  padding: 20px 0px 5px;
+  min-height: 40px;
+  border-top: 1px solid @fwBase;
+}
+.dj_ie6 & .idxModalDialog .messageDialogFooter,
+.dj_ie6 & .idxConfirmDialog .messageDialogFooter {
+  margin-bottom: 20px;
+}
+.idxModalDialog .messageDialogFooter .messageCheckBox,
+.idxConfirmDialog .messageDialogFooter .messageCheckBox {
+  float: left;
+}
+.idxModalDialog .messageDialogFooter .messageAction,
+.idxConfirmDialog .messageDialogFooter .messageAction {
+  float: right;
+}
+.messageDialogFooter .messageAction .dijitButton {
+  margin: 0 0 0 5px;
+}
+.idxModalDialog .messageRef,
+.idxConfirmDialog .messageRef {
+  float: left;
+  margin-right: 10px;
+}
+.idxModalDialog a.messageIdOnly {
+  text-decoration: none !important;
+  color: #222 !important;
+}
+.idxModalDialog .messageTimeStamp,
+.idxConfirmDialog .messageTimeStamp {
+  float: left;
+  color: @linkHover;
+}
+.idxModalDialog .messageRef a,
+.idxConfirmDialog .messageRef a {
+  text-decoration: none;
+}
+.idxModalDialog .messageRef a:hover,
+.idxConfirmDialog .messageRef a:hover {
+  text-decoration: underline;
+}
+/* progress dialog customization */
+.idxModalDialog .messageSummary .messageProgressIcon,
+.idxConfirmDialog .messageSummary .messageProgressIcon {
+  display: none;
+}
+.idxProgressDialog {
+  width: 300px !important;
+  padding: 0px 0px 5px;
+}
+.idxProgressDialog .messageSummary {
+  margin: auto;
+  padding: 25px 0px;
+}
+.idxProgressDialog .messageWrapper {
+  border-top: medium none;
+  margin: 0px;
+}
+.idxProgressDialog .dijitDialogPaneContent {
+  padding: 0px;
+}
+.idxProgressDialog .idxSimpleIconContainer {
+  text-align: center;
+}
+.idxProgressDialog .idxSimpleIconContainer tr td {
+  text-align: center;
+}
+.idxProgressDialog .idxSimpleIconContainer .idxSignIcon.dijitContentPaneLoading {
+  margin: auto;
+  padding-left: 0px !important;
+  padding-top: 3px !important;
+  padding-bottom: 2px !important;
+  height: 45px;
+  width: 40px;
+}
+.idxProgressDialog .idxSimpleIconContainer .idxSimpleIconText {
+  padding: 0px 0px 15px 0px;
+}
+.idxProgressDialog .messageDialogFooter {
+  padding: 15px 0px 8px;
+  min-height: 30px;
+  text-align: center;
+}
+.idxProgressDialog .messageDialogFooter .messageAction {
+  float: none;
+}

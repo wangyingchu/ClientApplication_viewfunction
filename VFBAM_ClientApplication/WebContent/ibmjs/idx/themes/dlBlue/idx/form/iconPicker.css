@@ -1,0 +1,70 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxCalendarIcon {
+  background-image: url('images/datepicker16.png');
+  margin: 7px 4px 0 0;
+  cursor: pointer;
+}
+.dlBlue .dijitTextBoxDisabled .idxCalendarIcon {
+  cursor: default;
+}
+.dlBlue .dijitTextBoxDisabled .idxTimeIcon {
+  cursor: default;
+}
+.dlBlue .idxTimeIcon {
+  background-image: url('images/time_picker16.png');
+  margin: 7px 4px 0 0;
+  cursor: pointer;
+}
+.dlBlue .idxIconPicker {
+  padding: 0px 20px 0px 1px;
+  width: 7em;
+  position: relative;
+}
+.dlBlue .idxIconPicker .dijitTextBoxDisabledFocused .dijitInputContainer {
+  background-color: #EFEFEF !important;
+}
+.dlBlue .idxIconPicker .dijitArrowButton {
+  display: none;
+}
+.dlBlue .idxPickerIconLink {
+  vertical-align: top;
+  position: absolute;
+  top: 1px;
+  right: 2px;
+}
+.dlBlue .idxPickerIcon {
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .idxPickerTextIcon {
+  display: none;
+  visibility: hidden;
+}
+.dijitRtl .dlBlue .idxIconPicker {
+  padding-right: 1px;
+  padding-left: 20px;
+}
+.dijitRtl .dlBlue .idxPickerIconLink {
+  right: auto;
+  left: 2px;
+}
+.dijitRtl .dlBlue .idxCalendarIcon,
+.dijitRtl .dlBlue .idxTimeIcon {
+  margin: 7px 0 0 4px;
+}
+.dlBlue.dijit_a11y .idxPickerIcon {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue.dijit_a11y .idxPickerTextIcon {
+  display: block;
+  visibility: visible;
+  width: 16px;
+  height: 16px;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  font-size: 125%;
+}

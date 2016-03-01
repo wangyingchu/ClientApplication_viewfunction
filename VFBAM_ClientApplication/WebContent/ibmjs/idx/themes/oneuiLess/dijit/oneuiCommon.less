@@ -1,0 +1,173 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.idxComposite{
+	margin:1px;
+	padding:1px;
+}
+.idxSelectWrap .dijitSelect{
+	margin: 0;
+}
+.idxComposite .idxLabel{
+	text-align: left;
+}
+.idxSelectWrap .idxLabel.dijitInline, 
+.idxSliderWrap .idxLabel.dijitInline{
+	/**display: table-cell;**/
+}
+.idxLabel{
+	vertical-align: top;
+	padding:0 10px 0 0;
+	margin: 3px 0 2px 0;
+}
+
+.idxCheckBoxListWrap .idxLabel,
+.idxRadioButtonSetWrap .idxLabel{
+	vertical-align: top;
+}
+.idxLabel .idxRequiredIcon{
+	display:none;
+}
+.dijitRequired .idxLabel .idxRequiredIcon{
+	display: inline-block;
+	color: @textActive;
+  font-size: 1em;
+}
+.idxComposite .idxHint{
+	display: none;
+}
+.idxComposite .idxHintOutside{
+	position: static;
+	width: 15em;
+	/*word-break: break-all;*/
+}
+.idxComposite .idxUnit{
+	padding-left: 5px;
+	padding-right: 0px;
+}
+.idxComposite .dijitSpinner .dijitSpinnerButtonContainer .dijitArrowButton{
+	width: auto;
+}
+
+/** Validation Styles **/
+.idxComposite .dijitValidationContainer{
+	visibility: hidden;
+    height: 25px;
+    width: 15px;
+    vertical-align: top;
+    margin: 0 0 0 5px;
+}
+
+.idxComposite .dijitValidationContainer .dijitValidationIcon {
+	height: 15px;
+	width: 15px;
+	margin: 5px 0;
+	background-image: url('images/idx/widget/msgIcons_24bit.png');
+	background-position: -2px -2px;
+    /*visibility:hidden;*/
+}
+
+/*.dijitError .dijitValidationContainer .dijitValidationIcon {
+	background-position: -2px -2px;
+	visibility: visible;
+}
+
+.dijitValidationTextBoxIncomplete .dijitValidationContainer{
+	cursor: default;
+	display: inline;
+}
+
+.dijitIncomplete .dijitValidationContainer .dijitValidationIcon {
+	background-position: -20px -2px;
+	visibility: visible;	
+}
+*/
+
+.dj_ie6 & .idxComposite .dijitValidationContainer .dijitValidationIcon {
+	background-image: url('images/idx/widget/msgIcons_8bit.png');
+}
+.dj_ie6 & .idxTextBoxWrap .dijitTextBox {
+	padding: 3px 10px;
+}
+.dj_ie6 & .idxTextBoxWrap .dijitTextBox .dijitInputField {
+  	padding: 0;
+}
+.dj_ie7 & .idxTextareaWrap .dijitInputContainer{
+	display: inline;
+}
+.idxTextareaWrap .dijitValidationContainer .dijitValidationIcon{
+	margin: 0;
+}
+
+.idxTextareaWrap .dijitValidationContainer{
+	display: none;
+}
+
+.idxTextareaWrapError .dijitValidationContainer{
+	display: inherit;
+}
+
+.idxComposite .dijitValidationContainer input {
+	background-color: transparent !important;
+	width: 0px;
+	border:0px;
+}
+.idxComposite .dijitSpinnerButtonContainer {
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  padding: 0 2px;
+}
+
+.idxComposite input.dijitValidationInner {
+	direction: ltr !important;
+	height: auto !important;
+	text-align: left !important;
+	text-indent: -1em !important;
+}
+.dj_a11y & .idxComposite .dijitValidationContainer input.dijitValidationInner{
+	text-indent: 0 !important;
+}
+.idxComposite.dijitError .dijitValidationContainer{
+	visibility: visible;
+}
+
+/* Fix outline issue in IE for composite widget such as CheckBoxList and RadioButtonSet*/
+.idxNoOutline{
+	outline-style: none;
+}
+
+.idxFormBodyRow{
+	margin: 0;
+	padding: 2px 0;
+}
+.idxFormBodyRow .idxComposite{
+	vertical-align: top;
+}
+
+/* Drag and Drop */
+.idxDndAvatar {
+  background-color: transparent;
+}
+.idxDndAvatarBody {
+  padding: 7px 10px;
+  background: @fwContrast;
+  background: rgba(red(@fwContrast), green(@fwContrast), blue(@fwContrast), .8);
+  .BorderRadius(3px);
+  font-weight: bold;
+  .textColors(@fwContrast);
+  color: @textStrong;
+}
+.idxDndAvatar .dropIndicator {
+  width:16px;
+  height: 16px;
+  background: url('images/dijit/dndSource_16px.png');
+  vertical-align: top;
+}
+.idxDndAvatar.idxDndAvatarCanDrop .dropIndicator {
+  background: transparent;
+}

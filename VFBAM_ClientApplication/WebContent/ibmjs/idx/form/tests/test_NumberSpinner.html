@@ -62,6 +62,7 @@
 	Here is a composite NumberSpinner. -1,000 --- 1,000 is an valid range.
 	</p>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'disabledToggle',
 		onClick: function(){
 		dijit.byId('spinner1').set('disabled', !dijit.byId('spinner1').get('disabled'));
 		return false;
@@ -70,6 +71,7 @@
 	Toggle Disabled
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'readOnlyToggle',
 		onClick: function(){
 		dijit.byId('spinner1').set('readOnly', !dijit.byId('spinner1').get('readOnly'));
 		return false;
@@ -78,6 +80,7 @@
 	Toggle Read Only
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'requiredToggle',
 		onClick: function(){
 		dijit.byId('spinner1').set('required', !dijit.byId('spinner1').get('required'));
 		dijit.byId('spinner1').validate();
@@ -87,6 +90,7 @@
 	Toggle Required
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'toVertical',
 		onClick: function(){
 		dijit.byId('spinner1').set('labelAlignment', 'vertical');
 		return false;
@@ -95,6 +99,7 @@
 	Vertical
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'toHorizontal',
 		onClick: function(){
 		dijit.byId('spinner1').set('labelAlignment', 'horizontal');
 		return false;
@@ -103,6 +108,7 @@
 	Horizontal
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'hintOut',
 		onClick: function(){
 		dijit.byId('spinner1').set('hintPosition', 'outside');
 		return false;
@@ -111,6 +117,7 @@
 	Set hint outside
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'hintIn',
 		onClick: function(){
 		dijit.byId('spinner1').set('hintPosition', 'inside');
 		return false;
@@ -118,7 +125,14 @@
 	">
 	Set hint inside
 	</button>
-	
+	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'resetButton',
+		onClick: function(){
+		dijit.byId('spinner1').reset();
+		}
+	">
+	Reset
+	</button>
 	<br/>
 	<br/>
 	

@@ -55,11 +55,6 @@
 	background: -o-linear-gradient(top, #ffffff 0%,#ededed 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #ffffff 0%,#ededed 100%); /* IE10+ */
 	background: linear-gradient(top, #ffffff 0%,#ededed 100%); /* W3C */
-}
-
-.dj_ie7 .oneui .idxHeaderPaneHeader,
-.dj_ie8 .oneui .idxHeaderPaneHeader,
-.dj_ie9 .oneui .idxHeaderPaneHeader {
 	filter: progid:DXImageTransform.Microsoft.gradient( GradientType=0, startColorstr='#ffffff', endColorstr='#ededed'); 
 }
 

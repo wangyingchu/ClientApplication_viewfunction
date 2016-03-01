@@ -1,0 +1,84 @@
+/*
+ * Licensed Materials - Property of IBM
+ * 5724-Q36
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or 
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+.claro .stateStatusPanel .stateStatusPanelContainer {
+	height: 24px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px; 
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	padding-top: 5px;
+	padding-left: 10px;
+	background: #f9fbfd url("claro/statuspanel_background.png") repeat-x;
+}
+
+.claro .stateStatusPanel .stateStatusPanelText {
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.dj_ie7 .claro .stateStatusPanel .stateStatusPanelText {
+    margin-left: 4px;
+}
+
+.claro .stateStatusPanelContainer .linkWithPopup {
+    top: 1px;
+    vertical-align: top;
+}
+
+.claro .stateStatusPanel .stateStatusPanelText .linkWithPopupDropDownButton {
+	font-weight: normal;
+}
+
+.claro .stateStatusPanelPopup {
+	width: 550px; 
+	height: 250px;
+}
+
+.claro .stateStatusPanelPopup .dojoxGrid {
+	border: 1px solid #b5c2d2;
+}
+
+.claro .stateStatusPanelPopup .dojoxGridTreeModel .dojoxGridExpando {
+	position:relative;
+	top:4px;
+}
+
+.claro .stateStatusPanel .stateStatusPanelAlert {
+    background: url("claro/statuspanel_background_alert.png") repeat-x;
+    color: #ffffff;
+    top: -12px;
+}
+
+.claro .stateStatusPanel .stateStatusPanelAlert .linkWithPopup .dijitDropDownButton .dijitButtonText {
+    color: #ffffff;
+}
+
+.claro .stateStatusPanel .stateStatusPanelAlertText {
+    top: -13px;
+}
+
+/* wln added following classes ... */
+.claro .iconOK_16x16 {
+	background: url('claro/status_24.png') -48px 0px no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.claro .iconError_glow_23x24 {
+    background: url('claro/status_24.png') -144px 0px no-repeat;
+    width: 23px;
+    height: 24px;
+    position: relative;
+    bottom: 5px;
+}
+.claro .iconError_16x16 {
+    background: url('claro/status_24.png') -96px 0px no-repeat;
+    width: 16px;
+    height: 16px;
+}

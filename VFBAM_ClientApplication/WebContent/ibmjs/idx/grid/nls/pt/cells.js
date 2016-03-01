@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Seleção de alternância de todas as linhas"		
 //end v1.x content
 });
+

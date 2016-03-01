@@ -165,9 +165,61 @@
 	position: absolute;
 }
 
-.dijit_a11y .oneui .dijitTooltipConnector {
+ .dijitTooltipConnector .idxConnectorAbove,
+ .dijitTooltipConnector .idxConnectorBelow,
+ .dijitTooltipConnector .idxConnectorLeft,
+ .dijitTooltipConnector .idxConnectorRight {
+	visibility: hidden;
+	display: none;
+	padding: 0px;
+	font-size: 16px;
+	line-height: 16px;
+}
+
+.dj_gecko .oneui.dijit_a11y .dijitTooltipAbove .dijitTooltipConnector .idxConnectorAbove {
+	visibility: visible;
+	display: block;
+}
+
+.dj_gecko .oneui.dijit_a11y .dijitTooltipBelow .dijitTooltipConnector .idxConnectorBelow {
+	visibility: visible;
+	display: block;
+}
+
+.dj_gecko .oneui.dijit_a11y .dijitTooltipLeft .dijitTooltipConnector .idxConnectorLeft {
+	visibility: visible;
+	display: block;
+}
+
+.dj_gecko .oneui.dijit_a11y .dijitTooltipRight .dijitTooltipConnector .idxConnectorRight {
+	visibility: visible;
+	display: block;
+}
+
+
+.oneui.dijit_a11y .dijitTooltipConnector {
 	display: none;
 	/* won't show b/c it's background-image; hide to avoid border gap */
+}
+.dj_gecko .oneui.dijit_a11y .dijitTooltipConnector.idxConnector {
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+.dj_gecko .oneui.dijit_a11y .dijitTooltipAbove .dijitTooltipConnector.idxConnector {
+	padding: 0px;
+	margin-bottom: 2px;]
+}
+.dj_gecko .oneui.dijit_a11y .dijitTooltipBelow .dijitTooltipConnector.idxConnector {
+	padding: 0px;
+	margin-top: 2px;
+}
+.dj_gecko .oneui.dijit_a11y .dijitTooltipLeft .dijitTooltipConnector.idxConnector {
+	padding: 0px;
+}
+.dj_gecko .oneui.dijit_a11y .dijitTooltipRight .dijitTooltipConnector.idxConnector {
+	padding: 0px;
 }
 
 .dj_ie6 .oneui .dijitTooltipConnector {

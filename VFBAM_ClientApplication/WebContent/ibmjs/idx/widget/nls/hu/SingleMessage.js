@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Összes megjelenítése ({num})",
+	viewAll: "Összes ({num}) &lrm; megjelenítése",
 	viewDetails: "További részletek",
 	refresh: "Frissítés",
 	showDetails: "Részletek megjelenítése",
 	hideDetails: "Részletek elrejtése"
 //end v1.x content
 });
+

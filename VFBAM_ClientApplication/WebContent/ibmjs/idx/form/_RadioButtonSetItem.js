@@ -50,6 +50,11 @@ define([
 			this.option.selected = true;
 			this.parent.set("value",  this.parent._getValueFromOpts());
 			this.parent.focusChild(this);
+		},
+		
+		destroy: function(){
+			this.focusNode.destroy();
+			this.inherited(arguments);
 		}
 	});
 });

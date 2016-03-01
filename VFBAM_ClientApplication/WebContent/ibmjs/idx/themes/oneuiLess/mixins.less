@@ -1,0 +1,173 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	CSS3 Cross Browser Properties
+//	These styles standardize complex standards into a single mixin for use in
+//	the .less files. Since those styles will likely use other variables defined here,
+//	it should not be necessary to edit the .less files.
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+.gradient (@startColor, @endColor) {        
+    background: mix(@startColor, @endColor);
+	background: -moz-linear-gradient(top,  @startColor 0%, @endColor 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@startColor), color-stop(100%,@endColor));
+	background: -webkit-linear-gradient(top,  @startColor 0%,@endColor 100%);
+	background: -o-linear-gradient(top,  @startColor 0%,@endColor 100%);
+	background: -ms-linear-gradient(top,  @startColor 0%,@endColor 100%);
+	background: linear-gradient(to bottom,  @startColor 0%,@endColor 100%);
+	filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr='"@startColor~"', endColorstr='"@endColor~"',GradientType=0 )";
+}
+
+.gradientV (@dir: left, @end: right, @filter: 1, @startColor, @endColor) {        
+    background: mix(@startColor, @endColor);
+	background: -moz-linear-gradient(@dir,  @startColor 0%, @endColor 100%);
+	background: -webkit-gradient(linear, @dir top, @end top, color-stop(0%,@startColor), color-stop(100%,@endColor));
+	background: -webkit-linear-gradient(@dir,  @startColor 0%,@endColor 100%);
+	background: -o-linear-gradient(@dir,  @startColor 0%,@endColor 100%);
+	background: -ms-linear-gradient(@dir,  @startColor 0%,@endColor 100%);
+	background: linear-gradient(to @end,  @startColor 0%,@endColor 100%);
+	filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr='"@startColor~"', endColorstr='"@endColor~"',GradientType=0 )";
+}
+
+.gradientClear() {
+    background: none;
+    filter: ~"none";
+}
+
+.icon(@url, @location) {
+    background-image: url(@url); 
+    background-repeat: no-repeat; 
+    background-position: @location;
+}
+
+.image (@root, @file) {
+  background-image: url('@{root}@{file}');
+}
+
+.BorderRadius (@radius) {
+    -webkit-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.BoxShadow(...) {
+    box-shadow: @arguments;
+    -moz-box-shadow: @arguments;
+    -webkit-box-shadow: @arguments;
+}
+
+.transition (@property; @duration; @transition: ease) {
+	-webkit-transition-property: @property;
+	-moz-transition-property: @property;
+	transition-property: @property;
+	-webkit-transition-duration: @duration;
+	-moz-transition-duration: @duration;
+	transition-duration: @duration;
+	-webkit-transition-timing-function: @transition;
+	-moz-transition-timing-function: @transition;
+	transition-timing-function: @transition;
+}
+
+.TextShadow(@c) {
+	text-shadow: 0 1px 0 @c;
+	@ieColor: hsl(
+				hue(@c),
+				saturation(@c),
+				lightness(@c)
+		);
+	  
+	@a: alpha(@c);
+	@hex: lighten(@ieColor, 100-(@a*100));
+		
+	filter: ~"dropshadow(color="@ieColor~", offx=, offy=1)";
+}
+
+////////// Banner mixins
+
+.setBannerLines (@c) when (luma(@c) =< 50) {
+	@separator: #ffffff;
+}
+.setBannerLines (@c) when (luma(@c) > 50) {
+	@separator: #000000;
+}
+
+.setBanner (@bannerType; @bannerColor1; @bannerColor2; @bannerImage; @bannerRepeat; @bannerPosition; @bannerColor) when (@bannerType = gradient) {
+	.gradient(@bannerColor1, @bannerColor2);
+	.textColors(mix(@bannerColor1, @bannerColor2));
+	.setBannerLines(mix(@bannerColor1, @bannerColor2));
+	@bannerField1: lighten(mix(@bannerColor1, @bannerColor2), 10%);
+	@bannerField2: darken(@bannerColor2, 10%);
+}
+
+.setBanner (@bannerType; @bannerColor1; @bannerColor2; @bannerImage; @bannerRepeat; @bannerPosition; @bannerColor) when (@bannerType = solid) {
+	background-color: @bannerColor1;
+	.textColors(@bannerColor1);
+	@bannerFieldColor: lighten(@bannerColor1, 10%);
+	.setBannerLines(@bannerColor1);
+	@bannerField1: @bannerFieldColor;
+	@bannerField2: @bannerFieldColor;
+}
+
+.setBanner (@bannerType; @bannerColor1; @bannerColor2; @bannerImage; @bannerRepeat; @bannerPosition; @bannerColor) when (@bannerType = image) {
+	background-color: @bannerColor;
+	background-image: @bannerImage;
+	background-repeat: @backgroundRepeat;
+	background-position: @backgroundPosition;
+}
+
+.setBannerText (@bannerType) when (@bannerType = gradient) {
+	@bannerText: mix(@bannerColor1, @bannerColor2);
+}
+
+.setBannerText (@bannerType) when (@bannerType = solid) {
+	@bannerText: @bannerColor1;
+}
+
+.setBannerText (@bannerType) when (@bannerType = image) {
+	@bannerText: @bannerColor;
+}
+
+.setBannerLogo (@logo, @customLogo) when (@logo = default)  {
+	.gradient(#282828, #0c0c0c);
+	border-left: 1px solid #131313;
+	-webkit-box-shadow: -1px 0px #585858;
+    -moz-box-shadow: -1px 0px #585858;
+    box-shadow: -1px 0px #585858;
+    border-left: 1px solid #131313;
+}
+
+.setBannerLogo (@logo, @customLogo) when (@logo = custom)  {
+	background: url(@customLogo) center no-repeat;
+	border-left: 1px solid transparent;
+}
+
+.logoVisibility (@logo) when (@logo = default) {
+	display: inline;
+}
+
+.logoVisibility (@logo) when (@logo = custom) {
+	display: none;
+}
+
+.setBannerMenuHover (@bannerType) when (@bannerType = gradient) {
+	@hoverTop: lighten(@bannerColor1, 10%);
+	@hoverBottom: darken(@bannerColor2, 10%);
+	.textColors(mix(@hoverTop, @hoverBottom));
+}
+
+.setBannerMenuHover (@bannerType) when (@bannerType = solid) {
+	@hoverTop: lighten(@bannerColor1, 10%);
+	.textColors(@hoverTop);
+}
+
+.setBannerMenuHover (@bannerType) when (@bannerType = image) {
+	.gradient(rgba(0,0,0,.35), rgba(0,0,0,.65));
+	.textColors(#333333);
+}
+
+.setLip (@lip) when (@lip = false) {
+	display: none;
+}
+
+.setLip (@lip) when (@lip = true) {
+	.gradient(@brand, @brandDark);
+}

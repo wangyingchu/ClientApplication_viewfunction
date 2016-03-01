@@ -6,18 +6,22 @@
  */
 define(["dojo/_base/declare",
         "dojo/_base/lang",
+        "dojo/_base/kernel",
         "dojo/keys",
         "dojo/aspect",
         "dojo/Deferred",
         "dojo/when",
         "dojo/promise/Promise",
         "dojo/promise/all",
+		"dojo/on",
         "dijit/_Widget",
         "dijit/_TemplatedMixin",
         "dijit/_WidgetsInTemplateMixin",
         "dijit/focus",
         "dojo/query",
         "dojo/dom-style",
+		"dojo/dom-attr",
+		"dojo/dom-construct",
         "../string",
         "../resources",
         "dojo/text!./templates/LoginFrame.html",
@@ -30,22 +34,27 @@ define(["dojo/_base/declare",
         "dojo/i18n!idx/widget/nls/ModalDialog",
         "dojo/i18n!idx/widget/nls/base",
         "dojo/i18n!./nls/base",
-        "dojo/i18n!../nls/base"
+        "dojo/i18n!../nls/base",
+		"idx/form/buttons"
         ],
         function(dDeclare,					// (dojo/_base/declare)
 				 dLang,						// (dojo/_base/lang)
+				 dKernel,					// (dojo/_base/kernel)
 				 dKeys,                     // (dojo/keys)
 				 dAspect,					// (dojo/aspect)
 				 dDeferred,					// (dojo/Deferred)
 				 dWhen,						// (dojo/when)
 				 dPromise,					// (dojo/promise/Promise)
 				 dPromiseAll,				// (dojo/promise/all)
+				 on,
 		         dWidget,					// (dijit/_Widget)
 		         dTemplatedMixin,			// (dijit/_TemplatedMixin)
 		         dWidgetsInTemplateMixin,	// (dijit/_WidgetsInTemplateMixin)
 		         dFocus,					// (dijit/focus)
 		         dQuery,					// (dojo/query)
 		         dDomStyle,					// (dojo/dom-style) for (dDomStyle.set)
+		         dDomAttr,					// (dojo/dom-attr) for (dDomAttr.set)
+		         dDomConstruct,				// (dojo/dom-construct) for (dDomConstruct.place)
 		         iString,					// (idx/string)
 		         iResources,				// (idx/resources)
 		         templateText)				// (dojo/text!./templates/LoginFrame.html) 
@@ -158,9 +167,7 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   	this.formTarget = value;
   	if (iString.nullTrim(value)) {
   		this._form.set("target", value);
-  	} else {
-  		this._form.set("target", this._hiddenFrame.name);
-  	}
+  	} 
   },
   
   /**
@@ -169,11 +176,8 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   _setLabelSeparatorAttr: function(value) {
 	this.labelSeparator = value;
 	var separator = this.labelSeparator;
-	if (this.domNode) {
-		dQuery(".idxLoginSeparator", this.domNode).forEach(function (node,index,nodeList) {
-			node.innerHTML = separator;
-		});
-	}
+	this.set("labelUserName", this.labelUserName);
+	this.set("labelPassword", this.labelPassword);
   },
   
   /**
@@ -290,7 +294,20 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   _setUserAutoCompleteAttr: function(value) {
   	this.userAutoComplete = value;
   	this._userAutoComplete = (value) ? "on" : "off";
-  	if (this.loginUserName) this.loginUserName.set("autocomplete", this._userAutoComplete);
+  	if (this.loginUserName) {
+		if ( this._userAutoComplete ){
+			if ( !this.hiddenPassword )
+				this.hiddenPassword = dDomConstruct.create("input", {
+					"autocomplete": "on",
+					"type":"password",
+					"style": "display:none"
+				}, 
+				this.loginUserName.textbox, "after" );
+				
+		}
+		this.loginUserName.set("autocomplete", this._userAutoComplete);
+		dDomAttr.set(this.loginPassword.textbox, "autocomplete", "on");
+	}
   },
   
   /**
@@ -299,7 +316,10 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   _setPasswordAutoCompleteAttr: function(value) {
   	this.passwordAutoComplete = value;
   	this._pwdAutoComplete = (value) ? "on" : "off";
-  	if (this.loginPassword) this.loginPassword.set("autocomplete", this._pwdAutoComplete);
+  	if (this.loginPassword) {
+		dDomAttr.set(this.loginPassword.textbox, "autocomplete", this._pwdAutoComplete);
+		//this.loginPassword.set("autocomplete", this._pwdAutoComplete);
+	}
   },
   
   /**
@@ -393,9 +413,30 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
    * Regular expression for user name and password 
    * validation that user can override.
    * @type String
-   * @default  ".*" 
+   * @default  null
+   * @deprecated
    */
-  regExp: ".*", // to restrict to numbers,letters and underscore, use "[\w]+"
+  regExp: null, // to restrict to numbers,letters and underscore, use "[\w]+"
+  
+  /**
+   * Regular expression for user name validation that can be overridden.
+   * This replaces the "regExp" attribute which has been deprecated.  If
+   * "regExp" is provided, but "userPattern" is not, then "regExp" will be used.
+   * To restrict to numbers,letters and underscore, use "[\w]+"
+   * @type String|RegExp
+   * @default ".*"
+   */
+  userPattern: ".*",
+  
+  /**
+   * Regular expression for password validation that can be overridden.
+   * This replaces the "regExp" attribute which has been deprecated.  If
+   * "regExp" is provided, but "passwordPattern" is not, then "regExp" 
+   * will be used.  To restrict to numbers,letters and underscore, use "[\w]+"
+   * @type String|RegExp
+   * @default ".*"
+   */
+  passwordPattern: ".*",
   
   /**
    * Message to be displayed on the cancel button.
@@ -431,7 +472,7 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   {
       if(b)
       {
-          dDomStyle.set(this.cancelButton.domNode,{visibility:"visible",display:"inline"});
+          dDomStyle.set(this.cancelButton.domNode,{visibility:"visible",display:""});
       }
       else
       {
@@ -440,8 +481,15 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   },
 
   postMixInProperties: function() {
+	this._postCreated = false;
 	this.inherited(arguments);
-
+	if ("userPattern" in this.params) {
+		this._explicitUserPattern = true;
+	}
+	if ("passwordPattern" in this.params) {
+		this._explicitPasswordPattern = true;
+	}
+	
 	var resources = iResources.getResources("idx/app/LoginFrame", this.lang);
 	if(!this.loginTitle){
 		this.loginTitle = resources.loginTitle;
@@ -471,15 +519,22 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
 	if(!this.labelSeparator){
 		this.labelSeparator = iResources.getLabelFieldSeparator("idx/app/LoginFrame", this.lang);
 	}
+	this._postMixedIn = true;
   },
 
   postCreate: function() {
 	this.connect(this.loginUserName.domNode, "onkeypress", this._onKeyPress);
 	this.connect(this.loginUserName, "onFocus", this._onUserFieldFocus);
 	this.connect(this.loginUserName.focusNode, "onfocus", this._onUserFieldFocus);
+	this.connect(this.loginUserName.focusNode, "onchange", function(){
+		if (this.hiddenPassword) {
+			this.loginPassword.focusNode.value = this.hiddenPassword.value;			
+		}
+	});
 	this.connect(this.loginPassword.domNode, "onkeypress", this._onKeyPress);
 	this.connect(this.loginPassword, "onFocus", this._onPasswordFieldFocus);
 	this.connect(this.loginPassword.focusNode, "onfocus", this._onPasswordFieldFocus);
+	this._postCreated = true;
   },
   
   startup: function() {
@@ -503,16 +558,16 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   	this._lastFocus = this.loginPassword;
   },
   
-  onFocus: function() {
-  	this.inherited(arguments);
-  	if (this._lastFocus) {
-  		this._lastFocus.focus();
-  		this._lastFocus = null;
-  	} else {
-  		this.loginUserName.focus();
-  	}
+  focus: function() {
+	  this.inherited(arguments);
+	  if (this._lastFocus) {
+	  	this._lastFocus.focus();
+	  	this._lastFocus = null;
+	  } else {
+		  this.loginUserName.focus();
+	  }
   },
-  
+    
   /**
    * Handle enter key pressed in username or password fields
    */
@@ -537,6 +592,46 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
   },
   
   /**
+   * @private
+   */
+  _setRegExpAttr: function(value) {
+	  dKernel.deprecated("idx/app/LoginFrame 'regExp' attribute:", "Use 'userPattern' or 'passwordPattern' instead.", "2.0");
+	  if (this._explicitUserPattern) {
+		  console.warn("Setting 'regExp' attribute will have no effect on user field pattern because an explicit 'userPattern' has been provided.");
+	  } else {
+		  this.loginUserName.set("pattern", value);
+	  }
+	  if (this._explicitPasswordPattern) {
+		  console.warn("Setting 'regExp' attribute will have no effecton password field pattern because an explicit 'passwordPattern' has been provided.");
+	  } else {
+		  this.loginPassword.set("pattern", value);
+	  }
+	  this.regExp = value;
+  },
+  
+  /**
+   * @private
+   */
+  _setUserPatternAttr: function(value) {
+	  if (("userPattern" in this.params) || (this._postCreated)) {
+		  this._explicitUserPattern = true;
+	  }
+	  this.loginUserName.set("pattern", value);
+	  this.userPattern = value;
+  },
+  
+  /**
+   * @private
+   */
+  _setPasswordPatternAttr: function(value) {
+	  if (("passwordPattern" in this.params) || (this._postCreated)) {
+		  this._explicitPasswordPattern = true;
+	  }
+	  this.loginPassword.set("pattern", value);
+	  this.passwordPattern = value;
+  },
+  
+  /**
    * Called when login button pressed
    * Calls user 'onSubmit' method after
    * trimming fields. Displays error message
@@ -547,17 +642,19 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
    */
   _onSubmitClick: function(/*Event*/ e)
   {
-  	  var lastFocus = this._lastFocus;
+  	  var lastFocus = this._lastFocus, self = this;;
+
 	  // Do some validation here before continuing 
 	  // Trim fields and display error dialog if invalid
 	  // Caller could have specified their own regExp for additional validation
-	  var name = this.loginUserName.value;
-	  if(name && name != "") {
+	  var name = this.loginUserName.get("displayedValue");
+	  if(name && name !== "") {
 		  name = name.replace(/^\s+|\s+$/g, '');
 		  this.loginUserName.set("value",name) ; // remove leading/trailing blanks
 	  }
-	  var pwd  = this.loginPassword.value;
-	  if(pwd && pwd != "") {
+	  
+	  var pwd  = this.loginPassword.get("displayedValue");
+	  if(pwd && pwd !== "") {
 		  pwd = pwd.replace(/^\s+|\s+$/g, '');
 		  this.loginPassword.set("value",pwd) ; // remove leading/trailing blanks
 	  }
@@ -569,7 +666,11 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
 	  
 	  this.loginPassword.focus();
 	  this.loginUserName.focus();
-	  
+	  if ( !isPasswordValid ){
+	  	this.loginPassword.focus();
+	  	return;
+	  }
+	  if (this.hiddenPassword) this.hiddenPassword.value = pwd;
 	  if( !isUserNameValid || !isPasswordValid ) {
 	    // focus the button to trigger the validation tooltips to fade out
 	  	this.loginButton.focus();
@@ -579,7 +680,7 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
 		var dialogHandle = null;
 		
 		// wait for dialog to close to revalidate the form and focus the first bad field
-		var self = this;
+		
 		dialogHandle = dAspect.after(this.invalidLoginDialog, "onHide", function() {
 		   if( !isPasswordValid ) {
     			//note: validate() wouldn't update styling if field was not in focus, so forcing focus to field first
@@ -593,26 +694,29 @@ return dDeclare("idx.app.LoginFrame", [dWidget,dTemplatedMixin,dWidgetsInTemplat
       	   	if (dialogHandle) dialogHandle.remove();
 	  	});
 	  } else {
+	  	 		
+			
 	  	var d = this.onSubmit(this.loginUserName.value,this.loginPassword.value,this.loginForm);
-	  	var self = this;
+		
 	  	dWhen(d, function() {
 	  		var submitForm = false;
-	  		if ((d == true) || (d == false)) {
+	  		if ((d === true) || (d === false)) {
 	  			submitForm = d;
 	  		} else if ((d instanceof dDeferred) || (d instanceof dPromise)) {
 	  			submitForm = d.isResolved(); 
 	  		} else {
 	  			submitForm = true;
 	  		}
-	  		
+
 	  		if ((submitForm)&&(iString.nullTrim(self.formAction))) {
+				
 	  			self._allowingSubmit = true;
 	  			self._form.submit();
 	  			self._allowingSubmit = false;
 	  		}
 	  	});
 	  }
-	  lastFocus.focus();
+	  lastFocus && lastFocus.focus();
   },
 
   /**

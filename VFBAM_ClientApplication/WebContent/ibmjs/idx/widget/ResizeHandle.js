@@ -4,7 +4,8 @@ define([
 	"dojo/_base/event",
 	"dojo/keys",
 	"dojox/layout/ResizeHandle",
-	"idx/resources"
+	"idx/resources",
+	"idx/widgets"
 ], function(dojo_declare, dojo_html, dojo_event, dojo_keys, dojox_layout_ResizeHandle, idx_resources){
 
 /**
@@ -17,6 +18,11 @@ return dojo_declare("idx.widget.ResizeHandle", dojox_layout_ResizeHandle,
 /**@lends idx.widget.ResizeHandle#*/
 {
 	/**
+	 * Add the IDX base class.
+	 */
+	idxBaseClass: "idxResizeHandle",
+	
+	/**
 	 * Installs key event hander for resizing.
 	 * @private as part of widget life cycle
 	 */
@@ -25,8 +31,12 @@ return dojo_declare("idx.widget.ResizeHandle", dojox_layout_ResizeHandle,
 
 		var resources = idx_resources.getResources("idx/widget/ResizeHandle", this.lang);
 		var title = resources.idxResizeHandle_resize;
-		dojo_html.attr((this.resizeHandle.firstChild || this.resizeHandle), "innerHTML", "<span class='idxResizeHandleText' title='" + title + "'>/</span>"); // a11y text
-		dojo_html.attr(this.resizeHandle, "tabindex", 0);
+		var a11yText = this.isLeftToRight() ? "&#x2921;" : "&#x2922;";
+		dojo_html.attr((this.resizeHandle.firstChild || this.resizeHandle), "innerHTML", "<span class='idxResizeHandleText' title='" + title + "'>" + a11yText + "</span>"); // a11y text
+		dojo_html.attr(this.resizeHandle, {
+			"tabindex": 0,
+			title: title
+		});
 		this.connect(this.resizeHandle, "keypress", this._onKeyPress);
 	},
 

@@ -3,11 +3,14 @@
 	><div data-dojo-attach-point="dateTextBox" data-dojo-type="idx.form.DateTextBox" data-dojo-props='
 		hint: "${dateHint}",
 		hintPosition: "inside",
-		showPickerIcon: ${showPickerIcon}
+		instantValidate: ${instantValidate},
+		showPickerIcon: ${showPickerIcon},
+		datePackage: "${datePackage}"
 	'></div
 	><div data-dojo-attach-point="timeTextBox" data-dojo-type="idx.form.TimeTextBox" data-dojo-props='
 		hint: "${timeHint}",
 		hintPosition: "inside",
+		instantValidate: ${instantValidate},
 		showPickerIcon: ${showPickerIcon}
 	'></div
 	><input type="hidden" data-dojo-attach-point="focusNode"></input

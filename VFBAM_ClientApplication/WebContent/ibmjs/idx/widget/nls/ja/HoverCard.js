@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "その他のアクション"
 //end v1.x content
 });
+

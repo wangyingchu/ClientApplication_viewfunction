@@ -1,0 +1,1552 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxButtonIconSymbol {
+  display: none;
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+.dijit_a11y.dlBlue .idxButtonHasIconSymbol .idxButtonIconSymbol,
+.dj_a11y.dlBlue .idxButtonHasIconSymbol .idxButtonIconSymbol {
+  display: inline-block;
+  visibility: visible;
+  width: auto;
+  height: auto;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: normal;
+}
+.dijit_a11y.dlBlue .idxButtonHasIconSymbol .dijitIcon,
+.dj_a11y.dlBlue .idxButtonHasIconSymbol .dijitIcon {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+.dijit_a11y.dlBlue .idxButtonHasIconSymbol.idxButtonIconOnly .dijitButtonContents .dijitButtonText,
+.dj_a11y.dlBlue .idxButtonHasIconSymbol.idxButtonIconOnly .dijitButtonContents .dijitButtonText {
+  display: none !important;
+}
+.dijit_a11y.dlBlue .idxButtonToolbar .dijitButtonNode,
+.dj_a11y.dlBlue .idxButtonToolbar .dijitButtonNode,
+.dijit_a11y.dlBlue .idxButtonDerived.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.dlBlue .idxButtonDerived.idxButtonToolbar .dijitButtonNode {
+  border: 0px none transparent !important;
+}
+.dijit_a11y.dlBlue .idxButtonDerived.dijitHover.idxButtonToolbar.idxButtonIconOnly .idxButtonIconSymbol,
+.dj_a11y.dlBlue .idxButtonDerived.dijitHover.idxButtonToolbar.idxButtonIconOnly .idxButtonIconSymbol {
+  text-decoration: underline;
+}
+.dlBlue .dijitButton.idxButtonLabelOnly .dijitIcon,
+.dlBlue .dijitComboButton.idxButtonLabelOnly .dijitIcon,
+.dlBlue .dijitDropDownButton.idxButtonLabelOnly .dijitIcon,
+.dlBlue .dijitToggleButton.idxButtonLabelOnly .dijitIcon {
+  visibility: hidden;
+  display: none;
+}
+.dlBlue .idxButtonIcon .dijitIcon {
+  background-image: url("images/buttonIcons.png");
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .idxButtonSpecial.idxButtonIcon .dijitIcon {
+  background-image: url("images/buttonIconsSpecial.png");
+}
+.dlBlue .idxTooltipDialogButton .dijitButtonContents .dijitArrowButtonInner {
+  background: none;
+  width: 0;
+}
+.dlBlue .idxCloseIcon {
+  background-position: 0px 0px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxCloseIcon {
+  background-position: -16px 0px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxConfigureIcon {
+  background-position: -16px -16px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxEditIcon {
+  background-position: -16px -32px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxFilterIcon {
+  background-position: -16px -48px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxClearFilterIcon {
+  background-position: -16px -64px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxHelpIcon {
+  background-position: -16px -80px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxInfoIcon {
+  background-position: -16px -96px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxMinimizeIcon {
+  background-position: -16px -112px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxMaximizeIcon {
+  background-position: -16px -128px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxRestoreIcon {
+  background-position: -16px -144px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxRefreshIcon {
+  background-position: -16px -160px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxPrintIcon {
+  background-position: -16px -176px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxNextPageIcon {
+  background-position: -16px -192px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxPreviousPageIcon {
+  background-position: -16px -208px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxLastPageIcon {
+  background-position: -16px -224px;
+}
+.dlBlue .idxButtonDerived.dijitHover .idxFirstPageIcon {
+  background-position: -16px -240px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxCloseIcon {
+  background-position: -48px 0px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxConfigureIcon {
+  background-position: -48px -16px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxEditIcon {
+  background-position: -48px -32px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxFilterIcon {
+  background-position: -48px -48px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxClearFilterIcon {
+  background-position: -48px -64px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxHelpIcon {
+  background-position: -48px -80px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxInfoIcon {
+  background-position: -48px -96px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxMinimizeIcon {
+  background-position: -48px -112px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxMaximizeIcon {
+  background-position: -48px -128px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxRestoreIcon {
+  background-position: -48px -144px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxRefreshIcon {
+  background-position: -48px -160px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxPrintIcon {
+  background-position: -48px -176px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxNextPageIcon {
+  background-position: -48px -192px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxPreviousPageIcon {
+  background-position: -48px -208px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxLastPageIcon {
+  background-position: -48px -224px;
+}
+.dlBlue .idxButtonDerived.dijitDisabled .idxFirstPageIcon {
+  background-position: -48px -240px;
+}
+.dlBlue .idxConfigureIcon {
+  background-position: 0px -16px;
+}
+.dlBlue .idxEditIcon {
+  background-position: 0px -32px;
+}
+.dlBlue .idxFilterIcon {
+  background-position: 0px -48px;
+}
+.dlBlue .idxClearFilterIcon {
+  background-position: 0px -64px;
+}
+.dlBlue .idxHelpIcon {
+  background-position: 0px -80px;
+}
+.dlBlue .idxInfoIcon {
+  background-position: 0px -96px;
+}
+.dlBlue .idxMinimizeIcon {
+  background-position: 0px -112px;
+}
+.dlBlue .idxMaximizeIcon {
+  background-position: 0px -128px;
+}
+.dlBlue .idxRestoreIcon {
+  background-position: 0px -144px;
+}
+.dlBlue .idxRefreshIcon {
+  background-position: 0px -160px;
+}
+.dlBlue .idxPrintIcon {
+  background-position: 0px -176px;
+}
+.dlBlue .idxNextPageIcon {
+  background-position: 0px -192px;
+}
+.dlBlue .idxPreviousPageIcon {
+  background-position: 0px -208px;
+}
+.dlBlue .idxLastPageIcon {
+  background-position: 0px -224px;
+}
+.dlBlue .idxFirstPageIcon {
+  background-position: 0px -240px;
+}
+.dlBlue .idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url(../images/blank.gif?profile=compact);
+}
+.dlBlue .idxSecondaryButton .idxButtonDerived_idxDefaults {
+  background-image: url(../images/blank.gif?placement=secondary);
+}
+.dlBlue .idxSpecialButton .idxButtonDerived_idxDefaults {
+  background-image: url(../images/blank.gif?placement=special);
+}
+.dlBlue .idxToolbarButton .idxButtonDerived_idxDefaults {
+  background-image: url(../images/blank.gif?placement=toolbar);
+}
+.dlBlue .idxButtonToolbar .dijitButtonText {
+  color: #000000;
+}
+.dlBlue .dijitDisabled.idxButtonToolbar .dijitButtonText {
+  color: #8f8f8f;
+  text-decoration: none;
+}
+.dlBlue .idxButtonToolbar.dijitDisabled .dijitArrowButtonInner {
+  background-position: -151px 0px;
+}
+.dlBlue .dijitButton.idxButtonCompact .dijitButtonText {
+  padding: 0 0 0 0;
+}
+.dlBlue .dijitButton.idxButtonCompact .dijitButtonNode {
+  min-width: 65px;
+}
+.dlBlue .dijitButton .dijitButtonNode {
+  min-width: 87px;
+  box-sizing: border-box;
+}
+.dlBlue .dijitToggleButton .dijitButtonNode {
+  min-width: 99px;
+  box-sizing: border-box;
+}
+.dlBlue .dijitToggleButton.idxButtonCompact .dijitButtonNode {
+  min-width: 55px;
+  box-sizing: border-box;
+}
+.dlBlue .idxButtonSecondary.idxButtonIcon .dijitIcon,
+.dlBlue .idxButtonIcon.idxButtonSecondary .dijitIcon {
+  background-image: url("images/buttonIcons.png");
+}
+.dlBlue .idxButtonToolbar.idxButtonIcon .dijitIcon,
+.dlBlue .idxButtonIcon.idxButtonToolbar .dijitIcon {
+  background-image: url("images/buttonIcons.png");
+}
+.dlBlue .dijitTabButtonIcon.idxConfigureIcon,
+.dlBlue .dijitTabButtonIcon.idxCloseIcon,
+.dlBlue .dijitTabButtonIcon.idxEditIcon,
+.dlBlue .dijitTabButtonIcon.idxFilterIcon,
+.dlBlue .dijitTabButtonIcon.idxClearFilterIcon,
+.dlBlue .dijitTabButtonIcon.idxHelpIcon,
+.dlBlue .dijitTabButtonIcon.idxInfoIcon,
+.dlBlue .dijitTabButtonIcon.idxMinimizeIcon,
+.dlBlue .dijitTabButtonIcon.idxMaximizeIcon,
+.dlBlue .dijitTabButtonIcon.idxRestoreIcon,
+.dlBlue .dijitTabButtonIcon.idxRefreshIcon,
+.dlBlue .dijitTabButtonIcon.idxPrintIcon,
+.dlBlue .dijitTabButtonIcon.idxNextPageIcon,
+.dlBlue .dijitTabButtonIcon.idxPreviousPageIcon,
+.dlBlue .dijitTabButtonIcon.idxLastPageIcon,
+.dlBlue .dijitTabButtonIcon.idxFirstPageIcon {
+  background-image: url(images/tabButtonIcons.png);
+  width: 16px;
+  height: 16px;
+  margin: 0px;
+  border: 0px none;
+  padding: 0px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxCloseIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxCloseIcon {
+  background-position: -32px 0px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxConfigureIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxConfigureIcon {
+  background-position: -32px -16px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxEditIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxEditIcon {
+  background-position: -32px -32px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxFilterIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxFilterIcon {
+  background-position: -32px -48px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxClearFilterIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxClearFilterIcon {
+  background-position: -32px -64px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxHelpIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxHelpIcon {
+  background-position: -32px -80px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxInfoIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxInfoIcon {
+  background-position: -32px -96px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxMinimizeIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxMinimizeIcon {
+  background-position: -32px -112px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxMaximizeIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxMaximizeIcon {
+  background-position: -32px -128px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxRestoreIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxRestoreIcon {
+  background-position: -32px -144px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxRefreshIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxRefreshIcon {
+  background-position: -32px -160px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxPrintIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxPrintIcon {
+  background-position: -32px -176px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxNextPageIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxNextPageIcon {
+  background-position: -32px -192px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxPreviousPageIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxPreviousPageIcon {
+  background-position: -32px -208px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxLastPageIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxLastPageIcon {
+  background-position: -32px -224px;
+}
+.dlBlue .idxButtonDerived.dijitActive .idxFirstPageIcon,
+.dlBlue .idxButtonDerived.dijitOpened .idxFirstPageIcon {
+  background-position: -32px -240px;
+}
+.dlBlue .idxCompactButton.idxSecondaryButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxSecondaryButton.idxCompactButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxCompactButton .idxSecondaryButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxSecondaryButton .idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url(../images/blank.gif?placement=secondary&profile=compact);
+}
+.dlBlue .idxCompactButton.idxSpecialButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxSpecialButton.idxCompactButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxCompactButton .idxSpecialButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxSpecialButton .idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url(../images/blank.gif?placement=special&profile=compact);
+}
+.dlBlue .idxCompactButton.idxToolbarButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxToolbarButton.idxCompactButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxCompactButton .idxToolbarButton .idxButtonDerived_idxDefaults,
+.dlBlue .idxToolbarButton .idxCompactButton .idxButtonDerived_idxDefaults {
+  background-image: url(../images/blank.gif?placement=toolbar&profile=compact);
+}
+.dlBlue .idxButtonToolbar.dijitButton,
+.dlBlue .idxButtonToolbar.dijitDropDownButton,
+.dlBlue .idxButtonToolbar.dijitComboButton,
+.dlBlue .idxButtonToolbar.dijitToggleButton,
+.dlBlue .dijitButton.idxButtonToolbar,
+.dlBlue .dijitDropDownButton.idxButtonToolbar,
+.dlBlue .dijitComboButton.idxButtonToolbar,
+.dlBlue .dijitToggleButton.idxButtonToolbar {
+  background: none;
+  padding: 0px;
+  margin: 0px;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border: none;
+  min-width: 1px;
+  padding: 0;
+}
+.dlBlue .idxButtonToolbar.dijitButton .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitDropDownButton .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitComboButton .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitToggleButton .dijitButtonNode,
+.dlBlue .dijitButton.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitDropDownButton.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitComboButton.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  border: none;
+  filter: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  min-width: 1px;
+  padding: 0;
+}
+.dj_ie .dlBlue .idxButtonToolbar.dijitComboButton .dijitButtonNode,
+.dj_ie .dlBlue .dijitComboButton.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie .dlBlue table.idxButtonToolbar.dijitComboButton,
+.dj_ie .dlBlue table.dijitComboButton.idxButtonToolbar {
+  background: none;
+  filter: none;
+}
+.dlBlue .idxButtonToolbar.dijitButtonHover .dijitButtonText,
+.dlBlue .idxButtonToolbar.dijitDropDownButtonHover .dijitButtonText,
+.dlBlue .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover .dijitButtonText,
+.dlBlue .idxButtonToolbar.dijitToggleButtonHover .dijitButtonText,
+.dlBlue .dijitButtonHover.idxButtonToolbar .dijitButtonText,
+.dlBlue .dijitDropDownButtonHover.idxButtonToolbar .dijitButtonText,
+.dlBlue .dijitComboButton.idxButtonToolbar .dijitButtonNodeHover .dijitButtonText,
+.dlBlue .dijitToggleButtonHover.idxButtonToolbar .dijitButtonText {
+  color: #000000;
+  text-decoration: underline;
+}
+.dlBlue .idxButtonToolbar.dijitButtonHover .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitDropDownButtonHover .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover,
+.dlBlue .idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover,
+.dlBlue .idxButtonToolbar.dijitToggleButtonHover .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie .dlBlue .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover,
+.dj_ie .dlBlue .idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover {
+  background: none;
+  filter: none;
+}
+.dlBlue .idxButtonToolbar.dijitButtonActive .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitDropDownButtonActive .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitComboButtonActive .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitToggleButtonActive .dijitButtonNode,
+.dlBlue .dijitButtonActive.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitComboButtonActive.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitToggleButtonActive.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+  color: #000000;
+}
+.dlBlue .idxButtonToolbar.dijitButtonActive .dijitButtonText,
+.dlBlue .idxButtonToolbar.dijitDropDownButtonActive .dijitButtonText,
+.dlBlue .idxButtonToolbar.dijitComboButton .dijitButtonNodeActive .dijitButtonText,
+.dlBlue .idxButtonToolbar.dijitToggleButtonActive .dijitButtonText,
+.dlBlue .dijitButtonActive.idxButtonToolbar .dijitButtonText,
+.dlBlue .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonText,
+.dlBlue .dijitComboButton.idxButtonToolbar .dijitButtonNodeActive .dijitButtonText,
+.dlBlue .dijitToggleButtonActive.idxButtonToolbar .dijitButtonText {
+  color: #000000;
+  text-decoration: underline;
+}
+.dlBlue .idxButtonToolbar.dijitButtonDisabled .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitDropDownButtonDisabled .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitComboButtonDisabled .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitToggleButtonDisabled .dijitButtonNode,
+.dlBlue .dijitButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitDropDownButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dlBlue .dijitToggleButtonDisabled.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+  border: none;
+  color: #696969;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.dj_ie .dlBlue .idxButtonToolbar.dijitComboButtonDisabled .dijitButtonNode,
+.dj_ie .dlBlue .dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie .dlBlue table.idxButtonToolbar.dijitComboButtonDisabled,
+.dj_ie .dlBlue table.dijitComboButtonDisabled.idxButtonToolbar {
+  background: none;
+  filter: none;
+}
+.dlBlue .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonText,
+.dlBlue .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonText {
+  color: #000000;
+}
+.dlBlue .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonNode,
+.dlBlue .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode {
+  filter: none;
+  background: none;
+}
+.dj_ie .dlBlue .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode {
+  background: none;
+  filter: none;
+}
+.dj_ie .dlBlue table.idxButtonToolbar.dijitComboButton.dijitOpened {
+  background-color: none;
+  filter: none;
+}
+.dlBlue .dijitDropDownButton.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitComboButton.idxButtonCompact .dijitButtonText {
+  padding: 0 10px 0 0;
+}
+.dlBlue .dijitButtonRtl.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitDropDownButtonRtl.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitComboButtonRtl.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitButton.dijitButtonRtl.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitDropDownButton.dijitDropDownButtonRtl.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitComboButton.dijitComboButtonRtl.idxButtonCompact .dijitButtonText {
+  padding: 0 0 0 10px;
+}
+.dlBlue .dijitButton.idxButtonIconOnly .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonIconOnly .dijitButtonNode,
+.dlBlue .dijitButton.idxButtonIconOnly.idxButtonCompact .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonIconOnly.idxButtonCompact .dijitButtonNode {
+  min-width: 1px;
+}
+.dlBlue .idxButtonDerived.idxButtonSecondary .dijitButtonNode,
+.dlBlue .dijitButton.idxButtonSecondary .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonSecondary .dijitButtonNode,
+.dlBlue .dijitDropDownButton.idxButtonSecondary .dijitButtonNode,
+.dlBlue .dijitComboButton.idxButtonSecondary .dijitButtonNode {
+  font-weight: normal;
+}
+.dlBlue .idxButtonDerived.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitButton.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitDropDownButton.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitComboButton.idxButtonSpecial .dijitButtonNode {
+  background-color: #008abf;
+  background-image: -moz-linear-gradient(top, #008abf, #085884);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#008abf), to(#085884));
+  background-image: -webkit-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: -o-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: -ms-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: linear-gradient(top, #008abf 0%, #085884 100%);
+  border: 1px solid #0a5f8e;
+  color: #ffffff;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.35);
+}
+.dj_ie .dlBlue .idxButtonDerived.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitButton.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitToggleButton.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitDropDownButton.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitCompboButton.idxButtonSpecial .dijitButtonNode {
+  border: 1px solid #0a4e74;
+}
+.dlBlue .idxButtonDerived.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dlBlue .idxButtonDerived.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dlBlue .dijitButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitButton.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dlBlue .dijitToggleButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dlBlue .dijitDropDownButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitDropDownButton.idxButtonSpecial.dijitHover .dijitButtonNode,
+.dlBlue .dijitComboButton.dijitHover.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitComboButton.idxButtonSpecial.dijitHover .dijitButtonNode {
+  background-color: #206b93;
+  background-image: -moz-linear-gradient(top, #1a95c5, #206b93);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a95c5), to(#206b93));
+  background-image: -webkit-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: -o-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: -ms-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: linear-gradient(top, #1a95c5 0%, #206b93 100%);
+}
+.dlBlue .idxButtonDerived.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dlBlue .idxButtonDerived.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dlBlue .dijitButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitButton.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dlBlue .dijitToggleButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dlBlue .dijitDropDownButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitDropDownButton.idxButtonSpecial.dijitActive .dijitButtonNode,
+.dlBlue .dijitComboButton.dijitActive.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitComboButton.idxButtonSpecial.dijitActive .dijitButtonNode {
+  background-color: #0a4e74;
+  background-image: -moz-linear-gradient(top, #085884, #008abf);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#085884), to(#008abf));
+  background-image: -webkit-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: -o-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: -ms-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: linear-gradient(top, #085884 0%, #008abf 100%);
+  color: #f2fafe;
+}
+.dlBlue .idxButtonDerived.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dlBlue .idxButtonDerived.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dlBlue .dijitButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dlBlue .dijitToggleButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitToggleButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dlBlue .dijitDropDownButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitDropDownButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dlBlue .dijitComboButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dlBlue .dijitComboButton.idxButtonSpecial.dijitDisabled .dijitButtonNode {
+  color: #cdecfa;
+}
+.dj_ie .dlBlue .idxButtonDerived.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .idxButtonDerived.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie .dlBlue .dijitButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie .dlBlue .dijitToggleButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitToggleButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie .dlBlue .dijitDropDownButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitDropDownButton.idxButtonSpecial.dijitDisabled .dijitButtonNode,
+.dj_ie .dlBlue .dijitComboButton.dijitDisabled.idxButtonSpecial .dijitButtonNode,
+.dj_ie .dlBlue .dijitComboButton.idxButtonSpecial.dijitDisabled .dijitButtonNode {
+  color: #bbd9e8;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxCalendarIcon {
+  background-image: url('images/datepicker16.png');
+  margin: 7px 4px 0 0;
+  cursor: pointer;
+}
+.dlBlue .dijitTextBoxDisabled .idxCalendarIcon {
+  cursor: default;
+}
+.dlBlue .dijitTextBoxDisabled .idxTimeIcon {
+  cursor: default;
+}
+.dlBlue .idxTimeIcon {
+  background-image: url('images/time_picker16.png');
+  margin: 7px 4px 0 0;
+  cursor: pointer;
+}
+.dlBlue .idxIconPicker {
+  padding: 0px 20px 0px 1px;
+  width: 7em;
+  position: relative;
+}
+.dlBlue .idxIconPicker .dijitTextBoxDisabledFocused .dijitInputContainer {
+  background-color: #EFEFEF !important;
+}
+.dlBlue .idxIconPicker .dijitArrowButton {
+  display: none;
+}
+.dlBlue .idxPickerIconLink {
+  vertical-align: top;
+  position: absolute;
+  top: 1px;
+  right: 2px;
+}
+.dlBlue .idxPickerIcon {
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .idxPickerTextIcon {
+  display: none;
+  visibility: hidden;
+}
+.dijitRtl .dlBlue .idxIconPicker {
+  padding-right: 1px;
+  padding-left: 20px;
+}
+.dijitRtl .dlBlue .idxPickerIconLink {
+  right: auto;
+  left: 2px;
+}
+.dijitRtl .dlBlue .idxCalendarIcon,
+.dijitRtl .dlBlue .idxTimeIcon {
+  margin: 7px 0 0 4px;
+}
+.dlBlue.dijit_a11y .idxPickerIcon {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue.dijit_a11y .idxPickerTextIcon {
+  display: block;
+  visibility: visible;
+  width: 16px;
+  height: 16px;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  font-size: 125%;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxDropDownSelect {
+  cursor: pointer;
+  color: #00649d;
+}
+.dlBlue .idxDropDownSelectDisabled,
+.dlBlue .idxDropDownSelectDisabled.idxDropDownSelect:hover {
+  cursor: auto;
+  color: #666;
+  text-decoration: none;
+}
+.dlBlue .idxDropDownSelect:hover {
+  color: #05386b;
+  text-decoration: underline;
+}
+.dlBlue .idxLinkDerived.dijitDisabled {
+  color: #696969;
+}
+.dlBlue .idxLinkDerived.dijitDisabled:hover {
+  text-decoration: none;
+  cursor: default;
+}
+.dlBlue .idxAppMarquee .idxLinkDerived.dijitDisabled {
+  color: #696969;
+}
+.dlBlue .idxAppMarquee .idxLinkDerived.dijitDisabled:hover {
+  text-decoration: none;
+  cursor: default;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxDropDownLink.idxLinkDerived {
+  white-space: nowrap;
+  display: inline;
+}
+.dlBlue .idxDropDownLink .idxDropDownLinkAnchor {
+  margin-right: 2px;
+  cursor: pointer;
+}
+.dlBlue .idxDropDownLink .dijitArrowButtonInner {
+  cursor: pointer;
+  background-image: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxDropDownLinkDisabled .dijitArrowButtonInner {
+  cursor: auto;
+  background-position: -151px 53%;
+  background-image: url("../../dijit/form/images/arrows_white.png");
+}
+.dijitRtl .dlBlue .idxDropDownLink .idxDropDownLinkAnchor {
+  margin-right: 0px;
+  margin-left: 4px;
+}
+.dlBlue .idxDropDownLinkDisabled .idxDropDownLinkAnchor,
+.dlBlue .idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor {
+  color: #4c4d53;
+}
+.dlBlue .idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover,
+.dlBlue .idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover {
+  text-decoration: none;
+  cursor: default;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxComboLink.idxLinkDerived {
+  white-space: no-wrap;
+  display: inline;
+}
+.dlBlue .idxComboLinkArrowButton {
+  white-space: no-wrap;
+  display: inline;
+}
+.dlBlue .idxComboLink .idxComboLinkSeparator {
+  border: none;
+  border-right: solid 1px #d9d9d9;
+  height: 1em;
+  width: 6px;
+  margin-right: 2px;
+}
+.dlBlue .idxComboLink .dijitArrowButtonInner {
+  cursor: pointer;
+  background-image: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxAppMarquee .idxComboLinkAnchor {
+  color: #ffffff;
+}
+.dlBlue .idxComboLinkDisabled .dijitArrowButtonInner {
+  cursor: auto;
+  background-position: -151px 53%;
+}
+.dlBlue .idxComboLinkDisabled .dijitArrowButtonInner {
+  cursor: pointer;
+  background-image: url("../../dijit/form/images/arrows_white.png");
+}
+.dlBlue .idxComboLinkDisabled .idxComboLinkAnchor,
+.dlBlue .idxAppMarquee .idxComboLinkDisabled .idxComboLinkAnchor {
+  color: #4c4d53;
+}
+.dlBlue .idxComboLinkDisabled .idxComboLinkAnchor:hover,
+.dlBlue .idxAppMarquee .idxComboLinkDisabled .idxComboLinkAnchor:hover {
+  text-decoration: none;
+  cursor: default;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxSecondaryButton .dijitButtonNode {
+  font-weight: normal;
+}
+.dlBlue .idxSecondaryButton .dijitButtonNode {
+  background-color: #6f7076;
+  border: 1px solid #6f7076;
+  color: #ffffff;
+}
+.dlBlue .idxSecondaryButtonHover .dijitButtonNode {
+  background-color: #878a8c;
+  border: 1px solid #878a8c;
+  color: #ffffff;
+}
+.dlBlue .idxSecondaryButtonActive .dijitButtonNode {
+  background-color: #393a3f;
+  border: solid 1px #393a3f;
+  color: #ffffff;
+}
+.dlBlue .idxSecondaryButtonDisabled .dijitButtonNode {
+  background-color: #cdced2;
+  border: solid 1px #cdced2;
+  color: #4c4d53;
+}
+.dlBlue .idxSecondaryButton.dijitToggleButtonChecked .dijitButtonNode {
+  background-color: #393a3f;
+}
+.dlBlue .idxSecondaryButton.dijitToggleButtonDisabled .dijitButtonNode {
+  background-color: #cdced2;
+}
+.dlBlue .idxSecondaryButtonHover.dijitComboButton .dijitButtonNode {
+  background-color: #6f7076;
+}
+.dlBlue .idxSecondaryButtonHover.dijitComboButton .dijitButtonNodeHover,
+.dlBlue .idxSecondaryButtonHover.dijitComboButton .dijitDownArrowButtonHover {
+  background-color: #878a8c;
+}
+.dlBlue .idxSecondaryButtonActive.dijitComboButton .dijitButtonNode {
+  background-color: #6f7076;
+}
+.dlBlue .idxSecondaryButtonActive.dijitComboButton .dijitButtonNodeActive,
+.dlBlue .idxSecondaryButtonActive.dijitComboButton .dijitDownArrowButtonActive {
+  background-color: #393a3f;
+}
+.dlBlue .idxSpecialButton .dijitButtonNode {
+  background-color: #00649d;
+  background-image: -moz-linear-gradient(top, #008abf, #085884);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#008abf), to(#085884));
+  background-image: -webkit-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: -o-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: -ms-linear-gradient(top, #008abf 0%, #085884 100%);
+  background-image: linear-gradient(top, #008abf 0%, #085884 100%);
+  border: 1px solid #0a5f8e;
+  color: #ffffff;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.35);
+}
+.dlBlue .idxSpecialButtonHover .dijitButtonNode {
+  background-color: #206b93;
+  background-image: -moz-linear-gradient(top, #1a95c5, #206b93);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a95c5), to(#206b93));
+  background-image: -webkit-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: -o-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: -ms-linear-gradient(top, #1a95c5 0%, #206b93 100%);
+  background-image: linear-gradient(top, #1a95c5 0%, #206b93 100%);
+}
+.dlBlue .idxSpecialButtonActive .dijitButtonNode {
+  background-color: #0a4e74;
+  background-image: -moz-linear-gradient(top, #085884, #008abf);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#085884), to(#008abf));
+  background-image: -webkit-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: -o-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: -ms-linear-gradient(top, #085884 0%, #008abf 100%);
+  background-image: linear-gradient(top, #085884 0%, #008abf 100%);
+  color: #f2fafe;
+}
+.dlBlue .idxSpecialButtonDisabled .dijitButtonNode {
+  color: #ddd;
+}
+.dlBlue .dijitButton .dijitButtonNode {
+  min-width: 87px;
+}
+.dlBlue .dijitToggleButton .dijitButtonNode {
+  min-width: 99px;
+}
+.dlBlue .dijitToggleButton.idxButtonCompact .dijitButtonNode {
+  min-width: 55px;
+}
+.dlBlue .dijitTabDropDownText {
+  display: none;
+  visibility: hidden;
+}
+.dj_ie .dlBlue .idxSpecialButton .dijitButtonNode {
+  border: 1px solid #0a4e74;
+}
+.dj_ie .dlBlue .idxSpecialButtonDisabled .dijitButtonNode {
+  color: #ddd;
+}
+.dlBlue .dijitComboButton.idxButtonCompact .dijitButtonText,
+.dlBlue .dijitDropDownButton.idxButtonCompact .dijitButtonText {
+  padding: 0 10px 0 0;
+}
+.dlBlue .dijitButton.idxButtonCompact .dijitButtonNode,
+.dlBlue .idxSecondaryButton.idxButtonCompact .dijitButtonNode,
+.dlBlue .idxSpecialButton.idxButtonCompact .dijitButtonNode {
+  min-width: 65px;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxCheckBoxWrap .idxLabel {
+  margin-top: 2px;
+  padding: 0 4px 0 0;
+}
+.dlBlue .idxCheckBoxWrapDisabled .idxLabel {
+  color: #4c4d53;
+}
+.dlBlue .idxComposite.idxCheckBoxWrap .dijitValidationContainer {
+  margin: 2px 5px 0 0;
+}
+.dlBlue .idxComposite.idxCheckBoxWrap .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxCheckBoxListItem {
+  cursor: default;
+  padding: 4px 4px 4px 0;
+  white-space: nowrap;
+}
+.dlBlue .idxCheckBoxListItemDisabled label {
+  color: #4c4d53;
+}
+.dlBlue .idxCheckBoxListItem .dijitCheckBox {
+  margin-right: 5px;
+}
+.dlBlue .idxCheckBoxListItem label {
+  vertical-align: middle;
+}
+.dlBlue .idxCheckBoxListWrap .idxCompContainer {
+  position: relative;
+  padding: 2px 39px 3px 8px;
+}
+.dlBlue .idxCheckBoxListWrap .dijitValidationContainer {
+  display: none;
+}
+.dlBlue .idxCheckBoxListWrap .idxLabel {
+  margin-top: 7px;
+}
+.dlBlue .idxCheckBoxListWrapError .idxCompContainer {
+  background: #faebec;
+  border: 1px solid #d9182d;
+  padding: 1px 38px 2px 7px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+.dlBlue .idxCheckBoxListWrapError .dijitValidationContainer {
+  display: block;
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  height: 15px;
+}
+.dlBlue .idxCheckBoxListWrapError .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.dj_ie6 .dlBlue .idxCheckBoxListItem label {
+  top: 1px;
+  position: relative;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxCheckBoxSelect {
+  margin: 0;
+}
+.dlBlue {
+  /*.idxCheckBoxSelectWrap {
+        .dijitValidationContainer {
+            display:none;
+        }
+    }*/
+}
+.dlBlue .idxCheckBoxSelectWrapLabel {
+  vertical-align: top;
+}
+.dlBlue .idxCheckBoxSelectReadOnly .dijitDownArrowButton {
+  background-image: none;
+  background: #f4f4f4;
+  background: -moz-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #dbdbdb));
+  background: -webkit-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: -o-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: -ms-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+}
+.dlBlue .idxCheckBoxSelectReadOnly .dijitDownArrowButtonHover {
+  background: #e5e5e5;
+  background: -moz-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #cccccc));
+  background: -webkit-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: -o-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: -ms-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: linear-gradient(top, #fefefe 0%, #cccccc 100%);
+}
+.dlBlue .idxCheckBoxSelectReadOnly .dijitDownArrowButtonActive {
+  background: #aaaaaa;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(100%, #f4f4f4));
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -o-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -ms-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+}
+.dlBlue .idxCheckBoxSelectMenu {
+  /*.dijitMenuTable {
+            tr.dijitMenuItem.dijitMenuItemFocused {
+                & > td.dijitMenuItemIconCell {
+                    padding-left: 9px;
+                }
+                & > td.dijitMenuItemLabel {
+                    padding-top: 2px;
+                    padding-bottom: 4px;
+                }
+            }
+            tr.dijitMenuItem.dijitMenuItemFocused:first-child {
+                & > td.dijitMenuItemLabel {
+                    padding-top: 3px;
+                }
+            }
+        }*/
+}
+.dlBlue .idxCheckBoxSelectMenu td.dijitMenuArrowCell {
+  display: none;
+}
+.dlBlue .idxCheckBoxSelectMenu td.dijitMenuItemIconCell {
+  margin: 0;
+  width: 16px;
+}
+.dlBlue .idxCheckBoxSelectMenu table.dijitMenuTable {
+  width: 100%;
+}
+.dlBlue .dijitMenuPopup .idxCheckBoxSelectMenu .dijitMenuItemReadOnly {
+  color: #767676;
+  background: #ffffff;
+}
+.dlBlue .idxCheckBoxSelect .idxCheckBoxSelectWrapLabel {
+  text-align: left;
+}
+.dlBlue .idxCheckBoxSelectWrapError .idxCheckBoxSelectError {
+  border: 1px solid #d9182d;
+}
+.dlBlue .idxCheckBoxSelectWrapError .idxCheckBoxSelectError .dijitButtonContents {
+  background: #ffffff;
+}
+.dlBlue .idxCheckBoxSelectWrapError .dijitValidationContainer {
+  display: inherit;
+}
+/*.dj_webkit {
+    .@{theme-name} {
+        table.idxCheckBoxSelect {
+            display: inline-block;
+        }
+    }
+}*/
+.dlBlue .idxCheckBoxSelectMenu td.dijitMenuItemLabel,
+.dlBlue .idxCheckBoxSelectMenu td.oneuiMenuHeadingLabel {
+  position: static;
+  color: #267bac;
+}
+.dlBlue .idxCheckBoxSelectMenu .dijitMenuItemLabel,
+.dlBlue .idxCheckBoxSelectMenu .oneuiMenuHeadingLabel {
+  margin: 0;
+  padding: 3px 10px 4px 0;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .oneuiHintOutside {
+  margin: 5px 0 0 10px;
+}
+.dlBlue .dijitComboBoxMenu {
+  background: #ffffff;
+  border-color: #cdced2;
+}
+.dlBlue .dijitComboBoxMenu .dijitMenuItem {
+  color: #393a3f;
+}
+.dlBlue .dijitComboBoxMenu .dijitMenuItemHover,
+.dlBlue .dijitComboBoxMenu .dijitMenuItemSelected {
+  background: #daf1fc;
+  border-color: #daf1fc;
+  color: #393a3f;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxLabel .idxTextBoxHoverHelp {
+  background-image: url("../../dijit/form/images/question.png");
+  width: 16px;
+  height: 16px;
+  margin: 0 0 1px 4px;
+  cursor: pointer;
+}
+.dijitRtl .dlBlue .idxLabel .idxTextBoxHoverHelp {
+  margin: 0 4px 1px 0;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+.dijitRtl .dlBlue.idx_i18n_il .idxLabel .idxTextBoxHoverHelp {
+  background-image: url("../../dijit/form/images/question.png");
+}
+.dijitRtl .dijit_a11y .idxTextBoxHoverHelp .idxHelpIconAltText {
+  margin: 0 4px 0 0;
+}
+.dlBlue .idxTextBoxHoverHelp .idxHelpIconAltText {
+  display: none;
+}
+.dijit_a11y .idxTextBoxHoverHelp .idxHelpIconAltText {
+  display: block;
+  margin: 0 0 0 4px;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxDateTextBoxWrap .dijitValidationContainer {
+  height: auto;
+}
+.dj_ie6 .dlBlue .idxDateTextBoxWrap .dijitDateTextBox .dijitInputField .dijitPlaceHolder {
+  padding-top: 3px;
+}
+.dlBlue .idxDateTextBoxWrap .dijitDateTextBox .idxCalendarIcon {
+  display: block;
+}
+.dlBlue .idxDateTextBoxWrap .dijitDateTextBox .idxCalendarIcon_a11y {
+  display: none;
+}
+.dlBlue .dijitCalendar .dijitCalendarCurrentDate {
+  text-decoration: underline;
+  font-weight: bold;
+}
+.dj_a11y .idxDateTextBoxWrap .dijitDateTextBox .idxCalendarIcon {
+  display: none;
+}
+.dj_a11y .idxDateTextBoxWrap .dijitDateTextBox .idxCalendarIcon_a11y {
+  display: block;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxFilteringSelectRtl .oneuiLabel {
+  text-align: right;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.oneuiFileInputWrap .dijitFileInput {
+  height: 2em;
+  width: 30em;
+  margin-bottom: 1px;
+}
+.oneuiFileInputWrap .dijitFileInput .dijitFileInputVisible {
+  border: 1px solid #B5BCC7;
+}
+.oneuiFileInputWrap .dijitFileInputReal {
+  width: 19em;
+}
+.oneuiFileInputWrap .dijitPlaceHolder {
+  padding: 4px 0 0 3px;
+}
+.oneuiFileInputWrap .dijitFakeInput input {
+  background-color: #FFFFFF;
+  background-position: left top;
+  background-repeat: repeat-x;
+  border: 1px solid #BCC8DD;
+  line-height: normal;
+  padding: 0.2em 0.3em;
+}
+.dj_ie .oneuiFileInputWrap .dijitFileInput .dijitFileInputVisible {
+  padding: 0.1em 0.3em;
+}
+.dj_ie6 .dlBlue .dijitFakeInput INPUT {
+  background-image: none;
+}
+.oneuiFileInputWrap .dijitFileInput .dijitFileInputButton,
+.oneuiFileInputWrap .dijitFileInput .dijitFileInputText {
+  padding: 4px 10px 4px;
+  background-color: #f4f4f4;
+  background-image: -moz-linear-gradient(top, #f4f4f4, #dbdbdb);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f4f4f4), to(#dbdbdb));
+  background-image: -webkit-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background-image: -o-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background-image: -ms-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background-image: linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  border: 1px solid #c3c3c3;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  color: #000000;
+  text-shadow: 0px 1px 0px #ffffff;
+  font-weight: bold;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .oneuiForm {
+  background-color: #CFE5FA;
+  border: 1px solid #769DC0;
+}
+.dlBlue .oneuiFormBody {
+  background-color: #FFFFFF;
+  border-top: 1px solid #769DC0;
+  padding: 10px 7px;
+}
+.dlBlue .oneuiFormHeader {
+  background-color: transparent;
+  background-image: url("images/accordion.png");
+  min-height: 17px;
+  padding: 5px 7px 2px;
+}
+.dlBlue .oneuiFormInlineMessage {
+  background-color: #FFD9D9;
+  border: 1px solid #D46464;
+  margin-top: 5px;
+  padding: 5px 10px;
+}
+.dlBlue .oneuiFormContainer {
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.dlBlue .oneuiFormFooter {
+  background-color: #F7F7F7;
+  border-top: 1px solid #DBDBDB;
+  min-height: 14px;
+  padding: 5px 7px;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxNumberTextBoxWrapRtl .idxLabel {
+  text-align: right;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxRadioButtonSetItem {
+  cursor: default;
+  padding: 4px 4px 4px 0;
+  white-space: nowrap;
+}
+.dlBlue .idxRadioButtonSetItem .dijitRadio {
+  margin-right: 5px;
+}
+.dlBlue .idxRadioButtonSetItem label {
+  vertical-align: middle;
+}
+.dlBlue .idxRadioButtonSetItemDisabled label {
+  color: #4c4d53;
+}
+.dlBlue .idxRadioButtonSetWrap .idxLabel {
+  margin: 7px 0 0 0;
+}
+.dlBlue .idxRadioButtonSetWrap .idxCompContainer {
+  padding: 2px 28px 3px 8px;
+  position: relative;
+}
+.dlBlue .idxRadioButtonSetWrap .dijitValidationContainer {
+  display: none;
+}
+.dlBlue .idxRadioButtonSetWrapError .idxCompContainer {
+  background: #faebec;
+  border: 1px solid #d9182d;
+  padding: 1px 38px 2px 7px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+.dlBlue .idxRadioButtonSetWrapError .dijitValidationContainer {
+  display: block;
+  position: absolute;
+  top: 1px;
+  right: 2px;
+}
+.dlBlue .idxRadioButtonSetWrapError .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.dj_ie6 .dlBlue .idxRadioButtonSetItem label,
+.dj_ie7 .dlBlue .idxRadioButtonSetItem label {
+  top: 1px;
+  position: relative;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxSelectWrapError .dijitSelectError {
+  border: 1px solid #d9182d;
+}
+.dlBlue {
+  /*.idxSelectWrap {
+        .dijitValidationContainer {
+            display: none;
+        }
+    }*/
+}
+.dlBlue .idxComposite .dijitSelect .dijitArrowButtonInner {
+  border: 1px solid transparent;
+  background-image: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxComposite .dijitSelectHover .dijitArrowButtonInner {
+  background-position: -151px 53%;
+}
+.dlBlue .idxComposite .dijitSelectDisabled .dijitArrowButton .dijitArrowButtonInner {
+  background-image: url("../../dijit/form/images/arrows_white.png");
+}
+.dlBlue .idxSelectWrapError .dijitSelectError .dijitButtonContents {
+  background: #ffffff;
+}
+.dlBlue .idxSelectWrapError .dijitValidationContainer {
+  display: inline-block;
+}
+.dlBlue .dijitSelectError .dijitButtonContents .dijitButtonText {
+  display: block !important;
+}
+.dlBlue .idxSelectWrapLabel {
+  vertical-align: top;
+}
+.dlBlue .idxSelectWrapMenu {
+  background: #ffffff;
+  border-color: #cdced2;
+}
+.dlBlue .idxSelectWrapMenu .dijitMenuItemIconCell {
+  padding: 1px;
+  width: 6px;
+}
+.dlBlue .idxSelectWrapMenu .dijitMenuItem .dijitMenuItemLabel {
+  color: #393a3f;
+}
+.dlBlue .idxSelectWrapMenu .dijitMenuItemHover,
+.dlBlue .idxSelectWrapMenu .dijitMenuItemSelected,
+.dlBlue .idxSelectWrapMenu .dijitMenuItemHover td,
+.dlBlue .idxSelectWrapMenu .dijitMenuItemSelected td {
+  background: #daf1fc;
+  border-color: #daf1fc;
+  color: #393a3f;
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxTimeTextBoxWrap .dijitValidationContainer {
+  height: auto;
+}
+.dj_ie6 .dlBlue .idxTimeTextBoxWrap .dijitTimeTextBox .dijitInputField .dijitPlaceHolder {
+  padding-top: 3px;
+}
+.dlBlue .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon {
+  display: block;
+}
+.dlBlue .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon_a11y {
+  display: none;
+}
+.dlBlue .idxTimeTextBoxWrap .idxHintOutside {
+  width: auto;
+}
+.dlBlue .idxDateTimeTextBoxWrap .dijitTimeTextBox {
+  width: 12em;
+}
+.dj_a11y .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon {
+  display: none;
+}
+.dj_a11y .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon_a11y {
+  display: block;
+}
+.dlBlue .idxOneuiTriStateCheckBox,
+.dlBlue .idxOneuiTriStateCheckBoxIcon {
+  background-image: url('../../dijit/form/images/checkboxRadioButtonStates.png');
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 16px;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.dj_ie6 .dlBlue .idxOneuiTriStateCheckBox,
+.dj_ie6 .dlBlue .idxOneuiTriStateCheckBoxIcon {
+  background-image: url('../../dijit/form/images/checkboxAndRadioButtons_IE6.png');
+}
+.dlBlue .idxOneuiTriStateCheckBoxWrapDisabled .idxLabel {
+  color: #4c4d53;
+}
+.dlBlue .idxComposite.idxOneuiTriStateCheckBoxWrap .idxLabel {
+  padding: 0 4px 0 0;
+  margin-top: 2px;
+}
+.dlBlue .idxComposite.idxOneuiTriStateCheckBoxWrap .dijitValidationContainer {
+  margin: 2px 5px 0 0;
+}
+.dlBlue .idxComposite.idxOneuiTriStateCheckBoxWrap .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.dlBlue .idxOneuiTriStateCheckBox,
+.dlBlue .idxOneuiTriStateCheckBoxActive {
+  background-position: -15px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxChecked,
+.dlBlue .idxOneuiTriStateCheckBoxCheckedActive {
+  background-position: 0px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxMixed,
+.dlBlue .idxOneuiTriStateCheckBoxMixedActive {
+  background-position: -90px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxDisabled {
+  background-position: -75px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxCheckedDisabled {
+  background-position: -60px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxMixedDisabled {
+  background-position: -150px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxHover {
+  background-position: -45px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxCheckedHover {
+  background-position: -30px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxMixedHover {
+  background-position: -120px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxFocused {
+  outline: 1px dotted #666666;
+}
+.dlBlue .idxOneuiTriStateCheckBoxInner {
+  visibility: hidden;
+  display: none;
+  position: absolute;
+  text-align: center;
+}
+.dlBlue .idxOneuiTriStateCheckBoxInput {
+  opacity: 0.01;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 16px;
+  height: 16px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.dijit_a11y .idxOneuiTriStateCheckBoxHover .idxOneuiTriStateCheckBoxInner,
+.dijit_a11y .idxOneuiTriStateCheckBoxFocused .idxOneuiTriStateCheckBoxInner {
+  border: thin dotted;
+}
+.dijit_a11y .idxOneuiTriStateCheckBoxDisabled .idxOneuiTriStateCheckBoxInner {
+  opacity: 0.5;
+}
+.dijit_a11y .idxOneuiTriStateCheckBoxInner {
+  visibility: visible;
+  display: block;
+}
+.dj_ie .dlBlue .idxOneuiTriStateCheckBoxInput {
+  filter: alpha(opacity=0);
+}
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxSliderWrapH .dijitSliderButtonContainerH {
+  padding: 1px 5px;
+}
+.dlBlue .idxSliderWrapH .dijitSliderDecrementIconH,
+.dlBlue .idxSliderWrapH .dijitSliderIncrementIconH {
+  background-color: #6f7076;
+  border: 1px solid #6f7076;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  height: 18px;
+  width: 12px;
+  background: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderDecrementIconH,
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderIncrementIconH {
+  background-color: #cdced2;
+  border: solid 1px #cdced2;
+  background: url("../../dijit/form/images/arrows_white.png");
+}
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderDecrementIconH {
+  background-position: -175px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderIncrementIconH {
+  background-position: -125px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSlider .dijitSliderProgressBarH,
+.dlBlue .idxSliderWrapH .dijitSlider .dijitSliderLeftBumper {
+  background-image: none;
+}
+.dlBlue .idxSliderWrapH .dijitSliderDecrementIconH {
+  background-position: -77px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSliderIncrementIconH {
+  background-position: -26px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSliderBar {
+  height: 10px;
+}
+.dlBlue .idxSliderWrapH .dijitSliderFocused .dijitSliderBar {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.dlBlue .idxSliderWrapV .dijitSliderButtonContainerV {
+  padding: 5px 1px;
+}
+.dlBlue .idxSliderWrapV .dijitSliderDecrementIconV,
+.dlBlue .idxSliderWrapV .dijitSliderIncrementIconV {
+  background-color: #6f7076;
+  border: 1px solid #6f7076;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  height: 12px;
+  width: 16px;
+  background: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderDecrementIconV,
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderIncrementIconV {
+  background-color: #cdced2;
+  border: solid 1px #cdced2;
+  background: url("../../dijit/form/images/arrows_white.png");
+}
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderDecrementIconV {
+  background-position: -151px 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderIncrementIconV {
+  background-position: -100px 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSlider .dijitSliderProgressBarV,
+.dlBlue .idxSliderWrapV .dijitSlider .dijitSliderBottomBumper {
+  background-image: none;
+}
+.dlBlue .idxSliderWrapV .dijitSliderDecrementIconV {
+  background-position: -51px 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSliderIncrementIconV {
+  background-position: 0 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSliderBar {
+  width: 10px;
+}
+.dlBlue .idxSliderWrapV .dijitSliderFocused .dijitSliderBar {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.dlBlue .idxSliderWrapH .dijitValidationContainer,
+.dlBlue .idxSliderWrapV .dijitValidationContainer {
+  height: 15px;
+}
+.dlBlue .idxComposite.idxSliderWrapH .dijitValidationContainer,
+.dlBlue .idxComposite.idxSliderWrapV .dijitValidationContainer {
+  margin: 0 5px;
+}
+.dlBlue .idxSliderWrapH .idxLabel,
+.dlBlue .idxSliderWrapV .idxLabel {
+  vertical-align: top;
+  padding-top: 3px;
+}
+.dlBlue .idxSliderWrapV {
+  position: relative;
+}
+.dlBlue .idxSliderWrapV .dijitValidationContainer {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+}
+.dj_ie .dlBlue .idxSliderWrapV .dijitValidationContainer,
+.dj_gecko .dlBlue .idxSliderWrapV .dijitValidationContainer {
+  right: 13px;
+}
+.dj_ie .dlBlue .idxSliderWrapV .dijitSliderV .dijitSliderDecorationV {
+  height: 100% !important;
+}
+.dj_webkit .dlBlue .idxSliderWrapV .dijitSliderV .dijitSliderBarContainerV {
+  height: 101%;
+}
+.dijitRtl .dlBlue .idxSliderWrapV .dijitValidationContainer {
+  right: auto;
+  left: 13px;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSlider .dijitSliderDecrementIconH {
+  background-position: -26px 53%;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSlider .dijitSliderIncrementIconH {
+  background-position: -77px 53%;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSliderDisabled .dijitSliderDecrementIconH {
+  background-position: -125px 53%;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSliderDisabled .dijitSliderIncrementIconH {
+  background-position: -175px 53%;
+}

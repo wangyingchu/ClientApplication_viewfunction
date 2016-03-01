@@ -1,0 +1,112 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxCheckBoxSelect {
+    margin: 0;
+}
+.@{theme-name} {
+    .idxCheckBoxSelectWrapLabel {
+        vertical-align: top;
+    }
+    .idxCheckBoxSelectReadOnly {
+        .dijitDownArrowButton {
+            background-image: none;
+            background: #f4f4f4;
+            background: -moz-linear-gradient(top,  #f4f4f4 0%, #dbdbdb 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4f4f4), color-stop(100%,#dbdbdb));
+            background: -webkit-linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%);
+            background: -o-linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%);
+            background: -ms-linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%);
+            background: linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%);
+        }
+        .dijitDownArrowButtonHover {
+            background: #e5e5e5;
+            background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc));
+            background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+            background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+            background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+            background: linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+        }
+        .dijitDownArrowButtonActive {
+            background: #aaaaaa;
+            background: -moz-linear-gradient(top,  #dbdbdb 0%, #f4f4f4 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%,#f4f4f4));
+            background: -webkit-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+            background: -o-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+            background: -ms-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+            background: linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+        }
+    }
+    .idxCheckBoxSelectMenu {
+        td.dijitMenuArrowCell {
+            display: none;
+        }
+        td.dijitMenuItemIconCell {
+            margin: 0;
+            width: 16px;
+        }
+        /*.dijitMenuTable {
+            tr.dijitMenuItem.dijitMenuItemFocused {
+                & > td.dijitMenuItemIconCell {
+                    padding-left: 9px;
+                }
+                & > td.dijitMenuItemLabel {
+                    padding-top: 2px;
+                    padding-bottom: 4px;
+                }
+            }
+            tr.dijitMenuItem.dijitMenuItemFocused:first-child {
+                & > td.dijitMenuItemLabel {
+                    padding-top: 3px;
+                }
+            }
+        }*/
+        table.dijitMenuTable {
+            width: 100%;
+        }
+    }
+    .dijitMenuPopup {
+        .idxCheckBoxSelectMenu {
+            .dijitMenuItemReadOnly {
+                color: #767676;
+                background: #ffffff;
+            }
+        }
+    }
+    .idxCheckBoxSelect {
+        .idxCheckBoxSelectWrapLabel {
+            text-align: left;
+        }
+    }
+    .idxCheckBoxSelectWrapError {
+        .idxCheckBoxSelectError {
+            border: 1px solid @error-color;
+            .dijitButtonContents {
+                background: @container-background-color;
+            }
+        }
+        .dijitValidationContainer {
+            display: inherit;
+        }
+    }
+    /*.idxCheckBoxSelectWrap {
+        .dijitValidationContainer {
+            display:none;
+        }
+    }*/
+}
+/*.dj_webkit {
+    .@{theme-name} {
+        table.idxCheckBoxSelect {
+            display: inline-block;
+        }
+    }
+}*/
+.@{theme-name} .idxCheckBoxSelectMenu td.dijitMenuItemLabel,
+.@{theme-name} .idxCheckBoxSelectMenu td.oneuiMenuHeadingLabel {
+    position: static;
+    color: @primary-color;
+}
+.@{theme-name} .idxCheckBoxSelectMenu .dijitMenuItemLabel,
+.@{theme-name} .idxCheckBoxSelectMenu .oneuiMenuHeadingLabel {
+    margin: 0;
+    padding: 3px 10px 4px 0;
+}

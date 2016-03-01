@@ -113,7 +113,7 @@ define(["dojo/_base/lang",
     	// get the node
     	var node = nodeOrID;
     	if (iUtil.typeOfObject(nodeOrID) == "string") {
-    		node = dojo.byId(nodeOrID);
+    		node = dDom.byId(nodeOrID);
     		if (!node) {
 				throw new Error("Could not find node for ID: " + nodeID);    			
     		}
@@ -123,7 +123,7 @@ define(["dojo/_base/lang",
     	iA11y._unregister(node, currentNode, attrName, roleName);
     	
     	// set the wairole and role on the node
-    	dojo.attr(node, {wairole: roleName, role: roleName});
+    	dDomAttr.set(node, {wairole: roleName, role: roleName});
     	
     	// look for the prologue
     	var ap = iA11y._getPrologue();
@@ -166,7 +166,7 @@ define(["dojo/_base/lang",
     		// check to see if the roles are still as we last left them
     		var currentRole = dDomAttr.get(node, "wairole");
     		if (currentRole == roleName) dDomAttr.remove(node, "wairole");
-    		currentRole = dojo.attr(node, "role");
+    		currentRole = dDomAttr.get(node, "role");
     		if (currentRole == roleName) dDomAttr.remove(node, "role");
     		
     		// set the result to null to unregister

@@ -1,0 +1,138 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} .idxOneuiHoverHelpTooltip,.@{theme-name} .idxOneuiHoverHelpTooltipDialog {
+    background: transparent;
+}
+.@{theme-name} {
+    .idxOneuiHoverHelpTooltipCloseIcon {
+        background: url("../../dijit/@{image-layout-tab-close}") -1px 0px;
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        right: -13px;
+        top: -13px;
+        z-index: 10001;
+        line-height: 0;
+        cursor: pointer;
+        .idxHoverHelpCloseText {
+            display: none;
+            position: absolute;
+            right: 18px;
+            top: 20px;
+        }
+    }
+    .idxOneuiHoverHelpTooltipCloseIcon:hover{
+    	background-position: -28px 0px;
+    }
+    .idxOneuiHoverHelpTooltipCloseIcon:active{
+    	background-position: -15px 0px;
+    }
+    .idxOneuiHoverHelpTooltipLearnLink {
+        margin-top: 15px;
+        span {
+            padding-top: 1px;
+        }
+    }
+    .idxOneuiHoverHelpTooltipRight {
+        padding: 5px 5px 5px 9px;
+        .idxOneuiHoverHelpTooltipCloseIcon {
+            right: -8px;
+            top: -8px;
+        }
+        .idxOneuiHoverHelpTooltipConnector {
+            left: -6px;
+            background-position: -54px 0;
+        }
+    }
+    .idxOneuiHoverHelpTooltipLeft {
+        padding: 5px 10px 5px 5px;
+        .idxOneuiHoverHelpTooltipCloseIcon {
+            left: -8px;
+            top: -8px;
+        }
+        .idxOneuiHoverHelpTooltipConnector {
+            right: -5px;
+            background-position: -36px 0;
+        }
+    }
+    .idxOneuiHoverHelpTooltipAbove {
+        margin-left: -10px;
+        margin-top: -1px;
+        padding: 5px 5px 11px 5px;
+        .idxOneuiHoverHelpTooltipCloseIcon {
+            right: -8px;
+            top: -8px;
+        }
+        .idxOneuiHoverHelpTooltipConnector {
+            bottom: -4px;
+            left: 10px;
+            background-position: 0px 0;
+        }
+    }
+    .idxOneuiHoverHelpTooltipBelow {
+        padding: 9px 5px 5px 5px;
+        margin-left: -14px;
+        .idxOneuiHoverHelpTooltipCloseIcon {
+            right: -8px;
+            top: -4px;
+        }
+        .idxOneuiHoverHelpTooltipConnector {
+            top: -6px;
+            left: 13px;
+            background-position: -18px 0;
+        }
+    }
+    .idxOneuiHoverHelpTooltipContainer {
+        background-color: @tooltip-background-color;
+        background-repeat: repeat-x;
+        background-position: bottom;
+        border: 1px solid @tooltip-border-color;
+        padding: @tooltip-padding;
+        .border-radius(@tooltip-border-radius );
+        .box-shadow(@tooltip-shadow );
+        font-size: 1em;
+        color: @tooltip-text-color;
+        word-break: break-word;
+		word-wrap:break-word;
+    }
+    .idxOneuiHoverHelpTooltipConnector {
+        border: 0;
+        z-index: 2;
+        background-image: url("../../dijit/@{image-tooltip}");
+        background-repeat: no-repeat;
+        width: 18px;
+        height: 18px;
+        position: absolute;
+    }
+    .idxOneuiHoverHelpTooltipABRight {
+        .idxOneuiHoverHelpTooltipConnector {
+            left: auto !important;
+            right: 13px;
+        }
+    }
+    .idxOneuiHoverHelpTooltip {
+        position: absolute;
+        z-index: 2000;
+        display: block;
+        left: auto;
+        top: -10000px;
+        overflow: visible;
+        .box-shadow(none);
+    }
+    .idxOneuiHoverHelpTooltipFocusNode {
+        padding: 2px 2px 2px 2px;
+    }
+    .idxOneuiHoverHelpTooltipData {
+        display: none;
+    }
+}
+.dj_a11y .@{theme-name} .idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText,.dj_a11y.@{theme-name} .idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText {
+    display: block;
+}
+.dijit_a11y {
+    .@{theme-name} {
+        .idxOneuiHoverHelpTooltipConnector {
+            display: none;
+        }
+    }
+}

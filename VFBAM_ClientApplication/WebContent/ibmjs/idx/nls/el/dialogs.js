@@ -6,7 +6,9 @@ define({
 	confirmation: "Επιβεβαίωση",
 	progress: "Πρόοδος",
 	loading: "Φόρτωση",
-	close: "Κλείσιμο"
+	close: "Κλείσιμο",
+	idxErrorDialog_detailTabLabel: "Διόρθωση του προβλήματος",
+	idxErrorDialog_moreTabLabel: "Λήψη περισσότερης βοήθειας"
 //end v1.x content
 });
 

@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Se debe seleccionar como mínimo un elemento."
 //end v1.x content
 });
+

@@ -33,8 +33,13 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
  
 <script type="text/javascript" id="postDojo">
 var modules = [ "dijit.layout.ContentPane",
-				"idx.layout.BorderContainer" ];
-dojoRequireModules(modules, null, currentDojoVersion.async);
+				"idx.layout.BorderContainer",
+				"idx.layout.ToggleSplitter" ];
+function preParse(modules){
+	BorderContainer = modules["idx/layout/BorderContainer"];
+	ToggleSplitter = modules["idx/layout/ToggleSplitter"];
+}
+dojoRequireModules(modules, null, currentDojoVersion.async, preParse);
 </script>
 <script type="text/javascript" src="../../tests/commonTest.js"></script>
 </head>
@@ -42,15 +47,20 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 <a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 <script type="text/javascript">applyThemeToBody()</script>
 <a name="maincontent"></a>
-<div dojoType="idx.layout.BorderContainer" style="width: 100%; height: 100%;" gutters="false">
-	<div dojoType="dijit.layout.ContentPane" style="background-color: blue; height: 80px;" region="top" splitter="true">
+<div data-dojo-type="idx.layout.BorderContainer" style="width: 100%; height: 100%;" data-dojo-props='
+	gutters:false,
+	toggleable:true
+	'>
+	<div id="toppane" dojoType="dijit.layout.ContentPane" style="background-color: blue; height: 80px;" region="top" splitter="true">
 		<div style="float: right;">Right</div>
 		<div>Top</div>
 	</div>
-	<div dojoType="dijit.layout.ContentPane" style="background-color: cyan;" region="center">Center</div>
-	<div dojoType="dijit.layout.ContentPane" style="background-color: white; width: 100px;" region="leading" splitter="true">Leading</div>
-	<div dojoType="dijit.layout.ContentPane" style="background-color: yellow; height: 80px;" region="bottom" splitter="true" bidiToggle="true">Bottom</div>
-	<div dojoType="dijit.layout.ContentPane" style="width: 100px;" region="trailing" splitter="true" bidiToggle="true">Trailing</div>
+	<div id="centerpane" dojoType="dijit.layout.ContentPane" style="background-color: cyan;" region="center">Center</div>
+	<div id="leadingpane" dojoType="dijit.layout.ContentPane" style="background-color: white; width: 100px;" region="leading" splitter="true" snap=true>Leading</div>
+	<div id="bottompane" data-dojo-type="dijit.layout.ContentPane" style="background-color: yellow; height: 80px;" data-dojo-props='
+		region:"bottom", splitter:true, bidiToggle:true
+	'>Bottom</div>
+	<div id="trailingpane" dojoType="dijit.layout.ContentPane" style="width: 100px;" region="trailing" splitter=true fixed=true>Trailing</div>
 </div>
 </body>
 </html>

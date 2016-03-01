@@ -1,0 +1,136 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxOneuiHoverHelpTooltip,
+.dlBlue .idxOneuiHoverHelpTooltipDialog {
+  background: transparent;
+}
+.dlBlue .idxOneuiHoverHelpTooltipCloseIcon {
+  background: url("../../dijit/layout/images/tabClose.png") -1px 0px;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: -13px;
+  top: -13px;
+  z-index: 10001;
+  line-height: 0;
+  cursor: pointer;
+}
+.dlBlue .idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText {
+  display: none;
+  position: absolute;
+  right: 18px;
+  top: 20px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipCloseIcon:hover {
+  background-position: -28px 0px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipCloseIcon:active {
+  background-position: -15px 0px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipLearnLink {
+  margin-top: 15px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipLearnLink span {
+  padding-top: 1px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipRight {
+  padding: 5px 5px 5px 9px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipRight .idxOneuiHoverHelpTooltipCloseIcon {
+  right: -8px;
+  top: -8px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipRight .idxOneuiHoverHelpTooltipConnector {
+  left: -6px;
+  background-position: -54px 0;
+}
+.dlBlue .idxOneuiHoverHelpTooltipLeft {
+  padding: 5px 10px 5px 5px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipLeft .idxOneuiHoverHelpTooltipCloseIcon {
+  left: -8px;
+  top: -8px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipLeft .idxOneuiHoverHelpTooltipConnector {
+  right: -5px;
+  background-position: -36px 0;
+}
+.dlBlue .idxOneuiHoverHelpTooltipAbove {
+  margin-left: -10px;
+  margin-top: -1px;
+  padding: 5px 5px 11px 5px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipAbove .idxOneuiHoverHelpTooltipCloseIcon {
+  right: -8px;
+  top: -8px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipAbove .idxOneuiHoverHelpTooltipConnector {
+  bottom: -4px;
+  left: 10px;
+  background-position: 0px 0;
+}
+.dlBlue .idxOneuiHoverHelpTooltipBelow {
+  padding: 9px 5px 5px 5px;
+  margin-left: -14px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipBelow .idxOneuiHoverHelpTooltipCloseIcon {
+  right: -8px;
+  top: -4px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipBelow .idxOneuiHoverHelpTooltipConnector {
+  top: -6px;
+  left: 13px;
+  background-position: -18px 0;
+}
+.dlBlue .idxOneuiHoverHelpTooltipContainer {
+  background-color: #ffffff;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  border: 1px solid #b4b5b9;
+  padding: 10px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  font-size: 1em;
+  color: #393a3f;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+.dlBlue .idxOneuiHoverHelpTooltipConnector {
+  border: 0;
+  z-index: 2;
+  background-image: url("../../dijit/images/tooltip.png");
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+}
+.dlBlue .idxOneuiHoverHelpTooltipABRight .idxOneuiHoverHelpTooltipConnector {
+  left: auto !important;
+  right: 13px;
+}
+.dlBlue .idxOneuiHoverHelpTooltip {
+  position: absolute;
+  z-index: 2000;
+  display: block;
+  left: auto;
+  top: -10000px;
+  overflow: visible;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.dlBlue .idxOneuiHoverHelpTooltipFocusNode {
+  padding: 2px 2px 2px 2px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipData {
+  display: none;
+}
+.dj_a11y .dlBlue .idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText,
+.dj_a11y.dlBlue .idxOneuiHoverHelpTooltipCloseIcon .idxHoverHelpCloseText {
+  display: block;
+}
+.dijit_a11y .dlBlue .idxOneuiHoverHelpTooltipConnector {
+  display: none;
+}

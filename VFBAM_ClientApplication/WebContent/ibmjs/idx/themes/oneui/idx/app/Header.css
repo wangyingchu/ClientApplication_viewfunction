@@ -59,9 +59,31 @@
 }
 
 /** idxHeaderSecondaryInner **/
+.oneui .idxHeaderContainer .idxHeaderSecondaryInner {
+	position: relative;
+}
+
 .oneui .idxHeaderContainer .idxHeaderSecondaryWhite .idxHeaderSecondaryInner {
     height: 55px;
     border-bottom: 1px dotted #c4c4c4;
+}
+
+.oneui .idxHeaderContainer .idxHeaderSecondaryLeading {
+	padding: 0px;
+	margin: 0px;
+	/*position: absolute;*/
+	left: 0px;
+	top: 0px;
+}
+
+.oneui .idxHeaderContainer .idxHeaderSecondaryTrailing {
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	/*Set trailing part higher than tablist.*/
+	z-index: 5;
 }
 
 .oneui .idxHeaderContainer .idxHeaderWidthFixed .idxHeaderSecondaryInner {
@@ -143,16 +165,19 @@
 
 .oneui .idxHeaderContainer .idxHeaderPrimaryThin .idxHeaderPrimary {
     height : 38px;
+    position: relative;
 }
 
 .oneui .idxHeaderContainer .idxHeaderPrimaryThick .idxHeaderPrimary {
     height : 61px;
+    position: relative;
 }
 
 /** idxHeaderPrimaryInner **/
 .oneui .idxHeaderContainer .idxHeaderWidthFixed .idxHeaderPrimaryInner {
     width: 980px;
     margin: auto;
+    position: relative;
 }
 
 /** idxHeaderPrimaryTitle **/
@@ -189,19 +214,39 @@
 }
 
 /** idxHeaderPrimary idxHeaderPrimaryAction **/
-.oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction > * {
-    float : right;
+.oneui .idxHeaderContainer .idxHeaderPrimary ul.idxHeaderPrimaryActionsLeading {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+    padding: 0;
+    text-decoration: none;
+}
+.oneui .idxHeaderContainer .idxHeaderPrimary ul.idxHeaderPrimaryActionsTrailing {
+	position: absolute;
+	right: 0px;
+	top: 0px;
     padding: 0;
     text-decoration: none;
 }
 
-.oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderEnd > * {
+.oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction > * {
+    float : left;
+    padding: 0;
+    text-decoration: none;
+}
+
+.oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderLogo > * {
     padding: 0;
     margin: 0;
 }
 
 .oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction {
 	cursor: pointer;
+}
+
+.oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderLogoItem  > * {
+    padding: 0;
+    margin: 0;
 }
 
 .oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderSeparator {
@@ -235,17 +280,25 @@
 }
 
 /** idxHeaderNavigationHome **/
+.oneui .idxHeaderContainer li.idxHeaderPrimaryNav {
+	display: inline-block;
+}
+
 .oneui .idxHeaderContainer .idxHeaderNavigationHome {
     display: block;
     height: 14px;
     width: 25px;
     background: url("images/headerIcons_TopBanner.png") no-repeat scroll -119px -5px transparent;
 }
+.oneui .idxHeaderContainer .idxHeaderNavigationHomeButtonOnly {
+    width: 15px;
+}
+.dijit_a11y.oneui .idxHeaderContainer .idxHeaderNavigationHome,
+.dijit_a11y .oneui .idxHeaderContainer .idxHeaderNavigationHome{
+	width: auto;
+}
 
 .oneui .idxHeaderContainer .dijitMenuItemHover .idxHeaderNavigationHome {
-    display: block;
-    height: 14px;
-    width: 25px;
     background: url("images/headerIcons_TopBanner.png") no-repeat scroll -218px -5px transparent;
 }
 
@@ -298,8 +351,28 @@
     background: url("images/headerIcons.png") no-repeat scroll 0 0 transparent;
     background-position: -69px 7px;
 }
+/*.dijit_a11y.oneui .idxHeaderContainer .idxHeaderPrimary .idxHeaderDropDown .idxHeaderDropDownArrow:before,
 .dijit_a11y .oneui .idxHeaderContainer .idxHeaderPrimary .idxHeaderDropDown .idxHeaderDropDownArrow:before {
 	content: "(v)";
+}*/
+.dijit_a11y.oneui .idxHeaderPrimary, 
+.dijit_a11y.oneui .idxHeaderSecondary,
+.dijit_a11y .oneui .idxHeaderPrimary, 
+.dijit_a11y .oneui .idxHeaderSecondary{
+	border-bottom: 1px solid;
+}
+.dijit_a11y.oneui .idxHeaderSecondary .dijitTabChecked .tabLabel,
+.dijit_a11y .oneui .idxHeaderSecondary .dijitTabChecked .tabLabel{
+	text-decoration: underline;
+}
+.dijit_a11y.oneui .idxHeaderPrimaryAction .idxHeaderSettingsIcon,
+.dijit_a11y.oneui .idxHeaderPrimaryAction .idxHeaderShareIcon,
+.dijit_a11y.oneui .idxHeaderPrimaryAction .idxHeaderHelpIcon,
+.dijit_a11y .oneui .idxHeaderPrimaryAction .idxHeaderSettingsIcon,
+.dijit_a11y .oneui .idxHeaderPrimaryAction .idxHeaderShareIcon,
+.dijit_a11y .oneui .idxHeaderPrimaryAction .idxHeaderHelpIcon
+ {
+	width: auto !important;
 }
 
 .oneui .idxHeaderContainer .idxHeaderPrimary .idxHeaderDropDown:hover .idxHeaderDropDownArrow {
@@ -394,6 +467,28 @@
 
 .oneui .idxHeaderContainer .idxHeaderPrimaryThick li.idxHeaderPrimaryAction.idxHeaderTools > :hover .idxHeaderShareIcon {
 	background-position: -95px 20px;
+}
+
+
+.oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderTools .idxHeaderSettingsIcon {
+	display: inline-block;
+    width: 16px;
+    height: 37px;
+    background: url("images/headerIcons_TopBanner.png") no-repeat -252px 8px;
+}
+
+.oneui .idxHeaderContainer .idxHeaderPrimaryThick .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderTools .idxHeaderSettingsIcon {
+    height: 61px;
+	background-position: -252px 20px;
+}
+
+.oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderTools > :hover .idxHeaderSettingsIcon {
+    background-image: url("images/headerIcons_TopBanner.png");
+	background-position: -276px 8px;
+}
+
+.oneui .idxHeaderContainer .idxHeaderPrimaryThick li.idxHeaderPrimaryAction.idxHeaderTools > :hover .idxHeaderSettingsIcon {
+	background-position: -276px 20px;
 }
 
 /** idxHeaderLogoBox **/
@@ -763,7 +858,7 @@
 /* ======= Beginning of search box ======== */
 /** search box **/
 .oneui .idxHeaderContainer .idxHeaderSearchContainer {
-    float: right;
+    float: left;
     position: relative;
     left: 0px;
     margin-left: 7px;
@@ -773,6 +868,16 @@
     -moz-border-radius: 12px;
     border-radius: 12px; 
     min-width: 235px; /* Search box float in IE7 */
+}
+.oneui .idxHeaderContainer .idxHeaderSearchContainer .dijitTextBox { 
+    -moz-border-radius: 12px;
+    border-radius: 12px; 
+    min-width: 235px; /* Search box float in IE7 */
+}
+.dj_ie7 .oneui .idxHeaderContainer .idxHeaderSearchContainer .dijitTextBox,
+.dj_ie8 .oneui .idxHeaderContainer .idxHeaderSearchContainer .dijitTextBox,
+.dj_ie9 .oneui .idxHeaderContainer .idxHeaderSearchContainer .dijitTextBox  { 
+    border-radius: 0; 
 }
 
 .oneui .idxHeaderContainer .idxHeaderSearchContainer .dijitTextBox .dijitInputField {
@@ -874,6 +979,9 @@
 .dj_ie .oneui .idxHeaderContainer .idxHeaderPrimary .idxHeaderSearchContainer .dijitTextBox .dijitButtonNode {
     filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#222222', EndColorStr='#121212');
 }
+.dj_ie .oneui .idxHeaderPrimary .idxHeaderSearchContainer .dijitButton{
+	margin-top: 3px;
+}
 
 /** context search box **/
 .oneui .idxHeaderContainer .idxHeaderSecondary .idxHeaderSearchContainer {
@@ -934,6 +1042,10 @@
 
 
 /* ======= Beginning of ContentContainer ======== */
+.oneui .idxHeaderSecondaryLeading .oneuiContentContainer {
+	width: auto;
+}
+
 .oneui .oneuiContentContainer {
     width: 100%;
     height: 31px;
@@ -941,7 +1053,6 @@
     background-image: -moz-linear-gradient(top, #047bb0 0%, #096ba2 100%);
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, from(#047bb0), to(#096ba2));
     background-image: -webkit-gradient(linear, 50% 100%, #047bb0, #096ba2);
-    background-image: -o-linear-gradient(#047bb0, );
 	background-image: -ms-linear-gradient(top, #047BB0, #096ba2);
 }
 .dj_ie .oneui .oneuiContentContainer {
@@ -954,6 +1065,7 @@
 .oneui .idxHeaderSecondaryGray .oneuiContentContainer {
     background-image: -moz-linear-gradient(top, #f8f8f8, #f8f8f8 80%, #e9e9e9);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.80, #f8f8f8), color-stop(1, #e9e9e9));
+	background-image: -ms-linear-gradient(top, #f8f8f8, #e9e9e9);
 }
 .dj_ie .oneui .idxHeaderSecondaryGray .oneuiContentContainer {
     filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#f8f8f8', EndColorStr='#e9e9e9');
@@ -1094,7 +1206,7 @@
 
 /** Edit button **/
 .oneui .idxHeaderContainer .idxHeaderSecondaryActions {
-    float: right; 
+    float: left; 
     position: relative; 
     right: 7px; 
     top: 9px;

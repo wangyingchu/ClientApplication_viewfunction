@@ -18,9 +18,9 @@
 		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
 	</script>
 	
-    <style id="idxStyles" type="text/css">
-        @import "../../themes/oneui/oneui.css";
-    </style>
+	<style id="idxStyles" type="text/css">
+		/*@import "../../themes/oneui/oneui.css";*/
+	</style>
 
 	<style>
 		#content_container .dijitContentPane {
@@ -30,12 +30,14 @@
 
 	<script type="text/javascript">
 		var dojoConfig = currentDojoVersion.dojoConfig;
+		dojoConfig.parseOnLoad = true;
 		dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 	</script>
 	
 	<script type="text/javascript" id="postDojo">
 		var modules = [
 			"dojo.dom", 
+			"dojo.main",
 			"dojo.ready",
 			"dijit.registry",
 			"idx.app.tests.headerExamples"];
@@ -49,6 +51,17 @@
 			ht = modules["idx/app/tests/headerExamples"];
 			
 			initialiseDOM();
+			ready(function(){
+
+				if(document.location.search.indexOf('dlBlue') >= 0){
+					var as = dojo.query('a'),
+						len = as.length, i;
+					
+					for(i = 0; i < len; i++){
+						as[i].href += '&theme=dlBlue';
+					}
+				}
+			});
 		}
 
 		function postParse(modules){
@@ -137,6 +150,8 @@
 				dom.byId("pi_udi").checked = hdr.user && hdr.user.displayImage;
 				dom.byId("pi_umn").value = (hdr.user && hdr.user.messageName) || '-';
 				dom.byId("pi_umsg").value = (hdr.user && hdr.user.message) || '-';
+				dom.byId("pi_psk_wrapper").style.visibility = hdr.primarySearch?"visible":"hidden";
+				dom.byId("pi_ssk_wrapper").style.visibility = hdr.secondarySearch?"visible":"hidden";
 			}else{
 				dom.byId("pi_te_ok").style.display = "none";
 			}
@@ -198,10 +213,25 @@
 		function updateUserImage(){
 			dijit.byId('header').set('userDisplayImage', dojo.byId('pi_udi').checked ? "http://w3.ibm.com/bluepages/api/BluePagesPhoto.jsp?CNUM=074773866" : null);
 		}
+
+		function setSearchText(isPrimary, value){
+			dijit.byId('header').getTextBoxWidget(isPrimary).set('value',value);
+		}
+
 	</script>
 
 	<script type="text/javascript" src="../../tests/commonTest.js"></script>
-
+	<!--[if lte IE 8]>
+		<script type='text/javascript'>
+			var currentTheme = window.currentTheme;
+			var themeCode = currentTheme.code;
+			var themePath = '';
+			
+			if(themeCode === 'dlBlue'){
+				dojoCSSImport((themePath || "../../themes/") + themeCode + "/" + themeCode + "-all.css", "idxStyles");
+			}
+		</script>
+	<![endif]-->
 </head>
 <body role="main">
 	
@@ -242,15 +272,25 @@
 						<p style="display: table-row;">
 							<span id="pi_udn_l" style="display: table-cell; padding-right: 1em;">User display name:</span>
 							<span style="display: table-cell;">
-								<input id="pi_udn" style="font-size: inherit;" aria-labelledby="pi_udn_l" /><button onclick="updateUser('userDisplayName', 'pi_udn');" style="font-size: inherit;">update</button>
+								<input id="pi_udn" style="font-size: inherit;" aria-labelledby="pi_udn_l" /><button dojoType="dijit/form/Button" onClick="updateUser('userDisplayName', 'pi_udn');" style="font-size: inherit;">update</button>
 								<input id="pi_udi" type="checkbox" style="vertical-align: text-bottom;" onchange="updateUserImage();" /> <label for="pi_udi">show picture</label>
 							</span>
 						</p><p style="display: table-row;">
 							<span id="pi_umn_l" style="display: table-cell; padding-right: 1em;">User message name:</span>
 							<span style="display: table-cell;">
-								<input id="pi_umn" style="font-size: inherit;" aria-labelledby="pi_umn_l" /><button onclick="updateUser('userMessageName', 'pi_umn');" style="font-size: inherit;">update</button>
+								<input id="pi_umn" style="font-size: inherit;" aria-labelledby="pi_umn_l" /><button dojoType="dijit/form/Button" onClick="updateUser('userMessageName', 'pi_umn');" style="font-size: inherit;">update</button>
 								(<span id="pi_umsg_l">User message:</span>
-								<input id="pi_umsg" style="font-size: inherit;" aria-labelledby="pi_umsg_l" /><button onclick="updateUser('userMessage', 'pi_umsg');" style="font-size: inherit;">update</button>)
+								<input id="pi_umsg" style="font-size: inherit;" aria-labelledby="pi_umsg_l" /><button dojoType="dijit/form/Button" onClick="updateUser('userMessage', 'pi_umsg');" style="font-size: inherit;">update</button>)
+							</span>
+						</p><p style="display: table-row;" id="pi_psk_wrapper">
+							<span id="pi_psk_l" style="display: table-cell; padding-right: 1em;">(Primary) Search keywords:</span>
+							<span style="display: table-cell;">
+								<input id="pi_psk" style="font-size: inherit;" aria-labelledby="pi_psk_l" /><button dojoType="dijit/form/Button" onClick="setSearchText(false, dojo.byId(pi_psk).value)" style="font-size: inherit;">update</button><button dojoType="dijit/form/Button" onClick="setSearchText(false, '')" style="font-size: inherit;">clear</button>
+							</span>
+						</p><p style="display: table-row;" id="pi_ssk_wrapper">
+							<span id="pi_ssk_l" style="display: table-cell; padding-right: 1em;">(Secondary) Search keywords:</span>
+							<span style="display: table-cell;">
+								<input id="pi_ssk" style="font-size: inherit;" aria-labelledby="pi_ssk_l" /><button dojoType="dijit/form/Button" onClick="setSearchText(true, dojo.byId(pi_ssk).value);" style="font-size: inherit;">update</button><button dojoType="dijit/form/Button" onClick="setSearchText(true, '')" style="font-size: inherit;">clear</button>
 							</span>
 						</p>
 					</div>

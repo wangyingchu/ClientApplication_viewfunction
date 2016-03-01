@@ -6,7 +6,8 @@
 	</span>
 	</div>
 	<div class="messageSummary">
-		<img dojoAttachPoint="icon" class="message${type}Icon" src="${_blankGif}" alt="${type}" />
+		<img dojoAttachPoint="icon" class="message${type}Icon messageIcon" src="${_blankGif}" alt="${type}" />
+		<span dojoAttachPoint="iconText" class="messageIconText"></span>
 		<span id="${id}_desc" role="alert" dojoAttachPoint="description" class="messageDescription" tabindex="0">${text}</span>
 	</div>	
 	<div dojoAttachPoint="messageWrapper" class="messageWrapper">

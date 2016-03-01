@@ -27,6 +27,12 @@ table td {
 	padding: 0px 10px;
 	border-bottom: 1px solid #EEEEEE;
 }
+.testInstruction tr{
+	background: #ccff66;
+}
+.testInstruction .newLocale{
+	background: #ff9999;
+}
 </style>
 <script type="text/javascript" src="../tests/test_nls.js"></script>
 </head>
@@ -65,8 +71,22 @@ table td {
 			<tr><td>Turkish</td><td>tr</td></tr>
 			<tr><td>Simplified Chinese</td><td>zh</td></tr>
 			<tr><td>Traditional Chinese</td><td>zh-tw</td></tr>
+			<tr><td>Bulgarian</td><td>bg</td></tr>
+			<tr><td>Hebrew</td><td>he</td></tr>
+			<tr><td>Croatian</td><td>hr</td></tr>
+			<tr><td>Ukrainian</td><td>uk</td></tr>
+			<tr><td>Indonesia</td><td>id</td></tr>
+			<tr><td>Vietnamese</td><td>vi</td></tr>
+			
+			<tr class="newLocale"><td>Serbian</td><td>sr</td></tr>
+			<tr class="newLocale"><td>Basque</td><td>eu</td></tr>
+			<tr class="newLocale"><td>Macedonian</td><td>mk</td></tr>
+			
 		</tbody></table>
 	</li>
 	<li>Click the links in "Test Cases" section and follow the instruction in each test page.</li>
+	<li>For 34 existed lauguages (<span style="background:#ccff66;">marked as GREEN</span>) , tester only need to verify new/changed strings in <span style="background:yellow;">* highlighted</span> test pages. </li>
+	<li>For 3 new lauguages (<span style="background:#ff9999;">marked as RED</span>) , testter has to verify all strings in each test page.</li>
+	<li>For RTL language, please click right-top "RTL" button, to reverse direction.</li>
 </ol>
 </body>

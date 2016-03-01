@@ -1,0 +1,89 @@
+.dlBlue .idxOneuiTriStateCheckBox,
+.dlBlue .idxOneuiTriStateCheckBoxIcon {
+  background-image: url('../../dijit/form/images/checkboxRadioButtonStates.png');
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 16px;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.dj_ie6 .dlBlue .idxOneuiTriStateCheckBox,
+.dj_ie6 .dlBlue .idxOneuiTriStateCheckBoxIcon {
+  background-image: url('../../dijit/form/images/checkboxAndRadioButtons_IE6.png');
+}
+.dlBlue .idxOneuiTriStateCheckBoxWrapDisabled .idxLabel {
+  color: #4c4d53;
+}
+.dlBlue .idxComposite.idxOneuiTriStateCheckBoxWrap .idxLabel {
+  padding: 0 4px 0 0;
+  margin-top: 2px;
+}
+.dlBlue .idxComposite.idxOneuiTriStateCheckBoxWrap .dijitValidationContainer {
+  margin: 2px 5px 0 0;
+}
+.dlBlue .idxComposite.idxOneuiTriStateCheckBoxWrap .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.dlBlue .idxOneuiTriStateCheckBox,
+.dlBlue .idxOneuiTriStateCheckBoxActive {
+  background-position: -15px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxChecked,
+.dlBlue .idxOneuiTriStateCheckBoxCheckedActive {
+  background-position: 0px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxMixed,
+.dlBlue .idxOneuiTriStateCheckBoxMixedActive {
+  background-position: -90px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxDisabled {
+  background-position: -75px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxCheckedDisabled {
+  background-position: -60px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxMixedDisabled {
+  background-position: -150px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxHover {
+  background-position: -45px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxCheckedHover {
+  background-position: -30px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxMixedHover {
+  background-position: -120px;
+}
+.dlBlue .idxOneuiTriStateCheckBoxFocused {
+  outline: 1px dotted #666666;
+}
+.dlBlue .idxOneuiTriStateCheckBoxInner {
+  visibility: hidden;
+  display: none;
+  position: absolute;
+  text-align: center;
+}
+.dlBlue .idxOneuiTriStateCheckBoxInput {
+  opacity: 0.01;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 16px;
+  height: 16px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.dijit_a11y .idxOneuiTriStateCheckBoxHover .idxOneuiTriStateCheckBoxInner,
+.dijit_a11y .idxOneuiTriStateCheckBoxFocused .idxOneuiTriStateCheckBoxInner {
+  border: thin dotted;
+}
+.dijit_a11y .idxOneuiTriStateCheckBoxDisabled .idxOneuiTriStateCheckBoxInner {
+  opacity: 0.5;
+}
+.dijit_a11y .idxOneuiTriStateCheckBoxInner {
+  visibility: visible;
+  display: block;
+}
+.dj_ie .dlBlue .idxOneuiTriStateCheckBoxInput {
+  filter: alpha(opacity=0);
+}

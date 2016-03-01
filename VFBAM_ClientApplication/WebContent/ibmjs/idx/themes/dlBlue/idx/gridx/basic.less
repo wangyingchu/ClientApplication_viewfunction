@@ -1,0 +1,329 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .gridx {
+    border: none;
+}
+.@{theme-name} .gridxHeader, .@{theme-name} .gridxFooter {
+    background: none;
+}
+.@{theme-name} {
+    .gridx {
+        .dijitButton {
+            .dijitButtonNode {
+                min-width: 0px;
+            }
+        }
+        .gridxHeader {
+            .gridxHeaderRow {
+                .gridxHeaderRowInner {
+                    .gridxCell.gridxHeaderCellFocus {
+                        border-top: none;
+                        border-bottom: none;
+                        border-left: 1px solid transparent;
+                        border-right: 1px solid #ccc;
+                        outline: none;
+                        background: #ECF8FD;
+/*                        background: #fafafa;
+                        background: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%);
+                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb));
+                        background: -webkit-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                        background: -o-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                        background: -ms-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                        background: linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);*/
+                    }
+                    .gridxCell{
+                        .user-select(none);
+                    }
+                }
+            }
+        }
+        .gridxBodyRowHoverEffect {
+            .gridxRowOver {
+                .gridxCell {
+                    border-top-color: #bbbbbb;
+                }
+                + .gridxRow {
+                    .gridxCell {
+                        border-top-color: #bbb;
+                    }
+                }
+                
+            }
+            .gridxRowOver:first-child {
+                .gridxCell {
+                    border-top-color: transparent;
+                }
+            }
+        }
+    }
+    .gridxGotoPage {
+        .gridxGotoPageInputBox {
+            .dijitTextBox {
+                width: 70px;
+            }
+        }
+    }
+    .gridxHeaderRow {
+        overflow: hidden;
+        /*border: 1px solid #ccc;*/
+        border: medium none;
+        clear: both;
+        background: @gridx-header-background-color;
+/*        background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+        background: -o-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+        background: -ms-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+        background: linear-gradient(top,  #ffffff 0%,#ededed 100%);*/
+        .gridxCell {
+            border-top: none;
+            border-bottom: none;
+            /*border-right: 1px solid #ccc;*/
+            border: medium none;
+            padding: 14px 7px;
+            /*font-weight: bold;*/
+            font-weight: normal;
+            font-size: 13px;
+            color: @gridx-header-color;
+            vertical-align: top;
+            text-shadow: 1px 1px 1px #fff;
+        }
+        .gridxLockedCell {
+            background: @gridx-header-background-color;
+/*            background: #ededed;
+            background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+            background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+            background: -o-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+            background: -ms-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+            background: linear-gradient(top,  #ffffff 0%,#ededed 100%);*/
+        }
+    }
+    .gridxHeaderRowInner {
+        background: none;
+        border-color: transparent;
+        border-width: 0 2px 0 0;
+    }
+    .gridxDesktop {
+        .gridxHeaderRow {
+            .gridxCell:hover {
+                background-color: @gridx-cell-hover-background-color;
+/*                background: #fafafa;
+                background: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb));
+                background: -webkit-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background: -o-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background: -ms-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+                background: linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);*/
+            }
+        }
+    }
+    .gridxRowHeaderHeaderCell{
+        background: @gridx-header-background-color;
+    }
+    .gridxRowHeaderCell {
+        border-bottom: 1px solid transparent;
+        border-top: 1px solid @gridx-cell-border-color;
+    }
+    .gridxRowHeaderRow:first-child {
+        .gridxRowHeaderCell {
+            border-top-color: transparent;
+        }
+    }
+    .gridxRowHeaderHeader {
+        background: @gridx-header-background-color;
+        border: medium none;
+        /*border-right-color: #d9d9d9;*/
+    }
+    .gridxRowHeaderBody {
+        /*border-left: 1px solid #d9d9d9;*/
+        border-right-width: 0px;
+        .gridxRowOver {
+            /*background: #fafafa;*/
+/*            background: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb));
+            background: -webkit-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+            background: -o-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+            background: -ms-linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);
+            background: linear-gradient(top,  #fafafa 0%,#dbdbdb 100%);*/
+        }
+    }
+    .gridxRow {
+        background: none;
+        .gridxRowTable {
+            background-color: #ffffff;
+            border-left: none;
+        }
+        .gridxCell {
+            padding: 10px 7px;
+            border-width: 1px 0;
+            border-color: @gridx-cell-border-color @gridx-cell-border-color transparent transparent;
+            font-style: Arial;
+            color: #333;
+            vertical-align: top;
+        }
+    }
+    .gridxMain {
+  /*      border-left: 1px solid #d9d9d9;
+        border-right: 1px solid #d9d9d9;*/
+    }
+    .gridxVScroller {
+        border-right: 1px solid #d9d9d9;
+    }
+    .gridxRow:first-child {
+        .gridxCell {
+            border-top-color: transparent;
+        }
+    }
+    .gridxRow:last-child {
+        .gridxCell {
+            border-bottom-color: #d9d9d9;
+        }
+    }
+    .gridxAlternatingRows {
+        .gridxRowOdd {
+            .gridxRowTable {
+                background-color: @gridx-row-strips-background-color;
+            }
+        }
+        .gridxBody {
+            .gridxRow {
+                .gridxCell {
+                    border-top-color: #ffffff;
+                }
+            }
+        }
+        .gridxBodyRowHoverEffect {
+            .gridxRowOver {
+                + .gridxRow {
+                    .gridxCell {
+                        border-top-color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+    .gridxWholeRow {
+        .gridxBody {
+            .gridxRow {
+                .gridxCell {
+                    border-left-color: transparent;
+                    border-right-color: transparent;
+                }
+            }
+        }
+        .gridxLayerWrapper {
+            .gridxRow {
+                .gridxCell {
+                    border-left-color: transparent;
+                    border-right-color: transparent;
+                }
+            }
+        }
+    }
+    .gridxHScroller {
+        border-style: solid;
+        border-color: @gridx-cell-border-color;
+        border-width: 0 0px 1px 0px;
+    }
+    .compact {
+        .gridxHeaderRow {
+            .gridxCell {
+                padding: 10px 7px;
+                font-size: 11px;
+            }
+        }
+        .gridxBody {
+            .gridxCell {
+                padding: 7px;
+                font-size: 11px;
+            }
+        }
+    }
+    .gridxFullPage {
+        .gridxHeader {
+            .gridxHeaderRow {
+                border-top-color: #dadada;
+                border-bottom: 1px solid #ccc;
+            }
+        }
+        .gridxLayerContext {
+            border: none;
+        }
+    }
+    .gridxBodyLastRow {
+        .gridxCell {
+            border-bottom-color: #d9d9d9;
+        }
+    }
+    .gridxLayerContext {
+        border-left: 1px solid #d9d9d9;
+        border-right: 1px solid #d9d9d9;
+    }
+    .gridxLayerWrapper {
+        .gridxRow {
+            .gridxCell {
+                background-color: #f7f7f7;
+            }
+        }
+    }
+    .gridxLayerVSlide {
+        border-top: 1px solid #d9d9d9;
+    }
+}
+.dijit_a11y.@{theme-name} {
+    .gridxHeaderRow {
+        .gridxCell {
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+        }
+    }
+    .gridxHeader {
+        .gridxHeaderRow {
+            .gridxHeaderCellFocus {
+                border: 1px dashed darkblue;
+            }
+        }
+    }
+}
+.@{theme-name} .gridxRowHeaderHeader,
+.@{theme-name} .gridxRowHeaderRow {
+    background: #FFFFFF;
+    /*background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+    background: -ms-linear-gradient(top,  #ffffff 0%,#ededed 100%);
+    background: linear-gradient(top,  #ffffff 0%,#ededed 100%);*/
+}
+.dj_ie {
+    .@{theme-name} {
+        .gridxLastRow {
+            .gridxCell {
+                border-bottom-color: #d9d9d9;
+                border-bottom-color: #d9d9d9;
+            }
+        }
+        .gridxRow {
+            .gridxCellFocus {
+                border-bottom: 1px dashed darkblue;
+            }
+        }
+    }
+}
+.dj_webkit .@{theme-name} .gridx .gridxRow:first-child .gridxCellFocus,.dj_ie7 .@{theme-name} .gridx .gridxRow:first-child .gridxCellFocus {
+    border-top-color: darkblue;
+}
+/*
+ * Set the RowHover style to each of the gridxCells not the whole gridRowTable
+ * .oneui .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable*/ 
+.@{theme-name} .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable .gridxCell{
+    background-color: @gridx-row-hover-background-color;
+}
+
+.@{theme-name} .gridxFullPage .gridxHeader .gridxHeaderRow,
+.@{theme-name} .gridxFullPage .gridxMain,
+.@{theme-name} .gridxFullPage .gridxHeader .gridxHeaderRow .gridxCell,
+.@{theme-name} .gridxFullPage .gridxBody .gridxRow .gridxCell {
+    border-left-color: transparent;
+    border-right-color: transparent;
+}

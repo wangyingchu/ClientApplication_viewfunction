@@ -1,0 +1,324 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+//
+// Button | DropDownButton | ComboButton | ToggleButton
+// 
+// Styling Buttons mainly includes:
+// 
+// 1. Containers
+// 		.dijitButton
+// 		.dijitDropDownButton
+// 		.dijitComboButton
+// 		.dijitButtonNode - common button/arrow wrapper shared across all three button types 
+//
+// 2. Button text
+// 		.dijitButtonText
+// 
+// 3. Arrows - only for DropDownButton and ComboButton
+// 	     There are total four directions arrows - down, left, right, up:
+// 		.dijitArrowButtonInner - down arrow by default
+//      .dijitLeftArrowButton .dijitArrowButtonInner - left arrow
+//      .dijitRightArrowButton .dijitArrowButtonInner - right arrow
+//      .dijitUpArrowButton .dijitArrowButtonInner - up arrow
+// 
+// 4. States - Hover, Active, Disabled, e.g.
+// 		.dijitButtonHover .dijitButtonNode
+// 		.dijitButtonActive .dijitButtonNode
+// 		.dijitButtonDisabled .dijitButtonNode
+//      
+//      .dijitDisabled .dijitArrowButtonInner  - disabled arrow states 
+//
+ 
+ 
+.dijitButton,
+.dijitComboButton,
+.dijitDropDownButton,
+.dijitToggleButton {
+	margin: 0.2em 5px;
+}
+
+.dijitButtonNode {
+	// rules for dijit.form.*Button widgets and arrow nodes on ComboBox, Spinner etc.
+	.transition (background-color, 0.6s);
+}
+
+.dijitButton .dijitButtonNode,
+	.dijitComboButton .dijitButtonNode,
+	.dijitDropDownButton .dijitButtonNode,
+	.dijitToggleButton .dijitButtonNode {
+		.gradient(@fwLightest, @fwLighter);
+		.BorderRadius(3px);
+		.BoxShadow(0px 1px 0px .13);
+		.textColors(mix(@fwLightest, @fwLighter));
+		border: 1px solid @fwBase;
+		padding: 4px 10px 4px;
+		color: @textStrong;
+		font-weight: bold;
+		.TextShadow(@shadowSolid);
+	}
+	
+	.dijitComboButton .dijitButtonNode {
+		padding-right: 0;
+	}
+	
+	.dijitDropDownButton .dijitButtonNode {
+		padding-right: 2px;
+	}
+	
+	.dijitButtonFocused .dijitButtonNode,
+	.dijitDropDownButtonFocused .dijitButtonNode,
+	.dijitToggleButtonFocused .dijitButtonNode {
+		outline: 1px dotted #000000;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+
+/* hover status */
+.dijitButtonHover .dijitButtonNode,
+.dijitDropDownButtonHover .dijitButtonNode,
+.dijitComboButtonHover .dijitButtonNodeHover,
+.dijitComboButtonHover .dijitDownArrowButtonHover,
+.dijitToggleButtonHover .dijitButtonNode {
+	.gradient(@fwLightest, @fwBase);
+}
+
+/* active status */
+.dijitButtonActive .dijitButtonNode,
+.dijitDropDownButtonActive .dijitButtonNode,
+.dijitComboButtonActive .dijitButtonNodeActive,
+.dijitComboButtonActive .dijitDownArrowButtonActive,
+.dijitToggleButtonActive .dijitButtonNode {
+	.gradient(@fwLighter, @fwLightest);
+	.BoxShadow(0px 1px 1px @shadowBox);
+	color: @textSecondary;
+	outline: none;
+}
+
+.dj_opera & .dijitButtonActive .dijitButtonNode,
+.dj_opera & .dijitDropDownButtonActive .dijitButtonNode,
+.dj_opera & .dijitComboButtonActive .dijitButtonNodeActive,
+.dj_opera & .dijitComboButtonActive .dijitDownArrowButtonActive,
+.dj_opera & .dijitToggleButtonActive .dijitButtonNode {
+	.BoxShadow(0 1px 1px @shadowBox);
+}
+
+/* disabled status */
+.dijitButtonDisabled,
+.dijitDropDownButtonDisabled,
+.dijitComboButtonDisabled,
+.dijitToggleButtonDisabled {
+	background-image: none;
+	outline: none;
+}
+.dijitButtonDisabled .dijitButtonNode,
+.dijitDropDownButtonDisabled .dijitButtonNode,
+.dijitComboButtonDisabled .dijitButtonNode,
+.dijitToggleButtonDisabled .dijitButtonNode {
+	color: @textDisabled;
+}
+.dj_ie & .dijitButtonDisabled .dijitButtonNode,
+.dj_ie & .dijitDropDownButtonDisabled .dijitButtonNode,
+.dj_ie & .dijitComboButtonDisabled .dijitButtonNode,
+.dj_ie & .dijitToggleButtonDisabled .dijitButtonNode {
+	color: @textDisabled;
+}
+.dijitComboButtonDisabled .dijitArrowButton {
+	border-left-width: 0;
+}
+
+.dj_webkit & {
+	.dijitButton .dijitButtonNode,
+	.dijitComboButton .dijitButtonNode,
+	.dijitToggleButton .dijitButtonNode {
+		padding: 3px 10px 4px;
+	}
+	
+	.dijitDropDownButton .dijitButtonNode, {
+		padding: 3px 2px 4px 10px;
+	}
+	
+	.dijitDropDownButton .dijitArrowButton,
+	.dijitComboButton .dijitArrowButton {
+		padding: 4px 2px !important;
+	}
+	
+	.dijitDropDownButton .dijitArrowButton,
+	.dijitComboButton .dijitArrowButton {
+		padding: 4px 2px !important;
+	}
+}
+
+.dijitArrowButton {
+	.dijitComboButton & {
+		border-left-width: 0;
+	}
+}
+
+// arrow styles for down/up/left/right directions
+
+.dijitArrowButtonInner {
+	width: 15px;
+	height: 15px;
+	margin: 0 auto;
+	background-image: url('images/dijit/form/buttonArrows.png');
+	background-repeat: no-repeat;
+	background-position: -151px 0px;
+}
+
+.dijitDisabled & {
+		background-position: -151px 0px;
+	}
+	
+	.dijitComboButtonHover .dijitDisabled,
+	.dijitDropDownButtonHover .dijitDisabled,
+	.dijitComboButtonActive .dijitDisabled,
+	.dijitDropDownButtonActive .dijitDisabled {
+		background-position: -51px -0px;
+	}
+	
+	// Left
+	
+	.dijitLeftArrowButton .dijitDisabled {
+		background-position: -176px -1px;
+	}
+	
+	.dijitDisabled .dijitLeftArrowButton .dijitDisabled {
+	background-position: -176px -1px;
+	}
+	.dijitComboButtonHover .dijitLeftArrowButton .dijitDisabled,
+	.dijitDropDownButtonHover .dijitLeftArrowButton .dijitDisabled,
+	.dijitComboButtonActive .dijitLeftArrowButton .dijitDisabled,
+	.dijitDropDownButtonActive .dijitLeftArrowButton .dijitDisabled  {
+		background-position: -76px -1px;
+	}
+	
+	// right
+	
+	.dijitRightArrowButton .dijitDisabled {
+		background-position: -125px -1px;
+	}
+	.dijitDisabled .dijitRightArrowButton .dijitDisabled {
+		background-position: -125px -1px;
+	}
+	.dijitComboButtonHover .dijitRightArrowButton .dijitDisabled,
+	.dijitDropDownButtonHover .dijitRightArrowButton .dijitDisabled,
+	.dijitComboButtonActive .dijitRightArrowButton .dijitDisabled,
+	.dijitDropDownButtonActive .dijitRightArrowButton .dijitDisabled {
+		background-position: -25px -1px;
+	}
+	
+	// up
+	
+	.dijitUpArrowButton .dijitDisabled {
+		background-position: -100px -2px;
+	}
+	.dijitDisabled .dijitUpArrowButton .dijitDisabled {
+		background-position: -100px -2px;
+	}
+	.dijitComboButtonHover .dijitUpArrowButton .dijitDisabled,
+	.dijitDropDownButtonHover .dijitUpArrowButton .dijitDisabled,
+	.dijitComboButtonActive .dijitUpArrowButton .dijitDisabled,
+	.dijitDropDownButtonActive .dijitUpArrowButton .dijitDisabled {
+		background-position: 0px -2px;
+	}
+
+.dj_ie6 & .dijitArrowButtonInner {
+	background-image: url('images/dijit/form/buttonArrows8bit.png');
+}
+
+.dijitButtonText {
+	padding: 0 0.3em;
+	text-align: center;
+	
+	.dijitDropDownButton &, 
+	.dijitComboButton & {
+		padding: 0 30px 0 0;
+	}
+}
+
+.dijitIcon {
+	.dijitDropDownButton &, 
+	.dijitComboButton & {
+		margin-right: 5px;
+	}
+}
+
+.dijitButtonContents {
+	.dijitButtonFocused &,
+	.dijitDropDownButtonFocused &,
+	.dijitToggleButtonFocused & {
+		outline: none;
+	}
+}
+
+
+/* for ComboButton */
+table.dijitComboButton {
+	border-collapse: separate;
+	/* override dijit.css so that ComboBox rounded corners work */
+
+}
+.dj_ie6 & .dijitButtonNode {
+	background-image: none;
+}
+.dijitComboButton .dijitStretch {
+	.BorderRadius(3px 0 0 3px);
+}
+.dijitComboButton .dijitArrowButton {
+	.BorderRadius(0 3px 3px 0);
+}
+
+.dijitToggleButton .dijitButtonNode .dijitButtonContents{
+	text-align: left;
+}
+.dijitToggleButton .dijitButtonNode .dijitCheckBoxIcon {
+    background-image: url('images/dijit/form/buttonToggle.png');
+}
+.dj_ie6 & .dijitToggleButton .dijitButtonNode .dijitCheckBoxIcon {
+    background-image: url('images/dijit/form/buttonToggle8bit.png');
+}
+.dijitToggleButton .dijitButtonNode .dijitCheckBoxIcon {
+    /*background-position: -16px 50%;*/
+	background-position: -1px -1px;
+}
+.dijitToggleButtonHover .dijitButtonNode .dijitCheckBoxIcon {
+    /*background-position: -16px 50%;*/
+	background-position: -1px -1px;
+}
+.dijitToggleButtonActive .dijitButtonNode .dijitCheckBoxIcon {
+	background-position: -1px -217px;
+}
+.dijitToggleButtonChecked .dijitButtonNode .dijitCheckBoxIcon {
+    background-position: -1px -433px;
+}
+.dijitToggleButtonCheckedHover .dijitButtonNode .dijitCheckBoxIcon {
+	background-position: -1px -433px;
+}
+.dijitToggleButtonCheckedActive .dijitButtonNode .dijitCheckBoxIcon {
+	background-position: -1px -433px;
+}
+.dijitToggleButtonDisabled .dijitButtonNode .dijitCheckBoxIcon {
+	background-position: -1px -1px;
+}
+
+/* a11y */
+.dijit_a11y & .dijitButtonNode {
+	background: transparent none repeat scroll 0% 0%; 
+	padding: 1px !important;
+}
+.dijit_a11y & .dijitButtonFocused .dijitButtonContents,
+.dijit_a11y & .dijitDropDownButtonFocused .dijitButtonContents,
+.dijit_a11y & .dijitToggleButtonFocused .dijitButtonContents {
+	outline: 1px dotted #000000 !important;
+}
+.dijit_a11y & .dijitButtonFocused .dijitButtonNode,
+.dijit_a11y & .dijitDropDownButtonFocused .dijitButtonNode,
+.dijit_a11y & .dijitToggleButtonFocused .dijitButtonNode {
+	outline: none !important;
+}

@@ -1,0 +1,46 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxRadioButtonSetItem {
+  cursor: default;
+  padding: 4px 4px 4px 0;
+  white-space: nowrap;
+}
+.dlBlue .idxRadioButtonSetItem .dijitRadio {
+  margin-right: 5px;
+}
+.dlBlue .idxRadioButtonSetItem label {
+  vertical-align: middle;
+}
+.dlBlue .idxRadioButtonSetItemDisabled label {
+  color: #4c4d53;
+}
+.dlBlue .idxRadioButtonSetWrap .idxLabel {
+  margin: 7px 0 0 0;
+}
+.dlBlue .idxRadioButtonSetWrap .idxCompContainer {
+  padding: 2px 28px 3px 8px;
+  position: relative;
+}
+.dlBlue .idxRadioButtonSetWrap .dijitValidationContainer {
+  display: none;
+}
+.dlBlue .idxRadioButtonSetWrapError .idxCompContainer {
+  background: #faebec;
+  border: 1px solid #d9182d;
+  padding: 1px 38px 2px 7px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+.dlBlue .idxRadioButtonSetWrapError .dijitValidationContainer {
+  display: block;
+  position: absolute;
+  top: 1px;
+  right: 2px;
+}
+.dlBlue .idxRadioButtonSetWrapError .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}
+.dj_ie6 .dlBlue .idxRadioButtonSetItem label,
+.dj_ie7 .dlBlue .idxRadioButtonSetItem label {
+  top: 1px;
+  position: relative;
+}

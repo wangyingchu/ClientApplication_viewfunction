@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT més ${accessKey}",
 	keySequence_Firefox: "ALT més MAJÚSCULES més ${accessKey} a Windows i Linux o CONTROL més ${accessKey} a Mac",
 	keySequence_Safari: "CONTROL més OPCIÓ més ${accessKey} a Mac o ALT més ${accessKey} a Windows",
-	keySequence_Chrome: "ALT més ${accessKey} a Windows i Linux o CONTROL més OPCIÓ a Mac",
+	keySequence_Chrome: "ALT més ${accessKey} a Windows i Linux o CONTROL més OPT més ${accessKey} a Mac",
 	shortcutListMessage: "Les dreceres d'aquesta pàgina són:",
 	a11yPrologueLabel: "Pròleg d'accessibilitat",
     a11yStatementLabel: "Sentència d'accessibilitat",

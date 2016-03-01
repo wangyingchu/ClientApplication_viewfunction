@@ -1,0 +1,66 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+    	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="DC.Date" scheme="iso8601" content="2014-05-26">
+		<meta name="DC.Rights" content="© Copyright IBM Corporation 2014" />
+		<meta name="Description" content="Progress Bar" />
+		<meta name="Keywords" content="progressbar" />
+		<meta name="Robots" content="noindex, follow" />
+		<meta name="IBM.Effective" scheme="W3CDTF" content="2014-05-26" />
+		<meta name="IBM.Country" content="US"/> 
+		<meta name="DC.Language" scheme="rfc1766" content="en-US"/>
+		<meta name=”Owner” content="guobj@cn.ibm.com" />
+		<meta name=”Source” content="Guobj delivery:IBM authoring:IBM" />
+		<meta name="Security" content="public"/>
+		
+		<title>jUI Accordion</title>
+		<link rel="stylesheet" href="../themes/less/dthink.css">
+		<style>
+		body{
+		font-family:'Helvetica Neue', Helvetica, Arial;
+		}
+		</style>
+		<script src="../requirejs/require.js">
+		</script>
+		<script src="../requirejs/config.js">
+		</script>
+		<script src="../jquery-ui/jquery-1.10.2.js">
+		</script>
+        <script>
+            require(["jui/progressbar"], function(){
+                var progressbar = $( "#progressbar" ),
+					progressLabel = $( ".progress-label" );
+		
+				progressbar.progressbar({
+					value: false,
+					change: function() {
+						progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+					},
+					complete: function() {
+						progressLabel.text( "Complete!" );
+					}
+				});
+		
+				function progress() {
+					var val = progressbar.progressbar( "value" ) || 0;
+		
+					progressbar.progressbar( "value", val + 1 );
+		
+					if ( val < 99 ) {
+						setTimeout( progress, 100 );
+					}
+				}
+		
+				setTimeout( progress, 3000 );
+            })
+        </script>
+    </head>
+	<body>
+		<h1>Progressbar Tests</h1>
+		<div role="main">
+			<div id="progressbar"></div>
+			<div class="progress-label">Loading...</div>
+		</div>
+	</body>
+</html>

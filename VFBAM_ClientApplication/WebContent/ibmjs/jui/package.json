@@ -1,0 +1,18 @@
+{
+	"name": "jui",
+	"version": "0.1.0",
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-amd-build": "^0.7.2-dev",
+		"grunt-contrib-clean": "^0.5.0",
+		"grunt-contrib-concat": "^0.5.0",
+		"grunt-contrib-copy": "^0.5.0",
+		"grunt-contrib-jshint": "~0.10.0",
+		"grunt-contrib-nodeunit": "~0.4.1",
+		"grunt-contrib-uglify": "~0.5.0",
+		"load-grunt-tasks": "^0.6.0",
+		"requirejs": "2.1.14"
+	},
+	"keywords": ["IBM", "Dojo", "JavaScript", "Toolkit", "One UI", "jquery"],
+	"dojoBuild": "jui.profile.js"
+}

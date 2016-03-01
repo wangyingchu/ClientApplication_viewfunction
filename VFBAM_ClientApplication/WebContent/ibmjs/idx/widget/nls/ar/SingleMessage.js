@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "مشاهدة كل ({num})",
+	viewAll: "مشاهدة كل ({num})&lrm;",
 	viewDetails: "المزيد من التفاصيل",
 	refresh: "تجديد",
 	showDetails: "عرض التفاصيل",
 	hideDetails: "اخفاء التفاصيل"
 //end v1.x content
 });
+

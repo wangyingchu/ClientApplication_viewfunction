@@ -1,13 +1,19 @@
 require([
-	'gridx/Grid',
-	'gridx/core/model/cache/Sync',
+	'dojo/parser',
 	'idx/gridx/tests/support/data/MusicData',
 	'idx/gridx/tests/support/stores/Memory',
-	'idx/gridx/tests/support/modules',
-	'dijit/layout/BorderContainer',
-	'dijit/layout/ContentPane',
+	'dijit/form/Button',
+	'gridx/Grid',
+	'gridx/core/model/cache/Sync',
+	"gridx/modules/Focus",
+	"gridx/modules/ColumnResizer",
+	"gridx/modules/Filter",
+	"gridx/modules/ToolBar",
+	"idx/gridx/modules/filter/QuickFilter",
+	"gridx/modules/Pagination",
+	"idx/gridx/modules/pagination/PaginationBar",
 	'dojo/domReady!'
-], function(Grid, Cache, dataSource, storeFactory, modules){
+], function(parser, dataSource, storeFactory, Button){
 
 	store = storeFactory({
 		dataSource: dataSource, 
@@ -63,4 +69,12 @@ require([
 		{id: 'Artist', field: 'Artist', name: 'Artist'},
 		{id: 'Name', field: 'Name', name: 'Name'}
 	];
+
+	parser.parse().then(function(){
+		grid2.toolBar.widget.addChild(new Button({
+			showLabel: false,
+			label: 'Cut',
+			iconClass: 'testToolbarButtonCut'
+		}));
+	});
 });

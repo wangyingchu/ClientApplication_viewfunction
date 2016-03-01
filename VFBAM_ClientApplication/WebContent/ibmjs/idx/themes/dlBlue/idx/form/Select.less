@@ -1,0 +1,59 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} .idxSelectWrapError .dijitSelectError {
+    border: 1px solid @error-color;
+}
+.@{theme-name} {
+	.idxComposite .dijitSelect .dijitArrowButtonInner {
+        border: 1px solid @arrowbutton-inner-border-color;	// white gutter around the arrow button
+        background-image: url("../../dijit/@{image-form-button-arrows-color}");
+    }
+    .idxComposite .dijitSelectHover .dijitArrowButtonInner {
+        background-position: @arrow-blue-hover-down;
+    }
+    .idxComposite .dijitSelectDisabled .dijitArrowButton .dijitArrowButtonInner {
+    	background-image: url("../../dijit/@{image-arrow-sprite}");
+	}
+    .idxSelectWrapError {
+        .dijitSelectError {
+            .dijitButtonContents {
+                background: @container-background-color;
+            }
+        }
+        .dijitValidationContainer {
+            display: inline-block;
+        }
+    }
+    .dijitSelectError {
+        .dijitButtonContents {
+            .dijitButtonText {
+                display: block !important;
+            }
+        }
+    }
+    .idxSelectWrapLabel {
+        vertical-align: top;
+    }
+    /*.idxSelectWrap {
+        .dijitValidationContainer {
+            display: none;
+        }
+    }*/
+    .idxSelectWrapMenu {
+        .dijitMenuItemIconCell {
+            padding:1px;
+            width:6px;
+        }
+        background: @container-background-color;
+        border-color: @disabled-border-color;
+        .dijitMenuItem .dijitMenuItemLabel{
+        	color: @text-color;
+        }
+        .dijitMenuItemHover, .dijitMenuItemSelected, 
+        .dijitMenuItemHover td, .dijitMenuItemSelected td{
+        	background: @dropdown-listitem-hovered-background-color;
+	        border-color: @dropdown-listitem-hovered-background-color;
+	        color: @text-color;
+        }
+    }
+}

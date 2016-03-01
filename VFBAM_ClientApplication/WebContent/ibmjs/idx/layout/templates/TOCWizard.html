@@ -1,0 +1,34 @@
+<div class="${baseClass}">
+   <div data-dojo-type="idx/layout/BorderContainer" data-dojo-attach-point="_borderContainer" data-dojo-props="gutters: false, 'class': '${baseClass}BorderContainer'">
+	  <div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="_toc" data-dojo-props="region: 'leading', 'class': '${baseClass}TOC', splitter: true">
+	     <div data-dojo-attach-point="_tocWrapper" class="${baseClass}TOCWrapper">
+			<ul data-dojo-attach-point="_tocList" class="idxWizardTOCList" >
+			</ul>
+		 </div>
+	  </div>
+	  <div data-dojo-attach-point="containerNode" data-dojo-props="'class': 'dijitHidden'"></div>
+	  <div data-dojo-type="dijit/layout/ContentPane" 
+		   data-dojo-props="class: '${baseClass}Main', region: 'center'"
+		   data-dojo-attach-point="_centerPane">
+		<div data-dojo-attach-point="_stackTitleNode" class="${baseClass}StackTitle"></div>
+		<div data-dojo-type="dijit/layout/StackContainer" 
+			 data-dojo-attach-point="_stackContainer"
+			 data-dojo-props="class: '${baseClass}Stack'">
+		</div>
+	  </div>
+	  <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'bottom', 'class': '${baseClass}ButtonContainer'" >
+		<div data-dojo-type="idx/layout/ButtonBar" data-dojo-attach-point="_buttonBar">
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_previousButton" data-dojo-attach-event="onClick: _onPrevious" data-dojo-props="disabled: true, profile: 'standard'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_nextButton" data-dojo-attach-event="onClick: _onNext" data-dojo-props="profile: 'standard'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_saveButton" data-dojo-attach-event="onClick: _onSave" data-dojo-props="'class': 'dijitHidden', profile: 'standard'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_finishButton" data-dojo-attach-event="onClick: _onFinish" data-dojo-props="disabled: true, profile: 'standard'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_cancelButton" data-dojo-attach-event="onClick: _onCancel" data-dojo-props="profile: 'standard'">
+	      </div>
+		</div>
+	  </div>
+  </div>	  
+</div>

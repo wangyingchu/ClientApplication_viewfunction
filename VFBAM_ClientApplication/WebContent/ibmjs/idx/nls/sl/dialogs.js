@@ -6,7 +6,9 @@ define({
 	confirmation: "Potrditev",
 	progress: "Napredek",
 	loading: "Nalaganje",
-	close: "Zapri"
+	close: "Zapri",
+	idxErrorDialog_detailTabLabel: "Odpravi to težavo",
+	idxErrorDialog_moreTabLabel: "Pridobi dodatno pomoč"
 //end v1.x content
 });
 

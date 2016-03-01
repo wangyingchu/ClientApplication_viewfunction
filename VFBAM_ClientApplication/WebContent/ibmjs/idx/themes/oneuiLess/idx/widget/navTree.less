@@ -1,0 +1,176 @@
+/* Tree 
+ * 
+ * Styling Tree mostly means styling the TreeRow (dijitTreeRow)
+ * There are 4 basic states to style:
+ * 
+ * Tree Row:
+ * 1. tree row (default styling): 
+ * 		.dijitTreeRow - styles for each row of the tree
+ *
+ * 2. hovered tree row (mouse hover on a tree row)
+ * 		.dijitTreeRowHover - styles when mouse over on one row
+ * 
+ * 3. active tree row (mouse down on a tree row)
+ * 		.dijitTreeRowActive - styles when mouse down on one row
+ * 
+ * 4. selected tree row
+ * 		dijitTreeRowSelected - style when the row has been selected
+ * 
+ * Tree Expando:
+ * 	    dijitTreeExpando - the expando at the left of the text of each tree row
+ * 
+ * Drag and Drop on TreeNodes: (insert line on dijitTreeContent node so it'll aligned w/ target element)
+ * 		.dijitTreeNode .dojoDndItemBefore/.dojoDndItemAfter - use border style simulate a separate line
+ */
+/* base styling is inherited from Tree.css for the theme */
+.dijitTree.idxNavTree .dijitTreeRow,
+.dijitTree.idxNavTree .dijitTreeNode .dojoDndItemBefore,
+.dijitTree.idxNavTree .dijitTreeNode .dojoDndItemAfter {
+  padding-top: 5px;
+}
+.dijitTree.idxNavTree .dijitTreeLabel {
+  margin-left: 2px;
+}
+.dijitRtl & .dijitTree.idxNavTree .dijitTreeLabel {
+  margin-left: 0px;
+  margin-right: 2px;
+}
+.dijitTree.idxNavTree .dijitTreeRow.dijitTreeRowSelected {
+  font-weight: bold;
+}
+/** nav-tree-specific stuff */
+.dijitTree.idxNavTree .dijitTreeExpando {
+  width: 7px;
+  background-position: -20px 0;
+  margin-left: 5px;
+}
+.dijitRtl & .dijitTree.idxNavTree .dijitTreeExpando {
+  margin-right: 5px;
+  margin-left: 0px;
+}
+.dijitTree.idxNavTree .dijitTreeExpandoClosed {
+  background-position: -4px 0;
+}
+.dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeIcon {
+  margin-left: 3px;
+}
+.dijitRtl & .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeIcon {
+  margin-left: 0px;
+  margin-right: 3px;
+}
+.dijitTree.idxNavTree.idxNavTreeHideIcons .dijitTreeIcon,
+.dijitTree.idxNavTree.idxNavTreeHideIcons .dijitTreeIcon.idxNavTreeHiddenIcon,
+.dijitTree.idxNavTree.idxNavTreeHideIcons .dijitTreeIcon.idxNavTreeNoIcon {
+  visibility: hidden;
+  display: none;
+}
+.dijitTree.idxNavTree.idxNavTreeHideBadges .idxNavTreeNodeBadge {
+  visibility: hidden;
+  display: none;
+}
+.dijitTree.idxNavTree.idxNavTreeHiddenIcon,
+.dijitTree.idxNavTree.idxNavTreeNoIcon {
+  background-image: none;
+  visibility: hidden;
+  display: inline;
+  /* maintain the spacing for even indentation if others have icons */
+
+}
+.dijitTree.idxNavTree .idxNavTreeNodeBadge .idxNavTreeNodeBadgeIcon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  visibility: visibile;
+  vertical-align: top;
+  margin-top: -1px;
+}
+.dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon .idxNavTreeNodeBadgeIcon,
+.dijitTree.idxNavTree .idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeBadge .idxNavTreeNodeBadgeIcon {
+  width: 0px;
+  height: 0px;
+  background-image: none;
+  visibility: hidden;
+  display: none;
+  /* completely hide the badge icon including its spacing */
+
+}
+.dijitTree.idxNavTree .idxNavTreeNodeBadge .idxNavTreeNodeBadgeLabel {
+  position: absolute;
+  /* position off-screen unless no icon is present */
+
+  width: 0px;
+  height: 0px;
+  top: -10000px;
+  float: none;
+}
+.dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon .idxNavTreeNodeBadgeLabel,
+.dijitTree.idxNavTree .idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeBadge .idxNavTreeNodeBadgeLabel {
+  position: static;
+  /* show the label when no icon is present */
+
+  width: auto;
+  height: auto;
+  top: 0px;
+  font-size: 75%;
+  font-weight: bold;
+  background-color: @brand;
+  .textColors(@brand);
+  color: @textStrong;
+  padding: 2px 4px 1px;
+  .BorderRadius(2px);
+  border: none;
+  display: inline-block;
+}
+/* no badge label and no badge icon then hide badge completely */
+.dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeLabel.idxNavTreeNodeNoBadgeIcon,
+.dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeNoBadgeLabel {
+  visibility: hidden;
+  display: none;
+  /* completely hide the badge icon including its spacing */
+
+}
+.dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeLabel .idxNavTreeNodeBadgeLabel,
+.dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeLabel.idxNavTreeNodeNoBadgeIcon .idxNavTreeNodeBadgeLabel,
+.dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeNoBadgeLabel .idxNavTreeNodeBadgeLabel {
+  display: none;
+  /* hide the label when none is present */
+
+  visibility: hidden;
+}
+.dijitTree.idxNavTree .idxNavTreeNodeSelectMarker {
+  width: 0px;
+  height: 0px;
+  display: none;
+  visibility: hidden;
+  vertical-align: middle;
+}
+.dijitTree.idxNavTree.idxNavTreeNoHighlight .idxNavTreeNodeSelectMarker {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  visibility: hidden;
+  bottom: 1px;
+  position: relative;
+  border: 0px none transparent;
+  padding: 0px;
+  margin: 0px 1px 0 0;
+}
+.dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRowSelected .idxNavTreeNodeSelectMarker,
+.dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRowSelected.dijitTreeRowHover .idxNavTreeNodeSelectMarker {
+  visibility: visible;
+  background-color: @brand;
+  border: 0px none transparent;
+  padding: 0px;
+  margin: 0 1px 0 0;
+}
+.dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRow.dijitTreeRowSelected {
+  background-color: @brandLightest;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  background-image: none;
+  .textColors(@brandLightest);
+  color: @textStrong;
+}
+.dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRow.dijitTreeRowSelected.dijitTreeRowHover {
+  background-color: @brandLighter;
+}

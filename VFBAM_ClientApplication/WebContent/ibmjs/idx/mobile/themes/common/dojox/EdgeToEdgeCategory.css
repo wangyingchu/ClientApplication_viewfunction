@@ -6,7 +6,25 @@
  */
 
 /* dojox.mobile.EdgeToEdgeCategory */
-.mblEdgeToEdgeCategory {
+
+/* Reset common styles. */
+.oneui .mblEdgeToEdgeCategory {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
+}
+
+.oneui .mblEdgeToEdgeCategory {
 	position:relative;
 	overflow:hidden;
 	margin:0;
@@ -14,6 +32,7 @@
 	height:22px;
 	border-bottom:1px solid #ccc;
 	background-color:#dbdbdb;
+	background-image:-webkit-gradient(linear,center top,center bottom,from(#f4f4f4),to(#dbdbdb));
 	background-image:-webkit-linear-gradient(top,#f4f4f4 0%,#dbdbdb 100%);
 	color:#444;
 	text-overflow:ellipsis;

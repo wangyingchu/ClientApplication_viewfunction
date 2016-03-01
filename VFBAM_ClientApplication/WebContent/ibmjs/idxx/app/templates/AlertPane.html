@@ -1,0 +1,27 @@
+<div class="alertStatusPanel"> 
+
+	<div class="alertStatusPanelContainer"> 
+	       
+	    <div class="dijitInline alertStatusPanelText">${msg.alertLabel}&nbsp;</div>
+	
+	    <input dojoAttachPoint="_spinner" 
+	    	dojoType="dijit.form.NumberSpinner" 
+	    	style="width: 90%; background-color: #f9fbfd;" 
+	    	value="${_numAlerts}" 
+	    	dojoAttachEvent="onChange:_onChangeSpinner"  
+	    	intermediateChanges="true" ></input> 
+		
+		<!--  E.g '1 of 6' link to show dialog with alert summary -->	
+		<div id="${id}_lwpA"
+			dojoType="idxx.layout.LinkWithPopup"  
+			dojoAttachPoint="alertLinkNode"  
+			style="float: right;"		
+			linkLabel="${_numAlertsMsg}" 
+			popupTitle="<b>${msg.eventListDialogTitle}</b>" 
+		>  
+	      <div dojoType="idxx.app.AlertSummary" dojoAttachPoint="alertSummary" class="alertStatusPanelPopup"></div>
+	  </div>
+    
+	</div>
+  
+</div>

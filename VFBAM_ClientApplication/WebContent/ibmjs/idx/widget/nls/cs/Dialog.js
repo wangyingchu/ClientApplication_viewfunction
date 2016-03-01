@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Zavřít"
 //end v1.x content
 });
+

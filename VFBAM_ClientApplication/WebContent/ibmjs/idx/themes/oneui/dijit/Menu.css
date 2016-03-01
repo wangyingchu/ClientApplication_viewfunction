@@ -99,7 +99,7 @@ There are three areas of styling for the Menu:
 
 .oneui .dijitMenuBar .dijitMenuItemDisabled{
 	opacity: 1;
-	color: #767676;
+	color: #555555;
 	text-shadow:1px 0 0 #ffffff;
 }
 
@@ -135,7 +135,9 @@ There are three areas of styling for the Menu:
 }
 
 .oneui .dijitMenuTable .dijitMenuItemSelected,
-.oneui .dijitMenuTable .dijitMenuItemChecked {
+.oneui .dijitMenuTable .dijitMenuItemChecked,
+.oneui .dijitMenuTable .dijitMenuItem.dijitSelected,
+.oneui .dijitMenuTable .dijitMenuItem.dijitChecked  {
   color: #000000;
   background: #ddf2f9;
 }
@@ -173,6 +175,10 @@ There are three areas of styling for the Menu:
 	border-right: 1px solid white;
 }
 
+.dj_trident7 .oneui .dijitMenuItem .dijitMenuArrowCell{
+  padding:4px 10px;
+}
+
 .oneui .dijitEditorIcon{
   height: 16px;
   width: 16px;
@@ -200,7 +206,7 @@ There are three areas of styling for the Menu:
 }
 
 .oneui .dijitMenuItemDisabled .dijitMenuItemLabel{
-  color: #aaaaaa;
+  color: #555555;
   text-shadow: 1px 0 0 #ffffff;
 }
 
@@ -230,9 +236,7 @@ There are three areas of styling for the Menu:
   margin-bottom: 1px;
 }
 /* the checked menu item */
-.oneui .dijitCheckedMenuItemIconChar {
-  display: none;
-}
+
 .oneui .dijitCheckedMenuItemIcon {
   margin-right: 4px;
   padding:1px 0 0 1px;
@@ -282,6 +286,24 @@ There are three areas of styling for the Menu:
 .oneui .dijitMenuItemCheckedDisabled .dijitCheckedMenuItemIcon{
   background-position: -49px;
 }
+
+.oneui .dijitRadioMenuItem .dijitMenuItemIcon {
+  background-image: url('form/images/checkboxRadioButtonStates.png');
+  background-position: -209px;
+  overflow: visible;
+  
+  background-repeat: no-repeat;
+  width: 14px;
+  height: 14px;
+  margin: 0 2px 0 0;
+  padding: 0;
+}
+
+.oneui .dijitRadioMenuItemChecked .dijitMenuItemIcon {
+  background-position: -193px;
+  
+}
+
 
 /*ComboBox Menu*/
 .oneui .dijitComboBoxMenu {
@@ -358,6 +380,12 @@ There are three areas of styling for the Menu:
 }
 
 /*** The following is for adding a dotted border to use more than color to show selection *****/
+.oneui .dijitMenuTable tr.dijitMenuItem:first-child .dijitMenuArrowCell, 
+.oneui .dijitMenuTable tr.dijitMenuItem:first-child .dijitMenuItemIconCell, 
+.oneui .dijitMenuTable tr.dijitMenuItem:first-child .dijitMenuItemLabel, 
+.oneui .dijitMenuTable tr.dijitMenuItem:first-child .oneuiMenuHeadingLabel{
+	border-top: 1px solid #ffffff;
+}
 .oneui .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemLabel {
 	border-top: 1px dotted #000000;
 	border-bottom: 1px dotted #000000;
@@ -372,9 +400,7 @@ There are three areas of styling for the Menu:
 }
 .oneui .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>.dijitMenuItemLabel {
 	padding-top: 4px;
-}
-.oneui .dijitMenuTable tr.dijitMenuItem.dijitMenuItemDisabled.dijitMenuItemFocused:first-child>.dijitMenuItemLabel {
-	padding-bottom: 2px;
+	padding-bottom: 3px;
 }
 
 .oneui .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>.dijitMenuItemAccelKey {
@@ -384,6 +410,9 @@ There are three areas of styling for the Menu:
 	border: 1px dotted #000000;
 	border-right: 0px none transparent;
 	padding-bottom: 1px;
+}
+.oneui .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>td.dijitMenuItemIconCell{
+	padding-bottom: 0px;
 }
 
 .oneui .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuArrowCell {

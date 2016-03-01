@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Flere handlinger"
 //end v1.x content
 });
+

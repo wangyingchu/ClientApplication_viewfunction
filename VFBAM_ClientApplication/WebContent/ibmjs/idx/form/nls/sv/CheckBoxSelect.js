@@ -10,3 +10,4 @@ define({
 	missingMessage: "Du måste välja minst ett objekt."
 //end v1.x content
 });
+

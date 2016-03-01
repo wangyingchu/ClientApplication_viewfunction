@@ -415,6 +415,8 @@ define(["dojo/_base/declare",
 		 * set to false.
 		 */
 		_onLoadHandler: function(data) {
+			// handle destroy widget with un-cancelled xhr callback 
+			if(this._destroyed) return;
 			// check if we are deferring to the asynchronous thread that may be requiring modules
 			if (this._deferResolve) return;
 			

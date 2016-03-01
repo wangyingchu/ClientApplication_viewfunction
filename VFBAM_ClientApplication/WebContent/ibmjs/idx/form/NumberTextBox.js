@@ -8,14 +8,28 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/has",
 	"dojo/dom-style",
 	"dijit/form/NumberTextBox",
 	"idx/widget/HoverHelpTooltip",
 	"./_CssStateMixin",
 	"./_CompositeMixin",
-	"./TextBox",
-	"dojo/text!./templates/TextBox.html"
-], function(declare, lang, domStyle, NumberTextBox, HoverHelpTooltip, _CssStateMixin, _CompositeMixin, TextBox, template) {
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	"idx/has!#idx_form_NumberTextBox-desktop?dojo/text!./templates/TextBox.html"  // desktop widget, load the template
+		+ ":#idx_form_NumberTextBox-mobile?"										// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/TextBox.html"						// global desktop platform, load template
+		+ ":#mobile?"														// global mobile platform, don't load
+		+ ":dojo/text!./templates/TextBox.html", 							// no dojo/has features, load the template
+		
+	"idx/has!#idx_form_NumberTextBox-mobile?./plugins/mobile/NumberTextBoxPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_NumberTextBox-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/mobile/NumberTextBoxPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+	
+], function(declare, lang, has, domStyle, DijitNumberTextBox, HoverHelpTooltip, _CssStateMixin, _CompositeMixin, 
+	_TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin) {
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	
     /**
@@ -62,15 +76,14 @@ dojo.declare(
 });
 =====*/
 
-	return iForm.NumberTextBox = declare("idx.form.NumberTextBox", [NumberTextBox, _CompositeMixin, _CssStateMixin], {
+	var NumberTextBox = declare([DijitNumberTextBox, _CompositeMixin, _CssStateMixin], {
 		/**@lends idx.form.NumberTextBox*/
-		
 		// instantValidate: Boolean
 		//		Fire validation when widget get input by set true, 
 		//		fire validation when widget get blur by set false
 		instantValidate: false,
 		
-		templateString: template,
+		templateString: desktopTemplate,
 		baseClass: "idxNumberTextBoxWrap",
 		oneuiBaseClass: "dijitTextBox dijitNumberTextBox",
 		postCreate: function(){
@@ -84,7 +97,7 @@ dojo.declare(
 				this.connect(this, "_onInput", function(){
 					this.validate(true);
 				});
-				this._getPatternAttr(this.constraints);
+				this._computeRegexp(this.constraints);
 			}else{
 				this.connect(this, "_onFocus", function(){
 					if (this.message && this._hasBeenBlurred && (!this._refocusing)) {
@@ -105,6 +118,11 @@ dojo.declare(
 			this._refocusing = false;
 		},
 		
+		
+		_isEmpty: function(){
+			var v = this.get("value");
+			return (v !== undefined) && isNaN(v);
+		},
 		displayMessage: function(/*String*/ message, /*Boolean*/ force){
 			if(message){
 				if(!this.messageTooltip){
@@ -124,10 +142,35 @@ dojo.declare(
 			}else{
 				this.messageTooltip && this.messageTooltip.close();
 			}
-		},
-		_isEmpty: function(){
-			var v = this.get("value");
-			return (v !== undefined) && isNaN(v);
 		}
 	});		
+	if(has("mobile") || has("platform-plugable")){
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/NumberTextBox", {	
+			desktop: "inherited",	// no plugin for desktop, use inherited methods  
+			mobile: MobilePlugin	// use the mobile plugin if loaded
+		});
+		
+		NumberTextBox = declare([NumberTextBox,_TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			
+			
+			templatePath: require.toUrl("idx/form/templates/TextBox.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			 			
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			}
+		});
+	}
+	return iForm.NumberTextBox = declare("idx.form.NumberTextBox", NumberTextBox);
 });

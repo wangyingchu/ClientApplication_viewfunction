@@ -1,0 +1,72 @@
+.jui-dialog{
+	padding: 2em;
+	background-color: #f6f6f6;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.75);
+	border: 0px;
+	color: #878787;
+	border-bottom: 4px solid #00b0da;
+}
+.jui-dialog .ui-dialog-titlebar{
+	background: transparent;
+	border: 0px;
+	margin: 0 0 20px;
+	padding: 0;
+}
+.jui-dialog .ui-dialog-title{
+	font-size: 1.7em;
+	line-height: 1.4em;
+	color: #878787;
+	font-weight:300;
+	margin:0;
+}
+.jui-dialog .ui-dialog-titlebar-close{
+	position: absolute;
+	top: -.7em;
+	right: -1.3em;
+	background: transparent;
+	border: 0px;
+	width: 32px;
+	height: 32px;
+}
+.jui-dialog .ui-dialog-titlebar-close .ui-icon{
+	background-image: url(images/close-cancel-error_32.png);
+	background-position: 0px 0px;
+	left: 0px;
+	top: 0px;
+	margin: 0;
+	opacity: .5;
+}
+.jui-dialog .ui-dialog-titlebar-close.ui-state-hover .ui-icon{
+	opacity: 1;
+}
+.jui-dialog .ui-dialog-content{
+	padding:0;
+	margin:0;
+	color: #878787;
+	font-size: 1em;
+	line-height: 1.4em;
+	font-weight:300;
+}
+.jui-dialog .ui-dialog-buttonpane{
+	border: none;
+	background: transparent;
+	padding: 1em 0 0;
+	margin: 0.25em 0 0;
+}
+.jui-dialog .ui-dialog-buttonpane button{
+	margin: 0 0 0 1em;
+	background: #00b0da;
+	border: none;
+	color: #ffffff;
+	padding: 0px;
+}
+.jui-dialog .ui-dialog-buttonpane .ui-button-text{
+	margin: 8px 14px;
+	padding: 0;
+}
+.jui-dialog .ui-dialog-titlebar-close .ui-icon{
+	width: 32px;
+	height: 32px;
+}

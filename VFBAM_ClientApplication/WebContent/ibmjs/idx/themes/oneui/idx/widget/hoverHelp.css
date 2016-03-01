@@ -36,7 +36,6 @@
 */
 
 .oneui .idxHoverHelpInfoWrapper {
-	display: inline;
 	padding: 0px;
 	margin: 0px;
 }
@@ -50,7 +49,16 @@
 }
 
 .oneui .idxHoverHelp_TooltipDialog .dijitTooltipContainer {
-    max-width: 250px;
+	overflow: auto;
+}
+
+.oneui .idxHoverHelp_TooltipDialog .dijitTooltipContainer.limitedSize {
+	max-width: 250px;
+	max-height: 150px;	
+}
+
+.dijit_a11y.oneui .idxHoverHelp .idxButtonToolbar .dijitButtonText.dijitDisplayNone {
+    display: none !important;
 }
 
 .oneui .idxHoverHelp .dijitArrowButtonInner {
@@ -58,10 +66,17 @@
     visibility: hidden;
 }
 
+.dijit_a11y.oneui .idxHoverHelp .dijitArrowButtonChar,
+.dj_a11y.oneui .idxHoverHelp .dijitArrowButtonChar {
+	display: none !important;
+	visibility: hidden;
+}
 .oneui .idxHoverHelpMessage {
     width: 100%;
     color: #464646;
     display: block;
+	word-break: break-word;
+	word-wrap:break-word;
 }
 
 .oneui div.idxHoverHelpLinkHidden {
@@ -97,19 +112,35 @@
 .oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipAbove .dijitTooltipConnector { 
 	left: 4.5px;
 }
-
-.dj_ie .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipAbove .dijitTooltipConnector { 
+.oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .dijitTooltipConnector{
+	right:7px;
+}
+.oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipBelow .dijitTooltipConnector { 
+	top: -6px;
+}
+.oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipAbove .dijitTooltipConnector { 
 	bottom: -4px;
 }
 
-.dijitRtl .oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipBelow .dijitTooltipConnector {
-	left: auto;
-	right: 4px;
+.oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .idxTooltipDialogCloseIcon {
+	right:auto;
+	left:-22px;
 }
 
-.dijitRtl .oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipAbove .dijitTooltipConnector { 
-	left: auto;
-	right: 3px;
+.dijitRtl .oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABLeft .idxTooltipDialogCloseIcon {
+	right:-8px;
+}
+
+.dijitRtl .oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .idxTooltipDialogCloseIcon {
+    left: -7px;
+}
+
+.dijitRtl .oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .dijitTooltipConnector { 
+	right: 6px;
+}
+
+.dijitRtl .oneui .dijitTooltipDialog.idxHoverHelp_TooltipDialog.dijitTooltipABRight .dijitTooltipConnector { 
+	left: 6px;
 }
 
 /** choose the icon file based on the placement of the button **/
@@ -186,13 +217,10 @@
 
 .oneui .idxHoverHelp .idxButtonDerived.dijitActive .idxHelpIcon,
 .oneui .idxHoverHelp .idxButtonDerived.dijitOpened .idxHelpIcon,
-.oneui .idxHoverHelp .idxButtonDerived.idxDropDownOpen .idxHelpIcon,
 .oneui .idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.dijitActive .idxHelpIcon,
 .oneui .idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.dijitOpened .idxHelpIcon,
-.oneui .idxHoverHelp.idxHoverHelpProfileStandard .idxButtonDerived.idxDropDownOpen .idxHelpIcon,
 .oneui .idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.dijitActive .idxHelpIcon,
-.oneui .idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.dijitOpened .idxHelpIcon,
-.oneui .idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.idxDropDownOpen .idxHelpIcon {
+.oneui .idxHoverHelp.idxHoverHelpProfileCompact .idxButtonDerived.dijitOpened .idxHelpIcon {
    background-position: 0px 0px;
 }
 
@@ -269,9 +297,15 @@
 .oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButtonHover .dijitButtonNode,
 .oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover, 
 .oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover,
-.oneui .idxHoverHelp .idxButtonToolbar.dijitToggleButtonHover .dijitButtonNode {
+.oneui .idxHoverHelp .idxButtonToolbar.dijitToggleButtonHover .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitButtonHover .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButtonHover .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNodeHover, 
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitDownArrowButtonHover,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitToggleButtonHover .dijitButtonNode {
 	background: none;
 	filter: none;
+    border: none !important;
 }
 
 /** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
@@ -296,10 +330,19 @@
 .oneui .idxHoverHelp .dijitButtonActive.idxButtonToolbar .dijitButtonNode, 
 .oneui .idxHoverHelp .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonNode,
 .oneui .idxHoverHelp .dijitComboButtonActive.idxButtonToolbar .dijitButtonNode,
-.oneui .idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonNode {
+.oneui .idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitButtonActive .dijitButtonNode, 
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButtonActive .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButtonActive .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitToggleButtonActive .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .dijitButtonActive.idxButtonToolbar .dijitButtonNode, 
+.dj_a11y.oneui .idxHoverHelp .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .dijitComboButtonActive.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonNode {
 	background: none;
     filter: none;
     color: #000000;
+    border: none !important;
 }
 
 .oneui .idxHoverHelp .idxButtonToolbar.dijitButtonActive .dijitButtonText,
@@ -309,7 +352,15 @@
 .oneui .idxHoverHelp .dijitButtonActive.idxButtonToolbar .dijitButtonText,
 .oneui .idxHoverHelp .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonText,
 .oneui .idxHoverHelp .dijitComboButton.idxButtonToolbar .dijitButtonNodeActive .dijitButtonText,
-.oneui .idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonText {
+.oneui .idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitButtonActive .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButtonActive .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton .dijitButtonNodeActive .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitToggleButtonActive .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .dijitButtonActive.idxButtonToolbar .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .dijitDropDownButtonActive.idxButtonToolbar .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .dijitComboButton.idxButtonToolbar .dijitButtonNodeActive .dijitButtonText,
+.dj_a11y.oneui .idxHoverHelp .dijitToggleButtonActive.idxButtonToolbar .dijitButtonText {
 	color:#000000;
 	text-decoration: underline;
 }
@@ -321,10 +372,18 @@
 .oneui .idxHoverHelp .dijitButtonDisabled.idxButtonToolbar .dijitButtonNode,
 .oneui .idxHoverHelp .dijitDropDownButtonDisabled.idxButtonToolbar .dijitButtonNode,
 .oneui .idxHoverHelp .dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode,
-.oneui .idxHoverHelp .dijitToggleButtonDisabled.idxButtonToolbar .dijitButtonNode { 
+.oneui .idxHoverHelp .dijitToggleButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitButtonDisabled .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButtonDisabled .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButtonDisabled .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitToggleButtonDisabled .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .dijitButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .dijitDropDownButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .dijitComboButtonDisabled.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .dijitToggleButtonDisabled.idxButtonToolbar .dijitButtonNode { 
 	background: none;
     filter: none;
-	border: none;
+	border: none !important;
 	color: #696969;
 	box-shadow:none;
  	-webkit-box-shadow:none;
@@ -352,29 +411,29 @@
 }
 
 .oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonText,
-.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonText,
-.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonText {
+.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonText {
    color: #000000;
 }
 
 .oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonNode,
 .oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
-.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonNode,
+.dj_a11y.oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode {
     filter: none;
     background: none;
+    border: none !important;
 }
 
 /** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
-.dj_ie .oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
-.dj_ie .oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+.dj_ie .oneui .idxHoverHelp .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode {
 	background: none;
         filter: none;
 }
 
-.dj_ie .oneui .idxHoverHelp table.idxButtonToolbar.dijitComboButton.dijitOpened,
-.dj_ie .oneui .idxHoverHelp table.idxButtonToolbar.dijitComboButton.idxDropDownOpen {
+.dj_ie .oneui .idxHoverHelp table.idxButtonToolbar.dijitComboButton.dijitOpened {
 	background-color: none;
     filter: none;
 }
+
 /** END WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
 

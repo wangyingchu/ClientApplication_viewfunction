@@ -14,7 +14,7 @@ define({
 	restoreLabel: "Återställ",
 	nextPageLabel: "Nästa",
 	previousPageLabel: "Föregående",
-	lastPageLabel: "Senaste",
+	lastPageLabel: "Sista",
 	firstPageLabel: "Första",
 	closeTip: "Stäng",
 	configureTip: "Konfigurera",

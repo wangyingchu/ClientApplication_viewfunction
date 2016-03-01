@@ -10,17 +10,9 @@
 <title>Test nls/Sort</title>
 <script type="text/javascript" src="../../tests/dojoVersion.js"></script>
 <script type="text/javascript" src="../../tests/test_nls.js"></script>
-<script type="text/javascript">
-	var dojoConfig = currentDojoVersion.dojoConfig;
-	dojoConfig.parseOnLoad = true;
-	dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
-	dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
-	dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
-	dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
-	dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx.css", "idxStyles");
-	dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx_rtl.css", "idxStyles");
-</script>
+<script type="text/javascript" src="support/commonImport.js"></script>
 <style type="text/css" id="idxStyles">
+	@import "../../../gridx/resources/Gridx.css";
 	@import "../../themes/oneui/oneui.css";
 	@import "../../tests/test_nls.css";
 	@import "../../themes/oneui/idx/gridx/Gridx.css";
@@ -46,19 +38,18 @@
 		{ id: 10, order: 10, Genre: "Blues", Artist: "Buddy Guy", Year: 1991, Album: "Damn Right, I've Got The Blues", Name: "Five Long Years", Composer: "Eddie Boyd/John Lee Hooker"}
 	];
 	require([
+		'dojo/parser',
 		"dojo/dom",
 		"dojo/query",
-		"dojo/ready",
 		"dijit/registry",
 		'dojo/store/Memory',
 		'gridx/Grid',
 		'gridx/core/model/cache/Sync',
 		'gridx/modules/Focus',
-		'idx/gridx/modules/Sort',
-		'dojo/parser'
-	], function(dom, query, ready, registry){
-		ready(function(){
-			var grid = registry.byId("testGrid");
+		'gridx/modules/Sort',
+	], function(parser, dom, query, registry){
+		parser.parse().then(function(){
+			/*var grid = registry.byId("testGrid");
 			var ariaButton = dom.byId("testARIAButton");
 			ariaButton.onclick = function(){
 				var labels = "";
@@ -70,12 +61,15 @@
 					}
 				}
 				test_alert(labels);
-			};
+			};*/
 		});
 	});
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">gridx/nls/Sort</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>
@@ -107,10 +101,10 @@
 		],
 		modules: [
 			"gridx/modules/Focus",
-			"idx/gridx/modules/Sort"
+			"gridx/modules/Sort"
 		]
 	' id="testGrid"></div>
-	<p><button id="testARIAButton">ARIA Labels</button></p>
+<!--    <p><button id="testARIAButton">ARIA Labels</button></p>-->
 	<h2>Single Sort</h2>
 	<div data-dojo-type='gridx/Grid' data-dojo-props='
 		cacheClass: "gridx/core/model/cache/Sync",
@@ -125,7 +119,7 @@
 		],
 		modules: [
 			"gridx/modules/Focus",
-			"idx/gridx/modules/Sort"
+			"gridx/modules/Sort"
 		],
 		sortNested: false
 	'></div>

@@ -1,0 +1,26 @@
+.dlBlue .idxFlipCardNavBaseRtl .idxFlipCardNavBar {
+  float: right;
+}
+.dlBlue .idxFlipCardNavBaseRtl .idxFlipCardNavBar .navAction .navActionIconContainer {
+  left: 0;
+  right: auto;
+}
+.dlBlue .idxFlipCardNavBaseRtl .idxFlipCardNavBar .navAction .toggleNavBarActionIcon {
+  background: url("images/flipCardIconSprite.png") no-repeat scroll 0 -96px rgba(0, 0, 0, 0);
+}
+.dlBlue .idxFlipCardNavBaseRtl .dojoxExpandoPane {
+  margin-right: 100%;
+  margin-left: 0;
+}
+.dlBlue .idxFlipCardNavBaseRtl .idxFlipCardContent {
+  padding: 10px 65px 10px 10px;
+}
+.dlBlue .idxFlipCardNavBaseRtl.idxFlipCardNavBarExtended .idxFlipCardContent {
+  padding: 10px 310px 10px 10px;
+}
+.dlBlue .idxFlipCardNavBaseRtl.idxFlipCardNavBarExtended .idxFlipCardNavBar .navAction .toggleNavBarActionIcon {
+  background: url("images/flipCardIconSprite.png") no-repeat scroll -32px -96px rgba(0, 0, 0, 0);
+}
+.dlBlue .idxFlipCardNavBaseRtl.navBarHidden .idxFlipCardContent {
+  padding-right: 48px;
+}

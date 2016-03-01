@@ -3,7 +3,7 @@ define({
    	editLabel: "Edita",
    	saveLabel: "Desa",
 
-   	cancelLabel: "Cancela"
+   	cancelLabel: "Cancel·la"
 //end v1.x content
 });
 

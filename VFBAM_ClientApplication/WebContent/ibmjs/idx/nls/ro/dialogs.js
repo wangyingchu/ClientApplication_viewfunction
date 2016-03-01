@@ -6,7 +6,9 @@ define({
 	confirmation: "Confirmare",
 	progress: "Progres",
 	loading: "Încărcare",
-	close: "Închidere"
+	close: "Închidere",
+	idxErrorDialog_detailTabLabel: "Rezolvaţi această problemă",
+	idxErrorDialog_moreTabLabel: "Obţineţi ajutor suplimentar"
 //end v1.x content
 });
 

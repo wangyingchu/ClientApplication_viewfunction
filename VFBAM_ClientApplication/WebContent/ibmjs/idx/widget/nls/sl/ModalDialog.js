@@ -13,9 +13,11 @@ define({
 	Success: "Uspelo",
 	Confirmation: "Potrditev",
 	Question: "Vprašanje",
+	Progress: "Napredek",
 	closeButtonLabel: "Zapri",
 	cancelButtonLabel: "Prekliči",
 	executeButtonLabel: "V redu",
 	checked: "Ne vprašaj me več"
 //end v1.x content
 });
+

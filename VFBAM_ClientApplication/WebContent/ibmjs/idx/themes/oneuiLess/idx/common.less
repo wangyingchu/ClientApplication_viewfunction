@@ -1,0 +1,125 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/*a11y support*/
+.idxTextAlternative {
+	display: none;
+}
+
+.dijit_a11y & .idxTextAlternative {
+	display: inline;
+}
+
+.idxSignIcon {
+	padding: 0 !important;
+	width: 24px;
+	height: 24px;
+	background-image: url('images/idx/msgIcons_24bit.png');
+	background-repeat: no-repeat;
+}
+
+.idxSimpleIconContainer {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.idxSimpleIconText {
+	padding: 0px 0px 0px 5px;
+}
+
+.dijitRtl & .idxSimpleIconText {
+	padding: 0px 5px 0px 0px;
+}
+
+.idxInformIcon {
+	background-position: -96px -18px;
+}
+
+.idxWarnIcon {
+	background-position: -24px -18px;  
+}
+
+.idxErrorIcon {
+	background-position: 0 -18px;
+}
+
+.idxConfirmIcon {
+	background-position: -48px -18px;
+}
+
+
+/* dialog messages  */
+.idxDialogIconWarning,
+.idxDialogIconInformation,
+.idxDialogIconError {
+	margin-right: 4px; 
+	width: 24px;
+	height: 24px;
+	background-image: url('images/idx/msgIcons_24bit.png');
+	background-repeat: no-repeat;
+}
+
+.dijitRtl & .idxDialogIconWarning,
+.dijitRtl & .idxDialogIconInformation,
+.dijitRtl & .idxDialogIconError {
+	margin-right: 0px;
+	margin-left: 4px;
+}
+	
+.idxDialogIconWarning
+{
+	background-position: -24px -18px;
+}
+
+.idxDialogIconInformation
+{
+	background-position: -96px -18px;
+}
+
+.idxDialogIconError
+{
+	background-position: 0 -18px;
+}
+
+.idxDialogIconText
+{	
+	margin-left: 0px;
+}
+
+.idxDetailsPaneText
+{ 
+    display: block !important;
+    padding: 15px;
+    border-width: 0px;
+	border-style: none none solid;
+    color: @textSecondary;
+    text-align: center; 
+    font-family: @serif;
+}
+
+.dijit_a11y & .idxSignIcon.dijitContentPaneLoading {
+	color: @textStrong;
+}
+
+
+/* workaround for absolute position specified for dijitContentPaneLoading in themes/oneui/Common.css. */
+.idxSignIcon.dijitContentPaneLoading { 
+	top: auto; 
+	right: auto; 
+	bottom: auto; 
+	left: auto;
+	padding-top: 12px !important;
+	padding-left: 45px !important;
+	width: 50px; 
+	height: 50px; 
+	background: url('images/idx/loadingAnimation38px.gif') no-repeat;
+}
+
+.dijitRtl & .idxSignIcon.dijitContentPaneLoading {
+	padding-right: 45px !important; 
+	background-position: top right;
+}

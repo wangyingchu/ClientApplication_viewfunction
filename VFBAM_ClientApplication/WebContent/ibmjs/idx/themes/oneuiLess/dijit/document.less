@@ -1,0 +1,196 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/* ======= oneui is 12px for body text, UI controls, feeds, ellipses, etc ======== */
+
+
+body& {
+	font-family: @sans;
+	font-size: 75%;
+	.textColors(@fwBackground);
+	color: @textDefault;   
+	background: none;
+}
+
+
+/* ======= beginning of content area font styles ======== */
+
+
+/* ======= oneui bold is for the primaryButton, for messageTitles like Attention and Errors; Price Tags  ======== */
+.primaryButton, 
+.messageTitles, 
+.price {
+    font-weight: bold;
+}
+
+/* ======= oneui pageHeader1 is 30px; content area ======== */
+.pageHeader1{
+    font-size: 2.5em;
+    font-weight: bold;
+    color: @textDefault; 
+}
+
+/* ======= oneui pageHeader2 is 18px; content area ======== */
+.pageHeader2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: @textDefault; 
+}
+
+/* ======= oneui portletHeader1 is 14px; content area ======== */	
+.portletHeader1{
+    font-size: 1.17em;
+    font-weight: bold;
+    color: @textDefault; 
+}
+
+/* ======= oneui portletHeader2 is 12px; content area ======== */
+.portletHeader2{
+    font-weight: bold;
+    color: @textDefault; 
+}
+
+
+
+/* ======= oneui messagesContrast is 11px for secondary message info such as ID (CAT123456) and date/timestamp and message filter ~"s "; content area======== */
+.messagesContrast  {
+	font-size: 0.92em;
+    color: @textSecondary;
+}
+
+/* ======= oneui .informationCenter is 13px for large amount of text; content area ======== */
+.informationCenter {
+    font-family: @serif;
+    font-size: 1.08em;
+}
+
+/* ======= oneui .informational is 11px; content area ======== */
+.informational {
+    font-size: 0.92em;
+}
+
+/* ======= oneui .informational2 is 12px e.g hover person card information; content area ======== */
+.informational2 {
+     color: @textSecondary;
+}
+
+/* ======= oneui .informational3 is 22px e.g hover person card information, spefically the person's name; content area ======== */
+.informational3 {
+     font-family: @serif;
+	 font-size: 1.375em;
+     color: @linkColor;
+}
+
+/* ======= oneui .informationalOther is 12px; content area   ======== */
+.informationalOther {
+    font-family: @serif;
+}
+
+/* ======= oneui .legal: for copyright and trademark information in login, about, welcome screen, video, 11px; content area   ======== */
+.legal {
+   
+    font-size: 0.92em;
+    color: @textDisabled;
+}
+
+/* ======= oneui .footnote, 
+.contrast: status update is 11px; content area   ======== */
+.footnote, 
+.contrast {
+    font-family: @serif;  
+    font-size: 0.92em;
+}
+
+/* ======= oneui .instructional is 12px; content area   ======== */
+.instructional {
+    font-family: @serif;  
+}
+
+/* ======= oneui .activeMessage is 11px; content area   ======== */
+.activeMessage {
+    font-family: @serif;
+    font-size: 0.92em;
+    font-style: italic;
+}
+
+/* ======= oneui .activeMessage2 is 14px; content area   ======== */
+.activeMessage2 {
+    font-family: @serif;
+    font-size: 1.17em;
+    font-style: italic;
+	color: @textActive;  
+}
+
+
+/* ======= oneui .activeMessage3 is 11px; content area   ======== */
+.activeMessage3 {
+    font-family: @serif;
+    font-size: 0.92em;
+    font-style: italic;
+	color: @textActive;  
+}
+
+/* ======= oneui .chartMarkers is 12px; content area   ======== */
+.chartMarkers {
+    color: @textDisabled;  
+}
+
+/* ======= oneui .chartLegend is 11px; content area   ======== */
+.chartLegend {
+    font-size: 0.92em;
+    color: @textDisabled;  
+}
+
+/* ======= oneui .sliderMarkers is 10px ; content area  ======== */
+.sliderMarkers {
+    font-size: 0.83em;
+    color: @textSecondary;  
+}
+
+/* ======= oneui breadcrumb is 11px; content area; content area  ======== */
+.breadcrumb a {
+    font-size:0.92em;
+    color: @linkColor; 
+    text-decoration: none;
+}
+
+.breadcrumb a:visited {
+    color: @linkVisited; 
+}
+
+.breadcrumb a:hover {
+    color: @linkHover; 
+    text-decoration: underline;
+}
+
+.breadcrumb a:active {
+    color: @linkColor; 
+    font-weight: bold; 
+}
+
+/* ======= oneui default linked text; content area ======== */
+a:link {
+    color: @linkColor;
+    text-decoration: none;
+}
+
+a:visited {
+    color: @linkVisited;
+}
+
+a:hover {
+    color: @linkHover;
+    text-decoration: underline;
+}
+
+a:active {
+    color: @linkColor;
+}
+
+/* =======end of content area font styles ======== */
+
+

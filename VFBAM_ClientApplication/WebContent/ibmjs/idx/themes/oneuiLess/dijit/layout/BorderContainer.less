@@ -1,0 +1,175 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+// BorderContainer 
+
+//	Splitters and gutters separate panes within a BorderContainer. Splitters can be moved up and down (horizonal splitters) or left andright (vertical splitters), while Gutters are static. A "thumb" is the slit on a Splitter that indicates it is movable. 
+//
+// Styling the BorderContainer widget consists of the following: 
+//
+//	.dijitBorderContainer - for oneui and padding of the entire border container
+//	
+//	.dijitSplitContainer-child, 
+//	.dijitBorderContainer-child - for border or child panes of the border container. By default borders are put on all children of BorderContainer.  
+//	
+//	.dijitBorderContainer-dijitTabContainerTop,
+//	.dijitBorderContainer-dijitTabContainerBottom,
+//	.dijitBorderContainer-dijitTabContainerLeft,
+//	.dijitBorderContainer-dijitTabContainerRight,
+//	.dijitBorderContainer-dijitAccordionContainer   -for border of the border containers within TabContainer or AccordionContainer widget
+//	
+//	.dijitBorderContainer-dijitBorderContainer - for border and padding of nested BorderContainers
+//	
+//	Splitters and gutters:  
+//	
+//	.dijitSplitterH, 
+//	.dijitGutterH - for height, background, and border of a horizontal splitter and gutter 
+//	.dijitSplitterH .dijitSplitterThumb - for color, height/width of the thumb on a horizontal splitter
+//	.dijitSplitterV, 
+//	.dijitGutterV - - for height, background, and border of a vertical splitter and gutter 
+//	.dijitSplitterV .dijitSplitterThumb - for color, height/width of the thumb on a vertical splitter
+//	.dijitSplitterHHover - for background-color of a hovered horizontal splitter
+//	.dijitSplitterHHover .dijitSplitterThumb - for background-color of a hovered thumb on a horizontal splitter
+//	.dijitSplitterVHover  - for background-color of a hovered vertical splitter
+//	.dijitSplitterVHover .dijitSplitterThumb - for background-color of a hovered thumb on a vertical splitter
+//	.dijitSplitterHActive - for background-color of an active horizontal splitter
+//	.dijitSplitterVActive - for background-color of an active horizontal splitter
+//	
+
+.dijitBorderContainer {
+  /* matches the width of the splitters between panes */
+  padding: 5px;
+}
+.dijitSplitContainer-child, 
+.dijitBorderContainer-child {
+  border: 1px transparent solid;
+}
+.dijitBorderContainer-dijitTabContainerTop,
+.dijitBorderContainer-dijitTabContainerBottom,
+.dijitBorderContainer-dijitTabContainerLeft,
+.dijitBorderContainer-dijitTabContainerRight,
+.dijitBorderContainer-dijitAccordionContainer {
+  /* except that TabContainer defines borders on it's sub-nodes (tablist and dijitTabPaneWrapper),
+	 * so override rule setting border on domNode
+	 */
+  border: none;
+}
+.dijitBorderContainer-dijitBorderContainer {
+  /* make nested BorderContainers look like a single big widget with lots of splitters */
+
+  border: 0;
+  padding: 0;
+}
+/* Splitters and gutters */
+.dijitSplitterH, 
+.dijitGutterH {
+  background: @fwLightest;
+  border: 0;
+  height: 5px;
+}
+.dijitSplitterH .dijitSplitterThumb {
+  background: url('images/dijit/layout/SplitterThumb.png');
+  height: 5px;
+  width: 19px;
+}
+
+.dijitSplitterV, 
+.dijitGutterV {
+  background: #f2f2f2;
+  border: 0;
+  width: 5px;
+  margin: 0;
+}
+
+.dijitSplitterV .dijitSplitterThumb {
+  background: url('images/dijit/layout/SplitterThumb-V.png');
+  height: 19px;
+  width: 5px;
+  margin: 0;
+}
+
+/* hovered splitter */
+.dijitSplitterHHover {
+  font-size: 1px;
+  background: url('images/dijit/layout/bg-Splitter_hover_h.png') repeat-x center top;
+}
+
+.dijitSplitterVHover {
+  font-size: 1px;
+  background: url('images/dijit/layout/bg-Splitter_hover_v.png') repeat-y center left;
+}
+
+.dj_ie & .dijitSplitterHHover,
+.dj_ie & .dijitSplitterVHover{
+  background-image: none;
+  background: #e5e5e5;
+}
+/* active splitter */
+.dijitSplitterHActive {
+  font-size: 1px;
+  background: url('images/dijit/layout/bg-Splitter_mousedown_h.png') repeat-x center top;
+}
+
+.dijitSplitterVActive{
+  font-size: 1px;
+  background: url('images/dijit/layout/bg-Splitter_mousedown_v.png') repeat-y center left;
+}
+
+.dj_ie & .dijitSplitterHActive,
+.dj_ie & .dijitSplitterVActive{
+  background-image: none;
+  background: #cccccc;
+}
+
+.dijitSplitContainer.idxHeaderPane-onlyChild .dijitSplitContainerSizerV,
+.dijitSplitContainer.idxHeaderPane-onlyChild .dijitSplitContainerSizerV,
+.idxBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterH,
+.dijitBorderContainerNoGutter.idxHeaderPane-onlyChild .idxSplitterH,
+.dijitBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterH,
+.dijitContentPane.dijitBorderContainer-child > .idxBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterH,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainerNoGutter.idxContentPane-onlyChild .idxSplitterH,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterH,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .idxBorderContainer.dijitBorderContainerNoGutter .idxSplitterH,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainerNoGutter .idxSplitterH,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainer.dijitBorderContainerNoGutter .idxSplitterH,
+.idxBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterH,
+.dijitBorderContainerNoGutter.idxHeaderPane-onlyChild .dijitSplitterH,
+.dijitBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterH,
+.dijitContentPane.dijitBorderContainer-child > .idxBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterH,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainerNoGutter.idxContentPane-onlyChild .dijitSplitterH,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterH,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .idxBorderContainer.dijitBorderContainerNoGutter .dijitSplitterH,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainerNoGutter .dijitSplitterH,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainer.dijitBorderContainerNoGutter .dijitSplitterH {
+	border-top: 1px @fwLighter solid;
+	border-bottom: 1px @fwLighter solid;
+}
+
+.dijitSplitContainer.idxHeaderPane-onlyChild .dijitSplitContainerSizerH,
+.dijitSplitContainer.idxHeaderPane-onlyChild .dijitSplitContainerSizerH,
+.idxBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterV,
+.dijitBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterV,
+.dijitBorderContainerNoGutter.idxHeaderPane-onlyChild .idxSplitterV,
+.dijitContentPane.dijitBorderContainer-child > .idxBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterV,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .idxSplitterV,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainerNoGutter.idxContentPane-onlyChild .idxSplitterV,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .idxBorderContainer.dijitBorderContainerNoGutter .idxSplitterV,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainer.dijitBorderContainerNoGutter .idxSplitterV,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainerNoGutter .idxSplitterV,
+.idxBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterV,
+.dijitBorderContainer.idxHeaderPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterV,
+.dijitBorderContainerNoGutter.idxHeaderPane-onlyChild .dijitSplitterV,
+.dijitContentPane.dijitBorderContainer-child > .idxBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterV,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainer.idxContentPane-onlyChild.dijitBorderContainerNoGutter .dijitSplitterV,
+.dijitContentPane.dijitBorderContainer-child > .dijitBorderContainerNoGutter.idxContentPane-onlyChild .dijitSplitterV,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .idxBorderContainer.dijitBorderContainerNoGutter .dijitSplitterV,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainer.dijitBorderContainerNoGutter .dijitSplitterV,
+.dijitContentPane.dijitBorderContainer-child.dijitContentPaneSingleChild > .dijitBorderContainerNoGutter .dijitSplitterV {
+
+	border-left: 1px @fwLighter solid;
+	border-right: 1px @fwLighter solid;
+}

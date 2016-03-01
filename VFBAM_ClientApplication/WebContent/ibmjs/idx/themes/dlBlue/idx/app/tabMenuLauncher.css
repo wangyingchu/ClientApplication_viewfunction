@@ -1,0 +1,223 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxTabMenuLauncherOptions {
+  background-image: url(../images/blank.gif?dockWidget=idx.app.TabMenuDock);
+}
+.dlBlue .idxTabMenuLauncher {
+  position: relative;
+}
+.dlBlue .idxTabMenuLauncher.idxAppFrame-child {
+  background: none;
+  background-color: transparent;
+  border-width: 0px;
+  border-style: none;
+  border-color: transparent;
+}
+.dlBlue div.idxTabMenuLauncherTabDock {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #efeff1;
+}
+.dlBlue div.idxTabMenuLauncherContentStack {
+  position: absolute;
+  padding: 10px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #ffffff;
+}
+.dlBlue .idxTabMenuLauncher_Workspace {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameCenter  > .idxAppFrameBody  > .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .idxConsoleLayoutTabs  > .dijitTabController .dijitTabContainerTop-tabs,
+.dlBlue .dijitTabContainer.idxTabsHeader  > .dijitTabController .dijitTabContainerTop-tabs {
+  margin-left: 14px;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameCenter  > .idxAppFrameBody  > .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .idxConsoleLayoutTabs  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs,
+.dlBlue .dijitTabContainer.idxTabsHeader  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs {
+  margin-left: 0px;
+  margin-right: 14px;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameCenter  > .idxAppFrameBody  > .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .idxOpenMenuTabContainer.idxOpenMenuTabContainerWithOpenMenu  > .dijitTabController .dijitTabContainerTop-tabs,
+.dlBlue .dijitTabContainer.idxOpenMenuTabContainerWithOpenMenu.idxTabsHeader  > .dijitTabController .dijitTabContainerTop-tabs {
+  margin-left: 0px;
+}
+.dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameCenter  > .idxAppFrameBody  > .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .idxOpenMenuTabContainer.idxOpenMenuTabContainerWithOpenMenu  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs,
+.dlBlue .dijitTabContainer.idxOpenMenuTabContainerWithOpenMenu.idxTabsHeader  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabListContainer-top,
+.dlBlue .idxOpenMenuTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabListContainer-top {
+  clear: left;
+  height: 40px !important;
+  border: none;
+  background-color: #efeff1;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTopRtl  > .dijitTabListContainer-top,
+.dlBlue .idxOpenMenuTabContainer.idxTabsHeader.dijitTabContainerTopRtl  > .dijitTabListContainer-top {
+  clear: right;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTab,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabContent,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTab,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabContent {
+  background-image: none;
+  background-color: transparent;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  min-width: 8px;
+  padding: 0px 16px;
+  text-align: center;
+  color: #58595b;
+  font-weight: bold;
+  border-bottom: none;
+  border-top: none;
+  top: 0px;
+  margin: 15px 0px;
+  font-size: 13px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabChecked,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabChecked.dijitTabHover,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabChecked,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabChecked.dijitTabHover {
+  background: #efeff1;
+  filter: none;
+  color: #222;
+  padding: 16px 16px;
+  margin: 0;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTab.dijitTabHover,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabHover,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTab.dijitHasDropDownOpen,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitHasDropDownOpen,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTab.dijitTabActive,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabActive,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTab.dijitTabHover,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabHover,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTab.dijitHasDropDownOpen,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitHasDropDownOpen,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTab.dijitTabActive,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent.dijitTabActive {
+  background-color: #efeff1;
+  background-clip: border-box;
+  background-origin: padding-box;
+  background-size: auto auto;
+  background-position: 0% 0%;
+  background-attachment: scroll;
+  cursor: pointer;
+  padding: 15px 16px;
+  margin: 0px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .tabStripButton .dijitTabStripMenuIcon,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .tabStripButton .dijitTabStripMenuIcon {
+  float: right;
+  display: inline-block;
+  margin: 3px 0 0 7px;
+  background: url(images/headerIcons.png) -10px -10px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController.dijitTabControllerRtl .tabStripButton .dijitTabStripMenuIcon,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController.dijitTabControllerRtl .tabStripButton .dijitTabStripMenuIcon {
+  float: left;
+  margin: 3px 7px 0 0;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs {
+  border-bottom: none;
+  height: 40px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabPaneWrapper,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabPaneWrapper {
+  padding: 0;
+  background-color: transparent;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabInnerDiv,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent,
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton.dijitTabInnerDiv,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabInnerDiv,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .dijitTabContent,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton.dijitTabInnerDiv {
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton {
+  width: auto;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton.dijitTabInnerDiv,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton.dijitTabInnerDiv {
+  padding: 14px 0;
+  height: auto;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton:hover .dijitTabInnerDiv,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton:hover .dijitTabInnerDiv {
+  background: none;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton .dijitTabContent,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton .dijitTabContent {
+  min-width: 8px;
+  padding: 15px 12px 15px 28px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  min-height: 16px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs  > .tabStripButton .dijitTabContent,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs  > .tabStripButton .dijitTabContent {
+  padding: 15px 28px 15px 12px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton .dijitTabContent .dijitButtonText,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs  > .tabStripButton .dijitTabContent .dijitButtonText {
+  display: none;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent {
+  padding: 14px 16px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabInnerDiv,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabInnerDiv {
+  border-top: none;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+  padding: 14px 16px 14px 16px;
+  border: none;
+  background-color: #efeff1;
+  color: #222;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .tabStripButton,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .tabStripButton {
+  border-bottom: none;
+  border-bottom-color: transparent;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .tabStripButton.dijitTabInnerDiv .dijitTabStripMenuIcon,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController .dijitTabContainerTop-tabs .tabStripButton.dijitTabInnerDiv .dijitTabStripMenuIcon {
+  background: url(images/headerIcons.png) -380px 0 no-repeat;
+  width: 26px;
+  height: 26px;
+  float: left;
+  margin-top: -4px;
+}
+.dlBlue .idxTabMenuLauncher  > .dijitStackContainerChildWrapper  > .dijitTabContainerTop  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs .tabStripButton.dijitTabInnerDiv .dijitTabStripMenuIcon,
+.dlBlue .dijitTabContainer.idxTabsHeader.dijitTabContainerTop  > .dijitTabController.dijitTabControllerRtl .dijitTabContainerTop-tabs .tabStripButton.dijitTabInnerDiv .dijitTabStripMenuIcon {
+  float: right;
+}
+.dlBlue.dijit_a11y .idxTabMenuLauncherContentStack {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}

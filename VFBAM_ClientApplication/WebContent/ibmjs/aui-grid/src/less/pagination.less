@@ -1,0 +1,206 @@
+.pagerBtnDisabled() {
+	cursor: default;
+	opacity: 0.8;
+}
+/* pagination bar */
+.gridxPagerInner {
+	width: 100%;
+	table-layout: auto;
+}
+
+.gridxPagerA11yInner {
+	visibility: hidden;
+
+	.dijit_a11y & {
+		visibility: visible;
+	}
+}
+
+.gridxPagerPages span:focus, span.gridxPagerSizeSwitchBtn:focus{
+	outline: dotted 1px #555;
+}
+
+.gridxPagerStepperBtn,
+.gridxPagerSizeSwitchBtn {
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+}
+
+.gridxPagerStepperBtnActive,
+.gridxPagerSizeSwitchBtnActive {
+	cursor: default;
+}
+
+.gridxPagerFirstPage {
+	.icon(arrowLeftMostBlue);
+}
+.gridxPagerFirstPageDisable {
+	.icon(arrowLeftMostGrey);
+	.pagerBtnDisabled();
+}
+
+.gridxPagerPrevPage {
+	.icon(arrowLeftBlue);
+}
+.gridxPagerPrevPageDisable {
+	.icon(arrowLeftGrey);
+	.pagerBtnDisabled();
+}
+
+.gridxPagerNextPage {
+	.icon(arrowRightBlue);
+}
+.gridxPagerNextPageDisable {
+	.icon(arrowRightGrey);
+	.pagerBtnDisabled();
+}
+
+.gridxPagerLastPage {
+	.icon(arrowRightMostBlue);
+}
+.gridxPagerLastPageDisable {
+	.icon(arrowRightMostGrey);
+	.pagerBtnDisabled();
+}
+
+.gridxPagerDescriptionTD {
+	text-align: left;
+	width: 33%;
+}
+
+.gridxPagerStepperTD {
+	text-align: center;
+	width: 33%;
+}
+
+.gridxPagerSizeSwitchTD {
+	text-align: right;
+}
+
+.gridxPagerGoto {
+	width: 20px;
+	text-align: center;
+}
+
+.gridxPagerGotoBtn {
+	.icon(arrowUpBlue; 10px);
+	cursor: pointer;
+}
+
+/* Goto Page Dialog */
+.gridxGotoPage {
+	td {
+		padding-bottom: 5px;
+	}
+
+	.gridxGotoPageBtns {
+		padding-bottom: 0;
+		text-align: right;
+	}
+
+	.gridxGotoPageInputBox {
+		width: 100px;
+	}
+
+	.gridxPageCountMsg {
+		padding-left: 5px;
+	}
+}
+
+/*DD*/
+.gridxPagerStepperWidget {
+	width: 55px;
+}
+
+.gridxPagerLabel {
+	vertical-align: middle;
+}
+
+/* LinkPage in GridBar */
+.gridxLinkPager,
+.gridxLinkSizer {
+	padding: 5px 0;
+}
+
+.gridxPaginationBar {
+	padding-right: 9px;
+}
+
+.gridxDropDownPager,
+.gridxDropDownSizer {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.gridx-pagination-bar {
+	padding: 3px 0;
+}
+
+.gridx-pagination-bar-container:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
+.gridx-pagination-bar-control {
+	float: left;
+
+	input.currentPage {
+		height: 20px;
+		width: 50px;
+		vertical-align: top;
+	}
+	button {
+		height: 20px;
+	}
+	.next-triangle,
+	.last-triangle {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 5px 0 5px 8.7px;
+		border-color: transparent transparent transparent #4d4d4d;
+		margin-left: -1px;
+	}
+	
+	.prev-triangle,
+	.first-triangle {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 5px 8.7px 5px 0;
+		border-color: transparent #4d4d4d transparent transparent;
+	}
+
+	.first-bar {
+		width: 10px;
+		border-left: 2px solid #4d4d4d;
+		margin-top: -6px;
+		height: 12px;
+		margin-left: -3px;
+	}
+
+	.last-bar {
+		width: 10px;
+		border-left: 2px solid #4d4d4d;
+		margin-top: -6px;
+		height: 12px;
+		margin-left: 1px;
+	}
+}
+
+.gridx-pagination-bar-sizes {
+	float: right;
+}
+
+.gridx-pagination-count-label {
+	color: #2c3e50;
+	font-size: 13px;
+	margin: 0 5px;
+}
+
+.gridx-pagination-max-pages-number {
+	color: #2c3e50;
+	font-size: 13px;
+}

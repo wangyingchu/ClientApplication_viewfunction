@@ -1,0 +1,169 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.@{theme-name} {
+    .dijitStackController.idxListNavController {
+        padding: 0px;
+    	background-color: #ffffff;
+    	height: 100%;
+    	
+        .idxListNavButton {
+            display: block;
+            width: 100%;
+            background-color: #ffffff;
+        }
+        
+        .dijitButtonNode {
+            border:none;
+            font-weight: normal;
+            width: 100%;
+            margin: 0px;
+            background-color:transparent;
+            background-image:none;
+            -moz-border-radius-bottomleft:0;
+            -moz-border-radius-bottomright:0;
+            -moz-border-radius-topleft:0;
+            -moz-border-radius-topright:0;
+            text-align:left;
+            text-indent: 5px;
+            padding: 14px 0;
+        }
+        
+        .idxListNavButtonHover {
+        	.dijitButtonNode{
+			    background-color: #DBF3FC;
+        	}
+        }
+        
+        .idxListNavButtonChecked {
+        	.dijitButtonNode{
+        		background-color: #ECF8FD;
+        	}
+        }
+        
+        .idxListNavButtonFocused {
+        	.dijitButtonNode{
+        		background-color: #ECF8FD;
+        	}
+        }
+    }
+    .idxListNavigation {
+        background-color: #ffffff;
+    }
+    .idxNestedNavigation {
+        .dijitTitlePaneTitle {
+            border:none;
+            background: none;
+            background-image: none;
+            font-weight: normal;
+            text-shadow: none;
+        }
+        .dijitTitlePaneContentOuter {
+            border: none;
+        }
+        .dijitTitlePaneTitleHover {
+            background-color: #cce8f2;
+            font-weight: bold;
+        }
+        .dijitTitlePane {
+            .dijitArrowNode {
+                background-image: url('images/leftNavArrows.png');
+                width: 7px;
+                height: 7px;
+            }
+            .dijitClosed {
+                .dijitArrowNode {
+                    background-position: 0 0;
+                }
+            }
+            .dijitOpen {
+                .dijitArrowNode {
+                    background-position: -16px 0;
+                }
+            }
+        }
+        .dijitTitlePaneRtl {
+            .dijitClosed {
+                .dijitArrowNode {
+                    background-position: -30px 0;
+                }
+            }
+        }
+        .dijitStackController.idxListNavController {
+            .dijitButtonNode {
+                text-indent: 15px;
+                padding-left: 0px;
+            }
+        }
+    }
+   
+}
+.@{theme-name} .dijitStackController.idxListNavController .dijitCheckedFocused,.@{theme-name} .dijitStackController.idxListNavController .dijitCheckBoxFocused {
+    outline-width:0px;
+}
+.dijitRtl {
+    .@{theme-name} {
+        .dijitStackController.idxListNavController {
+            .dijitButtonNode {
+                text-align: right;
+                padding-right: 0px;
+            }
+        }
+    }
+}
+.dj_ie7 {
+    .@{theme-name} {
+        .dijitStackController.idxListNavController {
+            .dijitButtonNode {
+                text-indent: 0px;
+                padding-left: 5px;
+            }
+        }
+        .idxNestedNavigation {
+            .dijitStackController.idxListNavController {
+                .dijitButtonNode {
+                    text-indent: 0px;
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
+}
+.@{theme-name} .dijitStackController.idxListNavController .idxListNavButtonCheckedHover .dijitButtonNode{
+    text-decoration: none;
+    background-color: #cce8f2;
+    background-image: none;
+    font-weight: bold;
+    vertical-align: middle;
+}
+.@{theme-name} .idxNestedNavigation,.@{theme-name} .idxSectionedNavigation {
+    background-color: #ffffff;
+    padding: 0px;
+    margin: 0px;
+}
+.@{theme-name} .idxNestedNavigation .idxHeaderPaneContent,.@{theme-name} .idxNestedNavigation .dijitTitlePaneContentInner {
+    padding: 0px;
+}
+.@{theme-name} .idxNestedNavigation .dijitTitlePane,.@{theme-name} .idxSectionedNavigation .dijitTitlePane {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.@{theme-name} .idxNestedNavigation .dijitTitlePaneTitleFocus,.@{theme-name} .idxSectionedNavigation .dijitTitlePaneTitleFocus {
+    margin: 0;
+}
+.@{theme-name} .idxNestedNavigation .dijitTitlePaneContentOuter, {
+    border: none;
+}
+.@{theme-name} .idxSectionedNavigation .dojoxGridCell,.@{theme-name} .idxSectionedNavigation .dojoxGridRow {
+    border-left-color: #eee;
+    border-right-color: transparent;
+}
+.@{theme-name} .idxSectionedNavigation .dojoxGridView,.@{theme-name} .idxSectionedNavigation .dojoxGridHeader {
+    left: 0 !important;
+    right: 0 !important;
+}

@@ -18,7 +18,6 @@
 	</script>
 	
     <style id="idxStyles" type="text/css">
-        @import "../../themes/oneui/oneui.css";
         @import "../../tests/test.css";
     </style>
 
@@ -32,6 +31,7 @@
 			"dijit.layout.TabContainer",
 			"idx.widget.Menu",
 			"dijit.MenuItem",
+			"dijit.form.ToggleButton",
 			"idx.layout.MenuTabController",
 			"dijit.layout.ContentPane"];
 			
@@ -46,19 +46,30 @@
 	<a name="maincontent"></a>
 	
 	<div class="testMain">
-		<div data-dojo-type="idx.widget.Menu" id="thirdtabmenu" style="display: none;">
-			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 1 clicked')">Item 1</div>
-			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 2 clicked')">Item 2</div>
-			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 3 clicked')">Item 3</div>
+		<div data-dojo-type="dijit/form/ToggleButton" data-dojo-props="iconClass: 'dijitCheckBoxIcon', checked: false">Open Menus on Hover (menu.openOnHover=false)
+			<script type="dojo/aspect" data-dojo-method="onClick" data-dojo-advice="after">
+				if (this.checked) {
+					this.set("label", "Open Menus on Hover (menu.openOnHover=true)");
+				} else {
+					this.set("label", "Open Menus on Click (menu.openOnHover=false)");
+				}
+				thirdtabmenu.set("openOnHover", this.checked);
+				fourthtabmenu.set("openOnHover", this.checked);
+			</script>
+		</div>
+		<br>
+		<div data-dojo-type="idx.widget.Menu" id="thirdtabmenu" style="display: none;" data-dojo-id="thirdtabmenu">
+			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 1 clicked')">Item 1A</div>
+			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 2 clicked')">Item 2A</div>
+			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 3 clicked')">Item 3A</div>
 	    </div>
 	
-		<div data-dojo-type="idx.widget.Menu" id="fourthtabmenu" style="display: none;">
-			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 1 clicked')">Item 1</div>
-			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 2 clicked')">Item 2</div>
-			<div data-dojo-type="dijit.MenuItem" onClick="alert('third tab menu item 3 clicked')">Item 3</div>
+		<div data-dojo-type="idx.widget.Menu" id="fourthtabmenu" style="display: none;" data-dojo-id="fourthtabmenu">
+			<div data-dojo-type="dijit.MenuItem" onClick="alert('fourth tab menu item 1 clicked')">Item 1B</div>
+			<div data-dojo-type="dijit.MenuItem" onClick="alert('fourth tab menu item 2 clicked')">Item 2B</div>
+			<div data-dojo-type="dijit.MenuItem" onClick="alert('fourth tab menu item 3 clicked')">Item 3B</div>
 	    </div>
-	
-		<div data-dojo-type="dijit.layout.TabContainer" data-dojo-props='controllerWidget: "idx.layout.MenuTabController", style: "width: 100%; height: 10em;"'>
+		<div id="menu_tab_controller" data-dojo-type="dijit.layout.TabContainer" data-dojo-props='controllerWidget: "idx.layout.MenuTabController", style: "width: 100%; height: 10em;"'>
 			<div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title: "First tab"'>
 				<h1>Hello, I am the first page</h1>
 				<p>This page is not closable, and does not have a popup menu associated with it.</p>
@@ -71,7 +82,7 @@
 				<h1>Hello, I am the third page</h1>
 				<p>This page is not closable, but does  have a popup menu associated with it.</p>
 			</div>
-			<div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title: "Fourth tab", closable: true, popup: "fourthtabmenu"'>
+			<div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title: "Fourth tab with really really really really long name", closable: true, popup: "fourthtabmenu"'>
 				<h1>Hello, I am the fourth page</h1>
 				<p>This page is closable, and also has a popup menu associated with it.</p>
 			</div>

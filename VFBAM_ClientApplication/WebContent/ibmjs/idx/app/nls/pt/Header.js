@@ -9,8 +9,12 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Compartilhar",
+	actionSettings: "Configurações",
 	actionHelp: "Ajuda",
 	searchEntry: "Procurar",
-	searchSubmit: "Procurar"
+	searchSubmit: "Procurar",
+	primarySearchLabelSuffix: "procura primária",
+	secondarySearchLabelSuffix: "procura secundária",
+	homeButton: "Início"
 //end v1.x content
 });

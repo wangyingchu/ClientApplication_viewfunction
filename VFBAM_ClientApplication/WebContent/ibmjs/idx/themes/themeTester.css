@@ -1,0 +1,35 @@
+body{
+	font: 62.5% "Helvetica Neue", Arial, sans-serif;
+	margin: 0;
+    line-height: 20px;
+}
+  
+h1, h2, .txt-xlg, .txt-lg {
+  font-weight: 200;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 25px;
+}
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+section {
+  margin: 0 30px 30px;
+}
+.demoHeaders {
+	margin-top: 2em;
+}
+.widgetLabel{
+	width: 120px;
+}
+.testWidgetGroup{
+	width: 560px;
+}

@@ -1,0 +1,283 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxOneuiHoverCard,
+.dlBlue .idxOneuiHoverCardDialog {
+  background: transparent;
+  color: #fff;
+}
+.dlBlue .idxOneuiHoverCardCloseIcon {
+  background: url("../../dijit/layout/images/tabClose.png") 0px 1px;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 10001;
+  line-height: 0;
+  cursor: pointer;
+}
+.dlBlue .idxOneuiHoverCardCloseIcon .closeText {
+  display: none;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+.dlBlue .idxOneuiHoverCardRight {
+  padding-left: 9px;
+}
+.dlBlue .idxOneuiHoverCardRight .idxOneuiHoverCardCloseIcon {
+  right: 12px;
+  top: 12px;
+}
+.dlBlue .idxOneuiHoverCardRight .idxOneuiHoverCardConnector {
+  left: -7px;
+  background-position: -60px 0;
+}
+.dlBlue .idxOneuiHoverCardLeft {
+  padding-right: -4px;
+}
+.dlBlue .idxOneuiHoverCardLeft .idxOneuiHoverCardCloseIcon {
+  left: 12px;
+  top: 12px;
+}
+.dlBlue .idxOneuiHoverCardLeft .idxOneuiHoverCardConnector {
+  right: -16px;
+  background-position: 0 0;
+}
+.dlBlue .idxOneuiHoverCardAbove {
+  padding: 9px 0;
+}
+.dlBlue .idxOneuiHoverCardAbove .idxOneuiHoverCardCloseIcon {
+  right: 9px;
+  top: 16px;
+}
+.dlBlue .idxOneuiHoverCardAbove .idxOneuiHoverCardConnector {
+  bottom: -6px;
+  left: 20px;
+  background-position: -20px 0;
+}
+.dlBlue .idxOneuiHoverCardBelow {
+  padding-top: 7px;
+  padding-left: 0px;
+  padding-right: 3px;
+}
+.dlBlue .idxOneuiHoverCardBelow .idxOneuiHoverCardCloseIcon {
+  right: 12px;
+  top: 16px;
+}
+.dlBlue .idxOneuiHoverCardBelow .idxOneuiHoverCardConnector {
+  top: -9px;
+  left: 20px;
+  background-position: -40px 0;
+}
+.dlBlue .idxOneuiHoverCardGrip {
+  margin: 0;
+  height: 35px;
+  width: 100%;
+  cursor: move;
+}
+.dlBlue .idxOneuiHoverCardBody {
+  border: 1px solid #267bac;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  background-color: #267bac;
+}
+.dlBlue .idxOneuiHoverCardContainer {
+  max-width: 600px;
+  min-width: 360px;
+  min-height: 132px;
+  max-height: 500px;
+  font-size: 1em;
+  overflow: auto;
+}
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCard {
+  padding: 0 20px 20px;
+  font-family: Helvetica Neue, Arial, sans-serif;
+  color: #fff;
+}
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardTitle,
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardSametime a {
+  color: #fff;
+}
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardEmail {
+  margin-bottom: 5px;
+}
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardEmail a {
+  color: #fff;
+}
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardContainer {
+  border: 0;
+}
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardContainer > div {
+  margin-left: 0px;
+  padding: 0 0 0 120px;
+}
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardPhoto {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 100px;
+  width: 100px;
+}
+.dlBlue .idxPreviewContent {
+  padding: 0 20px 20px;
+  position: relative;
+  color: #fff;
+}
+.dlBlue .idxPreviewContent .idxPreviewTitle {
+  padding: 0 0 0 110px;
+}
+.dlBlue .idxPreviewContent > p {
+  padding: 0 0 0 110px;
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.dlBlue .idxOneuiHoverCardWithoutPreviewImg {
+  min-width: 250px;
+}
+.dlBlue .idxOneuiHoverCardWithoutPreviewImg .idxPreviewTitle {
+  padding: 0;
+}
+.dlBlue .idxOneuiHoverCardWithoutPreviewImg .idxPreviewContent p {
+  padding: 0;
+}
+.dlBlue .idxOneuiHoverCardWithoutPreviewImg .idxPreviewImg {
+  display: none;
+}
+.dlBlue .idxPreviewImg {
+  margin: 0 20px ;
+  position: absolute;
+  height: 90px;
+  width: 90px;
+  padding: 0;
+  background-color: #ffffff;
+  border: 1px solid #a4a6ab;
+  float: left;
+}
+.dlBlue .idxOneuiHoverCardFooter {
+  height: 40px;
+  background: #fff;
+}
+.dlBlue .idxOneuiHoverCardMenu {
+  float: right;
+  padding: 10px 10px 0;
+  color: #267bac;
+}
+.dlBlue .idxOneuiHoverCardMenu .dijitArrowButtonInner {
+  background-image: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxOneuiHoverCardMenu .dijitButtonNode {
+  border: none;
+}
+.dlBlue .idxOneuiHoverCardActionIcons {
+  padding: 10px 20px;
+  float: left;
+}
+.dlBlue .idxOneuiHoverCardActionIcons .dijitIcon {
+  width: 20px;
+  height: 20px;
+}
+.dlBlue .idxOneuiHoverCardActionIcons .chatIcon {
+  background-image: url("images/chat.svg");
+}
+.dlBlue .idxOneuiHoverCardActionIcons .emailIcon {
+  background-image: url("images/email.svg");
+}
+.dlBlue .idxOneuiHoverCardActionIcons .phoneIcon {
+  background-image: url("images/phone.svg");
+}
+.dlBlue .idxOneuiHoverCardFooterButton {
+  margin-right: 10px;
+  vertical-align: top;
+}
+.dlBlue .idxOneuiHoverCardFooterButton .dijitButtonNode {
+  width: 20px;
+  height: 20px;
+  border: 0px;
+}
+.dlBlue .idxOneuiHoverCardActionLink {
+  float: right;
+  padding: 5px 10px;
+}
+.dlBlue .idxOneuiHoverCardConnector {
+  border: 0;
+  z-index: 2;
+  background-image: url("images/popupSharkfin.svg");
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+}
+.dlBlue .idxOneuiHoverCardABRight .idxOneuiHoverCardConnector {
+  left: auto !important;
+  right: 3px;
+}
+.dlBlue .idxOneuiHoverCard {
+  position: absolute;
+  z-index: 1000;
+  display: block;
+  left: 0;
+  top: -10000px;
+  overflow: visible;
+}
+.dlBlue .idxOneuiHoverCardFocusNode {
+  padding: 2px 2px 2px 2px;
+}
+.dlBlue .idxOneuiHoverCardData {
+  display: none;
+}
+.dj_a11y .idxOneuiHoverCardCloseIcon .closeText {
+  display: block;
+}
+.dj_ie .dlBlue .idxOneuiHoverCardGrip {
+  cursor: move;
+}
+.dj_ie .dlBlue .idxOneuiHoverCardGripActive {
+  cursor: move;
+}
+.dj_ie .dlBlue .idxOneuiHoverCardActionIcons {
+  padding: 7px 0 7px 20px;
+}
+.dj_ie .idxPreviewContent {
+  padding: 17px 20px 0 139px;
+}
+.dj_ie7 .dlBlue .idxOneuiHoverCardGrip {
+  padding-top: 1px;
+}
+.dj_ie7 .dlBlue .idxOneuiHoverCardGripActive {
+  padding-top: 1px;
+}
+.dj_ie7 .dlBlue .idxOneuiHoverCardContainer .idxPersonCardContainer > div {
+  padding-right: 10px;
+}
+.dlBlue .idxPreviewTitle,
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardFn {
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-size: 1.538em;
+  font-family: Helvetica Neue, Arial, sans-serif;
+  color: #fff;
+}
+.dj_ie9 .dlBlue .idxOneuiHoverCardContainer .idxPersonCardContainer > div {
+  padding-bottom: 2px;
+}
+.dlBlue .idxPreviewImg img,
+.dlBlue .idxOneuiHoverCardContainer .idxPersonCardPhoto img {
+  border: none;
+}
+.dj_ie8 .dlBlue .idxOneuiHoverCardActionIcons {
+  padding: 5px 0 7px 20px;
+}
+.dj_ie6 .dlBlue .idxOneuiHoverCardConnector {
+  background-image: url("images/popupSharkfin_8bit.gif");
+}
+.dj_ie7 .dlBlue .idxOneuiHoverCardAbove .idxOneuiHoverCardConnector,
+.dj_ie6 .dlBlue .idxOneuiHoverCardAbove .idxOneuiHoverCardConnector {
+  bottom: -1px;
+}
+.dijit_a11y .dlBlue .idxOneuiHoverCardConnector {
+  display: none;
+}

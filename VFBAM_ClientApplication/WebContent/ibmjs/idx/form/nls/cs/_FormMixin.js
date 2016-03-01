@@ -10,3 +10,4 @@ define({
 	legendText: "Povinné"
 //end v1.x content
 });
+

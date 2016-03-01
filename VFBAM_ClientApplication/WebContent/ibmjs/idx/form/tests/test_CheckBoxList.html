@@ -34,11 +34,13 @@
 		var modules = [
 			"idx.form.CheckBoxList",
 			"dijit.form.Button",
+			"dojo.query",
 			"dijit.form.Form",
 			"idx.tests._pagefooter._PageFooter"]; 
-		var _PageFooter = null;
+		var _PageFooter = null, Query = null;
 		function preParse(modules){
 			_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+			Query = modules["dojo/query"];
 			new _PageFooter();
 		}
 		function postParse(modules){
@@ -53,10 +55,21 @@
 	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 	<script type="text/javascript">applyThemeToBody("oneui");</script>
 	<a name="maincontent"></a>
-	<div class="testMain">
+	<div class="testMain" role="main">
 		<h1 class="testTitle">idx.form.CheckBoxList Test</h1>
+		<h2>Test Defect 10816</h2>
+		<div id="destroyTest">
+			<button id="btnDestroy" data-dojo-type="dijit/form/Button" data-dojo-props="
+				onClick: function(){
+					cbl1.destroy();
+				},
+				value: 'Test Destroy'
+			">Only Destroy First CheckBoxList
+			</button>
+		</div>
 		<h2>Horizontal label alignment, Vertical group alignment</h2>
-		<select jsId="cbl1" multiple="true" data-dojo-type="idx.form.CheckBoxList" data-dojo-props="
+		
+		<select jsId="cbl1" id="cbl1" multiple="true" data-dojo-type="idx.form.CheckBoxList" data-dojo-props="
 			name: 'cbl1',
 			label: 'Normal:',
 			help: 'Field-level help goes here',
@@ -70,11 +83,12 @@
 			<option value="CA">California</option>
 		</select>
 		
-		<select jsId="cbl10" multiple="false" data-dojo-type="idx.form.CheckBoxList" data-dojo-props="
+		<select jsId="cbl10" id="singleCbs" multiple="false" data-dojo-type="idx.form.CheckBoxList" data-dojo-props="
 			name: 'cbl10',
 			label: 'Single Selection:',
 			labelAlignment: 'horizontal',
-			groupAlignment: 'vertical'
+			groupAlignment: 'vertical',
+			multiple: false
 		">
 			<option value="TN">Tennessee</option>
 			<option value="VA">Virginia</option>
@@ -198,6 +212,7 @@
 		<br/>
 	
 		<div id="node"></div>
+
 	</div>
 </body>
 </html>

@@ -1,0 +1,74 @@
+@import "../../dijit/variables";
+.@{theme-name} {
+    .idxTooltipDialogCloseIcon {
+        background-image: url("images/popupClose.png");
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        right: -13px;
+        top: -13px;
+        z-index: 10001;
+        line-height: 0;
+        cursor: pointer;
+        .idxTooltipDialogCloseText {
+            display: none;
+            position: absolute;
+            right: 18px;
+            top: 20px;
+        }
+    }
+    .dijitTooltipDialog.dijitTooltipRight {
+        .idxTooltipDialogCloseIcon {
+            right: -8px;
+            top: -8px;
+        }
+    }
+    .dijitTooltipDialog.dijitTooltipLeft {
+        .idxTooltipDialogCloseIcon {
+            left: -8px;
+            top: -8px;
+        }
+    }
+    .dijitTooltipDialog.dijitTooltipAbove {
+        .idxTooltipDialogCloseIcon {
+            right: -8px;
+            top: -8px;
+        }
+    }
+    .dijitTooltipDialog.dijitTooltipBelow {
+        .idxTooltipDialogCloseIcon {
+            right: -8px;
+            top: -4px;
+        }
+    }
+}
+.dj_a11y .@{theme-name} .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxTooltipDialogCloseText,.dj_a11y.@{theme-name} .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxTooltipDialogCloseText {
+    display: block;
+}
+.dijitRtl {
+    .@{theme-name} {
+        .dijitTooltipDialog.dijitTooltipRight {
+            .idxTooltipDialogCloseIcon {
+                right: -8px;
+            }
+        }
+        .dijitTooltipDialog.dijitTooltipLeft {
+            .idxTooltipDialogCloseIcon {
+                right: auto;
+                left: -8px;
+            }
+        }
+        .dijitTooltipDialog.dijitTooltipAbove {
+            .idxTooltipDialogCloseIcon {
+                right: auto;
+                left: -18px;
+            }
+        }
+        .dijitTooltipDialog.dijitTooltipBelow {
+            .idxTooltipDialogCloseIcon {
+                right: auto;
+                left: -21px;
+            }
+        }
+    }
+}

@@ -1,0 +1,251 @@
+.idxSingleMessage {
+	.BorderRadius(2px);
+  border: 2px solid;
+  margin: 10px 5px 10px 5px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.idxMessageStack .idxSingleMessage {
+  margin: 0 5px 0 5px;
+}
+.idxMessageStack {
+  padding: 10px 0 10px 0;
+}
+.idxMessageContent,
+.idxMessageFakeContent {
+  margin-top: 7px;
+  cursor: pointer;
+}
+.idxMessageFakeContent {
+  margin-top: 8px;
+}
+.dj_gecko & .idxMessageContent {
+  margin-top: 8px;
+}
+.dj_ie & .idxMessageContent {
+  margin: 8px 0 0 0;
+}
+.dj_ie8 & .idxMessageContent {
+  margin-top: 7px;
+}
+.dj_ie9 & .idxMessageContent {
+  margin-top: 9px;
+}
+.dj_ie9 & .idxMessageFakeContent {
+  margin-top: 10px;
+}
+.idxSingleMessage .dojoxEllipsisIFrame {
+  display: none;
+}
+.idxMessageTitle {
+  font-weight: bold;
+}
+.idxMessageId {
+  margin-top: 1px;
+}
+.idxMessageContent:hover .idxMessageTitle,
+.idxMessageFakeContent:hover .idxMessageTitle {
+  text-decoration: underline;
+}
+.idxMessageContent:hover .idxMessageId,
+.idxMessageFakeContent:hover .idxMessageId {
+  text-decoration: underline;
+}
+.idxMessageIcon {
+  margin: 8px 8px 8px 15px;
+}
+.dj_ie6 & .idxMessageIcon {
+  margin: 8px 4px 8px 7px;
+}
+.idxMessageIcon,
+.idxMessageCloseIcon {
+  background-repeat: no-repeat;
+  display: -moz-inline-box;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+.idxMessageIcon {
+  background-image: url('images/idx/widget/msgIcons_24bit.png');
+}
+.dj_ie6 & .idxMessageIcon {
+  background-image: url('images/idx/widget/msgIcons_8bit.png');
+}
+.idxMessageAltText {
+  display: none;
+}
+.dijitInline .idxMessageAltText {
+  margin-top: 0px;
+}
+.errorMessage .idxMessageIcon {
+  background-position: -1px -1px;
+}
+.errorMessage {
+  background: @errorLighter;
+  border-color: @errorBright;
+  border-color: rgba(red(@errorBright), green(@errorBright), blue(@errorBright), .75);
+  .textColors(@errorLighter);
+  color: @textStrong;
+}
+.warningMessage .idxMessageIcon {
+  background-position: -19px -1px;
+}
+.warningMessage {
+  background: @warningLight;
+  border-color: @warningBright;
+  border-color: rgba(red(@warningBright), green(@warningBright), blue(@warningBright), .75);
+  .textColors(@warningLight);
+  color: @textStrong;
+}
+.successMessage .idxMessageIcon {
+  background-position: -55px -1px;
+}
+.successMessage {
+  background: @successLight;
+  border-color: @successBright;
+  border-color: rgba(red(@successBright), green(@successBright), blue(@successBright), .75);
+  .textColors(@successLight);
+  color: @textStrong;
+}
+.informationMessage .idxMessageIcon {
+  background-position: -73px -1px;
+}
+.informationMessage {
+  background: @infoLight;
+  border-color: @infoBright;
+  border-color: rgba(red(@infoBright), green(@infoBright), blue(@infoBright), .75);
+  .textColors(@infoLight);
+  color: @textStrong;
+}
+.criticalMessage .idxMessageIcon,
+.attentionMessage .idxMessageIcon,
+.complianceMessage .idxMessageIcon {
+  background-image: url('images/idx/widget/alertIcons_24bit.png');
+}
+.dj_ie6 & .criticalMessage .idxMessageIcon,
+.dj_ie6 & .attentionMessage .idxMessageIcon,
+.dj_ie6 & .complianceMessage .idxMessageIcon {
+  background-image: url('images/idx/widget/alertIcons_8bit.png');
+}
+.criticalMessage .idxMessageIcon {
+  background-position: 0 0;
+}
+.criticalMessage {
+  background: @errorLighter;
+  border-color: @errorBright;
+  border-color: rgba(red(@errorBright), green(@errorBright), blue(@errorBright), .75);
+  .textColors(@errorLighter);
+  color: @textStrong;
+}
+.attentionMessage .idxMessageIcon {
+  background-position: -37px 0;
+}
+.attentionMessage {
+  background: @warningLight;
+  border-color: @warningBright;
+  border-color: rgba(red(@warningBright), green(@warningBright), blue(@warningBright), .75);
+  .textColors(@warningLight);
+  color: @textStrong;
+}
+.complianceMessage .idxMessageIcon {
+  background-position: -55px 0;
+}
+.complianceMessage {
+  background: @successLight;
+  border-color: @validBright;
+  border-color: rgba(red(@validBright), green(@validBright), blue(@validBright), .75);
+  .textColors(@successLight);
+  color: @textStrong;
+}
+.idxMessageCloseIcon {
+  background: url('images/idx/app/headerIcons.png') -191px -5px;
+  margin: 8px 15px;
+  cursor: pointer;
+}
+.dj_ie6 & .idxMessageAction,
+.dj_ie7 & .idxMessageAction {
+  margin-right: 15px;
+}
+.idxMessageCloseIcon:hover {
+  background-position: -214px -5px;
+}
+.idxMessageSeparator {
+  margin: 8px 5px 8px 10px;
+}
+.idxMessageTimestamp {
+  margin: 9px 0 8px 15px;
+}
+.idxMessageAction {
+  margin: 8px 0 8px 5px;
+  cursor: pointer;
+}
+.dj_ie9 & .idxMessageTimestamp {
+  margin-top: 11px;
+}
+.dj_ie9 & .idxMessageSeparator,
+.dj_ie9 & .idxMessageAction {
+  margin-top: 10px;
+}
+.idxMessageTimestamp,
+.idxMessageAction,
+.idxMessageContent,
+.idxMessageIcon,
+.idxMessageSeparator,
+.idxMessageFakeContent {
+  float: left;
+  word-break: keep-all;
+}
+.idxMessageRightAligned {
+  position: absolute;
+  right: 0;
+}
+.idxMessageSplitter {
+  height: 12px;
+  margin: 0 15px 10px 15px;
+  display: block;
+  clear: both;
+  border-bottom: 1px dotted @fwDarkest;
+}
+.idxMessageBody {
+  margin: 0 15px 0 15px;
+}
+.idxMessageViewDetails {
+  margin-left: 10px;
+}
+.idxMessageRefresh {
+  margin: 0 15px 8px 15px;
+  text-decoration: underline;
+  text-align: right;
+  cursor: pointer;
+}
+.idxMessageCollapsed .idxMessageSplitter,
+.idxMessageCollapsed .idxMessageBody,
+.idxMessageCollapsed .idxMessageRefresh {
+  display: none;
+}
+.dj_ie6 & .idxMessageHead,
+.dj_ie6 & .idxSingleMessage {
+  position: relative;
+  zoom: 1;
+}
+.dj_ie6 & .idxMessageTimeStampMargin,
+.dj_ie7 & .idxMessageTimeStampMargin {
+  margin-right: 15px;
+}
+.dijit_a11y & .idxMessageAltText {
+  display: block;
+  margin-top: 0;
+}
+/*
+ * ie9 components focused style
+ */
+.dj_ie9 & .idxMessageIcon:focus,
+.dj_ie9 & .idxMessageContent:focus,
+.dj_ie9 & .idxMessageAction:focus,
+.dj_ie9 & .idxMessageCloseIcon:focus,
+.dj_ie9 & .idxMessageDetail:focus,
+.dj_ie9 & .idxMessageViewDetails:focus,
+.dj_ie9 & .idxMessageRefresh span:focus {
+  outline: 1px dotted @focusOutline;
+}

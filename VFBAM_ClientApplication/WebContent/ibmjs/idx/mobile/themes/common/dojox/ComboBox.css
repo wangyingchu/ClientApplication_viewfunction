@@ -1,22 +1,36 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
 
 /* dojox.mobile.ComboBox */
-.dijitPopup {
-	position:absolute;
-	margin:0;
-	padding:0;
-	border:0;
-	border-radius:0;
-	background-color:transparent;
-	-webkit-box-shadow:none;
+.oneui .mblComboBoxMenu div{
+	width:100%;
+}
+/* Reset common styles. */
+.oneui .mblComboBoxMenu, 
+.oneui .mblComboBoxMenuPopup, 
+.oneui .mblComboBoxMenuPopup * {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
 }
 
-.mblReset {
+
+
+.oneui .mblReset {
 	margin:0;
 	padding:0;
 	border:0;
@@ -25,7 +39,7 @@
 	line-height:normal;
 }
 
-.mblComboBoxMenu {
+.oneui .mblComboBoxMenu {
 	position:relative;
 	overflow:hidden;
 	overflow-y:hidden!important;
@@ -36,7 +50,7 @@
 	color:#222;
 }
 
-.mblComboBoxMenuItem {
+.oneui .mblComboBoxMenuItem {
 	padding:.6em;
 	border-width:1px 0;
 	border-style:solid;
@@ -47,11 +61,12 @@
 	white-space:nowrap;
 }
 
-.mblComboBoxMenuItemSelected {
+.oneui .mblComboBoxMenuItemSelected {
 	background:#cce8f2;
 }
 
-.mblComboBoxMenuPreviousButton,.mblComboBoxMenuNextButton {
+.oneui .mblComboBoxMenuPreviousButton,
+.oneui .mblComboBoxMenuNextButton {
 	overflow:hidden;
 	font-style:italic;
 }

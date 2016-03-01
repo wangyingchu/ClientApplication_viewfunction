@@ -6,6 +6,52 @@
  */
 
 /** configure the display modes -- note that the "showLabel" button attribute hides labels for us */
+.oneui .idxButtonIconSymbol {
+	display: none; 
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+}
+
+.dijit_a11y.oneui .idxButtonHasIconSymbol .idxButtonIconSymbol,
+.dj_a11y.oneui .idxButtonHasIconSymbol .idxButtonIconSymbol {
+	display: inline-block;
+	visibility: visible;
+	width: auto;
+	height: auto;
+	font-size: 18px;
+	line-height: 18px;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: normal;
+}
+
+.dijit_a11y.oneui .idxButtonHasIconSymbol .dijitIcon,
+.dj_a11y.oneui .idxButtonHasIconSymbol .dijitIcon {
+	display: inline-block;
+	width: auto;
+	height: auto;
+}
+
+.dijit_a11y.oneui .idxButtonHasIconSymbol.idxButtonIconOnly .dijitButtonContents .dijitButtonText,
+.dj_a11y.oneui .idxButtonHasIconSymbol.idxButtonIconOnly .dijitButtonContents .dijitButtonText {
+	display: none !important;
+}
+
+.dijit_a11y.oneui .idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxButtonToolbar .dijitButtonNode,
+.dijit_a11y.oneui .idxButtonDerived.idxButtonToolbar .dijitButtonNode,
+.dj_a11y.oneui .idxButtonDerived.idxButtonToolbar .dijitButtonNode {
+	border: 0px none transparent !important;
+}
+
+.dijit_a11y.oneui .idxButtonDerived.dijitHover.idxButtonToolbar.idxButtonIconOnly .idxButtonIconSymbol,
+.dj_a11y.oneui .idxButtonDerived.dijitHover.idxButtonToolbar.idxButtonIconOnly .idxButtonIconSymbol {
+	text-decoration: underline;
+}
+
 .oneui .dijitButton.idxButtonLabelOnly .dijitIcon,
 .oneui .dijitComboButton.idxButtonLabelOnly .dijitIcon,
 .oneui .dijitDropDownButton.idxButtonLabelOnly .dijitIcon,
@@ -19,6 +65,18 @@
 	background-image: url("images/buttonIcons.png");
 	width: 16px;
 	height: 16px;
+}
+
+[lang|="ar"].dijitRtl .oneui .idxButtonIcon .idxHelpIcon,
+.dijitRtl .oneui .idxButtonIcon .idxFirstPageIcon,
+.dijitRtl .oneui .idxButtonIcon .idxLastPageIcon,
+.dijitRtl .oneui .idxButtonIcon .idxNextPageIcon,
+.dijitRtl .oneui .idxButtonIcon .idxPreviousPageIcon {
+	-webkit-transform:scaleX(-1);
+	-moz-transform:scaleX(-1);
+	-ms-transform:scaleX(-1);
+	-o-transform:scaleX(-1);
+	transform:scaleX(-1);
 }
 
 .oneui .idxButtonSecondary.idxButtonIcon .dijitIcon,
@@ -73,8 +131,7 @@
    background-position: -16px 0px;
 }
 .oneui .idxButtonDerived.dijitActive .idxCloseIcon,
-.oneui .idxButtonDerived.dijitOpened .idxCloseIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxCloseIcon {
+.oneui .idxButtonDerived.dijitOpened .idxCloseIcon {
    background-position: -32px 0px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxCloseIcon {
@@ -90,8 +147,7 @@
 }
 
 .oneui .idxButtonDerived.dijitActive .idxConfigureIcon,
-.oneui .idxButtonDerived.dijitOpened .idxConfigureIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxConfigureIcon {
+.oneui .idxButtonDerived.dijitOpened .idxConfigureIcon {
    background-position: -32px -16px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxConfigureIcon {
@@ -106,8 +162,7 @@
    background-position: -16px -32px;
 }
 .oneui .idxButtonDerived.dijitActive .idxEditIcon,
-.oneui .idxButtonDerived.dijitOpened .idxEditIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxEditIcon {
+.oneui .idxButtonDerived.dijitOpened .idxEditIcon {
    background-position: -32px -32px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxEditIcon {
@@ -122,8 +177,7 @@
    background-position: -16px -48px;
 }
 .oneui .idxButtonDerived.dijitActive .idxFilterIcon,
-.oneui .idxButtonDerived.dijitOpened .idxFilterIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxFilterIcon {
+.oneui .idxButtonDerived.dijitOpened .idxFilterIcon {
    background-position: -32px -48px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxFilterIcon {
@@ -138,8 +192,7 @@
    background-position: -16px -64px;
 }
 .oneui .idxButtonDerived.dijitActive .idxClearFilterIcon,
-.oneui .idxButtonDerived.dijitOpened .idxClearFilterIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxClearFilterIcon {
+.oneui .idxButtonDerived.dijitOpened .idxClearFilterIcon {
    background-position: -32px -64px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxClearFilterIcon {
@@ -154,8 +207,7 @@
    background-position: -16px -80px;
 }
 .oneui .idxButtonDerived.dijitActive .idxHelpIcon,
-.oneui .idxButtonDerived.dijitOpened .idxHelpIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxHelpIcon {
+.oneui .idxButtonDerived.dijitOpened .idxHelpIcon {
    background-position: -32px -80px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxHelpIcon {
@@ -170,8 +222,7 @@
    background-position: -16px -96px;
 }
 .oneui .idxButtonDerived.dijitActive .idxInfoIcon,
-.oneui .idxButtonDerived.dijitOpened .idxInfoIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxInfoIcon {
+.oneui .idxButtonDerived.dijitOpened .idxInfoIcon {
    background-position: -32px -96px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxInfoIcon {
@@ -185,9 +236,9 @@
 .oneui .idxButtonDerived.dijitHover .idxMinimizeIcon {
    background-position: -16px -112px;
 }
+
 .oneui .idxButtonDerived.dijitActive .idxMinimizeIcon,
-.oneui .idxButtonDerived.dijitOpened .idxMinimizeIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxMinimizeIcon {
+.oneui .idxButtonDerived.dijitOpened .idxMinimizeIcon {
    background-position: -32px -112px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxMinimizeIcon {
@@ -202,8 +253,7 @@
    background-position: -16px -128px;
 }
 .oneui .idxButtonDerived.dijitActive .idxMaximizeIcon,
-.oneui .idxButtonDerived.dijitOpened .idxMaximizeIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxMaximizeIcon {
+.oneui .idxButtonDerived.dijitOpened .idxMaximizeIcon {
    background-position: -32px -128px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxMaximizeIcon {
@@ -218,8 +268,7 @@
    background-position: -16px -144px;
 }
 .oneui .idxButtonDerived.dijitActive .idxRestoreIcon,
-.oneui .idxButtonDerived.dijitOpened .idxRestoreIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxRestoreIcon {
+.oneui .idxButtonDerived.dijitOpened .idxRestoreIcon {
    background-position: -32px -144px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxRestoreIcon {
@@ -234,8 +283,7 @@
    background-position: -16px -160px;
 }
 .oneui .idxButtonDerived.dijitActive .idxRefreshIcon,
-.oneui .idxButtonDerived.dijitOpened .idxRefreshIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxRefreshIcon {
+.oneui .idxButtonDerived.dijitOpened .idxRefreshIcon {
    background-position: -32px -160px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxRefreshIcon {
@@ -250,8 +298,7 @@
    background-position: -16px -176px;
 }
 .oneui .idxButtonDerived.dijitActive .idxPrintIcon,
-.oneui .idxButtonDerived.dijitOpened .idxPrintIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxPrintIcon {
+.oneui .idxButtonDerived.dijitOpened .idxPrintIcon {
    background-position: -32px -176px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxPrintIcon {
@@ -266,8 +313,7 @@
    background-position: -16px -192px;
 }
 .oneui .idxButtonDerived.dijitActive .idxNextPageIcon,
-.oneui .idxButtonDerived.dijitOpened .idxNextPageIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxNextPageIcon {
+.oneui .idxButtonDerived.dijitOpened .idxNextPageIcon {
    background-position: -32px -192px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxNextPageIcon {
@@ -282,8 +328,7 @@
    background-position: -16px -208px;
 }
 .oneui .idxButtonDerived.dijitActive .idxPreviousPageIcon,
-.oneui .idxButtonDerived.dijitOpened .idxPreviousPageIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxPreviousPageIcon {
+.oneui .idxButtonDerived.dijitOpened .idxPreviousPageIcon {
    background-position: -32px -208px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxPreviousPageIcon {
@@ -298,8 +343,7 @@
    background-position: -16px -224px;
 }
 .oneui .idxButtonDerived.dijitActive .idxLastPageIcon,
-.oneui .idxButtonDerived.dijitOpened .idxLastPageIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxLastPageIcon {
+.oneui .idxButtonDerived.dijitOpened .idxLastPageIcon {
    background-position: -32px -224px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxLastPageIcon {
@@ -314,8 +358,7 @@
    background-position: -16px -240px;
 }
 .oneui .idxButtonDerived.dijitActive .idxFirstPageIcon,
-.oneui .idxButtonDerived.dijitOpened .idxFirstPageIcon,
-.oneui .idxButtonDerived.idxDropDownOpen .idxFirstPageIcon {
+.oneui .idxButtonDerived.dijitOpened .idxFirstPageIcon {
    background-position: -32px -240px;
 }
 .oneui .idxButtonDerived.dijitDisabled .idxFirstPageIcon {
@@ -530,27 +573,23 @@
 }
 
 .oneui .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonText,
-.oneui .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonText,
-.oneui .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonText {
+.oneui .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonText {
    color: #000000;
 }
 
 .oneui .idxButtonToolbar.dijitDropDownButton.dijitOpened .dijitButtonNode,
-.oneui .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
-.oneui .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+.oneui .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode {
     filter: none;
     background: none;
 }
 
 /** BEGIN WORK AROUND FOR IE GRADIENT FILTER HIDING TABLE CELL BORDERS ON COMBO-BUTTON **/
-.dj_ie .oneui .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode,
-.dj_ie .oneui .idxButtonToolbar.dijitComboButton.idxDropDownOpen .dijitButtonNode {
+.dj_ie .oneui .idxButtonToolbar.dijitComboButton.dijitOpened .dijitButtonNode {
 	background: none;
         filter: none;
 }
 
-.dj_ie .oneui table.idxButtonToolbar.dijitComboButton.dijitOpened,
-.dj_ie .oneui table.idxButtonToolbar.dijitComboButton.idxDropDownOpen {
+.dj_ie .oneui table.idxButtonToolbar.dijitComboButton.dijitOpened {
 	background-color: none;
     filter: none;
 }

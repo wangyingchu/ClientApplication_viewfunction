@@ -1,0 +1,14 @@
+.dlBlue .idxLinkDerived.dijitDisabled {
+  color: #696969;
+}
+.dlBlue .idxLinkDerived.dijitDisabled:hover {
+  text-decoration: none;
+  cursor: default;
+}
+.dlBlue .idxAppMarquee .idxLinkDerived.dijitDisabled {
+  color: #696969;
+}
+.dlBlue .idxAppMarquee .idxLinkDerived.dijitDisabled:hover {
+  text-decoration: none;
+  cursor: default;
+}

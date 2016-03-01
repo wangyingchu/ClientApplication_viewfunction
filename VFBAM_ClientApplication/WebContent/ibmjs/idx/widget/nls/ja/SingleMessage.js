@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "すべて表示 ({num})",
+	viewAll: "すべて表示 ({num})&lrm;",
 	viewDetails: "さらに詳しく表示",
 	refresh: "最新表示",
 	showDetails: "詳細の表示",
 	hideDetails: "詳細の非表示"
 //end v1.x content
 });
+

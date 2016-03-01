@@ -100,25 +100,36 @@
 	border-left-width: 0;
 }
 /*arrow styles for down/up/left/right directions*/
-.oneui .dijitArrowButtonInner {
+.oneui .dijitArrowButtonInner,
+.oneui .dijitTabArrowButton  {
 	width: 15px;
 	height: 15px;
 	margin: 0 auto;
 	background-image: url("images/buttonArrows.png");
 	background-repeat: no-repeat;
-	background-position: -151px 0px;
+	background-position: -152px 0px;
+}
+.oneui .dijitTabDropDownText {
+	visibility: hidden;
+	display: none;
+}
+.dijit_a11y.oneui .dijitTabDropDownText,
+.dijit_a11y .oneui .dijitTabDropDownText,
+.oneui .dijit_a11y .dijitTabDropDownText {
+	visibility: visible;
+	display: inline-block;
 }
 .dj_ie6 .oneui .dijitArrowButtonInner {
 	background-image: url("images/buttonArrows8bit.png");
 }
 .oneui .dijitDisabled .dijitArrowButtonInner {
-	background-position: -151px 0px;
+	background-position: -152px 0px;
 }
 .oneui .dijitComboButtonHover .dijitArrowButtonInner,
 .oneui .dijitDropDownButtonHover .dijitArrowButtonInner,
 .oneui .dijitComboButtonActive .dijitArrowButtonInner,
 .oneui .dijitDropDownButtonActive .dijitArrowButtonInner  {
-	background-position: -51px -0px;
+	background-position: -52px -0px;
 }
 
 /*left*/
@@ -250,18 +261,24 @@
 .oneui .dijitToggleButtonDisabled {
 	background-image: none;
 	outline: none;
+	opacity: 0.6;
 }
 .oneui .dijitButtonDisabled .dijitButtonNode,
 .oneui .dijitDropDownButtonDisabled .dijitButtonNode,
 .oneui .dijitComboButtonDisabled .dijitButtonNode,
 .oneui .dijitToggleButtonDisabled .dijitButtonNode {
-	color: #818181;
+	/*color: #555555;*/
+	/*for RPT color contrast issue*/
+	color: #444444;
+	
 }
 .dj_ie .oneui .dijitButtonDisabled .dijitButtonNode,
 .dj_ie .oneui .dijitDropDownButtonDisabled .dijitButtonNode,
 .dj_ie .oneui .dijitComboButtonDisabled .dijitButtonNode,
 .dj_ie .oneui .dijitToggleButtonDisabled .dijitButtonNode {
-	color: #818181;
+	/*color: #555555;*/
+	/*for RPT color contrast issue*/
+	color: #444444;
 }
 .oneui .dijitComboButtonDisabled .dijitArrowButton {
 	border-left-width: 0;
@@ -284,6 +301,7 @@
 	-moz-border-radius: 0 3px 3px 0;
 	-webkit-border-radius: 0 3px 3px 0;
 	border-radius: 0 3px 3px 0;
+	padding: 5px 4px;
 }
 
 
@@ -328,7 +346,7 @@
 .oneui .dijitDropDownButtonDisabled .dijitButtonNode,
 .oneui .dijitComboButtonDisabled .dijitButtonNode{
 	background-color: #efefef;
-	color: #818181;
+	color: #444444;
 }
 
 /* Toggle Button */

@@ -1,0 +1,45 @@
+/* Messaging UI fix for rtl */
+.idxModalDialogRtl .dijitDialogTitleBar .dijitDialogCloseIcon,
+.idxConfirmDialogRtl .dijitDialogTitleBar .dijitDialogCloseIcon {
+  right: auto;
+  left: 5px;
+}
+.idxModalDialogRtl .messageSummary img,
+.idxConfirmDialogRtl .messageSummary img {
+  float: right;
+  margin: 0 0 0 10px;
+  background-image: url('images/msgIcons_24bit_rtl.png');
+}
+.dj_ie6 & .idxModalDialogRtl .messageSummary img,
+.dj_ie6 & .idxConfirmDialogRtl .messageSummary img {
+  background-image: url('images/msgIcons_8bit_rtl.png');
+}
+&.idx_i18n_il .idxModalDialogRtl .messageSummary img,
+&.idx_i18n_il .idxConfirmDialogRtl .messageSummary img {
+  background-image: url('images/idx/widget/msgIcons_24bit_rtl_il.png');
+}
+.dj_ie6 & &.idx_i18n_il .idxModalDialogRtl .messageSummary img,
+.dj_ie6 & &.idx_i18n_il .idxConfirmDialogRtl .messageSummary img {
+  background-image: url('images/idx/widget/msgIcons_8bit_rtl_il.png');
+}
+.idxModalDialogRtl .messageDialogFooter .messageCheckBox,
+.idxConfirmDialogRtl .messageDialogFooter .messageCheckBox {
+  float: right;
+}
+.idxModalDialogRtl .messageDialogFooter .messageAction,
+.idxConfirmDialogRtl .messageDialogFooter .messageAction {
+  float: left;
+}
+.idxModalDialogRtl .messageRef,
+.idxConfirmDialogRtl .messageRef {
+  float: right;
+  margin-left: 10px;
+}
+.idxModalDialogRtl .messageTimeStamp,
+.idxConfirmDialogRtl .messageTimeStamp {
+  float: right;
+}
+.idxModalDialogRtl .dijitTabContainerCompactRtl .dijitTabContainerTop-tabs,
+.idxConfirmDialogRtl .dijitTabContainerCompactRtl .dijitTabContainerTop-tabs {
+  padding-right: 30px;
+}

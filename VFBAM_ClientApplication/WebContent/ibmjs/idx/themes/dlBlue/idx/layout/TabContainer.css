@@ -1,0 +1,50 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .compact .dijitTabContainerTop-tabs .dijitTabContent {
+  padding: 6px 14px 5px;
+}
+.dlBlue .compact .dijitTabContainerTop-tabs .dijitTabHover {
+  padding: 5px 14px 5px;
+}
+.dlBlue .compact .dijitTabContainer .dijitTabContainerTop-container {
+  border-left: 0 none;
+  border-right: 0 none;
+  border-bottom: 0 none;
+}
+.dlBlue .compact .dijitTabContainer .dijitTabContainerTop-tabs {
+  padding-left: 30px;
+}
+.dlBlue .compact .dijitTabContainerBottom-tabs .dijitTabContent {
+  padding: 5px 14px 6px;
+}
+.dlBlue .compact .dijitTabContainerBottom-tabs .dijitTabHover {
+  padding: 5px 14px 5px;
+}
+.dlBlue .compact .dijitTabContainerLeft-tabs .dijitTabContent {
+  padding: 5px 14px 6px;
+}
+.dlBlue .compact .dijitTabContainerRight-tabs .dijitTabContent {
+  padding: 5px 13px 6px;
+}
+.dlBlue .compact .tabStripButton {
+  height: 30px;
+  height: 19px;
+  padding: 6px 7px 2px;
+}
+.dlBlue .compact .dijitTabContainerTop-tabs .dijitTabChecked,
+.dlBlue .compact .dijitTabContainerTop-tabs .dijitTabCheckedHover,
+.dlBlue .compact .dijitTabContainerTop-tabs .dijitTabCheckedActive {
+  padding: 5px 14px 6px;
+}
+.dlBlue .compact .dijitTabContainerBottom-tabs .dijitTabChecked,
+.dlBlue .compact .dijitTabContainerBottom-tabs .dijitTabCheckedHover,
+.dlBlue .compact .dijitTabContainerBottom-tabs .dijitTabCheckedActive {
+  padding: 6px 14px 5px;
+}
+.dlBlue .compact .dijitTabContainerLeft-tabs .dijitTabHover,
+.dlBlue .compact .dijitTabContainerLeft-tabs .dijitTabChecked {
+  padding: 5px 14px 6px 13px;
+}
+.dlBlue .compact .dijitTabContainerRight-tabs .dijitTabHover,
+.dlBlue .compact .dijitTabContainerRight-tabs .dijitTabChecked {
+  padding: 5px 13px 6px;
+}

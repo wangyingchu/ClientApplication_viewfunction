@@ -22,6 +22,9 @@
   background-color: #e9f4fe;
   border: solid 1px #769dc0;
 }
+.oneui .dijitReset.dijitInline > .dijitTextBoxError {
+  float: none;
+}
 .dj_ie6 .oneui .dijitInlineEditBoxDisplayMode {
   border: none;
 }

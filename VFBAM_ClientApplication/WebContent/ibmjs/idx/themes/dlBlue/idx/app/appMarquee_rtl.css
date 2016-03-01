@@ -1,0 +1,43 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dijitRtl .dlBlue div.idxAppMarqueeRight {
+  overflow: hidden;
+  position: absolute;
+  padding-right: 30px;
+  line-height: 38px;
+  vertical-align: middle;
+}
+.dijitRtl .dlBlue div.idxAppMarqueeLeft {
+  overflow: hidden;
+  position: absolute;
+  background: #003f69;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.dijitRtl .dlBlue div.idxAppMarqueeBody {
+  right: 15px;
+  left: 12px;
+}
+.dijitRtl .dlBlue .idxAppFrameMarquee div.idxAppMarqueeRight {
+  padding-right: 0px;
+}
+.dijitRtl .dlBlue .idxAppFrameMarquee div.idxAppMarqueeLeft {
+  padding-left: 0px;
+  background: #003f69;
+}
+.dijitRtl .dlBlue .idxAppFrameMarquee .idxAppMarquee.idxAppMarqueeShowAppLogo .idxAppMarqueeAppLogo {
+  left: auto;
+  right: 0px;
+}
+.dijitRtl .dlBlue .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorLogo {
+  margin-right: 0px;
+  margin-left: 10px;
+}
+.dijitRtl .dlBlue .idxAppMarquee.idxAppMarqueeShowVendorName .idxAppMarqueeVendorName,
+.dijitRtl .dlBlue.dijit_a11y .idxAppMarquee.idxAppMarqueeShowVendorLogo .idxAppMarqueeVendorName {
+  text-align: right;
+  margin-right: 0px;
+  margin-left: 10px;
+}
+.dijitRtl .dlBlue .idxConsoleLayout  > .idxAppFrame  > .idxAppFrameHeader  > .idxAppFrameMarquee  > .idxAppMarquee div.idxAppMarqueeBody .dijitStackController {
+  float: right;
+}

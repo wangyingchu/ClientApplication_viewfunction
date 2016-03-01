@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Viac akcií"
 //end v1.x content
 });
+

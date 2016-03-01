@@ -1,0 +1,150 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+@import "../../dijit/variables";
+.@{theme-name} {
+    /*.dijitSplitterV .dijitSplitterThumb*/
+    .dijitLayoutContainer .dijitSplitterH {
+        height: 7px;
+        text-align: center;
+    }
+/*    .dijitSplitterV .dijitSplitterThumb {
+        width: 7px;
+        background: url('../../dijit/layout/images/SplitterThumb-V.png') no-repeat;
+    }*/
+    .dijitLayoutContainer {
+        .dijitSplitterVHover {
+            .dijitSplitterThumb {
+                background-color: white;
+            }
+        }
+        .dijitSplitterV {
+            width: 7px;
+            vertical-align: middle;
+            background: @disabled-color;
+
+            .dijitSplitterThumb.dojoxToggleSplitterIcon {
+                background-image: url('images/grabbie_vertical.png');
+                background-repeat: no-repeat;
+                background-color: @disabled-color;
+                vertical-align: middle;
+                height: 47px;
+                width: 7px;
+                left: 0;
+                top: 45%;
+                cursor: pointer;
+            }
+            .dijitSplitterThumb {
+                left: 3px;
+            }
+        }
+        .dijitSplitterH {
+            background: @disabled-color;
+            .dojoxToggleSplitterIcon {
+                background-image: url('images/grabbie_horizontal.png');
+                background-repeat: no-repeat;
+                cursor: pointer;
+                height: 7px;
+                width: 47px;
+            }
+
+            .dijitSplitterThumb {
+                background-color: @disabled-color;
+                top: 0;
+            }
+        }
+        .dijitSplitterHHover,
+        .dijitSplitterVHover {
+            background: #929399;
+        }
+    }
+}
+.dj_ie {
+    .@{theme-name} {
+        .dijitLayoutContainer {
+            .dijitSplitterH {
+                .dojoxToggleSplitterIcon {
+                    background-image: url('images/toggleArrowsH8bits.png');
+                }
+            }
+            .dijitSplitterV {
+                .dojoxToggleSplitterIcon {
+                    background-image: url('images/toggleArrowsV8bits.png');
+                }
+            }
+        }
+    }
+}
+.@{theme-name} .dijitSplitterHHover .dojoxToggleSplitterTopIconOpen,
+ .dijitSplitterHActive .dojoxToggleSplitterTopIconOpen,
+ .@{theme-name} .dijitSplitterHHover .dojoxToggleSplitterBottomIconClosed,
+ .dijitSplitterHActive .dojoxToggleSplitterBottomIconClosed {
+    /*background-position: 0 -15px !important;*/
+    background-position: 9px 1px !important;
+}
+.@{theme-name} .dijitSplitterHHover .dojoxToggleSplitterBottomIconOpen,
+ .dijitSplitterHActive .dojoxToggleSplitterBottomIconOpen,
+ .@{theme-name} .dijitSplitterHHover .dojoxToggleSplitterTopIconClosed,
+ .dijitSplitterHActive .dojoxToggleSplitterTopIconClosed {
+    /*background-position: 0 -10px !important;*/
+    background-position: 9px 1px !important;
+}
+.@{theme-name} .dojoxToggleSplitter .dojoxToggleSplitterTopIconOpenHover,
+.@{theme-name} .dojoxToggleSplitter .dojoxToggleSplitterBottomIconOpenHover,
+.@{theme-name} .dojoxToggleSplitter .dojoxToggleSplitterBottomIconClosedHover {
+    background-position: 9px -4px !important;
+    background-color: transparent !important;
+    /*background-position: 0 -5px !important;*/
+}
+.@{theme-name} .dojoxToggleSplitterTopIconOpen,
+.@{theme-name} .dojoxToggleSplitterBottomIconClosed,
+.@{theme-name} .dojoxToggleSplitterBottomIconOpen,
+.@{theme-name} .dojoxToggleSplitterTopIconClosed {
+    background-position: 9px 1px !important;
+}
+.@{theme-name} .dijitSplitterVHover .dojoxToggleSplitterLeftIconOpen,
+.@{theme-name} .dijitSplitterVHover .dojoxToggleSplitterRightIconClosed,
+.dijitSplitterVActive .dojoxToggleSplitterLeftIconOpen,
+.dijitSplitterVActive .dojoxToggleSplitterRightIconClosed {
+    background-position: 0 10px !important;
+}
+.@{theme-name} .dijitSplitterVHover .dojoxToggleSplitterRightIconOpen,
+ .dijitSplitterVActive .dojoxToggleSplitterRightIconOpen,
+ .dijitSplitterVActive .dojoxToggleSplitterLeftIconClosed {
+    background-position: -10px 0 !important;
+}
+.@{theme-name} .dojoxToggleSplitter .dojoxToggleSplitterLeftIconOpenHover,
+.@{theme-name} .dojoxToggleSplitter .dojoxToggleSplitterRightIconClosedHover,
+.@{theme-name} .dojoxToggleSplitter .dojoxToggleSplitterLeftIconClosedHover {
+    background-position: -5px 10px !important;
+    background-color: transparent !important;
+}
+
+.@{theme-name} .dojoxToggleSplitterLeftIconOpen,
+.@{theme-name} .dojoxToggleSplitterLeftIconClosed,
+.@{theme-name} .dojoxToggleSplitterRightIconOpen,
+.@{theme-name} .dojoxToggleSplitterRightIconClosed,
+.@{theme-name} .dijitSplitterVHover .dojoxToggleSplitterLeftIconClosed {
+    background-position: 0 10px !important;
+}
+.@{theme-name} .dojoxToggleSplitter .dojoxToggleSplitterRightIconOpenHover {
+    background-position: 0 0 !important;
+}
+.@{theme-name} .dojoxToggleSplitterTop .dojoxToggleSplitterA11y,
+.@{theme-name} .dojoxToggleSplitterBottom .dojoxToggleSplitterA11y {
+    display: none;
+    font-size: 6px;
+    text-align: center;
+}
+.@{theme-name} .dojoxToggleSplitterRight .dojoxToggleSplitterA11y,
+.@{theme-name} .dojoxToggleSplitterLeft .dojoxToggleSplitterA11y {
+    display: none;
+    font-size: 8px;
+    position: relative;
+    top: 48%;
+}
+.dijit_a11y {
+    .dojoxToggleSplitter {
+        .dojoxToggleSplitterA11y {
+            display: block;
+        }
+    }
+}

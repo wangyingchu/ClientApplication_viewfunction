@@ -7,7 +7,9 @@ define({ root:
 	confirmation: "Confirmation",
 	progress: "Progress",
 	loading: "Loading",
-	close: "Close"
+	close: "Close",
+	idxErrorDialog_detailTabLabel: "Fix This Problem",
+	idxErrorDialog_moreTabLabel: "Get More Help"
 })
 //end v1.x content
 ,
@@ -27,7 +29,7 @@ define({ root:
 "nb": true,
 "ko": true,
 "kk": true,
-"ja": true,
+"ja": true, "id": true,
 "it": true,
 "hu": true,
 "fr": true,
@@ -38,5 +40,12 @@ define({ root:
 "da": true,
 "cs": true,
 "ca": true,
-"ar": true
+"ar": true,
+"bg": true,
+"he": true,
+"hr": true,
+"uk": true,"vi":true,
+"bs": true,
+"mk": true,
+"sr": true
 });

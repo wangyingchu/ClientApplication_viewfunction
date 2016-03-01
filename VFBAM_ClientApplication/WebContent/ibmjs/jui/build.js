@@ -1,0 +1,564 @@
+(function( $, undefined ) {
+var util = {
+		/* Execute code text */
+		execute: function(code){
+			return eval(code);
+		},
+		/* HC mode check */
+		isHighContrastMode: function(){
+			var testDiv = $("<div>").attr("style", "border: 1px solid; border-color:red green; position: absolute; height: 5px; top: -999px;" +
+				"background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');")
+				.appendTo("body");
+	
+			var bkImg = testDiv.css("backgroundImage"),
+				borderTopColor = testDiv.css("borderTopColor"),
+				borderRightColor = testDiv.css("borderRightColor"),
+				hc = (borderTopColor == borderRightColor) ||
+					(bkImg && (bkImg == "none" || bkImg == "url(invalid-url:)" ));
+	
+			testDiv.remove();
+	
+			return hc;
+		},
+		/* RTL mode check */
+		isRtlMode: function(){
+			return ($("body").attr("dir") || $("html").attr("dir") || "").toLowerCase() === "rtl";
+		},
+		localize: function(nlsModulePath, locale, callback){
+			if((!locale || typeof locale !== "string") && typeof navigator != "undefined"){
+				// Default locale for browsers.
+				locale = (navigator.language || navigator.userLanguage).toLowerCase();
+			}
+			if(locale){
+				var temp = locale.split("-");
+				if(temp[1]){
+					locale = temp[0] + "-" + temp[1].toUpperCase();
+				}else{
+					locale = temp[0];
+				}
+				if(locale == "en" || locale == "en-US")return;
+				try{
+					
+					require([nlsModulePath + "-" + locale], callback);
+				}catch(e){
+					console.warning("Locale " + locale + " is not provided yet.");
+				}
+				
+			}
+		}
+	}
+
+
+
+
+	
+	$(function(){
+		if(util.isHighContrastMode()){
+			$("body").addClass("jui-a11y");
+		}
+		if(util.isRtlMode()){
+			$("body").addClass("jui-rtl");
+		}
+	})
+
+
+
+	
+
+
+	
+	$.widget("ui.accordion", $.ui.accordion, {
+		_create: function(){
+			this._superApply(arguments);
+			this.element.addClass("jui-accordion");
+			//this.option("icons",null);
+		}
+	});
+
+
+
+
+
+
+	
+	$.widget( "ui.menu", $.ui.menu, {
+		_create: function(){
+			this.element
+				.uniqueId()
+				.add(this.element.find( this.options.menus ))
+				.addClass( "jui-menu" );
+			if(util.isRtlMode()){
+				this.options.position = {
+					my: "right top",
+					at: "left top"
+				}
+			}
+			
+			this._superApply(arguments);
+		},
+		_keydown: function(){
+			if(util.isRtlMode()){
+				var temp = $.ui.keyCode.LEFT;
+				$.ui.keyCode.LEFT = $.ui.keyCode.RIGHT;
+				$.ui.keyCode.RIGHT = temp;
+				this._superApply(arguments);
+				$.ui.keyCode.RIGHT = $.ui.keyCode.LEFT;
+				$.ui.keyCode.LEFT = temp;
+			}else{
+				this._superApply(arguments);
+			}
+		}
+	});
+
+
+	
+	$.widget( "ui.button", $.ui.button, {
+		options: {
+			priority: "primary" // primary or secondary, primary by default.
+		},
+		_create: function(){
+			this._superApply(arguments);
+			this.buttonElement.addClass("jui-button ui-button-" + this.options.priority);
+		},
+		_setOption: function(key, value){
+			this._superApply(arguments);
+			if(key === "priority"){
+				this.buttonElement
+					.removeClass("ui-button-primary ui-button-secondary")
+					.addClass("ui-button-" + value);
+			}
+		},
+		_resetButton: function(){
+			this._superApply(arguments);
+			this.buttonElement.find(".ui-button-text").html(
+				this.options.text ? this.options.label : "&nbsp"
+			);
+		}
+	});
+	
+	$.widget( "ui.buttonset", $.ui.buttonset, {
+		_create: function(){
+			this.element.addClass( "ui-buttonset" );
+			this.element.find("label[for]")
+				.each(function(index, item){
+					var input = $("#"+$(item).attr("for"));
+					if(input.is("[type=radio]")){
+						$(item).addClass("ui-button-radio");
+					}else if(input.is("[type=checkbox]")){
+						$(item).addClass("ui-button-checkbox");
+					}
+				})
+		}
+	})
+
+	
+	$.widget( "ui.autocomplete", $.ui.autocomplete, {
+		options: {
+			minLength: 0,
+			autoWidth: false,
+			button: null,
+			// callback of button click
+			action: null
+		},
+		_create: function(){
+			this.element
+				// Add baseClass
+				.addClass("jui-autocomplete-input ui-widget");
+			if(this.options.button){
+				$("<div><input></input></div>").appendTo(this.element);
+				$("<div><button></button></div>").appendTo(this.element);
+				this.actionButton = $("button",this.element).button(this.options.button);
+				var _this = this;
+				this.actionButton.click(function(event){
+					_this._trigger("action", event, _this._value());
+				});
+				var rootElement = this.element;
+				this.element = $("input", this.element).eq(0);
+				this._superApply(arguments);
+				this.searchInput = this.element;
+				this.element = rootElement;
+			}else{
+				this.searchInput = this.element;
+				this._superApply(arguments);
+			}
+			this.menu.element.addClass("jui-autocomplete");
+		},
+		_value:function(){
+			 return this.valueMethod.apply( this.searchInput, arguments );
+		},
+		_resizeMenu: function() {
+			var ul = this.menu.element,
+				elementWidth = this.element.outerWidth(),
+				menuWidth = this.options.autoWidth ? 
+					Math.max(ul.width( "" ).outerWidth() + 1, elementWidth) :
+					elementWidth;
+			ul.outerWidth(menuWidth);
+		}
+	});
+
+
+	
+	$.widget( "ui.progressbar", $.ui.progressbar, {
+		_create: function(){
+			this._superApply(arguments);
+			this.element.addClass("jui");
+			this.element.removeClass("ui-corner-all");
+			
+			var ariaAttr = {};
+			if ( this.options["aria-labelledby"] ) {
+				ariaAttr["aria-labelledby"] = this.options["aria-labelledby"];
+			}
+			else if ( this.options["aria-label"] ){
+				ariaAttr["aria-label"] = this.options["aria-label"];
+			}
+			else{
+				ariaAttr["aria-label"] = "Aria Label For Progressbar";
+			}
+
+			this.element.attr(ariaAttr);
+		}
+	});
+
+
+	// Add browser rtl support
+	var isLanguageRTL = $.datepicker._defaults.isRTL;
+	$.datepicker.setDefaults({
+		isRTL: util.isRtlMode() || isLanguageRTL
+	});
+	// Import localization strings
+	function localize(locale){
+		util.localize("jquery.ui.i18n/jquery.ui.datepicker", locale, $.noop);
+	}
+	localize("");
+	
+	/*$.extend($.datepicker.constructor.prototype, {
+		// Enale keyboard navigation for inline datepicker.
+		_inlineDatepicker: function(target, inst) {
+			var divSpan = $(target);
+			if (divSpan.hasClass(this.markerClassName)) {
+				return;
+			}
+			divSpan.addClass(this.markerClassName).append(inst.dpDiv);
+			// Apply keyboard support for inline datepicker.
+			var _this = this;
+			divSpan.attr("tabindex", 0).focus(function(){
+				$.datepicker._datepickerShowing = true;
+			}).blur(function(){
+				$.datepicker._datepickerShowing = false;
+			}).keydown(function(event){
+				// All inner date cell is not focusable.
+				divSpan.find("td a").attr("tabindex", -1);
+				_this._doKeyDown(event);
+			});
+			// Keep keyboard enablement after date selected.
+			inst.settings.onSelect = $.noop;
+			$.data(target, "datepicker", inst);
+			this._setDate(inst, this._getDefaultDate(inst), true);
+			this._updateDatepicker(inst);
+			this._updateAlternate(inst);
+			//If disabled option is true, disable the datepicker before showing it (see ticket #5665)
+			if( inst.settings.disabled ) {
+				this._disableDatepicker( target );
+			}
+			inst.dpDiv.css( "display", "inline-block" );
+			divSpan.find("td a").attr("tabindex", -1);
+		},
+		_newInst: function(target, inline) {
+			var id = target[0].id.replace(/([^A-Za-z0-9_\-])/g, "\\\\$1"); // escape jQuery meta chars
+			return {id: id, input: target, // associated target
+				selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
+				drawMonth: 0, drawYear: 0, // month being drawn
+				inline: inline, // is datepicker inline or not
+				dpDiv: (!inline ? this.dpDiv : // presentation div
+				bindHover($("<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>")))};
+		}
+	})*/
+	
+	/*return function(options, element){
+		var target = $(element)[0];
+		if(!target){
+			return;
+		}
+		if (!$.datepicker.initialized) {
+			$(document).mousedown($.datepicker._checkExternalClick);
+			$.datepicker.initialized = true;
+		}
+		if ($("#"+$.datepicker._mainDivId).length === 0) {
+			$("body").append($.datepicker.dpDiv);
+		}
+		$.datepicker._attachDatepicker.apply($.datepicker, [target, options]);
+	}*/
+	
+
+
+
+
+
+	
+	$.widget( "ui.mouse", $.ui.mouse, {
+		//TODO
+	});
+
+
+
+
+
+
+
+	
+	$.widget( "ui.dialog", $.ui.dialog, {
+		options: {
+			modal: true,
+			autoOpen: false,
+			closeText: "Close",
+			dialogClass: "jui-dialog",
+			locale: ""
+		},
+		_create: function(){
+			this._superApply(arguments);
+			this.localize(this.options.locale);
+		},
+		_setOption: function(key, value){
+			this._superApply(arguments);
+			if(key === "locale"){
+				this.localize(value);
+			}
+		},
+		localize: function(locale){
+			var _this = this;
+			util.localize("jui/i18n/jquery.ui.dialog", locale, function(){
+				$.each($.ui.dialog.nls, function(key, value){
+					_this._setOption(key, value);
+				});
+			});
+		}
+	});
+	
+	return $.ui.dialog;
+
+
+
+	
+	$.widget( "ui.slider", $.ui.slider, {
+		options: {
+		},
+		_create: function(){
+			this._isRtl = util.isRtlMode();
+			this._superApply(arguments);
+			this.element.addClass("jui-slider");
+		},
+		_normValueFromMouse: function( position ) {
+			var pixelTotal,
+				pixelMouse,
+				percentMouse,
+				valueTotal,
+				valueMouse;
+	
+			if ( this.orientation === "horizontal" ) {
+				pixelTotal = this.elementSize.width;
+				pixelMouse = position.x - this.elementOffset.left - ( this._clickOffset ? this._clickOffset.left : 0 );
+			} else {
+				pixelTotal = this.elementSize.height;
+				pixelMouse = position.y - this.elementOffset.top - ( this._clickOffset ? this._clickOffset.top : 0 );
+			}
+	
+			percentMouse = ( pixelMouse / pixelTotal );
+			if ( percentMouse > 1 ) {
+				percentMouse = 1;
+			}
+			if ( percentMouse < 0 ) {
+				percentMouse = 0;
+			}
+			// Add rtl support
+			if ( this.orientation === "vertical" || (this._isRtl)) {
+				percentMouse = 1 - percentMouse;
+			}
+	
+			valueTotal = this._valueMax() - this._valueMin();
+			valueMouse = this._valueMin() + percentMouse * valueTotal;
+	
+			return this._trimAlignValue( valueMouse );
+		},
+		// Add a11y support based supper _refreshValue()
+		_refreshValue: function() {
+			var lastValPercent, valPercent, value, valueMin, valueMax,
+				oRange = this.options.range,
+				o = this.options,
+				that = this,
+				animate = ( !this._animateOff ) ? o.animate : false,
+				_set = {};
+	
+			if ( this.options.values && this.options.values.length ) {
+				this.handles.each(function( i ) {
+					value = that.values(i);
+					valueMin = that._valueMin();
+					valueMax = that._valueMax();
+					valPercent = ( value - valueMin ) / ( valueMax - valueMin ) * 100;
+					_set[ that.orientation === "horizontal" ? (that._isRtl ? "right" : "left") : "bottom" ] = valPercent + "%";
+					$( this ).stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
+					if ( that.options.range === true ) {
+						if ( that.orientation === "horizontal" ) {
+							if ( i === 0 ) {
+								that.range.stop( 1, 1 )[ animate ? "animate" : "css" ](
+									that._isRtl ? { right : valPercent + "%" } : { left : valPercent + "%" }, o.animate );
+							}
+							if ( i === 1 ) {
+								that.range[ animate ? "animate" : "css" ]( { width: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
+							}
+						} else {
+							if ( i === 0 ) {
+								that.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { bottom: ( valPercent ) + "%" }, o.animate );
+							}
+							if ( i === 1 ) {
+								that.range[ animate ? "animate" : "css" ]( { height: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
+							}
+						}
+					}
+					lastValPercent = valPercent;
+					// Update aria attribute
+					$(this).attr({
+						"role": "slider",
+						"aria-valuemin": valueMin,
+						"aria-valuemax": valueMax,
+						"aria-valuenow": value,
+						"aria-label": that.element.attr("id") + "_handle_" + (i+1)
+					});
+				});
+			} else {
+				value = this.value();
+				valueMin = this._valueMin();
+				valueMax = this._valueMax();
+				valPercent = ( valueMax !== valueMin ) ?
+						( value - valueMin ) / ( valueMax - valueMin ) * 100 :
+						0;
+				_set[ this.orientation === "horizontal" ? (that._isRtl ? "right" : "left") : "bottom" ] = valPercent + "%";
+				this.handle.stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
+	
+				if ( oRange === "min" && this.orientation === "horizontal" ) {
+					this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { width: valPercent + "%" }, o.animate );
+				}
+				if ( oRange === "max" && this.orientation === "horizontal" ) {
+					this.range[ animate ? "animate" : "css" ]( { width: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
+				}
+				if ( oRange === "min" && this.orientation === "vertical" ) {
+					this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { height: valPercent + "%" }, o.animate );
+				}
+				if ( oRange === "max" && this.orientation === "vertical" ) {
+					this.range[ animate ? "animate" : "css" ]( { height: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
+				}
+				// Update aria attributes
+				$(this.handle).attr({
+					"role": "slider",
+					"aria-valuemin": valueMin,
+					"aria-valuemax": valueMax,
+					"aria-valuenow": value,
+					"aria-label": that.element.attr("id") + "_handle"
+				});
+			}
+		},
+		_handleEvents: {
+			keydown: function(event){
+				var allowed, curVal, newVal, step, index = $(event.target).data("ui-slider-handle-index");
+				
+				switch (event.keyCode) {
+					case $.ui.keyCode.HOME:
+					case $.ui.keyCode.END:
+					case $.ui.keyCode.PAGE_UP:
+					case $.ui.keyCode.PAGE_DOWN:
+					case $.ui.keyCode.UP:
+					case $.ui.keyCode.RIGHT:
+					case $.ui.keyCode.DOWN:
+					case $.ui.keyCode.LEFT:
+						event.preventDefault();
+						if (!this._keySliding) {
+							this._keySliding = true;
+							$(event.target).addClass("ui-state-active");
+							allowed = this._start(event, index);
+							if (allowed === false) {
+								return;
+							}
+						}
+						break;
+				}
+				
+				step = this.options.step;
+				if (this.options.values && this.options.values.length) {
+					curVal = newVal = this.values(index);
+				}
+				else {
+					curVal = newVal = this.value();
+				}
+				
+				switch (event.keyCode) {
+					case $.ui.keyCode.HOME:
+						newVal = this._valueMin();
+						break;
+					case $.ui.keyCode.END:
+						newVal = this._valueMax();
+						break;
+					case $.ui.keyCode.PAGE_UP:
+						newVal = this._trimAlignValue(curVal + ((this._valueMax() - this._valueMin()) / numPages));
+						break;
+					case $.ui.keyCode.PAGE_DOWN:
+						newVal = this._trimAlignValue(curVal - ((this._valueMax() - this._valueMin()) / numPages));
+						break;
+					case $.ui.keyCode.UP:
+						if (curVal === this._valueMax()) {
+							return;
+						}
+						newVal = this._trimAlignValue(curVal + step);
+						break;
+					case $.ui.keyCode.DOWN:
+						if (curVal === this._valueMin()) {
+							return;
+						}
+						newVal = this._trimAlignValue(curVal - step);
+						break;
+					case $.ui.keyCode.RIGHT:
+						if (curVal === (this._isRtl ? this._valueMin() : this._valueMax())) {
+							return;
+						}
+						newVal = this._trimAlignValue(curVal + (this._isRtl ? -step : step));
+						break;
+					case $.ui.keyCode.LEFT:
+						if (curVal === (this._isRtl ? this._valueMax() : this._valueMin())) {
+							return;
+						}
+						newVal = this._trimAlignValue(curVal + (this._isRtl ? step : -step));
+						break;
+				}
+				
+				this._slide(event, index, newVal);
+			}
+		}
+	});
+
+
+
+
+	
+	$.widget( "ui.tabs", $.ui.tabs, {
+		_create: function(){
+			this._superApply(arguments);
+			this.element.addClass("jui-tabs");
+			this.element.removeClass('ui-corner-all');
+		},
+		_tabKeydown: function(){
+			if(util.isRtlMode()){
+				var temp = $.ui.keyCode.LEFT;
+				$.ui.keyCode.LEFT = $.ui.keyCode.RIGHT;
+				$.ui.keyCode.RIGHT = temp;
+				this._superApply(arguments);
+				$.ui.keyCode.RIGHT = $.ui.keyCode.LEFT;
+				$.ui.keyCode.LEFT = temp;
+			}else{
+				this._superApply(arguments);
+			}
+		}
+	});
+
+
+
+	
+
+})( jQuery );

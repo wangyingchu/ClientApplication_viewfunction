@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Lisää toimintoja"
 //end v1.x content
 });
+

@@ -1,0 +1,31 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxDropDownLink.idxLinkDerived {
+  white-space: nowrap;
+  display: inline;
+}
+.dlBlue .idxDropDownLink .idxDropDownLinkAnchor {
+  margin-right: 2px;
+  cursor: pointer;
+}
+.dlBlue .idxDropDownLink .dijitArrowButtonInner {
+  cursor: pointer;
+  background-image: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxDropDownLinkDisabled .dijitArrowButtonInner {
+  cursor: auto;
+  background-position: -151px 53%;
+  background-image: url("../../dijit/form/images/arrows_white.png");
+}
+.dijitRtl .dlBlue .idxDropDownLink .idxDropDownLinkAnchor {
+  margin-right: 0px;
+  margin-left: 4px;
+}
+.dlBlue .idxDropDownLinkDisabled .idxDropDownLinkAnchor,
+.dlBlue .idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor {
+  color: #4c4d53;
+}
+.dlBlue .idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover,
+.dlBlue .idxAppMarquee .idxDropDownLinkDisabled .idxDropDownLinkAnchor:hover {
+  text-decoration: none;
+  cursor: default;
+}

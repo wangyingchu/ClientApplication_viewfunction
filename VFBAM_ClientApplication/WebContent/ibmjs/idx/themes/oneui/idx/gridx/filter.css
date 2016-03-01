@@ -16,7 +16,7 @@
 	position: relative;
 }
 
-.oneui .gridxFilterBar a {
+.oneui .gridxFilterBar [action="clear"] {
 	font-family: Arial;
 	font-style: normal;
 }
@@ -111,24 +111,74 @@
 
 
 /*QuickFilter*/
-.oneui .gridxQuickFilterTextBox,
-.oneui .gridxQuickFilterDropDownButton,
-.oneui .gridxQuickFilterButton {
-	float: right;
+.oneui .gridxQuickFilterInputContainer {
+	margin: 0;
 }
-
-/*.oneui .gridxQuickFilterButton {*/
-/*    margin-top: -3px;*/
-/*}*/
-
-.oneui .gridxQuickFilterTextBox {
-	border: 1px solid #ccc;
+.oneui .gridxQuickFilterInput {
 	position: relative;
-	margin-top: 4px;
 }
-.oneui .gridxQuickFilterTextBox .dijitInputInner::-ms-clear {
+.oneui .gridxQuickFilterInput .dijitInputInner::-ms-clear {
 	display: none;
 }
+.oneui .gridxQuickFilterInput .dijitPlaceHolder {
+	color: #777;
+}
+.oneui .gridxQuickFilterInput .dijitTextBoxFocused .dijitPlaceHolder {
+	display: none;
+}
+
+.oneui .gridxQuickFilter .dijitButton span {
+	padding: 0;
+	margin: 0;
+}
+
+.oneui .gridxQuickFilter .dijitButtonHover,
+.oneui .gridxQuickFilter .dijitButtonActive {
+	background: none;
+}
+
+.oneui .gridxQuickFilter .dijitButton .dijitButtonNode,
+.oneui .gridxQuickFilter .dijitComboButton .dijitButtonNode {
+	padding: 5px !important;
+	border-width: 0;
+	background: none;
+	box-shadow: none;
+}
+
+.oneui .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.oneui .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.oneui .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode,
+.oneui .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode {
+	padding: 4px !important;
+	border-width: 1px;
+/*    border-radius: 3px;*/
+}
+
+.oneui .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode,
+.oneui .gridxQuickFilter .dijitComboButtonActive .dijitArrowButton,
+.oneui .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.oneui .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode {
+	background: #fefefe; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%); /* IE10+ */
+	background: linear-gradient(top,  #fefefe 0%,#cccccc 100%); /* W3C */
+}
+
+.oneui .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.oneui .gridxQuickFilter .dijitComboButtonActive .dijitButtonNodeActive,
+.oneui .gridxQuickFilter .dijitComboButtonActive .dijitDownArrowButtonActive {
+	background: #dbdbdb; /* Old browsers */
+	background: -moz-linear-gradient(top,  #dbdbdb 0%, #f4f4f4 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%); /* IE10+ */
+	background: linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%); /* W3C */
+}
+
 
 .oneui .gridx .gridxQuickFilterIcon {
 	width: 16px;
@@ -137,53 +187,33 @@
 	margin: 0;
 }
 .oneui .dijitButtonHover .gridxQuickFilterIcon,
-.oneui .dijitButtonActive .gridxQuickFilterIcon {
+.oneui .dijitButtonActive .gridxQuickFilterIcon,
+.oneui .dijitComboButtonHover .gridxQuickFilterIcon,
+.oneui .dijitComboButtonActive .gridxQuickFilterIcon {
 	background: transparent url(images/gridx_sprite.png) no-repeat -16px -16px;
 }
-
-
-.oneui .gridxQuickFilterTextBox .dijitInputContainer {
+.oneui .gridxQuickFilterInput .dijitInputContainer {
 	padding: 0 14px 0 5px;
-	
-}
-
-.oneui .gridxQuickFilterTextBox .gridxQuickFilterClearIcon {
-	position: absolute;
-	right: 5px;
-	top: 8px;
-	width: 8px;
-	height: 8px;
-	background: transparent url(images/gridx_sprite.png) no-repeat -36px -21px;
 }
 .oneui .gridxQuickFilterClear {
+	top: 3px;
 	height: 8px;
 	width: 8px;
-	top: 5px;
-	right: 10px;
+	right: 18px;
 	background: transparent url(images/gridx_sprite.png) no-repeat -36px -20px;
 }
 .oneui .gridxQuickFilterClear:hover {
 	background-position: -52px -20px;
 }
 
-.oneui .gridxQuickFilterTextBox .gridxQuickFilterClearIcon:hover {
-	background-position: -52px -21px;
-}
-
-.oneui .gridxQuickFilterTextBoxEmpty .gridxQuickFilterClearIcon {
-	display: none;
-}
-
-.oneui .gridx .gridxHeader .gridxQuickFilterTextBox .dijitInputInner {
-	height: 23px;
-	padding:0;
-	padding-left: 3px;
-	color: #444;
-	font: 12px Myriad,Helvetica,Tahoma,Arial,clean,sans-serif;
+.oneui .gridx .gridxHeader .gridxQuickFilterInput .dijitInputInner {
+	padding: 4px 0;
+	color: #222;
+	font-family: Arial;
 }
 
 /*Make input text vertical middle aligned for IE6-8*/
-.dj_ie .oneui .gridx .gridxHeader .gridxQuickFilterTextBox .dijitInputInner{
+.dj_ie .oneui .gridx .gridxHeader .gridxQuickFilterInput .dijitInputInner{
 	height: auto;
 	padding:4px 3px;
 	vertical-align: middle;
@@ -209,23 +239,29 @@
 	padding: 0;
 }
 
-
-
-
-
-
+.oneui .gridxTouch .gridxBarQuickFilter {
+	border-bottom: 1px solid #d9d9d9;
+}
 
 /* FilterDialogOneLine */
-
 .oneui .gridxFilterPaneText .gridxFilterPaneTextWrapper,
 .oneui .gridxFilterPaneCombo .gridxFilterPaneComboWrapper,
 .oneui .gridxFilterPaneNumber .gridxFilterPaneNumberWrapper,
 .oneui .gridxFilterPaneDate .gridxFilterPaneDateWrapper,
+.oneui .gridxFilterPaneDatePast .gridxFilterPaneDatePastWrapper,
 .oneui .gridxFilterPaneDateRange .gridxFilterPaneDateRangeWrapper,
 .oneui .gridxFilterPaneTime .gridxFilterPaneTimeWrapper,
+.oneui .gridxFilterPaneTimePast .gridxFilterPaneTimePastWrapper,
 .oneui .gridxFilterPaneTimeRange .gridxFilterPaneTimeRangeWrapper,
 .oneui .gridxFilterPaneSelect .gridxFilterPaneSelectWrapper,
-.oneui .gridxFilterPaneRadio .gridxFilterPaneRadioWrapper {
+.oneui .gridxFilterPaneRadio .gridxFilterPaneRadioWrapper,
+.oneui .gridxFilterPaneNumberRange .gridxFilterPaneNumberRangeWrapper,
+.oneui .gridxFilterPaneDatetimeRange .gridxFilterPaneDatetimeRangeWrapper,
+.oneui .gridxFilterPaneDatetime .gridxFilterPaneDatetimeWrapper,
+.oneui .gridxFilterPaneDatetimePast .gridxFilterPaneDatetimePastWrapper,
+.oneui .gridxFilterPaneHex .gridxFilterPaneHexWrapper,
+.oneui .gridxFilterPaneHexRange .gridxFilterPaneHexRangeWrapper
+{
 	display: inline-block;
 }
 
@@ -259,7 +295,6 @@
 	background: transparent url(images/gridx_sprite.png) no-repeat -97px -16px;
 }
 
-
 .oneui .gridxFilterRules .gridxFilterPaneForm {
 	position: relative;
 	padding: 5px 0;
@@ -284,9 +319,9 @@
 	margin: 0 14px;
 }
 
-.oneui .gridxFilterPaneFieldWrapper {
+/*.oneui .gridxFilterPaneFieldWrapper {
 	margin-right: 14px;
-}
+}*/
 
 .oneui .gridxFilterSingleRule .gridxFilterPaneRemoveBtn {
 	display: none;
@@ -296,26 +331,33 @@
 	display: none;
 }
 .oneui .gridxFilterDialogOneLine {
-	width: auto;
+	width: auto !important;
 }
 .oneui .gridxFilterRules {
-	width: 710px;
+	width: 726px;
 	height: 160px;
 }
 .oneui .gridxFilterPaneForm .gridxFilterPaneColumnSelect,
 .oneui .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+/*    width: 200px;*/
 	margin: 0;
 }
-.oneui .gridxFilterPaneForm .gridxFilterPaneColumnSelect .dijitValidationContainer,
-.oneui .gridxFilterPaneForm .gridxFilterPaneConditionSelect .dijitValidationContainer {
-	margin-left: 5px;
+.oneui .gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.oneui .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+	margin-right: 20px;
 }
 .oneui .gridxFilterRulesLabel {
 	margin: 20px 0 15px 0;
 }
 
+.oneui .gridxFilterDialogOneLine .idxLabel{
+	display: none;
+}
+.oneui .gridxFilterDialogOneLine .matchCaseCheckbox .idxLabel{
+	display: inline-block;
+}
 .oneui .gridxFilterDialogOneLine .gridxFilterPaneFieldWrapper {
-	width: 190px;
+	width: 220px;
 }
 .oneui .gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn {
 	margin-right: 15px;
@@ -333,7 +375,7 @@
 
 .oneui .gridxFilterPaneRangeStart,
 .oneui .gridxFilterPaneRangeEnd {
-	width: 90px;
+	width: 106px;
 }
 
 .oneui .gridxFilterTooltipTitle {
@@ -383,4 +425,29 @@
 
 .oneui .gridxFilterPaneSelectWrapper .dijitValidationContainer {
 	display: none;
+}
+
+.oneui .dateTimeRangeContainer{
+	border: solid 4px rgba(3,3,3,0.4);
+	border-radius: 4px;
+	box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
+	padding: 5px;
+}
+
+.oneui .dateTimeRangeContainer .dijitCalendar{
+	border: medium none;
+	box-shadow: none;
+}
+
+.oneui .dateTimeRangeContainer{
+	background-color: #fafafa;
+}
+
+.oneui .dateTimeRangeContainer label{
+	padding-left: 3px;
+}
+
+.oneui .gridxFilterPaneDatetimeRangeWrapper span.dijitButtonText{
+	overflow-x: hidden;
+	text-overflow: ellipsis;
 }

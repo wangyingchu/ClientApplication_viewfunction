@@ -5,7 +5,7 @@
 	US Government Users Restricted Rights - Use, duplication or
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<html>
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Date and Time TextBox</title>
@@ -20,6 +20,7 @@
 		<style id="idxStyles" type="text/css">
 			@import "../../themes/oneui/oneui.css";
 			@import "../../tests/_pagefooter/_PageFooter.css";
+			@import "../../tests/test.css";
 	    </style>
 	
 		<!-- required: dojo.js -->
@@ -57,9 +58,12 @@
 				"idx.form.DateTextBox",
 				"idx.form.TimeTextBox",
 				"idx.form.DateTimeTextBox",
-				"idx.tests._pagefooter._PageFooter"
+				"idx.tests._pagefooter._PageFooter",
+				"dojox.date.hebrew",
+				"dojox.date.hebrew.Date",
+				"dojox.date.hebrew.locale"
 			]; 
-			var Button, Form, DateTextBox, TimeTextBox, _PageFooter;
+			var manager, Button, Form, DateTextBox, TimeTextBox, _PageFooter;
 			
 			function preParse(modules){
 				manager 			= modules["dijit/_base/manager"];
@@ -127,7 +131,7 @@
 			<h1>Date and Time TextBox</h1>
 			
 			<h2>idx.form.DateTextBox</h2>
-			<input id="datetextbox" data-dojo-type="idx.form.DateTextBox" data-dojo-props='
+			<input id="datetextbox" data-dojo-type="idx/form/DateTextBox" data-dojo-props='
 				hint: "some tip",
 				hintPosition: "inside",
 				label: "Date:",
@@ -138,12 +142,23 @@
 			<br/>
 			
 			<h2>idx.form.TimeTextBox</h2>
-			<input id="timetextbox" data-dojo-type="idx.form.TimeTextBox" data-dojo-props='
+			<input id="timetextbox" data-dojo-type="idx/form/TimeTextBox" data-dojo-props='
 				hint: "some tip",
 				hintPosition: "inside",
 				help: "Field help goes here.",
 				label: "Time:",
 				labelAlignment: "horizontal"
+			'/>
+			
+			<br/>
+			
+			<input id="timetextbox_hintoutside" data-dojo-type="idx/form/TimeTextBox" data-dojo-props='
+				hint: "some tip",
+				hintPosition: "outside",
+				label: "Time:",
+				help: "Field help goes here.",
+				labelAlignment: "horizontal",
+				required: true
 			'/>
 			
 			<!--
@@ -165,10 +180,10 @@
 			<h2>idx.form.DateTimeTextBox</h2>
 			
 			<div dojoType="dijit.form.Form" jsId="form">
-				<input id="datetimetextbox" data-dojo-type="idx.form.DateTimeTextBox" data-dojo-props="
+				<input id="datetimetextbox" data-dojo-type="idx/form/DateTimeTextBox" data-dojo-props="
 					showPickerIcon: true, 
 					label: 'Date and Time:',
-					help: 'Field help goes here.',
+					help: 'DateTimeTextBox help goes here.',
 					labelAlignment: 'horizontal'
 				"/>
 			</div>
@@ -191,25 +206,55 @@
 				onclick="setvalue"
 			></div>
 			<div dojoType="dijit.form.Button"
+				id="clearButton"
 				label="Clear"
 				onclick="clear"
 			></div>
 			<div dojoType="dijit.form.Button"
+				id="toggleDisableButton"
 				label="Toggle Disable"
 				onclick="toggleDisable"
 			></div>
 			<div dojoType="dijit.form.Button"
+				id="toggleReadOnlyButton"
 				label="Toggle ReadOnly"
 				onclick="toggleReadOnly"
 			></div>
 			<div dojoType="dijit.form.Button"
+				id="toggleRequiredButton"
 				label="Toggle Required"
 				onclick="toggleRequired"
 			></div>
 			<div dojoType="dijit.form.Button"
+				id="validateFormButton"
 				label="Validate Form"
 				onclick="validateForm"
 			></div>
+			
+			
+			<h2>idx.form.DateTimeTextBox Constraints</h2>
+			
+			<input id="datetimetextbox_constraints" data-dojo-type="idx/form/DateTimeTextBox" data-dojo-props="
+				showPickerIcon: true, 
+				label: 'Date and Time Constraints:',
+				help: 'DateTimeTextBox help goes here.',
+				labelAlignment: 'horizontal',
+				dateConstraints:{min:'2004-01-01',max:'2020-12-31',datePattern:'MM/dd/yyyy'},
+				timeConstraints:{formatLength:'medium',min:'T00:00:00',max:'T12:00:00'}
+			"/>
+			<br/>	
+
+			<h2>idx.form.DateTimeTextBox DatePackage Property</h2>
+	
+			<div dojoType="dijit.form.Form" jsId="form">
+				<input id="datetimetextbox_hebrew" data-dojo-type="idx/form/DateTimeTextBox" data-dojo-props="
+					showPickerIcon: true, 
+					label: 'Date and Time ( hebrew calendar ):',
+					labelAlignment: 'horizontal',
+					datePackage: 'dojox.date.hebrew'
+				"/>
+			</div>
+			
 		</div>
 	</body>
 </html>

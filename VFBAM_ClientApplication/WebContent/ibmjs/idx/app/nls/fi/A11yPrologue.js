@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT + ${accessKey}",
 	keySequence_Firefox: "ALT + VAIHTO + ${accessKey} Windows- ja Linux-käyttöjärjestelmissä tai CONTROL + ${accessKey} Mac-käyttöjärjestelmissä",
 	keySequence_Safari: "CONTROL + optionäppäin + ${accessKey} Mac-käyttöjärjestelmissä tai ALT + ${accessKey} Windows-käyttöjärjestelmissä",
-	keySequence_Chrome: "ALT + ${accessKey} Windows- ja Linux-käyttöjärjestelmissä tai CONTROL + optionäppäin Mac-käyttöjärjestelmissä",
+	keySequence_Chrome: "ALT + ${accessKey} Windows- ja Linux-käyttöjärjestelmissä tai CONTROL + optionäppäin + ${accessKey} n Mac-käyttöjärjestelmissä",
 	shortcutListMessage: "Tämän sivun pikanäppäinyhdistelmät ovat seuraavat:",
 	a11yPrologueLabel: "Helppokäyttöisyystoimintojen esitoimet",
     a11yStatementLabel: "Helppokäyttöisyyslausunto",

@@ -1,0 +1,59 @@
+/* Single Sort */
+.gridxArrowButtonNode {
+  background: transparent no-repeat 500px 500px;
+  .image(@imageRoot, "gridx_sprite.png");
+  height: 9px;
+  margin: 5px 7px 0 0;
+  padding: 0;
+  width: 9px;
+  visibility: hidden;
+}
+.gridxSortUp .gridxArrowButtonNode {
+  display: block;
+  background-position: -51px -4px;
+  visibility: visible;
+}
+.gridxSortDown .gridxArrowButtonNode {
+  display: block;
+  background-position: -19px -4px;
+  visibility: visible;
+}
+/* for oneui sort */
+.gridxSortSingle {
+  display: none;
+}
+.gridxSortNested {
+  display: block;
+  margin: 2px 5px;
+  float: right;
+  font-size: 10px;
+}
+.gridxHeaderCellOver .gridxArrowButtonNode,
+.gridxHeaderCellFocus .gridxArrowButtonNode {
+  visibility: visible;
+  background-position: -67px -3px;
+}
+.gridxHeaderCellOver .gridxSortUp .gridxArrowButtonNode,
+.gridxHeaderCellFocus .gridxSortUp .gridxArrowButtonNode {
+  background-position: -83px -3px;
+}
+.gridxHeaderCellOver .gridxSortDown .gridxArrowButtonNode,
+.gridxHeaderCellFocus .gridxSortDown .gridxArrowButtonNode {
+  background-position: -99px -3px;
+}
+.gridxHeaderCellOver .gridxSortAscendOnly,
+.gridxHeaderCellFocus .gridxSortAscendOnly {
+  background-position: -35px -3px;
+}
+.gridxHeaderCellOver .gridxSortDescendOnly,
+.gridxHeaderCellFocus .gridxSortDescendOnly {
+  background-position: -3px -4px;
+}
+.gridxHeaderCellOver .gridxSortUp .gridxSortAscendOnly,
+.gridxHeaderCellFocus .gridxSortUp .gridxSortAscendOnly {
+  background-position: -51px -4px;
+}
+.gridxHeaderCellOver .gridxSortDown .gridxSortDescendOnly,
+.gridxHeaderCellFocus .gridxSortDown .gridxSortDescendOnly {
+  background-position: -19px -4px;
+}

@@ -13,14 +13,51 @@ define([
 	"dojo/_base/event",
 	"dojo/dom-attr",
 	"dojo/query",
+	"dojo/has",
 	"dijit/form/ToggleButton",
 	"./_CssStateMixin",
 	"./_CompositeMixin",
 	"./_ValidationMixin",
-	"dojo/text!./templates/TriStateCheckBox.html",
+		// ====================================================================================================================
+	// ------
+	// Load _TemplatePlugableMixin and PlatformPluginRegistry if on "mobile" or if on desktop, but using the 
+	// platform-plugable API.  Any prior call to PlaformPluginRegistry.setGlobalTargetPlatform() or 
+	// PlatformPluginRegistry.setRegistryDefaultPlatform() sets "platform-plugable" property for dojo/has.
+	// ------
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	// ------
+	// We want to load the desktop template unless we are using the mobile implementation.
+	// ------
+	"idx/has!#idx_form_TriStateCheckBox-desktop?dojo/text!./templates/TriStateCheckBox.html" 	// desktop widget, load the template
+		+ ":#idx_form_TriStateCheckBox-mobile?"													// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/TriStateCheckBox.html"								// global desktop platform, load template
+		+ ":#mobile?"																			// global mobile platform, don't load
+		+ ":dojo/text!./templates/TriStateCheckBox.html", 										// no dojo/has features, load the template
+			
+	// ------
+	// Load the mobile plugin according to build-time/runtime dojo/has features
+	// ------
+	"idx/has!#idx_form_TriStateCheckBox-mobile?./plugins/phone/TriStateCheckBoxPlugin"			// mobile widget, load the plugin
+		+ ":#idx_form_TriStateCheckBox-desktop?"													// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/phone/TriStateCheckBoxPlugin"										// global mobile platform, load plugin
+		+ ":",																					// no features, don't load plugin
+
+	
 	"dojo/NodeList-dom" // NodeList.addClass/removeClass
-], function(declare, array, lang, kernel, event, domAttr, query, ToggleButton,
-			_CssStateMixin, _CompositeMixin, _ValidationMixin, template){
+], function(declare, array, lang, kernel, event, domAttr, query, has, 
+			ToggleButton, _CssStateMixin, _CompositeMixin, _ValidationMixin, 
+			TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
+	
+	var baseClassName = "idx.form.TriStateCheckBox";
+	if (has("mobile") || has("platform-plugable")) {
+		baseClassName = baseClassName + "Base";
+	}
+	if (has("dojo-bidi")) {
+		baseClassName = baseClassName + "_";
+	}		
+		
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 
 	/**
@@ -34,10 +71,10 @@ define([
 	 * @augments idx.form._CompositeMixin
 	 * @augments idx.form._ValidationMixin
 	 */
-	return iForm.TriStateCheckBox = declare("idx.form.TriStateCheckBox", [ToggleButton, _CssStateMixin, _CompositeMixin, _ValidationMixin],
+	iForm.TriStateCheckBox = declare(baseClassName, [ToggleButton, _CssStateMixin, _CompositeMixin, _ValidationMixin],
 	/**@lends idx.form.TriStateCheckBox.prototype*/
 	{
-		templateString: template,
+		templateString: desktopTemplate,
 		
 		instantValidate: true,
 		
@@ -129,6 +166,7 @@ define([
 		},
 		
 		postCreate: function(){
+			
 			this._event = {
 				"input" : "onChange",
 				"blur" : "_onBlur",
@@ -353,6 +391,68 @@ define([
 		_setLabelAlignmentAttr: null,
 		_setFieldWidthAttr: null,
 		_setLabelWidthAttr: null,
+		resize:function(){return false;},
 		_setIconClassAttr: null
 	});
+	
+	
+	if (has("dojo-bidi")) {
+		baseClassName = baseClassName.substring(0, baseClassName.length-1);
+		var baseTriStateCheckBox = iForm.TriStateCheckBox;
+		iForm.TriStateCheckBox = declare(baseClassName,[baseTriStateCheckBox]);
+	}
+	
+	if ( has("mobile") || has("platform-plugable")) {
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/TriStateCheckBox", 
+				{	
+					desktop: "inherited",	// no plugin for desktop, use inherited methods  
+				 	mobile: MobilePlugin	// use the mobile plugin if loaded
+				});
+
+		iForm.TriStateCheckBox = declare("idx.form.TriStateCheckBox",[iForm.TriStateCheckBox, TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			templatePath: require.toUrl("idx/form/templates/TriStateCheckBox.html"), 
+
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			/**
+			 * Stub Plugable method
+			 */
+			postCreate: function(){
+				var promise = this.doWithPlatformPlugin(arguments, "postCreate", "postCreate");
+				this.inherited(arguments);
+				return promise;
+			},	 			
+			/**
+			 * 
+			 * @param {Object} message
+			 */
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			/**
+			 * 
+			 * @param {Object} helpText
+			 */
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			},
+			/**
+			 * 
+			 * @param {Object} value
+			 */
+			_setCheckedAttr: function(value){
+				this.inherited(arguments);
+				this.focusNode.setAttribute("value", this.stateValues[this._stateType]);
+				
+			}
+		});
+	}
+	
+	return iForm.TriStateCheckBox;
 });

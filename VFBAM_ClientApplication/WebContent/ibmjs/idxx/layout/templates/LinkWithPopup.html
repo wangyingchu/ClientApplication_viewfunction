@@ -1,0 +1,19 @@
+<span class="dijitInline linkWithPopup">
+
+  <div id="${id}_ddb" dojoType="dijit.form.DropDownButton" dojoAttachPoint="buttonNode" class="linkWithPopupDropDownButton">
+    <span><!-- Button label to be replaced in script --></span>
+       
+    <div id="${id}_ttd" dojoType="dijit.TooltipDialog" dojoAttachPoint="dialogNode" class="linkWithPopupDialog">
+      <div dojoAttachPoint="dialogMinSizeNode" class="linkWithPopupDialogMinSize"></div>
+      <span dojoAttachPoint="dialogTitleNode" class="linkWithPopupTitle"></span>
+      <div class="linkWithPopupToolbarButtons">
+        <div id="${id}_close" style="float:right;" dojoType="dijit.form.Button" dojoAttachEvent="onClick:_onCloseClicked" class="linkWithPopupClose" iconClass="iconClose" showLabel="false"></div>
+      </div>
+      <div style="clear: both; height: 5px;"></div>
+
+      <div dojoAttachPoint="containerNode" class="linkWithPopupBody"></div>
+    </div>
+    
+  </div>
+  
+</span>

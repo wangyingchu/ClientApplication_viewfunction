@@ -1,0 +1,131 @@
+/* Tree** Styling Tree mostly means styling the TreeRow (dijitTreeRow)* There are 4 basic states to style:** Tree Row:* 
+1. tree row (default styling):* .dijitTreeRow - styles for each row of the tree** 
+2. hovered tree row (mouse hover on a tree row)*.dijitTreeRowHover - styles when mouse over on one row** 
+3. active tree row (mouse down on a tree row)* 		.dijitTreeRowActive - styles when mouse down on one row** 
+4. selected tree row* dijitTreeRowSelected - style when the row has been selected** Tree Expando:* 	dijitTreeExpando - the expando at the left of the text of each tree row** Drag and Drop on TreeNodes: (insert line on dijitTreeContent node so it'll aligned w/ target element)* 		.dijitTreeNode .dojoDndItemBefore/.dojoDndItemAfter - use border style simulate a separate line*/
+.dlBlue .dijitTree.idxNavTree .dijitTreeRow,
+.dlBlue .dijitTree.idxNavTree .dijitTreeNode .dojoDndItemBefore,
+.dlBlue .dijitTree.idxNavTree .dijitTreeNode .dojoDndItemAfter {
+  padding-top: 5px;
+}
+.dlBlue .dijitTree.idxNavTree .dijitTreeLabel {
+  vertical-align: middle;
+  margin-left: 2px;
+}
+.dlBlue .dijitTree.idxNavTree .dijitTreeExpando {
+  width: 7px;
+  background-position: -20px 0;
+  margin-left: 5px;
+}
+.dlBlue .dijitTree.idxNavTree .dijitTreeExpandoClosed {
+  background-position: -4px 0;
+}
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge .idxNavTreeNodeBadgeIcon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  visbility: visible;
+  vertical-align: top;
+  margin-top: -1px;
+}
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge .idxNavTreeNodeBadgeLabel {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  top: -10000px;
+  float: none;
+}
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeSelectMarker {
+  width: 0px;
+  height: 0px;
+  display: none;
+  visibility: hidden;
+  vertial-align: middle;
+}
+.dlBlue .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeIcon {
+  margin-left: 3px;
+}
+.dlBlue .dijitTree.idxNavTree.idxNavTreeNoHighlight .idxNavTreeNodeSelectMarker {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  visibility: hidden;
+  bottom: 1px;
+  position: relative;
+  border: 0px none transparent;
+  padding: 0px;
+  margin: 0px 1px 0 0;
+}
+.dlBlue .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRow.dijitTreeRowSelected {
+  background-color: rgba(171, 214, 255, 0);
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  backgrond-image: none;
+  color: #000000;
+}
+.dlBlue .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRow.dijitTreeRowSelected.dijitTreeRowHover {
+  background-color: #cce8f2;
+}
+.dlBlue .dijitTree.idxNavTree.idxNavTreeHideBadges .idxNavTreeNodeBadge {
+  visibility: hidden;
+  display: none;
+}
+.dijitRtl .dlBlue .dijitTree.idxNavTree .dijitTreeLabel {
+  margin-left: 0px;
+  margin-right: 2px;
+}
+.dijitRtl .dlBlue .dijitTree.idxNavTree .dijitTreeExpando {
+  margin-right: 5px;
+  margin-left: 0px;
+}
+.dijitRtl .dlBlue .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeIcon {
+  margin-left: 0px;
+  margin-right: 3px;
+}
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon .idxNavTreeNodeBadgeIcon,
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeBadge .idxNavTreeNodeBadgeIcon {
+  width: 0px;
+  height: 0px;
+  background-image: none;
+  visibility: hidden;
+  display: none;
+}
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon .idxNavTreeNodeBadgeLabel,
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeBadge .idxNavTreeNodeBadgeLabel {
+  position: static;
+  width: auto;
+  height: auto;
+  top: 0px;
+  font-size: 75%;
+  font-weight: bold;
+  background-color: #107bbb;
+  color: #ffffff;
+  padding: 0.2em 0.6em;
+  line-height: 1.3em;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 1em;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border: none;
+  display: inline-block;
+}
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeLabel.idxNavTreeNodeNoBadgeIcon,
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeNoBadgeLabel {
+  visibility: hidden;
+  display: none;
+}
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeLabel .idxNavTreeNodeBadgeLabel,
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeLabel.idxNavTreeNodeNoBadgeIcon .idxNavTreeNodeBadgeLabel,
+.dlBlue .dijitTree.idxNavTree .idxNavTreeNodeBadge.idxNavTreeNodeNoBadgeIcon.idxNavTreeNodeNoBadgeLabel .idxNavTreeNodeBadgeLabel {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRowSelected .idxNavTreeNodeSelectMarker,
+.dlBlue .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeRowSelected.dijitTreeRowHover .idxNavTreeNodeSelectMarker {
+  visibility: visible;
+  background-color: #008abf;
+  border: 0px none transparent;
+  padding: 0px;
+  margin: 0 1px 0 0;
+}

@@ -1,0 +1,105 @@
+body{
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	margin: 0;
+    color: #393A3F;
+    line-height: 20px;
+}
+  
+h1, h2, .txt-xlg, .txt-lg {
+  font-weight: 200;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 25px;
+}
+.juiPageHeader{
+	padding-bottom: 20px;
+	border-bottom: 1px solid #a4a6ab;
+}
+.juiPageHeader .dijitButton{
+	float: right;
+	font-size: 14px;
+	margin-left: 25px;
+}
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+section {
+  margin: 0 30px 30px;
+}
+
+
+section.jumbotron {
+  color: #fff;
+  background-color: #008ABF;
+  margin: 0 0 30px 0;
+  padding: 30px;
+}
+#widget_themeSwitch{
+	font-size:14px;
+	float:right;
+}
+#widget_themeSwitch .idxLabel{
+	font-size:16px;
+}
+.jui-rtl #widget_themeSwitch{
+	float: left;
+}
+.jumbotron article {
+  border: 0 none;
+}
+
+
+.demoHeaders {
+	margin-top: 2em;
+}
+.demoButtons {
+	margin-bottom: 1em;
+}
+#icons {
+	margin: 0;
+	padding: 0;
+}
+#icons li {
+	margin: 2px;
+	position: relative;
+	padding: 4px 0;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+}
+#icons span.ui-icon {
+	float: left;
+	margin: 0 4px;
+}
+.ui-message .ui-state-highlight,
+.ui-message .ui-state-error{
+	margin-top: 20px;
+	padding: 0 .7em;
+}
+.ui-message .ui-state-highlight p,
+.ui-message .ui-state-error p{
+	margin: 1em 0;
+}
+.fakewindowcontain .ui-widget-overlay {
+	position: absolute;
+}
+.ui-custom-icon{
+	float: left; 
+	margin-right: .3em;
+}
+.hasDatepicker {
+	margin: 0 15px;
+}
+.jui-rtl .ui-custom-icon{
+	float: right; 
+	margin-left: .3em;
+	margin-right: 0;
+}

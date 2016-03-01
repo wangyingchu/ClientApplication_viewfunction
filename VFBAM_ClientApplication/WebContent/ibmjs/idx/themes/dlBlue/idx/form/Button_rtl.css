@@ -1,0 +1,14 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .dijitComboButtonRtl.idxButtonCompactRtl .dijitButtonText,
+.dlBlue .dijitDropDownButtonRtl.idxButtonCompactRtl .dijitButtonText {
+  padding: 0 0 0 10px;
+}
+.dijitRtl .idxSecondaryButton.dijitComboButton .dijitArrowButton {
+  border-right: 1px solid #6f7076;
+}
+.dijitRtl .idxSecondaryButton.dijitComboButtonHover .dijitArrowButton {
+  border-right: 1px solid #ffffff;
+}
+.dijitRtl .idxSecondaryButton.dijitComboButtonDisabled .dijitArrowButton {
+  border-right: 1px solid #cdced2;
+}

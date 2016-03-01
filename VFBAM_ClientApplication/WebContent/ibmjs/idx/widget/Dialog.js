@@ -14,7 +14,6 @@ define([
 	"dojo/dom", // dom.isDescendant
 	"dojo/dom-class", // domClass.add domClass.contains
 	"dojo/dom-construct",
-	"dojo/dom-geometry", // domGeometry.position
 	"dojo/dom-style", // domStyle.set
 	"dojo/dom-attr", // attr.has
 	"dojo/_base/event", // event.stop
@@ -27,18 +26,19 @@ define([
 	"dojo/ready",
 	"dojo/_base/sniff", // has("ie") has("opera")
 	"dojo/_base/window", // win.body
-	"dojo/window", // winUtils.getBox
 	"dijit/focus",
 	"dijit/a11y",
 	"dijit/_base/manager",	// manager.defaultDuration
 	"dijit/Dialog",
+	"idx/widget/_DialogResizeMixin",
 	"dijit/form/Button",
 	"dojo/text!./templates/Dialog.html",
 	"dijit",			// for back-compat, exporting dijit._underlay (remove in 2.0)
 	"dojo/i18n!./nls/Dialog"
 ], function(require, array, connect, declare, Deferred,
-			dom, domClass, domConstruct, domGeometry, domStyle, domAttr, event, fx, i18n, kernel, keys, lang, on, ready, has, win, winUtils,
-			focus, a11y, manager, Dialog, Button, template, dijit, dialogNls){
+			dom, domClass, domConstruct, domStyle, domAttr, event, fx, 
+			i18n, kernel, keys, lang, on, ready, has, win,
+			focus, a11y, manager, Dialog, _DialogResizeMixin, Button, template, dijit, dialogNls){
 	var oneuiRoot = lang.getObject("idx.oneui", true); // for backward compatibility with IDX 1.2
 	
 	/**
@@ -60,7 +60,7 @@ define([
 			closeButtonLabel: "Cancel"
 		}, "div");
 	 */
-	var Dialog = declare("idx.widget.Dialog", Dialog, {
+	var Dialog = declare("idx.widget.Dialog", [Dialog, _DialogResizeMixin], {
 	/**@lends idx.widget.Dialog.prototype*/
 		templateString: template,
 		baseClass: "idxDialog",
@@ -103,6 +103,8 @@ define([
 		referenceName: "",
 		referenceLink: "",
 		
+		executeOnEnter: true,
+		
 		postCreate: function(){
 			this.inherited(arguments);
 			this.closeButton = new Button({
@@ -124,7 +126,7 @@ define([
 		startup: function(){
 			this.inherited(arguments);
 			//display content and make it as tab stop
-			if(this.containerNode.innerHTML){
+			if(this.containerNode.innerHTML || this.href){
 				domAttr.set(this.containerNode, "tabindex", 0);
 				domStyle.set(this.contentWrapper, "display", "block");
 			}
@@ -137,45 +139,7 @@ define([
 				});
 			}
 		},
-		_size: function(){
-			this.inherited(arguments);
-			//resize the Dialog to wrap the content
-			var children = this.containerNode.children,
-				innerWidth = 0;
-			array.forEach(children, function(child){
-				innerWidth = Math.max(domStyle.get(child, "width"), innerWidth);
-			});
-			if(innerWidth > domStyle.get(this.containerNode, "width")){
-				domStyle.set(this.domNode, {
-					width:"auto"
-				});
-				domStyle.set(this.containerNode, {
-					width:"auto",
-					height:"auto"
-				})
-			}
-		},
-		_onKey: function(evt){
-			this.inherited(arguments);
-			var node = evt.target;
-			if(domAttr.has(node, "href")){return;}
-			if(node == this.closeButton.domNode){return;}
-			while(node){
-				if(node == this.domNode || domClass.contains(node, "dijitPopup")){
-					if(evt.keyCode == keys.ENTER){
-						if(this.isValid()){
-							this.onExecute();
-						}else{
-							this.validate();
-						}
-					}else{
-						return; // just let it go
-					}
-				}
-				node = node.parentNode;
-			}
-			event.stop(evt);
-		},
+		
 		_getFocusItems: function(){
 			//	summary:
 			//		override _DialogMixin._getFocusItems.
@@ -192,8 +156,9 @@ define([
 			this._lastFocusItem = this.closeButton.focusNode;
 		},
 		hide: function(){
-			this.inherited(arguments);
+			var promise = this.inherited(arguments);
 			this._firstFocusItem = null;
+			return promise;
 		},
 		_getFirstItem: function(){
 			if(this.title){return this.titleNode;}
@@ -235,6 +200,13 @@ define([
 				"href": referenceLinkNodeHidden ? "about:blank": this.referenceLink, 
 				innerHTML: referenceLinkNodeHidden ? "NO LINK" : this.referenceName
 			});
+		},
+		/**
+		 * Callback of reference click, overriden by user
+		 */
+		onReference: function(event){
+			
+			return true;
 		}
 	});
 

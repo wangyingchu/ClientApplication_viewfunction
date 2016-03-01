@@ -13,9 +13,11 @@ define({
 	Success: "Επιτυχία",
 	Confirmation: "Επιβεβαίωση",
 	Question: "Ερώτηση",
+	Progress: "Πρόοδος",
 	closeButtonLabel: "Κλείσιμο",
 	cancelButtonLabel: "Ακύρωση",
 	executeButtonLabel: "OK",
 	checked: "Να μην ερωτηθώ ξανά"
 //end v1.x content
 });
+

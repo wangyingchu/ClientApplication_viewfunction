@@ -23,3 +23,7 @@ hr {
 	border: 0px none #FFFFFF;
 	border-bottom: 1px solid #EEEEEE;
 }
+.testHighlightNls{
+	font-weight: bold;
+	color: blue;
+}

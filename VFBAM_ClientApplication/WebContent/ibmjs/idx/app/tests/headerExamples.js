@@ -41,12 +41,14 @@ define(["idx/app/Header", "dojo/_base/lang", "idx/widget/Menu", "dijit/MenuItem"
 				1: "Fully loaded" } },
 		1: { template: "Single Banner without navigation",
 			 examples: {
-				count: 5,
+				count: 7,
 				1: "Fluid-width, includes absolute minimum required elements",
-				2: "Fixed-width with a menu of global actions",
-				3: "Fluid-width, includes user thumbnail and a global actions menu",
-				4: "Shorter, fluid-width header with global actions",
-				5: "Fluid-width header with search" } },
+				2: "Fixed-width with a menu of global settings",
+				3: "Fixed-width with a menu of global sharing options",
+				4: "Fluid-width with menus for global settings and sharing options",
+				5: "Fluid-width, includes user thumbnail and a global actions menu",
+				6: "Shorter, fluid-width header with global actions",
+				7: "Fluid-width header with search" } },
 		2: { template: "Single Banner with Navigation",
 			 examples: {
 				count: 4,
@@ -171,6 +173,10 @@ define(["idx/app/Header", "dojo/_base/lang", "idx/widget/Menu", "dijit/MenuItem"
 		var settingsMenu = new Menu();
 		settingsMenu.addChild(new MenuItem({ label: "Edit Settings" }));
 		settingsMenu.addChild(new MenuItem({ label: "Manage Users" }));
+
+		var sharingMenu = new Menu();
+		sharingMenu.addChild(new MenuItem({ label: "Post to Forum" }));
+		sharingMenu.addChild(new MenuItem({ label: "Post to Wiki" }));
 
 		var helpMenu = new Menu();
 		helpMenu.addChild(new MenuItem({ label: "Help Center" }));
@@ -322,6 +328,75 @@ define(["idx/app/Header", "dojo/_base/lang", "idx/widget/Menu", "dijit/MenuItem"
 		actionsMenu.addChild(new MenuItem({ label: "Edit Profile" }));
 		actionsMenu.addChild(new MenuItem({ label: "Sign Out" }));
 		
+		var sharingMenu = new Menu();
+		sharingMenu.addChild(new MenuItem({ label: "Post to Forum" }));
+		sharingMenu.addChild(new MenuItem({ label: "Post to Wiki" }));
+
+		var helpMenu = new Menu();
+		helpMenu.addChild(new MenuItem({ label: "Help Center" }));
+		helpMenu.addChild(new MenuItem({ label: "About" }));
+
+		var header = new Header({
+			primaryTitle: "IBM Product/Context",
+			user: {
+				displayName: "User Name",
+				displayImage: "http://w3.ibm.com/bluepages/api/BluePagesPhoto.jsp?CNUM=074773866",
+				actions: actionsMenu
+			},
+			sharing: sharingMenu,
+			help: helpMenu,
+			primaryBannerType: "thick"
+		},
+		__id__);
+		header.startup();
+//END
+					};
+					result.hasContent = false;
+					break;
+			
+				case 14:
+					result = function(__id__){
+//START
+		var actionsMenu = new Menu();
+		actionsMenu.addChild(new MenuItem({ label: "Edit Profile" }));
+		actionsMenu.addChild(new MenuItem({ label: "Sign Out" }));
+		
+		var settingsMenu = new Menu();
+		settingsMenu.addChild(new MenuItem({ label: "Edit Settings" }));
+		settingsMenu.addChild(new MenuItem({ label: "Manage Users" }));
+
+		var sharingMenu = new Menu();
+		sharingMenu.addChild(new MenuItem({ label: "Post to Forum" }));
+		sharingMenu.addChild(new MenuItem({ label: "Post to Wiki" }));
+
+		var helpMenu = new Menu();
+		helpMenu.addChild(new MenuItem({ label: "Help Center" }));
+		helpMenu.addChild(new MenuItem({ label: "About" }));
+
+		var header = new Header({
+			primaryTitle: "IBM Product/Context Long Name in the Top Banner",
+			user: {
+				displayName: "User Name",
+				actions: actionsMenu
+			},
+			settings: settingsMenu,
+			sharing: sharingMenu,
+			help: helpMenu
+		},
+		__id__);
+		header.startup();
+//END
+					};
+					result.hasContent = false;
+					break;
+			
+				case 15:
+					result = function(__id__){
+//START
+		var actionsMenu = new Menu();
+		actionsMenu.addChild(new MenuItem({ label: "Edit Profile" }));
+		actionsMenu.addChild(new MenuItem({ label: "Sign Out" }));
+		
 		var settingsMenu = new Menu();
 		settingsMenu.addChild(new MenuItem({ label: "Edit Settings" }));
 		settingsMenu.addChild(new MenuItem({ label: "Manage Users" }));
@@ -348,7 +423,7 @@ define(["idx/app/Header", "dojo/_base/lang", "idx/widget/Menu", "dijit/MenuItem"
 					result.hasContent = false;
 					break;
 			
-				case 14:
+				case 16:
 					result = function(__id__){
 //START
 		var actionsMenu = new Menu();
@@ -379,7 +454,7 @@ define(["idx/app/Header", "dojo/_base/lang", "idx/widget/Menu", "dijit/MenuItem"
 					result.hasContent = false;
 					break;
 			
-				case 15:
+				case 17:
 					result = function(__id__){
 //START
 		var actionsMenu = new Menu();
@@ -1539,12 +1614,12 @@ define(["idx/app/Header", "dojo/_base/lang", "idx/widget/Menu", "dijit/MenuItem"
 //START
 		var navigationMenu = new MenuBar();
 
-		var navigationMenu_01 = new Menu();
-		navigationMenu_01.addChild(new MenuItem({ label: "Home Item 1" }));
-		navigationMenu_01.addChild(new MenuItem({ label: "Home Item 2" }));
-		navigationMenu_01.addChild(new MenuItem({ label: "Home Item 3" }));
-		navigationMenu_01.addChild(new MenuItem({ label: "Home Item 4" }));
-		navigationMenu.addChild(new PopupMenuBarItem({ label: "", popup: navigationMenu_01 }));
+		navigationMenu.addChild(new MenuBarItem({label: ""}));
+		//navigationMenu_01.addChild(new MenuItem({ label: "Home Item 1" }));
+		//navigationMenu_01.addChild(new MenuItem({ label: "Home Item 2" }));
+		//navigationMenu_01.addChild(new MenuItem({ label: "Home Item 3" }));
+		//navigationMenu_01.addChild(new MenuItem({ label: "Home Item 4" }));
+		//navigationMenu.addChild(new PopupMenuBarItem({ label: "", popup: navigationMenu_01 }));
 
 		var actionsMenu = new Menu();
 		actionsMenu.addChild(new MenuItem({ label: "Edit Profile" }));

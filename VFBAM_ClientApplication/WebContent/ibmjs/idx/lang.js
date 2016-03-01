@@ -36,7 +36,7 @@ define([
 	iMain.endsWith = iLang.endsWith = function(/*string*/ all, /*string*/ part){
 		//	summary:
 		//		Return true if string "all" ends with "part"
-		return (dLang.isString(all) && dLang.isString(part) && all.indexOf(part) === all.length - part.length); // Boolean
+		return (dLang.isString(all) && dLang.isString(part) && all.lastIndexOf(part) === all.length - part.length); // Boolean
 	};
 	
 /**

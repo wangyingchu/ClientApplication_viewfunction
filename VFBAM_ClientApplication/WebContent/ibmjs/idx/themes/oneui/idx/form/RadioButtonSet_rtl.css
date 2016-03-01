@@ -29,7 +29,7 @@
 }
 
 .oneui .idxRadioButtonSetWrapRtlError .idxCompContainer {
-	padding: 1px 7px 2px 38px;
+	padding: 1px 7px 2px 28px;
 }
 
 .oneui .idxRadioButtonSetWrapRtlError .dijitValidationContainer{
@@ -38,4 +38,9 @@
 	top: 7px;
 	left: 6px;
 	right:auto;
+}
+
+.oneui .idxRadioButtonSetItem .dijitRadio.dijitRadioRtl{
+	margin-right:0;
+	margin-left:5px;
 }

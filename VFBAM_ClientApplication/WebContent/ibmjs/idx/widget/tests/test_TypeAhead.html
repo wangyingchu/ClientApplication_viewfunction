@@ -16,7 +16,7 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 </script>
 
 <style type="text/css" id="idxStyles">
-@import "../../themes/oneui/oneui.css";
+/*@import "../../themes/oneui/oneui.css";*/
 @import "../../tests/test.css";
 </style>
 
@@ -60,7 +60,7 @@ function postParse(modules) {
 		dom.byId("output1").innerHTML = typeahead1.getDisplayedValue();
 	};
 
-	var typeahead3 = new TypeAhead({connectedNode:dom.byId("input3"), url: "./_data/TypeAheadData.json", type:"json", method:"GET"}, domConstruct.create("div"));
+	var typeahead3 = new TypeAhead({connectedNode:dom.byId("input3"), url: "./_data/TypeAheadData.json", type:"json", method:"GET"}, domConstruct.create("div", {id: "typeahead3"}, "input3", "after"));
 }
 
 function onExecuteHandler(){

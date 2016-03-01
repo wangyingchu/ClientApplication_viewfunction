@@ -1,9 +1,9 @@
 define({     
 //begin v1.x content
-	copyText: "${num} элементі көшіру",
-	moveText: "${num} элементі жылжыту",
-	copyOneText: "1 элементі көшіру",
-	moveOneText: "1 элементі жылжыту"
+	copyText: "${num} элементтерін көшіру",
+	moveText: "${num} элементтерін жылжыту",
+	copyOneText: "1 элементті көшіру",
+	moveOneText: "1 элементті жылжыту"
 //end v1.x content
 });
 

@@ -1,0 +1,37 @@
+@import url("../../jquery-ui/themes/base/jquery.ui.all.css");
+
+/* Common design thinking styles*/
+.ui-widget {
+	font-family:'Helvetica Neue', Helvetica, Arial;
+	font-size: 20px;
+}
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+	font-family: 'Helvetica Neue', Helvetica, Arial;
+	font-size: 20px;
+	padding: 5px 10px;
+	border: 1px solid #008abf;
+	border-radius: 0px;
+	margin: 0 10px 0 0;
+	vertical-align: top;	
+}
+.ui-widget label{
+	margin-right: 20px;
+	vertical-align: middle;
+	line-height: 36px;
+	color: #008baf;
+}
+.ui-widget-content {
+	border: 1px solid #008abf;
+	/*background: #008abf;
+	color: #ffffff;*/
+}
+.ui-corner-all{
+	border-radius: 0px;
+}
+.ui-widget-overlay {
+	background: url(images/maskBG.png);
+	opacity:1;
+}

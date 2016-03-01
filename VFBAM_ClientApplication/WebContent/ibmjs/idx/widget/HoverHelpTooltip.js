@@ -1,5 +1,4 @@
 /*
- * Licensed Materials - Property of IBM
  * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
@@ -15,18 +14,22 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
  "dojo/dom-attr", // domAttr.set
  "dojo/_base/lang", // lang.hitch lang.isArrayLike
  "dojo/_base/sniff", // has("ie")
+ "dijit/popup",
  "dijit/focus", "dojo/_base/event", // event.stop
  "dojo/dom-geometry", // domGeometry.getMarginBox domGeometry.position
+ "dojo/dom-construct",
+ "dojo/dom-class",
  "dijit/registry",
  "dijit/place", "dijit/a11y", // _getTabNavigable
- "dijit/BackgroundIframe", "dojo/dom-style", // domStyle.set, domStyle.get
+ "dojo/dom-style", // domStyle.set, domStyle.get
  "dojo/_base/window", // win.body
  "dijit/_base/manager", // manager.defaultDuration
  "dijit/_Widget", "dijit/_TemplatedMixin", "dijit/Tooltip", 
+ "dojo/has!dojo-bidi?../bidi/widget/HoverHelpTooltip",
  "dojo/text!./templates/HoverHelpTooltip.html", "dijit/dijit", 
  "dojo/i18n!./nls/Dialog", "dojo/i18n!./nls/HoverHelpTooltip"
-], function(declare, fx, keys, array, dom, on, aspect, when, Deferred, domAttr, lang, has, dijitfocus, event, domGeometry, registry, place, 
- a11y, BackgroundIframe, domStyle, win, manager, _Widget, _TemplatedMixin, Tooltip, template, dijit, dialogNls, hoverHelpTooltipNls){
+], function(declare, fx, keys, array, dom, on, aspect, when, Deferred, domAttr, lang, has, popup, dijitfocus, event, domGeometry, domConstruct, domClass, registry, place, 
+ a11y, domStyle, win, manager, _Widget, _TemplatedMixin, Tooltip, bidiExtension, template, dijit, dialogNls, hoverHelpTooltipNls){
 	var oneuiRoot = lang.getObject("idx.oneui", true); // for backward compatibility with IDX 1.2
 	
     /**
@@ -66,7 +69,7 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
          * Focus HoverHelpTooltip once it shown.
          * @type Boolean
          */
-        forceFocus: true,
+        forceFocus: false,
 		
 		textDir: "auto",
 
@@ -121,11 +124,15 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
                 clearTimeout(HoverHelpTooltip._showTimer);
                 delete HoverHelpTooltip._showTimer;
             }
+			// Fix for Defect 12350: 
+			if(!dom.byId(target)){return;}
+			
+			var ariaLabel = domAttr.get(this.domNode, "aria-label");
             HoverHelpTooltip.show(
 				this.content || this.label || this.domNode.innerHTML, 
 				target, this.position, !this.isLeftToRight(), 
 				this.textDir, this.showLearnMore, this.learnMoreLinkValue, 
-				this.showCloseIcon, this.forceFocus);
+				this.showCloseIcon, this.forceFocus, ariaLabel);
             this._connectNode = target;
             this.onShow(target, this.position);
         },
@@ -234,7 +241,8 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
         
     });
     
-    var MasterHoverHelpTooltip = declare("idx.widget._MasterHoverHelpTooltip", [_Widget, _TemplatedMixin], {
+    var baseClassName = has("dojo-bidi")? "idx.widget._MasterHoverHelpTooltip_" : "idx.widget._MasterHoverHelpTooltip";
+    var MasterHoverHelpTooltipBase = declare(baseClassName, [_Widget, _TemplatedMixin], {
 		/**
 		 * Milliseconds to fade in/fade out
 		 * @type Integer
@@ -265,7 +273,7 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
         postCreate: function(){
             win.body().appendChild(this.domNode);
             
-            this.bgIframe = new BackgroundIframe(this.domNode);
+            //this.bgIframe = new BackgroundIframe(this.domNode);
             
             // Setup fade-in and fade-out functions.
             this.fadeIn = fx.fadeIn({
@@ -319,7 +327,8 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
 				HoverHelpTooltip._hideTimer = setTimeout(lang.hitch(this, function(){this.hide(this.aroundNode)}), this.hideDelay);
 			}));
         },
-        show: function(innerHTML, aroundNode, position, rtl, textDir, showLearnMore, learnMoreLinkValue, showCloseIcon, forceFocus){ 	
+        show: function(innerHTML, aroundNode, position, rtl, textDir, showLearnMore, 
+			learnMoreLinkValue, showCloseIcon, forceFocus, ariaLabel){
 			this._lastFocusNode = aroundNode;
             if (showLearnMore) {
                 this.learnMoreNode.style.display = "inline";
@@ -340,7 +349,6 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
                 return;
             }
             
-            
             // reset width; it may have been set by orient() on a previous HoverHelpTooltip show()
             this.domNode.width = "auto";
             
@@ -349,8 +357,13 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
                 this._onDeck = arguments;
                 return;
             }
+			
+			
+			//this._attachPopParent();
+			//domStyle.set(this._popupWrapper, "display", "");
             
             this.containerNode.innerHTML = innerHTML;
+			if(ariaLabel)domAttr.set(this.domNode, "aria-label", ariaLabel);
             
             this.set("textDir", textDir);
             this.containerNode.align = rtl ? "right" : "left"; //fix the text alignment
@@ -363,27 +376,55 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
                 this.connectorNode.style.top = aroundNodeCoords.y + ((aroundNodeCoords.h - this.connectorNode.offsetHeight) >> 1) - pos.y + "px";
                 this.connectorNode.style.left = "";
             }
-            else 
-                if (pos.corner.charAt(1) == 'M' && pos.aroundCorner.charAt(1) == 'M') {
-                    this.connectorNode.style.left = aroundNodeCoords.x + ((aroundNodeCoords.w - this.connectorNode.offsetWidth) >> 1) - pos.x + "px";
-                }
+            else if (pos.corner.charAt(1) == 'M' && pos.aroundCorner.charAt(1) == 'M') {
+                this.connectorNode.style.left = aroundNodeCoords.x + ((aroundNodeCoords.w - this.connectorNode.offsetWidth) >> 1) - pos.x + "px";
+            }
+			
+			////Set order in popup stack
+			//this._addToPopupStack(); 
+			
             // show it
             domStyle.set(this.domNode, "opacity", 0);
+			domClass.add(this.domNode, "dijitPopup");
+			//this._popupWrapper.appendChild(this.domNode);
             this.fadeIn.play();
             this.isShowingNow = true;
-            this.aroundNode = aroundNode;
+			this.aroundNode = aroundNode;
 			// Add WAI-ARIA attribute to the hover tooltip container
 			var sourceId = domAttr.get(aroundNode, "id")
 			if(typeof sourceId == "string"){
 				dijit.setWaiState(this.containerNode, "labelledby", sourceId);
 			}
-			if (forceFocus && showLearnMore) {
+			if (forceFocus) {
                 this.focus();
             }
 			return;
         },
-        
-        
+		
+		/*_addToPopupStack: function(){
+			var stack = popup._stack;
+			domStyle.set(this.domNode, "zIndex", popup._beginZIndex + stack.length);
+			popup._stack.push({
+				widget: this,
+				handlers: []
+			});
+		},
+        _attachPopParent: function(){
+			//This is for focusManager to find popup parent of HHT
+			if(!this._popupWrapper){
+				this._popupWrapper = domConstruct.create("div", {
+					style: {"display": "none"}
+				}, this.ownerDocumentBody);
+			}
+			if(this.aroundNode && this.aroundNode.id){
+				domAttr.set(this._popupWrapper, "dijitPopupParent", this.aroundNode.id);
+			}else{
+				this._popupWrapper.dijitPopupParent = this.aroundNode;
+			}
+		},
+        _removeFromPopupStack: function(){
+			popup._stack.pop();
+		},*/
         orient: function(/*DomNode*/node, /*String*/ aroundCorner, /*String*/ HoverHelpTooltipCorner, /*Object*/ spaceAvailable, /*Object*/ aroundNodeCoords){
             // summary:
             //		Private function to set CSS for HoverHelpTooltip node based on which position it's in.
@@ -412,7 +453,7 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
             
             // reduce HoverHelpTooltip's width to the amount of width available, so that it doesn't overflow screen
             this.domNode.style.width = "auto";
-            var size = domGeometry.getContentBox(this.domNode);
+            var size = domGeometry.position(this.domNode);
             
             var width = Math.min((Math.max(HoverHelpTooltipSpaceAvaliableWidth, 1)), size.w);
             var widthWasReduced = width < size.w;
@@ -476,7 +517,7 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
             }
             domAttr.set(this.containerNode, "tabindex", "0");
             domAttr.set(this.learnMoreNode, "tabindex", "0");
-            domAttr.set(this.closeButtonNode, "tabindex", "0");            
+            domAttr.set(this.closeButtonNode, "tabindex", "0");
         },
         
         hide: function(aroundNode, force){
@@ -512,10 +553,10 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
         	// only refocus if flag is set and the node is defined
             if (refocus && this._lastFocusNode) {
             	// check if the defined node has an enclosing widget with a "refocus" method
-            	var lastWidget = registry.getEnclosingWidget(this._lastFocusNode);
+            	var currentWrapWidget = registry.getEnclosingWidget(this._lastFocusNode);
             	
             	// if the widget is found and has a refocus method then call it, else focus the node
-            	if (lastWidget && lastWidget.refocus) lastWidget.refocus();
+            	if (currentWrapWidget && lang.isFunction(currentWrapWidget.refocus)) currentWrapWidget.refocus();
             	else dijitfocus.focus(this._lastFocusNode);
             }
             
@@ -540,25 +581,24 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
             this.fadeIn.stop();
             this.isShowingNow = false;
 			this.aroundNode = null; // moved this to here, similar to dijit.Tooltip
+			//this._removeFromPopupStack();
             return this.fadeOut.play();
         },
         _getFocusItems: function(){
             // summary:
-            //		Finds focusable items in dialog,
+            //		Finds focusable items in tooltip,
             //		and sets this._firstFocusItem and this._lastFocusItem
             // tags:
             //		protected
+			
 			if(this._firstFocusItem){
 				this._firstFocusItem = this.closeButtonNode;
 				return;
 			}
-			this._firstFocusItem = this.containerNode;
-			if(domStyle.get(this.learnMoreNode, "display") == "none"){
-				var elems = a11y._getTabNavigable(this.containerNode);
-				this._lastFocusItem = elems.last || elems.highest || this.containerNode;
-			}else{
-				this._lastFocusItem = this.learnMoreNode;
-			}
+			var elems = a11y._getTabNavigable(this.containerNode),
+				endFocusableNode = domStyle.get(this.learnMoreNode, "display") == "none" ? this.closeButtonNode : this.learnMoreNode;
+			this._firstFocusItem = elems.lowest || elems.first || endFocusableNode;
+			this._lastFocusItem = elems.last || elems.highest || endFocusableNode;
         },
         _onKey: function(/*Event*/evt){
             // summary:
@@ -603,12 +643,14 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
             //		Called at end of fade-out operation
             // tags:
             //		protected
-            
+            this._prevState = null;
             this.domNode.style.cssText = ""; // to position offscreen again
             this.containerNode.innerHTML = "";
+			//domStyle.set(this._popupWrapper, "display", "none");
             domAttr.remove(this.containerNode, "tabindex");
             domAttr.remove(this.learnMoreNode, "tabindex");
-            domAttr.remove(this.closeButtonNode, "tabindex");            
+            domAttr.remove(this.closeButtonNode, "tabindex");      
+			domAttr.remove(this.domNode, "aria-label");      
             if (this._onDeck) {
             	var args = this._onDeck;
             	this._onDeck = null;
@@ -618,40 +660,10 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
         },
         onBlur: function(){
             this._forceHide();
-        },
-        _setAutoTextDir: function(/*Object*/node){
-            // summary:
-            //	    Resolve "auto" text direction for children nodes
-            // tags:
-            //		private
-            
-            this.applyTextDir(node, has("ie") ? node.outerText : node.textContent);
-            array.forEach(node.children, function(child){
-                this._setAutoTextDir(child);
-            }, this);
-        },
-        
-        _setTextDirAttr: function(/*String*/textDir){
-            // summary:
-            //		Setter for textDir.
-            // description:
-            //		Users shouldn't call this function; they should be calling
-            //		set('textDir', value)
-            // tags:
-            //		private
-            
-            this._set("textDir", typeof textDir != 'undefined' ? textDir : "");
-            if (textDir == "auto") {
-                this._setAutoTextDir(this.containerNode);
-            }
-            else {
-                this.containerNode.dir = this.textDir;
-            }
         }
     }); //end declare
     //    var MasterHoverHelpTooltip = Tooltip._MasterTooltip;
-    
-    HoverHelpTooltip._MasterHoverHelpTooltip = MasterHoverHelpTooltip; // for monkey patching
+    HoverHelpTooltip._MasterHoverHelpTooltip = MasterHoverHelpTooltip = has("dojo-bidi")? declare("idx.widget._MasterHoverHelpTooltip",[MasterHoverHelpTooltipBase,bidiExtension]) : MasterHoverHelpTooltipBase; // for monkey patching
     // summary:
     //		Static method to display HoverHelpTooltip w/specified contents in specified position.
     //		See description of idx.widget.HoverHelpTooltip.defaultPosition for details on position parameter.
@@ -667,12 +679,12 @@ define(["dojo/_base/declare", "dojo/_base/fx", // fx.fadeIn fx.fadeOut
     //		means "rtl"; specifies GUI direction, not text direction.
     // textDir: String?
     //		Corresponds to `WidgetBase.textdir` attribute; specifies direction of text.	
-    HoverHelpTooltip.show = idx.widget.showHoverHelpTooltip = function(innerHTML, aroundNode, position, rtl, textDir, showLearnMore, learnMoreLinkValue, showCloseIcon, forceFocus){
+    HoverHelpTooltip.show = idx.widget.showHoverHelpTooltip = function(innerHTML, aroundNode, position, rtl, textDir, showLearnMore, learnMoreLinkValue, showCloseIcon, forceFocus, ariaLabel){
     
         if (!HoverHelpTooltip._masterTT) {
             idx.widget._masterTT = HoverHelpTooltip._masterTT = new MasterHoverHelpTooltip();
         }
-        return HoverHelpTooltip._masterTT.show(innerHTML, aroundNode, position, rtl, textDir, showLearnMore, learnMoreLinkValue, showCloseIcon, forceFocus);
+        return HoverHelpTooltip._masterTT.show(innerHTML, aroundNode, position, rtl, textDir, showLearnMore, learnMoreLinkValue, showCloseIcon, forceFocus, ariaLabel);
     };
     
     // summary:

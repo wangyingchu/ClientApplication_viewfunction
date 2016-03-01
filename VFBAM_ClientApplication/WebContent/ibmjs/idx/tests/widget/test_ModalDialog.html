@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<title>oneui.form.ModalDialog DoH</title>
+		<title>ModalDialog DoH</title>
 		
 		<script type="text/javascript" src="../dojoVersion.js"></script>
 		<script type="text/javascript">
@@ -64,6 +64,29 @@
 							}, "warning");
 						
 							doh.t("http://www.google.com/" == dlgWidget.messageRef);
+						}
+					);
+					
+					doh.register("promise", function(){
+							var mWidget = new ModalDialog({
+								type: "warning", 
+								text: "The client cannot connect to the server customdoc.usca.ibm.com"
+							}, "warning2");
+							mWidget._alreadyInitialized = true;
+							mWidget.open = true;
+							var cWidget = new ConfirmationDialog({
+								text: "The client cannot connect to the server customdoc.usca.ibm.com"
+							}, "confirm");
+							cWidget._alreadyInitialized = true;
+							cWidget.open = true;
+						
+							var promise = mWidget.hide();
+							doh.t(promise);
+							doh.is(typeof promise.then, "function");
+							
+							var promise = cWidget.hide();
+							doh.t(promise);
+							doh.is(typeof promise.then, "function");
 						}
 					);
 				}else{
@@ -145,6 +168,9 @@
 		<div class="testMain">
 			<h1 class="testTitle">DoH Test of ModelDialog</h1>
 			<div id="warning"></div>
+			
+			<div id="warning2"></div>
+			<div id="confirm"></div>
 		</div>
 	</body>
 </html>

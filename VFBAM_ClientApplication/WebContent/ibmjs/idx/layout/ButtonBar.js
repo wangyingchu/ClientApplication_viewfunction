@@ -14,6 +14,7 @@ define(["dojo/_base/declare",
         "dojo/dom-construct", 
         "dojo/dom-class",
 	    "dojo/aspect",
+		"dijit/registry",
 	    "../string",
 	    "dojo/text!./templates/ButtonBar.html",
         "dojo/NodeList-dom"],
@@ -26,6 +27,7 @@ define(["dojo/_base/declare",
 				 dDomConstruct,    	// (dojo/dom-construct)  
 				 dDomClass,			// (dojo/dom-class) for (dDomClass.add/remove)
 				 dAspect,			// (dojo/aspect)
+				 dRegistry,			// (dijit/registry)
 				 iString,			// (../string)
 				 templateText)		// (dojo/text!./templates/ButtonBar.html)   
 {
@@ -239,6 +241,20 @@ define(["dojo/_base/declare",
   },
 
   /**
+   * Focuses the first button from the button bar that is not disabled and not hidden.
+   */
+  focus: function() {
+	var buttons = dRegistry.findWidgets(this.leadingNode);
+	buttons = buttons.concat(dRegistry.findWidgets(this.trailingNode));
+	var index = 0;
+	for (index = 0; index < buttons.length; index++) {
+		if (buttons[index].get("disabled")) continue;
+		buttons[index].focus();
+		break;
+	}
+  },
+  
+  /**
    * This function is called whenever any one of the buttons contained within is clicked.
    * @param {Widget} button The button that was clicked.
    * @param {Event} event The click event which may be a double-click or single-click. 
@@ -299,13 +315,14 @@ define(["dojo/_base/declare",
       // remove the element from the array
       var count = buttons.length;
       buttons.splice(foundIndex, 1);
-
+      
       // destroy the corresponding spacer
       if ((foundIndex <= (count - 1)) 
           && ((foundIndex-1) < spacers.length)) {
 
-        dDomConstruct.destroy(spacers[foundIndex-1]);
-        spacers.splice(foundIndex-1, 1);
+    	var spacerIndex = (foundIndex == 0) ? 0 : (foundIndex-1);
+        dDomConstruct.destroy(spacers[spacerIndex]);
+        spacers.splice(spacerIndex, 1);
       }
     }
 
@@ -316,6 +333,16 @@ define(["dojo/_base/declare",
     }
     // let the base method remove it
     this.inherited(arguments);
+    
+    // determine if we should still show the separator
+    if ((this._primaryButtons.length > 0) 
+            && (this._secondaryButtons.length > 0)) {
+          dDomClass.remove(this.separatorNode, this.baseClass+"SeparatorHidden");
+    } else {
+          dDomClass.add(this.separatorNode, this.baseClass+"SeparatorHidden");
+    }
+    
+    // resize the widget
     this.resize();
   },
 

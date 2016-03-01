@@ -1,0 +1,89 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.dijitTabContainerTop-tabs .dijitTabRtl, 
+.dijitTabContainerBottom-tabs .dijitTabRtl {
+  margin-right: 0;
+  margin-left: 1px;
+}
+.dijitTabRtl {
+  -moz-box-orient: horizontal;
+  text-align: right;
+}
+.dijitTabContainerRight-tabs .dijitTabRtl{
+	right: auto;
+}
+.dj_ie7 & .dijitTabRtl .dijitTabContent {
+  display: block;
+  left: 0;
+}
+.dj_ie7 & .dijitTabContainerTop-tabs .dijitTabRtl, 
+.dj_ie7 & .dijitTabContainerTop-tabs .dijitTabCheckedRtl {
+  top: 1px;
+}
+.dj_ie7 & .tabStripButtonRtl .dijitButtonContents,
+.dj_ie8 & .tabStripButtonRtl .dijitButtonContents,
+.dj_ie6 & .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie6 & .dijitTabContainerBottom-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie7 & .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie7 & .dijitTabContainerBottom-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_iequirks & .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_iequirks & .dijitTabContainerBottom-tabs .dijitTabRtl .dijitTabInnerDiv {
+  float: left;
+}
+.dj_ie6 & .dijitTabRtl .tabLabel,
+.dj_ie6 & .dijitTabContainerRight-tabs .dijitTabRtl,
+.dj_ie6 & .dijitTabContainerLeft-tabs .dijitTabRtl,
+.dj_ie7 & .dijitTabContainerRight-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie7 & .dijitTabContainerLeft-tabs .dijitTabRtl .dijitTabInnerDiv {
+  /*Make the .tablabel have width in ie6 with haslayout property, fix Close icon position bug*/
+
+  zoom: 1;
+}
+.dijitTabRtl .dijitTabCloseButton {
+	margin-right: 2px;
+	margin-left: -4px;
+}
+
+.dj_ie6 & .dijitTabRtl .dijitTabCloseButton, 
+.dj_ie7 & .dijitTabRtl .dijitTabCloseButton, 
+.dj_iequirks & .dijitTabRtl .dijitTabCloseButton {
+  margin-right: 5px;
+}
+.dj_ie6 & .dijitTabContainerRightRtl .dijitTabContainerRight-tabs, 
+.dj_ie6 & .dijitTabContainerLeftRtl .dijitTabContainerLeft-tabs {
+  width: 1%;
+}
+.dj_ie6 & .dijitTabContainerTopStrip, 
+.dj_ie6 & .dijitTabContainerBottomStrip {
+  position: absolute;
+}
+.dj_iequirks & .dijitTabContainerTopRtl .dijitTabContainerTopStrip {
+  padding-top: 10px;
+}
+.dj_ie7 & .dijitTabContainerRight-tabs .dijitTabRtlChecked .dijitTabInnerDiv {
+  background-position: -341px -179px;
+}
+.dj_ie6 & .dijitTabContainerTopRtl .dijitTabStripIcon, 
+.dj_ie6 & .dijitTabContainerBottomRtl .dijitTabStripIcon {
+  position: relative;
+}
+.dj_ie6-rtl & .dijitTabContainerTop-tabs {
+  /* this strange rule prevents IE6 bug in themeTester.html?dir=rtl upon closing
+	 * "Closable" tab, where the other tabs disappear
+	 */
+
+  padding-left: 3px;
+}
+.dj_iequirks-rtl & .dijitTabListWrapper {
+  /* this strange rule prevents IE6 bug in themeTesterQuirk.html?dir=rtl upon closing
+	 * "Closable" tab, where the other tabs disappear
+	 */
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}

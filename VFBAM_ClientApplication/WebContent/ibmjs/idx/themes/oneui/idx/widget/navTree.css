@@ -29,7 +29,7 @@
 .oneui .dijitTree.idxNavTree .dijitTreeNode .dojoDndItemBefore, 
 .oneui .dijitTree.idxNavTree .dijitTreeNode .dojoDndItemAfter {
 	padding-top: 5px;
-	}
+}
 
 .oneui .dijitTree.idxNavTree .dijitTreeLabel {
 	margin-left: 2px;
@@ -58,7 +58,7 @@
 	
 .oneui .dijitTree.idxNavTree .dijitTreeExpandoClosed {
 	background-position: -4px 0;
-	}
+}
 
 .oneui .dijitTree.idxNavTree.idxNavTreeNoHighlight .dijitTreeIcon {
 	margin-left: 3px;
@@ -91,7 +91,7 @@
 	width: 16px;
 	height: 16px;
 	display: inline-block;
-	visbility: visibile;
+	visbility: visible;
 	vertical-align: top;
 	margin-top: -1px;
 }

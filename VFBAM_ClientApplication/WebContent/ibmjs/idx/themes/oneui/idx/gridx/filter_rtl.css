@@ -6,20 +6,11 @@
  */
 
 /* Quick Filter */
-.oneui .gridxRtl .gridxQuickFilterTextBox .dijitInputContainer {
-	padding: 0 5px 0 14px;
-}
-
-.oneui .gridxRtl .gridxQuickFilterTextBox .gridxQuickFilterClearIcon {
+.oneui .gridxRtl .gridxQuickFilterClear {
 	right: auto;
-	left: 5px;
+	left: 10px;
 }
 /* oneui specific a11y fix - move to filter_rtl.css in the future*/
-.oneui .gridxRtl .gridxQuickFilterTextBox,
-.oneui .gridxRtl .gridxQuickFilterDropDownButton,
-.oneui .gridxRtl .gridxQuickFilterButton {
-	float: left;
-}
 
 /* Filter Bar */
 .oneui .gridxRtl .gridxFilterBar .dijitButton {
@@ -41,17 +32,25 @@
 	background-position: 0px -32px;
 }
 .oneui .gridxRtl .dijitButtonHover .gridxQuickFilterIcon,
-.oneui .gridxRtl .dijitButtonActive .gridxQuickFilterIcon {
+.oneui .gridxRtl .dijitButtonActive .gridxQuickFilterIcon,
+.oneui .gridxRtl .dijitComboButtonHover .gridxQuickFilterIcon,
+.oneui .gridxRtl .dijitComboButtonActive .gridxQuickFilterIcon {
 	background-position: -16px -32px;
 }
 
-.oneui .dijitRtl .gridxFilterPaneFieldWrapper {
+.oneui .dijitRtl .gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.oneui .dijitRtl .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
 	margin-right: auto;
-	margin-left: 14px;
+	margin-left: 20px;
 }
-.oneui .dijitRtl .gridxFilterPaneForm .gridxFilterPaneRemoveBtn {
+
+/*.oneui .dijitRtl .gridxFilterPaneFieldWrapper {
 	margin-right: auto;
 	margin-left: 14px;
+}*/
+.oneui .dijitRtl .gridxFilterPaneForm .gridxFilterPaneRemoveBtn {
+	margin-right: 5px;
+	margin-left: 15px;
 }
 .oneui .dijitRtl .gridxFilterPaneForm .gridxFilterPaneColumnSelect .dijitValidationContainer,
 .oneui .dijitRtl .gridxFilterPaneForm .gridxFilterPaneConditionSelect .dijitValidationContainer {

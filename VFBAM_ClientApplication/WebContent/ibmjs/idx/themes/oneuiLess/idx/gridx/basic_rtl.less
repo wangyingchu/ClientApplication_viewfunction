@@ -1,0 +1,28 @@
+.gridxRtl .gridxHeaderRow .gridxCell {
+  border-left: 1px solid @fwBase;
+  border-right-color: transparent;
+  text-align: right;
+}
+.gridxRtl .gridxHeader .gridxHeaderRow .gridxHeaderCellFocus {
+  border-left: 1px solid @fwBase;
+  border-right-color: transparent;
+}
+.gridxRtl .gridxRow .gridxCell {
+  border-color: @fwLighter transparent transparent @fwLighter;
+}
+.gridxRow:first-child .gridxCell {
+  border-top-color: transparent;
+}
+.gridxRow:last-child .gridxCell {
+  border-bottom-color: @fwLighter;
+}
+.dj_ie & .gridxLastRow .gridxCell {
+  border-bottom-color: @fwLighter;
+}
+.gridxRtl .gridxHeaderRowInner {
+  border-width: 0 0 0 1px;
+}
+.gridxRtl .gridxVScroller {
+  border-right: none;
+  border-left: 1px solid @fwLighter;
+}

@@ -164,9 +164,21 @@
 	border: none;
 }
 
-.dijit_a11y .idxSplitterThumbCollapse,
-.dijit_a11y .idxSplitterThumbExpand {
-	border: double 3px black !important;
+.dijit_a11y .idxSplitterH .idxSplitterThumbCollapse,
+.dijit_a11y .idxSplitterH .idxSplitterThumbExpand {
+	/*border: double 3px black !important;*/
+	border-top: 3px solid #fff;
+	height: 0;
+	top: 1px;
+	width: 45px;
+}
+.dijit_a11y .idxSplitterV .idxSplitterThumbCollapse,
+.dijit_a11y .idxSplitterV .idxSplitterThumbExpand {
+	/*border: double 3px black !important;*/
+	border-left: 3px solid #fff;
+	width: 0;
+	left: 1px;
+	height: 45px;
 }
 
 /* Arrow image - Up and Down */

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<!--
+	Licensed Materials - Property of IBM
+	(C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>idx.layout.AccordionWizard NLS Test</title>
+
+	<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
+	<script type="text/javascript">
+		dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
+		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
+		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
+	</script>
+	
+	<style id="idxStyles" type="text/css">
+		@import "../../themes/oneui/oneui.css";
+		@import "../../tests/test_nls.css";
+	</style>
+	
+	<script type="text/javascript">
+		var dojoConfig = currentDojoVersion.dojoConfig;
+	</script>
+	
+	<script type="text/javascript">
+		dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
+	</script>
+	
+	<!--here it is-->
+	<script type="text/javascript" id="postDojo">
+		var modules = [
+   			"idx/layout/WizardPane",
+			"idx/layout/AccordionWizard",
+			"dijit/form/ToggleButton",
+			"dijit/form/Textarea",
+			"dijit/layout/ContentPane",
+			"dijit/_base/manager",
+			"idx/widget/Dialog",
+			"idx/form/TextBox",
+			"idx/form/Textarea",
+			"idx/form/NumberSpinner",
+			"idx/tests/_pagefooter/_PageFooter"];
+		
+		var _PageFooter = null;
+		var manager = null;
+		var WizardPane = null;
+
+		function preParse(modules){
+			WizardPane = modules["idx/layout/WizardPane"];
+			manager = modules["dijit/_base/manager"] ? modules["dijit/_base/manager"] : dijit;
+		}
+		
+		function postParse(modules){
+		}
+		
+		function createUser() {
+			// Iterate through all the substeps.  Calls substep.getData() to get the data from the pane.  Add the user name to the list of users on the parent step's textarea.
+			var usersPane = manager.byId("usersPane");
+			var wizard = manager.byId("wizard");
+			var textarea = manager.byId("listOfUsersTextarea");
+			var substeps = wizard.getSubsteps(usersPane);
+			for (var i = 0 ; i < substeps.length ; i++) {
+				var substepData = substeps[i].getData();
+				if (i == 0) {
+					var value = substepData.userName;
+					if (substepData.userDescription) {
+						value += " (" + substepData.userDescription + ")";
+					}
+					textarea.set("value", textarea.get("value") ? textarea.get("value") + "\n" + value : value);
+				}
+			}
+			// Clear the substep data and hide the substeps.
+			wizard.clearSubsteps(usersPane);
+			wizard.hideSubsteps(usersPane, true);
+		}
+		
+		function editUser() { 
+			alert("EDIT USER");
+			manager.byId('userNamePane').setData({ 'userName': 'User name', 'userDescription': 'Description' }); 
+			manager.byId('usersPane').hideSubsteps(false); 
+			manager.byId('wizard').next(); 
+		}
+		
+		function addChild() {
+			manager.byId("wizard").addChild(new WizardPane({
+				label: "Dynamically added sub-step",
+				substep: true,
+				content: "Dynmically added sub-step content"
+			}), 3);
+		}
+		
+		dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
+	</script>
+	<script type="text/javascript" src="../../tests/commonTest.js"></script>
+	<script src="../../gridx/tests/support/common.js"></script>
+</head>
+<body style="width: 100%; height: 100%; margin: 0; padding: 0px;">
+	<script type="text/javascript">applyThemeToBody("oneui");</script>
+	<div class="testMain" role="main">
+		<h1 style="margin: 5px;" class="testTitle">idx.layout.AccordionWizard Test</h1>
+		<h2 style="display: inline-block; margin: 5px;">Test Instructions</h2>
+		<div data-dojo-type="dijit/form/ToggleButton" data-dojo-props="iconClass: 'dijitCheckBoxIcon', checked: true">Make Visited Steps Clickable (isVisitedClickable=true)
+			<script type="dojo/aspect" data-dojo-method="onClick" data-dojo-advice="after">
+				if (this.checked) {
+					this.set("label", "Make Visited Steps Clickable (isVisitedClickable=true)");
+				} else {
+					this.set("label", "Make Visited Steps Clickable (isVisitedClickable=false)");
+				}
+				wizard.set("isVisitedClickable", this.checked);
+			</script>
+		</div>
+		<div data-dojo-type="dijit/form/Button">Show Keyboard Help
+			<script type="dojo/aspect" data-dojo-method="onClick" data-dojo-advice="after">
+				keyboardHelpDialog.show();
+			</script>
+		</div>
+		<br>
+		<div style="height: 200px; overflow: auto; border: 1px solid black;">
+		<table style="margin: 0px;" class="testInstruction"><tbody>
+			<tr><th>Resource</th><th>Kind</th><th>Verification</th></tr>
+			<tr><td>Next</td><td>Standard</td><td>Ensure the "Next" button is translated</td></tr>
+			<tr><td>Previous</td><td>Standard</td><td>Ensure the "Previous" button is translated</td></tr>
+			<tr><td>Save</td><td>Standard</td><td>Ensure the "Save" button is translated</td></tr>
+			<tr><td>Finish</td><td>Standard</td><td>Ensure the "Finish" button is translated</td></tr>
+			<tr><td>Cancel</td><td>Standard</td><td>Ensure the "Cancel" button is translated</td></tr>
+			<tr><td>{count} More</td><td>Standard</td><td>
+					Ensure the labels on the overflow title bars are translated.  An example, in English, might read "5 More".
+					As you progress through the Wizard, the leading side will also display this label.
+				</td></tr>
+			<tr><td>Screen Reader Label</td><td>Screen Reader</td><td>
+					The label is hidden to normal view, but is read by screen readers.  The label should be copied to 
+					the text field labelled "Screen Reader Label" below.
+				</td></tr>			
+			
+			<tr><td>Focus Announcement</td><td>Screen Reader</td><td>
+					This text is spoken by the screen reader when the AccordionWizard is focused.  Use the keyboard to focus 
+					the primary DOM node (border) of the Wizard and the text (which is normally announced by the screen 
+					reader) should appear in the text field below labelled "Screen Reader Announcement".  Additionally,
+					upon focus the "Current Main Step Announcement" or "Current Substep Announcement" is announced (see below).
+					In English: "Multistep Wizard.  Press ALT+F12 for help."
+				</td></tr>
+			
+			<tr><td>Current Main Step Announcement</td><td>Screen Reader</td><td>
+					This text is spoken by the screen when a primary step is the current step and either ALT+ENTER
+					or ALT+SPACE is pressed while the AccordionWizard has focus.  The text (which is normally 
+					announced by the screen reader) should appear in the text field below labelled "Screen Reader Announcement".	
+					In English: "Current main step is ${index} of ${count}, entitled ${title}"
+				</td></tr>
+
+			<tr><td>Current Substep Announcement</td><td>Screen Reader</td><td>
+					This text is spoken by the screen when a substep is the current step and either ALT+ENTER
+					or ALT+SPACE is pressed while the AccordionWizard has focus.  The text (which is normally 
+					announced by the screen reader) should appear in the text field below labelled "Screen Reader Announcement".	
+					In English: "Current substep is ${index} of ${count}, entitled ${title}"
+				</td></tr>
+			
+			<tr><td>Step Changed Announcement</td><td>Screen Reader</td><td>
+					This text is spoken by the screen when a substep is the current step and the current
+					step is changed.  Simply go to the next or previous step with the keyboard shortcuts
+					or on-screen Next/Previous buttons.  The text (which is normally 
+					announced by the screen reader) should appear in the text field below labelled "Screen Reader Announcement".	
+					In English: "Wizard step changed."
+				</td></tr>
+				
+			<tr><td>Leading Review Mode Announcement</td><td>Screen Reader</td><td>
+					This text is spoken when a main step (not a substep) is the current step, the AccordionWizard has focus
+					and the ALT+PAGE UP key is used to enter "Leading Review Mode" (see keyboard help).  The text (which is normally 
+					announced by the screen reader) should appear in the text field below labelled "Screen Reader Announcement".	
+					In English: "Multistep wizard leading review mode.  Press ALT+F12 for help.  
+								There are ${count} main wizard steps leading up to and including the current main step."
+				</td></tr>
+			
+			<tr><td>Trailing Review Mode Announcement</td><td>Screen Reader</td><td>
+					This text is spoken when a main step (not a substep) is the current step, the AccordionWizard has focus
+					and the ALT+PAGE DOWN key is used to enter "Trailing Review Mode" (see keyboard help).  The text (which is normally 
+					announced by the screen reader) should appear in the text field below labelled "Screen Reader Announcement".	
+					In English: "Multistep wizard trailing review mode.  Press ALT+F12 for help.  There are 
+								${count} trailing main wizard steps that follow the current main step."
+				</td></tr>
+
+			<tr><td>Leading Review Mode Substep Announcement</td><td>Screen Reader</td><td>
+					This text is spoken when a substep (not a main step) is the current step, the AccordionWizard has focus
+					and the ALT+PAGE UP key is used to enter "Leading Review Mode" (see keyboard help).  The text (which is normally 
+					announced by the screen reader) should appear in the text field below labelled "Screen Reader Announcement".	
+					In English: "Multistep wizard leading review mode.  Press ALT+F12 for help.  There are ${mainCount}
+								 main wizard steps leading up to and including the current main step.  The current main 
+								 step has ${count} substeps leading up to and including the current step."
+				</td></tr>
+
+			<tr><td>Trailing Review Mode Substep Announcement</td><td>Screen Reader</td><td>
+					This text is spoken when a substep (not a main step) is the current step, the AccordionWizard has focus
+					and the ALT+PAGE DOWN key is used to enter "Trailing Review Mode" (see keyboard help).  The text (which is normally 
+					announced by the screen reader) should appear in the text field below labelled "Screen Reader Announcement".	
+					In English: "Multistep wizard trailing review mode.  Press ALT+F12 for help.  There are ${mainCount} 
+					             trailing main wizard steps that follow the current main step.  The current main step 
+								 has ${count} substeps that follow current step."
+				</td></tr>
+				
+			<tr><td>Trailing Review On Last Step Error</td><td>Screen Reader</td><td>
+					This text is spoken when the current step is the very last wizard step (main or substep), the AccordionWizard 
+					has focus and the ALT+PAGE DOWN key is used to attempt to enter "Trailing Review Mode" (see keyboard help).  
+					The text (which is normally announced by the screen reader) should appear in the text field below labelled 
+					"Screen Reader Announcement". In English: "You are currently on the last step of the wizard.  
+					Trailing review mode is not available"
+				</td></tr>
+				
+			<tr><td>Standard Accordion Help</td><td>Screen Reader</td><td>
+					This text is spoken when AccordionWizard is in "Standard Mode" (see keyboard help) and the ALT+F12
+					key is pressed.  The text (which is normally announced by the screen reader) should appear in the 
+					text field below labelled "Screen Reader Announcement".	In English:
+					<p><i>
+					   Multistep wizard standard mode. Use ALT+ENTER or ALT+SPACE to announce the current step.
+					   Use ALT+PAGE UP to review the prior and current wizard steps.  Use ALT+PAGE DOWN to review the
+					   wizard steps that follow the current wizard step.  Use ALT + ARROW KEYS to navigate
+					   the next and previous wizard steps.  Use ALT+END to jump focus the first of the wizard
+					   action buttons.  Use the TAB and SHIFT+TAB key to navigate focus to next and previous elements.
+					</i></p>
+				</td></tr>
+
+			<tr><td>Leading Review Help</td><td>Screen Reader</td><td>
+					This text is spoken when AccordionWizard is in "Leading Review Mode" (see keyboard help) and the ALT+F12
+					key is pressed.  The text (which is normally announced by the screen reader) should appear in the 
+					text field below labelled "Screen Reader Announcement".	In English:
+					<p><i>
+					Multistep wizard leading review mode.
+					Use ALT+ENTER or ALT+SPACE to announce the current step.
+					Use ESCAPE key or ALT+PAGE UP to cancel leading review mode and immediately return
+					focus to current wizard step.
+					Press ALT+PAGE DOWN to cancel leading review mode and switch to trailing review mode.
+					While in leading review mode, use arrow keys to cycle focus through the
+					titles of the prior and current wizard steps.
+					Use ALT+END to cancel leading review mode and jump focus to the first of the wizard action buttons.
+					Use the TAB and SHIFT+TAB key to perform standard focus navigation.
+					If the focus transitions away from the leading wizard step titles then leading review mode
+					will be cancelled.
+					</i></p>
+				</td></tr>
+
+			<tr><td>Trailing Review Help</td><td>Screen Reader</td><td>
+					This text is spoken when AccordionWizard is in "Trailing Review Mode" (see keyboard help) and the ALT+F12
+					key is pressed.  The text (which is normally announced by the screen reader) should appear in the 
+					text field below labelled "Screen Reader Announcement".	In English:
+					<p><i>
+						Multistep wizard trailing review mode. 
+						Use ALT+ENTER or ALT+SPACE to announce the current step. 
+						Use ESCAPE key or ALT+PAGE DOWN to cancel trailing review mode and immediately return
+						focus to current wizard step.
+						Press ALT+PAGE UP to cancel trailing review mode and switch to leading review mode.
+						While in trailing review mode, use arrow keys to cycle focus through the
+						titles of the wizard steps that follow the current step.
+						Use ALT+END to cancel trailing review mode and jump focus to the first of the wizard action buttons.
+						Use the TAB and SHIFT+TAB key to perform standard focus navigation.  If the focus transitions away
+						from the trailing wizard step titles then trailing review mode will be cancelled.
+					</i></p>
+				</td></tr>
+				
+			<tr><td>Next On Incomplete Error</td><td>Screen Reader</td><td>
+					This text is spoken when the user attempts to use a keyboard shortcut to go to the next step but the
+					current step is in an invalid state and needs to be corrected or completed first.  The text (which is 
+					normally announced by the screen reader) should appear in the text field below labelled 
+					"Screen Reader Announcement". In English: "You cannot navigate to the next step until you have 
+					completed the current step."
+				</td></tr>
+
+			<tr><td>Next On Last Error</td><td>Screen Reader</td><td>
+					This text is spoken when the user attempts to use a keyboard shortcut to go to the next step but the
+					current step is the last available wizard step.  The text (which is 
+					normally announced by the screen reader) should appear in the text field below labelled 
+					"Screen Reader Announcement". In English: "You cannot navigate to the next step because you 
+					are on the last available step."
+				</td></tr>
+				
+			<tr><td>Previous On First Error</td><td>Screen Reader</td><td>
+					This text is spoken when the user attempts to use a keyboard shortcut to go to the previous step but 
+					thecurrent step is the first available wizard step.  The text (which is 
+					normally announced by the screen reader) should appear in the text field below labelled 
+					"Screen Reader Announcement". In English: "You cannot navigate to the previous step because you 
+					are on the first available step."
+				</td></tr>
+				
+			<tr><td>Review Main Step Announcement</td><td>Screen Reader</td><td>
+					This text is spoken when the AccordionWizard is in "Leading Review Mode" or "Trailing Review Mode"
+					(see keyboard help) and the user focuses one of the main step titles (typically using the arrow keys).  
+					The text (which is normally announced by the screen reader) should appear in the text field below labelled 
+					"Screen Reader Announcement". In English: "Reviewing main step ${index} of ${count}, entitled ${title}"
+					<br>
+					<i><b>NOTE:</b> One or more supplemental announcements may accompany this announcement (see below)</i>
+				</td></tr>
+
+			<tr><td>Review Current Main Step Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Main Step Announcement" if the step being reviewed is
+					the current main step.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Main Step Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This is the current main step."
+				</td></tr>
+				
+			<tr><td>Review Completed Main Step Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Main Step Announcement" if the step being reviewed is
+					marked complete/visited.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Main Step Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This main step has been marked complete."
+				</td></tr>
+
+			<tr><td>Review Partially Completed Main Step Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Main Step Announcement" if the step being reviewed
+					has substeps and some, but not all, of the required steps/substeps are marked complete/visited.
+					The text (which is normally announced by the screen reader) should appear after the 
+					"Review Main Step Announcement" text in the text field below labelled "Screen Reader Announcement".
+					In English: "This main step has been started, but not fully completed."
+				</td></tr>
+
+			<tr><td>Review Incomplete Main Step Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Main Step Announcement" if the step being reviewed is
+					marked incomplete/unvisited.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Main Step Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This main step is currently incomplete."
+				</td></tr>
+				
+			<tr><td>Review Disabled Main Step Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Main Step Announcement" if the step being reviewed is
+					marked as disabled.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Main Step Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This main step is currently disabled."
+				</td></tr>
+
+			<tr><td>Return-to-Basic-Step Review Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Main Step Announcement" if the step being reviewed
+					has no substeps and is marked as completed/visited and the AccordionWizard is configured for 
+					isVisitedClickable=true.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Main Step Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "Press ENTER or SPACE to return to this step."
+				</td></tr>
+
+			<tr><td>Return-to-Compound-Step Review Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Main Step Announcement" if the step being reviewed
+					has substeps and at least one part of the step is marked as completed/visited and the AccordionWizard 
+					is configured for isVisitedClickable=true.  The text (which is normally announced by the screen reader) 
+					should appear after the "Review Main Step Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "Press ENTER or SPACE to return to the start of this step."
+				</td></tr>
+				
+			<tr><td>Review Substep Announcement</td><td>Screen Reader</td><td>
+					This text is spoken when the AccordionWizard is in "Leading Review Mode" or "Trailing Review Mode"
+					(see keyboard help) and the user focuses one of the substep titles (typically using the arrow keys).  
+					The text (which is normally announced by the screen reader) should appear in the text field below labelled 
+					"Screen Reader Announcement". In English: "Reviewing substep ${index} of ${count}, entitled ${title}.  
+					This is a substep of main step ${mainIndex} of ${mainCount}, entitled ${mainTitle}."
+				</td></tr>
+
+			<tr><td>Review Current Substep Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Substep Announcement" if the substep being reviewed is
+					the current substep.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Substep Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This is the current substep."
+				</td></tr>
+				
+			<tr><td>Review Completed Substep Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Substep Announcement" if the substep being reviewed is
+					marked complete/visited.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Substep Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This substep has been marked complete."
+				</td></tr>
+
+			<tr><td>Review Incomplete Substep Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Substep Announcement" if the substep being reviewed is
+					marked incomplete/unvisited.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Substep Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This substep is currently incomplete."
+				</td></tr>
+
+			<tr><td>Review Disabled Substep Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Substep Announcement" if the substep being reviewed is
+					marked disabled.  The text (which is normally announced by the screen reader) should appear 
+					after the "Review Substep Announcement" text in the text field below labelled 
+					"Screen Reader Announcement". In English: "This substep is currently disabled."
+				</td></tr>
+
+			<tr><td>Return-to-Substep Review Supplement</td><td>Screen Reader</td><td>
+					This text is spoken in addition to the "Review Substep Announcement" if the substep being is marked 
+					as completed/visited and the AccordionWizard is configured for isVisitedClickable=true.  The text 
+					(which is normally announced by the screen reader) should appear after the "Review Substep Announcement"
+					text in the text field below labelled "Screen Reader Announcement". In English: 
+					"Press ENTER or SPACE to return to this substep."
+				</td></tr>
+		
+		</tbody></table>
+		</div>
+		<table role="presentation" style="width:100%;">
+		<tr>
+		<td style="width: 50%;">
+		<div data-dojo-props="style: 'width: 100%; height: 300px; margin: 0px; padding: 0px;'" data-dojo-type="dijit/layout/ContentPane">
+     		<div data-dojo-type="idx/layout/AccordionWizard" 
+				 data-dojo-id="wizard",
+          		 data-dojo-props="id: 'wizard',
+								  showSave: true,
+          		 				  isVisitedClickable: true,
+          		     			  onCancel: function(children, currentPane) { console.debug('Hit cancel'); }, 
+          		    			  onFinish: function(children, currentPane) { console.debug('Hit finish.  Current pane='+currentPane.label); for (var i=0 ; i < children.length; i++) { console.debug('child - label='+children[i].label+' data='+children[i].getData()); } },
+          		    			  onSave: function(children, currentPane) { console.debug('Hit save.  Current pane='+currentPane.label); for (var i=0 ; i < children.length; i++) { console.debug('child - label='+children[i].label+' data='+children[i].getData()); } }">
+          
+          		 <!-- 1st step. -->
+		        <div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Welcome', savable: false">
+       			    Welcome to the accordion wizard.<br><br>
+       			    Some of the features of the AccordionWizard include:
+       			    <ul>
+	       			    <li>To show the Save button in the button bar, set <b>showSave=true</b>.</li>
+    	   			    <li>To allow clicking the title bars and substep navigators for visited panes (allowing quick return to visited steps), set <b>isVisitedClickable=true</b>.</li>
+    	   			</ul>
+       			    <br/>Some of the features of this WizardPane include:
+    	   			<ul>    
+    	   			    <li>To disable the Next button, set <b>valid=false</b>.<br/>To update the Next button when the pane is selected, call wizardPane.set("valid", false); or wizardPane.set("valid", true);.</li>
+    	   			    <li>To disable the Save button, set <b>savable=false</b>.</li>
+    	   			    <li>To disable the Finish button, set <b>finishable=false</b>.</li>
+    	   			    <li>To disable a step, set <b>disabled=true</b>.</li>
+    	   			    <li>To hide a step, set <b>hidden=true</b>.</li>
+    	   			    <li>To have a heading step (with no content), set <b>headingOnly=true</b>.</li>
+       			    </ul>
+					<ul>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+						<li>Test text</li>
+					</ul>
+        		</div>	
+        
+        		<!--  2nd step has conditional sub-steps that are displayed only after the user hits a button to show them. -->
+		        <div data-dojo-type="idx/layout/WizardPane" 
+        		     data-dojo-props="label: 'Step 2', 
+        		                      id: 'step2', 
+        		                      valid: true,
+        		                      savable: false,
+        		                      onNext: function() { manager.byId('clearSubsequentButton').set('disabled', false); },
+        		                      onClear: function() { manager.byId('textBox').reset(); }, 
+        		                      getData: function() { return { 'textBox': manager.byId('textBox').get('value') } }">
+            		Step 2 content.<br><br>
+            		
+		            <div data-dojo-type="dijit/form/Button" 
+        		         data-dojo-props="id: 'clearSubsequentButton',
+        		                          disabled: true,
+        		                          onClick: function() { manager.byId('wizard').clearSubsequent(); this.set('disabled', true); }">Clear Subsequent Visited Link</div>
+		            <div data-dojo-type="dijit/form/Button"
+        		         data-dojo-props="onClick: function() { manager.byId('step2a').set('hidden', !manager.byId('step2a').get('hidden'));}">Toggle hidden sub-step</div>
+		            <div data-dojo-type="dijit/form/Button"
+        		         data-dojo-props="onClick: function() { manager.byId('step2a').set('hidden', false); manager.byId('wizard').next(); }">Show hidden sub-step and go next</div>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: addChild">Dynamically add sub-step</div>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: function() { manager.byId('wizard').removeChild(manager.byId('step2')); }">Remove Step 2</div>
+		            
+		            <br><br><label for="textBox">Data field:</label><br> 
+        		    <div data-dojo-type="dijit/form/ValidationTextBox" 
+                		 data-dojo-props="id: 'textBox',
+                		 				  required: false, 
+                		 				  trim: true, 
+                		 				  onChange: function() { manager.byId('step2').set('valid', this.isValid()); },
+                		                  onKeyUp: function() { manager.byId('step2').set('valid', this.isValid()); }"></div>
+		        </div>
+        
+        		<!--  2nd step's hidden substep. -->
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 2 substep', 
+        																	 id: 'step2a',
+        																	 hidden: true, 
+        																	 substep: true, 
+        																	 savable: false"> 
+					Sub-step for step 2 that is originally hidden.
+        		</div>
+        
+        		<!-- 3rd step has a heading step with static sub-steps. -->
+		        <div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 3 heading', headingOnly: true">
+        		</div>
+        
+		        <div data-dojo-type="idx/layout/WizardPane" 
+        		     data-dojo-props="label: 'Sub-step 1',
+        		     				  id: 'step3_1', 
+        		                      valid: false, 
+        		                      substep: true, 
+        		                      onClear: function() { manager.byId('textBox2').reset(); },
+        		                      getData: function() { return { 'textBox2': manager.byId('textBox2').get('value') } }">
+		            This WizardPane has valid: false.  The <b>Next</b> button will only enable after the required field has data in it.  The required field is listening to keyup and will call WizardPane.set("valid", true); when the textField.isValid().<br><br>
+		            <label for="textBox2">Required data field:</label><br> 
+		            <div data-dojo-type="dijit/form/ValidationTextBox" 
+        		         data-dojo-props="id: 'textBox2',
+        		         				  required: true,
+        		         				  trim: true, 
+        		                          onChange: function() { manager.byId('step3_1').set('valid', this.isValid()); },
+        		                          onKeyUp: function() { manager.byId('step3_1').set('valid', this.isValid()); }"></div>        
+		        </div>
+        
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Sub-step 2', substep: true, savable: false">
+        		    Sub-step 2 of Step 3 content here.
+		        </div>
+        
+        		<!-- 4th step has intro pane with static sub-steps. -->
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 4', finishable: true">
+		            This pane shows that steps / sub-steps can be disabled, hidden, and visited.</li></ul><br>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: function() { manager.byId('step5').set('disabled', !manager.byId('step5').get('disabled')); }">Toggle disabled of Step 5</div>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: function() { manager.byId('step5a').set('disabled', !manager.byId('step5a').get('disabled')); }">Toggle disabled of Step 5 sub-step 1</div>
+		            <br>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: function() { manager.byId('step5').set('hidden', !manager.byId('step5').get('hidden')); }">Toggle hidden of Step 5</div>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: function() { manager.byId('step5a').set('hidden', !manager.byId('step5a').get('hidden')); }">Toggle hidden of Step 5 sub-step 1</div>
+		            <br>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: function() { manager.byId('step5').set('visited', !manager.byId('step5').get('visited')); }">Toggle visited of Step 5</div>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="onClick: function() { manager.byId('step5a').set('visited', !manager.byId('step5a').get('visited')); }">Toggle visited of Step 5 sub-step 1</div>
+		        </div>
+        
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 4 sub-step 1', substep: true, finishable: false">
+        		    Step 4 sub-step 1 content.
+		        </div>
+        
+		        <div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 4 sub-step 2', substep: true, finishable: false">
+        		    Step 4 sub-step 2 content.
+		        </div>
+        
+        		<!--  5th step is disabled. -->
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 5', id: 'step5', disabled: true">
+		            Step 5 content here.
+		        </div>
+		        
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 5 sub-step 1', id: 'step5a', substep: true">
+        		    Step 5 sub-step 1 content.
+		        </div>
+        
+		        <div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 5 sub-step 2', substep: true">
+        		    Step 5 sub-step 2 content.
+		        </div>
+        
+        		<!-- 6th step has intro pane with static sub-steps. -->
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 6 heading', finishable: false, headingOnly: true">
+		        </div>
+        
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 6 sub-step 1', substep: true, finishable: false">
+        		    Step 6 sub-step 1 content.
+		        </div>
+        
+		        <div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Step 6 sub-step 2', 
+		        															 substep: true, 
+		        															 finishable: false,
+		        															 onNext: function() { this.parent.set('visited', true); }">
+        		    Step 6 sub-step 2 content.<br><br>When the user selects Next, the parent step will show checked / visited.
+		        </div>
+        
+                <!--  7th step displays the list of users.  If the user hits the New User button, the hidden sub-steps display and the user goes to the 1st sub-step.  
+                      When the user hits Next on the last sub-step, all the sub-steps hide and the user goes back to this pane. -->
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'List of Users',
+        																	 id: 'usersPane',
+        																	 valid: false,
+        																	 savable: false,
+															        		 onSelect: function() { this.hideSubsteps(true); this.clearSubsteps(); if (manager.byId('listOfUsersTextarea').get('value')) this.valid = true; }">
+	                <div>At least one user must be created.  Select the <b>New User</b> button.</div><br>        		                      
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="id: 'addUserButton', 
+		                 				  onClick: function() { manager.byId('usersPane').hideSubsteps(false); manager.byId('wizard').next(); }">New User</div>
+		            <div data-dojo-type="dijit/form/Button" 
+		                 data-dojo-props="id: 'editUserButton', 
+		                 				  onClick: editUser">Edit</div>
+		            <br><label for="listOfUsersTextarea">List of users:</label><br>
+		            <textarea data-dojo-type="dijit/form/Textarea" data-dojo-props="id: 'listOfUsersTextarea', readOnly: true, cols: 50"></textarea>
+		        </div>
+		        
+		        <!--  Sub-step where the user enters the user name and description for the new user. -->
+        		<div data-dojo-type="idx/layout/WizardPane" 
+        		     data-dojo-props="label: 'User name',
+        		     				  id: 'userNamePane', 
+        		                      substep: true,
+        		                      savable: false,
+        		                      hidden: true,
+        		                      valid: false,
+        		                      onClear: function() { manager.byId('userName').reset(); manager.byId('userDescription').reset(); },
+        		                      setData: function(data) { if (data) { manager.byId('userName').set('value', data.userName); manager.byId('userDescription').set('value', data.userDescription); } },  
+        		                      getData: function() { return { 'userName': manager.byId('userName').get('value'), 'userDescription': manager.byId('userDescription').get('value') } }">
+        		    <div data-dojo-type="idx/form/TextBox" 
+                		 data-dojo-props="id: 'userName', 
+                		 				  required: true, 
+										  label: 'User Name',
+										  labelAlignment: 'vertical',
+                		                  trim: true, 
+                		                  style: { width: '300px' },
+                		                  onChange: function() { manager.byId('userNamePane').set('valid', this.isValid()); },
+                		                  onKeyUp: function() { manager.byId('userNamePane').set('valid', this.isValid()); }"></div>
+		            <br><br>
+        		    <div data-dojo-type="idx/form/TextBox" 
+                		 data-dojo-props="id: 'userDescription',
+										  label: 'Description',
+										  labelAlignment: 'vertical',
+                		 				  required: false, 
+                		                  trim: true, 
+                		                  style: { width: '300px' }"></div> 
+		        </div>
+        
+        		<!--  Sub-step where the user enters the user address for the new user. -->
+		        <div data-dojo-type="idx/layout/WizardPane" 
+		             data-dojo-props="label: 'User address',
+		             				  id: 'userAddressPane', 
+		                              substep: true,
+		                              savable: false,
+		                              hidden: true,
+		                              onSelect: function() { this.set('next', this.parent); },
+		                              onNext: createUser"> 
+        		    Enter the user's address on this pane.
+		        </div>
+        
+        		<!--  Confirmation page before ending the wizard. -->
+        		<div data-dojo-type="idx/layout/WizardPane" data-dojo-props="label: 'Confirmation', savable: false">
+		            Confirmation page.<br><br>Show the data the user entered on the previous panes.
+		        </div>
+     		</div>
+  		</div>
+		<div data-dojo-type="idx/widget/Dialog" data-dojo-id="keyboardHelpDialog" 
+			data-dojo-props="style: 'width: 80%; overflow: hidden;', title: 'Keyboard Accessibility Instructions'">
+		    <div style="width: 100%; height: 300px; overflow: auto;">
+			<h2>Keyboard Navigation (Standard Mode)</h2>
+			<ul>
+				<li>Use ALT+ARROW Keys to navigate between wizard steps
+				<li>Use ALT+PAGE UP to switch to "Leading Review Mode"
+				<li>Use ALT+PAGE DOWN to switch to "Trailing Review Mode"
+				<li>Use ALT+END to jump to wizard buttons
+				<li>Use TAB and SHIFT+TAB to navigate to next and previous elements
+				<li><b>JAWS-Only:</b> Use ALT+F12 for help on keyboard shortcuts in this mode
+				<li><b>JAWS-Only:</b> Use ALT+ENTER or ALT+SPACE to announce current step
+			</ul>
+			<h2>Keyboard Navigation (Leading Review Mode)</h2>
+			<ul>
+				<li>Use ESCAPE or ALT+PAGE UP to exit Leading Review Mode and return to "Standard Mode"
+				<li>Use ALT+PAGE DOWN to exit Leading Review Mode and switch to "Trailing Review Mode"
+				<li>Use ARROW keys to cycle between all leading wizard steps (previous and current steps & substeps)
+				<li>Use ALT+END to jump to wizard buttons (returns to "Standard Mode")
+				<li>Use TAB and SHIFT+TAB to navigate to next and previous elements
+				<li><b>JAWS-Only:</b> Use ALT+F12 for help on keyboard shortcuts in this mode
+				<li><b>JAWS-Only:</b> Use ALT+ENTER or ALT+SPACE to announce current step
+			</ul>
+			<h2>Keyboard Navigation (Trailing Review Mode)</h2>
+			<ul>
+				<li>Use ESCAPE or ALT+PAGE DOWN to exit Trailing Review Mode and return to "Standard Mode"
+				<li>Use ALT+PAGE UP to exit Trailing Review Mode and switch to "Leading Review Mode"				
+				<li>Use ARROW keys to cycle between all trailing wizard steps (substeps & steps following current step)
+				<li>Use ALT+END to jump to wizard buttons (returns to "Standard Mode")
+				<li>Use TAB and SHIFT+TAB to navigate to next and previous elements
+				<li><b>JAWS-Only:</b> Use ALT+F12 for help on keyboard shortcuts in this mode
+				<li><b>JAWS-Only:</b> Use ALT+ENTER or ALT+SPACE to announce current step
+			</ul>
+			</div>
+		</div>
+  	</div>
+	</td>
+	<td style="width: 50%; vertical-align: top;">
+	<div data-dojo-type="idx/form/TextBox" 
+		 data-dojo-props="label: 'Screen Reader Label', readOnly: true, labelAlignment: 'vertical'">
+		<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+			this.set("value", wizard._a11yLabelNode.innerHTML);
+		</script>
+	</div><br>
+	<div data-dojo-type="idx/form/Textarea" 
+		 data-dojo-props="label: 'Screen Reader Announcement', readOnly: true, labelAlignment: 'vertical', style: 'width: 100%'">
+		<script type="dojo/aspect" data-dojo-method="startup" data-dojo-advice="after">
+			var textArea = this;
+			require(["dojo/aspect"],function(dAspect) {
+				dAspect.after(wizard, "_a11yAnnounce", function() {
+					textArea.set("value", wizard._announceNode.innerHTML);
+				});
+			});
+		</script>
+	</div>
+	</td>
+	</tr>
+	</table>
+</body>
+</html>

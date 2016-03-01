@@ -39,9 +39,9 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 <a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 <script type="text/javascript">applyThemeToBody()</script>
 <a name="maincontent"></a>
-<div dojoType="dijit.layout.TabContainer" style="width: 750px; height: 300px; margin: 8px;">
-	<div dojoType="idx.layout.ContentPane" title="TextBox" contentClass="dijit.form.TextBox"></div>
-	<div dojoType="idx.layout.ContentPane" title="Button" contentClass="dijit.form.Button"
+<div id="tabcontainer" dojoType="dijit.layout.TabContainer" style="width: 750px; height: 300px; margin: 8px;">
+	<div id="textbox_content" dojoType="idx.layout.ContentPane" title="TextBox" contentClass="dijit.form.TextBox"></div>
+	<div id="button_content" dojoType="idx.layout.ContentPane" title="Button" contentClass="dijit.form.Button"
 		contentArgs='"label": "Button", "style": "color: blue;"'></div>
 </div>
 <br>
@@ -55,7 +55,7 @@ Check if this DIV has an aria-label set to "Test Title".
 Check if this DIV has an aria-label set to "Explicit Label".
 </div>
 <br>
-<div data-dojo-type="idx/layout/ContentPane" 
+<div id="noaria_content" data-dojo-type="idx/layout/ContentPane" 
 	 data-dojo-props="style: 'width: 400px; height: 3em; border: 1px solid black;', role: 'region', title:'Test Title 3', inferLabel: false">
 Check if this DIV has no aria-label set.
 </div>

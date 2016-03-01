@@ -18,8 +18,7 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 </script>
 
 <style type="text/css" id="idxStyles">
-@import "../../themes/oneui/oneui.css";
-@import "../../tests/test.css";
+/*@import "../../themes/oneui/oneui.css";*/
 </style>
 
 <script type="text/javascript">
@@ -78,13 +77,13 @@ dojoRequireModules(modules, null, currentDojoVersion.async, preParse);
 <div dojoType="dijit.layout.BorderContainer" id="breadcrumb_BorderContainer"
                  design="headline" style="width: 95%; height:400px;">
     <div dojoType="dijit.layout.ContentPane" region="top" style="height: 2em; padding: 0px; margin: 0px; border: 0px none transparent;">
-    <div dojoType="idx.layout.BreadcrumbController" containerId="breadcrumbContainer" ></div>
+    <div id="breadcrumb" dojoType="idx.layout.BreadcrumbController" containerId="breadcrumbContainer" ></div>
 	</div>
 	
 	<div dojoType="dijit.layout.StackContainer" id="breadcrumbContainer" region="center">
 	
 		<div dojoType="dijit.layout.ContentPane" id="c0" title="crumb 0">
-            <div dojoType="dijit.form.Button" onClick="drillDown()"
+            <div id="drilldown" dojoType="dijit.form.Button" onClick="drillDown()"
                 alt="Hit enter to drill down into the next level of the breadcrumb.">Drill down</div>
             <p>This is crumb 0</p>
 		</div>

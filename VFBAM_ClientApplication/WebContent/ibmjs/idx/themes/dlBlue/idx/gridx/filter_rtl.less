@@ -1,0 +1,61 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+.@{theme-name} .gridxRtl .gridxQuickFilterClear {
+    right: auto;
+    left: 10px;
+}
+.@{theme-name} {
+    .gridxRtl {
+        .gridxFilterBar {
+            .dijitButton {
+                left: auto;
+                right: 0;
+            }
+        }
+        .gridxFilterBarCloseBtn {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+        .gridxFilterBarStatusText {
+            margin-right: auto;
+            margin-left: 10px;
+        }
+    }
+    .dijitRtl {
+        .gridxFilterPaneForm {
+            .gridxFilterPaneRemoveBtn {
+                margin-right: 5px;
+                margin-left: 15px;
+            }
+        }
+    }
+}
+.@{theme-name} .gridxRtl .gridxQuickFilterIcon,
+.@{theme-name} .gridxRtl .gridxFilterBar .dijitButton .gridxFilterBarBtnIcon {
+    /*background-position: 0px -32px;*/
+}
+.@{theme-name} .gridxRtl .dijitButtonHover .gridxQuickFilterIcon,
+.@{theme-name} .gridxRtl .dijitButtonActive .gridxQuickFilterIcon,
+.@{theme-name} .gridxRtl .dijitComboButtonHover .gridxQuickFilterIcon,.@{theme-name} .gridxRtl .dijitComboButtonActive .gridxQuickFilterIcon {
+    /*background-position: -16px -32px;*/
+}
+.@{theme-name} .dijitRtl .gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.@{theme-name} .dijitRtl .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+    margin-right: auto;
+    margin-left: 20px;
+}
+.@{theme-name} .dijitRtl .gridxFilterPaneForm .gridxFilterPaneColumnSelect .dijitValidationContainer,
+.@{theme-name} .dijitRtl .gridxFilterPaneForm .gridxFilterPaneConditionSelect .dijitValidationContainer {
+    margin: 0 5px 0 0;
+}
+.dj_rtl {
+    .@{theme-name} {
+        .gridxFilterDialogOneLine {
+            form {
+                & > label {
+                    margin-right: auto;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}

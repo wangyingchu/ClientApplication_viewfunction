@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Zobrazit vše ({num})",
+	viewAll: "Zobrazit vše ({num})&lrm;",
 	viewDetails: "Více podrobností",
 	refresh: "Aktualizovat",
 	showDetails: "Zobrazit podrobnosti",
 	hideDetails: "Skrýt podrobnosti"
 //end v1.x content
 });
+

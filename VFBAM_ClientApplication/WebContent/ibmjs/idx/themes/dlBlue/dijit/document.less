@@ -1,0 +1,79 @@
+/* ======= Styling for the document itself (overriding dojo.css) ======== */
+
+@import "variables";
+@import url("../../../../../dojo_idt/dojo/resources/dojo.css");
+
+.@{theme-name} {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: @document-text-color;
+}
+
+/* Headings */
+.@{theme-name} h1, .@{theme-name} h2 {
+	font-weight: 200;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.@{theme-name} h1 {
+	font-size: 1.923em; 
+	margin-bottom:0.727em;
+}
+.@{theme-name} h2 { 
+	font-size: 1.538em; 
+  margin-top:1em; 
+	margin-bottom:0.60em;
+}
+
+.@{theme-name} h3, .@{theme-name} h4, .@{theme-name} h5, .@{theme-name} h6 {
+	font-size:1.231em;
+	font-weight: normal; 
+}
+
+/* paragraphs, quotes and lists */
+.@{theme-name} p { 
+	line-height: 20px;
+}
+
+/* pre and code */
+.@{theme-name} pre, .@{theme-name} code { 
+	font-family:inherit; 
+	background-color: @document-shadedsection-background-color; 
+	border: 1px solid @document-border-color;
+}
+
+/* tables */
+.@{theme-name} table.dojoTabular thead, .@{theme-name} table.dojoTabular tfoot { 
+	background-color: @document-shadedsection-background-color; 
+	border: 1px solid @document-border-color; 
+}
+
+/* placeholder */
+.@{theme-name} .dijitPlaceHolder{
+	color: @placeholder-text-color;
+	font-style: normal;
+}
+.@{theme-name} .dijitInputField .dijitPlaceHolder,
+.@{theme-name} .dijitInputContainer .dijitPlaceHolder
+{
+	color: @placeholder-text-color;
+	font-family: @base-font-family;
+	font-style: normal;
+}
+
+.@{theme-name} input::-webkit-input-placeholder,
+.@{theme-name} textarea::-webkit-input-placeholder{
+	color: @placeholder-text-color;
+	font-family: @base-font-family;
+}
+.@{theme-name} input::-moz-placeholder,
+.@{theme-name} textarea::-moz-placeholder{
+	color: @placeholder-text-color;
+	font-family: @base-font-family;
+}
+.@{theme-name} input:-ms-input-placeholder,
+.@{theme-name} textarea:-ms-input-placeholder{
+	color: @placeholder-text-color;
+	font-family: @base-font-family;
+}
+

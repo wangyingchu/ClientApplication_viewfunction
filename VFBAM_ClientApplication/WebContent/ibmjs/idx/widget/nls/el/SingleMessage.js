@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Προβολή όλων ({num})",
+	viewAll: "Προβολή όλων ({num})&lrm;",
 	viewDetails: "Περισσότερες λεπτομέρειες",
 	refresh: "Ανανέωση",
 	showDetails: "Εμφάνιση λεπτομερειών",
 	hideDetails: "Απόκρυψη λεπτομερειών"
 //end v1.x content
 });
+

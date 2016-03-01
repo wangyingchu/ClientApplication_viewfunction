@@ -16,8 +16,9 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 </script>
 
 <style type="text/css" id="idxStyles">
-@import "../../tests/test.css";
-@import "../../themes/oneui/oneui.css";
+	@import "../../tests/test.css";
+	@import "../../themes/oneui/oneui.css";
+	@import "../../tests/_pagefooter/_PageFooter.css";
 </style>
 
 <script type="text/javascript">
@@ -30,12 +31,25 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 
 <script type="text/javascript" id="postDojo">
 
-var modules = ["dijit.form.TextBox",
-			   "dijit.form.CheckBox",
-			   "idx.util",
-			   "idx.widget.EditController"];
-			   
-dojoRequireModules(modules, null, currentDojoVersion.async);
+var onEditFired, onSaveFired, onCancelFired;
+
+var modules = [	
+			"dijit.form.TextBox",
+			"dijit.form.CheckBox",
+			"idx.util",
+			"idx.widget.EditController",
+			"idx.tests._pagefooter._PageFooter"
+];
+			
+var _PageFooter = null;
+
+function preParse(modules){
+	_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+}
+function postParse(modules){
+	new _PageFooter();
+}
+dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 </script>
 <script type="text/javascript" src="../../tests/commonTest.js"></script>
 </head>
@@ -46,13 +60,16 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 <div style="margin: 8px;">
 	<div dojoType="idx.widget.EditController" jsId="editController">
 		<script type="dojo/connect" event="onEdit">
-			alert("onEdit event fired");
+			onEditFired = true;
+			console.log("onEdit event fired");
 		</script>
 		<script type="dojo/connect" event="onSave">
-			alert("onSave event fired");
+			onSaveFired = true;
+			console.log("onSave event fired");
 		</script>
 		<script type="dojo/connect" event="onCancel">
-			alert("onCancel event fired");
+			onCancelFired = true;
+			console.log("onCancel event fired");
 		</script>
 	</div>
 </div>

@@ -179,6 +179,26 @@ return declare("idx.dnd.dndSource", [TreeDndSource], {
 		}
 		m.outSource(this);
 		_TreeDndSelector.prototype.onOutEvent.apply(this, arguments);
+	},
+	onDndDrop: function(source, nodes, copy) {
+		if (this.containerState == "Over") {
+			var tree = this.tree,
+				target = this.targetAnchor;
+
+			var newParentItem;
+			if (this.dropPosition == "Before" || this.dropPosition == "After") {
+				newParentItem = (target && target.getParent() && target.getParent().item) || tree.item;
+			} else {
+				newParentItem = (target && target.item) || tree.item;
+			}
+			//If there is no parent item then disallow the drop.
+			//Otherwise, continue processing.
+			if (newParentItem) {
+				this.inherited(arguments);
+				return;
+			}
+		}
+		this.onDndCancel();
 	}
 
 })

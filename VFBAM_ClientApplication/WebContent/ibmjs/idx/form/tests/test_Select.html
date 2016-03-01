@@ -15,6 +15,7 @@
 		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
 	</script>
+
 	
 	<style id="idxStyles" type="text/css">
 		@import "../../themes/oneui/oneui.css";
@@ -35,11 +36,30 @@
 			"dijit.form.Button",
 			"dijit.form.Form",
 			"dijit.form.Select",
+			"dojo.query",
 			"dojo.data.ItemFileReadStore",
 			"idx.tests._pagefooter._PageFooter"]; 
-		var _PageFooter = null;
+		var _PageFooter = null, Select = null, query;
 		function preParse(modules){
 			_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+			Select = modules["idx/form/Select"];
+			query = modules["dojo/query"];
+			
+			var sample = new Select({
+				fieldWidth: "200px",
+				label: 'Programmable:',
+				labelAlignment: 'horizontal',
+				fieldWidth: '200px',
+				options:[
+					{label:'Tennessee', value:1},
+					{label:'Virginia', value:"1"},
+					{label:'Washington', value:3},
+					{label:'Florida', value:4}
+				],
+				placeHolder: 'Select Countries'
+			},"select6");
+			sample.startup();
+			
 			new _PageFooter();
 		}
 		function postParse(modules){
@@ -55,14 +75,14 @@
 	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 	<script type="text/javascript">applyThemeToBody("oneui");</script>
 	<a name="maincontent"></a>
-	<div class="testMain">
+	<div class="testMain" role="main">
 		<h1 class="testTitle">idx.form.Select Test</h1>
 		<h2>Select with Store</h2>
-		<select dojoType="idx.form.Select" 
+		<select dojoType="idx.form.Select" id="storeSelect"
 			data-dojo-props='label: "Store Data for Select:"'
 			store="new dojo.data.ItemFileReadStore({url:'../../../idx/tests/testdata/states.json'})">
      	</select>
-		<h2>Select with placeholder</h2>
+		<h2>Select with Placeholder and MenuSeparator</h2>
 		<select id="select0" data-dojo-type="idx.form.Select"
 				data-dojo-props='name:"select0",
 				label: "Select with short menu:",
@@ -73,6 +93,7 @@
 			<option value="AK">Alaska</option>
 			<option value="AS">American Samoa</option>
 			<option value="AZ">Arizona</option>
+			<option></option>
 			<option value="WV">West Virginia</option>
 			<option value="WI">Wisconsin</option>
 			<option value="WY">Wyoming</option>
@@ -82,7 +103,10 @@
 		<select id="select1" data-dojo-type="idx.form.Select"
 				data-dojo-props='name:"select1",
 				label: "Select with short menu:",
-				fieldWidth: "300px"
+				fieldWidth: "300px",
+				onChange: function(){
+					document.getElementById("select1Log").innerHTML = "after calling changed";
+				}
 		'>
 			<option value="AK">Alaska</option>
 			<option value="AS">American Samoa</option>
@@ -91,13 +115,15 @@
 			<option value="WI">Wisconsin</option>
 			<option value="WY">Wyoming</option>
 		</select>
+		<span id="select1Log" style="display:none">no fire</span>
 		<br/>
 		
 		<h2>Select with long menu maxHeight 200</h2>
-		<select id="select2" maxHeight="200" data-dojo-type="idx.form.Select"
+		<select id="select2"  data-dojo-type="idx.form.Select"
 				data-dojo-props='name:"select2",
 				label: "Select with long menu:",
-				fieldWidth: "300px"
+				fieldWidth: "300px",
+				maxHeight: 200
 		'>
 			<option value="AK">Alaska</option>
 			<option value="AS">American Samoa</option>
@@ -218,8 +244,14 @@
 			<option value="CO">Colorado</option>
 		</select>
 		<br/>
-		<br/>
+		<h2>Programmable Create Select with number as the item's value</h2>
+		<select id="select6"></select>
+
 		<div id="node"></div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 	</div>
 </body>
 </html>

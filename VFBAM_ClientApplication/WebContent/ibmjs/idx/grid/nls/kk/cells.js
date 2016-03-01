@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Барлық жолдар таңдауын ауыстыру"		
 //end v1.x content
 });
+

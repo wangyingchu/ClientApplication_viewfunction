@@ -6,7 +6,9 @@ define({
 	confirmation: "Vahvistus",
 	progress: "Edistyminen",
 	loading: "Lataus on meneillään",
-	close: "Sulje"
+	close: "Sulje",
+	idxErrorDialog_detailTabLabel: "Korjaa tämä ongelma",
+	idxErrorDialog_moreTabLabel: "Hae lisää ohjeita"
 //end v1.x content
 });
 

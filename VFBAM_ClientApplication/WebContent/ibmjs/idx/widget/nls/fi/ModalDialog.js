@@ -13,9 +13,11 @@ define({
 	Success: "Onnistui",
 	Confirmation: "Vahvistus",
 	Question: "Kysymys",
+	Progress: "Edistyminen",
 	closeButtonLabel: "Sulje",
 	cancelButtonLabel: "Peruuta",
 	executeButtonLabel: "OK",
 	checked: "Älä kysy uudelleen"
 //end v1.x content
 });
+

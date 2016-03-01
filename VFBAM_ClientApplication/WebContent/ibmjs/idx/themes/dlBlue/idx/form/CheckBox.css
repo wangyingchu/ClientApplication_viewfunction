@@ -1,0 +1,14 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxCheckBoxWrap .idxLabel {
+  margin-top: 2px;
+  padding: 0 4px 0 0;
+}
+.dlBlue .idxCheckBoxWrapDisabled .idxLabel {
+  color: #4c4d53;
+}
+.dlBlue .idxComposite.idxCheckBoxWrap .dijitValidationContainer {
+  margin: 2px 5px 0 0;
+}
+.dlBlue .idxComposite.idxCheckBoxWrap .dijitValidationContainer .dijitValidationIcon {
+  margin: 0;
+}

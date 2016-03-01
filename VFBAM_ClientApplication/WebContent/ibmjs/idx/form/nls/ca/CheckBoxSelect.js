@@ -10,3 +10,4 @@ define({
 	missingMessage: "Cal seleccionar al menys un element."
 //end v1.x content
 });
+

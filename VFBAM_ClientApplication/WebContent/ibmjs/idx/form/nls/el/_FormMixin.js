@@ -10,3 +10,4 @@ define({
 	legendText: "Απαιτούμενο"
 //end v1.x content
 });
+

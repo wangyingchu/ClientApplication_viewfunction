@@ -12,6 +12,352 @@ define(["dojo/_base/lang","idx/main","dojo/string"], function (dLang,iMain,dStri
  	 * @namespace Provides Javascript utility methods in addition to those provided by Dojo.
  	 */
 	var iString = dLang.getObject("string", true, iMain);
+	var regexChars = "\\[]()^.+*{}?!=-";
+	var regexCache = {};
+	var regexCacheCount = 0;
+	var regexCacheMax = 50;
+
+	/**
+	 * @public 
+	 * @function
+	 * @name idx.string.unescapedIndexOf
+	 * @description Searches the specified text for the first unescaped index of
+	 *              a character contained in the specified string of characters.
+	 * @param {String} text The text to search.
+	 * @param {String} chars The characters for which to search (any of these).
+	 * @param {String} escaper The optional character to use for escaping (defaults to "\\").
+	 * @param {Number} limit The optional limit to the number of indexes desired in case only
+	 *                 the first or first few are needed (use null, undefined, zero, false, or
+	 * 	               a negative number to indicate no limit).
+	 * @returns {Number[]} The array of indexes at which one of the specified characters
+	 *                     is found or an empty array if not found.
+	 */
+	iString.unescapedIndexesOf = function(/*string*/ text, 
+										  /*string*/ chars, 
+										  /*string*/ escaper,
+										  /*number*/ limit) {
+		if (!chars || (chars.length == 0)) {
+			throw "One or more characters must be provided to search for unescaped characters: "
+				  + " chars=[ " + chars + " ], escaper=[ " + escaper + " ], text=[ " + text + " ]";
+		}
+		if (!escaper || escaper.length == 0) {
+			escaper = "\\";
+		}
+		if (escaper.length > 1) {
+			throw "The escaper must be a single character for unescaped character search: "
+				  + " escaper=[ " + escaper + " ], chars=[ " + chars
+				  + " ], text=[ " + text + " ]";
+		}
+		if (chars.indexOf(escaper) >= 0) {
+			throw "The escaping character cannot also be a search character for unescaped character search: "
+				  + " escaper=[ " +  escaper + " ], separators=[ " + separators
+				+ " ] text=[ " + text + " ]";
+			
+		}
+		if ((limit === null) || (limit === undefined) || (limit === 0) || (limit === false)) {
+			limit = -1;
+		}
+		if (limit < 0) limit = 0;
+		var result = [];
+		var index = 0;
+		var escaping = false;
+		var current = null;
+		for (index = 0; index < text.length; index++) {
+			current = text.charAt(index);
+			if (escaping) {
+				escaping = false;
+				continue;
+			}
+			if (current == escaper) {
+				escaping = true;
+				continue;
+			}
+			if (chars.indexOf(current) >= 0) {
+				result.push(index);
+				if (limit && (result.length == limit)) break;
+			}
+		}
+		return result;
+	};
+
+	/**
+	 * @public 
+	 * @function
+	 * @name idx.string.unescapedSplit
+	 * @description Similar to iString.parseTokens, this function will split the
+	 * 	            the specified text on unescaped separator characters, but will 
+	 *              NOT remove any escaping in the original text so that the elements
+	 *              in the returned array will still contain any original escaping.
+	 * @param {String} text The text to split.
+	 * @param {String} separators The optional string containing the separator 
+	 *                 characters (defaults to ",")
+	 * @param {String} escaper The optional character to use for escaping (defaults to "\\").
+	 * @param {Number} limit The optional limit to the number of tokens desired in case only
+	 *                 the first or first few are needed (use null, undefined, zero, false, or
+	 * 	               a negative number to indicate no limit).
+	 * @returns {String[]} Return an array of string parts.
+	 */
+	iString.unescapedSplit = function(/*string*/  text, 
+	                                  /*string*/  separators, 
+								      /*string*/  escaper,
+								  	/*number*/ limit) {
+		if (!separators || (separators.length == 0)) {
+			separators = ",";
+		}
+		if (!escaper || escaper.length == 0) {
+			escaper = "\\";
+		}
+		if (escaper.length > 1) {
+			throw "The escaper must be a single character for escaped split: "
+				  + " escaper=[ " + escaper + " ], separators=[ " + separators
+				  + " ], text=[ " + text + " ]";
+		}
+		if (separators.indexOf(escaper) >= 0) {
+			throw "The escaping character cannot also be a separator for escaped split: "
+				  + " escaper=[ " +  escaper + " ], separators=[ " + separators
+				+ " ] text=[ " + text + " ]";
+			
+		}
+		if ((limit === null) || (limit === undefined) || (limit === 0) || (limit === false)) {
+			limit = -1;
+		}
+		if (limit < 0) limit = 0;
+		var result = [];
+		var index = 0;
+		var escaping = false;
+		var current = null;
+		var start = 0;
+		for (index = 0; index < text.length; index++) {
+			current = text.charAt(index);
+			if (escaping) {
+				escaping = false;
+				continue;
+			}
+			if (current == escaper) {
+				escaping = true;
+				continue;
+			}
+			if (separators.indexOf(current) >= 0) {
+				if (start == index) {
+					result.push("");
+				} else {
+					result.push(text.substring(start,index));
+				}
+				start = index + 1;
+				if (limit && (result.length == limit)) break;
+			}
+		}
+		if ((!limit) || (limit && result.length < limit)) {
+			if (start == text.length) {
+				result.push("");
+			} else {
+				result.push(text.substring(start));
+			}
+		}
+		return result;						
+	};
+	
+	/**
+	 * @public 
+	 * @function
+	 * @name idx.string.parseTokens
+	 * @description Similar to iString.unescapedSplit, this function will split the
+	 * 	            the specified text on unescaped separator characters, but will 
+	 *              also remove any escaping in the original text when creating the
+	 *              tokens unless those escaped characters are included in the optional
+	 *              "specialChars" parameter (in which case they remain escaped if 
+	 *              they are escaped in the original).
+	 * @param {String} text The text to split.
+	 * @param {String} separators The optional string containing the separator 
+	 *        characters (defaults to ",")
+	 * @param {String} escaper The optional character to use for escaping (defaults to "\\").
+	 * @param {String} specialChars The optional string of special characters that if escaped
+	 *                              in the original text should remain escaped in the tokens.
+	 * @returns {String[]} Return an array of string parts.
+	 */
+	iString.parseTokens = function(/*string*/  text, 
+	                               /*string*/  separators, 
+								   /*string*/  escaper,
+								   /*string*/  specialChars) {
+		if (!separators || (separators.length == 0)) {
+			separators = ",";
+		}
+		if (!escaper || escaper.length == 0) {
+			escaper = "\\";
+		}
+		if (escaper.length > 1) {
+			throw "The escaper must be a single character for token parsing: "
+				  + " escaper=[ " + escaper + " ], separators=[ " + separators
+				  + " ], text=[ " + text + " ]";
+		}
+		if (separators.indexOf(escaper) >= 0) {
+			throw "The escaping character cannot also be a separator for token parsing: "
+				  + " escaper=[ " +  escaper + " ], separators=[ " + separators
+				+ " ] text=[ " + text + " ]";
+			
+		}
+		if (specialChars && specialChars.length == 0) {
+			specialChars = null;
+		}
+		var index = 0;
+		var result = [];
+		var start = 0;
+		var escaping = false;
+		var part = "";
+		var end = -1;
+		var current = null;
+		for (index = 0; index < text.length; index++) {
+			current = text.charAt(index);
+			end = -1;
+			if (!escaping && current==escaper) {
+				if (specialChars && ((index+1)<text.length) 
+				    && (specialChars.indexOf(current)>=0)) {
+					// we have an escaped special character
+					index++;
+					continue;
+				}
+				
+				// take the characters up to and excluding the current
+				part = part + text.substring(start, index);
+				
+				// set the starting position to the next character
+				start = index + 1;
+				escaping = true;
+				continue;
+			}
+			// check if we are escaping
+			if (escaping) {
+				escaping = false;
+				continue;
+			}
+			// check if the current character is a separator
+			if (separators.indexOf(current) >= 0) {
+				end = index;
+			}
+							
+			if (end >= 0) {
+				part = part + text.substring(start, end);
+				start = end + 1;
+				result.push(part);
+				part = "";
+			}
+		}
+		
+		// get the last part
+		if ((end < 0) && (start < text.length)) {
+			part = part + text.substring(start);
+			result.push(part);
+		} else if ((end >= 0)||escaping) {
+			result.push(part);
+		}
+				
+		return result;
+	};
+		
+	/**
+	 * @public 
+	 * @function
+	 * @name idx.string.escapedChars
+	 * @description Escapes the specified characters in the specified text using the 
+	 *              specified escape character.  The escape character is also escaped
+	 *              using itself.
+	 * @param {String} text The text to be escaped.
+	 * @param {String} The string containing the characters to be escaped.
+	 * @param {String} escaper The optional character to use for escaping (defaults to "\\").
+	 * @returns {String[]} Return the escaped text.
+	 */
+	iString.escapeChars = function(/*string*/ text, /*string*/ chars, /*string*/ escaper) {
+		if (!chars || (chars.length == 0)) {
+			chars = "";
+		}
+		if (!escaper || escaper.length == 0) {
+			escaper = "\\";
+		}
+		if (escaper.length > 1) {
+			throw "The escaper must be a single character for escaped split: "
+				  + " escaper=[ " + escaper + " ], chars=[ " + chars
+				  + " ], text=[ " + text + " ]";
+		}
+		if (chars.indexOf(escaper) >= 0) {
+			throw "The escaping character cannot also be a separator for escaped split: "
+				  + " escaper=[ " +  escaper + " ], chars=[ " + chars
+				+ " ] text=[ " + text + " ]";
+			
+		}
+		var chars = chars + escaper;
+		var regex = regexCache[chars];
+		var pattern = "";
+		if (! regex) {
+			pattern = "([";
+			for (index = 0; index < chars.length; index++) {
+				if (regexChars.indexOf(chars.charAt(index)) >= 0) {
+					pattern = pattern + "\\";
+				}
+				pattern = pattern + chars.charAt(index);
+			}
+			pattern = pattern + "])";
+			try {
+				regex = new RegExp(pattern, "g");
+			} catch (e) {
+				console.log("Pattern: " + pattern);
+				throw e;
+			}
+			if (regexCacheCount < regexCacheMax) {
+				regexCache[chars] = regex;
+				regexCacheCount++;
+			}
+		}
+		return text.replace(regex, escaper + "$1");
+	};
+		
+	/**
+	 * @public 
+	 * @function
+	 * @name idx.string.escapedJoin
+	 * @description Joins the array into a single string separated by the specified 
+	 *              separator and using the specified escaper to escape the separator.
+	 * @param {String[]} arr The array of objects to join as a string.
+	 * @param {String} separator The single-character string containing the separator character.
+	 * @param {String} escaper The optional single character to use for escaping (defaults to "\\")
+	 * @returns {String[]} Return an array of string parts.
+	 */
+	iString.escapedJoin = function(/*array*/ arr, /*string*/ separator, /*string*/ escaper) {
+		if (!separator || (separator.length == 0)) {
+			separator = ",";
+		}
+		if (separator.length > 1) {
+			throw "Only one separator character can be used in escapedJoin: "
+					" separator=[ " + separator + " ], text=[ " + text + " ]";
+		}
+		if (!escaper || escaper.length == 0) {
+			escaper = "\\";
+		}
+		if (escaper.length > 1) {
+			throw "The escaper must be a single character for escaped split: "
+				  + " escaper=[ " + escaper + " ], separator=[ " + separator
+				  + " ], text=[ " + text + " ]";
+		}
+		if (separator.indexOf(escaper) >= 0) {
+			throw "The escaping character cannot also be a separator for escaped split: "
+				  + " escaper=[ " +  escaper + " ], separator=[ " + separator
+				+ " ] text=[ " + text + " ]";
+			
+		}
+	
+		var index = 0;
+		var result = "";
+		var part = null;
+		var prefix = "";
+		
+		for (index = 0; index < arr.length; index++) {
+			part = arr[index];
+			part = iString.escapeChars(part, separator, escaper);
+			result = result + prefix + part;
+			prefix = separator;
+		}
+		
+		return result;
+	};
 	
 	/**
 	 * @public 
@@ -36,7 +382,7 @@ define(["dojo/_base/lang","idx/main","dojo/string"], function (dLang,iMain,dStri
 	 * @returns {Boolean} Return true if string "text" ends with "suffix"
 	 */
 	iString.endsWith = function(/*string*/ text, /*string*/ suffix){
-		return (dLang.isString(text) && dLang.isString(suffix) && text.indexOf(suffix) === text.length - suffix.length); // Boolean
+		return (dLang.isString(text) && dLang.isString(suffix) && text.lastIndexOf(suffix) === text.length - suffix.length); // Boolean
 	};
 
 	/**	

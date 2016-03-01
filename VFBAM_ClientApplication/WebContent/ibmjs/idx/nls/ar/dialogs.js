@@ -6,7 +6,9 @@ define({
 	confirmation: "تأكيد",
 	progress: "التقدم",
 	loading: "تحميل",
-	close: "اغلاق"
+	close: "اغلاق",
+	idxErrorDialog_detailTabLabel: "تصحيح هذه المشكلة",
+	idxErrorDialog_moreTabLabel: "الحصول على المزيد من المساعدة"
 //end v1.x content
 });
 

@@ -8,6 +8,7 @@
 define(["dojo/_base/declare",
         "dojo/_base/lang",
         "dijit/registry",
+        "dojo/dom-construct",
         "dojo/dom-class",
         "dojo/dom-attr", 
         "dojo/dom-style",
@@ -21,7 +22,7 @@ define(["dojo/_base/declare",
         "dojo/i18n!../nls/base",
         "dojo/i18n!./nls/base",
         "dojo/i18n!./nls/OpenMenuTabContainer"
-	], function(dojo_declare, dojo_lang, dijit_registry, dojo_domclass, dojo_domattr, dojo_style, dojo_query, layoutUtils, dijit_MenuItem, dijit_MenuSeparator, dijit_layout_TabContainer, dijit_layout_ScrollingTabController, idx_resources){
+	], function(dojo_declare, dojo_lang, dijit_registry, dojo_domconstruct, dojo_domclass, dojo_domattr, dojo_style, dojo_query, layoutUtils, dijit_MenuItem, dijit_MenuSeparator, dijit_layout_TabContainer, dijit_layout_ScrollingTabController, idx_resources){
 
 /**
  * @name idx.layout.OpenMenuTabContainer
@@ -42,10 +43,19 @@ var OpenMenuTabContainer = dojo_declare("idx.layout.OpenMenuTabContainer",
 	  /**
       * CSS style for this widget
       * @type String
-      * @default "idxConsoleLayoutTabs"
+      * @default "idxOpenMenuTabContainer"
       */
    idxBaseClass : "idxOpenMenuTabContainer", 
 
+   	/**
+   	 * Provides a hint at the placement of the OpenMenuTabContainer to 
+   	 * aid in styling the container appropriately.  Possible values are
+   	 * "standard" (the default) and "header".
+   	 * @type String
+   	 * @default "standard" 
+   	 */
+   placement: "standard",
+   
 	/**
 	 * Indicates # of tabs to show initially
 	 * Normalized in controller 
@@ -85,7 +95,40 @@ var OpenMenuTabContainer = dojo_declare("idx.layout.OpenMenuTabContainer",
     	} else {
     		dojo_domclass.add(this.domNode, this.idxBaseClass + "NoOpenMenu");    		
     	}
-    }	
+		if (this.placement == "header") {
+			dojo_domclass.add(this.domNode, this.idxBaseClass + "Header");
+		} else {
+			dojo_domclass.remove(this.domNode, this.idxBaseClass + "Header");
+		}
+    },
+
+    /**
+     * 
+     */
+    _setUseMenuAttr: function(value) {
+    	this.useMenu = value;
+    	if (this.useMenu) {
+    		dojo_domclass.remove(this.domNode, this.idxBaseClass + "NoOpenMenu");    		
+    		dojo_domclass.add(this.domNode, this.idxBaseClass + "WithOpenMenu");
+    	} else {
+    		dojo_domclass.remove(this.domNode, this.idxBaseClass + "WithOpenMenu");
+    		dojo_domclass.add(this.domNode, this.idxBaseClass + "NoOpenMenu");    		
+    	}
+    },
+    
+    /**
+     * 
+     */
+    _setPlacementAttr: function(value) {
+    	this.placement = value;
+    	if (this.domNode) {
+    		if (this.placement == "header") {
+    			dojo_domclass.add(this.domNode, "idxTabsHeader");
+    		} else {
+    			dojo_domclass.remove(this.domNode, "idxTabsHeader");
+    		}
+    	}
+    }
     
 });
 
@@ -211,6 +254,7 @@ dojo_declare("idx.layout.OpenMenuTabController", [dijit_layout_ScrollingTabContr
 			
 		var btn = { loadDropDown: dojo_lang.hitch(this._menuBtn,this._loadDropDown) };
 		dojo_lang.mixin( this._menuBtn, btn );
+		this._menuBtn.set("dropDownPosition", ["below","above"]);
 		
 		var container = dijit_registry.byId(this.containerId); 
 		if(!container) throw Error(MN+" Error. Unable to find tab container with id : "+this.containerId);
@@ -258,7 +302,7 @@ dojo_declare("idx.layout.OpenMenuTabController", [dijit_layout_ScrollingTabContr
 		//var MN = this.declaredClass+".resize";	
 		this.inherited(arguments);
 
-		this._menuBtn.layoutAlign = this.isLeftToRight() ? "left" : "right";
+		this._menuBtn.layoutAlign = this._menuBtn.region = this.isLeftToRight() ? "left" : "right";
 		layoutUtils.layoutChildren(this.domNode, this._contentBox,
 		[this._menuBtn, this._leftBtn, this._rightBtn, {domNode: this.scrollNode, layoutAlign: "client"}]);
 		dojo_style.set(this._menuBtn.id, "visibility", "visible");
@@ -282,6 +326,10 @@ dojo_declare("idx.layout.OpenMenuTabController", [dijit_layout_ScrollingTabContr
 		
 		 this._menuBtn.set("label", this.msg.open);
 		 this._menuBtn.set("showLabel", true);
+		 var node = dojo_domconstruct.create(
+		 	"span", {"role": "presentation", "class": "dijitReset dijitInline dijitArrowButtonChar"}, 
+		 	this._menuBtn.iconNode, "after");
+		 node.innerHTML = "&#9660;";
 		
 		 this._buttons = dojo_query("> .tabStripButton", this.domNode).filter(function(btn){ ;}, this);
       
@@ -300,6 +348,7 @@ dojo_declare("idx.layout.OpenMenuTabController", [dijit_layout_ScrollingTabContr
 	 * @see dijit.layout._ScrollingTabControllerButton.loadDropDown
 	 */
 	_loadDropDown: function(callback) {
+		this._aroundNode = this.domNode;
 		var MN = this.declaredClass+"._loadDropDown";	
 		this.inherited("loadDropDown",arguments);
 		

@@ -9,11 +9,15 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/array",
 	"dojo/dom-style",
+	"dojo/dom-class",
+	"dojo/dom-attr",
+	"dojo/on",
+	"dojo/mouse",
 	"dojo/keys",
-	"dijit/_WidgetsInTemplateMixin",
+	"dijit/registry",
 	"dojo/text!./templates/_CheckBoxTreeNode.html",
 	"dijit/Tree"
-], function(declare, array, domStyle, keys, _WidgetsInTemplateMixin, template){
+], function(declare, array, domStyle, domClass, domAttr, on, mouse, keys, registry, template){
 	
 	// module:
 	//		oneui/_CheckBoxTreeNode
@@ -21,7 +25,7 @@ define([
 	//		Single node within a CheckBoxTree. This class is used internally
 	//		by CheckBoxTree and should not be accessed directly.
 	
-	return declare("idx.widget._CheckBoxTreeNode", [dijit._TreeNode, _WidgetsInTemplateMixin], {
+	return declare("idx.widget._CheckBoxTreeNode", [dijit._TreeNode], {
 		// summary:
 		//		Single node within a CheckBoxTree. This class is used internally
 		//		by CheckBoxTree and should not be accessed directly.
@@ -30,86 +34,142 @@ define([
 		
 		templateString: template,
 		
-		
+		_stateLabels: {
+			"False": '&#9633;',
+			"True": '&#8730;',
+			"Mixed": '&#9632;'
+		},
+
+        baseClass: "dijitTreeNode",
+		/**
+		 * 
+		 */
+		states: [false, "mixed", true],
+		/**
+		 * The current state of the TriStateCheckBox
+		 * @type Integer
+		 * @private
+		 */
+		_currentState: 0,
+		//true, false or 'mixed'
+		checked : false,
+		hasMixState: false, 
 		// lastState: Boolean|String
 		//		Last check state of the item
 		lastState: false,
 		
 		// For hover effect for tree node, and focus effect for label
 		cssStateNodes: {
-			labelNode: "dijitTreeLabel"
+			rowNode: "dijitTreeRow"
+		},
+		/**
+		 * 
+		 * @param {Object} bKeyPress: is this event is triggered by keyboard or mouse 
+		 */
+		handleCheckBoxClick: function( bKeyPress ){
+			this._currentState = (this._currentState + 1) %  this.states.length;
+			if ( this._currentState == 1 && !this.hasMixState )
+				this._currentState = (this._currentState + 1) %  this.states.length;
+			
+			var oldState = this._currentState;
+			this._currentState = oldState;
+			
+			var checked = this.states[this._currentState];
+
+			this.updateState(checked);
+			
+			this.tree.onNodeStateChange(this, checked);
+			
+			// call dnd selected item
+			if ( this.tree && this.tree.dndController)
+				this.tree.dndController._onNodeStateChange(this, checked);
+
+			this.tree.focusNode(this);
+			//
+			// Space key do not need to change the Hover state
+			//
+			if ( !bKeyPress ){
+				domClass.remove(this.checkboxNode, "idxOneuiTriStateCheckBoxCheckedHover");
+				domClass.remove(this.checkboxNode, "idxOneuiTriStateCheckBoxHover");
+				domClass.remove(this.checkboxNode, "idxOneuiTriStateCheckBoxMixedHover");
+				if(checked === true){
+					//domClass.add(this.checkboxNode, "idxOneuiTriStateCheckBoxCheckedHover");
+				}else if (checked === false){
+					//domClass.add(this.checkboxNode, "idxOneuiTriStateCheckBoxHover");
+				}
+				else if ( checked === 'mixed'){
+					//domClass.add(this.checkboxNode, "idxOneuiTriStateCheckBoxMixedHover");
+				}
+			}
+			
 		},
 		
 		postCreate: function(){
-			domStyle.set(this.checkboxNode.iconNode, {
-				"display": "none"
-			});
+
 			this.set("lastState", false);
-			this.connect(this.labelNode, "onkeypress", "_labelKeyPressHandler");
-			this.checkboxNode._handleOnChange = dojo.hitch(this.checkboxNode, function(newValue, priorityChange){
-				if(this._lastValueReported == undefined && (priorityChange === null || !this._onChangeActive)){
-					this._resetValue = this._lastValueReported = newValue;
+			this.connect(this.focusNode, "onkeydown", "_labelKeyDownHandler");
+					
+			// add event handler to checkboxNode
+			// replace of the TriStateCheckBox widget
+			var self = this;
+			on(this.checkboxNode, mouse.enter, function(event){
+				var value = self.getChecked(); 
+				if(value === true){
+					domClass.add(this, "idxOneuiTriStateCheckBoxCheckedHover");
+				}else if (value === false){
+					domClass.add(this, "idxOneuiTriStateCheckBoxHover");
 				}
-				this._pendingOnChange = this._pendingOnChange
-					|| (typeof newValue != typeof this._lastValueReported)
-					|| (this.compare(newValue, this._lastValueReported) != 0);
-				if((this.intermediateChanges || priorityChange || priorityChange === undefined) && this._pendingOnChange){
-					this._lastValueReported = newValue;
-					this._pendingOnChange = false;
-					this.onChange(newValue);
+				else if ( value === 'mixed'){
+					domClass.add(this, "idxOneuiTriStateCheckBoxMixedHover");
 				}
 			});
-			this.connect(this.checkboxNode, "onClick", function(){
-				var checked = this.checkboxNode.get("checked");
-				this.updateState(checked);
-				this.tree.focusNode(this);
+			on(this.checkboxNode, mouse.leave, function(event){
+				domClass.remove(this, "idxOneuiTriStateCheckBoxCheckedHover");
+				domClass.remove(this, "idxOneuiTriStateCheckBoxHover");
+				domClass.remove(this, "idxOneuiTriStateCheckBoxMixedHover");
 			});
-			this.connect(this.checkboxNode, "onChange", function(){
-				this._onNodeStateChange(this.checkboxNode.get("checked"));
-				this.tree._itemStatus[this.tree.model.getIdentity(this.item)] = this.checkboxNode.get("checked");
-			});
-			// add Label Content for TriCheckBox
-			this.checkboxNode.compLabelNode.innerHTML = this.labelNode.innerHTML;
+			
 		},
 		
 		updateState: function(/*Boolean|String*/ value){
 			// Update the check state for the current node, parent nodes and
 			// children nodes.
 			if(value == undefined){
-				value = this.checkboxNode.get("checked");
+				value = this.getChecked();
 			}
-			this.checkboxNode.set("checked", value);
+			else
+				this.setChecked(value);
+			
 			this.set("lastState", value);
 			this.updateChildren();
 			this.updateParent();
-			if(value === true){
-				this.setSelected(true);
-			}else{
-				this.setSelected(false);
-			}
+			this.setSelected(value);
+			
 		},
 		
 		updateChildren: function(){
+
 			// summmary:
 			//		Deal with children
 			var children = this.getChildren();
 			if(children && children.length > 0){
-				if(this.checkboxNode.checked == true){
+				if(this.checked == true){
 					//Select all children
 					array.forEach(children, function(child, idx){
-						child.checkboxNode.set("checked", true);
+						child.setChecked(true);
 						child.updateChildren();
 					});
-				}else if(this.checkboxNode.checked == false){
+				}else if(this.checked == false){
 					//Deselect all children
 					array.forEach(children, function(child, idx){
-						child.checkboxNode.set("checked", false);
+						child.setChecked(false);
 						child.updateChildren();
 					});
 				}else{
 					// Resume all children state
 					array.forEach(children, function(child, idx){
-						child.checkboxNode.set("checked", child.get("lastState"));
+						var lastState =  child.get("lastState");
+						child.setChecked(lastState);
 						child.updateChildren();
 					});
 				}
@@ -120,13 +180,14 @@ define([
 					self.tree.model.getChildren(item, function(items){
 						// Loop the items
 						for(var i = 0; i < items.length; i++){
-							self.tree._itemStatus[self.tree.model.getIdentity(items[i])] = self.checkboxNode.checked;
+							self.tree._itemStatus[self.tree.model.getIdentity(items[i])] = self.checked;
 							updateChildrenStatus(items[i]);
 						}
 					});
 				}
 				updateChildrenStatus(self.item);
 			}
+			
 		},
 		
 		updateParent: function(){
@@ -141,7 +202,9 @@ define([
 				return;
 			}
 		},
-		
+		/**
+		 * Calculate the state of current node according to the children state
+		 */
 		update: function(){
 			// summary:
 			//		Update the state of the node according to its' children's states
@@ -149,7 +212,7 @@ define([
 			var checked = 0;
 			var mixed = 0;
 			for(var i = 0; i < siblings.length; i++){
-				var isChecked = siblings[i].checkboxNode.get("checked");
+				var isChecked = siblings[i].getChecked();
 				siblings[i].set("lastState", isChecked);
 				switch(isChecked){
 					case true: checked++;
@@ -158,41 +221,97 @@ define([
 						break;
 				}
 			}
+			this.hasMixState = false;
 			if(checked > 0 && checked == siblings.length){
-				this.checkboxNode.set("states", [false, true]);
-				this.checkboxNode.set("checked", true);
+				this.setChecked(true);
 			}else if(checked == 0 && mixed == 0){
-				this.checkboxNode.set("states", [false, true]);
-				this.checkboxNode.set("checked", false);
+				this.setChecked(false);
 			}else{
-				this.checkboxNode.set("states", [false, "mixed", true]);
-				this.checkboxNode.set("checked", "mixed");
+				this.hasMixState = true;
+				this.setChecked("mixed");
 			}
-			this.set("lastState", this.checkboxNode.get("checked"));
+			this.set("lastState", this.checked );
 		},
-		
-		_onNodeStateChange: function(/*Boolean*/ checked){
-			this.tree._onNodeStateChange(this, checked);
+		/**
+		 * Public function to get the Checked state of a CheckBoxTreeNode 
+		 */
+		getChecked: function(){
+			return this.checked;
+		},
+		/**
+		 * update the current node checked state and style change
+		 * not change parent and children node state
+		 * @param {Object} Boolean|String value
+		 */
+		setChecked: function(/*Boolean|String*/ value){
+            if ( this.disabled ){
+                return;
+            }
+			var oldValue = this.checked;
+			this.set("checked", value);
+			//domClass.remove(this.checkboxNode, "idxOneuiTriStateCheckBoxChecked");
+			//domClass.remove(this.checkboxNode, "idxOneuiTriStateCheckBoxMixed");
+			this.focusNode.setAttribute("aria-checked", value);
+			if(value === true){
+				this._currentState = 2;
+				//domClass.add(this.checkboxNode, "idxOneuiTriStateCheckBoxChecked");
+			}else if (value === false){
+				this._currentState = 0;
+			}
+			else if ( value === 'mixed'){
+				this._currentState = 1;
+				//domClass.add(this.checkboxNode, "idxOneuiTriStateCheckBoxMixed");
+			}
+			this.tree._itemStatus[this.tree.model.getIdentity(this.item)] = value;
+			// update state for the HC Mode
+			var stateValueStr = value ? (value == "mixed" ? "Mixed" : "True") : "False";
+			this.stateLabelNode.innerHTML = this._stateLabels[stateValueStr];
+			
+			//
+			// Add here for DND drag drop back defect 11616
+			//
+			if (oldValue != value){
+				this.tree._onNodeStateChange(this, value);
+			} 
 		},
 		
 		setSelected: function(/*Boolean*/ selected){
 			// summary:
 			//		A Tree has a (single) currently selected node.
 			//		Mark that this node is/isn't that currently selected node.
-			// description:
+			// description
 			//		In particular, setting a node as selected involves setting tabIndex
 			//		so that when user tabs to the tree, focus will go to that node (only).
-			this.labelNode.setAttribute("aria-selected", selected);
+			//this.focusNode.setAttribute("aria-selected", selected);
 		},
+        /**
+         * Disabled all of the children nodes, this function has no parent function
+         * @param disabled
+         */
+        _setDisabledAttr: function( disabled ){
+            this._set("disabled", disabled);
+            if ( disabled )
+            	domAttr.set( this.rowNode, "aria-disabled", "true");
+            else
+            	domAttr.remove( this.rowNode, "aria-disabled" );
+            var children = this.getChildren();
+            array.forEach(children, function(child, idx){
+                child.set("disabled", disabled);
+            });
+        },
 		
-		_labelKeyPressHandler: function(/*Event*/ evt){
+		getParent: function(){
+			// summary:
+			// Returns the parent widget of this widget.
+			return (this.domNode&&this.domNode.parentNode) ? registry.getEnclosingWidget(this.domNode.parentNode) : null;
+		}, 
+		
+		_labelKeyDownHandler: function(/*Event*/ evt){
 			// summary:
 			//		Handler key press on the label node.
 			var dk = keys;
-			if(evt.keyCode == dk.SPACE || evt.keyCode == dk.ENTER || evt.keyCode === " "){
-				this.checkboxNode.click();
-				var checked = this.checkboxNode.get("checked");
-				this.updateState(checked);
+			if(evt.keyCode == dk.SPACE || evt.keyCode == dk.ENTER ){
+				this.handleCheckBoxClick( true );				
 			}
 		}
 	});

@@ -9,166 +9,247 @@ elem.innerHTML="" + (new Date());
 <p>
 	     	This TitlePane can be configured using the following fields:
 	     	<table>
-	     	<tr><th><b>Title:</b></th><td><div dojoType="dijit.form.TextBox" style="width: 20em;" intermediateChanges="true">
-	     	<script type="dojo/connect" event="startup">
-				var title = idx.util.getParentWidget(this).get("title");
-				var text  = null;
-				if (title instanceof dijit._Widget) {
-					text = title.get("label");
-					if (! idx.string.nullTrim(text)) {
-						title = null;
+	     	<tr><th><b>Title:</b></th><td><div id="title_settings" data-dojo-type="dijit/form/TextBox" 
+				data-dojo-props="style: 'width: 20em;', intermediateChanges: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["dojo/_base/event", "dojo/dom-construct", "idx/util", "idx/string", "dijit/_WidgetBase", "dijit/form/Select", "idx/form/Link"], 
+					function(dEvent, dDomConstruct, iUtil, iString, dWidgetBase, dSelect, iLink) {
+					self._dEvent = dEvent;
+					self._dDomConstruct = dDomConstruct;
+					self._iUtil = iUtil;
+					self._iString = iString;
+					self._dWidgetBase = dWidgetBase;
+					self._dSelect = dSelect;
+					self._iLink = iLink;
+					
+					var title = iUtil.getParentWidget(self).get("title");
+					
+					var text  = null;
+					if (title instanceof dWidgetBase) {
+						text = title.get("label");
+						if (! iString.nullTrim(text)) {
+							title = null;
+						}
+						self._ignoreOnChange = true;
+					} else if (typeof(title) != "string") {
+						text = title.innerHTML;
+						self._ignoreOnChange = true;
+					} else {
+						text = title;
 					}
-					this._ignoreOnChange = true;
-				} else if (typeof(title) != "string") {
-					text = title.innerHTML;
-					this._ignoreOnChange = true;
-				} else {
-					text = title;
-				}
-				if (text) {
-					if (this.value != text) this._ignoreOnChange = true;
-					this.set("value", text);
-				}
+					if (text) {
+						if (self.value != text) self._ignoreOnChange = true;
+						self.set("value", text);
+					}
+				});
+				
 			</script>
-	     	<script type="dojo/connect" event="onChange">
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
 				if (this._ignoreOnChange) {
 					this._ignoreOnChange = false;
 					return;
 				}
 				var textBox  = this;
-				var selectBox = idx.util.getSiblingWidget(this, false, dijit.form.Select);
+				var selectBox = this._iUtil.getSiblingWidget(this, false, this._dSelect);
 
 				var titleType = selectBox.get("value");
 				var text = textBox.get("value");
 				var title = text;
 				switch (titleType) {
 					case "widget":
-						title = new idx.form.Link({label: text, onClick: function(e) {
+						title = new this._iLink({label: text, onClick: function(e) {
 							alert("This is a idx.form.Link widget as the title!"); 
-							dojo.stopEvent(e);
-							}});
+							textBox._dEvent.stop(e);
+						}});
 					break;
 					case "node":
-						title = dojo.create("b");
+						title = this._dDomConstruct.create("b");
 						title.innerHTML = text;
 					break;
 					default:
 						title = text;
 				}
-				idx.util.getParentWidget(this).set("title", title);
-			</script></div>&nbsp;<select dojoType="dijit.form.Select" label="Title Type">
+				this._iUtil.getParentWidget(this).set("title", title);
+			</script></div>&nbsp;<select data-dojo-type="dijit/form/Select" 
+				data-dojo-props="label: 'Title Type', intermediateChanges: true">
 					<option value="text" selected>As Text</option>
 					<option value="node">As HTML DOM Node</option>
 					<option value="widget">As Widget</option>
-					<script type="dojo/connect" event="startup">
-						var currentValue = null;
-						var title = idx.util.getParentWidget(this).get("title");
-						if (title instanceof dijit._Widget) {
-							currentValue = "widget";
-						} else if (typeof(title) == "string") {
-							currentValue = "text";
-						} else {
-							currentValue = "node";
-						}
-						if (currentValue) {
-							if (this.value != currentValue) this._ignoreOnChange = true;
-							this.set("value", currentValue);
-						}
+					<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+						var self = this;
+						require(["idx/util", "dijit/_WidgetBase", "dijit/form/TextBox"], function(iUtil, dWidgetBase, dTextBox) {
+							self._iUtil = iUtil;
+							self._dWidgetBase = dWidgetBase;
+							self._dTextBox = dTextBox;
+							
+							var currentValue = null;
+							var title = iUtil.getParentWidget(self).get("title");
+							if (title instanceof dWidgetBase) {
+								currentValue = "widget";
+							} else if (typeof(title) == "string") {
+								currentValue = "text";
+							} else {
+								currentValue = "node";
+							}
+							if (currentValue) {
+								if (self.value != currentValue) self._ignoreOnChange = true;
+								self.set("value", currentValue);
+							}
+						});
 					</script>
-					<script type="dojo/connect" event="onChange">
+					<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
 						if (this._ignoreOnChange) {
 							this._ignoreOnChange = false;
 							return;
 						}
-						idx.util.getSiblingWidget(this, true, dijit.form.TextBox).onChange();
+						this._iUtil.getSiblingWidget(this, true, this._dTextBox).onChange();
 					</script>
 					</select>
 	     	</td></tr>
-	     	<tr><th><b>Help URL:</b></th><td><div dojoType="dijit.form.TextBox" style="width: 20em;" intermediateChanges="true">
-	     	<script type="dojo/connect" event="startup">
-				this.set("value", idx.util.getParentWidget(this).get("helpURL"));
+	     	<tr><th><b>Help URL:</b></th><td><div id="help_settings" data-dojo-type="dijit/form/TextBox" 
+				data-dojo-props="style: 'width: 20em;', intermediateChanges: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("value", iUtil.getParentWidget(self).get("helpURL"));
+				});
 			</script>
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("helpURL", this.get("value"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("helpURL", this.get("value"));
 			</script></div>
 	     	</td></tr>
-	     	<tr><th><b>Default Action Display Mode:</b></th><td><select dojoType="dijit.form.Select">
+	     	<tr><th><b>Default Action Display Mode:</b></th><td><select data-dojo-type="dijit/form/Select"
+				data-dojo-props="intermediateChanges: true">
 	     		<option value="">Use Default for Toolbar Buttons ("")</option>
 	     		<option value="iconOnly">Icon Only ("iconOnly")</option>
 	     		<option value="labelOnly">Label Only ("labelOnly")</option>
 	     		<option value="iconAndLabel">Icon and Label ("iconAndLabel")</option>
 	     		
-	     	<script type="dojo/connect" event="startup">
-				this.set("value", idx.util.getParentWidget(this).get("defaultActionDisplay"));
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("value", iUtil.getParentWidget(self).get("defaultActionDisplay"));
+				});
 			</script>
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("defaultActionDisplay", this.get("value"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" adata-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("defaultActionDisplay", this.get("value"));
 			</script></select>
 	     	</td></tr>
-	     	<tr><th><b>Closable:</b></th><td><div dojoType="dijit.form.CheckBox" intermediateChanges="true">
-	     	<script type="dojo/connect" event="startup">
-				this.set("checked", idx.util.getParentWidget(this).get("closable"));
+	     	<tr><th><b>Closable:</b></th><td><div id="close_settings" data-dojo-type="dijit/form/CheckBox" 
+				data-dojo-props="intermediateChanges: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("checked", iUtil.getParentWidget(self).get("closable"));
+				});
 			</script>
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("closable", this.get("checked"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("closable", this.get("checked"));
 			</script></div><i>-- Activates/deactivates default "close" button</i>
 	     	</td></tr>
-	     	<tr><th><b>Refreshable:</b></th><td><div dojoType="dijit.form.CheckBox" intermediateChanges="true">
-	     	<script type="dojo/connect" event="startup">
-				this.set("checked", idx.util.getParentWidget(this).get("refreshable"));
+	     	<tr><th><b>Refreshable:</b></th><td><div id="refresh_settings" data-dojo-type="dijit/form/CheckBox" 
+				data-dojo-props="intermediateChanges: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("checked", iUtil.getParentWidget(self).get("refreshable"));
+				});
 			</script>
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("refreshable", this.get("checked"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("refreshable", this.get("checked"));
 			</script></div><i>-- Activates/deactivates default "refresh" button</i>
 	     	</td></tr>
-	     	<tr><th><b>Resizable:</b></th><td><div dojoType="dijit.form.CheckBox" intermediateChanges="true">
-	     	<script type="dojo/connect" event="startup">
-				this.set("checked", idx.util.getParentWidget(this).get("resizable"));
+	     	<tr><th><b>Resizable:</b></th><td><div id="resize_settings" data-dojo-type="dijit/form/CheckBox" 
+				data-dojo-props="intermediateChanges: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("checked", iUtil.getParentWidget(self).get("resizable"));
+				});
 			</script>
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("resizable", this.get("checked"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("resizable", this.get("checked"));
 			</script></div><i>-- Activates/deactivates default "maxRestore" button</i>
 	     	</td></tr>	     	
-	     	<tr><th><b>Auto-Hide Actions:</b></th><td><div dojoType="dijit.form.CheckBox" intermediateChanges="true" checked>
-	     	<script type="dojo/connect" event="startup">
-				this.set("checked", idx.util.getParentWidget(this).get("autoHideActions"));
+	     	<tr><th><b>Auto-Hide Actions:</b></th><td><div data-dojo-type="dijit/form/CheckBox" 
+				data-dojo-props="intermediateChanges: true, checked: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("checked", iUtil.getParentWidget(self).get("autoHideActions"));
+				});
 			</script>
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("autoHideActions", this.get("checked"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("autoHideActions", this.get("checked"));
 			</script></div><i>-- Activates/deactivates automatic hidding of actions until hover</i>
 	     	</td></tr>
-	     	<tr><th><b>Collapsible:</b></th><td><div dojoType="dijit.form.CheckBox" intermediateChanges="true" checked>
-	     	<script type="dojo/connect" event="startup">
-				this.set("checked", idx.util.getParentWidget(this).get("collapsible"));
+	     	<tr><th><b>Collapsible:</b></th><td><div data-dojo-type="dijit/form/CheckBox" 
+				data-dojo-props="intermediateChanges: true, checked: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("checked", iUtil.getParentWidget(self).get("collapsible"));
+				});
 			</script>
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("collapsible", this.get("checked"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("collapsible", this.get("checked"));
 			</script></div><i>-- Activates/deactivates "collapse" control and function</i>
 	     	</td></tr>
-	     	<tr><th><b>Toggleable:</b></th><td><div dojoType="dijit.form.CheckBox" intermediateChanges="true" checked>
-	     	<script type="dojo/connect" event="startup">
-				this.set("checked", idx.util.getParentWidget(this).get("toggleable"));
+	     	<tr><th><b>Toggleable:</b></th><td><div data-dojo-type="dijit/form/CheckBox" 
+				data-dojo-props="intermediateChanges: true, checked: true">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util"], function(iUtil) {
+					self._iUtil = iUtil;
+					self.set("checked", iUtil.getParentWidget(self).get("toggleable"));
+				});
 			</script>	     	
-	     	<script type="dojo/connect" event="onChange">
-				idx.util.getParentWidget(this).set("toggleable", this.get("checked"));
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
+				this._iUtil.getParentWidget(this).set("toggleable", this.get("checked"));
 			</script></div><i>-- Activates/deactivates default "collapse" function only</i>
 	     	</td></tr>
-	     	<tr><th><b>Add Custom Link:</b></th><td><div dojoType="dijit.form.TextBox" style="width: 20em;">
-	     	<script type="dojo/connect" event="onChange">
+	     	<tr><th><b>Add Custom Link:</b></th><td><div id="addlink_settings" data-dojo-type="dijit/form/TextBox" 
+				data-dojo-props="style: 'width: 20em;'">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util", "idx/string", "idx/form/Link", "dojo/dom-style"], function(iUtil, iString, iLink, dDomStyle) {
+					self._iUtil = iUtil;
+					self._iString = iString;
+					self._iLink = iLink;
+					self._dDomStyle = dDomStyle;
+				});
+			</script>
+	     	<script type="dojo/aspect" data-dojo-event="onChange" data-dojo-advice="after">
 				var label = this.get("value");
 				this.set("value", "");
-				var linkWidget = new idx.form.Link({label: label, region: "titleActions"});
-				dojo.style(linkWidget.domNode, {marginRight: "2px", marginLeft: "2px"});				
-				idx.util.getParentWidget(this).addChild(linkWidget);
+				if (! this._iString.nullTrim(label)) return;
+				var linkWidget = new this._iLink({label: label, region: "titleActions"});
+				this._dDomStyle.set(linkWidget.domNode, {marginRight: "2px", marginLeft: "2px"});				
+				this._iUtil.getParentWidget(this).addChild(linkWidget);
 			</script></div>
 	     	</td></tr>
-	     	<tr><th><b>Remove Custom Links:</b></th><td><div dojoType="dijit.form.Button" label="Remove Links">
-	     	<script type="dojo/connect" event="onClick">
-				var parent   = idx.util.getParentWidget(this);
+	     	<tr><th><b>Remove Custom Links:</b></th><td><div data-dojo-type="dijit/form/Button" label="Remove Links">
+	     	<script type="dojo/aspect" data-dojo-event="startup" data-dojo-advice="after">
+				var self = this;
+				require(["idx/util", "idx/form/Link"], function(iUtil, iLink) {
+					self._iUtil = iUtil;
+					self._iLink = iLink;
+				});
+			</script>
+	     	<script type="dojo/aspect" data-dojo-event="onClick" data-dojo-advice="after">
+				var parent   = this._iUtil.getParentWidget(this);
 				var children = parent.getTitleActionChildren();
 				for (var index = 0; index < children.length; index++) {
 					var child = children[index];
-					if (child instanceof idx.form.Link) parent.removeChild(child);
+					if (child instanceof this._iLink) parent.removeChild(child);
 				}
 			</script></div>
 	     	</td></tr>

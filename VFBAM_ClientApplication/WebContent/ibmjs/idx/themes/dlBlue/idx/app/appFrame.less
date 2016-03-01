@@ -1,0 +1,103 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+@import "../../dijit/variables";
+.@{theme-name} {
+	div.idxAppFrame {
+	    width: 100%;
+	    height: 100%;
+	    padding: 0px;
+	    margin: 0px;
+	    overflow: hidden;
+	}
+	
+	div.idxAppFrameHeader {
+    	overflow: hidden;
+    	position: absolute;
+    	height: 38px;
+    	border: none;
+    	padding: 0px;
+    	background-color: @header-background-color;
+		font-size: 13px;
+	}
+
+	div.idxAppFrameFooter {
+		overflow: hidden;
+    	position: absolute;
+    	height: 0px;
+    	padding: 0px;
+    	margin: 0px;
+    	border: none;
+    	background: none;
+	}
+	
+	div.idxAppFrameLeft {
+    	overflow: hidden;
+		position: absolute;
+    	width: 0px;
+    	padding: 0px;
+    	margin: 0px;
+    	border: none;
+    	background: none;
+	}
+
+	div.idxAppFrameRight {
+		overflow: hidden;
+    	position: absolute;
+    	width: 0px;
+    	padding: 0px;
+    	margin: 0px;
+    	border: none;
+    	background: none;
+	}
+	div.idxAppFrameCenter {
+    	overflow: hidden;
+    	position: absolute;
+	}
+	div.idxAppFrameMarquee {
+    	overflow: hidden;
+    	float: left;
+    	position: absolute;
+    	background: none;
+    	left: 30px;
+    	right: 0px;
+    	top: 0px;
+    	bottom: 0px;
+    	padding: 0px;
+    	color: @header-default-font-color;
+	}
+	div.idxAppFrameBody {
+    	overflow: hidden;
+    	padding: 0px;
+    	position: absolute;
+    	background: none;
+    	left: 0px;
+    	right: 0px;
+    	top: 0px;
+    	bottom: 0px;
+	}
+}
+
+.@{theme-name}.dijit_a11y {
+	div.idxAppFrameCenter {
+    	border: 1px solid black;
+	}
+	div.idxAppFrameHeader {
+    	border-top: 1px solid black;
+    	border-left: 1px solid black;
+    	border-right: 1px solid black;
+	}
+	div.idxAppFrameFooter {
+    	border-bottom: 1px solid black;
+    	border-left: 1px solid black;
+    	border-right: 1px solid black;
+	}
+	div.idxAppFrameLeft {
+    	border-bottom: 1px solid black;
+    	border-left: 1px solid black;
+    	border-top: 1px solid black;
+	}
+	div.idxAppFrameRight {
+    	border-bottom: 1px solid black;
+    	border-right: 1px solid black;
+    	border-top: 1px solid black;
+	}
+}

@@ -1,0 +1,37 @@
+define({     
+//begin v1.x content
+	closeLabel: "Tutup",
+	configureLabel: "Konfigurasikan",
+	editLabel: "Ubah",
+	filterLabel: "Filter",
+	clearFilterLabel: "Hapus",
+	helpLabel: "Bantuan",
+	infoLabel: "Info",
+	minimizeLabel: "Kecilkan",
+	maximizeLabel: "Besarkan",
+	printLabel: "Cetak",
+	refreshLabel: "Segarkan",
+	restoreLabel: "Pulihkan",
+	nextPageLabel: "Berikutnya",
+	previousPageLabel: "Sebelumnya",
+	lastPageLabel: "Terakhir",
+	firstPageLabel: "Pertama",
+	closeTip: "Tutup",
+	configureTip: "Konfigurasikan",
+	editTip: "Ubah",
+	filterTip: "Filter",
+	clearFilterTip: "Hapus Filter",
+	helpTip: "Dapatkan Bantuan",
+	infoTip: "Dapatkan Informasi",
+	minimizeTip: "Kecilkan",
+	maximizeTip: "Besarkan",
+	printTip: "Cetak",
+	refreshTip: "Segarkan",
+	restoreTip: "Pulihkan",
+	nextPageTip: "Halaman Berikutnya",
+	previousPageTip: "Halaman Sebelumnya",
+	lastPageTip: "Halaman Terakhir",
+	firstPageTip: "Halaman Pertama"
+//end v1.x content
+});
+

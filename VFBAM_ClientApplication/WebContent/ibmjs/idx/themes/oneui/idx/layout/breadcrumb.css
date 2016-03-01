@@ -15,7 +15,7 @@
 }
 
 .oneui.dijit_a11y .idxBreadcrumbController,
-.dijit_a11y.oneui .idxBreadcrumbController {
+.dijit_a11y .oneui .idxBreadcrumbController {
 	height: 22px;
 }
 
@@ -48,6 +48,14 @@
 	vertical-align: bottom;	
 	white-space: nowrap;
 	background: url(images/leftNavArrows.png) 0 no-repeat;	
+}
+.oneui .idxBreadcrumbSeparator .idxBreadcrumbSeparatorInner{
+	display: none;
+}
+.oneui.dijit_a11y .idxBreadcrumbSeparator .idxBreadcrumbSeparatorInner,
+.dijit_a11y .oneui .idxBreadcrumbSeparator .idxBreadcrumbSeparatorInner{
+	display: inline;
+	vertical-align: middle;
 }
 
 .dijitRtl .oneui .idxBreadcrumbSeparator 

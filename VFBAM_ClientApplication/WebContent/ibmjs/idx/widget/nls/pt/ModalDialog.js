@@ -10,12 +10,14 @@ define({
 	Error: "Erro",
 	Warning: "Aviso",
 	Information: "Informações",
-	Success: "Êxito",
+	Success: "Sucesso",
 	Confirmation: "Confirmação",
 	Question: "Questão",
+	Progress: "Progresso",
 	closeButtonLabel: "Fechar",
 	cancelButtonLabel: "Cancelar",
 	executeButtonLabel: "OK",
 	checked: "Não perguntar novamente"
 //end v1.x content
 });
+

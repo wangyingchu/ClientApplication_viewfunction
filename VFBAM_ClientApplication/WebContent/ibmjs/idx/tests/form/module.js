@@ -10,6 +10,7 @@ try{
 	//	doh.registerUrl("idx.tests.form.robot.test_Link", dojo.moduleUrl("idx", "tests/form/robot/test_Link.html"+userArgs), 999999);
 
 	doh.registerUrl("idx.tests.form.test_CheckBox", dojo.moduleUrl("idx","tests/form/test_CheckBox.html"+userArgs));
+	doh.registerUrl("idx.tests.form.test_CheckBoxBidi", dojo.moduleUrl("idx","tests/form/test_CheckBoxBidi.html"+userArgs));
 	doh.registerUrl("idx.tests.form.test_CheckBoxList", dojo.moduleUrl("idx","tests/form/test_CheckBoxList.html"+userArgs));
 	doh.registerUrl("idx.tests.form.test_CheckBoxSelect", dojo.moduleUrl("idx","tests/form/test_CheckBoxSelect.html"+userArgs));
 	doh.registerUrl("idx.tests.form.test_ComboBox", dojo.moduleUrl("idx","tests/form/test_ComboBox.html"+userArgs));

@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "共享",
+	actionSettings: "设置",
 	actionHelp: "帮助",
 	searchEntry: "搜索",
-	searchSubmit: "搜索"
+	searchSubmit: "搜索",
+	primarySearchLabelSuffix: "主要搜索",
+	secondarySearchLabelSuffix: "辅助搜索",
+	homeButton: "主页"
 //end v1.x content
 });
+

@@ -12,12 +12,13 @@ define([
 	"dojo/dom-class",
 	"dojo/dom-attr",
 	"dojo/dom-construct",
+	"dojo/dom-style",
 	"dijit/registry",
 	"dijit/layout/BorderContainer",
 	"dijit/layout/ContentPane",
 	"dijit/_Widget",
 	"idx/layout/ToggleSplitter"
-], function(declare, array, lang, domClass, domAttr, domConstruct, registry, BorderContainer, ContentPane, _Widget){
+], function(declare, array, lang, domClass, domAttr, domConstruct, domStyle, registry, BorderContainer, ContentPane, _Widget){
 	var iLayout = lang.getObject("idx.oneui.layout", true); // for IDX 1.2 naming compatibility
 	
 	/**
@@ -75,7 +76,7 @@ define([
 	&lt;!-- Footer end --&gt;
 &lt;/div&gt;
 	*/ 
-	return iLayout.HighLevelTemplate = declare("idx.app.HighLevelTemplate", [BorderContainer], {
+	iLayout.HighLevelTemplate = declare("idx.app.HighLevelTemplate", [BorderContainer], {
 	/**@lends idx.app.HighLevelTemplate.prototype*/ 
 		gutters: false,
 		/**
@@ -105,20 +106,26 @@ define([
 				}
 			}		
 		},
-				
+		
 		startup: function(){
 			if(this._started){ return; }
-
-			// make sure there are top&center for the layout widget.
-			var topRegion, centerRegion;
 			
-			array.some(this.getChildren(), function(child){
+			
+			// make sure there are top&center for the layout widget.
+			var topRegion, centerRegion, domNode  = this.domNode;
+			
+			array.forEach(this.getChildren(), function(child){
 				if(child && child.region == "top"){
-					topRegion = child;
+					// CHANGE BY ROCK: Only one top content is accepted in HLT by now.
+					if(child.declaredClass == "idx.app.Header"){
+						topRegion = child;
+						domStyle.set(domNode, "minWidth", "980px");
+					}else{
+						child.destroyRecursive && child.destroyRecursive();
+					}
 				}else if(child && child.region == "center"){
 					centerRegion = child;
 				}
-				if(topRegion && centerRegion){ return true; }
 			});
 			
 			if(!topRegion){
@@ -143,7 +150,6 @@ define([
 		
 		_setupChild: function(/*dijit._Widget*/ child){
 			// Override _LayoutWidget._setupChild().
-	
 			var region = child.region;
 			if(region){
 				dijit.layout._LayoutWidget.prototype._setupChild.apply(this, arguments);
@@ -181,7 +187,5 @@ define([
 		}
 	});
 	
-	lang.extend(_Widget, {
-		gutter: false
-	});
+	return iLayout.HighLevelTemplate;
 });

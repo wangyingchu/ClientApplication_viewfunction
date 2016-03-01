@@ -1,0 +1,134 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxSliderWrapH .dijitSliderButtonContainerH {
+  padding: 1px 5px;
+}
+.dlBlue .idxSliderWrapH .dijitSliderDecrementIconH,
+.dlBlue .idxSliderWrapH .dijitSliderIncrementIconH {
+  background-color: #6f7076;
+  border: 1px solid #6f7076;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  height: 18px;
+  width: 12px;
+  background: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderDecrementIconH,
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderIncrementIconH {
+  background-color: #cdced2;
+  border: solid 1px #cdced2;
+  background: url("../../dijit/form/images/arrows_white.png");
+}
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderDecrementIconH {
+  background-position: -175px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSliderDisabled .dijitSliderIncrementIconH {
+  background-position: -125px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSlider .dijitSliderProgressBarH,
+.dlBlue .idxSliderWrapH .dijitSlider .dijitSliderLeftBumper {
+  background-image: none;
+}
+.dlBlue .idxSliderWrapH .dijitSliderDecrementIconH {
+  background-position: -77px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSliderIncrementIconH {
+  background-position: -26px 53%;
+}
+.dlBlue .idxSliderWrapH .dijitSliderBar {
+  height: 10px;
+}
+.dlBlue .idxSliderWrapH .dijitSliderFocused .dijitSliderBar {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.dlBlue .idxSliderWrapV .dijitSliderButtonContainerV {
+  padding: 5px 1px;
+}
+.dlBlue .idxSliderWrapV .dijitSliderDecrementIconV,
+.dlBlue .idxSliderWrapV .dijitSliderIncrementIconV {
+  background-color: #6f7076;
+  border: 1px solid #6f7076;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  height: 12px;
+  width: 16px;
+  background: url("../../dijit/form/images/buttonArrows.png");
+}
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderDecrementIconV,
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderIncrementIconV {
+  background-color: #cdced2;
+  border: solid 1px #cdced2;
+  background: url("../../dijit/form/images/arrows_white.png");
+}
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderDecrementIconV {
+  background-position: -151px 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSliderDisabled .dijitSliderIncrementIconV {
+  background-position: -100px 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSlider .dijitSliderProgressBarV,
+.dlBlue .idxSliderWrapV .dijitSlider .dijitSliderBottomBumper {
+  background-image: none;
+}
+.dlBlue .idxSliderWrapV .dijitSliderDecrementIconV {
+  background-position: -51px 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSliderIncrementIconV {
+  background-position: 0 53%;
+}
+.dlBlue .idxSliderWrapV .dijitSliderBar {
+  width: 10px;
+}
+.dlBlue .idxSliderWrapV .dijitSliderFocused .dijitSliderBar {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.dlBlue .idxSliderWrapH .dijitValidationContainer,
+.dlBlue .idxSliderWrapV .dijitValidationContainer {
+  height: 15px;
+}
+.dlBlue .idxComposite.idxSliderWrapH .dijitValidationContainer,
+.dlBlue .idxComposite.idxSliderWrapV .dijitValidationContainer {
+  margin: 0 5px;
+}
+.dlBlue .idxSliderWrapH .idxLabel,
+.dlBlue .idxSliderWrapV .idxLabel {
+  vertical-align: top;
+  padding-top: 3px;
+}
+.dlBlue .idxSliderWrapV {
+  position: relative;
+}
+.dlBlue .idxSliderWrapV .dijitValidationContainer {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+}
+.dj_ie .dlBlue .idxSliderWrapV .dijitValidationContainer,
+.dj_gecko .dlBlue .idxSliderWrapV .dijitValidationContainer {
+  right: 13px;
+}
+.dj_ie .dlBlue .idxSliderWrapV .dijitSliderV .dijitSliderDecorationV {
+  height: 100% !important;
+}
+.dj_webkit .dlBlue .idxSliderWrapV .dijitSliderV .dijitSliderBarContainerV {
+  height: 101%;
+}
+.dijitRtl .dlBlue .idxSliderWrapV .dijitValidationContainer {
+  right: auto;
+  left: 13px;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSlider .dijitSliderDecrementIconH {
+  background-position: -26px 53%;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSlider .dijitSliderIncrementIconH {
+  background-position: -77px 53%;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSliderDisabled .dijitSliderDecrementIconH {
+  background-position: -125px 53%;
+}
+.dijitRtl .dlBlue .idxComposite .dijitSliderDisabled .dijitSliderIncrementIconH {
+  background-position: -175px 53%;
+}

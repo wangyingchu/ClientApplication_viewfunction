@@ -1,0 +1,84 @@
+/* Select
+ * 
+ * Styling Select mainly includes:
+ * 
+ * 1. Containers
+ * 		.dijitSelect - for border, background-color
+ * 		.dijitButtonContents - for border
+ *
+ * 2. Arrow
+ * 		.dijitArrowButton - for border, padding and background-color|image
+ * 		.dijitArrowButtonInner - for border, background-color|image, display and width|height
+ * 
+ * 3. Menu
+ * 		.dijitSelectMenu .* - for border, padding
+ * 
+ * 4. Various states
+ * 		.dijitSelectHover|.dijitSelectFocused|.dijitSelectDisabled .* - for border, padding and background-color|image 
+ */
+/* normal status */
+.dlBlue {
+  /* hover status */
+  /*  Not used in this theme  
+.dijitSelectHover .dijitArrowButton .dijitArrowButtonInner {
+	background-position:-70px 53%;
+} */
+  /* focused status */
+  /* Background change only for this theme
+.dijitSelectFocused .dijitArrowButton .dijitArrowButtonInner {
+	background-position:-70px 53%;
+}*/
+  /* disable status */
+  /* Dropdown menu style for select */
+}
+.dlBlue .dijitSelect .dijitButtonNode {
+  border: 0;
+}
+.dlBlue .dijitSelect .dijitArrowButtonContainer {
+  border: 1px solid transparent;
+}
+.dlBlue .dijitSelect .dijitArrowButton {
+  padding: 0;
+  background-color: #267bac;
+}
+.dlBlue .dijitSelect .dijitArrowButton .dijitArrowButtonInner {
+  height: 16px;
+}
+.dlBlue .dijitSelectHover {
+  background-color: #ffffff;
+  background-repeat: repeat-x;
+}
+.dlBlue .dijitSelectHover .dijitArrowButton {
+  background-color: #66a2c4;
+}
+.dlBlue .dijitSelectFocused .dijitArrowButton {
+  background-color: #003f69;
+}
+.dlBlue .dijitSelectFocused .dijitArrowButton {
+  border: none;
+  padding: 1px;
+}
+.dlBlue .dijitSelectDisabled {
+  border-color: #cdced2;
+  background-color: #cdced2;
+  background-image: none;
+  color: #4c4d53;
+}
+.dlBlue .dijitSelectDisabled .dijitButtonNode {
+  background-color: #cdced2;
+}
+.dlBlue .dijitSelectDisabled .dijitArrowButton .dijitArrowButtonInner {
+  background-position: -151px 53%;
+}
+.dlBlue .dijitSelectMenu td.dijitMenuItemIconCell,
+.dlBlue .dijitSelectMenu td.dijitMenuArrowCell {
+  /* so that arrow and icon cells from MenuItem are not displayed */
+  display: none;
+}
+.dlBlue .dijitSelectMenu td.dijitMenuItemLabel {
+  /* line up menu text with text in select box (in LTR and RTL modes) */
+  padding: 6px 10px;
+}
+.dlBlue .dijitSelectMenu .dijitMenuSeparatorTop {
+  border-bottom: 1px solid #008abf;
+}

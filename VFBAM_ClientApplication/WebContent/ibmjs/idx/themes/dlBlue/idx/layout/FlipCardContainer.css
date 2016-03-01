@@ -1,0 +1,86 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+/************ Main Container ************/
+.dlBlue .idxFlipCardContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 56px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 900;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 44px;
+  background-color: #0A7AA9;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader .idxFlipCardHeaderTitle {
+  margin: 0;
+  border: none;
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+  box-shadow: none;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  display: inline-block;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader .idxFlipCardHeaderSpanTitle {
+  display: none;
+  z-index: 2;
+  white-space: normal;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader .idxFlipCardHeaderButton {
+  float: left;
+  cursor: pointer;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader .idxFlipCardHeaderButton .dijitButtonNode {
+  padding: 0;
+  margin: 0;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader .navToggleIcon {
+  background-image: url("images/nav_toggle.png");
+  height: 54px;
+  width: 54px;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader .dijitButton {
+  margin: 0;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardHeader .dijitButton .dijitButtonNode {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+}
+.dlBlue .idxFlipCardContainer .idxFlipCardReservedContent {
+  display: none;
+}
+.dlBlue .idxFlipCardContainer .centerPaneContainer {
+  padding: 0;
+}
+.dlBlue .idxFlipCardContainer.css3AnimationsDisabled {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+.dlBlue .idxFlipCardContainer.css3AnimationsDisabled .centerGridContainer.centerGridFlipOut {
+  display: none;
+}
+.dlBlue .idxFlipCardContainer.css3AnimationsDisabled .centerGridContainer.centerGridFlipOutLeft {
+  display: none;
+}

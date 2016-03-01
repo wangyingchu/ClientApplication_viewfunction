@@ -1,0 +1,166 @@
+/*
+ * Licensed Materials - Property of IBM
+ * 5724-Q36
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or 
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+/* Drop down button */
+.claro .linkWithPopupDropDownButton {
+	color: #464646;
+	position: relative;
+	vertical-align: top;
+}
+
+.claro .linkWithPopup .dijitDropDownButton {
+	padding:0;
+	background: transparent;
+	margin:0;	
+}
+
+.claro .linkWithPopup .dijitButtonNode {
+    padding:0;
+    background: transparent;
+    border:0;
+    vertical-align: top;
+}
+
+.claro .linkWithPopup .dijitButtonContents {
+    vertical-align: top;
+}
+
+.claro .linkWithPopup .dijitDropDownButtonHover {
+	padding:0;
+	background: transparent;
+	margin:0;	
+	border: 0;
+}
+
+.claro .linkWithPopup .dijitDropDownButtonHover .dijitButtonNode, 
+.claro .linkWithPopup .dijitDropDownButtonActive .dijitButtonNode {
+	padding:0;
+	background: transparent;
+	border:0;
+}
+
+.claro .linkWithPopup .dijitDropDownButton .dijitButtonNode {
+	border:0;
+	background: transparent;
+	padding:0;
+	text-align: left;
+	box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+.claro .linkWithPopup .dijitDropDownButton .dijitArrowButtonInner {
+	width:0;
+	height: 0;
+	margin:0;
+}
+
+.claro .linkWithPopup .dijitDropDownButton .dijitButtonText {
+	font-size: 11px;
+	color: #4B6A8C;
+	padding:0;
+	margin-left: 0 !important;
+    text-decoration: underline;
+    vertical-align: top;
+}
+
+.claro .linkWithPopup .dijitDropDownButtonDisabled  .dijitButtonText {
+    color: #464646;
+    text-decoration: none;
+}
+
+.claro .linkWithPopup .dijitDropDownButtonHover .dijitButtonText {
+	text-decoration: underline;
+}
+
+
+/* Tooltip dialog */
+.claro .linkWithPopupDialog {
+	padding-top:8px;
+}
+
+.claro .linkWithPopupDialog .linkWithPopupDialogMinSize {
+	width: 100px; 
+	height: 0px;
+}
+
+.claro .linkWithPopupDialog .linkWithPopupTitle {
+	margin-right: 20px;
+}
+
+.claro .linkWithPopupDialog .dijitTooltipContents {
+	padding:6px;
+	font-size: 11px;
+	color: #464646;
+	background: #f8fafa url("claro/linkWithPopup_background.png") bottom repeat-x;
+}
+
+.claro .linkWithPopupDialog .linkWithPopupToolbarButtons {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    width: 20px; 
+    height: 10px;
+}
+
+.claro .linkWithPopupDialog .linkWithPopupToolbarButtons span {
+    line-height: 7px;
+}
+
+.claro .linkWithPopupDialog .linkWithPopupClose .dijitButtonNode {
+	background: none;
+	border: none;
+	padding: 0px;
+	float: right;
+}
+
+.claro .linkWithPopupDialog .dijitTooltipContainer {
+	padding:0;
+	border: 4px solid #738394;
+}
+
+/* Note for the following tooltip placements there is no space character between ".linkWithPopupDialog.dijitTooltipXYZ" in the declaration
+meaning that the element must have both linkWithPopupDialog and dijitTooltipXYZ specified.  If there were a space between them it would become 
+a parent child match */
+.claro .linkWithPopupDialog.dijitTooltipAbove .dijitTooltipConnector {
+	background: url("claro/linkWithPopup_connectorAbove.png");
+	height:8px;
+	width:15px;
+	left: 25px;
+	position: relative;
+	top: 0px;
+}
+.dj_ie .claro .linkWithPopupDialog.dijitTooltipAbove .dijitTooltipConnector {
+	background: url("claro/linkWithPopup_connectorAbove.png");
+	height:8px;
+	width:15px;
+	left: 25px;
+	position: relative;
+	top: 0px;
+}
+.claro .linkWithPopupDialog.dijitTooltipBelow .dijitTooltipConnector {
+	background: url("claro/linkWithPopup_connectorBelow.png");
+	height:8px;
+	width:15px;
+	left: 25px;
+}
+.dj_ie .claro .linkWithPopupDialog.dijitTooltipBelow .dijitTooltipConnector {
+	background: url("claro/linkWithPopup_connectorBelow.png");
+	height:8px;
+	width:15px;
+	left: 25px;
+}
+
+/*
+ * WLN Temporarily move to this css class, need to put back to global place
+ * Button / command icons (in as few files as possible to avoid multiple client/server trips when loading images)
+ */
+.claro .iconClose {
+    background: url('../../../idx/layout/resources/claro/buttons_all.png') -24px 0px no-repeat;
+    width: 8px;
+    height: 7px;
+}

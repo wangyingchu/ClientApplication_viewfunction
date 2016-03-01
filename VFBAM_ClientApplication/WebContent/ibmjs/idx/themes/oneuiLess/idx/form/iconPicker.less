@@ -1,0 +1,59 @@
+.idxCalendarIcon {
+	.image(@imageRoot, "datepicker16.png");
+  margin-top: 3px;
+  cursor: pointer;
+}
+.idxTimeIcon {
+	.image(@imageRoot, "time_picker16.png");
+  margin-top: 3px;
+  cursor: pointer;
+}
+.idxIconPicker {
+  padding: 0px 20px 0px 1px;
+  width: 7em;
+  position: relative;
+}
+.dijitRtl & .idxIconPicker {
+  padding-right: 1px;
+  padding-left: 20px;
+}
+.idxPickerIconLink {
+  vertical-align: top;
+  position: absolute;
+  top: 1px;
+  right: 2px;
+}
+.dijitRtl & .idxPickerIconLink {
+  right: auto;
+  left: 2px;
+}
+.idxPickerIcon {
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+}
+.idxIconPicker .dijitTextBoxDisabledFocused .dijitInputContainer {
+  background-color: @fwLighter !important;
+}
+.idxIconPicker .dijitArrowButton {
+  display: none;
+}
+.idxPickerTextIcon {
+  display: none;
+  visibility: hidden;
+}
+.dijit_a11y & .idxPickerIcon {
+  display: none;
+  visibility: hidden;
+}
+.dijit_a11y & .idxPickerTextIcon {
+  display: block;
+  visibility: visible;
+  width: 16px;
+  height: 16px;
+  text-decoration: none;
+  color: @textStrong;
+  text-align: center;
+  font-size: 125%;
+}

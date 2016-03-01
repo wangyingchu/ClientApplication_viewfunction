@@ -1,0 +1,105 @@
+/* TitlePane and Fieldset
+ * 
+ * Styling TitlePane means styling the TitlePane title and its content container  (dijitTitlePane)
+ * 
+ * TitlePane title:
+ * 1. TitlePane title (default styling): 
+ * 		.dijitTitlePaneTitle - TitlePane's title div style: background-color, border
+ *
+ * 2. hovered TitlePane title (ie, mouse hover on a title bar)
+ * 		.dijitTitlePaneTitleHover - styles when mouse hover on the title div
+ * 
+ * 3. active TitlePane title (ie, mouse down on a title bar)
+ * 		.dijitTitlePaneTitleActive - styles when mouse down on the title div
+ * 
+ * 
+ * TitlePane Content Container:
+ * 1. outer/inner container: 
+ * 		.dijitTitlePaneContentOuter / dijitTitlePaneContentInner - styles for the content outer div
+ */
+
+@import "variables";
+ .@{theme-name} {
+    .dijitTitlePaneTitle {
+        border: 1px solid @border-color;
+        border-bottom: none;
+        padding: 12px 12px;
+        color: @bar-text-color;
+    }
+    
+    .dijitTitlePaneTitle{
+    	a:link{
+    		text-decoration: underline;
+    	}
+    }
+    
+    .dijitTitlePaneTitle.dijitTitlePaneTitleClosed{
+    	border-bottom: 1px solid @border-color;
+    }
+    
+    .dijitFieldset {
+        .border-radius(4px);
+    }
+    .dijitTitlePaneTitleOpen,
+    .dijitTitlePaneTitleClosed,
+    .dijitTitlePaneTitleFixedOpen {
+        background-color: @titlepane-title-background;
+        color: @titlepane-title-color;
+    }
+    .dijitTitlePaneTitleHover {
+        background-color: @titlepane-title-hover-background;
+        color: @titlepane-title-hover-color;
+    }
+    .dijitTitlePaneTitleActive {
+        background-color: @titlepane-title-active-background;
+        color: @titlepane-title-active-color;
+        .dijitTitlePaneTitleOpen{
+        	.dijitArrowNode{
+        		background-position: @arrow-down-white;
+        	}
+        }
+        .dijitTitlePaneTitleOpen .dijitArrowNode,
+	    .dijitFieldsetTitleOpen .dijitArrowNode,
+	    {
+	        background-position: @arrow-down-white;
+	    }
+	    .dijitTitlePaneTitleClosed .dijitArrowNode,
+	    .dijitFieldsetTitleClosed .dijitArrowNode {
+	        background-position: @arrow-right-white;
+	    }
+    }
+
+    .dijitTitlePane .dijitArrowNode,
+    .dijitFieldset .dijitArrowNode {
+        background-image: url(@image-arrow-sprite-color);
+        background-repeat: no-repeat;
+        height: 16px;
+        width: 16px;
+    }
+    .dijitTitlePaneTitleOpen .dijitArrowNode,
+    .dijitFieldsetTitleOpen .dijitArrowNode,
+    {
+        background-position: @arrow-down;
+    }
+    .dijitTitlePaneTitleClosed .dijitArrowNode,
+    .dijitFieldsetTitleClosed .dijitArrowNode {
+        background-position: @arrow-right;
+    }
+    .dijitTitlePaneContentOuter {
+        background: @pane-background-color;
+       border: 1px solid @border-color;
+       border-top: none;
+    }
+    .dijitTitlePaneContentInner {
+        padding: 20px;
+    }
+    .dijitFieldsetContentInner {
+        padding: 4px;
+    }
+    .dijitTitlePaneTextNode,
+    .dijitFieldsetLegendNode {
+        margin-left: 4px;
+        margin-right: 4px;
+        vertical-align: text-top;
+    }
+}

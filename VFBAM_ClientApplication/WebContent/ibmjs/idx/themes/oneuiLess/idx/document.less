@@ -1,0 +1,405 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+
+/* ======= beginning of header font styles ======== */
+
+.idxHeaderContainer {
+	.setBannerText (@bannerType);
+	.textColors(@bannerText);
+	
+	/* =======  .dijitMenuItem is 12px bold; it is a navigation menu label active state in the top banner; header ======== */
+	.dijitMenuBar .dijitMenuItem, 
+	.dijitMenuBar .oneuiMenuHeading { 
+		color: @textSecondary;
+		font-weight: bold;
+		.TextShadow(@shadowAlpha);
+	}
+	
+	/* =======  .dijitMenuItem is 12px bold; it is a navigation menu label hover and selected states in the top banner; header ======== */
+	.dijitMenuBar .idxHeaderNavCurrentPage.dijitMenuItem,
+	.dijitMenuActive .dijitMenuItemHover, 
+	.dijitMenuActive .dijitMenuItemSelected,
+	.dijitMenuPassive .dijitMenuItemHover, 
+	.dijitMenuPassive .dijitMenuItemSelected {
+		color: @textStrong;
+	}
+	
+	/* ======== Product, context and global action Menu list styling ======== */
+	.dijitReset .dijitMenuItemLabel,
+	.dijitReset .oneuiMenuHeadingLabel {
+		.textColors(@fwBackground);
+		color: @textDefault;
+	}
+	
+	.dijitReset.dijitHover .dijitMenuItemLabel,
+	.dijitReset.dijitHover .oneuiMenuHeadingLabel {
+		.textColors(@fwBackground);
+		color: @textDefault;
+	}
+	
+	.dijitPlaceHolder {
+		font-style: normal;
+	}
+	
+	.idxHeaderPrimary {
+	
+		.idxHeaderPrimaryTitle {
+			font-size: 1.08em;
+			color: @textStrong;
+			font-weight: bold;
+			.TextShadow(@shadowAlpha);
+		}
+		
+		/* ======== .idxHeaderPrimary li.idxHeaderSeparator a:active is a character used to render the pipe separator between the global actions ======== */
+		li.idxHeaderSeparator span {
+			color: rgba(0,0,0,.5);
+			font-weight: bold;
+		}
+		/* ======= .idxHeaderPrimary li.idxHeaderUserName is 12px; the style is for the global action user name title in the top banner ; header ======== */
+		.idxHeaderUserName {
+			color: @textSecondary;
+			font-weight: bold;
+			.TextShadow(@shadowAlpha);
+		}
+		
+		.idxHeaderUserName:hover {
+			color: @textStrong;
+			.TextShadow(@shadowAlpha);
+			text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+		}
+		/* ======= .oneui badge is 11px is the badge number for warning - yellow badge box on the top banner menu notifications======== */
+		.idxBadgeError,
+		.idxBadgeWarning,
+		.idxBadgeInformation,
+		.idxBadgeSuccess {
+			display: inline-block;
+			position: relative;
+			top: -0.7em;
+			width: 14px;
+			height: 14px;
+			.BorderRadius(4px);
+			text-align: center;
+			vertical-align: 1px;
+			font-size: 0.92em;
+			text-decoration: none;
+		}
+		
+		.idxBadgeError {
+			background-color: @errorBright;
+			.textColors(@errorBright); 
+			color: @textStrong;
+		}
+		
+		.idxBadgeWarning {
+			background-color: @warningBright;
+			.textColors(@warningBright); 
+			color: @textStrong;
+		}
+		
+		.idxBadgeInformation {
+			background-color: @infoBright;
+			.textColors(@infoBright); 
+			color: @textStrong;
+		}
+		
+		.idxBadgeSuccess {
+			background-color: @successBright;
+			.textColors(@successBright); 
+			color: @textStrong;
+		}
+		.dijitPlaceHolder,
+		.dijitInputInner {
+			color: @textSecondary;
+		}
+	}
+	
+	.idxHeaderSecondary {
+		.textColors(@brand);
+		
+		.idxHeaderSecondaryTitleContainer .idxHeaderSecondaryTitle {
+			font-size: 1.33em;
+			color: @textStrong;
+			font-weight: bold;
+		}
+		.idxHeaderSecondary .idxHeaderSecondaryTitleContainer .idxHeaderSecondarySubtitle {	
+			font-size: 1.17em;
+			color: @textStrong;
+		}
+		.dijitPlaceHolder,
+		.dijitInputInner {
+			color: @textStrong;
+		}
+		.headerSmBreadcrumb a {
+			font-size: 0.92em;
+			text-decoration: none;
+			color: @textStrong !important;
+		}
+		
+		.headerSmBreadcrumb a:link {
+			color: @textStrong; 
+		}
+		
+		.headerSmBreadcrumb a:visited {
+			color: @textStrong; 
+		}
+		
+		.headerSmBreadcrumb a:hover {
+			text-decoration: underline;
+		}
+		
+		.headerSmBreadcrumb a:active {
+			font-weight: bold; 
+		}
+		
+		/* ======= .contextLgBreadcrumb is 14px - this is for the 2nd (context) banner #tbd breadcrumb ======== */
+		.headerLgBreadcrumb a {
+			color: @textStrong;
+			font-size: 1.17em;
+			text-decoration: none;
+		}
+		
+		.headerLgBreadcrumb a:link {
+			color: @textStrong;
+		}
+		
+		.headerLgBreadcrumb a:visited {
+			color: @textStrong;
+		}
+		
+		
+		.headerLgBreadcrumb a:hover {
+			text-decoration: underline;
+		}
+		
+		.headerLgBreadcrumb a:active {
+			font-weight: bold; 
+		}
+	}
+	.idxHeaderSecondaryGray .idxHeaderSecondary {
+			.textColors(@fwLightest);
+			.idxHeaderSecondaryTitleContainer .idxHeaderSecondaryTitle {
+				color: @textStrong;
+				.TextShadow(@shadowAlpha);
+			}
+			.idxHeaderSecondaryTitleContainer .idxHeaderSecondarySubtitle {	
+				color: @textStrong;
+				.TextShadow(@shadowAlpha);
+			}
+			.idxHeaderSecondaryAdditionalContext {
+				color: @textStrong; 
+			}
+			.idxHeaderSecondaryGray .idxHeaderSecondary .dijitPlaceHolder,
+			.idxHeaderSecondaryGray .idxHeaderSecondary .dijitInputInner {
+				color: @textDisabled;
+			}
+		}
+		
+		.idxHeaderSecondaryWhite .idxHeaderSecondary {
+			.textColors(@fwBackground);
+			.idxHeaderSecondary .idxHeaderSecondaryTitleContainer .idxHeaderSecondaryTitle {
+				font-size: 2.17em;
+				font-weight: bold;
+				color: @textDefault;
+			}
+			.idxHeaderSecondaryWhite .idxHeaderSecondary .dijitPlaceHolder,
+			.idxHeaderSecondaryWhite .idxHeaderSecondary .dijitInputInner {
+				color: @textDisabled;
+			}
+		}
+		
+		.idxHeaderSecondaryBlue .idxHeaderSecondary {
+			.textColors(#008abf);
+			.idxHeaderSecondaryAdditionalContext {
+				color: @textStrong; 
+			}
+		}
+}
+
+
+
+/**======== When there is class name with no color description assume this class style apply to the blue context banner tab system =========**/
+.oneuiContentContainer {
+	.textColors(@brand);
+	.dijitTabContainerTop-tabs .dijitTabContent {
+	    font-weight: bold;
+	    color: @textStrong;
+	}
+	.dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+		.textColors(@fwBackground);
+	    color: @textDefault;
+		font-weight: bold;
+	}
+	.dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent {
+	    color: @textStrong;
+		font-weight: bold;
+	}
+	.dijitTabContainerTop-tabs .dijitTabCheckedHover .dijitTabContent {
+		.textColors(@fwBackground);
+	    color: @textDefault;
+		font-weight: bold;
+	}
+	.idxTabSeparator {
+	    text-shadow: none;
+	    color: darken(@brand, 10%);
+	}
+	
+}
+
+.idxHeaderSecondaryGray .oneuiContentContainer {
+		.textColors(@fwLightest);
+		.oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabContent {
+		    color: @textSecondary;
+			font-weight: bold;
+		}
+		.dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+		    color: @textSecondary;
+			font-weight: bold;
+		}
+		.dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent {
+		    color: @textSecondary;
+			font-weight: bold;
+		}
+		.idxTabSeparator {
+		    color: darken(@fwLightest, 10%);
+		}
+	}
+
+
+/* ======= Search for header (product and context banner)======== */
+/*.commonHeaderProductSearch {
+    color: #aaaaaa;
+	font-style: normal;
+}
+.searchHeaderProductSearchEdit {
+    color: #aaaaaa; 
+}
+
+.commonHeaderContextSearch {	
+    color: #ffffff;
+	font-style: normal;
+}
+.commonheaderContextSearchEdit {	
+    color: #ffffff;
+}*/
+
+
+
+/* ======= headerSmBreadcrumb is 11px - this is for the 2nd (context) banner #2 breadcrumb ======== 
+.idxHeaderContainer .idxHeaderSecondary .contextSmBreadcrumb a {
+    font-size: 0.92em;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextSmBreadcrumb a:link {
+    color: #ffffff; 
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextSmBreadcrumb a:visited {
+    color: #ffffff; 
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextSmBreadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextSmBreadcrumb a:active {
+    font-weight: bold; 
+}
+*/
+
+/* ======= .contextLgBreadcrumb is 14px - this is for the 2nd (context) banner #tbd breadcrumb ======== 
+.idxHeaderContainer .idxHeaderSecondary .contextLgBreadcrumb a {
+    color: #ffffff;
+    font-size: 1.17em;
+    text-decoration: none;
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextLgBreadcrumb a:link {
+    color: #ffffff;
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextLgBreadcrumb a:visited {
+    color: #ffffff; 
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextLgBreadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.idxHeaderContainer .idxHeaderSecondary .contextLgBreadcrumb a:active {
+    font-weight: bold; 
+}
+*/
+
+/* ======= end of header font styles ======== */
+
+
+/* ======== Button ======== */
+/*
+.idxHeaderContainer .dijitButton .dijitButtonNode, 
+.idxHeaderContainer .dijitDropDownButton .dijitButtonNode, 
+.idxHeaderContainer .dijitComboButton .dijitButtonNode, 
+.idxHeaderContainer .dijitToggleButton .dijitButtonNode {
+    color: transparent;
+}
+.idxHeaderContainer .dijitButton .dijitButtonNode:hover, 
+.idxHeaderContainer .dijitDropDownButton .dijitButtonNode:hover, 
+.idxHeaderContainer .dijitComboButton .dijitButtonNode:hover, 
+.idxHeaderContainer .dijitToggleButton .dijitButtonNode:hover {
+    color: transparent;
+}
+*/
+
+/* ======== Grid Styles ======== */
+.tableSummary {
+	color:@textDisabled;
+	font-family:@serif;
+	font-style:italic;
+}
+.tableFilterSummary {
+	color:@textDisabled;
+	font-family:@serif;
+	font-style:italic;
+}
+.tableCell {
+	color:@textSecondary;
+}
+.tableCellAccent {
+	color:@textSecondary;
+	font-weight:bold;
+}
+.inputHint {
+	color:@textDisabled;
+}
+.tableHeaderHover {
+	color:@textStrong;
+	font-weight:bold;
+	.TextShadow(@shadowSolid);
+}
+.currentPageRowView {
+	color:@textDefault;
+	font-weight:bold;
+}
+
+/* ======= Grid Styles -  tableColumnHeader is 12px; content area ======== */
+.tableColumnHeader{
+    font-weight: bold;
+    color: @textSecondary;
+	.TextShadow(@shadowSolid);
+}
+
+/* ======= .idxMenuCategory and .idxMenuCategoryItem are for styling menu items and headings in categorized menus. ======== */
+.idxMenuCategory  {
+	font-size: 1.17em;
+	font-weight:bold;
+}
+
+.idxMenuCategoryItem  {
+	font-size: 0.92em;
+}

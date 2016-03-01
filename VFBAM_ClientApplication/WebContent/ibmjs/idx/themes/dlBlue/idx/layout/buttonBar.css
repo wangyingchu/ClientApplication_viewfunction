@@ -1,0 +1,79 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxButtonBar_idxDefaults {
+  background-image: url(../images/blank.gif?directionSensitive=false);
+}
+.dlBlue .idxButtonBar .dijitButton .dijitButtonNode,
+.dlBlue .idxButton Bar .dijitDropDownButton .dijitButtonNode {
+  min-width: 45px;
+}
+.dlBlue .idxButtonBar {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 0px;
+  height: auto;
+}
+.dlBlue .idxButtonBarLeading {
+  height: auto;
+}
+.dlBlue .idxButtonBarTrailing {
+  height: auto;
+}
+.dlBlue .idxButtonBarHidden {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxButtonBarPrimary {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 1px;
+}
+.dlBlue .idxButtonBarSecondary {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 1px;
+}
+.dlBlue .idxButtonBarSpacer {
+  width: 5px;
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+.dlBlue .idxButtonBarSeparator {
+  filter: none;
+  background: none;
+  background-color: #b2bece;
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  vertical-align: middle;
+  margin-left: 9px;
+  margin-right: 9px;
+}
+.dlBlue .idxButtonBarSeparatorHidden {
+  visibility: hidden;
+  display: none;
+}
+.dj_ie7 .dlBlue .idxButtonBarSpacer {
+  display: inline;
+}
+.dj_ie7 .dlBlue .idxButtonBar table.dijitComboButton {
+  vertical-align: bottom;
+}
+.dj_ie7 .dlBlue .idxButtonBarSeparatorHidden {
+  display: none;
+}
+.dj_ie7 .dlBlue .idxButtonBarPrimary,
+.dj_ie7 .dlBlue .idxButtonBarSecondary,
+.dj_ie7 .dlBlue .idxButtonBar,
+.dj_ie7 .dlBlue .idxButtonBarSeparator {
+  display: inline;
+}
+.dlBlue .idxButtonBar .dijitToggleButton,
+.dlBlue .idxButtonBar .dijitButton,
+.dlBlue .idxButtonBar .dijitDropDownButton,
+.dlBlue .idxButtonBar .dijitComboButton {
+  margin: 0px;
+}

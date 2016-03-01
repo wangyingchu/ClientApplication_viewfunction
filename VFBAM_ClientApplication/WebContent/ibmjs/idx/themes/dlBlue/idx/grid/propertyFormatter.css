@@ -1,0 +1,44 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxPropertyFormatter {
+  display: inline-block;
+  vertical-align: middle;
+}
+.dlBlue .idxPropertyFormatterFormat {
+  display: inline;
+}
+.dlBlue .idxPropertyFormatterEdit {
+  display: none;
+  visibility: hidden;
+  vertical-align: middle;
+}
+.dlBlue .idxPropertyFormatter .idxEditController {
+  margin-left: 8px;
+  display: inline-block;
+  visibility: visible;
+  vertical-align: bottom;
+}
+.dlBlue .idxPropertyFormatterNoEditors .idxEditController {
+  margin: 0px 0px 0px 0px;
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxPropertyFormatter.idxPropertyFormatterEditMode {
+  white-space: nowrap;
+}
+.dlBlue .idxPropertyFormatterEditMode .idxPropertyFormatterEdit {
+  display: inline;
+  visibility: visible;
+  white-space: nowrap;
+}
+.dlBlue .idxPropertyFormatterEditMode .idxPropertyFormatterFormat {
+  display: none;
+  visibility: hidden;
+  white-space: nowrap;
+}
+.dj_ie7 .dlBlue .idxPropertyFormatter .idxEditController {
+  display: inline;
+}
+.dijitRtl .dlBlue .idxPropertyFormatter .idxEditController {
+  margin-left: 0px;
+  margin-right: 8px;
+}

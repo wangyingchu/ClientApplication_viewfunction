@@ -16,15 +16,51 @@ define([
 	"dojo/data/util/filter",
 	"dojo/window",
 	"dojo/keys",
+	"dojo/has",
+	"dojo/query", 
 	"dijit/form/ComboBox",
+	"dijit/_WidgetsInTemplateMixin",
 	"idx/widget/HoverHelpTooltip",
 	"./_CssStateMixin",
 	"./_ComboBoxMenu",
 	"./_CompositeMixin",
 	"./_AutoCompleteA11yMixin",
-	"dojo/text!./templates/ComboBox.html"
-], function(declare, lang, win, event, Deferred, domClass, domStyle, filter, winUtils, keys, ComboBox, 
-			HoverHelpTooltip, _CssStateMixin, _ComboBoxMenu,  _CompositeMixin, _AutoCompleteA11yMixin, template){
+	// ====================================================================================================================
+	// ------
+	// Load _TemplatePlugableMixin and PlatformPluginRegistry if on "mobile" or if on desktop, but using the 
+	// platform-plugable API.  Any prior call to PlaformPluginRegistry.setGlobalTargetPlatform() or 
+	// PlatformPluginRegistry.setRegistryDefaultPlatform() sets "platform-plugable" property for dojo/has.
+	// ------
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	// ------
+	// We want to load the desktop template unless we are using the mobile implementation.
+	// ------
+	"idx/has!#idx_form_ComboBox-desktop?dojo/text!./templates/ComboBox.html" 	// desktop widget, load the template
+		+ ":#idx_form_ComboBox-mobile?"											// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/ComboBox.html"						// global desktop platform, load template
+		+ ":#mobile?"															// global mobile platform, don't load
+		+ ":dojo/text!./templates/ComboBox.html", 								// no dojo/has features, load the template
+			
+	// ------
+	// Load the mobile plugin according to build-time/runtime dojo/has features
+	// ------
+	"idx/has!#idx_form_ComboBox-mobile?./plugins/phone/ComboBoxPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_ComboBox-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/phone/ComboBoxPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+
+	// ====================================================================================================================
+], function(declare, lang, win, event, Deferred, domClass, domStyle, filter, winUtils, keys, has, query, ComboBox, 
+			_WidgetsInTemplateMixin, HoverHelpTooltip, _CssStateMixin, _ComboBoxMenu,  _CompositeMixin, _AutoCompleteA11yMixin, 
+			TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
+	
+	var baseClassName = "idx.form.ComboBox";
+	if (has("mobile") || has("platform-plugable")) {
+		baseClassName = baseClassName + "Base";
+	}
+	
 	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	
 	/**
@@ -44,7 +80,7 @@ define([
 	 * @augments idx.form._CompositeMixin
 	 * @augments idx.form._ValidationMixin
 	 */
-	return iForm.ComboBox = declare("idx.form.ComboBox", [ComboBox, _CssStateMixin, _CompositeMixin,_AutoCompleteA11yMixin],
+	iForm.ComboBox = declare(baseClassName, [ComboBox, _CssStateMixin, _CompositeMixin],
 	/**@lends idx.form.ComboBox.prototype*/
 	{
 		// summary:
@@ -56,7 +92,7 @@ define([
 		
 		oneuiBaseClass: "dijitTextBox dijitComboBox",
 		
-		templateString: template,
+		templateString: desktopTemplate,
 		
 		dropDownClass: _ComboBoxMenu,
 		
@@ -64,8 +100,14 @@ define([
 			"_buttonNode": "dijitDownArrowButton"
 		},
 		
+		/**
+		 * 
+		 */
 		postCreate: function(){
+			this.dropDownClass = _ComboBoxMenu;
 			this.inherited(arguments);
+			//Defect 11821, remove the aria-labelledby attribute from the dom node
+			this.domNode.removeAttribute("aria-labelledby");
 			if(this.instantValidate){
 				this.connect(this, "_onFocus", function(){
 					if (this._hasBeenBlurred && (!this._refocusing)) {
@@ -84,6 +126,16 @@ define([
 			}
 			this._resize();
 		},
+		/**
+		 * Defect 11885
+		 * overwrite the method in _CompositeMixin
+		 * @param {Object} v
+		 */
+		_setPlaceHolderAttr: function(){
+			this._placeholder = false;
+			this.inherited(arguments);
+		},
+
 		
 		/**
 		 * Provides a method to return focus to the widget without triggering
@@ -95,13 +147,23 @@ define([
 			this.focus();
 			this._refocusing = false;
 		},
-
+		
+		/**
+		 * Override the method in _HasDropDown.js to move the attribute
+		 * # Defect 9469
+		 */
+		closeDropDown: function(){
+			this.inherited(arguments);
+			this.domNode.removeAttribute("aria-expanded");			
+		},
 		
 		_openResultList: function(/*Object*/ results, /*Object*/ query, /*Object*/ options){
 			// summary:
 			//		Overwrite dijit.form._AutoCompleterMixin._openResultList to focus the selected
 			//		item when open the menu.
-
+			
+			// ie 11 oninput defect for combobox/filteringselect
+			// open dropdown when startup
 			this._fetchHandle = null;
 			if(	this.disabled ||
 				this.readOnly ||
@@ -139,14 +201,19 @@ define([
 	
 			// show our list (only if we have content, else nothing)
 			this._showResultList();
-
+			this.domNode.removeAttribute("aria-expanded");
 			// Focus the selected item
 			if( !this._lastInput && this.focusNode.value ){
 
 				for(var i = 0; i < nodes.length; i++){
 					var item = this.dropDown.items[nodes[i].getAttribute("item")];
 					if(item){
-						var value = this.store.getValue(item, this.searchAttr).toString();
+						var queryOption = {};
+						queryOption[this.searchAttr] = item[this.searchAttr];
+						var value = this.store.query(queryOption);
+						if ( value && value.length > 0)
+							value = value[0][this.searchAttr];
+						
 						if(value == this.displayedValue){
 							this.dropDown._setSelectedAttr(nodes[i]);
 							winUtils.scrollIntoView(this.dropDown.selected);
@@ -243,4 +310,99 @@ define([
 			}
 		}
 	});
+	
+	if ( has("mobile") || has("platform-plugable")) {
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/ComboBox", 
+				{	
+					desktop: "inherited",	// no plugin for desktop, use inherited methods  
+				 	mobile: MobilePlugin	// use the mobile plugin if loaded
+				});
+		var localDropDownClass = _ComboBoxMenu;
+		if (MobilePlugin && MobilePlugin.prototype && MobilePlugin.prototype.dropDownClass){
+			localDropDownClass = MobilePlugin.prototype.dropDownClass;
+		}
+		iForm.ComboBox = declare("idx.form.ComboBox",[iForm.ComboBox, TemplatePlugableMixin, _WidgetsInTemplateMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			templatePath: require.toUrl("idx/form/templates/ComboBox.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			/**
+			 * 
+			 */
+			inProcessInput: false,
+			/**
+			 * 
+			 */
+			postCreate: function(){
+				// set the dropDownClass into property of an instance
+				this.dropDownClass = localDropDownClass;
+				return this.doWithPlatformPlugin(arguments, "postCreate", "postCreate");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			onCloseButtonClick: function(){
+				return this.doWithPlatformPlugin(arguments, "onCloseButtonClick", "onCloseButtonClick");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			onInput: function(){
+				return this.doWithPlatformPlugin(arguments, "onInput", "onInput");
+			},
+			/**
+			 * 
+			 * @param {Object} item
+			 * @param {Object} checked
+			 */
+			onCheckStateChanged: function(item, checked){
+				return this.doWithPlatformPlugin(arguments, "onCheckStateChanged", "onCheckStateChanged",item, checked);
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			loadDropDown: function(){
+				return this.doWithPlatformPlugin(arguments, "loadDropDown", "loadDropDown");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			openDropDown: function(){
+				return this.doWithPlatformPlugin(arguments, "openDropDown", "openDropDown");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			_createDropDown : function(){
+				return this.doWithPlatformPlugin(arguments, "_createDropDown", "_createDropDown");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			closeDropDown:function(){
+				return this.doWithPlatformPlugin(arguments, "closeDropDown", "closeDropDown");
+			},
+			/**
+			 * Stub Plugable method
+			 */
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage",message);
+			},
+			/**
+			 * Stub Plugable method
+			 * @param {Object} helpText
+			 */
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "_setHelpAttr",helpText);
+			}
+		});
+	}
+	
+	return iForm.ComboBox;
 });

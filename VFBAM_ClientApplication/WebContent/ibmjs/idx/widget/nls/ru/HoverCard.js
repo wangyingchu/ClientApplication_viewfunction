@@ -10,3 +10,4 @@ define({
 	moreActionsLabel: "Остальные действия"
 //end v1.x content
 });
+

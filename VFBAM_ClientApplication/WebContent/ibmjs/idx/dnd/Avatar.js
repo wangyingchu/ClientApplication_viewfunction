@@ -74,11 +74,26 @@ dojo.declare("idx.dnd.Avatar", null, {
 	},
 	_generateText: function(){
 		// summary: generates a proper text to reflect copying or moving of items
-		var leafNumber = 0;
-		dojo.forEach(this.manager.nodes, function(node){
-			leafNumber += dojo.query(".dijitLeaf", node).length;
-		})
-		return leafNumber;
+		var manager = this.manager, source = this.manager.source;
+		var selectedNodes = source.getSelectedTreeNodes();
+		manager.leafItems = []; 
+		var currentItem;
+		dojo.forEach(selectedNodes, function(selectedNode) {
+			currentItem = selectedNode.item;
+			source.tree.model.getChildren(selectedNode.item, checkLeafItem);
+		});
+
+		function checkLeafItem(items) {
+			if (items.length === 0) {
+				manager.leafItems.push(currentItem);
+			} else {
+				dojo.forEach(items, function(item) {
+					currentItem = item;
+					source.tree.model.getChildren(item, checkLeafItem);
+				});
+			}
+		}
+		return manager.leafItems.length;
 	}
 });
 

@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT + ${accessKey}",
 	keySequence_Firefox: "ALT + SHIFT + ${accessKey} บน Windows และ Linux หรือ CONTROL + ${accessKey} บน Mac",
 	keySequence_Safari: "CONTROL + OPT + ${accessKey} บน Mac หรือ ALT + ${accessKey} บน Windows",
-	keySequence_Chrome: "ALT + ${accessKey} บน Windows และ Linux หรือ CONTROL + OPT บน Mac",
+	keySequence_Chrome: "ALT บวก ${accessKey} บน Windows และ Linux หรือ CONTROL บวก OPT บวก ${accessKey} บน Mac",
 	shortcutListMessage: "ทางลัดสำหรับหน้านี้คือ:",
 	a11yPrologueLabel: "ส่วนนำที่สามารถเข้าถึงได้",
     a11yStatementLabel: "คำสั่งที่สามารถเข้าถึงได้",

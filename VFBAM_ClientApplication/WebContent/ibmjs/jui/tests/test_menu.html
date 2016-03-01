@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jUI Menu</title>
+	<link rel="stylesheet" href="../themes/less/dthink.css">
+	<style>
+		body{
+			font-family:'Helvetica Neue', Helvetica, Arial;
+		}
+	</style>
+    <script src="../requirejs/require.js">
+    </script>
+    <script src="../requirejs/config.js">
+    </script>
+	<script src="../jquery-ui/jquery-1.10.2.js">
+    </script>
+	<script>
+	
+	require(["jui/menu", "jui/button"], function(){
+		$(function() {
+			$( "#menu" ).menu();
+			//$( "#toolbarMenu" ).menu();
+			$( "#menuButton" ).button({
+				icons: {
+				primary: "ui-icon-locked"
+				},
+				text: false
+			}).bind({
+				"click": function(){
+					$( "#toolbarMenu" ).menu({appendTo: this}).show();
+				},
+				"blur": function(){
+					$( "#toolbarMenu" ).hide();
+				}
+			});
+		});
+	})
+	</script>
+</head>
+<body>
+<h1>Menu Tests</h1>
+<!--<p>Two kinds of menu are provided.</p>-->
+<h2>Simple menu.</h2>
+<ul id="menu" style="width: 200px;border-top:">
+	<li><a href="#">Ada</a></li>
+	<li><a href="#">Adamsville</a></li>
+	<li><a href="#">Addyston</a></li>
+	<li>
+		<a href="#">Delphi</a>
+		<ul>
+			<li class="ui-state-disabled"><a href="#">Ada</a></li>
+			<li><a href="#">Saarland</a></li>
+			<li><a href="#">Salzburg</a></li>
+		</ul>
+	</li>
+	<li><a href="#">Saarland</a></li>
+	<li>
+		<a href="#">Salzburg</a>
+		<ul>
+			<li>
+				<a href="#">Delphi</a>
+				<ul>
+					<li><a href="#">Ada</a></li>
+					<li><a href="#">Saarland</a></li>
+					<li><a href="#">Salzburg</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Delphi</a>
+				<ul>
+					<li><a href="#">Ada</a></li>
+					<li><a href="#">Saarland</a></li>
+					<li><a href="#">Salzburg</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Perch</a></li>
+		</ul>
+	</li>
+	<li class="ui-state-disabled"><a href="#">Amesville</a></li>
+</ul>
+<!--<h2>Menu in header bar.</h2>
+<div id="toolbar" class="ui-widget-header ui-corner-all">
+	<h2>IBM <b>jUI Demo</b></h2>
+	<div class="actions">
+		<button id="menuButton">Icon</button>
+	</div>
+	
+</div>
+<ul id="toolbarMenu" style="display:none">
+	<li><a href="#">Common Questions</a></li>
+	<li><a href="#">Chat History</a></li>
+	<li><a href="#">Help</a></li>
+	<li><a href="#">About</a></li>
+	<li><a href="#">Privacy</a></li>
+</ul>-->
+</body>
+</html>

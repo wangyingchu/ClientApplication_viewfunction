@@ -6,7 +6,9 @@ define({
 	confirmation: "Подтверждение",
 	progress: "Ход выполнения",
 	loading: "Идет загрузка",
-	close: "Закрыть"
+	close: "Закрыть",
+	idxErrorDialog_detailTabLabel: "Исправление этой проблемы",
+	idxErrorDialog_moreTabLabel: "Получить дополнительную справку"
 //end v1.x content
 });
 

@@ -5,7 +5,7 @@
 	US Government Users Restricted Rights - Use, duplication or
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<html>
+<html lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Menubar tests</title>
@@ -20,6 +20,7 @@
 
     <style id="idxStyles" type="text/css">
         @import "../../themes/oneui/oneui.css";
+        @import "../../tests/_pagefooter/_PageFooter.css";
         @import "../../tests/test.css";
     </style>
 
@@ -37,7 +38,8 @@
             "dijit.MenuItem",
 			"dijit.form.Button",
 			"dijit.registry",
-			"dojo.dom"]; 
+			"dojo.dom",
+			"idx.tests._pagefooter._PageFooter"];  
 
 			var OneuiMenu,
 				OneuiMenuBar,
@@ -46,7 +48,8 @@
 				DijitMenuItem,
 				DijitFormButton,
 				registry,
-				dom;
+				dom,
+				_PageFooter;
 				
 			function preParse(modules){
 				OneuiMenu = modules["idx/widget/Menu"];
@@ -57,9 +60,14 @@
 				DijitFormButton = modules["dijit/form/Button"];
 				registry = modules["dijit/registry"];
 				dom = modules["dojo/dom"];
+				_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+			}
+			
+			function postParse(modules){
+				new _PageFooter();
 			}
 			  
-		dojoRequireModules(modules, null, currentDojoVersion.async, preParse, null);
+		dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 
 		function setOpenOnHover(newvalue){
 			registry.byId('menubar_1').set('openOnHover', newvalue);
@@ -88,7 +96,7 @@
 		  
 	      <div data-dojo-type="dijit.PopupMenuBarItem">
 	        <span>Drop-down One</span>
-	        <div data-dojo-type="idx.widget.Menu">
+	        <div id="dropdown_1" data-dojo-type="idx.widget.Menu">
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Cut clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconCut'">Cut</div>
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Copy clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconCopy'">Copy</div>
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Paste clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconPaste'">Paste</div>
@@ -97,7 +105,7 @@
 		  
 	      <div data-dojo-type="dijit.PopupMenuBarItem">
 	        <span>Drop-down Two</span>
-	        <div data-dojo-type="idx.widget.Menu">
+	        <div id="dropdown_2" data-dojo-type="idx.widget.Menu">
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Cut clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconCut'">Cut</div>
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Copy clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconCopy'">Copy</div>
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Paste clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconPaste'">Paste</div>
@@ -106,7 +114,7 @@
 		  
 	      <div data-dojo-type="dijit.PopupMenuBarItem">
 	        <span>Drop-down Three</span>
-	        <div data-dojo-type="idx.widget.Menu">
+	        <div id="dropdown_3" data-dojo-type="idx.widget.Menu">
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Cut clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconCut'">Cut</div>
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Copy clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconCopy'">Copy</div>
 	          <div data-dojo-type="dijit.MenuItem" onclick="alert('Paste clicked');" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconPaste'">Paste</div>

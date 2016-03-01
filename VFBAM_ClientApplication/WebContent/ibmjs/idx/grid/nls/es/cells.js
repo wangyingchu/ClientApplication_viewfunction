@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Alternar selección de todas las filas"		
 //end v1.x content
 });
+

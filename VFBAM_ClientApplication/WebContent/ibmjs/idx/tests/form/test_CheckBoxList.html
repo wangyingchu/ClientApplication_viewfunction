@@ -62,9 +62,20 @@
 						doh.t(widget.get("groupAlignment") === "horizontal");
 					});
 					
+					doh.register('validation', function(){
+					    var widget = dijit.byId('cbl1');
+					    widget.set('required', true);
+					    doh.f(widget.validate());
+					    widget.set('multiple', false);
+					    doh.t(widget.get('multiple') == false);
+					    widget.set('value', ['VA']);
+					    doh.t(widget.validate());
+					    widget.set('multiple', true);
+					});
+					
 					doh.register("setValue", function(){
 						var widget = dijit.byId("cbl1");
-						widget.set("value", ['TN', 'WA']);
+						widget.set("value", ["TN", "WA"]);
 						var value = widget.get("value");
 						doh.t(value.length === 2);
 						doh.t(value[0] === 'TN' && value[1] === 'WA');
@@ -82,8 +93,8 @@
 						var widget = dijit.byId("cbl1");
 						widget.reset();
 						var value = widget.get("value")
-						doh.t(value.length === 1);
-						doh.t(value[0] === 'VA');
+						doh.t(value.length === 0);
+						doh.t(value[0] === undefined);
 					});
 					
 					doh.register("addOption", function(){
@@ -178,7 +189,6 @@
 				label: 'CheckBoxList1:',
 				labelAlignment: 'horizontal',
 				groupAlignment: 'vertical',
-				value: ['VA'],
 				invalidMessage: 'Checkbox1 is not a valid selection.',
 				isValid: function(){ return !this.getOptions(0).selected; }
 			">

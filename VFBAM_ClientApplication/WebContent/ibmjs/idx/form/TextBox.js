@@ -8,48 +8,57 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
-	"dojo/string",
+	"dojo/has",
 	"dojo/dom-style",
-	"dojo/fx",
-	"dijit/form/TextBox",
 	"dijit/form/ValidationTextBox",
 	"idx/widget/HoverHelpTooltip",
 	"./_CssStateMixin",
 	"./_CompositeMixin",
-	"dojo/text!./templates/TextBox.html"
-], function(declare, lang, string, domStyle, fx, TextBox, ValidationTextBox, HoverHelpTooltip, _CssStateMixin, _CompositeMixin, template){
-	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
 	
-    /**
+	"idx/has!#mobile?idx/_TemplatePlugableMixin:#platform-plugable?idx/_TemplatePlugableMixin", 
+	"idx/has!#mobile?idx/PlatformPluginRegistry:#platform-plugable?idx/PlatformPluginRegistry",
+	
+	"idx/has!#idx_form_TextBox-desktop?dojo/text!./templates/TextBox.html"  // desktop widget, load the template
+		+ ":#idx_form_TextBox-mobile?"										// mobile widget, don't load desktop template
+		+ ":#desktop?dojo/text!./templates/TextBox.html"						// global desktop platform, load template
+		+ ":#mobile?"														// global mobile platform, don't load
+		+ ":dojo/text!./templates/TextBox.html", 							// no dojo/has features, load the template
+		
+	"idx/has!#idx_form_TextBox-mobile?./plugins/mobile/TextBoxPlugin"		// mobile widget, load the plugin
+		+ ":#idx_form_TextBox-desktop?"										// desktop widget, don't load plugin
+		+ ":#mobile?./plugins/mobile/TextBoxPlugin"							// global mobile platform, load plugin
+		+ ":"																// no features, don't load plugin
+		
+], function(declare, lang, has, domStyle, ValidationTextBox, HoverHelpTooltip, _CssStateMixin, _CompositeMixin, 
+	_TemplatePlugableMixin, PlatformPluginRegistry, desktopTemplate, MobilePlugin){
+	var iForm = lang.getObject("idx.oneui.form", true); // for backward compatibility with IDX 1.2
+	/**
 	 * @name idx.form.TextBox
 	 * @class One UI version.
 	 */
-	 
-	return iForm.TextBox = declare("idx.form.TextBox", [ValidationTextBox, _CompositeMixin, _CssStateMixin], {
+	var TextBox = declare([ValidationTextBox, _CompositeMixin, _CssStateMixin], {
 		/**@lends idx.form.TextBox*/
 		
 		// summary:
 		//		Base class for textbox widgets with the ability to validate content of various types and provide user feedback.
 		// tags:
 		//		protected
-
 		// instantValidate: Boolean
 		//		Fire validation when widget get input by set true, 
 		//		fire validation when widget get blur by set false
 		instantValidate: false,
 		
-		
-		templateString: template,
+		templateString: desktopTemplate,
 		baseClass: "idxTextBoxWrap",
 		oneuiBaseClass: "dijitTextBox dijitValidationTextBox",
 		/**
 		 * Deprecated, use "help" instead
 		 */
 		hoverHelpMessage: "",
-
-		postCreate: function() {
+		
+		postCreate: function(){
 			this.inherited(arguments);
-			if(this.instantValidate){
+			if (this.instantValidate) {
 				this.connect(this, "_onFocus", function(){
 					if (this._hasBeenBlurred && (!this._refocusing)) {
 						this.validate(true);
@@ -58,7 +67,8 @@ define([
 				this.connect(this, "_onInput", function(){
 					this.validate(true);
 				});
-			}else{
+			}
+			else {
 				this.connect(this, "_onFocus", function(){
 					if (this.message && this._hasBeenBlurred && (!this._refocusing)) {
 						this.displayMessage(this.message);
@@ -67,23 +77,29 @@ define([
 			}
 			this._resize();
 		},
-
+		
 		/**
 		 * Provides a method to return focus to the widget without triggering
 		 * revalidation.  This is typically called when the validation tooltip
 		 * is closed.
 		 */
-		
-		refocus: function() {
+		refocus: function(){
 			this._refocusing = true;
 			this.focus();
 			this._refocusing = false;
 		},
 		
 		/**
+		 * deprecated,
+		 * @param {string | number} width
+		 * Unit of "pt","em","px" will be normalized to "px", and "px" by default for numeral value.
+		 */
+		_setHoverHelpMessageAttr: function(message){
+			this.set("help", message);
+		},
+		/**
 		* Overridable method to display validation errors/hints
 		*/
-		
 		displayMessage: function(/*String*/ message, /*Boolean*/ force){
 			if(message){
 				if(!this.messageTooltip){
@@ -103,14 +119,36 @@ define([
 			}else{
 				this.messageTooltip && this.messageTooltip.close();
 			}
-		},
-		/**
-		 * deprecated, 
-		 * @param {string | number} width 
-		 * Unit of "pt","em","px" will be normalized to "px", and "px" by default for numeral value.
-		 */
-		_setHoverHelpMessageAttr: function(message){
-			this.set("help", message);
 		}
 	});
+	
+	if(has("mobile") || has("platform-plugable")){
+	
+		var pluginRegistry = PlatformPluginRegistry.register("idx/form/TextBox", {	
+			desktop: "inherited",	// no plugin for desktop, use inherited methods  
+			mobile: MobilePlugin	// use the mobile plugin if loaded
+		});
+		
+		TextBox = declare([TextBox,_TemplatePlugableMixin], {
+			/**
+		     * Set the template path for the desktop template in case the template was not 
+		     * loaded initially, but is later needed due to an instance being constructed 
+		     * with "desktop" platform.
+	     	 */
+			
+			
+			templatePath: require.toUrl("idx/form/templates/TextBox.html"),  
+		
+			// set the plugin registry
+			pluginRegistry: pluginRegistry,
+			 			
+			displayMessage: function(message){
+				return this.doWithPlatformPlugin(arguments, "displayMessage", "displayMessage", message);
+			},
+			_setHelpAttr: function(helpText){
+				return this.doWithPlatformPlugin(arguments, "_setHelpAttr", "setHelpAttr", helpText);
+			}
+		});
+	}
+	return iForm.TextBox = declare("idx.form.TextBox", TextBox);
 });

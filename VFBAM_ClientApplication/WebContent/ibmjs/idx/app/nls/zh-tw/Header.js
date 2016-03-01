@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "共用",
+	actionSettings: "設定",
 	actionHelp: "說明",
 	searchEntry: "搜尋",
-	searchSubmit: "搜尋"
+	searchSubmit: "搜尋",
+	primarySearchLabelSuffix: "主要搜尋",
+	secondarySearchLabelSuffix: "次要搜尋",
+	homeButton: "起始目錄"
 //end v1.x content
 });
+

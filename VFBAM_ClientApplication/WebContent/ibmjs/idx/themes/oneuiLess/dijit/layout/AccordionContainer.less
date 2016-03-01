@@ -1,0 +1,93 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+ // Accordion
+ // 
+ // Styling AccordionContainer basically means styling the accordion pane (dijitAccordionInnerContainer)
+ // and the title inside of it (dijitAccordionTitle).   There are 4 basic states to style:
+ // 
+ // 1. closed pane (and default styling): 
+ // 		.dijitAccordionInnerContainer - container for each accordion child
+ // 		.dijitAccordionTitle - title for each accordion child
+ //
+ // 2. active closed pane (ie, mouse down on a title bar)
+ // 		.dijitAccordionInnerContainerActive - for background-color, border
+ // 		.dijitAccordionInnerContainerActive dijitAccordionTitle - for text color
+ // 
+ // 3. open pane (expanded child)
+ //		.dijitAccordionChildWrapper - wraps around the child widget (typically ContentPane)
+ //			setting a margin so that there's blue trim all the way around the child
+ //
+ // 		These rules need to override the closed pane active:
+ //
+ // 		.dijitAccordionInnerContainerSelected - for background-color, border
+ // 		.dijitAccordionInnerContainerSelected .dijitAccordionTitle - for text color
+ // 
+ // 4. hovered pane, open or closed
+ // 		The selectors below affect hovering over both a closed pane (ie, hovering a title bar),
+ // 		and hovering over an open pane.   Also, treat mouse down on an open pane as a hover:
+ //
+ // 		.dijitAccordionInnerContainerHover, 
+ //			.dijitAccordionInnerContainerSelectedActive - for background-color, border
+ // 		.dijitAccordionInnerContainerHover .dijitAccordionTitle - for text color
+ //
+ 
+ .dijitAccordionContainer {
+  border: none;
+}
+.dijitAccordionInnerContainer {
+  background-color: @fwBackground;
+  border: solid 1px @fwLighter;
+  margin-bottom: 1px;
+}
+.dijitAccordionTitleFocus {
+  padding: 5px;
+}
+.dijitAccordionContainer .dijitAccordionChildWrapper {
+  background-color: @fwBackground;
+  border-top: 1px solid @fwLighter;
+  margin: 0 2px 2px;
+  padding-top: 2px;
+}
+.dijitAccordionContainer .dijitAccordionContainer-child {
+  /* this is affecting the child widget itself */
+  padding: 9px 7px 7px;
+}
+/* Active state for closed pane */
+.dijitAccordionInnerContainerActive {
+  border: 1px solid @fwLighter;
+  background: @fwBase;
+}
+  
+.dijitAccordionInnerContainerActive .dijitAccordionTitle{
+	.gradient(@fwLighter, @fwLightest);
+	-webkit-transition-duration: 0.1s;
+	-moz-transition-duration: 0.1s;
+	transition-duration: 0.1s;
+}
+
+/* Open (a.k.a. selected) pane */
+.dijitAccordionInnerContainerSelected {
+	border-color: @fwLighter;
+	background-color: @fwBackground;
+}
+.dijitAccordionInnerContainerHover {
+	border: 1px solid @fwLighter;
+	background: @fwLightest; /* Old browsers */
+}
+.dijitAccordionInnerContainerHover .dijitAccordionTitle{
+	.gradient(@fwLightest, @fwLighter);
+}
+
+.dijitAccordionInnerContainerSelectedHover, 
+.dijitAccordionInnerContainerSelectedActive {
+	background-color:none;
+}
+
+.dj_a11y & .dijitAccordionContainer .dijitAccordionTitle {
+    padding: 2px;
+}

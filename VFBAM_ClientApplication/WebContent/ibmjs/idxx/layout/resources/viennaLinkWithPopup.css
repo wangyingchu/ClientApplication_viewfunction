@@ -1,0 +1,86 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2011, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or 
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+/* Drop down button */
+.vienna .linkWithPopupDropDownButton {
+}
+
+.vienna .linkWithPopup .dijitDropDownButton {
+}
+
+.vienna .linkWithPopup .dijitButtonNode {
+}
+
+.vienna .linkWithPopup .dijitButtonContents {
+}
+
+.vienna .linkWithPopup .dijitDropDownButtonHover {
+}
+
+.vienna .linkWithPopup .dijitDropDownButtonHover .dijitButtonNode, 
+.vienna .linkWithPopup .dijitDropDownButtonActive .dijitButtonNode {
+}
+
+.vienna .linkWithPopup .dijitDropDownButton .dijitButtonNode {
+}
+
+.vienna .linkWithPopup .dijitDropDownButton .dijitArrowButtonInner {
+}
+
+.vienna .linkWithPopup .dijitDropDownButton .dijitButtonText {
+}
+
+.vienna .linkWithPopup .dijitDropDownButtonDisabled  .dijitButtonText {
+}
+
+.vienna .linkWithPopup .dijitDropDownButtonHover .dijitButtonText {
+}
+
+
+/* Tooltip dialog */
+.vienna .linkWithPopupDialog {
+}
+
+.vienna .linkWithPopupDialog .linkWithPopupDialogMinSize {
+}
+
+.vienna .linkWithPopupDialog .linkWithPopupTitle {
+}
+
+.vienna .linkWithPopupDialog .dijitTooltipContents {
+}
+
+.vienna .linkWithPopupDialog .linkWithPopupToolbarButtons {
+}
+
+.vienna .linkWithPopupDialog .linkWithPopupToolbarButtons span {
+}
+
+.vienna .linkWithPopupDialog .linkWithPopupClose .dijitButtonNode {
+}
+
+.vienna .linkWithPopupDialog .dijitTooltipContainer {
+}
+
+/* Note for the following tooltip placements there is no space character between ".linkWithPopupDialog.dijitTooltipXYZ" in the declaration
+meaning that the element must have both linkWithPopupDialog and dijitTooltipXYZ specified.  If there were a space between them it would become 
+a parent child match */
+.vienna .linkWithPopupDialog.dijitTooltipAbove .dijitTooltipConnector {
+}
+.dj_ie .vienna .linkWithPopupDialog.dijitTooltipAbove .dijitTooltipConnector {
+}
+.vienna .linkWithPopupDialog.dijitTooltipBelow .dijitTooltipConnector {
+}
+.dj_ie .vienna .linkWithPopupDialog.dijitTooltipBelow .dijitTooltipConnector {
+}
+
+/*
+ * WLN Temporarily move to this css class, need to put back to global place
+ * Button / command icons (in as few files as possible to avoid multiple client/server trips when loading images)
+ */
+.vienna .iconClose {
+}

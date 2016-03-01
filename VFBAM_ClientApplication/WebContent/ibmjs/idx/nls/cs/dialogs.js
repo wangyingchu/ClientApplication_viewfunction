@@ -6,7 +6,9 @@ define({
 	confirmation: "Potvrzení",
 	progress: "Postup",
 	loading: "Načítání",
-	close: "Zavřít"
+	close: "Zavřít",
+	idxErrorDialog_detailTabLabel: "Odstranit tento problém",
+	idxErrorDialog_moreTabLabel: "Získat další nápovědu"
 //end v1.x content
 });
 

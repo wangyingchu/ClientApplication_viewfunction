@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT+${accessKey}",
 	keySequence_Firefox: "ALT+SHIFT+${accessKey}（在 Windows 和 Linux 上）或 CONTROL+${accessKey}（在 Mac 上）",
 	keySequence_Safari: "CONTROL+OPT+${accessKey}（在 Mac 上）或 ALT+${accessKey}（在 Windows 上）",
-	keySequence_Chrome: "ALT+${accessKey}（在 Windows 和 Linux 上）或 CONTROL+OPT（在 Mac 上）",
+	keySequence_Chrome: "在 Windows 和 Linux 上为 ALT+${accessKey}，在 Mac 为 CONTROL+OPT+${accessKey}",
 	shortcutListMessage: "本页的快捷方式是：",
 	a11yPrologueLabel: "辅助功能选项前言",
     a11yStatementLabel: "辅助功能选项声明",

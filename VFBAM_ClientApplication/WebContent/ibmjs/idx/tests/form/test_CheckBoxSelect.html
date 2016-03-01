@@ -55,6 +55,22 @@
 						doh.t(widget.get("labelAlignment") === "vertical");
 					});
 					
+					doh.register('placeHolder', function(){
+					var widget = dijit.byId('cbs1');
+					    widget.set('placeHolder', 'choose an option');
+					    doh.t(widget.get('placeHolder')=== 'choose an option');
+					});
+					
+					doh.register('validation', function(){
+					    var widget = dijit.byId('cbs1');
+					    widget.set('required',true);
+					    doh.f(widget.validate());
+					    widget.set("value", ["TN","CA"]);
+					    doh.f(widget.validate());
+					    widget.set('value', ['CA']);
+					    doh.t(widget.validate());
+					});
+					
 					doh.register("setValue", function(){
 						var widget = dijit.byId("cbs1");
 						widget.set("value", ['TN', 'WA']);
@@ -70,15 +86,7 @@
 						doh.t(value.length === 3);
 						doh.t(value[0] === 'VA' && value[1] === 'FL' && value[2] === 'CA');
 					});
-					
-					doh.register("reset", function(){
-						var widget = dijit.byId("cbs1");
-						widget.reset();
-						var value = widget.get("value")
-						doh.t(value.length === 1);
-						doh.t(value[0] === 'VA');
-					});
-					
+										
 					doh.register("addOption", function(){
 						var widget = dijit.byId("cbs1");
 						widget.addOption({
@@ -100,6 +108,14 @@
 						var options = widget.getOptions();
 						doh.t(options.length === 5);
 						doh.t(options[0].label === 'Virginia' && options[0].value === 'VA');
+					});
+					
+					doh.register("reset", function(){
+						var widget = dijit.byId("cbs1");
+						widget.reset();
+						var value = widget.get("value")
+						doh.t(value.length === 0);
+						doh.t(value[0] === undefined);
 					});
 				}else{
 					// Register performance testcases
@@ -171,7 +187,6 @@
 				label: 'CheckBoxSelect1:',
 				labelAlignment: 'horizontal',
 				groupAlignment: 'vertical',
-				value: ['VA'],
 				invalidMessage: 'Checkbox1 is not a valid selection.',
 				isValid: function(){ return !this.getOptions(0).selected; }
 			">

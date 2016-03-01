@@ -1,0 +1,321 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/* oneui styles for DataGrid */
+
+/* first load the dojox/Grid styles, in case they
+ * have not yet been loaded */
+
+@import "Grid";
+
+.dojoxGrid {
+	margin:0px;
+	padding:0px;
+	border-collapse:collapse;	
+	background-color:@fwBackground;
+	
+	font-family: @sans;
+	color: @textSecondary;	
+	font-size: .92em;
+	
+	border-right: 1px solid @fwLighter;
+}
+
+.dojoxGrid table {
+	border-right: 1px solid @fwLighter;
+	}
+	
+/*  messages */
+.dojoxGridMasterMessages {
+	background-color: @fwLightest;
+}
+.dojoxGridLoading, 
+.dojoxGridError {
+	background-position:left center;
+	background-repeat: no-repeat;
+	padding-left:25px;
+}
+.dojoxGridLoading {
+	background-image:url('images/dijit/loadingAnimation.gif');
+}
+.dojoxGridError {
+	background-image: url('images/icons/images/commonIconsObjActEnabled.png'); 
+	background-position: -496px;
+	width: 16px;
+	height: 16px;
+}
+
+/* header */
+.dojoxGridHeader {
+	.gradient(@fwBackground, @fwLighter);
+	.textColors(mix(@fwLightest, @fwLighter));
+	border: 1px solid @fwBase;
+	border-left: none;
+}
+
+.dojoxGridHeader .dojoxGridCellOver  {
+	.gradient(@fwLightest, @fwLight);
+	padding-bottom: 2px;
+}
+
+.dojoxGridHeader .dojoxGridCell { 
+	background: transparent;
+	filter: ~"none";
+	border: 1px solid transparent;
+	border-left-color: @fwBase;
+	
+	color: @textSecondary;
+	font-weight: bold;
+	.TextShadow(@shadowSolid);
+	
+	padding:9px 7px 6px;
+}
+
+.dj_ie6 & .dojoxGridHeader .dojoxGridCell { 
+	border-color:@fwBase @fwBase @fwBase @fwLightest;
+}
+
+/* header sorting arrow */
+.dojoxGridSortNode {
+	text-decoration:none;
+	display:block;
+	border:none;
+	
+	color: @textSecondary;
+	font-weight: bold;
+	.TextShadow(@shadowSolid);
+}
+
+/* the dropshadow filter is causing the text to have a shadow in IE for any header cell that has sorting */
+.dj_ie & .dojoxGridSortNode {
+	filter: ~"none";
+}
+	
+.dj_ie6 & .dojoxGridSortNode {
+	background-image:none;
+}
+
+.dojoxGridCellOver .dojoxGridSortNode {
+	border: none;
+	pointer: cursor;
+	color: @textStrong;
+}
+.dojoxGridArrowButtonChar {
+	display:none;
+	float:right;
+}
+.dojoxGridArrowButtonNode {
+	background: transparent url('images/dojox/grid/spriteIcons.png') no-repeat -4px 0;
+	display:block;
+	float:right;
+	height:1em;
+	margin:2px 4px 0 5px;
+	padding-left:0;
+	width:7px;
+}
+.dojoxGridSortUp .dojoxGridArrowButtonNode {
+	background-position: -34px 0;
+}
+
+.dojoxGridSortUp:hover,
+.dojoxGridSortDown:hover {
+	cursor: pointer;
+	color: @textStrong;
+	}
+
+/* header rows */
+.dj_ie & .dojoxGridHeader .dojoxGridRowTable {
+	border-collapse:separate;
+}
+
+/* Grid view content */
+.dojoxGridScrollbox {
+	background-color: @fwLightest;
+}
+
+/* rowbar - row headers */
+.dojoxGridRowbar { 
+	.gradient(@fwLightest, @fwLighter);
+	border:none;
+}
+.dojoxGridRowbarTable { 
+	
+}
+.dj_ie6 & .dojoxGridRowbar,
+.dj_ie6 & .dojoxGridRowbarTable { 
+	background-image:none;
+}
+.dojoxGridRowbarInner {
+	border:none;
+	border-bottom:1px solid #ccc;
+}
+.dojoxGridRowbarOver .dojoxGridRowbarTable {
+	.gradient(@fwLightest, @fwLight);
+}
+.dojoxGridRowBarActive .dojoxGridRowbarTable {
+	.gradient(@fwLight, @fwLightest);
+}
+.dojoxGridRowbarSelected {
+	.gradient(@fwLight, @fwLightest);
+	border-right:1px solid @fwDark;
+}
+
+/* rows */
+.dojoxGridRow {
+	border:none;
+	border-left: 1px solid @fwLighter;
+	background-color:@fwBackground;
+}
+.dj_ie & .dojoxGridMasterView .dojoxGridRowTable {
+	border-collapse:separate;/*IE, separate is must to show the border of tr and td*/
+}
+.dojoxGridRowTable tr {
+
+}
+.dojoxGridRowOdd .dojoxGridRowTable tr {
+	/* no striping needed */
+}
+.dojoxGridRowSelected .dojoxGridRowTable tr {
+	background-color:@selected;
+}
+
+/* cells */
+.dojoxGridCell {
+	padding:5px 7px 4px;
+	border:1px solid @fwLighter;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	vertical-align: middle;
+}
+.dj_ie6 & .dojoxGridCell {
+	border-color:@fwBackground;
+}
+.dj_ie6 & .dojoxGridRowOdd .dojoxGridCell {
+
+}
+.dj_ie6 & .dojoxGridRowSelected .dojoxGridCell {
+
+}
+.dojoxGridRowSelected .dojoxGridCell {
+
+}
+.dojoxGridCellFocus {
+	border:1px dashed darkblue !important;
+}
+.dojoxGridCellContent {
+	padding:4px 6px 4px 6px;
+}
+
+/*  Single Affordance Hover Effect */
+.dojoxGridRowOver .dojoxGridCell {
+	background-color: @hover;
+
+}
+.dj_ie6 & .dojoxGridRowOver .dojoxGridCell,
+.dj_ie7 & .dojoxGridRowOver .dojoxGridCell {
+
+}
+.dojoxGridRowActive .dojoxGridCell {
+
+}
+.dj_ie6 & .dojoxGridRowActive .dojoxGridCell,
+.dj_ie7 & .dojoxGridRowActive .dojoxGridCell {
+	
+}
+
+/*  Double Affordance Hover Effect */
+.dojoxGridDoubleAffordance .dojoxGridRowOver .dojoxGridCellOver {
+	background-color: @hover;
+
+	border-collapse:separate;/*FF*/
+}
+.dojoxGridDoubleAffordance .dojoxGridRowActive .dojoxGridCell{	
+	
+}
+.dojoxGridDoubleAffordance .dojoxGridRowActive .dojoxGridCellActive {	
+	
+}
+.dj_ie6 & .dojoxGridCell {
+	background-image:none !important;
+}
+
+/* editing */
+.dojoxGridRowEditing td {
+	/* background-color: #F4FFF4; */
+	background-color: darken(@selected, 10%); 
+	/* padding: 0px 3px 0px 3px; */
+}
+.dojoxGridRow-inserting td {
+	background-color: lighten(@selected, 10%);
+}
+.dojoxGridRow-inflight td {
+	background-color: @inflight;
+}
+.dojoxGridRow-error td {
+	background-color: @errorLight;
+}
+
+/* Drag and Drop */
+.dojoxGrid .dojoDndItemBefore {
+	border-left-color: @focusOutline;
+}
+.dojoxGrid .dojoDndItemAfter {
+	border-right-color: @focusOutline;
+}
+
+/* Tree Grid */
+.dojoxGridExpando {
+	float: left;
+	height: 18px;
+	width: 18px;
+	text-align: center;
+	margin-top: -3px;
+}
+
+.dojoxGridExpandoCell {
+	padding-top: 5px;
+	background-position: left top !important;
+}
+.dojoxGridExpandoNode {
+	background-image: url('images/dojox/grid/leftNavArrows.png');
+    width: 16px;
+    height: 16px;
+	background-position: 0px 0px; /* for closed state */
+}
+.dj_ie6 & .dojoxGridExpandoNode {
+	background-image: url('images/dojox/grid/treeExpandImages8bit.png');
+}
+.dojoxGridExpandoOpened .dojoxGridExpandoNode {
+	background-position: -16px 0px;
+}
+.dojoxGridExpandoLoading .dojoxGridExpandoNode {
+	background-image: url('images/dojotx/grid/loadingAnimation.gif');
+}
+.dojoxGridTreeModel .dojoxGridNoChildren .dojoxGridExpando {
+	visibility: visible !important;
+	width: 18px !important;
+}
+.dojoxGridTreeModel .dojoxGridNoChildren .dojoxGridExpandoNode,
+.dj_ie6 & .dojoxGridTreeModel .dojoxGridNoChildren .dojoxGridExpandoNode {
+	background-image:none;
+}
+.dojoxGridExpandoNodeInner {
+	visibility: hidden;
+}
+.dijit_a11y & .dojoxGridExpandoNodeInner {
+	visibility: visible;
+}
+
+tr.dojoxGridSubRowAlt {
+	
+}
+.dojoxGridRowOdd tr.dojoxGridSubRowAlt {
+	background-color:@fwBackground;
+}
+.dojoxGridRow .dojoxGridRowTable tr.dojoxGridRowSelected {
+	background-color:@selected;
+}

@@ -636,7 +636,7 @@ define(["dojo/_base/declare",
     var children        = this.getChildren();
     var editorsByName  	= [ ];
     var propsByWidgetID = [ ];
-    var editorsByOrder 	= [ ];
+    var unmappedEditors 	= [ ];
     var allEditors     	= [ ];
     var editorCount    	= 0;
     var propsMapped     = 0;
@@ -670,7 +670,7 @@ define(["dojo/_base/declare",
           propsByWidgetID[childID] 	= name;
           
         } else {
-          editorsByOrder.push(child);
+          unmappedEditors.push(child);
         }
       }
     }
@@ -683,16 +683,15 @@ define(["dojo/_base/declare",
     }
     
     // check if the pending number of properties is equivalent to the pending number of editors
-    if ((propsUnmapped > 0) && (propsUnmapped == editorsByOrder.length)) {
+    if ((propsUnmapped > 0) && (unmappedEditors.length > 0)) {
       var formIndex = 0;
-      for (var index = 0; index < this._properties.length; index++) {
+      for (var index = 0; ((index < this._properties.length) && (formIndex < unmappedEditors.length)); index++) {
         var propDesc    = this._properties[index];
         var propName    = propDesc.propName;
         var editor  	= editorsByName[propName];
         if (editor) continue;
-        if (formIndex >= editorsByOrder.length) continue;
 
-        editor = editorsByOrder[formIndex++];
+        editor = unmappedEditors[formIndex++];
         var editorID = editor.get("id");
         editorsByName[propName] = editor;
         propsByWidgetID[editorID] = propName;
@@ -1004,7 +1003,7 @@ define(["dojo/_base/declare",
     var dataVal = this._getData();
     var result = this._customFormat(dataVal);
     
-    if (result != null) return result;
+    if (result) return result;
     
     var values = new Object();
     
@@ -1014,10 +1013,6 @@ define(["dojo/_base/declare",
     for (index = 0; index < this._properties.length; index++) {
       var prop = this._properties[index];
       var propVal = (dataVal) ? this._resolveValue(dataVal, prop.propParts) : null;
-      if ((propVal == null)&&(prop.propParts.length==1)){
-        values[prop.propName] = this._getEmptyFormat();
-        continue;
-      }
       var valueref = values;
       for (var idx2 = 0; idx2 < prop.propParts.length; idx2++) {
     	  var key = prop.propParts[idx2];
@@ -1042,7 +1037,7 @@ define(["dojo/_base/declare",
     if (iString.nullTrim(formatTemplate) == null) {
       formatTemplate = this._defaultFormat;
     }
-    // because we dis substitution on the lookup keys above when creating the text
+    // because we did substitution on the lookup keys above when creating the text
     // lookup map we need to do the same substitutions on the format string
     var replaced = formatTemplate;
     // first we replace all array derefencing with "._arrindex_[index]" 
@@ -1078,7 +1073,7 @@ define(["dojo/_base/declare",
     // finally set the formatTemplate to the replaced template and do the substitution
     formatTemplate = replaced;
     result = this._stringSubstitute(formatTemplate, values);
-    if (iString.nullTrim(result) == null) {
+    if ((result === undefined) || (iString.nullTrim(result) == null)) {
       result = this._getEmptyFormat();
     }
     return result;
@@ -1095,7 +1090,7 @@ define(["dojo/_base/declare",
 		  if ((iUtil.typeOfObject(key) == "number") && (key < 0) && ("length" in dataref)) {
 			  key = dataref.length + key;
 		  }
-		  if (typeof(dataref[key]) == "undefined") return null;
+		  if (dataref[key] === undefined) return undefined;
 		  dataref = dataref[key];
 	  }
 	  return dataref;
@@ -1112,8 +1107,9 @@ define(["dojo/_base/declare",
 		  if ((iUtil.typeOfObject(key) == "number") && (key < 0) && ("length" in dataref)) {
 			  key = dataref.length + key;
 		  }
-		  if (typeof(dataref[key]) == "undefined") return;
+		  if (!key in dataref) return;
 		  if (index < (propParts.length - 1)) {
+			  if (dataref[key] === undefined) return;
 			  dataref = dataref[key];
 		  } else {
 			  dataref[key] = value;
@@ -1146,7 +1142,7 @@ define(["dojo/_base/declare",
    */
   _formatDate: function(/*Date*/ date, /*String*/ formatType) {
 	  date = this._makeDate(date);
-	  if (! date) return null;
+	  if ((date === null) || (date === undefined)) return null;
 	  return dDateLocale.format(date, this._getFormatOptions(formatType));
   },
 
@@ -1155,7 +1151,7 @@ define(["dojo/_base/declare",
    */
   _formatNumber: function(/*Number*/ num, /*String*/ formatType) {
 	num = this._makeNumber(num);
-	if (!num) return null;
+	if ((num === null) || (num === undefined)) return null;
 	return dNumber.format(num, this._getFormatOptions(formatType));
   },
   
@@ -1168,53 +1164,80 @@ define(["dojo/_base/declare",
    * @private
    */
   _formatPart: function(/*Object*/ value, /*String*/ propType) {
+	var result = null;
 	if (propType == null) {
 		var valtype = iUtil.typeOfObject(value);
-		switch (valtype) {
-		case "string":
-			return "" + value;
-		case "date":
-			return this._formatDate(value, "dateTime");
-		case "number":
-			return this._formatNumber(value, "decimal");
-		case "object":
-			return dJson.stringify(value);
+		if (((value!=null)&&(value!==undefined))) {
+			switch (valtype) {
+			case "string":
+				result = "" + value;
+				break;
+			case "date":
+				result = this._formatDate(value, "dateTime");
+				break;
+			case "number":
+				result = this._formatNumber(value, "decimal");
+				break;
+			case "object":
+				if (value === null) result = "null";
+				else if (value === undefined) result = "undefined";
+				else result = dJson.stringify(value);
+				break;
+			default:
+				result = "" + value;
+				break;
+			}
+		}		
+	} else if (((value!=null)&&(value!==undefined))||(propType=="obj")) {
+		switch (propType) {
+		case "txt":
+			result = "" + value;
+			break;
+			
+		case "dat":
+			result = this._formatDate(value, "date");
+			break;
+			
+		case "tim":
+			result = this._formatDate(value, "time");
+			break;
+			
+		case "dtm":
+			result = this._formatDate(value, "dateTime");
+			break;
+			
+		case "dec":
+			result = this._formatNumber(value, "decimal");
+			break;
+			
+		case "int":
+			result = this._formatNumber(value, "integer");
+			break;
+			
+		case "pct":
+			result = this._formatNumber(value, "percent");
+			break;
+			
+		case "cur":
+			result = this._formatNumber(value, "currency");
+			break;
+			
+		case "obj":
+			if (value === null) result = "null";
+			else if (value === undefined) result = "undefined";
+			else result = dJson.stringify(value);
+			break;
+			
 		default:
-			return "" + value;
+			// treat it like any other text
+			result = "" + value;
+			break;
 		}
 	}
-    switch (propType) {
-      case "txt":
-        return "" + value;
-
-      case "dat":
-        return this._formatDate(value, "date");
-        
-      case "tim":
-        return this._formatDate(value, "time");
-
-      case "dtm":
-        return this._formatDate(value, "dateTime");
-
-      case "dec":
-        return this._formatNumber(value, "decimal");
-
-      case "int":
-        return this._formatNumber(value, "integer");
-
-      case "pct":
-        return this._formatNumber(value, "percent");
-        
-      case "cur":
-        return this._formatNumber(value, "currency");
-
-      case "obj":
-    	return dJson.stringify(value);
-    	
-      default:
-        // treat it like any other text
-        return "" + value;
-    }
+	if ((result === null) || (result === undefined)) {
+		result = this._getEmptyFormat();
+	}
+	return result;
   },
 
 
@@ -1400,40 +1423,44 @@ define(["dojo/_base/declare",
     if (!this._editMode) return;
     this._editMode = false;
 
-    for (var index = 0; index < this._editorsByOrder.length; index++) {
-      var editor   = this._editorsByOrder[index];
-      if (! editor) continue;
-      var adaptor  = editor.propertyEditAdaptor;
-      if (!adaptor) continue;
-      var editName = adaptor.getPropertyName(editor);
-      if (!iString.nullTrim(editName)) continue;
+    if (this._editorsByOrder) {
+    	for (var index = 0; index < this._editorsByOrder.length; index++) {
+    		var editor   = this._editorsByOrder[index];
+    		if (! editor) continue;
+    		var adaptor  = editor.propertyEditAdaptor;
+    		if (!adaptor) continue;
+    		var editName = adaptor.getPropertyName(editor);
+    		if (!iString.nullTrim(editName)) continue;
+    		
+    		var value = adaptor.getEditorValue(editor);
+    		var checkable = adaptor.isEditorCheckable(editor);
+    		var checked = adaptor.isEditorChecked(editor);
+    		if ((value == "on" || value=="false" || value=="true" || value=="off") 
+    				&& ((checked === true) || (checked === false) || checkable)) {
+    			value = checked;
+    		}
+    		this.saveEditorValue(editName, value);
+    	}
+    } 
+    if (this._properties) {
+    	for (var index = 0; index < this._properties.length; index++) {
+    		var propDesc = this._properties[index];
+    		var propName = propDesc.propName;
+    		var editor   = this._editorsByName[propName];
+    		if (! editor) continue;
+    		var adaptor = editor.propertyEditAdaptor;
+    		if (! adaptor) continue;
+    		if (iString.nullTrim(adaptor.getPropertyName(editor))) continue; // already handled
       
-      var value = adaptor.getEditorValue(editor);
-      var checkable = adaptor.isEditorCheckable(editor);
-      var checked = adaptor.isEditorChecked(editor);
-      if ((value == "on" || value=="false" || value=="true" || value=="off") 
-    	  && ((checked === true) || (checked === false) || checkable)) {
-    	  value = checked;
-      }
-      this.saveEditorValue(editName, value);
-    }
-    for (var index = 0; index < this._properties.length; index++) {
-      var propDesc = this._properties[index];
-      var propName = propDesc.propName;
-      var editor   = this._editorsByName[propName];
-      if (! editor) continue;
-      var adaptor = editor.propertyEditAdaptor;
-      if (! adaptor) continue;
-      if (iString.nullTrim(adaptor.getPropertyName(editor))) continue; // already handled
-      
-      var value = adaptor.getEditorValue(editor);
-      var checkable = adaptor.isEditorCheckable(editor);
-      var checked = adaptor.isEditorChecked(editor);
-      if ((value == "on" || value=="false" || value=="true" || value=="off") 
-        	  && ((checked === true) || (checked === false) || checkable)) {
-        	  value = checked;
-      }
-      this.saveEditorValue(propName, value);
+    		var value = adaptor.getEditorValue(editor);
+    		var checkable = adaptor.isEditorCheckable(editor);
+    		var checked = adaptor.isEditorChecked(editor);
+    		if ((value == "on" || value=="false" || value=="true" || value=="off") 
+    				&& ((checked === true) || (checked === false) || checkable)) {
+    			value = checked;
+    		}
+    		this.saveEditorValue(propName, value);
+    	}
     }
     this._reformat();
 
@@ -1475,6 +1502,7 @@ define(["dojo/_base/declare",
    * 
    */
   _prepareEditors: function() {
+	  	if ((!this.properties) || (!this._editorsByOrder)) return;
 	    for (var index = 0; index < this._editorsByOrder.length; index++) {
 	        var editor   = this._editorsByOrder[index];
 	        if (!editor) continue;
@@ -1566,7 +1594,7 @@ define(["dojo/_base/declare",
 
     this._prepareEditors();
     
-    if ((this._editController) && (this._editorsByOrder.length > 0)) {
+    if ((this._editController) && (this._editorsByOrder) && (this._editorsByOrder.length > 0)) {
     	var firstEditor = this._editorsByOrder[0];
     	if ("focus" in firstEditor && dLang.isFunction(firstEditor.focus)) {
     		firstEditor.focus();

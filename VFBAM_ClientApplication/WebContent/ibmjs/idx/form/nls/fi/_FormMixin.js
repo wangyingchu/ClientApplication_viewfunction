@@ -10,3 +10,4 @@ define({
 	legendText: "Pakollinen"
 //end v1.x content
 });
+

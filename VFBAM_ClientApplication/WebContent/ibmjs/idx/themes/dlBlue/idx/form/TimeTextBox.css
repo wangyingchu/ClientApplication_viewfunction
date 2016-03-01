@@ -1,0 +1,25 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxTimeTextBoxWrap .dijitValidationContainer {
+  height: auto;
+}
+.dj_ie6 .dlBlue .idxTimeTextBoxWrap .dijitTimeTextBox .dijitInputField .dijitPlaceHolder {
+  padding-top: 3px;
+}
+.dlBlue .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon {
+  display: block;
+}
+.dlBlue .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon_a11y {
+  display: none;
+}
+.dlBlue .idxTimeTextBoxWrap .idxHintOutside {
+  width: auto;
+}
+.dlBlue .idxDateTimeTextBoxWrap .dijitTimeTextBox {
+  width: 12em;
+}
+.dj_a11y .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon {
+  display: none;
+}
+.dj_a11y .idxTimeTextBoxWrap .dijitTimeTextBox .idxTimeIcon_a11y {
+  display: block;
+}

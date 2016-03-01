@@ -3,20 +3,34 @@
   _container_.require("dojo/_base/xhr");
   _container_.require("dojo/_base/config");
   _container_.require("dojo/dom-construct");
+  _container_.require("dojo/query");
   
   var welcomeXHRGet = null;
   var dojoConfigModule = null;
   var getVersionBaseURL = null;
   var domConstruct = null;
+  var query = null;
+  
+  var version = {
+  	type : "GA",
+	number: "1.4.0.0"
+  };
   _container_.registerPreParse(function(modules) {
 	welcomeXHRGet = modules["dojo/_base/xhr"] ? modules["dojo/_base/xhr"].get : dojo.xhrGet;
 	dojoConfigModule = modules["dojo/_base/config"] ? modules["dojo/_base/config"] : dojo.config;
 	getVersionBaseURL = (window["require"]) ? require.toUrl : dojo.moduleUrl;
 	domConstruct = modules["dojo/dom-construct"];
+	query = modules["dojo/query"];
+	query(".versionnum").forEach(function(node){
+		node.innerText =  version.number; 
+	});
+	query(".versiontype").forEach(function(node){
+		node.innerText =  version.type;
+	});
   });
 </script>
 
-<h2>IBM Extensions Toolkit for Dojo v1.3.0.4 (GA Release)</h2>
+<h2>IBM Extensions Toolkit for Dojo v<span class="versionnum">1.3.0.3</span> (<span class="versiontype">GA</span> Release)</h2>
 <h3>Build: <div data-dojo-type="dijit.layout.ContentPane" style="display: inline;">
 <script type="dojo/connect" event="startup">
 	if (this._versionLoaded) return;
@@ -45,7 +59,7 @@
 
 <p>Welcome! This example application contains widgets and other
 	components included in the IBM Extensions Toolkit for Dojo
-	V1.3.0.4 (GA Release).&nbsp;</p>
+	V<span class="versionnum">1.3.0.3</span> (<span class="versiontype">GA</span> Release).&nbsp;</p>
 <p>The&nbsp;IBM Extensions Toolkit for Dojo
 	provides&nbsp;IBM development teams with a faster path to development
 	of Dojo applications aligned with the IBM design standards.
@@ -59,8 +73,8 @@ Use the drop-down in the banner to choose the heritage for the widget set.
 <h3>Helpful Links</h3>
 <ul>
 	<li><a target="_blank"
-		href="https://csnext.ibm.com/ram/assetDetail/generalDetails.faces?guid=BDDE5F19-3F17-21BE-C711-CD9A60340016&v=1.3.0.4">
-		Download IDX version 1.3.0.4 GA Release
+		href="https://csnext.ibm.com/ram/search/_rlvid.jsp.faces?_rap=_rlnn&_rvip=/search/index.jsp&n=1fGroup%2Cibm_one_ui_dojo_extensions_idx_toolkit%24fState%2Capproved&s=[_version_&d=desc&sart=false&sshdw=false&forum=false">
+		Download IDX version <span class="versionnum">1.3.0.3</span> <span class="versiontype">GA</span> Release
 		</a>
 		&nbsp;(requires login
 		to RAM via login link in top right corner of the screen) download via
@@ -88,7 +102,7 @@ Use the drop-down in the banner to choose the heritage for the widget set.
 	<b>To open a bug report</b> against the IBM One UI Toolkit:
 	<ul><li>Create a new work item.</li>
 		<li>Select "Bug Report" as the type.</li>
-		<li>Select "IDX 1.3.0.4 - IBM One UI Dojo Extensions Toolkit" in the "Found in" field.</li>
+		<li>Select "IDX <span class="versionnum">1.3.0.3</span> - IBM One UI Dojo Extensions Toolkit" in the "Found in" field.</li>
 		<li>Select "IDX" in the "Filed Against" field.</li>
 		<li>Fill in as much information as you can to assist the team in diagnosis of the issue. Please leave the "Owned By" field empty.</li>
 		</ul>

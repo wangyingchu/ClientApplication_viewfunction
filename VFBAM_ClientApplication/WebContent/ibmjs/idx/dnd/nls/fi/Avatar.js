@@ -1,9 +1,9 @@
 define({     
 //begin v1.x content
-	copyText: "Kopioi ${num} objektia",
-	moveText: "Siirrä ${num} objektia",
-	copyOneText: "Kopioi yksi objekti",
-	moveOneText: "Siirrä yksi objekti"
+	copyText: "Kopioi ${num} kohdetta",
+	moveText: "Siirrä ${num} kohdetta",
+	copyOneText: "Kopioi 1 kohde",
+	moveOneText: "Siirrä 1 kohde"
 //end v1.x content
 });
 

@@ -1,5 +1,7 @@
 var themes = {
+  dlBlue: {label: 'DL Blue', name: 'DL Blue', code: 'dlBlue', cssClass: 'dlBlue'},
   oneui: {label: 'One UI', name: 'One UI', code: 'oneui', cssClass: 'oneui'},
+  oneuidark: {label: 'Dark One UI', name: 'oneuidark', code: 'oneuidark', cssClass: 'oneui dark'},
   claro: {label: 'Claro', name: 'Claro', code: 'claro', cssClass: 'claro'},
   vienna: {label: 'Vienna', name: 'Vienna (on Claro)\u200e', code: 'vienna', cssClass: 'claro vienna'}
 };
@@ -14,6 +16,12 @@ var a11yOptions = {
 		def: {label: 'A11y (default)\u200e', name: null, code: null, activated: null},
 		"true": {label: 'A11y (on)\u200e', name: 'On', code: 'true', activated: true},
 		"false": {label: 'A11y (off)\u200e', name: 'Off', code: 'false', activated: false}
+};
+
+var lessOptions = {
+		def: {label: 'LESS (default)\u200e', name: null, code: null, activated: null},
+		"true": {label: 'LESS (on)\u200e', name: 'On', code: 'true', activated: true},
+		"false": {label: 'LESS (off)\u200e', name: 'Off', code: 'false', activated: false}
 };
 
 //permission denied issue for iframe cross domain 
@@ -38,6 +46,15 @@ var a11yMode = a11yOptions.def;
 try{
 	if ((window.parent) && (window.parent.a11yMode)){
 		a11yMode = window.parent.a11yMode;
+	}
+}catch(e){
+	//console.log(e.message);
+}
+
+var lessMode = lessOptions.def;
+try{
+	if ((window.parent) && (window.parent.lessMode)){
+		lessMode = window.parent.lessMode;
 	}
 }catch(e){
 	//console.log(e.message);
@@ -91,12 +108,14 @@ function parseCurrentURL() {
 		if (themes[result.queryParams.theme]) {
 			result.currentTheme = themes[result.queryParams.theme];
 		}
-
 		if (bidiOptions[result.queryParams.dir]) {
 			result.bidiDirection = bidiOptions[result.queryParams.dir];
 		}
 		if (a11yOptions[result.queryParams.a11y]) {
 			result.a11yMode = a11yOptions[result.queryParams.a11y];
+		}
+		if (lessOptions[result.queryParams.less]) {
+			result.lessMode = lessOptions[result.queryParams.less];
 		}
 	}
 	return result;
@@ -106,8 +125,16 @@ var initialURL = parseCurrentURL();
 if (initialURL.currentTheme) currentTheme = initialURL.currentTheme;
 if (initialURL.bidiDirection) bidiDirection = initialURL.bidiDirection;
 if (initialURL.a11yMode) a11yMode = initialURL.a11yMode;	
+if (initialURL.lessMode) {
+	lessMode = initialURL.lessMode;
+	if (lessMode) {
+		require(["dojo/ready", "dojo/uacss"], function(ready){
+			ready(switchToLESS);
+		});
+	}
+}
 
-function applyThemeToBody(explicitThemeClass) {
+function applyThemeToBody(explicitThemeClass, themePath) {
 	var doc = window["document"] || null;
 	var className = "class";
 	
@@ -117,22 +144,34 @@ function applyThemeToBody(explicitThemeClass) {
 	
 	if (ieVersion == 7) className = "className";
 	
-	var themeClass = null;
-	if (currentTheme && currentTheme.cssClass) themeClass = currentTheme.cssClass;
-	if (explicitThemeClass) themeClass = explicitThemeClass;
+	var themeClass = null, themeCode = null;
+	if (currentTheme && currentTheme.cssClass) {
+		themeClass = currentTheme.cssClass;
+		themeCode = currentTheme.code;
+	}else if(explicitThemeClass && explicitThemeClass != themeClass){
+		themeClass += " " + explicitThemeClass;
+	}else{
+		themeClass += "oneui";
+	}
 	
 	var bodyTag = doc.body || document.getElementsByTagName("body")[0];
+	bodyTag.setAttribute(className, "");
+	
 	if ((bidiDirection) && (bidiDirection.direction != null)) {
 		  bodyTag.setAttribute("dir", bidiDirection.direction);
 		}
 		if (themeClass) {
-		  var currentClass = bodyTag.getAttribute(className);
-		  if ( (!currentClass) || (currentClass.length = 0)) {
-			  currentClass = "";
-		  } else {
-			  currentClass = currentClass + " ";
-		  }
-		  bodyTag.setAttribute(className, currentClass + themeClass);
+			var currentClass = bodyTag.getAttribute(className);
+			if ( (!currentClass) || (currentClass.length = 0)) {
+				currentClass = "";
+			} else {
+				currentClass = currentClass + " ";
+			}
+			bodyTag.setAttribute(className, currentClass + themeClass);
+			if(themeCode === "oneuidark"){
+				dojoCSSImport((themePath || "../../themes/") + "oneui/oneui.css", "idxStyles");
+			}
+			dojoCSSImport((themePath || "../../themes/") + themeCode + "/" + themeCode + ".css", "idxStyles");
 		}
 		if ((a11yMode) && (a11yMode.code != null)) {
 			var currentClass = bodyTag.getAttribute(className);
@@ -151,4 +190,38 @@ function applyThemeToBody(explicitThemeClass) {
 				}
 			}
 		}
+}
+
+function switchToLESS(){
+	//remove oneui.css link
+	var regexp = /@import.*oneui\.css.*;/gm,
+		styles = document.getElementsByTagName("style"),
+		styleCount = styles.length,
+		links = document.getElementsByTagName("link"),
+		linkCount = links.length;
+	for(var i = 0; i<styleCount; i++){
+		var styleText = styles[i].innerHTML;
+		styleText = styleText.replace(regexp, "");
+		styles[i].innerHTML = styleText;
+	}
+	for(var i = 0; i<links; i++){
+		/oneui.css/.test(links[i].href);
+		links[i].parentNode.removeChild(links[i]);
+	}
+	//add less file and less.js
+	var lessFilePath = "../../../idx/themes/oneuiLess/theme.less",
+		lessJSPath = "../../../idx/themes/oneuiLess/less-1.4.2.js";
+	var headNode = document.getElementsByTagName("head")[0];
+	var cssNode = document.createElement("link");
+	var placeHolder = null;
+	cssNode.type = "text/css";
+	cssNode.rel  = "stylesheet/less";
+	cssNode.href = lessFilePath
+    cssNode.media = "all";
+    headNode.appendChild(cssNode);
+	
+	var scriptNode = document.createElement("script");
+	scriptNode.type = "text/javascript";
+	scriptNode.src  = lessJSPath;
+	headNode.appendChild(scriptNode);
 }

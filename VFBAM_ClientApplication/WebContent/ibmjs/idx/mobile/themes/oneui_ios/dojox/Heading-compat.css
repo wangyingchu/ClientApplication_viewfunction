@@ -6,11 +6,11 @@
  */
 
 /* dojox.mobile.Heading */
-.mblHeading {
+.oneui .mblHeading {
 	background-image: url(compat/heading-bg.png);
 }
 
 /* Tablet (iPad) variations. */
-.dj_tablet .mblHeading {
+.oneui.dj_tablet .mblHeading {
 	background-image: url(compat/ipad-heading-bg.png);
 }

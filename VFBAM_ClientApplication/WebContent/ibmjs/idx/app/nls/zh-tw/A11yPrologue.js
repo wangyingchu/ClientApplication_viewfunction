@@ -1,9 +1,9 @@
 define({     
 //begin v1.x content
-	keySequence_InternetExplorer: "ALT 加 ${accessKey}",
-	keySequence_Firefox: "ALT 加 SHIFT 加 ${accessKey}（若為 Windows 和 Linux）或 CONTROL 加 ${accessKey}（若為 Mac）",
-	keySequence_Safari: "CONTROL 加 OPT 加 ${accessKey}（若為 Mac）或 ALT 加 ${accessKey}（若為 Windows）",
-	keySequence_Chrome: "ALT 加 ${accessKey}（若為 Windows 和 Linux）或 CONTROL 加 OPT（若為 Mac）",
+	keySequence_InternetExplorer: "ALT+${accessKey} 鍵",
+	keySequence_Firefox: "在 Windows 及 Linux 上，請使用 ALT+SHIFT+${accessKey} 鍵；在 Mac 上，請使用 Ctrl+${accessKey} 鍵",
+	keySequence_Safari: "在 Mac 上，請使用 Ctrl+OPT+ ${accessKey} 鍵；在 Windows 上，請使用 ALT+${accessKey} 鍵",
+	keySequence_Chrome: "在 Windows 及 Linux 上，請使用 ALT+${accessKey} 鍵；在 Mac 上，請使用 Ctrl+OPT+${accessKey} 鍵",
 	shortcutListMessage: "這個頁面的快速鍵如下：",
 	a11yPrologueLabel: "協助工具前言",
     a11yStatementLabel: "協助工具聲明",

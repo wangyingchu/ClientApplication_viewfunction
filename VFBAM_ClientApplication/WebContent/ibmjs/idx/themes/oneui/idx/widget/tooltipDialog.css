@@ -17,8 +17,8 @@
     top: 20px;
 }
 
-.dj_a11y .oneui .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxHoverHelpCloseText,
-.dj_a11y.oneui .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxHoverHelpCloseText {
+.dj_a11y .oneui .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxTooltipDialogCloseText,
+.dj_a11y.oneui .dijitTooltipDialog .idxTooltipDialogCloseIcon .idxTooltipDialogCloseText {
 	display: block;
 }
 

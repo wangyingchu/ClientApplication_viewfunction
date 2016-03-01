@@ -109,6 +109,13 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
   */
   vendorLogo: "",
   
+  /**
+   * Toggle this flag to enable or disable the default vendor logo.  If the default logo is disabled
+   * and no vendor logo path is provided then the vendor logo will not be shown.  If a vendor logo 
+   * path is provided it takes precedence over the default vendor logo.
+   */
+  enableDefaultVendorLogo: true,
+  
 	/**
  	 * Override of the base CSS class, set to "idxAppMarquee".
  	 * This string is used by the template, and gets inserted into
@@ -190,7 +197,7 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
     var unusedClass = this.baseClass + "Unused";
     
     // mark all nodes unused
-    for (node in this.nodeLookup) {
+    for ( var node in this.nodeLookup ) {
     	dDomClass.add(this.nodeLookup[node], unusedClass);
     }
     // set the app node and vendor node
@@ -273,6 +280,15 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
     // call the base function
     this.inherited(arguments);
 
+    // create the vendor logo node & vendor name node
+    imgAttrs = { "class": this.baseClass + "VendorLogo", 
+    			 "id": this.id + "_VendorLogo",
+    		     "aria-labelledby": this.id + "_VendorName"};
+	this.vendorLogoNode = dDomConstruct.create("img", imgAttrs, this.vendorNode);
+    divAttrs = { "class": this.baseClass + "VendorName", "id": this.id + "_VendorName" };
+    this.vendorNameNode = dDomConstruct.create("div", divAttrs, this.vendorNode);
+    this._updateVendorDOM(true);
+
     // create the app logo node & app name node
     var imgAttrs = { "class": this.baseClass + "AppLogo", 
     				 "id": this.id + "_AppLogo",
@@ -282,14 +298,6 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
     this.appNameNode = dDomConstruct.create("div", divAttrs, this.appNode);
     this._updateAppDOM(true);
     
-    // create the app logo node & app name node
-    imgAttrs = { "class": this.baseClass + "VendorLogo", 
-    			 "id": this.id + "_VendorLogo",
-    		     "aria-labelledby": this.id + "_VendorName"};
-	this.vendorLogoNode = dDomConstruct.create("img", imgAttrs, this.vendorNode);
-    divAttrs = { "class": this.baseClass + "VendorName", "id": this.id + "_VendorName" };
-    this.vendorNameNode = dDomConstruct.create("div", divAttrs, this.vendorNode);
-    this._updateVendorDOM(true);
   },
   
   /**
@@ -348,8 +356,8 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
     }
     
     var vnode = null;
-    if (this.vendorLogo || this.vendorName) {
-    	vnode = (this.vendorLogo && (!highContrast) && (this.preferVendorLogo || (!this.vendorName)))
+    if (this._vendorLogo || this.vendorName) {
+    	vnode = (this._vendorLogo && (!highContrast) && (this.preferVendorLogo || (!this.vendorName)))
     			? this.vendorLogoNode : this.vendorNameNode;
     }
     var vdim = null;
@@ -371,7 +379,7 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
     
     // check if one of the logos is being shown and the loading of the logo is not complete then resize
     if ((this.appLogo && (this.preferAppLogo || (!this.appName)) && (!this.appLogoNode.complete))
-            || (this.vendorLogo && (this.preferVendorLogo || (!this.vendorName)) && (!this.vendorLogoNode.complete))) {
+            || (this._vendorLogo && (this.preferVendorLogo || (!this.vendorName)) && (!this.vendorLogoNode.complete))) {
     	setTimeout(dLang.hitch(this, this.resize), 500);
     	return;
     }
@@ -437,10 +445,21 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
 	var oldLogo = this.vendorLogo;
     this.vendorLogo = iString.nullTrim(value);
     if (!this._started) return;
-
+	
     this._updateVendorDOM(oldLogo != this.vendorLogo);
   },
 
+  /** 
+   * Handles enablement of the default vendor logo attribute.
+   */
+  _setEnableDefaultVendorLogoAttr: function(value) {
+	var oldValue = this.enableDefaultVendorLogo;
+	this.enableDefaultVendorLogo = value;
+	if (!this._started) return;
+
+	this._updateVendorDOM(oldValue != this.enableDefaultVendorLogo);
+  },
+  
   /**
    * Handles setting the vendor name attribute.
    */
@@ -493,8 +512,18 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
    * Updates the vendor-related DOM elements when related attributes change.
    */
   _updateVendorDOM: function(reloadLogo) {
+	  this._vendorLogo = this.vendorLogo;
+	  var cssOptions = null, baseURL = null, relativePath = null, lastIndex = 0;
+	  if (! this._vendorLogo && this.enableDefaultVendorLogo) {
+		baseURL = "" + require.toUrl("idx/themes");
+		cssOptions = iUtil.getCSSOptions(this.baseClass + "DefaultVendorLogo", this.domNode);
+		if (cssOptions && cssOptions.relativePath) {
+			this._vendorLogo = baseURL + "/" + cssOptions.relativePath;
+		}
+	  }	
+	  
 	  // check the vendor preference attributes
-	  if (this.vendorLogo && (this.preferVendorLogo || (!this.vendorName))) {
+	  if (this._vendorLogo && (this.preferVendorLogo || (!this.vendorName))) {
 		  dDomClass.add(this.domNode, this.baseClass + "ShowVendorLogo");
 		  dDomClass.remove(this.domNode, this.baseClass + "ShowVendorName");    	
 	  } else if (this.vendorName) {
@@ -502,15 +531,15 @@ return dDeclare("idx.app.AppMarquee",[dWidget,dTemplatedMixin],
 		  dDomClass.remove(this.domNode, this.baseClass + "ShowVendorLogo");
 	  }
 	  
-	  if (this.vendorLogo) {
-	    	dDomAttr.set(this.vendorLogoNode, "src", this.vendorLogo);
+	  if (this._vendorLogo) {
+	    	dDomAttr.set(this.vendorLogoNode, "src", this._vendorLogo);
 	  }
 	  if (this.vendorName) {
 	   	this.vendorNameNode.innerHTML = this.vendorName;
 	   	dDomAttr.set(this.vendorLogoNode, "alt", this.vendorName);
 	  }
-	  if (this.vendorLogo && reloadLogo) {
-        dXHR.get({url: this.vendorLogo, sync: true, preventCache: false,
+	  if (this._vendorLogo && reloadLogo) {
+        dXHR.get({url: this._vendorLogo, sync: true, preventCache: false,
       		 handle: dLang.hitch(this, this.resize)});
         if( iUtil.isIE == 7) setTimeout(dLang.hitch(this, this.resize), 500); //Delay resize until after image loaded		  
 	  }

@@ -1,0 +1,112 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+/************** static menu navigator ****************/
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenu {
+  border: none;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent {
+  background-color: #F5F6F6;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenu {
+  background-color: transparent;
+  color: #00597B;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenu .dijitMenuItem td.dijitMenuItemLabel {
+  color: #00597B;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenu .navItemSelected td.dijitMenuItemLabel {
+  color: #FFFFFF;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable {
+  width: 98%;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuItem {
+  color: white;
+  border: none;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuItem .dijitMenuExpand {
+  background-position: -42px 0;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuItemHover {
+  background-color: #939290;
+  background-repeat: repeat-x;
+  background-image: none;
+  _background-image: none;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuItemActive {
+  background-color: #939290;
+  background-repeat: repeat-x;
+  background-image: none;
+  _background-image: none;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuItemIconCell {
+  border: none !important;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuItemLabel {
+  border: none;
+  padding-left: 5px;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuArrowCell {
+  border: none;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .fcNavExpanderMenuItem {
+  border: none;
+  font-size: 1em;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .fcNavExpanderMenuItem .dijitMenuItemIconCell {
+  width: 15px;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .fcNavExpanderMenuItem .dijitMenuItemLabel {
+  padding: 10px 0px 8px;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .oneuiMenuHeadingLabel {
+  padding: 10px 0px 8px 15px;
+  font-size: 1em;
+  border: none;
+}
+.dlBlue .idxFlipCardNavigator .dojoxExpandoContent .dijitMenuTable .dijitMenuItem.menuItemHidden {
+  display: none;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer {
+  position: relative;
+  overflow: hidden;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+  position: absolute;
+  /* animation effect for MenuItem in FlipCard NavExpand pane*/
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu .flipCardActionMenuItem {
+  color: white;
+  background-color: #A9A7A5;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu .flipCardActionMenuItem td.dijitMenuItemLabel {
+  padding: 8px 0;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu .flipCardActionMenuItem.dijitMenuItemHover {
+  background-color: #939290;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu .flipCardActionMenuItem.dijitMenuItemActive {
+  background-color: #939290;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu.slideOut {
+  left: -300px;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu.popupContentMenu {
+  left: 0;
+  top: 0;
+}
+.dlBlue .idxFlipCardNavigator .flipCardMenuContainer .flipCardNavigationMenu.popupContentMenu.slideOut {
+  left: 300px;
+}

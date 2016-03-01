@@ -1,0 +1,158 @@
+/* Tree 
+ * 
+ * Styling Tree mostly means styling the TreeRow (dijitTreeRow)
+ * There are 4 basic states to style:
+ * 
+ * Tree Row:
+ * 1. tree row (default styling): 
+ * 		.dijitTreeRow - styles for each row of the tree
+ *
+ * 2. hovered tree row (mouse hover on a tree row)
+ * 		.dijitTreeRowHover - styles when mouse over on one row
+ * 
+ * 3. active tree row (mouse down on a tree row)
+ * 		.dijitTreeRowActive - styles when mouse down on one row
+ * 
+ * 4. selected tree row
+ * 		dijitTreeRowSelected - style when the row has been selected
+ * 
+ * Tree Expando:
+ * 	    dijitTreeExpando - the expando at the left of the text of each tree row
+ * 
+ * Drag and Drop on TreeNodes: (insert line on dijitTreeContent node so it'll aligned w/ target element)
+ * 		.dijitTreeNode .dojoDndItemBefore/.dojoDndItemAfter - use border style simulate a separate line
+ */
+.dlBlue .dijitTreeNode {
+  zoom: 1;
+  /* force layout on IE (TODO: may not be needed anymore) */
+}
+.dlBlue .dijitTreeIsRoot {
+  background-image: none;
+}
+/* Styling for basic tree node (unhovered, unselected)
+ * Also use this styling when dropping between items on the tree (in other words, don't
+ * use hover effect)
+ */
+.dlBlue .dijitTreeRow,
+.dlBlue .dijitTreeNode .dojoDndItemBefore,
+.dlBlue .dijitTreeNode .dojoDndItemAfter {
+  /* so insert line shows up on IE when dropping after a target element */
+  padding: 3px 0 1px;
+  background-color: #ffffff;
+  border-color: transparent;
+  border-width: 1px 0px;
+  color: #393a3f;
+  text-decoration: none;
+  font-weight: normal;
+  -webkit-transition-property: color, background-color, border-color;
+  -moz-transition-property: color, background-color, border-color;
+  transition-property: color, background-color, border-color;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.dlBlue .dijitTreeRowSelected {
+  background-color: #ecf8fd;
+  padding: 3px 0 1px;
+  border-color: transparent;
+  border-width: 1px 0px;
+  text-decoration: none;
+  font-weight: normal;
+  color: #393a3f;
+}
+.dlBlue .dijitTreeRowHover {
+  background-color: #dbf3fc;
+  padding: 3px 0 1px;
+  border-color: transparent;
+  border-width: 1px 0px;
+  text-decoration: none;
+  color: #393a3f;
+  font-weight: normal;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+}
+.dlBlue .dijitTreeRowActive {
+  background-color: #dbf3fc;
+  padding: 3px 0 1px;
+  border-color: transparent;
+  border-width: 1px 0px;
+  color: #393a3f;
+  font-weight: normal;
+  text-decoration: none;
+}
+.dlBlue .dijitTreeRowFocused {
+  background-repeat: repeat;
+}
+/* expando (open/closed) icon */
+.dlBlue .dijitTreeExpando {
+  background-image: url("images/treeExpandImages.png");
+  width: 16px;
+  height: 16px;
+  background-position: -35px 0;
+  /* for dijitTreeExpandoOpened */
+}
+.dj_ie6 .dlBlue .dijitTreeExpando {
+  background-image: url("images/treeExpandImages8bit.png");
+}
+.dlBlue .dijitTreeRowHover .dijitTreeExpandoOpened {
+  background-position: -53px 0;
+}
+.dlBlue .dijitTreeExpandoClosed {
+  background-position: 1px 0;
+}
+.dlBlue .dijitTreeRowHover .dijitTreeExpandoClosed {
+  background-position: -17px 0;
+}
+.dlBlue .dijitTreeExpandoLeaf,
+.dj_ie6 .dlBlue .dijitTreeExpandoLeaf {
+  background-image: none;
+}
+.dlBlue .dijitTreeExpandoLoading {
+  background-image: url("images/loadingAnimation.gif");
+}
+/* Drag and Drop on TreeNodes
+ * Put insert line on dijitTreeContent node so it's aligned w/
+ * (ie, indented equally with) target element, even
+ * though dijitTreeRowNode is the actual "drag object"
+ */
+.dlBlue .dijitTreeNode .dojoDndItemBefore .dijitTreeContent {
+  border-top: 2px solid #a4a6ab;
+}
+.dlBlue .dijitTreeNode .dojoDndItemAfter .dijitTreeContent {
+  border-bottom: 2px solid #a4a6ab;
+}
+/**
+ *
+ */
+.dlBlue .dijitFolderOpened {
+  background-image: url("images/folder_open_blue4.png");
+}
+.dlBlue .dijitFolderClosed {
+  background-image: url("images/folder_closed_blue4.png");
+}
+.dlBlue .dijitLeaf {
+  background-image: url("images/file_blue4.png");
+}
+.dlBlue .dijitTreeExpando {
+  background-image: url("images/leftNavArrows.png");
+  background-position: -16px 0;
+  height: 16px;
+  width: 16px;
+}
+.dlBlue .dijitTreeRowHover .dijitTreeExpando {
+  background-position: -16px 0;
+}
+.dlBlue .dijitTreeExpandoClosed {
+  background-position: 0 0;
+}
+.dlBlue .dijitTreeRowHover .dijitTreeExpandoClosed {
+  background-position: 0 0;
+}
+.dlBlue .dijitTreeExpandoLeaf,
+.dj_ie6 .dlBlue .dijitTreeExpandoLeaf {
+  background-image: none;
+}

@@ -1,0 +1,131 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .dijitStackController.idxListNavController {
+  padding: 0px;
+  background-color: #ffffff;
+  height: 100%;
+}
+.dlBlue .dijitStackController.idxListNavController .idxListNavButton {
+  display: block;
+  width: 100%;
+  background-color: #ffffff;
+}
+.dlBlue .dijitStackController.idxListNavController .dijitButtonNode {
+  border: none;
+  font-weight: normal;
+  width: 100%;
+  margin: 0px;
+  background-color: transparent;
+  background-image: none;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-topright: 0;
+  text-align: left;
+  text-indent: 5px;
+  padding: 14px 0;
+}
+.dlBlue .dijitStackController.idxListNavController .idxListNavButtonHover .dijitButtonNode {
+  background-color: #DBF3FC;
+}
+.dlBlue .dijitStackController.idxListNavController .idxListNavButtonChecked .dijitButtonNode {
+  background-color: #ECF8FD;
+}
+.dlBlue .dijitStackController.idxListNavController .idxListNavButtonFocused .dijitButtonNode {
+  background-color: #ECF8FD;
+}
+.dlBlue .idxListNavigation {
+  background-color: #ffffff;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePaneTitle {
+  border: none;
+  background: none;
+  background-image: none;
+  font-weight: normal;
+  text-shadow: none;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePaneContentOuter {
+  border: none;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePaneTitleHover {
+  background-color: #cce8f2;
+  font-weight: bold;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePane .dijitArrowNode {
+  background-image: url('images/leftNavArrows.png');
+  width: 7px;
+  height: 7px;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePane .dijitClosed .dijitArrowNode {
+  background-position: 0 0;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePane .dijitOpen .dijitArrowNode {
+  background-position: -16px 0;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePaneRtl .dijitClosed .dijitArrowNode {
+  background-position: -30px 0;
+}
+.dlBlue .idxNestedNavigation .dijitStackController.idxListNavController .dijitButtonNode {
+  text-indent: 15px;
+  padding-left: 0px;
+}
+.dlBlue .dijitStackController.idxListNavController .dijitCheckedFocused,
+.dlBlue .dijitStackController.idxListNavController .dijitCheckBoxFocused {
+  outline-width: 0px;
+}
+.dijitRtl .dlBlue .dijitStackController.idxListNavController .dijitButtonNode {
+  text-align: right;
+  padding-right: 0px;
+}
+.dj_ie7 .dlBlue .dijitStackController.idxListNavController .dijitButtonNode {
+  text-indent: 0px;
+  padding-left: 5px;
+}
+.dj_ie7 .dlBlue .idxNestedNavigation .dijitStackController.idxListNavController .dijitButtonNode {
+  text-indent: 0px;
+  padding-left: 20px;
+}
+.dlBlue .dijitStackController.idxListNavController .idxListNavButtonCheckedHover .dijitButtonNode {
+  text-decoration: none;
+  background-color: #cce8f2;
+  background-image: none;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.dlBlue .idxNestedNavigation,
+.dlBlue .idxSectionedNavigation {
+  background-color: #ffffff;
+  padding: 0px;
+  margin: 0px;
+}
+.dlBlue .idxNestedNavigation .idxHeaderPaneContent,
+.dlBlue .idxNestedNavigation .dijitTitlePaneContentInner {
+  padding: 0px;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePane,
+.dlBlue .idxSectionedNavigation .dijitTitlePane {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  margin: 0;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.dlBlue .idxNestedNavigation .dijitTitlePaneTitleFocus,
+.dlBlue .idxSectionedNavigation .dijitTitlePaneTitleFocus {
+  margin: 0;
+}
+.dlBlue .idxNestedNavigation .dijitTitlePaneContentOuter {
+  border: none;
+}
+.dlBlue .idxSectionedNavigation .dojoxGridCell,
+.dlBlue .idxSectionedNavigation .dojoxGridRow {
+  border-left-color: #eee;
+  border-right-color: transparent;
+}
+.dlBlue .idxSectionedNavigation .dojoxGridView,
+.dlBlue .idxSectionedNavigation .dojoxGridHeader {
+  left: 0 !important;
+  right: 0 !important;
+}

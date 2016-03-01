@@ -204,6 +204,14 @@
 	margin: 1px 0 1px 0;
   	padding: 3px 10px 4px 10px;
 }
+.oneui .dijitSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>td.dijitMenuItemLabel {
+  	padding-top: 3px;
+  	padding-bottom: 4px;
+}
+.oneui .dijitSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemLabel {
+  	padding-top: 2px;
+  	padding-bottom: 4px;
+}
 
 .oneui .dijitSelectMenu .dijitMenuSeparatorTop {
   border-bottom: 1px solid #769dc0;

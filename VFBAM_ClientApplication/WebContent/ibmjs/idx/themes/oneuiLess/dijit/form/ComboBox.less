@@ -1,0 +1,171 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.dj_gecko & .dijitTextBoxReadOnly INPUT.dijitInputField
+/* disable arrow and validation presentation INPUTs but allow real INPUT for text selection */
+{
+	-moz-user-input: auto !important; /* prevent focus of disabled textbox buttons */
+}
+
+.dijitComboBox,
+.dijitComboBoxActive,
+.dijitHasDropDownOpen .dijitComboBox{
+	border-color: @fwDarker;
+}
+
+.dijitComboBox .dijitInputField {
+	padding: 0 10px 0 10px;
+}
+
+.dijitComboBox .dijitDownArrowButton{
+	border-color: transparent;
+}
+
+.dijitComboBox .dijitInputField .dijitPlaceHolder{
+	left: 10px;
+	padding: 4px 0 5px 0;
+}
+
+.dijitComboBoxRtl .dijitInputField .dijitPlaceHolder{
+	right: 10px;
+}
+
+.dijitComboBox .dijitInputField .dijitInputInner,
+.dijitComboBox .dijitArrowButtonInner{
+	padding: 4px 0 5px 0;
+	color: @textDefault;
+}
+
+.dijitComboBox .dijitArrowButtonInner{
+	width: 19px;
+	background-image: url('images/dijit/form/comboButtonArrows.png');
+	background-repeat: no-repeat;
+	background-position: -149px 53%;
+	border: 0;
+}
+
+.dj_ie6 & .dijitComboBox .dijitArrowButtonInner{
+	background-image: url('images/dijit/form/comboButtonArrows8bit.png');
+}
+
+/* Focused */
+.dijitComboBoxFocused{
+	border-color: @focusOutline;
+}
+
+.dj_ie6 & .dijitComboBox .dijitInputField .dijitInputInner,
+.dj_ie6 & .dijitComboBox .dijitInputField .dijitPlaceHolder,
+.dj_ie6 & .dijitComboBox .dijitArrowButtonInner{
+	padding: 5px 0 4px 0;
+}
+
+/* Hover */
+.dijitComboBoxHover{
+	background-color: @fwBackground;
+	background-image: none;
+}
+
+.dijitComboBoxInputContainerHover{
+	border-color: @brandLighter;
+}
+
+.dijitComboBox .dijitDownArrowButton.dijitDownArrowButtonHover{
+	border-color: @fwDarker;
+}
+
+/* ArrowButtonHover */
+.dijitComboBox .dijitDownArrowButtonHover,
+.dijitComboBoxFocused .dijitDownArrowButton{
+	border-color: @fwDarker;
+	.gradient(@fwLightest, @fwLight);
+} 
+
+.dijitComboBox .dijitDownArrowButtonHover .dijitArrowButtonInner,
+.dijitComboBox .dijitDownArrowButtonActive .dijitArrowButtonInner,
+.dijitHasDropDownOpen .dijitComboBox .dijitArrowButtonInner{
+	background-position: -49px 53%;
+}
+
+/* ArrowButtonActive */
+.dijitComboBox .dijitDownArrowButtonActive,
+.dijitHasDropDownOpen .dijitComboBox .dijitDownArrowButton{
+	border-color: @fwDarker;
+	.gradient(@fwLighter, @fwLightest);
+}
+
+/* Disabled */
+.dijitComboBoxDisabled{
+	border-color: @fwBase;
+	background: @fwLightest;
+}
+
+.dijitComboBoxDisabled .dijitDownArrowButton{
+	border-color: @fwLightest;
+}
+
+.dijitComboBoxDisabled,
+.dijitComboBoxDisabled .dijitInputContainer,
+.dijitComboBoxDisabled .dijitInputField .dijitInputInner,
+.dijitComboBoxDisabled .dijitInputField .dijitPlaceHolder,
+.dijitComboBoxDisabled .dijitDownArrowButton{
+	color: @fwDarker;
+	background: @fwLightest
+}
+
+/* ReadOnly */
+.dijitComboBoxReadOnly{
+	border-color: @fwDark;
+}
+
+.dijitComboBoxReadOnly .dijitDownArrowButton.dijitDownArrowButtonHover{
+	border-color: @fwLightest;
+}
+
+.dijitComboBoxReadOnly .dijitDownArrowButton{
+	background: @fwLightest;
+}
+
+.dijitComboBoxReadOnly .dijitArrowButtonInner,
+.dijitComboBoxReadOnly .dijitDownArrowButtonActive .dijitArrowButtonInner,
+.dijitComboBoxReadOnly .dijitDownArrowButtonHover .dijitArrowButtonInner{
+	background-position: -149px 53%;
+}
+
+.dijitComboBoxReadOnly .dijitDownArrowButtonHover,
+.dijitComboBoxReadOnly .dijitDownArrowButtonActive,
+.dijitComboBoxReadOnlyFocused .dijitDownArrowButton{
+	border-color: @fwLightest;
+}
+
+.dijitComboBoxReadOnly,
+.dijitComboBoxReadOnly .dijitInputField .dijitInputInner,
+.dijitComboBoxReadOnly .dijitInputField .dijitPlaceHolder,
+.dijitComboBoxReadOnly .dijitDownArrowButton{
+	.textColors(@fwLightest);
+	color: @textDisabled;
+}
+
+.dijitComboBoxError{
+	border-color: @error;
+}
+.dijitComboBoxError .dijitDownArrowButton{
+	border-color: @errorBright;
+}
+
+/* *!important* syntax should be avoid to use!
+ * This class should be removed once the *!important* sytax in
+ * the class .dijitTextBoxFocused .dijitButtonNode (Common.css) get
+ * revmoed by Jay Z.
+ *  */
+.dijitComboBoxReadOnlyFocused .dijitButtonNode{
+	border-left-color: @fwLightest !important;
+}
+
+.dijit_a11y & .dijitComboBoxReadOnly .dijitButtonNode {
+	border-style: none!important;
+	border-width: 0!important;
+}

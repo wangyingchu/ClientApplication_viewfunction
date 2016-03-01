@@ -1,45 +1,58 @@
 define([
 	"dojo/_base/declare",
-	"dojo/_base/lang",
-	"dojo/_base/array",
-	"gridx/core/_Module",
+	"dojo/query",
+	"dijit/registry",
 	"gridx/modules/pagination/PaginationBar",
+	"gridx/support/LinkPager",
+	"gridx/support/LinkSizer",
+	"gridx/support/GotoPageButton",
 	"./GotoPagePane",
 	"idx/widget/Dialog",
 	"dijit/form/Button",
-	"idx/form/NumberTextBox",
-	"dojo/i18n!gridx/nls/PaginationBar"
-], function(declare, lang, array, _Module, PaginationBar, GotoPagePane, Dialog, Button, NumberTextBox, nls){
+	"idx/form/NumberTextBox"
+], function(declare, query, registry, PaginationBar,
+	LinkPager, LinkSizer, GotoPageButton, GotoPagePane,
+	Dialog, Button, NumberTextBox){
 
-	return _Module.register(
-	declare(PaginationBar, {
-		constructor: function(){
-			this.arg('dialogProps', {
-				buttons: [
-					new Button({
-						label: nls.gotoDialogOKBtn,
-						onClick: lang.hitch(this, function(){
-							array.some(this._pagers, function(pager){
-								var dlg = pager._gotoDialog;
-								if(dlg && dlg.open){
-									dlg.content._onOK();
-									return true;
-								}
-							});
-						})
-					})
-				]
+	return declare(PaginationBar, {
+		_init: function(pos){
+			var t = this,
+				gotoBtnProt = GotoPageButton.prototype;
+			t._add(LinkPager, 1, pos, 'stepper', {
+				className: 'gridxPagerStepperTD',
+				visibleSteppers: t.arg('visibleSteppers')
 			});
-		},
-
-		dialogClass: Dialog,
-		
-		gotoPagePane: GotoPagePane,
-
-		buttonClass: Button,
-
-		numberTextBoxClass: NumberTextBox,
-
-		sizeSeparator: ''
-	}));	
+			t._add(LinkSizer, 2, pos, 'sizeSwitch', {
+				className: 'gridxPagerSizeSwitchTD',
+				sizes: t.arg('sizes'),
+				sizeSeparator: t.arg('sizeSeparator')
+			});
+			t._add(GotoPageButton, 3, pos, 'gotoButton', {
+				className: 'gridxPagerGoto',
+				dialogClass: Dialog,
+				buttonClass: Button,
+				numberTextBoxClass: NumberTextBox,
+				gotoPagePane: GotoPagePane,
+				dialogProps: {
+					'class': 'gridxGotoPageDialog',
+					executeOnEnter: false,
+					buttons: [
+						new Button({
+							label: t.grid.nls.gotoDialogOKBtn,
+							onClick: function(){
+								query('.gridxPagerGotoBtn', t.grid.domNode).some(function(node){
+									var gotoBtn = registry.byNode(node);
+									var dlg = gotoBtn._gotoDialog;
+									if(dlg.open){
+										dlg.content._onOK();
+										return true;
+									}
+								});
+							}
+						})
+					]
+				}
+			});
+		}
+	});
 });

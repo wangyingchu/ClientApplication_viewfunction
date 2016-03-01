@@ -1,0 +1,105 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+.idxLoginFrameBox {
+	width:480px;
+
+    padding:20px 25px;
+
+    border: solid 1px @fwBase;
+    
+    .BoxShadow(0 2px 10px 0px @shadowBox);
+	
+	.BorderRadius(3px);
+	
+	background: @fwBackground;
+
+	margin: 100px auto 0;
+}
+
+.idxLoginFrameSubTitle,
+.idxLoginFrameBox .idxLoginFrameFieldLabel,
+.idxLoginFrameBox .idxInactivityMessage,
+.idxLoginFrameBox .idxLoginFrameButtonBar
+{
+	margin-top: 10px;
+}
+
+.idxLoginFrameSubTitle,
+.idxLoginFrameBox .idxLoginFrameInactivityMessage {
+	color: @textSecondary;
+}
+
+.idxLoginFrameBox .idxLoginFrameCopyright
+{
+	margin-top: 20px;
+}
+
+/* Firefox and IE7 only */
+html>body .idxLoginFrameBox
+{
+    padding: 12px;
+}
+
+.idxLoginFrameBoxInner
+{
+
+
+}
+
+/* IE6 only */
+* html body .idxLoginFrameBoxInner
+{
+	padding:12px;
+	background:@fwBackground;
+}
+    
+/* IE6 only */
+* .idxLoginFrameBoxInner input
+{
+    position: relative;
+    z-index: 1;
+}
+
+/* IE6 only */
+* .idxLoginFrameBoxInner a
+{
+    position: relative;
+    z-index: 1;
+}
+
+/* IE6 only */
+* .idxLoginFrameBoxInner button
+{
+    position: relative;
+    z-index: 1;
+}
+
+.idxLoginFrameCopyright
+{
+    font-family: @serif;
+    font-size: .92em;
+    color: @textSecondary;
+}
+
+.idxLoginFrameTitle
+{
+    font-size: 22px;
+	margin: 0px;
+	line-height: 26px;
+}
+
+.idxLoginFrameInput
+{
+    border: 1px solid @fwDarker;
+    float: none;
+    text-align:left;
+}
+
+.dj_ie & .idxLoginFrame .dijitValidationTextBoxRtl {
+	padding-right: 1px;
+}

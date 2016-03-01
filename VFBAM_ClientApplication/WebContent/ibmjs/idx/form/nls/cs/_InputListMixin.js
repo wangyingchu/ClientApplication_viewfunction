@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Musí být vybrána alespoň jedna položka."
 //end v1.x content
 });
+

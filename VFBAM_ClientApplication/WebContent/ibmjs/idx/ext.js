@@ -18,11 +18,7 @@ define(["dojo/_base/lang",
         "./widgets",
         "./containers",
         "./trees",
-        "./form/formWidgets",
         "./form/buttons",
-        "./form/comboButtons",
-        "./form/dropDownButtons",
-        "./grid/treeGrids",
         "dijit/_base/manager"],  // temporarily resolves parser issue with dijit.byId
         function(dLang,iMain) {
 	return dLang.getObject("ext", true, iMain);

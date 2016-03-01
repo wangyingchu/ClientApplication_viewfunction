@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Visa alla ({num})",
+	viewAll: "Visa alla ({num})&lrm;",
 	viewDetails: "Mer information",
 	refresh: "Uppdatera",
 	showDetails: "Visa information",
 	hideDetails: "Dölj information"
 //end v1.x content
 });
+

@@ -101,6 +101,8 @@
 	max-height: 500px;
 	font-size: 1em;
 	overflow: auto;
+	word-break: break-word;
+	word-wrap:break-word;
 }
 
 .dj_ie7 .oneui .idxOneuiHoverCardBody {	
@@ -214,7 +216,7 @@
 }
 .oneui .idxOneuiHoverCardFooterButton{
 	margin-right: 10px;
-	vertical-aligned: top;
+	vertical-align: top;
 }
 .oneui .idxOneuiHoverCardFooterButton .dijitButtonNode{
 	width: 16px;

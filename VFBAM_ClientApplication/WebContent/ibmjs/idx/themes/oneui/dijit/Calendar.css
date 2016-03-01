@@ -234,17 +234,18 @@
 
 .oneui .dijitCalendarPreviousMonth .dijitCalendarDateLabel, 
 .oneui .dijitCalendarNextMonth .dijitCalendarDateLabel {
-    color: #999999;
+    color: #555555;
     border-color: #fafafa;
 	background-color: #fafafa;
     /* intentionally matches background-color, no visible border until hover/selection */
 }
+ /* duplicate css style 
 .dj_ie .oneui .dijitCalendarPreviousMonth .dijitCalendarDateLabel, 
 .dj_ie .oneui .dijitCalendarNextMonth .dijitCalendarDateLabel {
 	color: #999999;
 	border-color: #fafafa;
 	background-color: #fafafa;
-}
+} */ 
 
 .oneui .dijitCalendarYearContainer {
     vertical-align: middle;
@@ -376,7 +377,7 @@
     background-color: transparent;
     border-width: 0;
     padding: 4px 6px 4px 5px;
-    color: #767676;
+    color: #555555;
 }
 
 /* End Disabled Calendar Style */

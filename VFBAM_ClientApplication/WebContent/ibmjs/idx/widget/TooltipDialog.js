@@ -5,13 +5,14 @@ define([
 	"dojo/dom-construct",
 	"dojo/dom-attr",
 	"dojo/dom-style",
+	"dojo/dom-class",
 	"dojo/on",
 	"dojo/keys",
 	"dijit/TooltipDialog",
 	"idx/util",
 	"idx/string",
 	"dojo/i18n!./nls/Dialog"
-], function(dDeclare, dLang, dWindow, dDomConstruct, dDomAttr, dDomStyle, dOn, dKeys, dTooltipDialog, iUtil, iString, iDialogResources){
+], function(dDeclare, dLang, dWindow, dDomConstruct, dDomAttr, dDomStyle, dDomClass, dOn, dKeys, dTooltipDialog, iUtil, iString, iDialogResources){
 
 	/**
 	 * 
@@ -62,6 +63,12 @@ define([
 			this.closeButtonNode = dDomConstruct.create("span", attrs, shell);
 			this.closeTextNode = dDomConstruct.create("span", {"class": this.idxBaseClass + "CloseText"}, this.closeButtonNode);
 			this.closeTextNode.innerHTML = "x";
+			
+			dDomClass.add(this.connectorNode, "idxConnector");
+			this.connectorNode.innerHTML = "<span role='presentation' class='idxConnectorBelow'>▲</span>"
+										 + "<span role='presentation' class='idxConnectorAbove'>▼</span>"
+										 + "<span role='presentation' class='idxConnectorLeft'>▶</span>"
+										 + "<span role='presentation' class='idxConnectorRight'>◀</span>";
 			
 			dOn(this.closeButtonNode, "click", dLang.hitch(this,this._handleCloseClick));
 			dOn(this.closeButtonNode, "key", dLang.hitch(this,this._handleCloseKey));

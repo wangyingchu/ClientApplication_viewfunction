@@ -5,6 +5,32 @@
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
 
+.oneui .idxFloatLeading {
+	float: left;
+}
+.oneui .idxFloatTrailing {
+	float: right;
+}
+.oneui.dijitRtl .idxFloatLeading {
+	float: right;
+}
+.oneui.dijitRtl .idxFloatTrailing {
+	float: left;
+}
+.oneui .idxTextAlignLeading {
+	text-align: left;
+}
+.oneui .idxTextAlignTrailing {
+	text-align: right;
+}
+.oneui.dijitRtl .idxTextAlignLeading {
+	text-align: right;
+}
+.oneui.dijitRtl .idxTextAlignTrailing {
+	text-align: left;
+}
+
+
 /*a11y support*/
 .idxTextAlternative {
 	display: none;

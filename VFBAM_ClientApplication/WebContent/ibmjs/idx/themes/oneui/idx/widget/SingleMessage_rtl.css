@@ -13,10 +13,10 @@
 	background-image: url('images/msgIcons_8bit_rtl.png');
 }
 .oneui.idx_i18n_il .idxSingleMessageRtl .idxMessageIcon{
-	background-image: url('images/msgIcons_24bit_rtl_il.png');
+	background-image: url('images/msgIcons_24bit.png');
 }
 .dj_ie6 .idx_i18n_il .idxSingleMessageRtl .idxMessageIcon{
-	background-image: url('images/msgIcons_8bit_rtl_il.png');
+	background-image: url('images/msgIcons_8bit.png');
 }
 .oneui .idxSingleMessageRtl.criticalMessage .idxMessageIcon, 
 .oneui .idxSingleMessageRtl.attentionMessage .idxMessageIcon, 
@@ -43,7 +43,8 @@
 }
 
 .oneui .idxSingleMessageRtl .idxMessageTimestamp, .oneui .idxSingleMessageRtl .idxMessageAction, .oneui .idxSingleMessageRtl .idxMessageContent,
-.oneui .idxSingleMessageRtl .idxMessageIcon, .oneui .idxSingleMessageRtl .idxMessageSeparator, .oneui .idxSingleMessageRtl .idxMessageFakeContent{
+.oneui .idxSingleMessageRtl .idxMessageIcon, .oneui .idxSingleMessageRtl .idxMessageIconWraper, .oneui .idxSingleMessageRtl .idxMessageSeparator, 
+.oneui .idxSingleMessageRtl .idxMessageFakeContent{
 	float: right;
 }
 

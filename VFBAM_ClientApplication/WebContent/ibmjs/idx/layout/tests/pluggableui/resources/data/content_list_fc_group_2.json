@@ -1,0 +1,87 @@
+{
+	identifier: "name",
+	props: {
+		nbZones: 2, 
+		showContentHeader:true,
+		headerParams: {},
+		dockBehavior: "fixed",
+		dockOverlay: false
+	},
+	items: [
+		{
+			name: "sample_with_header_1",
+			props: {
+				maxable: true,
+				stackable: true,
+				actionsInMainSide: true,
+				main_props: {
+					title: "sample_with_header_main_title_1",
+					href: "resources/html/flipCardMainContent.html",
+					contentActions:[
+						{id:"file", name:"file", label:"File",type:"text",children:[
+							{id:"new", name:"new", label:"New",pressHandler:function(){alert("New Card!")}},
+							{id:"open", name:"open", label:"Open",pressHandler:function(){alert("Open Card!")}},
+							{id:"exit", name:"exit", label:"Exit",pressHandler:function(){alert("Exit Card!")}}
+						]},
+						{id:"edit", name:"edit", label:"Edit",type:"text",children:[
+							{id:"copy", name:"copy", label:"Copy",pressHandler:function(){alert("Copy Card!")}},
+							{id:"paste", name:"paste", label:"Paste",pressHandler:function(){alert("Paste Card!")}}
+						]},
+						{id:"card", name:"card", label:"Card",type:"text",pressHandler:function(){alert("Card Action!")}},
+						{id:"help", name:"help", label:"Help",type:"text",pressHandler:function(){window.open("http://idx.ibm.com")}}
+					]
+				}
+			}
+		},
+		{
+			name: "sample_with_header_2",
+			props: {
+				maxable: true,
+				stackable: true,
+				actionsInMainSide: true,
+				main_props: {
+					title: "sample_with_header_main_title_2",
+					href: "resources/html/flipCardMainContent.html",
+					contentActions:[
+						{id:"file", name:"file", label:"File",type:"text",children:[
+							{id:"new", name:"new", label:"New",pressHandler:function(){alert("New Card!")}},
+							{id:"open", name:"open", label:"Open",pressHandler:function(){alert("Open Card!")}},
+							{id:"exit", name:"exit", label:"Exit",pressHandler:function(){alert("Exit Card!")}}
+						]},
+						{id:"edit", name:"edit", label:"Edit",type:"text",children:[
+							{id:"copy", name:"copy", label:"Copy",pressHandler:function(){alert("Copy Card!")}},
+							{id:"paste", name:"paste", label:"Paste",pressHandler:function(){alert("Paste Card!")}}
+						]},
+						{id:"card", name:"card", label:"Card",type:"text",pressHandler:function(){alert("Card Action!")}},
+						{id:"help", name:"help", label:"Help",type:"text",pressHandler:function(){window.open("http://idx.ibm.com")}}
+					]
+				}
+			}
+		},
+		{
+			name: "sample_with_header_3",
+			props: {
+				maxable: true,
+				stackable: true,
+				actionsInMainSide: true,
+				main_props: {
+					title: "sample_with_header_main_title_3",
+					href: "resources/html/flipCardMainContent.html",
+					contentActions:[
+						{id:"file", name:"file", label:"File",type:"text",children:[
+							{id:"new", name:"new", label:"New",pressHandler:function(){alert("New Card!")}},
+							{id:"open", name:"open", label:"Open",pressHandler:function(){alert("Open Card!")}},
+							{id:"exit", name:"exit", label:"Exit",pressHandler:function(){alert("Exit Card!")}}
+						]},
+						{id:"edit", name:"edit", label:"Edit",type:"text",children:[
+							{id:"copy", name:"copy", label:"Copy",pressHandler:function(){alert("Copy Card!")}},
+							{id:"paste", name:"paste", label:"Paste",pressHandler:function(){alert("Paste Card!")}}
+						]},
+						{id:"card", name:"card", label:"Card",type:"text",pressHandler:function(){alert("Card Action!")}},
+						{id:"help", name:"help", label:"Help",type:"text",pressHandler:function(){window.open("http://idx.ibm.com")}}
+					]
+				}
+			}
+		}
+	]
+}

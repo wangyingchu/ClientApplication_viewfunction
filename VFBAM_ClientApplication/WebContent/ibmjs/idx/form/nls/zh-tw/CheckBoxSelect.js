@@ -10,3 +10,4 @@ define({
 	missingMessage: "至少必須選取一個項目。"
 //end v1.x content
 });
+

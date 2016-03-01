@@ -27,7 +27,7 @@ require([
 	"dojo/dom",
 	"dojo/ready",
 	"idx/widget/Toaster",
-	"dojo/date/locale",
+	"dojo/date/locale"
 ], function(dom, ready, Toaster, locale){
 	ready(function(){
 		var toaster = new Toaster({
@@ -57,8 +57,11 @@ require([
 	});
 });
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">widget/nls/Toaster</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>

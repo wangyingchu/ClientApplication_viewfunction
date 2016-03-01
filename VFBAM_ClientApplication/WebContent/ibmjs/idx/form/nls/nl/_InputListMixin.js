@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Ten minste één item moet worden geselecteerd."
 //end v1.x content
 });
+

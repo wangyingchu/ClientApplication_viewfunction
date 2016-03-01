@@ -1,0 +1,31 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxSingleMessageRtl .idxMessageIcon {
+  margin: 10px 15px;
+}
+.dlBlue .idxSingleMessageRtl .idxMessageCloseIcon {
+  margin: 0 0 0 20px;
+}
+.dlBlue .idxSingleMessageRtl .idxMessageRightAligned {
+  position: absolute;
+  left: 0;
+  right: auto;
+}
+.dlBlue .idxSingleMessageRtl .idxMessageRefresh {
+  text-align: left;
+}
+.dlBlue .idxSingleMessageRtl .idxMessageContent,
+.dlBlue .idxSingleMessageRtl .idxMessageFakeContent {
+  padding: 16px 20px 16px 0;
+}
+.dlBlue .idxSingleMessageRtl .idxMessageTitle {
+  display: inline-block;
+}
+.dlBlue .idxSingleMessageRtl .idxMessageTimestamp,
+.dlBlue .idxSingleMessageRtl .idxMessageAction,
+.dlBlue .idxSingleMessageRtl .idxMessageContent,
+.dlBlue .idxSingleMessageRtl .idxMessageIcon,
+.dlBlue .idxSingleMessageRtl .idxMessageIconWraper,
+.dlBlue .idxSingleMessageRtl .idxMessageSeparator,
+.dlBlue .idxSingleMessageRtl .idxMessageFakeContent {
+  float: right;
+}

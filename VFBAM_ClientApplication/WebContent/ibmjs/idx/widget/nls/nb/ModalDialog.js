@@ -13,9 +13,11 @@ define({
 	Success: "Vellykket",
 	Confirmation: "Bekreftelse",
 	Question: "Spørsmål",
+	Progress: "Fremdrift",
 	closeButtonLabel: "Lukk",
 	cancelButtonLabel: "Avbryt",
 	executeButtonLabel: "OK",
 	checked: "Ikke spør igjen"
 //end v1.x content
 });
+

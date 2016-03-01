@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Tüm satırları seç/seçimi kaldır"		
 //end v1.x content
 });
+

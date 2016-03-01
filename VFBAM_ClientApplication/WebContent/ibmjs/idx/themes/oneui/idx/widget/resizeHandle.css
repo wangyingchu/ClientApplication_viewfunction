@@ -9,5 +9,15 @@
 	display: none;
 }
 .oneui.dijit_a11y .idxResizeHandleText {
-	display: inline;
+	display: inline-block;
+	font-size: 150%;
+	padding: 0px;
+	margin: 0px;
+	line-height: 100%;
+	text-align: right;
+	vertical-align: bottom;
+}
+
+.dijitRtl .oneui.dijit_a11y .idxResizeHandleText {
+	text-align: left;
 }

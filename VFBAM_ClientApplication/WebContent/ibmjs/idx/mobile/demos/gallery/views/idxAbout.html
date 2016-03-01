@@ -14,7 +14,7 @@
 		<button data-dojo-type="dojox/mobile/Button" class="mblPrimaryButton" data-dojo-props="label: 'Reset Logs'" onclick="dialog_log.addMessage('\'Reset Logs\' clicked);')" />
 	</div>
 	
-	<div data-dojo-type="dojox/mobile/ScrollableView" data-dojo-props="selected: true">
+	<div id="aboutMainView" data-dojo-type="dojox/mobile/ScrollableView" data-dojo-props="selected: true">
 	
 		<div data-dojo-type="dojox/mobile/Heading" data-dojo-props="label: 'One UI About test', fixed: 'top'">
 			<span class="phoneOnly" data-dojo-type="dojox/mobile/ToolBarButton" data-dojo-props="label: 'About', moveTo: 'aboutView'" style="float: right;"></span>
@@ -40,7 +40,7 @@
 	
 	<div id="aboutView" data-dojo-type="dojox/mobile/ScrollableView" data-dojo-props="selected:false">
 	
-		<div data-dojo-type="dojox/mobile/Heading" data-dojo-props="label: 'About', back: 'Back', moveTo: 'mainView', fixed: 'top'">
+		<div data-dojo-type="dojox/mobile/Heading" data-dojo-props="label: 'About', back: 'Back', moveTo: 'aboutMainView', fixed: 'top'">
 		</div>
 		
 		<div data-dojo-type="idx/mobile/AboutPane" data-dojo-props="

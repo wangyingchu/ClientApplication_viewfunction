@@ -1,0 +1,55 @@
+/* ColorPalette
+ * 
+ * Styling of the ColorPalette consists of the following:
+ * 
+ * 1. the whole color palette
+ *		.dijitColorPalette - for outline, border, and background color of the whole color palette
+ *		Note: outline does not work for IE
+ *
+ * 2. the color swatch 
+ *		.dijitColorPalette .dijitPaletteImg
+ *		transparent (but clickable) <img> node inside of each <td>, overlaying the color swatch.
+ *		displays border around a color swatch
+ *
+ * 3. hovered swatch
+ * 		.dijitColorPalette .dijitPaletteCell:hover .dijitPaletteImg
+ *		the hovered state of the color swatch - adds border
+ * 	
+ * 4. active and selected swatch
+ * 		.dijitColorPalette .dijitPaletteCell:active .dijitPaletteImg
+ *		.dijitColorPalette .dijitPaletteCellSelected .dijitPaletteImg
+ *		adds border for active or selected state
+ */
+.dlBlue .dijitColorPalette {
+  border: 1px solid #dbdbdd;
+  background: #ffffff;
+  box-shadow: none;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.dlBlue .dijitColorPalette .dijitPaletteTable {
+  padding: 12px;
+}
+.dlBlue .dijitColorPalette .dijitColorPaletteSwatch {
+  height: 14px;
+  width: 14px;
+}
+.dlBlue .dijitColorPalette .dijitPaletteImg {
+  /* transparent (but clickable) <img> node inside of each <td>, overlaying the color swatch.
+	 * displays border around a color swatch
+	 * overrides border color in dijit.css */
+  border: 1px solid #dbdbdd;
+  padding: 0;
+  font-size: 0;
+  margin: 2px;
+}
+.dlBlue .dijitColorPalette .dijitPaletteCell:focus {
+  /*outline: none;*/
+}
+.dlBlue .dijitColorPalette .dijitPaletteCell:hover .dijitPaletteImg:focus {
+  /*outline: none;*/
+}
+.dlBlue .dijitColorPalette .dijitPaletteCell:active .dijitPaletteImg,
+.dlBlue .dijitColorPalette .dijitPaletteTable .dijitPaletteCellSelected .dijitPaletteImg {
+  border: 2px solid #000000;
+}

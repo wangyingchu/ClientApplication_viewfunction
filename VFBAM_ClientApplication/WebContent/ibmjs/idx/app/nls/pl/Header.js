@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Udostępnianie",
+	actionSettings: "Ustawienia",
 	actionHelp: "Pomoc",
 	searchEntry: "Szukaj",
-	searchSubmit: "Szukaj"
+	searchSubmit: "Szukaj",
+	primarySearchLabelSuffix: "wyszukiwanie główne",
+	secondarySearchLabelSuffix: "wyszukiwanie dodatkowe",
+	homeButton: "Start"
 //end v1.x content
 });
+

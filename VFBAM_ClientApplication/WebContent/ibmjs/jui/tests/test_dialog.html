@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jUI Dialog</title>
+	<link rel="stylesheet" href="../themes/less/dthink.css">
+	<style>
+		body{
+			font-family:'Helvetica Neue', Helvetica, Arial;
+		}
+	</style>
+    <script src="../requirejs/require.js">
+    </script>
+    <script src="../requirejs/config.js">
+    </script>
+	<script src="../jquery-ui/jquery-1.10.2.js">
+    </script>
+	<script>
+	require(["jui/dialog"], function(Dialog){
+		$(function() {
+			var dialog1 = new Dialog({
+				buttons: {
+					OK: function() { dialog1.close();}
+				}
+			}, "#dialog");
+			
+			$( "#button" ).button().click(function(e){
+				dialog1.open()
+			});
+		});
+	})
+	</script>
+	<script src="commonTest.js"></script>
+</head>
+<body>
+<h1>Dialog Tests</h1>
+<p>Click to show dialog. Tooltip of close icon translated.</p>
+<button id="button">Show Dialog</button>
+<div id="dialog" title="Basic dialog">
+	<div>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</div>
+</div>
+</body>
+</html>

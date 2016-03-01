@@ -1,0 +1,17 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .oneuiHintOutside {
+  margin: 5px 0 0 10px;
+}
+.dlBlue .dijitComboBoxMenu {
+  background: #ffffff;
+  border-color: #cdced2;
+}
+.dlBlue .dijitComboBoxMenu .dijitMenuItem {
+  color: #393a3f;
+}
+.dlBlue .dijitComboBoxMenu .dijitMenuItemHover,
+.dlBlue .dijitComboBoxMenu .dijitMenuItemSelected {
+  background: #daf1fc;
+  border-color: #daf1fc;
+  color: #393a3f;
+}

@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT plus ${accessKey}",
 	keySequence_Firefox: "ALT plus UMSCHALTTASTE plus ${accessKey} unter Windows und Linux oder STRG plus ${accessKey} beim Mac",
 	keySequence_Safari: "STRG plus WAHLTASTE plus ${accessKey} beim Mac oder ALT plus ${accessKey} unter Windows",
-	keySequence_Chrome: "ALT plus ${accessKey} unter Windows und Linux oder STRG plus WAHLTASTE beim Mac",
+	keySequence_Chrome: "ALT plus ${accessKey} unter Windows und Linux oder STRG plus WAHLTASTE plus ${accessKey} beim Mac",
 	shortcutListMessage: "Direktaufrufe für diese Seite sind:",
 	a11yPrologueLabel: "Behindertengerechte Bedienung - Prolog",
     a11yStatementLabel: "Erklärung zur behindertengerechten Bedienung",

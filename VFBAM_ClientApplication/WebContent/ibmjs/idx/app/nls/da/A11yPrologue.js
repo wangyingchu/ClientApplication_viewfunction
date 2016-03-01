@@ -3,7 +3,7 @@ define({
 	keySequence_InternetExplorer: "ALT plus ${accessKey}",
 	keySequence_Firefox: "ALT plus SHIFT plus ${accessKey} i Windows og Linux eller CONTROL plus ${accessKey} på Mac",
 	keySequence_Safari: "CONTROL plus OPT plus ${accessKey} på Mac eller ALT plus ${accessKey} i Windows",
-	keySequence_Chrome: "ALT plus ${accessKey} i Windows og Linux eller CONTROL plus OPT på Mac",
+	keySequence_Chrome: "ALT plus ${accessKey} i Windows og Linux eller CONTROL plus OPT plus ${accessKey} på Mac",
 	shortcutListMessage: "Genvejene for denne side er:",
 	a11yPrologueLabel: "Handicapvenlighed - prolog",
     a11yStatementLabel: "Erklæring vedrørende handicapvenlighed",

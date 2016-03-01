@@ -1,0 +1,210 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.idxTabMenuLauncherOptions {
+  background-image: url('images/blank.gif?dockWidget=idx.app.TabMenuDock');
+}
+
+.idxTabMenuLauncher {
+  position: relative;
+}
+
+.idxTabMenuLauncher.idxAppFrame-child {
+	background: none;
+	background-color: transparent;
+	border-width: 0px;
+	border-style: none;
+	border-color: transparent;
+}
+
+.idxTabMenuLauncher-child {
+
+}
+
+div.idxTabMenuLauncherTabDock {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 48px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  .gradient(@brand; @brandDarker);
+}
+
+div.idxTabMenuLauncherContentStack {
+  position: absolute;
+  padding: 10px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: @fwBackground;
+}
+
+.idxTabMenuLauncher_Workspace {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+
+/* Tabs */
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabListContainer-top {
+   clear: left;
+    height: 44px !important;
+    border: none;
+    .gradient(@brand; @brandDarker);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabListContainer-top .dijitTab,
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent {
+	background-image: none;
+    background-color: transparent;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    min-width: 8px;
+    padding: 0 16px;
+    text-align: center;
+    .textColors(@brand);
+    color: @textStrong;
+    font-weight: bold;
+    border-right: 1px solid rgba(0,0,0,.35);
+    border-left: 1px solid transparent;
+    border-bottom: none;
+    border-top: none;
+    margin: 15px 0;
+    font-size: 11px;
+	}
+	
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent.dijitTabChecked,
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent.dijitTabChecked.dijitTabHover {
+	background: @fwBackground;
+	.textColors(@fwBackground);
+	color: @textDefault;
+	padding: 15px 16px;
+	margin: 0;
+	}
+	
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabListContainer-top .dijitTab.dijitTabHover,
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent.dijitTabHover,
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabListContainer-top .dijitTab.dijitTabActive,
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent.dijitTabActive {
+	background-image: none;
+	background-color: @brandDarker;
+	cursor:pointer;
+	border-left:1px solid rgba(0,0,0,.25);
+	border-right:1px solid rgba(0,0,0,.25);
+	padding: 15px 16px;
+	margin: 0;
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabListContainer-top .tabStripButton .dijitTabStripMenuIcon {
+	float: right;
+	display: inline-block;
+	margin: 3px 0 0 7px;
+	background: url('images/idx/app/headerIcons.png') -10px -10px;
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs {
+	border-bottom: none;
+	height: 44px;
+	}
+
+oneui .idxTabMenuLauncher > .dijitTabContainerTop .dijitTabPaneWrapper {
+    padding: 0;
+    background-color: transparent;
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabInnerDiv, 
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent,
+.idxTabMenuLauncher > .dijitTabContainerTop .tabStripButton .dijitTabInnerDiv {
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.dj_ie7 & .idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent,
+.dj_ie6 & .idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabContent {
+    padding: 14px 16px;
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .tabStripButton {
+	width: auto;
+	}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .tabStripButton .dijitTabInnerDiv {
+	padding: 14px 0;
+	height: auto;
+	}
+	
+.idxTabMenuLauncher > .dijitTabContainerTop .tabStripButton:hover .dijitTabInnerDiv {
+	background: none;
+	}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .tabStripButton .dijitTabContent {
+	min-width: 8px;
+    padding: 0 12px 0 28px;
+    text-align: center;
+    .textColors(@brand);
+    color: @textStrong;
+    font-weight: bold;
+    border-right: 1px solid rgba(255,255,255,.35);
+    min-height: 16px;
+    }
+    
+.idxTabMenuLauncher > .dijitTabContainerTop .tabStripButton .dijitTabContent .dijitButtonText {
+	display: none;
+	}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent {
+    padding: 14px 16px;
+    border-right-color: rgba(0,0,0,.15);
+    border-left-color: rgba(0,0,0,.15);
+}
+.dj_ie7 & .idxTabMenuLauncher > .dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent,
+.dj_ie6 & .idxTabMenuLauncher > .dijitTabContainerTop-tabs .dijitTabHover .dijitTabContent {
+    padding: 14px 16px;
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabInnerDiv {
+	border-top: none;
+	}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+    padding: 14px 16px 14px 16px;
+    border: none;
+    background-color: @fwBackground;
+    .textColors(@fwBackground);
+    color: @textDefault;
+}
+.dj_ie7 & .idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,
+.dj_ie6 & .idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+    padding: 14px 16px;
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv {
+    .gradient(@brandLighter; @brandDarker);
+}
+
+.idxTabMenuLauncher > .dijitTabContainerTop .dijitTabContainerTop .tabStripButton {
+	border-bottom: none;
+	border-bottom-color: transparent;
+	}
+	
+.idxTabMenuLauncher > .dijitTabContainerTop .tabStripButton .dijitTabInnerDiv .dijitTabStripMenuIcon {
+	background: url('images/idx/app/headerIcons.png') -380px 0 no-repeat;
+	width: 26px;
+	height: 26px;
+	float: left;
+	margin-top: -4px;
+	}

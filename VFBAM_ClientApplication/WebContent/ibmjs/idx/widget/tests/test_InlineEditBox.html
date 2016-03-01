@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Inline Edit Box Test</title>
@@ -14,6 +14,7 @@
 		
 		<style id="idxStyles" type="text/css">
 	        @import "../../themes/oneui/oneui.css";
+	        @import "../../tests/_pagefooter/_PageFooter.css";
 	        @import "../../tests/test.css";
 			body {
 				padding:15px;
@@ -28,30 +29,8 @@
 		</script>
 
 		<script type="text/javascript" id="postDojo">
-			dojo.require("dijit.dijit"); // optimize: load dijit layer
-			dojo.require("dojo.data.ItemFileReadStore");
-			dojo.require("dijit.InlineEditBox");
-			dojo.require("dijit.form.Textarea");
-			dojo.require("dijit.form.TextBox");
-			dojo.require("dijit.form.DateTextBox");
-			dojo.require("dijit.form.CurrencyTextBox");
-			dojo.require("dojo.currency");
-			dojo.require("dijit.form.ComboBox");
-			dojo.require("dijit.form.FilteringSelect");
-			dojo.require("dijit.form.NumberSpinner");
-
-			dojo.require("dijit.Editor");
-			dojo.require("dijit._editor.plugins.AlwaysShowToolbar");
-
-			dojo.require("dojo.parser");	  // scan page for widgets and instantiate them
-
-			function myHandler(newValue){
-				this._onChangeValue = newValue;	// used by robot test file
-				console.debug("onChange for id = " + this.id + ", value: " + newValue);
-			}
-		</script>
-		<script type="text/javascript" id="postDojo">
 			var modules = [
+				"dojo.ready",
 				"dojo.data.ItemFileReadStore",
 				"dojo.currency",
 				"dijit.InlineEditBox",
@@ -66,9 +45,12 @@
 				"dijit._editor.plugins.AlwaysShowToolbar",
 				"idx.tests._pagefooter._PageFooter"
 			]; 
-			var locale, Calendar, _PageFooter;
+			var ready, currency, ItemFileReadStore, InlineEditBox, Textarea, TextBox,
+				DateTextBox, CurrencyTextBox, ComboBox, FilteringSelect, NumberSpinner,
+				Editor, AlwaysShowToolbar, _PageFooter;
 			
 			function preParse(modules){
+				ready				= modules["dojo/ready"];
 				currency 			= modules["dojo/currency"];
 				ItemFileReadStore 	= modules["dojo/data/ItemFileReadStore"];
 				InlineEditBox 		= modules["dijit/InlineEditBox"];
@@ -84,6 +66,7 @@
 				_PageFooter   		= modules["idx/tests/_pagefooter/_PageFooter"];
 			}
 			function postParse() {
+				var inlineWidget = new dijit.InlineEditBox({ renderAsHtml: true, onChange:myHandler }, 'programmatic');
 				new _PageFooter();
 			}
 			dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
@@ -124,10 +107,10 @@
 				<p>
 					Dear <span id="MrSmith" data-dojo-type="dijit.InlineEditBox" data-dojo-props='width:"200px", title:"recipient name"'></span>,
 				</p>
-				<p class="letter">
+				<p id="letter_blanks" class="letter">
 					Thank you for your recent order.
 					Please remit
-					<span id="dollar_as" data-dojo-type="dijit.InlineEditBox" data-dojo-props='editor:"dijit.form.CurrencyTextBox", editorParams:{currency: "USD"}, width:"100px", title:"dollar amount"'></span>&nbsp;for
+					<span id="dollar_as" data-dojo-type="dijit.InlineEditBox" data-dojo-props='editor:"dijit.form.CurrencyTextBox", editorParams:{id: "dollar_as_editor", currency: "USD"}, width:"100px", title:"dollar amount"'></span>&nbsp;for
 					your purchase of
 					<span data-dojo-type="dijit.InlineEditBox" data-dojo-props='editor:"dijit.form.NumberSpinner", editorParams:{constraints: {places:0} }, width:"70px", title:"quantity"'></span>&nbsp;deluxe
 					<span data-dojo-type="dijit.InlineEditBox" data-dojo-props='editor:"dijit.form.ComboBox", title:"item name",
@@ -181,7 +164,7 @@
 						 Pennsylvania
 					</span>.
 				</p>
-				<p data-dojo-type="dijit.InlineEditBox" data-dojo-props='autoSave:false, editor:"dijit.form.Textarea", title:"additional details"'>
+				<p id="letter_no_auto_save" data-dojo-type="dijit.InlineEditBox" data-dojo-props='autoSave:false, editor:"dijit.form.Textarea", editorParams:{id: "letter_no_auto_save_editor"}, title:"additional details"'>
 					We sincerely appreciate your business and hope we can do business again.
 				</p>
 				<p>
@@ -279,12 +262,6 @@
 	
 			<h2>Programmatically created:</h2>
 			before block<div style="display:block;" id="programmatic">Click here to edit a block programmatically created inline edit region</div>after
-			<script type="text/javascript">
-				// See if we can make a widget in script
-				dojo.ready(function(){
-					var inlineWidget = new dijit.InlineEditBox({ renderAsHtml: true, onChange:myHandler }, 'programmatic');
-	 			});
-			</script>
 			<hr style="width:100%;"/>
 			<h2>Complex renderAsHtml="false"</h2>
 			<div id="renderAsHtml_false" data-dojo-type="dijit.InlineEditBox" data-dojo-props='renderAsHtml:false, width:"400px", style:"width:400px;"'>

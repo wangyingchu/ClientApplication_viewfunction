@@ -1,0 +1,127 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .gridxPager {
+    background: transparent;
+    padding: 0 7px;
+    height: 32px;
+    border: none;
+}
+.@{theme-name} {
+    .gridxPagerInner {
+        height: 100%;
+    }
+    .gridxPagerNodeFocus {
+        border: 1px dotted darkblue;
+    }
+    .gridxPager {
+        .gridxPagerStepper {
+            text-align: center;
+        }
+    }
+    .gridxPagerSizeSwitchBtn:last-child {
+        margin-right: 0;
+    }
+    .gridxPagerSizeSwitchSeparator {
+        color: #666;
+    }
+    .gridxGotoPageDialog {
+        width: 300px !important;
+        width: 300px;
+    }
+    .gridx {
+        .gridxPagerSizeSwitchDD {
+            text-align: right;
+        }
+        .gridxPagerStepperDD {
+            text-align: center;
+        }
+        .gridxPagerLabel {
+            font-family: Georgia;
+            font-style: italic;
+            color: #767676;
+            margin: 0 5px;
+        }
+    }
+    .gridxPagerStepperWidget {
+        width: auto;
+    }
+}
+
+.@{theme-name} .gridxLinkPager, .gridxLinkSizer{
+    padding: 8px 0;
+}
+.@{theme-name} .gridxPagerStepperBtn,.@{theme-name} .gridxPagerSizeSwitchBtn {
+    margin: 0 5px;
+    font-family: arial;
+    color: #00649d;
+}
+
+.@{theme-name} .gridxPagerStepperBtn.gridxPagerPrevPage {
+    background-image: url('svg/back-left-previous.svg');
+    background-size: 100%;
+    background-position: 0 0;
+}
+
+.@{theme-name} .gridxPagerStepperBtn.gridxPagerNextPage {
+    background-image: url('svg/next-right-forward.svg');
+    background-size: 100%;
+    background-position: 0 0;
+}
+
+.@{theme-name} .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+    background-image: url('svg/back-left-previous-disabled.svg');
+    background-size: 100%;
+    background-position: 0 0;
+}
+
+.@{theme-name} .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable  {
+    background-image: url('svg/next-right-forward-disabled.svg');
+    background-size: 100%;
+    background-position: 0 0;
+}
+.dj_ie8{
+    .@{theme-name} .gridxPagerStepperBtn.gridxPagerPrevPage {
+        background-image: url('images/back-left-previous.png');
+        background-size: 100%;
+        background-position: 0 0;
+    }
+
+    .@{theme-name} .gridxPagerStepperBtn.gridxPagerNextPage {
+        background-image: url('images/next-right-forward.png');
+        background-size: 100%;
+        background-position: 0 0;
+    }
+
+    .@{theme-name} .gridxPagerStepperBtn.gridxPagerPrevPage.gridxPagerStepperBtnDisable {
+        background-image: url('images/back-left-previous-disabled.png');
+        background-size: 100%;
+        background-position: 0 0;
+    }
+    .@{theme-name} .gridxPagerStepperBtn.gridxPagerNextPage.gridxPagerStepperBtnDisable  {
+        background-image: url('images/next-right-forward-disabled.png');
+        background-size: 100%;
+        background-position: 0 0;
+    }
+}
+
+.@{theme-name} .gridxPagerStepperBtn:focus,.@{theme-name} .gridxPagerSizeSwitchBtn:focus {
+    outline: 1px dotted darkblue;
+}
+ 
+.@{theme-name} .gridxPagerStepperBtnHover,.@{theme-name} .gridxPagerSizeSwitchBtnHover {
+    text-decoration: underline;
+    color: #05386b;
+}
+.@{theme-name} .gridxPagerStepperBtnActive,.@{theme-name} .gridxPagerSizeSwitchBtnActive {
+    font-weight: bold;
+    color: #222;
+}
+/* Have to use idx.form.Select because OneUI theme can not fit dijit.form.Select.
+ * But the validation part of idx.form.Select must be hidden.
+ */
+.@{theme-name} {
+    .gridxPagerSizeSwitchWidget {
+        .dijitValidationContainer {
+            display: none;
+        }
+    }
+}
+

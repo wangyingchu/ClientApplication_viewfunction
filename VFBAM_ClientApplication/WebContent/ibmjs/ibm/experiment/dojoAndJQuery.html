@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<!--
+	Licensed Materials - Property of IBM
+	(C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html>
+<head>
+	<title>Dojo & JQuery</title>
+
+	<!-- make display better on mobile, so that results appear under the controls rather than to the right of them -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+	<style type="text/css" id="idxStyles">
+		@import "../../../dojo_idt/dojo/resources/dojo.css";
+		@import "../../../dojo_idt/dijit/themes/dijit.css";
+        @import "../../../ibmjs/idx/themes/oneui/oneui.css";
+		@import "../../../jquery-ui/themes/base/jquery-ui.css";
+		.ui-dialog-buttonpane .dijitButton{
+			float: right;
+		}
+    </style>
+
+	<!--<script src="../../../dojo_idt/dojo/dojo.js" type="text/javascript"></script>-->
+	
+	<script src="../../../requirejs/require.js"></script>
+	
+	<!--<script src="../../../jquery-ui/jquery.js" type="text/javascript"></script>-->
+	<!--<script src="../../../jquery-ui/ui/jquery-ui.js" type="text/javascript"></script>-->
+	
+    <script type="text/javascript">
+    	
+		define.amd.jQuery = true;
+		
+		require.config({
+			shim:{
+				'jquery.ui.dialog': ['jquery.ui.button', 'jquery.ui.draggable', 'jquery.ui.position', 'jquery.ui.resizable'],
+				
+				'jquery.ui.core': ['jquery'],
+				'jquery.ui.widget': ['jquery'],
+				'jquery.ui.position':['jquery'],
+				'jquery.ui.mouse':['jquery.ui.widget'],
+				'jquery.ui.resizable': ['jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget'],
+				'jquery.ui.button': ['jquery.ui.core', 'jquery.ui.widget'],
+				'jquery.ui.draggable': ['jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget']
+			},
+			paths: {
+				/* DojoToolkit */
+				'dojo': '../../../dojo_idt/dojo',
+				'dijit': '../../../dojo_idt/dijit',
+				'dojox': '../../../dojo_idt/dojox',
+				'idx': '../../../ibmjs/idx',
+				 /* jQuery */
+		        'jquery': '../../../jquery-ui/jquery',
+		        /* jQuery UI */
+		        'jquery.ui.core': '../../../jquery-ui/ui/jquery.ui.core',
+				'jquery.ui.widget': '../../../jquery-ui/ui/jquery.ui.widget',
+				'jquery.ui.mouse': '../../../jquery-ui/ui/jquery.ui.mouse',
+		        'jquery.ui.position': '../../../jquery-ui/ui/jquery.ui.position',
+				'jquery.ui.resizable': '../../../jquery-ui/ui/jquery.ui.resizable',
+				'jquery.ui.draggable': '../../../jquery-ui/ui/jquery.ui.draggable',
+		        'jquery.ui.droppable': '../../../jquery-ui/ui/jquery.ui.droppable',
+				
+				'jquery.ui.button': '../../../jquery-ui/ui/jquery.ui.button',
+				'jquery.ui.dialog': '../../../jquery-ui/ui/jquery.ui.dialog'
+		    }
+		})
+        
+        require(
+		["dojo/ready", "dojo/parser", "dijit/registry", "jquery", "idx/widget/Dialog", "idx/widget/jqDialog", "jquery.ui.button", "jquery.ui.dialog"], 
+		
+		function(ready, parser, registry, $, Dialog){
+            ready(function(){
+               parser.parse();
+			   
+			   $("#jDialog").dialog({
+			   		autoOpen: false
+				});
+				
+			   $("#mixedDialog").jqDialog({
+			   		autoOpen: false
+				});
+				
+			   var idxDialog = new Dialog({
+			   		title: "IDX Dialog",
+					content: "This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon."
+			   });
+			   
+			   $("#jButton").button().click(function(){
+			   		idxDialog.show();
+			   });
+			   
+			   registry.byId("idxButton").onClick = function(){
+			   		$("#jDialog").dialog("open");
+			   }
+			   
+			   registry.byId("mixButton").onClick = function(){
+			   		$("#mixedDialog").jqDialog("open");
+			   }
+            })
+        })
+    </script>
+	<script type="text/javascript" src="../../idx/tests/commonTest.js"></script>
+</head>
+<body style="margin: 0; padding: 15px;" class="oneui">
+	<button id="jButton">jQuery button, show idx dialog</button>
+	
+	<button data-dojo-type="dijit/form/Button" id="idxButton">dijit button, show jQuery dialog</button>
+	
+	<button data-dojo-type="dijit/form/Button" id="mixButton">Show Mixed Dialog</button>
+	
+	<div id="jDialog" title="jQuery dialog">
+		<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+	</div>
+	<div id="mixedDialog" title="Mixed Dialog">
+		<p>A jQuery dialog with Dijit close button</p>
+	</div>
+</body>
+</html>

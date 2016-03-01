@@ -10,3 +10,4 @@ define({
 	missingMessage: "必须选择至少一项。"
 //end v1.x content
 });
+

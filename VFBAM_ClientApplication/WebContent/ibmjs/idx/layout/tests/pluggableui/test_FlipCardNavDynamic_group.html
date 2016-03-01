@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+	Licensed Materials - Property of IBM
+	(C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<title>FlipCard Dynamic Navigator with Group Tests</title>
+		
+		<script type="text/javascript" src="../../../tests/dojoVersion.js"></script>
+		<script type="text/javascript" src="basicImportor.js"></script>	
+		
+		<style id="idxStyles" type="text/css">
+            html, body {
+			    width: 100%;
+			    height: 100%;
+			    margin: 0; 
+			    padding: 0;
+			}
+						
+		</style>
+	
+	
+		<script type="text/javascript">
+			var globalApp = null;
+			require(["./test_FlipCardNavDynamic_group.js"], function( app ){
+				app.init();
+				globalApp = app;
+			});
+		</script>
+		<script type="text/javascript" src="../../../tests/commonTest.js"></script>
+		
+	</head>
+	<body class="oneui">
+		<script type="text/javascript">applyThemeToBody( null, "../../../themes/" );</script><!-- only oneui theme is supported -->
+		
+		<div style="width: 100%; height: 100%; margin: 0px; padding: 0px;">
+			<div style="width: 100%; height: 100%;">
+				<div id="flipcardNavNode"></div>
+			</div>
+			
+			<div id="custom_content" style="padding:20px;">
+				<div id="user_content" style="font-size:20px;">
+				</div>
+			</div>
+		</div>
+		
+		<div style="display:none">
+			<div id="welcome_content">
+				<div style="padding:10px;font-size:15px">
+					<div style="font-size:18px;font-weight:bold"> Dynamic Navigator Senarios </div>
+					
+					<div style="margin:10px; float:left; width:280px">
+						<div style="margin:5px"> Senarios 1: navigate in different navigation level</div>
+						<img src="resources/images/nav_dyna_group_1.png" style="width:250px; height:500px"/>
+					</div>
+					<div style="margin:10px; float:left; width:280px">
+						<div style="margin:5px"> Senarios 2: customize root level navigation items</div>
+						<img src="resources/images/nav_dyna_group_2.png" style="width:250px; height:500px"/>
+					</div>
+					<div style="margin:10px; float:left; width:280px">
+						<div style="margin:5px"> Senarios 3: customize sub level navigation items</div>
+						<img src="resources/images/nav_dyna_group_3.png" style="width:250px; height:500px"/>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

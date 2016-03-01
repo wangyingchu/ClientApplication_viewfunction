@@ -19,7 +19,8 @@
 .oneui .idxModalDialog, 
 .oneui .idxConfirmDialog{
 	background: #ffffff;
-	width: 500px !important;
+	width: 500px;
+	min-width: 0;
 }
 
 .oneui .idxModalDialog .dijitDialogTitleBar,
@@ -150,3 +151,64 @@
 .oneui .idxConfirmDialog .messageSummary .messageProgressIcon {
 	display: none;
 }
+
+.oneui .idxModalDialog .messageSummary .messageIconText,
+.oneui .idxConfirmDialog .messageSummary .messageIconText{
+	display: none;
+}
+
+
+
+.oneui .idxProgressDialog{
+	width: 300px !important; 
+	padding: 0px 0px 5px;
+}
+.oneui .idxProgressDialog .messageSummary{
+	margin: auto;
+	padding: 25px 0px;
+}
+.oneui .idxProgressDialog .messageWrapper{
+	border-top: medium none;
+	margin: 0px;
+}
+.oneui .idxProgressDialog .dijitDialogPaneContent{
+	padding: 0px;
+}
+.oneui .idxProgressDialog .idxSimpleIconContainer{
+	text-align: center;
+}
+.oneui .idxProgressDialog .idxSimpleIconContainer tr td{
+	text-align: center;
+}
+.oneui .idxProgressDialog .idxSimpleIconContainer .idxSignIcon.dijitContentPaneLoading{
+	margin: auto;
+	padding-left: 0px !important;
+    padding-top: 3px !important;
+	padding-bottom: 2px !important;
+	height: 45px;
+	width: 40px;
+}
+.oneui .idxProgressDialog .idxSimpleIconContainer .idxSimpleIconText{
+	padding: 0px 0px 15px 0px;
+}
+.oneui .idxProgressDialog .messageDialogFooter{
+	padding: 15px 0px 8px;
+	min-height: 30px;
+	text-align: center;
+}
+.oneui .idxProgressDialog .messageDialogFooter .messageAction{
+	float: none;
+}
+
+
+/**************** a11y *********************/
+.dijit_a11y .idxModalDialog .messageSummary img,
+.dijit_a11y .idxConfirmDialog .messageSummary img{
+	display: none;
+}
+.dijit_a11y .idxModalDialog .messageSummary .messageIconText,
+.dijit_a11y .idxConfirmDialog .messageSummary .messageIconText{
+	display: inline;
+	margin: 0 10px;
+}
+

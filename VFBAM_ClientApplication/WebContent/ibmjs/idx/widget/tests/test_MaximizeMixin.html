@@ -21,6 +21,7 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 </style>
 <script type="text/javascript">
 	var dojoConfig = currentDojoVersion.dojoConfig;
+	dojoConfig.async = false;
 </script>
 
 <script type="text/javascript">
@@ -128,11 +129,11 @@ dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse)
 	<label for="useAnimationCheckBox">Use Animation</label><br/>
 	<label for="durationField">Duration(ms): </label>
 	<input id="durationField" type="text" value="500" onchange="setDuration();"/><br/>
-	<input type="button" onclick="togglePane('pane0');" value="pane0"/>
-	<input type="button" onclick="togglePane('pane1');" value="pane1"/>
-	<input type="button" onclick="togglePane('pane2');" value="pane2"/>
-	<input type="button" onclick="togglePane('pane3');" value="pane3"/>
-	<input type="button" onclick="togglePane('pane4');" value="pane4"/>
+	<input type="button" id="togglePane0" onclick="togglePane('pane0');" value="pane0"/>
+	<input type="button" id="togglePane1" onclick="togglePane('pane1');" value="pane1"/>
+	<input type="button" id="togglePane2" onclick="togglePane('pane2');" value="pane2"/>
+	<input type="button" id="togglePane3" onclick="togglePane('pane3');" value="pane3"/>
+	<input type="button" id="togglePane4" onclick="togglePane('pane4');" value="pane4"/>
 </div>
 <div id="container">
 	<div id="pane0">Contents of Pane 0 (High-Contrast)</div>

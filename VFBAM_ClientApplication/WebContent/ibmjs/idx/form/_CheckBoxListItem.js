@@ -48,6 +48,10 @@ define([
 			this.option.selected = !!this.focusNode.get("checked");
 			this.parent.set("value",  this.parent.getValueFromOpts(this.option));
 			this.parent.focusChild(this);
+		},
+		destroy: function(){
+			this.focusNode.destroy();
+			this.inherited(arguments);
 		}
 	});
 });

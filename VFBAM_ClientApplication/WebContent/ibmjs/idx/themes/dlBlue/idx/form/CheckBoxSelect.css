@@ -1,0 +1,103 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .idxCheckBoxSelect {
+  margin: 0;
+}
+.dlBlue {
+  /*.idxCheckBoxSelectWrap {
+        .dijitValidationContainer {
+            display:none;
+        }
+    }*/
+}
+.dlBlue .idxCheckBoxSelectWrapLabel {
+  vertical-align: top;
+}
+.dlBlue .idxCheckBoxSelectReadOnly .dijitDownArrowButton {
+  background-image: none;
+  background: #f4f4f4;
+  background: -moz-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #dbdbdb));
+  background: -webkit-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: -o-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: -ms-linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+  background: linear-gradient(top, #f4f4f4 0%, #dbdbdb 100%);
+}
+.dlBlue .idxCheckBoxSelectReadOnly .dijitDownArrowButtonHover {
+  background: #e5e5e5;
+  background: -moz-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #cccccc));
+  background: -webkit-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: -o-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: -ms-linear-gradient(top, #fefefe 0%, #cccccc 100%);
+  background: linear-gradient(top, #fefefe 0%, #cccccc 100%);
+}
+.dlBlue .idxCheckBoxSelectReadOnly .dijitDownArrowButtonActive {
+  background: #aaaaaa;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(100%, #f4f4f4));
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -o-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -ms-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+}
+.dlBlue .idxCheckBoxSelectMenu {
+  /*.dijitMenuTable {
+            tr.dijitMenuItem.dijitMenuItemFocused {
+                & > td.dijitMenuItemIconCell {
+                    padding-left: 9px;
+                }
+                & > td.dijitMenuItemLabel {
+                    padding-top: 2px;
+                    padding-bottom: 4px;
+                }
+            }
+            tr.dijitMenuItem.dijitMenuItemFocused:first-child {
+                & > td.dijitMenuItemLabel {
+                    padding-top: 3px;
+                }
+            }
+        }*/
+}
+.dlBlue .idxCheckBoxSelectMenu td.dijitMenuArrowCell {
+  display: none;
+}
+.dlBlue .idxCheckBoxSelectMenu td.dijitMenuItemIconCell {
+  margin: 0;
+  width: 16px;
+}
+.dlBlue .idxCheckBoxSelectMenu table.dijitMenuTable {
+  width: 100%;
+}
+.dlBlue .dijitMenuPopup .idxCheckBoxSelectMenu .dijitMenuItemReadOnly {
+  color: #767676;
+  background: #ffffff;
+}
+.dlBlue .idxCheckBoxSelect .idxCheckBoxSelectWrapLabel {
+  text-align: left;
+}
+.dlBlue .idxCheckBoxSelectWrapError .idxCheckBoxSelectError {
+  border: 1px solid #d9182d;
+}
+.dlBlue .idxCheckBoxSelectWrapError .idxCheckBoxSelectError .dijitButtonContents {
+  background: #ffffff;
+}
+.dlBlue .idxCheckBoxSelectWrapError .dijitValidationContainer {
+  display: inherit;
+}
+/*.dj_webkit {
+    .@{theme-name} {
+        table.idxCheckBoxSelect {
+            display: inline-block;
+        }
+    }
+}*/
+.dlBlue .idxCheckBoxSelectMenu td.dijitMenuItemLabel,
+.dlBlue .idxCheckBoxSelectMenu td.oneuiMenuHeadingLabel {
+  position: static;
+  color: #267bac;
+}
+.dlBlue .idxCheckBoxSelectMenu .dijitMenuItemLabel,
+.dlBlue .idxCheckBoxSelectMenu .oneuiMenuHeadingLabel {
+  margin: 0;
+  padding: 3px 10px 4px 0;
+}

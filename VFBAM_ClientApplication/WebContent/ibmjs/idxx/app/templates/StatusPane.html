@@ -1,0 +1,16 @@
+<div class="stateStatusPanel"> 
+
+  <div dojoAttachPoint="containerNode" class="stateStatusPanelContainer">
+    <div dojoAttachPoint="statusIconNode" class="dijitInline stateStatusPanelIcon iconOK_16x16"></div>
+        
+    <div dojoAttachPoint="statusTextNode" class="dijitInline stateStatusPanelText">${msg.STATUS_MSG}&nbsp;</div>
+
+    <div id="${id}_lwp" dojoType="idxx.layout.LinkWithPopup" dojoAttachPoint="statusLinkNode" linkLabel="${msg.STATUS_ALLSYSTEMSOK}" popupTitle="<b>${msg.STATUS_POPUP_MSG}</b>">
+      <!-- Popup content -->
+      <div class="stateStatusPanelPopup">
+        <div dojoAttachPoint="gridNode"></div>
+      </div>
+    </div>
+  </div>
+
+</div>

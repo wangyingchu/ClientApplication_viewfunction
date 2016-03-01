@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "Przełącz zaznaczenie wszystkich wierszy"		
 //end v1.x content
 });
+

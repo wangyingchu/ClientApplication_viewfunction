@@ -52,6 +52,13 @@ return dojo_declare("idx.layout.PartialListNavController", idx_layout_ListNavCon
 			},
 			
 			/**
+			 * Override to adjust the index.
+			 */
+			addChild: function(page, index) {
+				this.inherited("addChild", [page, ((index !== undefined) ? (index - this.startIndex) : undefined)]);
+			},
+			
+			/**
 			 * Called whenever a page is added to the container.
 			 *	Create button corresponding to the page.
 			 *
@@ -85,7 +92,7 @@ return dojo_declare("idx.layout.PartialListNavController", idx_layout_ListNavCon
 				}
 				else if(this._currentChild)
 				{
-					var oldButton=this.pane2button[this._currentChild.id];
+					var oldButton=this.pane2button(this._currentChild.id);
 					oldButton.set('checked', false);
 					dijit_wai.setWaiState(oldButton.focusNode, "selected", "false");
 					oldButton.focusNode.setAttribute("tabIndex", "-1");

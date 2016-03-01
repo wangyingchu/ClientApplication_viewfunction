@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "공유",
+	actionSettings: "설정",
 	actionHelp: "도움말",
 	searchEntry: "검색",
-	searchSubmit: "검색"
+	searchSubmit: "검색",
+	primarySearchLabelSuffix: "기본 검색",
+	secondarySearchLabelSuffix: "보조 검색",
+	homeButton: "홈"
 //end v1.x content
 });
+

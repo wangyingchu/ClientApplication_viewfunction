@@ -1,0 +1,467 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/.dragNode {
+    z-index:10000;
+    cursor:move;
+}
+.dragHandle {
+    cursor:move;
+    cursor:move;
+}
+.dropIndicator {
+    position:relative;
+    height:50px;
+    border:1px dashed #FFF;
+    position:relative;
+    height:50px;
+    border:1px dashed #FFF;
+    & > div {
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        background-color:#000;
+        opacity:0.17;
+        filter:alpha(opacity=17);
+        -khtml-opacity:0.17;
+        -moz-opacity:0.17;
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        background-color:#000;
+        opacity:0.17;
+        filter:alpha(opacity=17);
+        -khtml-opacity:0.17;
+        -moz-opacity:0.17;
+    }
+}
+.dndCover {
+    background-image:url("images/pixel.gif");
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:1000px;
+    z-index:9999;
+    cursor:move;
+    background-image:url(data:image/gif;
+    base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D);
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:1000px;
+    z-index:9999;
+    cursor:move;
+}
+.dndCover2 {
+    z-index: 10001;
+}
+.dragNode {
+    z-index:10000;
+    cursor:move;
+}
+.orange {
+    .dndCover2 {
+        z-index: 10001;
+    }
+}
+.oneui {
+    .centerGridContainer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: white;
+        .fpGridContainerDivClass {
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .fpGridContainerZone {
+            vertical-align:top;
+            background-color:#FDFDFD;
+            display:table-cell;
+            .serviceWidgetTitleText {
+                h2 {
+                    position:relative;
+                }
+            }
+        }
+        .fpGridContainerGrip.gridContainerGrip {
+            cursor:default;
+            position:absolute;
+            top:0;
+            width:10px;
+            padding:0;
+            margin:0;
+            background-image:url("images/pixel.gif");
+        }
+        .fpGridContainerGrip.gridContainerGripShow {
+            cursor:e-resize;
+            position:absolute;
+            top:0;
+            width:10px;
+            padding:0;
+            margin:0;
+            background-image:url("images/gridcontainer_grip.gif");
+        }
+        .dropIndicator {
+            border:2px dashed #BFBFBF;
+            & > div {
+                background-color:#FFF;
+            }
+        }
+        .dojoDndItemOver {
+            background-color: #feb !important;
+        }
+        .dojoDndItemSelected {
+            background: #ccf;
+            color: #444;
+        }
+        .dojoDndItemBefore {
+            border-top:    3px solid red;
+        }
+        .dojoDndItemAfter {
+            border-bottom: 3px solid red;
+        }
+        .dojoDndItemAnchor {
+            background: #ccf;
+            color: black;
+        }
+        .dojoDndItemOver.dojoDndItemSelected {
+            background: #ec8;
+        }
+        .dojoDndItemOver.dojoDndItemAnchor {
+            background: #feb !important;
+        }
+        .dojoDndAvatarItem {
+            background: #eee;
+        }
+        .dndDropIndicator {
+            border: 1px dashed #FF6600;
+            cursor: default;
+        }
+        .headerContainer {
+            display:none;
+            z-index:900;
+            border: medium none;
+            overflow: hidden;
+            min-height: 34px;
+            padding: 0;
+            line-height: 34px;
+            -webkit-transition: all 0.6s ease-in-out;
+            -moz-transition: all 0.6s ease-in-out;
+            -o-transition: all 0.6s ease-in-out;
+            -ms-transition: all 0.6s ease-in-out;
+            transition: all 0.6s ease-in-out;
+        }
+        .dojoxFloatingDockDefault {
+            position:absolute;
+            bottom:0px;
+            left:0px;
+            overflow:hidden;
+            margin:0;
+            margin-bottom:3px;
+            padding:0px;
+            z-index:99;
+            background:transparent;
+        }
+        .dojoxDockList {
+            padding: 0px;
+            margin: 0px;
+        }
+        .dojoxDockRestoreButton {
+            background:url('images/folderClosed.gif') no-repeat center center;
+            width:16px;
+            height:16px;
+            overflow:hidden;
+            float:left;
+            margin-top:2px;
+        }
+        .dojoxDockTitleNode {
+            overflow:hidden;
+        }
+        .dojoxDockNode {
+            border: 1px solid #adadad;
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 3px;
+            cursor:pointer;
+            list-style: none;
+            padding: 2px;
+            margin: 1px 5px;
+            height: 16px;
+            width: auto;
+            float: left;
+            background: #fafafa url("images/titleBarBg.gif") repeat-x bottom left;
+        }
+        .dojoxFloatingPaneContent {
+            overflow: auto;
+            background-color: #fff;
+        }
+        .dojoxFloatingPaneCanvas {
+            background-color:#fff;
+        }
+        .dockContainer {
+            position:absolute;
+            z-index:900;
+            height: 26px;
+            display: block;
+            padding:0;
+            margin:0;
+            background:#fcfcfc;
+            width: 100%;
+            border: 1px dashed orange;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-transition: all 0.6s ease-in-out;
+            -moz-transition: all 0.6s ease-in-out;
+            -o-transition: all 0.6s ease-in-out;
+            -ms-transition: all 0.6s ease-in-out;
+            transition: all 0.6s ease-in-out;
+            .dojoxDockList {
+                opacity: 0;
+                -webkit-transition: all 0.6s ease-in-out;
+                -moz-transition: all 0.6s ease-in-out;
+                -o-transition: all 0.6s ease-in-out;
+                -ms-transition: all 0.6s ease-in-out;
+                transition: all 0.6s ease-in-out;
+            }
+            .dockItem {
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                border-radius: 5px;
+            }
+        }
+        .dockContainerHovered {
+            height: 26;
+            .dojoxDockList {
+                opacity: 1;
+            }
+        }
+        .dockContainerFixed {
+            height: 26px;
+            .dojoxDockList {
+                opacity: 1;
+            }
+        }
+        .portletItem.layoutAbsolute {
+            position: absolute;
+            width: 300px;
+        }
+        .fpGridContainerTable.layoutFloating {
+            display: block;
+        }
+        .fpGridContainerTr.layoutFloating {
+            display: block;
+        }
+        .fpGridContainerZone.layoutFloating {
+            display: block;
+            .dropIndicator {
+                width: 300px;
+                float: left;
+                position: relative;
+            }
+        }
+        .portletItem.layoutFloating {
+            position: relative !important;
+            width: 300px;
+            float: left;
+        }
+        .stackAnimationNode {
+            position: absolute;
+            z-index: 910;
+            opacity: 0.6;
+            background-color: orange;
+        }
+        .stackAnimationNode.css3FakeAnimationsDisabled {
+            -webkit-transition-property: none;
+            -moz-transition-property: none;
+            -o-transition-property: none;
+            -ms-transition-property: none;
+            transition-property: none;
+        }
+        .stackAnimationNode.css3FakeAnimations {
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+        }
+    }
+    .centerGridContainer.css3Animations {
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    .centerGridContainer.css3Animations.centerGridFlipDisabled {
+        -webkit-transition: none;
+        -moz-transition: none;
+        -ms-transition: none;
+        transition: none;
+    }
+    .centerGridContainer.css3AnimationsForResize {
+        -webkit-transition: all 1s ease-in-out;
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
+        -ms-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+        .fpGridContainerZone {
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+        }
+        .portletItem {
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+        }
+    }
+    .centerGridContainer.fpGridContainer {
+        display:block;
+        background:#FFF;
+        margin:0;
+        .fpGridContainerTable {
+            width:100%;
+            display:table;
+            .fpGridContainerTr {
+                display:table-row;
+            }
+        }
+    }
+    .centerGridContainer.gridHeaderVisible {
+        .headerContainer.headerContainerVisible {
+            display:block;
+        }
+    }
+    .centerGridContainer.gridDockVisible {
+        .dockContainer.dockContainerVisible {
+            display: block;
+        }
+    }
+    .centerGridContainer.gridContainerMaximum {
+        .gridColumnDisappear {
+            display:none;
+        }
+    }
+    .dndCover {
+        .portletItem {
+            z-index: 500;
+            padding: 0;
+            margin: 0;
+            overflow: visible;
+            position: relative;
+            background-color: transparent;
+            height: 280px;
+        }
+        .portletItem.css3Animations {
+            -webkit-perspective: 500px;
+            -moz-perspective: 500px;
+            -o-perspective: 500px;
+            -ms-perspective: 500px;
+            perspective: 500px;
+            .mainContent {
+                -webkit-transform: rotateY(0);
+                -moz-transform: rotateY(0);
+                -ms-transform: rotateY(0);
+                transform: rotateY(0);
+            }
+            .detailContent {
+                -webkit-transform: rotateY(180deg);
+                -moz-transform: rotateY(180deg);
+                -ms-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+            }
+        }
+        .dojoxPortlet.portletItemContent {
+            margin-bottom: 5px;
+            position: absolute;
+            border: 1px solid #ccc;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+            -moz-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+            -ms-box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+            box-shadow: 0 2px 5px rgba( 0,0,0,0.25);
+        }
+        .dojoxPortlet.portletItemContent.css3Animations {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: -webkit-transform 1.0s linear;
+            -moz-transition: -moz-transform 1.0s linear;
+            -ms-transition: -ms-transform 1.0s linear;
+            transition: transform 1.0s linear;
+        }
+        .portletItemFlip.css3Animations {
+            .mainContent {
+                -webkit-transform: rotateY(180deg);
+                -moz-transform: rotateY(180deg);
+                -ms-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+            }
+            .detailContent {
+                -webkit-transform: rotateY(360.1deg);
+                -moz-transform: rotateY(360deg);
+                -ms-transform: rotateY(360deg);
+                transform: rotateY(360deg);
+            }
+        }
+    }
+    .centerGridContainer.css3AnimationsDisabled.centerGridFlipOut {
+        display:none;
+    }
+    .centerGridContainer.css3AnimationsDisabled.centerGridFlipOutLeft {
+        display:none;
+    }
+    .centerGridContainer.css3AnimationsDisabled.centerGridFlipIn {
+        display:block;
+    }
+}
+.dj_chrome {
+    .centerGridContainer.css3Animations.centerGridFlipOut {
+        visibility: hidden;
+    }
+    .oneui {
+        .centerGridContainer.css3Animations.centerGridFlipOutLeft {
+            visibility: hidden;
+        }
+        .centerGridContainer.css3Animations.centerGridFlipIn {
+            visibility: visible;
+        }
+    }
+}
+.dj_ie10 {
+    .oneui {
+        .dndCover {
+            .portletItem.css3Animations {
+                -ms-perspective: 0;
+                perspective: 0;
+            }
+        }
+    }
+}
+.oneui .centerPaneContainer.css3AnimationsDisabled,.oneui .centerPaneContainer.css3AnimationsDisabled &>*,.oneui .centerGridContainer.css3AnimationsDisabled,.oneui .centerGridContainer.css3AnimationsDisabled &>*,.oneui .centerGridContainer.css3AnimationsDisabled .fpGridContainerZone,.oneui .centerGridContainer.css3AnimationsDisabled .dockContainer,.oneui .centerGridContainer.css3AnimationsDisabled .dockContainer &>*,.oneui .centerGridContainer.css3AnimationsDisabled .portletItem {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+}

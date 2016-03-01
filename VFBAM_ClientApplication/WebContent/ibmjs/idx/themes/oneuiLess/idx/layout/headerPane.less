@@ -1,0 +1,150 @@
+.idxHeaderPaneA11y {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  display: inline;
+  left: 50%;
+  top: -10000px;
+  visibility: visible;
+}
+.idxHeaderPane {
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid @fwBase;
+}
+.idxHeaderFrame {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  border-style: none;
+  border-width: 0px;
+  width: 100%;
+  height: 100%;
+}
+.idxHeaderPaneHeader {
+  position: absolute;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  padding: 5px 6px 6px 6px;
+  border-style: none;
+  border-width: 0px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: @fwBase;
+  .gradient(@fwBackground, @fwLightest);
+}
+.idxHeaderPaneTitleBar {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+.idxHeaderPaneTitleLeft {
+  float: left;
+  position: static;
+  vertical-align: middle;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.idxHeaderPaneTitleText {
+  vertical-align: middle;
+  display: inline;
+  white-space: nowrap;
+}
+.idxHeaderPaneTitleRight {
+  position: static;
+  float: right;
+  vertical-align: middle;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.idxHeaderPaneSpacer {
+  height: 6px;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+}
+.idxHeaderPaneSpacerHidden {
+  display: none;
+  visibility: hidden;
+}
+.idxHeaderPaneActions {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
+.idxHeaderPaneActionsHidden {
+  display: none;
+  visibility: hidden;
+}
+.idxHeaderPaneActionsLeft {
+  float: left;
+  position: static;
+  vertical-align: middle;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.idxHeaderPaneActionsRight {
+  position: static;
+  float: right;
+  text-align: right;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.idxHeaderPaneClear {
+  position: static;
+  visibility: hidden;
+  clear: both;
+  height: 0px;
+  width: 0px;
+  line-height: 0px;
+}
+.idxHeaderPaneAutoHide .idxHeaderPaneTitleActions {
+  visibility: hidden;
+}
+.idxHeaderPaneAutoHide.idxHeaderPaneFocused .idxHeaderPaneTitleActions,
+.idxHeaderPaneAutoHide .idxHeaderPaneHeaderHover .idxHeaderPaneTitleActions {
+  visibility: visible;
+}
+.idxHeaderPaneContent {
+  background-color: @fwBackground;
+  position: absolute;
+  display: block;
+  margin: 0px;
+  padding-top: 9px;
+  padding-left: 9px;
+  padding-bottom: 9px;
+  padding-right: 9px;
+  overflow: auto;
+}
+.dj_safari & .idxHeaderPaneContent {
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-bottom: 7px;
+  padding-right: 7px;
+}
+.idxHeaderPaneContent.idxHeaderPaneSingleChild {
+  /* this class is used when only a single child is in the content area */
+
+  /* we give the child full-bleed to the edges and defer to the child   */
+
+  /* provide the scroll bars                                            */
+
+  padding: 0px 0px 0px 0px;
+  overflow: hidden;
+}
+.idxHeaderPaneContent.idxHeaderPaneSingleChild .idxHeaderPane-child {
+  /* this class is used when only a single child is in the content area */
+
+  /* we give the child full-bleed to the edges and defer to the child   */
+
+  /* provide the scroll bars                                            */
+
+  width: 100%;
+  border-collapse: collapse;
+}

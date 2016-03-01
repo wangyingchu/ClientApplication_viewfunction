@@ -4,7 +4,7 @@ define({
 
 	defaultMessage: "[Non è stato definito alcun testo di guida]\u200e",
 
-	defaultTitle: "Passare il mouse o fare clic per visualizzare la guida"
+	defaultTitle: "Posizionare il cursore del mouse o fare clic per visualizzare la guida"
 //end v1.x content
 });
 

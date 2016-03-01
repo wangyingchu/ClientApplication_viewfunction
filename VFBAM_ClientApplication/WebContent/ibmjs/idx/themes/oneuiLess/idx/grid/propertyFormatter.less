@@ -1,0 +1,43 @@
+.idxPropertyFormatter {
+  display: inline-block;
+  vertical-align: middle;
+}
+.idxPropertyFormatterFormat {
+  display: inline;
+}
+.idxPropertyFormatterEdit {
+  display: none;
+  visibility: hidden;
+  vertical-align: middle;
+}
+.idxPropertyFormatter .idxEditController {
+  margin-left: 8px;
+  display: inline-block;
+  visibility: visible;
+  vertical-align: bottom;
+}
+.dj_ie7 & .idxPropertyFormatter .idxEditController {
+  display: inline;
+}
+.dijitRtl & .idxPropertyFormatter .idxEditController {
+  margin-left: 0px;
+  margin-right: 8px;
+}
+.idxPropertyFormatterNoEditors .idxEditController {
+  margin: 0px 0px 0px 0px;
+  display: none;
+  visibility: hidden;
+}
+.idxPropertyFormatter.idxPropertyFormatterEditMode {
+  white-space: nowrap;
+}
+.idxPropertyFormatterEditMode .idxPropertyFormatterEdit {
+  display: inline;
+  visibility: visible;
+  white-space: nowrap;
+}
+.idxPropertyFormatterEditMode .idxPropertyFormatterFormat {
+  display: none;
+  visibility: hidden;
+  white-space: nowrap;
+}

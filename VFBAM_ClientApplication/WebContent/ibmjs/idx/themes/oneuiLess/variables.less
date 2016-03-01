@@ -1,0 +1,282 @@
+//
+//	Theme Variables
+//
+//	This file defines the basic color variations used 
+//	in the IDX theme.
+//
+//	The values specified here are computed through a 
+//	series of calculations that will produce a fully 
+//	defined toolkit theme from a few simple 
+//	variable definitions.
+//
+//	Please refer to the comments throughout the document
+//	for information on each variable, valid values,
+//	and expected output.
+//
+/////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////
+//
+//	Theme Name
+//
+//	The variable below defines the theme name. This theme name
+//	is used as the base class for the entire theme. This is the
+//	class name that you will need to add to the html or body
+//	tag in your documents.
+//
+/////////////////////////////////////////////////////////////////////
+
+
+	@themeName: oneui;
+
+
+/////////////////////////////////////////////////////////////////////
+//
+//	Fonts
+//
+//	Define each of the desired font families for each of
+//	the font styles defined below. 
+//
+/////////////////////////////////////////////////////////////////////
+
+
+	@sans: Helvetica, Arial, sans-serif;
+	@serif: Georgia, serif;
+	
+	
+/////////////////////////////////////////////////////////////////////
+//
+//	Branding Colors
+//
+//	Define your primary brand color here. This will be used
+//	in the various places throughout the theme that utilize
+//	a branding color. These include the bottom lip and secondary
+//	header in the header widget and the special button in 
+//	the IDX toolkit.
+//
+//	The default value below is a rich blue used by IBM.
+//
+/////////////////////////////////////////////////////////////////////
+
+
+	@brandColor: #008abf;
+	
+	
+/////////////////////////////////////////////////////////////////////
+//
+//	Framework Border Color
+//
+//	Simply specify the desired border color for containers
+//	and other UI framework elements and the rest of the theme
+//	will be generated.
+//
+//	The default value below will create a light gray framework.
+//
+//
+/////////////////////////////////////////////////////////////////////
+
+
+	@framework: #c3c3c3;
+
+
+/////////////////////////////////////////////////////////////////////
+//
+//	Background Color
+//
+//	The background color defines the basic background of the entire
+//	UI. For most purposes, you will want to choose white (#ffffff).
+//	Changing the color to black (#000000) will produce a dark theme.
+//	You may also optionally change to any value you like.
+//
+//	Text colors will also be automatically created based on the 
+//	appropriate color for accessibility.
+//
+//	The default value below will generate a white background.
+//
+//
+/////////////////////////////////////////////////////////////////////
+
+
+	@fwBackground: #ffffff;
+
+
+/////////////////////////////////////////////////////////////////////
+//
+//	Banner Variables
+//
+//	The following variables control the look of the banner at the
+//	top of the page. The default values are below.
+//
+//	There are 3 types of banner: gradient, solid, image. Define
+//	one of these types in the @bannerType variable.
+//
+//	gradient 	- a top to bottom gradient with 2 colors - default
+//
+//		When gradient is used, you can either specify the top and
+//		bottom color as @bannerColor1 and @bannerColor2. You can
+//		also only define @bannerColor1 in which case a gradient
+//		will be automatically calculated based on that color.
+//
+//	solid		- a single color
+//	
+//		When solid is used, you only need to define @bannerColor1.
+//		@bannerColor2 will be ignored.
+//	
+//	image		- uses an image url for the background
+//
+//		To use image as the banner type you need to define the
+//		following variables:
+//		
+//		- @bannerImage: the image needs to be in the images
+//			directory in the theme root. Replace [image name here]
+//			with the image name.
+//		- @bannerRepeat: repeat, no-repeat, repeat-x, or repeat-y
+//		- @bannerPosition: specify where the background should
+//			originate within the banner.
+//		- @bannerColor: specifies a color to be used when a 
+//			semi-transparent background image is used.
+//	
+//	The @logo variable accepts two values: default or custom.
+//	If the custom variable is used, an image file needs to be
+//	placed in the images folder and the file name entered where
+//	it says [image name here] in the @customLogo variable.
+//
+//	The default state of the logo is the IBM logo on a black
+//	background on fluid headers or just on the header background
+//	on fixed headers.
+//
+//	When using a custom logo, the image should be 91 pixels wide
+//	and 37 pixels tall for a thin banner. For a thick banner,
+//	the image should be 60 pixels tall. The image will be centered
+//	and should include any desired background color or gradient
+//	unless it should just float above the header background.
+//
+//	When using a custom logo with a fixed header, the use of a
+//	background that covers the whole image background is not
+//	recommended.
+//	
+//	The @lip variable controls whether or not the 4px tall lip
+//	just below the single banner is shown or not. The lip uses
+//	@brandColor for coloring.
+//
+//	- true: the lip is shown.
+//	- false: the lip is not shown.
+//
+//
+/////////////////////////////////////////////////////////////////////
+
+
+	@bannerType: gradient;
+	
+	@bannerColor1: #3e3e3e;
+	
+	@bannerColor2: #131313;
+	
+	@bannerImage: url('images/[image name here]');
+	@bannerRepeat: no-repeat;
+	@bannerPosition: top left;
+	@bannerColor: transparent;
+	
+	@logo: default;
+	@customLogo: url('images/[image name here]');
+	
+	@lip: true;
+
+
+
+
+
+//////////////////// Optional variables below //////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////
+//
+//	Optional Variables
+//
+//	The following variables follow basic standards
+//	for certain colors. For example, the color of
+// 	error outlines. You can change these but it
+//	is not often necessary.
+//
+////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////
+//
+//	Box Shadow Color
+//
+//	A light, transparent black.
+//
+////////////////////////////////////////////////////////
+
+
+	@shadowBox: rgba(0,0,0,.15);
+
+
+////////////////////////////////////////////////////////
+//
+//	Focus - Hover - Selected Colors
+//
+//	Focus and hover colors for outline and background
+//
+////////////////////////////////////////////////////////
+
+	
+	@focusOutline: #008abf;
+	@hoverOutline: #66d0e9;
+	@hover: #cce8f2;
+	@selected: #ebf6fa;
+	@inflight: #F2F7B7;
+
+
+////////////////////////////////////////////////////////
+//
+//	Messaging colors
+//
+//	The various colors used in messages.
+//
+////////////////////////////////////////////////////////
+
+	
+	@errorLighter: #fff3f3;		//red
+	@errorLight: #d46464;		//red
+	@error: #cd321a;			//red
+	@errorBright: #c40024;		//red
+	
+	@warningLight: #ffffec;		//orange
+	@warningBright: #dd731c;	//orange
+	
+	@infoLight: #f0faff;		//blue
+	@infoBright: #0080b8;		//blue
+	
+	@successLight: #edf8eb;		//green
+	@successBright: #2e9700;	//green
+	
+	@validLight: #97e68d; 		//green
+	@validBright: #2e9700;		//green

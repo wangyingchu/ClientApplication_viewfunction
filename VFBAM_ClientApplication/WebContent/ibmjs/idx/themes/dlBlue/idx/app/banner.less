@@ -1,0 +1,245 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+@import "../../dijit/variables";
+.@{theme-name} .idxBanner {
+    padding:0;
+    width:100%;
+    min-width: 740px;
+    height:38px;
+    background-color: @header-background-color;
+    overflow: hidden;
+}
+
+.dj_ie {
+    .@{theme-name} {
+        .idxBanner {
+            height:38px;
+            .idxBannerTrailer {
+                margin-bottom:0px;
+            }
+            .idxBannerLogoArea {
+                .idxBannerLogo {
+                    margin-bottom:0;
+                }
+            }
+        }
+    }
+}
+
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton .dijitArrowButtonInner {
+    background-image:url(images/bannerArrow_default_16px.png);
+}
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton .dijitButtonNode .dijitButtonText {
+	color: @header-default-font-color;
+	text-decoration: none;
+	padding: 0.4em 0.4em;
+}
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton:hover .dijitArrowButtonInner {
+    background-image:url(images/bannerArrow_hover_16px.png);
+}
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton:hover .dijitButtonNode .dijitButtonText {
+	color: @header-hover-font-color;
+	text-decoration: underline;
+}
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton.dijitDropDownButtonOpened .dijitArrowButtonInner,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton.dijitDropDownButtonActive .dijitArrowButtonInner {
+    background-image:url(images/bannerArrow_pressed_16px.png);
+}
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton.dijitDropDownButtonOpened .dijitButtonNode .dijitButtonText,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton:hover.dijitDropDownButtonOpened .dijitButtonNode .dijitButtonText,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton.dijitDropDownButtonActive .dijitButtonNode .dijitButtonText,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitDropDownButton:hover.dijitDropDownButtonActive .dijitButtonNode .dijitButtonText {
+	color: @header-active-font-color;
+	text-decoration: underline;
+}
+
+.@{theme-name} .idxBanner .idxBannerTrailer .idxBannerHelpButtonIcon {
+	background-image:url(images/help_default.png);
+}
+
+.@{theme-name} .idxBanner .idxBannerTrailer .idxBannerHelpButtonIcon:hover,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitButtonHover .idxBannerHelpButtonIcon {
+    background-image:url(images/help_hover.png);		
+}
+
+.@{theme-name} .idxBanner .idxBannerTrailer .idxBannerHelpButtonIcon:active,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitButtonActive .idxBannerHelpButtonIcon,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitButtonActive.dijitButtonHover .idxBannerHelpButtonIcon,
+.@{theme-name} .idxBanner .idxBannerTrailer .dijitButtonActive .idxBannerHelpButtonIcon:active:hover {
+    background-image:url(images/help_pressed.png);		
+}
+
+
+.@{theme-name} {
+	.idxBannerOptions {
+  		background-image: url(../images/blank.gif?reorderNodes=_logoNode,containerNode,_trailerNode);
+	}
+	
+    .idxBanner {
+        .idxBannerLogoText {
+            position: absolute;
+            top: -10000px;
+        }
+        .idxBannerInnerContainer {
+            height:38px;
+            display: table;
+            width: 100%;
+            color: @header-default-font-color;
+        }
+        .idxBannerContainer {
+            color: @header-default-font-color;
+            font-weight:normal;
+            font-size:13px;
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0 0 0 10px;
+            white-space: nowrap;
+        }
+        .bannerTitle {
+            margin-right: 60px;
+        }
+        .idxBannerTrailer {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+            overflow: hidden;
+            padding: 0 20px;
+            width:1px;
+            white-space: nowrap;
+        }
+        .idxBannerLogoArea {
+            width:64px;
+            height:38px;
+            display: table-cell;
+            vertical-align: middle;
+            background-color: @header-background-color;
+            .idxBannerLogo {
+                background-image: url("images/banner_bee.svg");
+				background-repeat: no-repeat;
+				background-color: transparent;
+				background-position: right;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .idxBannerHelpButtonIcon {
+            margin-top:4px;
+            padding:0 0 0 15px;
+            width:16px;
+            height:16px;
+            border-left:1px solid #3d3d3d;
+            background-image:url(images/help_default.png);
+            background-position:right;
+            background-repeat:no-repeat;
+        }
+        .dijitArrowButtonInner {
+            background-position:center;
+        }
+        .dijitButtonContents {
+            border:none!important;
+            border-radius:0 0 0 0!important;
+        }
+        a:hover {
+            padding-top:13px;
+            padding-bottom:12px;
+            border-color:#1f1f1f;
+            background:#111111;
+        }
+        .idxBannerBottomBar {
+            margin:0;
+            width: 100%;
+            height: 0px;
+            display: none;
+            visibility: hidden;
+        }
+    }
+}
+.dijit_a11y.@{theme-name} .idxBanner .idxBannerLogoText,.dj_a11y.@{theme-name} .idxBanner .idxBannerLogoText {
+    display: inline-block;
+    position: static;
+    font-family: Times, Serif;
+    font-size: 13px;
+    line-height: 38px;
+    vertical-align: middle;
+    padding: 0px;
+    margin: 0px;
+}
+.dijit_a11y.@{theme-name} .idxBanner,.dj_a11y.@{theme-name} .idxBanner {
+    border-bottom: medium solid;
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxBanner {
+			.bannerTitle {
+				margin-right: 0px;
+				margin-left: 60px;
+			}
+            .idxBannerContainer {
+                padding:0 10px 0 0;
+            }
+            .idxBannerTrailer {
+                text-align: left;
+            }
+            .idxBannerLogoArea {
+                .idxBannerLogo {
+					background-position: left;
+                    right: auto;
+                    left: 0;
+                }
+            }
+            .idxBannerHelpButtonIcon {
+                padding:0 15px 0 0;
+                border-right:1px solid #3d3d3d;
+                border-left:0;
+                background-position:left;
+            }
+            .dijitArrowButtonInner {
+                margin-right:2px;
+            }
+        }
+    }
+}
+.@{theme-name} .idxBanner .dijitButton,.@{theme-name} .idxBanner .dijitDropDownButton,.@{theme-name} .idxBanner .dijitButtonNode,.@{theme-name} .idxBanner .dijitButtonActive .dijitButtonNodeHover,.@{theme-name} .idxBanner .dijitDropDownButton .dijitButtonNodeHover,.@{theme-name} .idxBanner .dijitDropDownButton .dijitDownArrowButtonHover {
+    border:none!important;
+    -webkit-border-radius:0 0 0 0!important;
+    -moz-border-radius:0!important;
+    border-radius:0 0 0 0!important;
+    background:none!important;
+    -webkit-box-shadow:none!important;
+    -moz-box-shadow:none!important;
+    box-shadow:none!important;
+}
+.@{theme-name} .idxBanner .dijitButton .dijitButtonNode,.@{theme-name} .idxBanner .dijitDropDownButton .dijitButtonNode {
+    padding:0;
+    min-width:0;
+}
+.@{theme-name} .idxBanner .dijitButtonFocused .dijitButtonNode,.@{theme-name} .idxBanner .dijitDropDownButtonFocused .dijitButtonNode {
+    outline-color: @header-default-font-color;
+}
+.@{theme-name} .idxBanner .dijitButtonContents .dijitButtonText,.@{theme-name} .idxBanner a,.@{theme-name} .idxBanner A:link,.@{theme-name} .idxBanner a:visited {
+    padding-right:10px;
+    color:@header-default-font-color;
+    text-shadow:0 1px rgba(0,0,0,0.3);
+    font-weight:400;
+}
+.@{theme-name} .idxBanner a,.@{theme-name} .idxBanner A:link,.@{theme-name} .idxBanner a:visited {
+    padding-right:15px;
+    padding-left:15px;
+    border-right:1px solid transparent;
+    border-left:1px solid transparent;
+}
+.@{theme-name} .idxBanner .dijitButtonContents .dijitButtonText:hover,.@{theme-name} .idxBanner a:hover {
+    color:#fff;
+    text-decoration:none;
+}
+.@{theme-name} .idxBanner a.idxLinkSelected,.@{theme-name} .idxBanner a.idxLinkSelected:hover {
+    padding-top:13px;
+    padding-bottom:12px;
+    border: 0px none transparent;
+    background:#3c3c3c;
+    color:@header-default-font-color;
+    cursor:auto;
+}
+
+.dj_ie8.@{theme-name} .idxBanner .idxBannerLogoArea .idxBannerLogo {
+	background-image: url("images/banner_bee.png");
+}

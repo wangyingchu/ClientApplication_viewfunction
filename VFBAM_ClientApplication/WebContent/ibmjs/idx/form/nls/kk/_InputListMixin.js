@@ -10,3 +10,4 @@ define({
 	invalidMessage: "Кемінде бір элемент таңдалуы керек."
 //end v1.x content
 });
+

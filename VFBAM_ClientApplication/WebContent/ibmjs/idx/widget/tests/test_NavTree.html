@@ -15,8 +15,9 @@ dojoCSSImport("../../../../@dojopath@/dijit/icons/editorIcons_rtl.css", "idxStyl
 </script>
 
 <style type="text/css" id="idxStyles">
-@import "../../themes/oneui/oneui.css";
-@import "../../tests/test.css";
+	@import "../../tests/test.css";
+	@import "../../tests/_pagefooter/_PageFooter.css";
+
 
 label {
 	white-space: nowrap;
@@ -62,7 +63,12 @@ var modules = [	"dojo/_base/connect",
 				"idx.grid.PropertyFormatter",
 				"idx.grid.PropertyGrid",
 				"idx.util",
-				"idx.string"];
+				"idx.string",
+				"idx.tests._pagefooter._PageFooter"
+];
+
+
+var _PageFooter = null;
 
 var dConnect = null;
 var dButton = null;
@@ -161,6 +167,8 @@ for (var index = 0; index < iconClasses.length; index++) {
 }
 
 function preParse(modules) {
+	_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
+	
 	dConnect = modules["dojo/_base/connect"] ? modules["dojo/_base/connect"] : dojo;
 	dLang = modules["dojo/_base/lang"] ? modules["dojo/_base/lang"] : dojo;
 	dRegistry = modules["dijit/registry"] ? modules["dijit/registry"] : dijit;
@@ -235,8 +243,8 @@ function preParse(modules) {
 	emptyStore = new iJsonStore({identifier: "value", label: "label", data: [ ]});
 }
 
-function postParse(modules) {
-
+function postParse(modules){
+	new _PageFooter();
 }
 dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 </script>
@@ -364,7 +372,6 @@ dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse)
 
 		this._handle = {
 			navTree: navTree,
-			form: form,
 			selected: nodeFields.selected,
 			clicked: nodeFields.clicked
 		};

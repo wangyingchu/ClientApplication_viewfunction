@@ -60,9 +60,10 @@
 	API ref: <a target="_blank" href="http://dojosh.bluehost.ibm.com/ORIA-OneUI/util/docscripts/preview.php#oneui/form/CurrencyTextBox.js">http://dojosh.bluehost.ibm.com/ORIA-OneUI/util/docscripts/preview.php#oneui/form/CurrencyTextBox.js</a>
 	</p>
 	<p>
-	Here is a composite CurrencyTextBox. -1,000,000 --- 1,000,000 is an valid range.
+	Here is a composite CurrencyTextBox. -1,000,000 --- 1,000,000 is a valid range.
 	</p>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'disabledToggle',
 		onClick: function(){
 		dijit.byId('currency1').set('disabled', !dijit.byId('currency1').get('disabled'));
 		return false;
@@ -71,6 +72,7 @@
 	Toggle Disabled
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'readOnlyToggle',
 		onClick: function(){
 		dijit.byId('currency1').set('readOnly', !dijit.byId('currency1').get('readOnly'));
 		return false;
@@ -79,6 +81,7 @@
 	Toggle Read Only
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'requiredToggle',
 		onClick: function(){
 		dijit.byId('currency1').set('required', !dijit.byId('currency1').get('required'));
 		dijit.byId('currency1').validate();
@@ -88,6 +91,7 @@
 	Toggle Required
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'toVertical',
 		onClick: function(){
 		dijit.byId('currency1').set('labelAlignment', 'vertical');
 		return false;
@@ -96,6 +100,7 @@
 	Vertical
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'toHorizontal',
 		onClick: function(){
 		dijit.byId('currency1').set('labelAlignment', 'horizontal');
 		return false;
@@ -104,6 +109,7 @@
 	Horizontal
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'hintOut',
 		onClick: function(){
 		dijit.byId('currency1').set('hintPosition', 'outside');
 		return false;
@@ -112,6 +118,7 @@
 	Set hint outside
 	</button>
 	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'hintIn',
 		onClick: function(){
 		dijit.byId('currency1').set('hintPosition', 'inside');
 		return false;
@@ -119,7 +126,14 @@
 	">
 	Set hint inside
 	</button>
-	
+	<button data-dojo-type="dijit.form.Button" data-dojo-props="
+		id: 'resetButton',
+		onClick: function(){
+		dijit.byId('currency1').reset();
+		}
+	">
+	Reset
+	</button>
 	<br/>
 	<br/>
 	

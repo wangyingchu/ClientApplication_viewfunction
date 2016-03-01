@@ -1,0 +1,35 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  
+
+.dijitRtl {
+    .@{theme-name} {
+    	.idxModalDialog .dijitDialogTitleBar .dijitDialogCloseIcon,	.idxConfirmDialog .dijitDialogTitleBar .dijitDialogCloseIcon {
+		    right:auto;
+		    left:5px;
+		}
+		.idxModalDialog .messageSummary .messageIcon, .idxConfirmDialog .messageSummary .messageIcon{
+			float:right;
+			margin:0 0 0 15px;
+			.img-reverse();
+		}
+    }
+}
+
+.@{theme-name}.idx_i18n_il .idxModalDialogRtl .messageSummary img,.@{theme-name}.idx_i18n_il .idxConfirmDialogRtl .messageSummary img {
+    background-image: url('images/msgIcons_24bit_rtl_il.png');
+}
+.@{theme-name} .idxModalDialogRtl .messageDialogFooter .messageCheckBox,.@{theme-name} .idxConfirmDialogRtl .messageDialogFooter .messageCheckBox {
+    float: right;
+}
+.@{theme-name} .idxModalDialogRtl .messageDialogFooter .messageAction,.@{theme-name} .idxConfirmDialogRtl .messageDialogFooter .messageAction {
+    float: left;
+}
+.@{theme-name} .idxModalDialogRtl .messageRef,.@{theme-name} .idxConfirmDialogRtl .messageRef {
+    float: right;
+    margin-left: 10px;
+}
+.@{theme-name} .idxModalDialogRtl .messageTimeStamp,.@{theme-name} .idxConfirmDialogRtl .messageTimeStamp {
+    float: right;
+}
+.@{theme-name} .idxModalDialogRtl .dijitTabContainerCompactRtl .dijitTabContainerTop-tabs,.@{theme-name} .idxConfirmDialogRtl .dijitTabContainerCompactRtl .dijitTabContainerTop-tabs {
+    padding-right: 30px;
+}

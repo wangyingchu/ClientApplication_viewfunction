@@ -8,18 +8,20 @@
 define([
 	"dojo/_base/declare", 
 	"dojo/_base/lang",
+	"dojo/sniff",
 	"dojo/i18n", // i18n.getLocalization
 	"dojo/date", 
 	"dojo/date/locale", 
 	"dojo/date/stamp", 
 	"dijit/_base/wai",
+	"dojo/dom-attr",
 	"dijit/form/RangeBoundTextBox",
 	"dijit/form/ValidationTextBox", 
 	"dijit/_HasDropDown",
 	"./TextBox",
 	"dojo/text!./templates/DropDownBox.html",
 	"dojo/i18n!./nls/_DateTimeTextBox"
-], function(declare, lang, i18n, date, locale, stamp, wai, RangeBoundTextBox, ValidationTextBox, _HasDropDown, 
+], function(declare, lang, has, i18n, date, locale, stamp, wai, domAttr, RangeBoundTextBox, ValidationTextBox, _HasDropDown, 
 		TextBox, template) {
 
 	new Date("X"); // workaround for #11279, new Date("") == NaN
@@ -73,7 +75,11 @@ define([
 		compare: function(/*Date*/ val1, /*Date*/ val2){
 			var isInvalid1 = this._isInvalidDate(val1);
 			var isInvalid2 = this._isInvalidDate(val2);
-			return isInvalid1 ? (isInvalid2 ? 0 : -1) : (isInvalid2 ? 1 : date.compare(val1, val2, this._selector));
+			// Defect 13686 enable time compare or it will cause onchange fire error 
+			//// Don't do compare time, since time value losts details in parse&&format. 
+			return isInvalid1 ? 
+				(isInvalid2 ? 0 : -1) : (isInvalid2 ? 
+					1 : date.compare(val1, val2, this._selector));
 		},
 
 		// flag to _HasDropDown to make drop down Calendar width == <input> width
@@ -157,6 +163,10 @@ define([
 				this._buttonNode = this.oneuiBaseNode;
 				this.oneuiBaseClass += " dijitComboBoxOpenOnClick";
 			}
+			
+			if(has("mobile") && this.textbox){
+				domAttr.set(this.textbox, "readOnly", true);
+			}
 		},
 
 		_setConstraintsAttr: function(/*Object*/ constraints){
@@ -182,14 +192,14 @@ define([
 		_setValueAttr: function(/*Date|String*/ value, /*Boolean?*/ priorityChange, /*String?*/ formattedValue){
 			// summary:
 			//		Sets the date on this textbox. Note: value can be a JavaScript Date literal or a string to be parsed.
-			if(value !== undefined){
+			if(value){
 				if(typeof value == "string"){
 					value = stamp.fromISOString(value);
 				}
 				if(this._isInvalidDate(value)){
 					value = null;
 				}
-				if(value instanceof Date && !(this.dateClassObj instanceof Date)){
+				if(value instanceof Date && !(this.dateClassObj === Date)){
 					value = new this.dateClassObj(value);
 				}
 			}
@@ -218,29 +228,41 @@ define([
 			if(this.dropDown){
 				this.dropDown.destroy();
 			}
-			var PopupProto = lang.getObject(this.popupClass, false),
+			var PopupProto = lang.isString(this.popupClass) ? lang.getObject(this.popupClass, false) : this.popupClass,
 				textBox = this,
 				value = this.get("value");
 			this.dropDown = new PopupProto({
-				autoFocus: false,
 				onChange: function(value){
 					// this will cause InlineEditBox and other handlers to do stuff so make sure it's last
-					idx.form._DateTimeTextBox.superclass._setValueAttr.call(textBox, value, true);
+					textBox.set('value', value, true);
 				},
 				id: this.id + "_popup",
 				dir: textBox.dir,
 				lang: textBox.lang,
 				value: value,
+				textDir: textBox.textDir,
 				currentFocus: !this._isInvalidDate(value) ? value : this.dropDownDefaultValue,
 				constraints: textBox.constraints,
 				filterString: textBox.filterString, // for TimeTextBox, to filter times shown
-				datePackage: textBox.datePackage,
+				datePackage: textBox.params.datePackage,
 				isDisabledDate: function(/*Date*/ date){
 					// summary:
-					// 	disables dates outside of the min/max of the _DateTimeTextBox
+					//	disables dates outside of the min/max of the _DateTimeTextBox
 					return !textBox.rangeCheck(date, textBox.constraints);
 				}
 			});
+			
+			// Defect 14155
+			// TODO fix for dl theme temporarily
+			var dp = this.dropDown;
+			dp.focus = lang.hitch(dp, function(){
+				this.inherited("focus", arguments);
+				this.focused = true;
+			});
+			
+			//13587 set aria-own only when dropdwon existed
+			this.stateNode.setAttribute("aria-owns", this.dropDown.id);
+
 			this.inherited(arguments);
 		},
 

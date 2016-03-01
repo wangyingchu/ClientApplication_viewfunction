@@ -31,13 +31,16 @@ require([
 ], function(ready, registry){
 	ready(function(){
 		var launcher = registry.byId("testLauncher");
-		var titleNode = launcher.tabDock.tabs[0].titleNode;
+		var titleNode = launcher.tabDock._tabs[0].titleNode;
 		titleNode.setAttribute("title", titleNode.getAttribute("alt"));
 	});
 });
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">app/nls/WorkspaceTab</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>

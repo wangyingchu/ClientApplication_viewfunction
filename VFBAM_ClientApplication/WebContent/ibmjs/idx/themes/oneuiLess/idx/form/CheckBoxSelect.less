@@ -1,0 +1,70 @@
+.idxCheckBoxSelect {
+  margin: 0 ;
+}
+.idxCheckBoxSelectWrapLabel {
+  vertical-align: top;
+}
+/* readonly status */
+.idxCheckBoxSelectReadOnly .dijitDownArrowButton {
+	.gradient(@fwLightest, @fwLighter);
+}
+.idxCheckBoxSelectReadOnly .dijitDownArrowButtonHover {
+  .gradient(@fwLightest, @fwLight);
+}
+.idxCheckBoxSelectReadOnly .dijitDownArrowButtonActive {
+	.gradient(@fwLighter, @fwLightest);
+}
+.dj_webkit & table.idxCheckBoxSelect {
+  display: inline-block;
+}
+/*
+ * Select Menu
+ */
+.idxCheckBoxSelectMenu td.dijitMenuArrowCell {
+  display: none;
+}
+.idxCheckBoxSelectMenu td.dijitMenuItemLabel,
+.idxCheckBoxSelectMenu td.oneuiMenuHeadingLabel {
+  position: static;
+}
+.idxCheckBoxSelectMenu td.dijitMenuItemIconCell {
+  margin: 0;
+  width: 16px;
+}
+.idxCheckBoxSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused > td.dijitMenuItemIconCell {
+  padding-left: 9px;
+}
+.idxCheckBoxSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused > td.dijitMenuItemLabel {
+  padding-top: 2px;
+  padding-bottom: 4px;
+}
+.idxCheckBoxSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child > td.dijitMenuItemLabel {
+  padding-top: 3px;
+}
+.idxCheckBoxSelectMenu .dijitMenuItemLabel,
+.idxCheckBoxSelectMenu .oneuiMenuHeadingLabel {
+  margin: 0;
+  padding: 3px 10px 4px 0;
+}
+.dijitMenuPopup .idxCheckBoxSelectMenu .dijitMenuItemReadOnly {
+  color: @textDisabled;
+  background: @fwBackground;
+}
+.idxCheckBoxSelect .idxCheckBoxSelectWrapLabel {
+  text-align: left;
+}
+/*
+ * Validation
+ */
+.idxCheckBoxSelectWrapError .idxCheckBoxSelectError {
+  border: 1px solid @errorBright;
+}
+.idxCheckBoxSelectWrapError .idxCheckBoxSelectError .dijitButtonContents {
+  background: @errorLighter;
+}
+.idxCheckBoxSelectWrap .dijitValidationContainer {
+  display: none;
+}
+.idxCheckBoxSelectWrapError .dijitValidationContainer {
+  display: inherit;
+}

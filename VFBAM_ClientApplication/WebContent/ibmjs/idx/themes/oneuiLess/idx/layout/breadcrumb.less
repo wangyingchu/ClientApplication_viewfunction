@@ -1,0 +1,55 @@
+.idxBreadcrumbController {
+  height: 1em;
+  overflow: hidden;
+  border: none;
+  padding-left: 8px;
+  white-space: nowrap;
+}
+.dijit_a11y & .idxBreadcrumbController,
+.dijit_a11y.idxBreadcrumbController {
+  height: 22px;
+}
+.idxBreadcrumb .dijitButtonText {
+  color: @linkColor;
+  text-decoration: none;
+}
+.idxBreadcrumbHover .dijitButtonText {
+  color: @linkHover;
+  text-decoration: underline;
+}
+.idxBreadcrumb .dijitButtonNode {
+  border: none;
+  padding: 0px;
+  padding: 0 5px;
+}
+.idxBreadcrumbSeparator {
+  color: transparent;
+  font-size: 100%;
+  position: relative;
+  height: 1em;
+  padding: 0 0.3em;
+  vertical-align: bottom;
+  white-space: nowrap;
+  background: url('images/idx/layout/leftNavArrows.png') 0 no-repeat;
+}
+.dijitRtl & .idxBreadcrumbSeparator {
+  background-position: -33px;
+}
+.idxBreadcrumb {
+  position: relative;
+  height: 1em;
+  vertical-align: middle;
+  display: inline;
+  line-height: 1em;
+  white-space: nowrap;
+}
+.idxBreadcrumbController .idxBreadcrumbRtl {
+  padding-left: 0px;
+  padding-right: 9px;
+}
+.idxBreadcrumbChecked .dijitButtonText {
+  font-weight: bold;
+  text-decoration: none;
+  cursor: default;
+  color: @textDefault;
+}

@@ -65,7 +65,7 @@ require([
 			if(!infoDialog){
 				infoDialog = new ModalDialog({
 					id: "infoDialog",
-					type: "information",
+					type: "information"
 				}, "information");
 			}
 			infoDialog.set("text", infoDialog.title);
@@ -117,12 +117,29 @@ require([
 				console.log("question!");
 			});
 		};
+		
+		var progressButton = dom.byId("progressButton");
+		progressButton.onclick = function(){
+			var progress = manager.byId("progress");
+			if(!progress){
+				progress = new ModalDialog({
+					id: "progress",
+					type: "progress"
+				}, "progress");
+			}
+			progress.set("text", progress.title);
+			progress.show();
+		};
+		
 	});
 });
 
 </script>
+<script src="../../tests/commonTest.js"></script>
+<script src="../../gridx/tests/support/common.js"></script>
 </head>
-<body class="oneui">
+<body>
+<script type="text/javascript">applyThemeToBody("oneui");</script>
 <h1 class="testTitle">widget/nls/ModalDialog</h1>
 <table class="testInstruction"><tbody>
 	<tr><th>Resource</th><th>Verification</th></tr>
@@ -137,6 +154,10 @@ require([
 	<tr><td>Information</td><td>
 		Click the "Information" button to show a dialog.<br/><br/>
 		Verify that the "Information" dialog message is translated.
+	</td></tr>
+	<tr><td>
+		Click the "Progress" button to show a dialog.<br/><br/>
+		Verify that the "Progress" dialog message is translated.
 	</td></tr>
 	<tr><td>Confirmation</td><td>
 		Click the "Confirmation" button to show a dialog.<br/><br/>
@@ -175,6 +196,7 @@ require([
 	<div id="confirmation"></div>
 	<div id="confirmationSuccess"></div>
 	<div id="confirmationQuestion"></div>
+	<div id="progress"></div>
 	
 	<button id="errorButton">Error</button>
 	<button id="warnButton">Warning</button>
@@ -182,6 +204,8 @@ require([
 	<button id="confirmButton">Confirmation</button>
 	<button id="successButton">Success</button>
 	<button id="questionButton">Question</button>
+	<button id="progressButton">Progress</button>
+	
 	
 </div>
 </body>

@@ -1,0 +1,24 @@
+<div class="${baseClass}">
+	<div class="${baseClass}InnerContainer" data-dojo-attach-point="_wrapperNode">
+		<div data-dojo-attach-point="containerNode" class="${baseClass}Container"
+			 id="${id}_Container"></div>
+		<div data-dojo-attach-point="_trailerNode" class="${baseClass}Trailer">
+			<div data-dojo-attach-point="actionsButton" 
+					data-dojo-type="dijit.form.DropDownButton"
+					data-dojo-props="iconClass: '${baseClass}ActionButtonIcon'">
+				<span></span>
+				<div data-dojo-type="dijit.Menu" data-dojo-attach-point="actionsMenu" data-dojo-props="style: 'display: none;'">
+				</div>
+			</div>
+			<div data-dojo-attach-point="helpButton" 
+					data-dojo-type="dijit/form/Button"
+					data-dojo-props="showLabel: false, iconClass: '${baseClass}HelpButtonIcon'">
+			</div>
+		</div>
+		<div class="${baseClass}LogoArea" data-dojo-attach-point="_logoNode">
+			<div class="${baseClass}Logo" role="img" aria-labelledby="${id}_logoText"><span 
+				id="${id}_logoText" class="${baseClass}LogoText" data-dojo-attach-point="logoTextNode"></span></div>
+		</div>
+	</div>
+	<div class="${baseClass}BottomBar"></div>
+</div>

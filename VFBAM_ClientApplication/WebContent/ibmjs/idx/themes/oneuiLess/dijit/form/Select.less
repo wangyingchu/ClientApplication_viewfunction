@@ -1,0 +1,199 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/* Select
+ * 
+ * Styling Select mainly includes:
+ * 
+ * 1. Containers
+ * 		.dijitSelect - for border, background-color
+ * 		.dijitButtonContents - for border
+ *
+ * 2. Arrow
+ * 		.dijitArrowButton - for border, padding and background-color|image
+ * 		.dijitArrowButtonInner - for border, background-color|image, display and width|height
+ * 
+ * 3. Menu
+ * 		.dijitSelectMenu .* - for border, padding
+ * 
+ * 4. Various states
+ * 		.dijitSelectHover|.dijitSelectFocused|.dijitSelectDisabled .* - for border, padding and background-color|image 
+ */
+
+/* normal status */
+.dijitSelect {
+  border: 1px solid @fwDarker;
+}
+
+.dj_webkit & .dijitSelect{
+  display: inline-block;
+}
+
+.dj_webkit & table.dijitSelect{
+  display: inline-table;
+}
+
+.dijitSelect .dijitButtonContents {
+  border: 0 solid @fwDarker;
+  border-right-width: 1px;
+  background: @fwBackground;
+}
+
+.dijitSelect .dijitButtonContents,
+.dijitSelect .dijitArrowButton {
+  .transition(background-color, border; .35s);
+}
+
+.dijitSelect .dijitButtonText {
+  padding: 0;
+  text-align: left;
+} 
+.dj_ie6 & .dijitSelect, 
+.dj_ie6 & .dijitSelect .dijitButtonNode {
+  background-image: none;
+}
+.dijitSelect .dijitButtonContents {
+  padding: 0 10px 0 10px;
+}
+.dijitSelect .dijitArrowButton {
+  padding: 0;
+  border: 0;
+  border-color: @fwDarker;
+}
+.dijitSelect .dijitArrowButton .dijitArrowButtonInner {
+  width: 7px;
+  padding: 4px 6px 5px 6px !important; /* have to use !important to overwrite the style in dijit.css */
+  background-image: url('images/dijit/form/comboButtonArrows.png');
+  background-repeat: no-repeat;
+  background-position: -149px 53%;
+}
+
+.dj_ie6 & .dijitSelect .dijitArrowButton .dijitArrowButtonInner{ 
+  background-image: url('images/dijit/form/comboButtonArrows8bit.png');
+} 
+
+.dijitSelect .dijitDownArrowButton{
+  .gradient(@fwLightest, @fwLighter);
+}
+
+/* ArrowButtonHover*/
+.dijitSelect .dijitDownArrowButtonHover .dijitArrowButtonInner,
+.dijitSelect .dijitDownArrowButtonActive .dijitArrowButtonInner,
+.dijitHasDropDownOpen .dijitSelect .dijitArrowButtonInner{
+  background-position: -49px 53%;
+}
+
+.dijitSelect .dijitDownArrowButtonHover{
+  .gradient(@fwLightest, @fwBase);
+}
+
+/* ArrowButtonActive */
+.dijitSelect .dijitDownArrowButtonActive,
+.dijitHasDropDownOpen .dijitSelect .dijitDownArrowButton{
+	border-color: @fwDarker;
+	.gradient(@fwLighter, @fwLightest);
+}
+
+/* hover status*/
+.dijitSelectHover{
+  border: 1px solid @fwDark;
+}
+
+.dijitSelectHover .dijitButtonContents {
+  border-color: @fwDark;
+}
+
+/* disable status */
+.dijitSelectDisabled {
+  .textColors(@fwLightest);
+  border: 1px solid @fwBase;
+  background-color: @fwLightest;
+  background-image: none;
+  color: @textDisabled;
+}
+.dijitSelectDisabled .dijitDownArrowButton,
+.dijitSelectDisabled .dijitButtonContents{
+  background: @fwLightest;
+}
+
+.dijitSelectDisabled .dijitButtonContents {
+  border-color: @fwBase;
+}
+
+/* readonly status */
+.dijitSelectReadOnly {
+  border: 1px solid @fwDark;
+}
+
+.dijitSelectReadOnly .dijitButtonContents {
+  color: @textDisabled;
+  border: 0 solid @fwDark;
+  border-right-width: 1px;
+}
+
+
+.dijitSelectReadOnly .dijitArrowButtonInner,
+.dijitSelectReadOnly .dijitDownArrowButtonActive .dijitArrowButtonInner,
+.dijitSelectReadOnly .dijitDownArrowButtonHover .dijitArrowButtonInner{
+	background-position: -149px 53%;
+}
+
+.dijitSelectReadOnly .dijitDownArrowButton{
+  background: @fwLightest;
+}
+
+
+/* Dropdown menu style for select */
+
+.dijitMenuPopup .dijitSelectMenu{
+  margin-left: 0;
+  background-image: none;
+  padding: 1px 1px 0 1px;
+  border: 1px solid @fwDarker;
+  .BoxShadow(0px 0px 1px 1px @shadowBox);
+}
+
+
+.dijitMenuPopup .dijitSelectMenu .dijitMenuItemHover {
+  color: @textStrong;
+  background: @brandLighter;
+}
+.dijitMenuPopup .dijitSelectMenu .dijitMenuItemSelected {
+  color: @textStrong;
+  background: @brandLighter;
+}
+
+.dijitSelectMenu td.dijitMenuItemIconCell, 
+.dijitSelectMenu td.dijitMenuArrowCell {
+  /* so that arrow and icon cells from MenuItem are not displayed */
+
+  display: none;
+}
+
+
+.dijitSelectMenu td.dijitMenuItemLabel {
+	/* line up menu text with text in select box (in LTR and RTL modes) */
+	margin: 1px 0 1px 0;
+  	padding: 3px 10px 4px 10px;
+}
+.dijitSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>td.dijitMenuItemLabel {
+  	padding-top: 3px;
+  	padding-bottom: 4px;
+}
+.dijitSelectMenu .dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemLabel {
+  	padding-top: 2px;
+  	padding-bottom: 4px;
+}
+
+.dijitSelectMenu .dijitMenuSeparatorTop {
+  border-bottom: 1px solid @brandLight;
+}
+
+/* Overwrite dijit.css*/
+.dijitSelect {
+	border-collapse: separate;
+}

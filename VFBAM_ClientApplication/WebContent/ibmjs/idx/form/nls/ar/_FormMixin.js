@@ -10,3 +10,4 @@ define({
 	legendText: "مطلوب"
 //end v1.x content
 });
+

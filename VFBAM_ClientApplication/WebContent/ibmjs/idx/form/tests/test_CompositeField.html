@@ -66,6 +66,7 @@
 			"idx.form.ComboBox",
 			"idx.form.CheckBoxSelect",
 			"idx.form.CheckBoxList",
+			"idx.form.RadioButtonSet",
 			"idx.tests._pagefooter._PageFooter"]; 
 		var _PageFooter = null,
 			widgets = [
@@ -79,6 +80,7 @@
 			"checkboxselect",
 			"combobox",
 			"checkboxlist",
+			"radiobuttonset",
 			"checkbox",
 			"tristatecheckbox",
 			"hslider",
@@ -120,6 +122,7 @@
 		'></button>
 		
 		<button data-dojo-type="dijit.form.Button" data-dojo-props='
+			id: "moveHintOut",
 			label: "Put Hint Outside",
 			onClick: function(){
 				dojo.forEach(widgets, function(id){
@@ -138,6 +141,7 @@
 		'></button>
 		
 		<button data-dojo-type="dijit.form.Button" data-dojo-props='
+			id: "turnRequired",
 			label: "Set Fields Required",
 			onClick: function(){
 				dojo.forEach(widgets, function(id){
@@ -188,7 +192,9 @@
 			hintPosition: "inside",
 			label: "idx.form.TextBox:",
 			labelAlignment: "horizontal",
-			labelWidth: 200
+			labelWidth: 200,
+			required: true,
+			value: ""
 		'/>
 		<div class="apiRefDiv">
 			<span class="apiRef">
@@ -216,7 +222,9 @@
 			hintPosition: "inside",
 			label: "idx.form.DateTextBox:",
 			labelAlignment: "horizontal",
-			labelWidth: 200
+			labelWidth: 200,
+			required: true,
+			value: ""
 		'/>
 		<div class="apiRefDiv">
 			<span class="apiRef">
@@ -229,7 +237,9 @@
 			hintPosition: "inside",
 			label: "idx.form.TimeTextBox:",
 			labelAlignment: "horizontal",
-			labelWidth: 200
+			labelWidth: 200,
+			required: true,
+			value: ""
 		'/>
 		<div class="apiRefDiv">
 			<span class="apiRef">
@@ -242,7 +252,9 @@
 			hintPosition: "inside",
 			label: "idx.form.CurrencyTextBox:",
 			labelAlignment: "horizontal",
-			labelWidth: 200
+			labelWidth: 200,
+			required: true,
+			value: ""
 		'/>
 		<div class="apiRefDiv">
 			<span class="apiRef">
@@ -256,7 +268,9 @@
 			label: "idx.form.NumberSpinner:",
 			labelAlignment: "horizontal",
 			labelWidth: 200,
-			unit: "Items"
+			unit: "Items",
+			required: true,
+			value: ""
 		'/>
 		<div class="apiRefDiv">
 			<span class="apiRef">
@@ -272,7 +286,9 @@
 			hintPosition: "inside",
 			label: "idx.form.Textarea:",
 			labelAlignment: "horizontal",
-			labelWidth: 200
+			labelWidth: 200,
+			required: true,
+			value: ""
 		'>
 		
 		</textarea>
@@ -285,9 +301,12 @@
 		<select data-dojo-type="idx.form.Select" id="select" data-dojo-props='
 			label: "idx.form.Select:",
 			labelAlignment: "horizontal",
-			labelWidth: 200
+			labelWidth: 200,
+			required: true,
+			value: ""
 		'>
-			<option value="TN" selected="selected">Tennessee</option>
+		<option value="">None</option>
+			<option value="TN" >Tennessee</option>
 			<option value="VA" >Virginia</option>
 			<option value="WA">Washington</option>
 			<option value="FL">Florida</option>
@@ -304,10 +323,12 @@
 			labelAlignment: 'horizontal',
 			label: 'idx.form.CheckBoxSelect:',
 			name: 'checkboxselect',
+			required: true,
+			value: '',
 			labelWidth: 200">
 			<option value="TN">Tennessee</option>
-			<option value="VA" selected="selected">Virginia</option>
-			<option value="WA" selected="selected">Washington</option>
+			<option value="VA">Virginia</option>
+			<option value="WA">Washington</option>
 			<option value="FL">Florida</option>
 			<option value="CA">California</option>
 		</select>
@@ -323,7 +344,9 @@
 				value: "",
 				label: "idx.form.ComboBox:",
 				hint: "Select state",
-				labelWidth: 200
+				labelWidth: 200,
+				required: true,
+			value: ""
 		'>
 			<option value="AK">Alaska</option>
 			<option value="AS">American Samoa</option>
@@ -398,10 +421,11 @@
 			label: 'idx.form.CheckBoxList:',
 			labelAlignment: 'horizontal',
 			groupAlignment: 'vertical',
-			value: ['VA'],
 			invalidMessage: 'Checkbox1 is not a valid selection.',
 			isValid: function(){ return !this.getOptions(0).selected; },
-			labelWidth: 200
+			labelWidth: 200,
+			required: true,
+			value: ''
 		">
 			<option value="TN">Tennessee</option>
 			<option value="VA">Virginia</option>
@@ -414,6 +438,23 @@
 				<a target="_blank" href="http://dojosh.bluehost.ibm.com/ORIA-OneUI/util/docscripts/preview.php#oneui/form/CheckBoxList.js">API reference</a>
 			</span>
 		</div>
+		<br/>
+		<!--<h2>Composite RadioButtonSet</h2>-->
+		<select id="radiobuttonset" data-dojo-type="idx.form.RadioButtonSet" data-dojo-props="
+			name: 'radiobuttonset',
+			label: 'idx.form.RadioButtonSet:',
+			labelAlignment: 'horizontal',
+			groupAlignment: 'vertical',
+			invalidMessage: 'It is not a valid selection.',
+			isValid: function(){ return !this.getOptions(0).selected; },
+			labelWidth: 200,
+			required: true,
+			value: ''
+		">
+			<option value="TN">Tennessee</option>
+			<option value="VA">Virginia</option>
+			<option value="WA">Washington</option>
+		</select>
 		<br/>
 		<!--<h2>Composite CheckBox</h2>-->
 		<input id="checkbox" data-dojo-id="cb1" data-dojo-type="idx.form.CheckBox" data-dojo-props='name:"checkbox", label: "idx.form.CheckBox"'/>

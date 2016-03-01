@@ -1,0 +1,68 @@
+<div class="alertSummary">
+	<div dojoType="dijit.layout.ContentPane"  style="width: 99%; height: 99%; overflow: none;">					
+		<div>
+			${msg.eventListDialogText}													
+			<table>
+				<tr>
+					<td><div dojoAttachPoint="_iconInfoNode" class="idxDialogIconInformation" /></td>
+					<td><span class='idxDialogIconText'>${msg.eventListDialogTextLong}</span></td>
+				</tr>
+			</table>				
+			<select dojoAttachPoint="_filter" dojoType="dijit.form.ComboBox">
+				<option value="" selected>${msg.NONE}</option>
+				<option value="DEBUG">${msg.DEBUG}</option>					
+				<option value="INFO">${msg.INFO}</option>
+				<option value="WARNING">${msg.WARN}</option>
+				<option value="ERROR">${msg.ERROR}</option>					
+			</select>
+	    	<button dojoType="dijit.form.Button"dojoAttachEvent="onClick: _doFilter" >${msg.applyBtn}</button><br/>
+	 	</div>
+	 	
+	 			
+		<div dojoAttachPoint="_hdrEvents" dojoType="idxx.layout.HeaderPane" region="left" title="${msg.eventListTableTitle}" style="width:95%; height:80%; overflow: none;">		  
+			
+			<div dojoType="idx.layout.BreadcrumbController" region="title" containerId="${id}_alertStack"  dojoAttachEvent="onSelectChild:_onBreadcrumbChange"></div>
+			
+				<div dojoType="dijit.layout.StackContainer" dojoAttachPoint="_alertBBStack" region="majorActions">
+					<div title="${msg.eventListDialogTitle}" dojoType="dijit.layout.ContentPane"  selected="true" dojoAttachPoint="_alertBBSummary">
+						<div dojoType="idx.layout.ButtonBar">
+							<button dojoAttachPoint="_btnView" dojoAttachEvent="onClick: showDetails"  dojoType="dijit.form.Button" disabled="disabled">${msg.viewBtn}</button>	
+	   						<button dojoAttachPoint="_btnRemove" dojoType="dijit.form.Button" dojoAttachEvent="onClick: remove" disabled="disabled">${msg.removeBtn}</button>		
+						</div>
+					</div>			
+					<div dojoType="dijit.layout.ContentPane" dojoAttachPoint="_alertBBDetails">
+						<div dojoType="idx.layout.ButtonBar">		
+							<button dojoType="dijit.form.Button" region="secondary" dojoAttachEvent="onClick: _close">${msg.closeTitleBtn}</button>		
+						</div>
+					</div>
+				</div>			
+									
+			<div dojoType="dijit.layout.ContentPane" region="minorActions">
+				<span dojoType="idx.widget.HoverHelp" message="${msg.helpTextEvents}" href="${msg.helpLinkEvents}"></span>
+			</div>
+						
+			<div dojoType="dijit.layout.StackContainer" dojoAttachPoint="_alertStack" id="${id}_alertStack" style="width:100%;height:100%">
+
+				<table dojoType="dojox.grid.DataGrid"
+				    dojoAttachPoint="_grid"						
+					rowselector="20px"
+					rowsPerPage="20"
+					style="height: 23em; padding: 1px;"
+					title="${msg.eventListTableTitle}">		
+					<thead style="font-weight: bold; padding-bottom: 0.25em;">
+						<tr>
+							<th field="id"        width="1%">${msg.msgID}</th>
+							<th field="level"     width="1%">${msg.msgLevel}</th>
+							<th field="timestamp" width="2%" cellType="idx.grid.cells.DateTime" selector="date">${msg.msgDate}</th>
+							<th field="timestamp" width="2%" cellType="idx.grid.cells.DateTime" selector="time">${msg.msgTime}</th>
+							<th field="source"    width="3%">${msg.msgSource}</th>
+							<th field="msg"       width="10%">${msg.msgNLS}</th>
+						</tr>
+					</thead>
+				</table>
+			</div>	
+
+				
+		</div>							
+	</div>	
+</div>

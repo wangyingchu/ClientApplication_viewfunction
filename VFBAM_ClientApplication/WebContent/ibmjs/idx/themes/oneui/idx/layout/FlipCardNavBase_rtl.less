@@ -1,0 +1,58 @@
+
+.oneui{
+	.idxFlipCardNavBaseRtl{
+		.idxFlipCardNavBar{
+			float: right;
+			.navAction {
+				.navActionIconContainer{
+					left: 5px;
+					right: auto;
+				}
+                .toggleNavBarActionIcon {
+                    background: url("images/toggleNavReverse.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                }
+            }
+            
+            .navItem {
+            	.navItemIcon{
+            		-moz-transform: scaleX(-1);
+					-o-transform: scaleX(-1);
+					-webkit-transform: scaleX(-1);
+					transform: scaleX(-1);
+					filter: FlipH;
+					-ms-filter: "FlipH";
+            	}
+            }
+		}
+		
+		.dojoxExpandoPane{
+			margin-right: 100%;
+			margin-left: 0;
+		}
+		
+		.idxFlipCardContent{
+			 padding: 10px 48px 10px 10px;
+		}
+	}
+	
+	.idxFlipCardNavBaseRtl.idxFlipCardNavBarExtended{
+		.idxFlipCardContent{
+			 padding: 10px 210px 10px 10px;
+		}
+		
+		.idxFlipCardNavBar{
+        	
+            .navAction {
+                .toggleNavBarActionIcon {
+                    background: url("images/toggleNav.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                }
+            }
+        }
+	}
+	
+    .idxFlipCardNavBaseRtl.navBarHidden {
+        .idxFlipCardContent {
+            padding-right: 10px;
+        }
+    }
+}

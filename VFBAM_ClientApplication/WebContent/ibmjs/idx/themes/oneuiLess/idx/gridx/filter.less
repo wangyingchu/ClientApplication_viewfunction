@@ -1,0 +1,328 @@
+/*FilterBar*/
+.gridxFilterBar {
+  border: 1px solid @fwBase;
+  border-bottom: none;
+  padding: 0;
+  width: auto;
+  background-color: @fwLightest;
+  padding: 3px 0;
+  position: relative;
+}
+.gridxFilterBar a {
+  font-family: @sans;
+  font-style: normal;
+}
+.gridxFilterBarStatus {
+  border: none;
+  font-size: 12px;
+  font-family: @serif;
+  font-style: oblique;
+  .textColors(@fwLighter);
+  color: @textDefault;
+  background: none;
+  display: inline-block;
+  padding: 0;
+  filter: none;
+}
+.gridxFilterBarStatusText {
+  display: inline-block;
+  margin-right: 10px;
+}
+.gridxFilterBarCloseBtn {
+  width: 8px;
+  height: 8px;
+  background: transparent no-repeat -36px -20px;
+  .image(@imageRoot, "gridx_sprite.png");
+  margin: 10px;
+  font-family: @sans;
+  font-style: normal;
+}
+.dj_a11y & .gridxFilterBarCloseBtn {
+  margin-top: 4px;
+}
+.gridxFilterBarCloseBtn:hover {
+  background-position: -52px -20px;
+}
+.gridxFilterBar .dijitButton {
+  float: none;
+  margin: 0 10px;
+}
+.gridx .gridxFilterBar .dijitButton span {
+  margin: 0;
+  padding: 0;
+}
+.gridx .gridxFilterBar .dijitButton .gridxFilterBarBtnIcon {
+  width: 16px;
+  height: 16px;
+  margin: 4px;
+  background: transparent url('images/gridx_sprite.png') no-repeat 0px -16px;
+}
+.gridx .gridxFilterBar .dijitButtonHover .gridxFilterBarBtnIcon,
+.gridx .gridxFilterBar .dijitButtonActive .gridxFilterBarBtnIcon {
+  background-position: -16px -16px;
+}
+.gridxFilterBar .dijitButton .dijitArrowButtonInner {
+  height: 25px;
+  width: 9px;
+  /*    background: transparent url('images/spriteIcons.png') no-repeat -4px 6px;*/
+
+}
+.gridx .gridxFilterBar .dijitButton .dijitButtonNode {
+  border: 1px solid transparent;
+  background: none;
+  padding: 0;
+  box-shadow: none;
+}
+.gridx .gridxFilterBar .dijitButtonHover .dijitButtonNode {
+  border: 1px solid @fwBase;
+  .gradient(@fwLightest, @fwBase);
+}
+.gridx .gridxFilterBar .dijitButtonActive .dijitButtonNode {
+  border: 1px solid @fwBase;
+  .gradient(@fwLighter, @fwLightest);
+}
+.gridx .gridxFilterBar .dijitButton .dijitButtonText {
+  display: none;
+}
+/*QuickFilter*/
+.gridxQuickFilterTextBox,
+.gridxQuickFilterDropDownButton,
+.gridxQuickFilterButton {
+  float: right;
+}
+/*.gridxQuickFilterButton {*/
+/*    margin-top: -3px;*/
+/*}*/
+.gridxQuickFilterTextBox {
+  border: 1px solid @fwBase;
+  position: relative;
+  margin-top: 4px;
+}
+.gridxQuickFilterTextBox .dijitInputInner::-ms-clear {
+  display: none;
+}
+.gridx .gridxQuickFilterIcon {
+  width: 16px;
+  height: 16px;
+  background: transparent no-repeat 0px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+  margin: 0;
+}
+.dijitButtonHover .gridxQuickFilterIcon,
+.dijitButtonActive .gridxQuickFilterIcon {
+  background: transparent no-repeat -16px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.gridxQuickFilterTextBox .dijitInputContainer {
+  padding: 0 14px 0 5px;
+}
+.gridxQuickFilterTextBox .gridxQuickFilterClearIcon {
+  position: absolute;
+  right: 5px;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  background: transparent no-repeat -36px -21px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.gridxQuickFilterClear {
+  height: 8px;
+  width: 8px;
+  top: 5px;
+  right: 10px;
+  background: transparent no-repeat -36px -20px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.gridxQuickFilterClear:hover {
+  background-position: -52px -20px;
+}
+.gridxQuickFilterTextBox .gridxQuickFilterClearIcon:hover {
+  background-position: -52px -21px;
+}
+.gridxQuickFilterTextBoxEmpty .gridxQuickFilterClearIcon {
+  display: none;
+}
+.gridx .gridxHeader .gridxQuickFilterTextBox .dijitInputInner {
+  height: 23px;
+  padding: 0;
+  padding-left: 3px;
+  color: @textSecondary;
+  font-size: 12px;
+  font-family: @sans;
+}
+/*Make input text vertical middle aligned for IE6-8*/
+.dj_ie & .gridx .gridxHeader .gridxQuickFilterTextBox .dijitInputInner {
+  height: auto;
+  padding: 4px 3px;
+  vertical-align: middle;
+}
+.gridx .gridxHeader .gridxQuickFilterTextBoxEmpty .dijitInputInner {
+  color: @textDisabled;
+}
+.gridxQuickFilterDropDownButton,
+.gridx .gridxHeader .gridxQuickFilterDropDownButton span {
+  margin: 0;
+  padding: 0;
+}
+.gridxQuickFilterDropDownButton .dijitArrowButtonInner {
+  height: 25px;
+  width: 9px;
+  /*    background: transparent url('images/spriteIcons.png') no-repeat -4px 6px;*/
+
+}
+.gridx .gridxHeader .dijitToolbar .gridxQuickFilterDropDownButton .dijitButtonNode {
+  border: none;
+  background: none;
+  padding: 0;
+}
+/* FilterDialogOneLine */
+.gridxFilterPaneText .gridxFilterPaneTextWrapper,
+.gridxFilterPaneCombo .gridxFilterPaneComboWrapper,
+.gridxFilterPaneNumber .gridxFilterPaneNumberWrapper,
+.gridxFilterPaneDate .gridxFilterPaneDateWrapper,
+.gridxFilterPaneDateRange .gridxFilterPaneDateRangeWrapper,
+.gridxFilterPaneTime .gridxFilterPaneTimeWrapper,
+.gridxFilterPaneTimeRange .gridxFilterPaneTimeRangeWrapper,
+.gridxFilterPaneSelect .gridxFilterPaneSelectWrapper,
+.gridxFilterPaneRadio .gridxFilterPaneRadioWrapper {
+  display: inline-block;
+}
+.gridxFilterRulesLabel {
+  font-size: 15px;
+  font-weight: bolder;
+  margin-top: 10px;
+}
+.gridxFilterRules {
+  height: 152px;
+  width: 690px;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+.gridxFilterPaneRemoveBtnIcon {
+  background: transparent no-repeat -112px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+  width: 16px;
+  height: 16px;
+}
+.dijitButtonDisabled .gridxFilterPaneRemoveBtnIcon {
+  background: transparent no-repeat -80px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.gridxFilterPaneAddBtnIcon {
+  background: transparent no-repeat -129px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+  width: 16px;
+  height: 16px;
+}
+.dijitButtonDisabled .gridxFilterPaneAddBtnIcon {
+  background: transparent no-repeat -97px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.gridxFilterRules .gridxFilterPaneForm {
+  position: relative;
+  padding: 5px 0;
+}
+.gridxFilterPaneRemoveBtn {
+  position: relative;
+  top: 0px;
+}
+.gridxFilterPaneRemoveBtn .dijitButtonNode {
+  min-width: 0;
+}
+.gridxFilterPaneAddBtn {
+  position: relative;
+  top: 0px;
+}
+.gridxFilterPaneAddBtn .dijitButtonNode {
+  min-width: 0;
+}
+.gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  margin: 0 14px;
+}
+.gridxFilterPaneFieldWrapper {
+  margin-right: 14px;
+}
+.gridxFilterSingleRule .gridxFilterPaneRemoveBtn {
+  display: none;
+}
+.gridxFilterMaxRuleCount .gridxFilterPaneAddBtn {
+  display: none;
+}
+.gridxFilterDialogOneLine {
+  width: auto;
+}
+.gridxFilterRules {
+  width: 710px;
+  height: 160px;
+}
+.gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  /*    width: 200px;*/
+
+  margin: 0;
+}
+.gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  margin-right: 20px;
+}
+.gridxFilterRulesLabel {
+  margin: 20px 0 15px 0;
+}
+.gridxFilterDialogOneLine .gridxFilterPaneFieldWrapper {
+  width: 190px;
+}
+.gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn {
+  margin-right: 15px;
+}
+.gridxFilterDialogOneLine .gridxFilterPaneAddBtn .dijitButtonNode,
+.gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn .dijitButtonNode {
+  min-width: auto;
+  padding: 4px;
+}
+.gridxFilterDialogOneLine form > label {
+  margin-right: 10px;
+}
+.gridxFilterPaneRangeStart,
+.gridxFilterPaneRangeEnd {
+  width: 90px;
+}
+.gridxFilterTooltipTitle {
+  font-size: 1.5em;
+  color: @textDefault;
+}
+.gridxFilterTooltip table {
+  border: 1px solid @fwBase;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.gridxFilterTooltip table th {
+	.gradient(@fwBackground, @fwLightest);
+  font-family: @sans;
+  font-size: 11px;
+  font-weight: bold;
+  .textColors(mix(@fwBackground, @fwLightest));
+  color: @textSecondary;
+  .TextShadow(@shadowSolid);
+  padding: 10px 7px;
+  vertical-align: middle;
+}
+.gridxFilterTooltip table td {
+  border: 1px solid @fwBase;
+  padding: 7px 7px;
+}
+.gridxFilterTooltip .gridxFilterTooltipRemoveBtn {
+  background: transparent no-repeat -145px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.gridxFilterTooltip .gridxFilterTooltipRemoveBtn:hover {
+  background: transparent no-repeat -162px -16px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.gridxFilterPaneTrueRadio,
+.gridxFilterPaneFalseRadio {
+  display: inline;
+  width: 90px;
+}
+.gridxFilterPaneSelectWrapper .dijitValidationContainer {
+  display: none;
+}

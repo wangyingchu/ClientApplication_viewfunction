@@ -1,0 +1,27 @@
+.idxTypeAhead {
+  border: 1px solid @focusOutline;
+  z-index: 1000;
+  overflow: auto;
+  max-height: 300px;
+}
+.idxTypeAhead .typeAheadTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.idxTypeAhead .typeAheadTable tr.typeAheadTableRow {
+  cursor: pointer;
+  background-color: @fwBackground;
+}
+.idxTypeAhead .typeAheadTable tr.typeAheadTableRowOdd {
+  background-color: @selected;
+}
+.idxTypeAhead .typeAheadTable td.typeAheadTableCell {
+  padding: 3px;
+}
+.idxTypeAhead .typeAheadTable td.typeAheadCloseNode {
+  text-align: right;
+  padding-right: 8px;
+}
+.idxTypeAhead .typeAheadTable tr.typeAheadTableRowSelected td.typeAheadTableCell {
+  background-color: @focusOutline;
+}

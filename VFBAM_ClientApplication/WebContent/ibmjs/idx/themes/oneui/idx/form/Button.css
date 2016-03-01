@@ -55,10 +55,14 @@
 	color: #f2fafe;
 }
 .oneui .idxSpecialButtonDisabled .dijitButtonNode {
-	color: #cdecfa;
+	/*color: #cdecfa;*/
+	/*for RPT color contrast issue*/
+	color: #ddd;
 }
 .dj_ie .oneui .idxSpecialButtonDisabled .dijitButtonNode {
-	color: #bbd9e8;
+	/*color: #bbd9e8;*/
+	/*for RPT color contrast issue*/
+	color: #ddd;
 }
 
  

@@ -1,0 +1,84 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/* TitlePane 
+ * 
+ * Styling TitlePane means styling the TitlePane title and its content container  (dijitTitlePane)
+ * 
+ * TitlePane title:
+ * 1. TitlePane title (default styling): 
+ * 		.dijitTitlePaneTitle - TitlePane's title div style: background-image, border
+ *
+ * 2. hovered TitlePane title (ie, mouse hover on a title bar)
+ * 		.dijitTitlePaneTitleHover - styles when mouse hover on the title div
+ * 
+ * 3. active TitlePane title (ie, mouse down on a title bar)
+ * 		.dijitTitlePaneTitleActive - styles when mouse down on the title div
+ * 
+ * 
+ * TitlePane Content Container:
+ * 1. outer/inner container: 
+ * 		.dijitTitlePaneContentOuter / dijitTitlePaneContentInner - styles for the content outer div
+ */
+ 
+.dijitTitlePane{
+  background: @fwBackground;
+}
+.dijitTitlePaneTitle {
+  border: 1px solid @fwLighter;
+  padding:5px 6px 6px 7px;
+}
+.dijitTitlePaneTitleHover {
+	.gradient(@fwLightest, @fwLighter);
+}
+
+.dijitTitlePaneTitleActive {
+	.gradient(@fwLighter, @fwLightest);
+}
+
+.dijitTitlePaneTitleFocus {
+	xmargin:0px -10px;
+	xheight:17px;
+}
+x.dijitTitlePaneFocus {
+  margin-top: 3px;
+  padding-bottom: 2px;
+}
+.dijitTitlePane .dijitArrowNode {
+  background-image: url('images/dijit/spriteArrows.png');
+  background-repeat: no-repeat;
+  height: 8px;
+  width: 7px;
+}
+.dijitTitlePane .dijitOpen .dijitArrowNode {
+  background-position: 0 0;
+}
+.dijitTitlePaneActive .dijitOpen .dijitArrowNode {
+  background-position: 0 0;
+}
+.dijitTitlePane .dijitClosed .dijitArrowNode {
+  background-position: -42px 0;
+}
+.dijitTitlePaneHover .dijitClosed .dijitArrowNode {
+  background-position: -14px 0;
+}
+.dijitTitlePaneActive .dijitClosed .dijitArrowNode {
+  background-position: -14px 0;
+}
+.dijitTitlePaneContentOuter {
+  border: 1px solid @fwLighter;
+  border-top: none;
+}
+.dijitTitlePaneContentInner {
+  padding: 9px;
+}
+.dijitTitlePaneTextNode {
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: text-top;
+}
+

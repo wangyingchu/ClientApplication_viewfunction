@@ -1,108 +1,130 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Gridx OneUI Theme Test</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-	<style type="text/css">
-		body {
-			background: none;
-		}
-		
-		#gridContainer {
-			width: 800px;
-			height: 400px;
-		}
-		#grid {
-			height: 100%;
-		}
-		.testToolbarButtonCut,
-		.testToolbarButtonCopy,
-		.testToolbarButtonPaste {
-			background-image: url("support/data/toolbarbuttons.png");
-			background-repeat: no-repeat;
-			width: 16px;
-			height: 16px;
-			background-position: -4px -6px;
-		}
-		.gridxRtl .testToolbarButtonCut,
-		.gridxRtl .testToolbarButtonCopy,
-		.gridxRtl .testToolbarButtonPaste {
-			background-image: url("support/data/toolbarbuttons_rtl.png");
-		}
-
-		.testToolbarButtonCopy {
-			background-position: -29px -5px;
-		}
-
-		.testToolbarButtonPaste {
-			background-position: -55px -5px;
-		}
-
-		.dijitButtonHover .testToolbarButtonCut,
-		.dijitButtonActive .testToolbarButtonCut,
-		.dijitButtonHover .testToolbarButtonCopy,
-		.dijitButtonActive .testToolbarButtonCopy,
-		.dijitButtonHover .testToolbarButtonPaste,
-		.dijitButtonActive .testToolbarButtonPaste {
-			background-image: url("../../icons/images/editorIconsHover.png");
-			background-repeat: no-repeat;
-			width: 16px;
-			height: 16px;
-			background-position: -54px -1px;
-		}
-
-		.gridxRtl .dijitButtonHover .testToolbarButtonCut,
-		.gridxRtl .dijitButtonActive .testToolbarButtonCut,
-		.gridxRtl .dijitButtonHover .testToolbarButtonCopy,
-		.gridxRtl .dijitButtonActive .testToolbarButtonCopy,
-		.gridxRtl .dijitButtonHover .testToolbarButtonPaste,
-		.gridxRtl .dijitButtonActive .testToolbarButtonPaste {
-			background-image: url("../../icons/images/editorIconsHover_rtl.png");
-		}
-
-
-		.dijitButtonHover .testToolbarButtonCopy, 
-		.dijitButtonActive .testToolbarButtonCopy {
-			background-position: -72px -1px;
-		}
-
-		.dijitButtonHover .testToolbarButtonPaste,
-		.dijitButtonActive .testToolbarButtonPaste {
-			background-position: -90px -1px;
-		}
-	</style>
-
+	<title>Gridx OneUI Filter Test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src='support/common.js'></script>
 	<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
-	<script type="text/javascript">
-		dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx.css", "idxStyles");
-		dojoCSSImport("../../../../@dojopath@/gridx/resources/Gridx_rtl.css", "idxStyles");
-	</script>
+	<script type="text/javascript" src="support/commonImport.js"></script>
 	<style id="idxStyles" type="text/css">
+		@import "../../../gridx/resources/Gridx.css";
 		@import "../../themes/oneui/dijit/document.css";
 		@import "../../themes/oneui/oneui.css";
 		@import "../../tests/test.css";
+		@import "support/common.css";
+		.gridx {
+			width: 900px;
+			height: 400px;
+		}
 	</style>
-	<link rel='stylesheet' href="support/common.css" />
-	<script type="text/javascript">
-		var dojoConfig = currentDojoVersion.dojoConfig;
-		dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
-	</script>
-	<script type="text/javascript" src='support/common.js'></script>
 	<script type="text/javascript" src='test_grid_oneui_filter.js'></script>
 </head>
 <body class='oneui'>
-	<h1 class='title' tabindex='0' onfocus='this.style.color="blue"' 
-		onblur='this.style.color=""'>
-		Gridx OneUI Theme Test
-	</h1>
-	<br/><br/>
-	<table border='0' cellspacing='0' cellpadding='0'><tr>
-		<td class='pane'>
-			<div id='gridContainer'></div>
-		</td>
-	</tr></table>
+	<h1>Gridx OneUI Filter Test</h1>
+	<h2>FilterBar only</h2>
+	<div id="grid1" data-dojo-id="grid1" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Sync',
+		store: store,
+		structure: layout,
+		filterBarMaxRuleCount: 5,
+		filterCaseSensitive: true,
+		selectRowTriggerOnCell: true,
+		filterBarFilterData: {
+			'type': 'any',
+			'conditions': [
+				{
+					'colId': 'Date Time',
+					'condition': 'range',
+					'type': 'Datetime',
+					'value': {
+						'start': 'Thu Nov 20 1999',
+						'end': 'Thu Nov 20 2013'
+					}
+				}
+			]
+		},
+		modules: [
+			'gridx/modules/RowHeader',
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/IndirectSelect',
+			'gridx/modules/VirtualVScroller',
+			'gridx/modules/Filter',
+			'idx/gridx/modules/filter/FilterBar'
+		]
+	"></div>
+	
+	<h2>FilterBar only<strong>(Experimental)</strong></h2>
+	<p style='color:blue'>
+		Experimental filterBar will add below new functionalities:
+		<ul>
+			<li>"past" condition for column with dataType: ['date', 'time', 'datetime'].</li>
+			<li>"match case" option for string filter</li>
+		</ul>
+	</p>
+	<div id="grid11" data-dojo-id="grid11" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Sync',
+		store: store,
+		structure: layout,
+		filterBarMaxRuleCount: 5,
+		filterCaseSensitive: true,
+		selectRowTriggerOnCell: true,
+		filterBarExperimental: true,
+		filterBarFilterData: {
+			'type': 'any',
+			'conditions': [
+				{
+					'colId': 'Date Time',
+					'condition': 'range',
+					'type': 'Datetime',
+					'value': {
+						'start': 'Thu Nov 20 1999',
+						'end': 'Thu Nov 20 2013'
+					}
+				}
+			]
+		},
+		modules: [
+			'gridx/modules/RowHeader',
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/IndirectSelect',
+			'gridx/modules/VirtualVScroller',
+			'gridx/modules/Filter',
+			'idx/gridx/modules/filter/FilterBar'
+		]
+	"></div>
+	<h2>QuickFilter only</h2>
+	<div id="grid2" data-dojo-id="grid2" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		selectRowTriggerOnCell: true,
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/VirtualVScroller',
+			'gridx/modules/Filter',
+			'idx/gridx/modules/filter/QuickFilter'
+		]
+	"></div>
+	<h2>QuickFilter and FilterBar</h2>
+	<div id="grid3" data-dojo-id="grid3" data-dojo-type="gridx/Grid" data-dojo-props="
+		cacheClass: 'gridx/core/model/cache/Async',
+		store: store,
+		structure: layout,
+		filterBarMaxRuleCount: 5,
+		selectRowTriggerOnCell: true,
+		modules: [
+			'gridx/modules/ColumnResizer',
+			'gridx/modules/extendedSelect/Row',
+			'gridx/modules/ToolBar',
+			'gridx/modules/VirtualVScroller',
+			'gridx/modules/Filter',
+			'idx/gridx/modules/filter/FilterBar',
+			'idx/gridx/modules/filter/QuickFilter'
+		]
+	"></div>
 </body>
 </html>

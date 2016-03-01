@@ -68,7 +68,7 @@ var MoveableTabController = dojo_declare("idx.layout.MoveableTabController", [di
 		this.inherited(arguments);
 		
 		// add reference to content widget
-		var button = this.pane2button[page.id];
+		var button = this.pane2button(page.id);
 		if (button) {
 			button.page = page;
 			button.tabTopicId = this.id;
@@ -102,13 +102,12 @@ var MoveableTabController = dojo_declare("idx.layout.MoveableTabController", [di
 	/**
 	 * Called when moving tab via keyboard (ctrl + left/right) or (meta + left/right)
 	 * @param {Object} msg - {dir: "left/right"}
-	 * @extends dijit.layout.StackController.onkeypress
+	 * @extends dijit.layout.StackController.onkeydown
 	 * @private
 	 */
-	onkeypress: function(evt) {
+	onkeydown: function(evt) {
 		var modKey = evt.ctrlKey || evt.metaKey;
 		var key = evt.keyCode;
-		
 		if (modKey) {
 			var container = dijit_registry.byId(this.containerId);
 			var page = container.selectedChildWidget;
@@ -122,13 +121,14 @@ var MoveableTabController = dojo_declare("idx.layout.MoveableTabController", [di
 			} else {
 				this.inherited(arguments);
 			}
+
 			if(dir > 0){
 				if (index < children.length - 1) {
 					dojo_event.stop(evt);
 					container.removeChild(page);
 					container.addChild(page, index + 1);
 					container.selectChild(page);
-					this.pane2button[page.id].focus();		
+					this.pane2button(page.id).focus();		
 				}
 			}else if(dir < 0){
 				if (index > 0) {
@@ -136,7 +136,7 @@ var MoveableTabController = dojo_declare("idx.layout.MoveableTabController", [di
 					container.removeChild(page);
 					container.addChild(page, index - 1);
 					container.selectChild(page);
-					this.pane2button[page.id].focus();		
+					this.pane2button(page.id).focus();		
 				}
 			}
 		} else {

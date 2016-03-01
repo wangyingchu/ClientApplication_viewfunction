@@ -1,0 +1,135 @@
+/* NumberSpinner - namespace "dijitSpinner"
+ * 
+ * Styling NumberSpinner mainly includes:
+ * 
+ * 1. Arrows
+ * 		Outer containers: .dijitSpinnerButtonContainer|.dijitSpinnerButtonInner  - for border, padding and position
+ * 		Arrows: .dijitArrowButton|.dijitUpArrowButton.|dijitDownArrowButton
+ * 		Inner container: .dijitArrowButtonInner - for border, padding, width|height and background image
+ * 
+ * 2. Hover state
+ * 		.dijitUpArrowButtonHover|.dijitDownArrowButtonHover .*  - for background color|image
+ * 
+ * 3. Active state
+ * 		.dijitUpArrowButtonActive|.dijitDownArrowButtonActive .*  - for border, padding, margin and background color|image
+ * 
+ * 4. Focused state
+ * 		.dijitSpinnerFocused .* - for background color|image
+ * 
+ * 5. Disabled state
+ * 		.dijitSpinnerDisabled .* - for background color|image
+ */
+.dlBlue .dijitSpinnerButtonContainer {
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  padding: 0 2px;
+}
+.dlBlue .dijitSpinnerButtonContainer .dijitSpinnerButtonInner {
+  border-width: 1px 0;
+  /* reserve space to match the claro combobox button border with border and not padding to make IE happier */
+  border-style: solid none;
+}
+/* button */
+.dlBlue .dijitSpinner .dijitArrowButton {
+  width: auto;
+  background-color: #267bac;
+  overflow: hidden;
+}
+.dj_iequirks .dlBlue .dijitSpinner .dijitArrowButton {
+  overflow: visible;
+  /* 0 height w/o this */
+}
+.dlBlue .dijitSpinner .dijitSpinnerButtonInner {
+  width: 15px;
+}
+/* up & down button icons */
+.dlBlue .dijitSpinner .dijitArrowButtonInner {
+  border: solid 1px transparent;
+  border-bottom-width: 0;
+  /* 2 top borders = 1 top+bottom border in ComboBox */
+  background-image: url("../form/images/arrows_white.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 15px;
+  /* for up arrow */
+  background-position: 0 53%;
+  /* override button.css (TODO: move to Common.css since ComboBox needs this too) */
+  display: block;
+  margin: -1px 2px -1px 1px;
+  /* compensate for inner border */
+}
+.dj_iequirks .dlBlue .dijitSpinner .dijitArrowButtonInner,
+.dj_ie6 .dlBlue .dijitSpinner .dijitArrowButtonInner,
+.dj_ie7 .dlBlue .dijitSpinner .dijitArrowButtonInner,
+.dj_ie8 .dlBlue .dijitSpinner .dijitArrowButtonInner {
+  margin-top: 0;
+  /* since its bottom aligned */
+}
+.dj_iequirks .dlBlue .dijitSpinner .dijitArrowButtonInner {
+  width: 19px;
+}
+.dlBlue .dijitSpinner .dijitDownArrowButton .dijitArrowButtonInner {
+  background-position: -51px 53%;
+}
+.dlBlue .dijitSpinner .dijitArrowButtonInner .dijitInputField {
+  padding: 0;
+}
+/** hover & focused status **/
+.dlBlue .dijitUpArrowButtonActive,
+.dlBlue .dijitDownArrowButtonActive {
+  background-color: #003f69;
+}
+.dlBlue .dijitSpinner .dijitUpArrowButtonHover,
+.dlBlue .dijitSpinner .dijitDownArrowButtonHover {
+  background-color: #66a2c4;
+}
+/*  No change for hover
+.@{theme-name} .dijitSpinner .dijitUpArrowButtonHover .dijitArrowButtonInner {
+	background-position:-174px;
+}
+.@{theme-name} .dijitSpinner .dijitDownArrowButtonHover .dijitArrowButtonInner {
+	background-position:-69px;
+}
+*/
+.dlBlue .dijitSpinnerFocused {
+  background-color: #ffffff;
+  background-image: none;
+}
+/* mouse down status */
+.dlBlue .dijitSpinner .dijitDownArrowButtonActive,
+.dlBlue .dijitSpinner .dijitUpArrowButtonActive {
+  background-color: #003f69;
+}
+/* Causing uncessary movement on press 
+.@{theme-name} .dijitSpinner .dijitUpArrowButtonActive .dijitArrowButtonInner,
+.@{theme-name} .dijitSpinner .dijitDownArrowButtonActive .dijitArrowButtonInner {
+	// hide inner border while button is depressed 
+	border: 0;
+	padding: 1px;
+	margin-right:2px;
+	margin-bottom:1px;
+}*/
+/*
+.@{theme-name} .dijitSpinner .dijitUpArrowButtonActive .dijitArrowButtonInner {
+	background-position:-173px;
+}
+.@{theme-name} .dijitSpinner .dijitDownArrowButtonActive .dijitArrowButtonInner {
+	background-position:-68px;
+} */
+/* disabled */
+.dlBlue .dijitSpinnerDisabled .dijitArrowButton {
+  background-color: #cdced2;
+}
+.dlBlue .dijitSpinnerDisabled .dijitUpArrowButton .dijitArrowButtonInner {
+  background-position: -100px 53%;
+}
+.dlBlue .dijitSpinnerDisabled .dijitDownArrowButton .dijitArrowButtonInner {
+  background-position: -151px 53%;
+}
+/** hacks for browsers **/
+/* for IE 7, when div is enlarged, 
+ * should be no empty space between dijitInputLayoutContainer and dijitSpinner*/
+.dj_ie7 .dlBlue .dijitSpinner {
+  overflow: visible;
+}

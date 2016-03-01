@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--
+  Licensed Materials - Property of IBM
+  (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+  US Government Users Restricted Rights - Use, duplication or 
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+<head>
+<title>Test ResizeHandle</title>
+<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
+
+<script type="text/javascript">
+dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
+dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
+dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
+dojoCSSImport("../../../../@dojopath@/dojox/layout/resources/ResizeHandle.css", "idxStyles");
+</script>
+
+<style type="text/css" id="idxStyles">
+@import "../../themes/oneui/oneui.css";
+@import "../../tests/test.css";
+</style>
+
+<script type="text/javascript">
+	var dojoConfig = currentDojoVersion.dojoConfig;
+</script>
+
+<script type="text/javascript">
+dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
+</script>
+ 
+<script type="text/javascript" id="postDojo">
+	require(["dojo/parser", "dijit/registry", "idx/widget/ResizeHandle", "idx/widget/Dialog"],
+	function(parser, registry, ResizeHandle){
+		parser.parse();
+		registry.byId("showDialog").onClick = function(){
+			registry.byId("dialog").show();
+		}
+	})
+</script>
+<script type="text/javascript" src="../../tests/commonTest.js"></script>
+</head>
+<body style="width: 100%; height: 100%; margin: 0; padding: 0">
+<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
+<script type="text/javascript">applyThemeToBody()</script>
+<a name="maincontent"></a>
+<div style="margin: 8px;">
+	<!--<button data-dojo-type="dijit/form/Button" id="showDijitDialog">Show Dijit Dialog</button>-->
+	<button data-dojo-type="dijit/form/Button" id="showDialog">Show Resizable Dialog</button>
+	<div data-dojo-type="idx/widget/Dialog" data-dojo-props='
+		id: "dialog",
+		title: "Resizable Dialog",
+		instruction: "Instructional information goes here.",
+		reference: {
+			name: "Goto DojoToolkit",
+			link: "http://dojotoolkit.org/"
+		},
+		resizable: true
+	'>
+		<div data-dojo-type="dijit/layout/ContentPane">
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean semper sagittis velit. 
+			Cras in mi. Duis porta mauris ut ligula. Proin porta rutrum lacus. Etiam consequat scelerisque quam. 
+			Nulla facilisi. Maecenas luctus venenatis nulla. In sit amet dui non mi semper iaculis. 
+			Sed molestie tortor at ipsum. Morbi dictum rutrum magna. Sed vitae risus.
+			<br><br>
+		</div>
+	</div>
+	
+	<!--<div data-dojo-type="dijit/Dialog" data-dojo-props='id: "dijitDialog",title:"Dijit Dialog"'>
+		<div class="dijitDialogPaneContentArea">
+			<div style="width:30em;">Introductory information spoken by screen reader if aria-describedby is
+			added to the declaration of dialog above with value equal to the id of the container element for this text. This technique
+			will work in Dojo 1.4. </div>			
+		</div>
+		<div class="dijitDialogPaneActionBar">
+			<button data-dojo-type="dijit/form/Button">Cancel</button>
+		</div>
+	</div>-->
+</div>
+</body>
+</html>

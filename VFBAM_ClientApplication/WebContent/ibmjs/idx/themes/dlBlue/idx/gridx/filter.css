@@ -1,0 +1,373 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dlBlue .gridxFilterBar {
+  /*border: 1px solid #ccc;*/
+  border-bottom: 1px solid #b8babe;
+  box-sizing: border-box;
+  height: 26px;
+  padding: 0;
+  width: auto;
+  background-color: #f7f7f7;
+  /*padding: 3px 0;*/
+  position: relative;
+}
+.dlBlue .gridxFilterBar [action="clear"] {
+  font-family: Arial;
+  font-style: normal;
+}
+.dlBlue .gridxFilterBar .dijitButton {
+  float: none;
+  margin: 0 10px;
+}
+.dlBlue .gridxFilterBar .dijitButton .dijitArrowButtonInner {
+  height: 25px;
+  width: 9px;
+}
+.dlBlue .gridxFilterBarStatus {
+  border: none;
+  font: italic 12px Georgia;
+  color: #222;
+  background: none;
+  display: inline-block;
+  padding: 0;
+  filter: none;
+}
+.dlBlue .gridxFilterBarStatusText {
+  display: inline-block;
+  margin-right: 10px;
+}
+.dlBlue .gridxFilterBarCloseBtn {
+  width: 8px;
+  height: 8px;
+  background: transparent url(images/gridx_sprite.png) no-repeat -36px -20px;
+  margin: 9px;
+  font-family: Arial;
+  font-style: normal;
+}
+.dlBlue .gridxFilterBarCloseBtn:hover {
+  background-position: -52px -20px;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton span {
+  margin: 0;
+  padding: 0;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton .gridxFilterBarBtnIcon {
+  background: transparent url(svg/filter.svg) no-repeat 0px 0px;
+  background-size: 100% 100%;
+  height: 16px;
+  margin: 4px;
+  width: 16px;
+  /*background: transparent url(images/gridx_sprite.png) no-repeat 0px -16px;*/
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton .dijitButtonNode {
+  border: 1px solid transparent;
+  background: none;
+  padding: 0;
+  box-shadow: none;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButton .dijitButtonText {
+  display: none;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButtonHover .dijitButtonNode {
+  /*border: 1px solid #ccc;
+                    background: #fefefe;
+                    background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc));
+                    background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+                    background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+                    background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+                    background: linear-gradient(to bottom,  #fefefe 0%,#cccccc 100%);*/
+}
+.dlBlue .gridx .gridxFilterBar .dijitButtonActive .dijitButtonNode {
+  /*  border: 1px solid #ccc;
+                    background: #dbdbdb;
+                    background: -moz-linear-gradient(top,  #dbdbdb 0%, #f4f4f4 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%,#f4f4f4));
+                    background: -webkit-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+                    background: -o-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+                    background: -ms-linear-gradient(top,  #dbdbdb 0%,#f4f4f4 100%);
+                    background: linear-gradient(to bottom,  #dbdbdb 0%,#f4f4f4 100%);*/
+}
+.dlBlue .gridx .gridxQuickFilterIcon {
+  width: 16px;
+  height: 16px;
+  background: transparent url(svg/filter.svg) no-repeat 0px 0px;
+  background-size: 100% 100%;
+  margin: 0;
+}
+.dlBlue .gridx .gridxHeader .gridxQuickFilterInput .dijitInputInner {
+  padding: 4px 0;
+  color: #222;
+  font-family: Arial;
+}
+.dlBlue .gridx .gridxHeader .gridxQuickFilterTextBoxEmpty .dijitInputInner {
+  color: #666;
+}
+.dlBlue .gridx .gridxHeader .dijitToolbar .gridxQuickFilterDropDownButton .dijitButtonNode {
+  border: none;
+  background: none;
+  padding: 0;
+}
+.dlBlue .gridxQuickFilterInputContainer {
+  margin: 0;
+}
+.dlBlue .gridxQuickFilterInput {
+  position: relative;
+}
+.dlBlue .gridxQuickFilterInput .dijitInputInner::-ms-clear {
+  display: none;
+}
+.dlBlue .gridxQuickFilterInput .dijitPlaceHolder {
+  color: #777;
+}
+.dlBlue .gridxQuickFilterInput .dijitTextBoxFocused .dijitPlaceHolder {
+  display: none;
+}
+.dlBlue .gridxQuickFilterInput .dijitInputContainer {
+  padding: 0 14px 0 5px;
+}
+.dlBlue .gridxQuickFilter .dijitButton span {
+  padding: 0;
+  margin: 0;
+}
+.dlBlue .gridxQuickFilter .dijitArrowButton .dijitArrowButtonInner {
+  background-position: -151px 53%;
+}
+.dlBlue .gridxQuickFilterClear {
+  top: 3px;
+  height: 8px;
+  width: 8px;
+  right: 18px;
+  background: transparent url(images/gridx_sprite.png) no-repeat -36px -20px;
+}
+.dlBlue .gridxQuickFilterClear:hover {
+  background-position: -52px -20px;
+}
+.dlBlue .gridxQuickFilterDropDownButton .dijitArrowButtonInner {
+  height: 25px;
+  width: 9px;
+}
+.dlBlue .gridxTouch .gridxBarQuickFilter {
+  border-bottom: 1px solid #d9d9d9;
+}
+.dlBlue .gridxFilterRulesLabel {
+  font-size: 15px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin: 20px 0 15px 0;
+}
+.dlBlue .gridxFilterRules {
+  height: 152px;
+  width: 690px;
+  margin-bottom: 10px;
+  overflow: auto;
+  width: 726px;
+  height: 160px;
+}
+.dlBlue .gridxFilterRules .gridxFilterPaneForm {
+  position: relative;
+  padding: 5px 0;
+}
+.dlBlue .gridxFilterRules .gridxFilterPaneColumnSelect .dijitValidationContainer,
+.dlBlue .gridxFilterRules .gridxFilterPaneConditionSelect .dijitValidationContainer {
+  display: none;
+}
+.dlBlue .gridxFilterPaneRemoveBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -112px -16px;
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .dijitButtonDisabled .gridxFilterPaneRemoveBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -80px -16px;
+}
+.dlBlue .dijitButtonDisabled .gridxFilterPaneAddBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -97px -16px;
+}
+.dlBlue .gridxFilterPaneAddBtnIcon {
+  background: transparent url(images/gridx_sprite.png) no-repeat -129px -16px;
+  width: 16px;
+  height: 16px;
+}
+.dlBlue .gridxFilterPaneRemoveBtn {
+  position: relative;
+  top: 0px;
+}
+.dlBlue .gridxFilterPaneRemoveBtn .dijitButtonNode {
+  min-width: 0;
+}
+.dlBlue .gridxFilterPaneAddBtn {
+  position: relative;
+  top: 0px;
+}
+.dlBlue .gridxFilterPaneAddBtn .dijitButtonNode {
+  min-width: 0;
+}
+.dlBlue .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  margin: 0 14px;
+}
+.dlBlue .gridxFilterSingleRule .gridxFilterPaneRemoveBtn {
+  display: none;
+}
+.dlBlue .gridxFilterMaxRuleCount .gridxFilterPaneAddBtn {
+  display: none;
+}
+.dlBlue .gridxFilterDialogOneLine {
+  width: auto !important;
+}
+.dlBlue .gridxFilterDialogOneLine .idxLabel {
+  display: none;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneFieldWrapper {
+  width: 220px;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneFieldWrapper .dijitValidationContainer {
+  margin: 6px 5px 0 3px;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn {
+  margin-right: 15px;
+}
+.dlBlue .gridxFilterDialogOneLine form > label {
+  margin-right: 10px;
+}
+.dlBlue .gridxFilterTooltipTitle {
+  font-size: 1.5em;
+  color: #222;
+}
+.dlBlue .gridxFilterTooltip table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.dlBlue .gridxFilterTooltip table th {
+  background: #ededed;
+  background: -moz-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: -o-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #ededed 100%);
+  background: linear-gradient(top, #ffffff 0%, #ededed 100%);
+  font-family: Arial;
+  font-size: 11px;
+  font-weight: bold;
+  color: #444;
+  text-shadow: 1px 0 0 #fff;
+  padding: 10px 7px;
+  vertical-align: middle;
+}
+.dlBlue .gridxFilterTooltip table td {
+  border: 1px solid #ccc;
+  padding: 7px 7px;
+}
+.dlBlue .gridxFilterTooltip .gridxFilterTooltipRemoveBtn {
+  background: transparent url(images/gridx_sprite.png) no-repeat -145px -16px;
+}
+.dlBlue .gridxFilterTooltip .gridxFilterTooltipRemoveBtn:hover {
+  background: transparent url(images/gridx_sprite.png) no-repeat -162px -16px;
+}
+.dlBlue .gridxFilterPaneSelectWrapper .dijitValidationContainer {
+  display: none;
+}
+.dj_a11y.dlBlue .gridxFilterBarCloseBtn {
+  margin-top: 4px;
+}
+.dlBlue .gridxQuickFilterButton {
+  margin: 0.2em 5px;
+}
+.dlBlue .gridx .gridxFilterBar .dijitButtonHover .gridxFilterBarBtnIcon,
+.dlBlue .gridx .gridxFilterBar .dijitButtonActive .gridxFilterBarBtnIcon {
+  /*background-position: -16px -16px;*/
+}
+.dlBlue .gridxQuickFilter .dijitButtonHover,
+.dlBlue .gridxQuickFilter .dijitButtonActive {
+  background: none;
+}
+.dlBlue .gridxQuickFilter .dijitButton .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButton .dijitButtonNode {
+  padding: 5px !important;
+  border-width: 0;
+  background: none;
+  box-shadow: none;
+}
+.dlBlue .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode {
+  padding: 5px !important;
+  border-width: 0px;
+}
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitArrowButton,
+.dlBlue .gridxQuickFilter .dijitButtonHover .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonHover .dijitButtonNode {
+  /*    background: #fefefe;
+    background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc));
+    background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%);
+    background: linear-gradient(top,  #fefefe 0%,#cccccc 100%);*/
+}
+.dlBlue .gridxQuickFilter .dijitButtonActive .dijitButtonNode,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitButtonNodeActive,
+.dlBlue .gridxQuickFilter .dijitComboButtonActive .dijitDownArrowButtonActive {
+  background: #dbdbdb;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(100%, #f4f4f4));
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -o-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: -ms-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+  background: linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%);
+}
+.dlBlue .dijitButtonHover .gridxQuickFilterIcon,
+.dlBlue .dijitButtonActive .gridxQuickFilterIcon,
+.dlBlue .dijitComboButtonHover .gridxQuickFilterIcon,
+.dlBlue .dijitComboButtonActive .gridxQuickFilterIcon {
+  background: transparent url(svg/filter.svg) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.dj_ie8 .dlBlue .gridx .gridxFilterBar .dijitButton .gridxFilterBarBtnIcon {
+  background-image: url(images/filter.png);
+}
+.dj_ie8 .dlBlue .gridxQuickFilterIcon {
+  /*background: transparent url(images/filter.png) no-repeat 0px 0px;*/
+  background-image: url(images/filter.png);
+}
+.dj_ie .dlBlue .gridx .gridxHeader .gridxQuickFilterInput .dijitInputInner {
+  height: auto;
+  padding: 4px 3px;
+  vertical-align: middle;
+}
+.dlBlue .gridxQuickFilterDropDownButton,
+.dlBlue .gridx .gridxHeader .gridxQuickFilterDropDownButton span {
+  margin: 0;
+  padding: 0;
+}
+.dlBlue .gridxFilterPaneText .gridxFilterPaneTextWrapper,
+.dlBlue .gridxFilterPaneCombo .gridxFilterPaneComboWrapper,
+.dlBlue .gridxFilterPaneNumber .gridxFilterPaneNumberWrapper,
+.dlBlue .gridxFilterPaneDate .gridxFilterPaneDateWrapper,
+.dlBlue .gridxFilterPaneDateRange .gridxFilterPaneDateRangeWrapper,
+.dlBlue .gridxFilterPaneTime .gridxFilterPaneTimeWrapper,
+.dlBlue .gridxFilterPaneTimeRange .gridxFilterPaneTimeRangeWrapper,
+.dlBlue .gridxFilterPaneSelect .gridxFilterPaneSelectWrapper,
+.dlBlue .gridxFilterPaneRadio .gridxFilterPaneRadioWrapper {
+  display: inline-block;
+}
+.dlBlue .gridxFilterPaneForm .gridxFilterPaneColumnSelect,
+.dlBlue .gridxFilterPaneForm .gridxFilterPaneConditionSelect {
+  margin: 0;
+  margin-right: 20px;
+}
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneAddBtn .dijitButtonNode,
+.dlBlue .gridxFilterDialogOneLine .gridxFilterPaneRemoveBtn .dijitButtonNode {
+  min-width: auto;
+  padding: 4px;
+}
+.dlBlue .gridxFilterPaneRangeStart,
+.dlBlue .gridxFilterPaneRangeEnd {
+  width: 106px;
+}
+.dlBlue .gridxFilterPaneTrueRadio,
+.dlBlue .gridxFilterPaneFalseRadio {
+  display: inline;
+  width: 90px;
+}

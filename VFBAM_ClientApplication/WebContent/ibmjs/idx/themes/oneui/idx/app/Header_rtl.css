@@ -35,7 +35,7 @@
 }
 
 .dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction > * {
-    float : left;
+    float : right;
 }
 
 .dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary .idxHeaderDropDown .idxHeaderDropDownArrow {
@@ -51,6 +51,38 @@
     background: url('images/headerLogo.png') no-repeat 65% 23%;
 }
 
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderNavigationHome,
+.dijitRtl .oneui .idxHeaderContainer .dijitMenuItemHover .idxHeaderNavigationHome,
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp .idxHeaderHelpIcon,
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp > :hover .idxHeaderHelpIcon {
+    background-image: url("images/headerIcons_TopBanner_rtl.png");
+}
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderNavigationHomeButtonOnly{
+	background-position: -130px -5px;
+}
+.dijitRtl .oneui .idxHeaderContainer .dijitMenuItemHover .idxHeaderNavigationHomeButtonOnly{
+	background-position: -229px -5px;
+}
+
+.dijitRtl .oneui.idx_i18n_il .idxHeaderContainer .idxHeaderNavigationHome,
+.dijitRtl .oneui.idx_i18n_il .idxHeaderContainer .dijitMenuItemHover .idxHeaderNavigationHome,
+.dijitRtl .oneui.idx_i18n_il .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp .idxHeaderHelpIcon,
+.dijitRtl .oneui.idx_i18n_il .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp > :hover .idxHeaderHelpIcon {
+    background-image: url("images/headerIcons_TopBanner.png");
+}
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp .idxHeaderHelpIcon {
+	background-position: -61px 8px;
+}
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp > :hover .idxHeaderHelpIcon {
+	background-position: -44px 8px;
+}
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimaryThick .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp .idxHeaderHelpIcon {
+	background-position: -61px 20px;
+}
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimaryThick .idxHeaderPrimary li.idxHeaderPrimaryAction.idxHeaderHelp > :hover .idxHeaderHelpIcon {
+	background-position: -44px 20px;
+}
+
 /** Menu **/
 .dijitRtl .oneui .idxHeaderContainer .dijitMenuItem,
 .dijitRtl .oneui .idxHeaderContainer .oneuiMenuHeading {
@@ -64,8 +96,10 @@
 
 /** Search Box Start **/
 .dijitRtl .oneui .idxHeaderContainer .idxHeaderSearchContainer {
-    float: left;
+    float: right;
     right: 0px;
+	margin-left:0px;
+	margin-right: 7px;
 }
 
 .dijitRtl .oneui .idxHeaderContainer .idxHeaderSearchContainer .dijitTextBox .dijitInputField {
@@ -129,7 +163,7 @@
 
 /** Edit button **/
 .dijitRtl .oneui .idxHeaderContainer .idxHeaderSecondaryActions {
-    float: left;  
+    float: right;  
     left: 7px;
 }
 /*
@@ -151,8 +185,17 @@
     margin: 0 14px 0 0;
 }
 
-.dijitRtl .oneui .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabContent {
+.dijitRtl .oneui .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabContent,
+.dj_ie.dijitRtl .oneui .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabContent {
     padding: 0px 16px 0px 11px;
+}
+.dj_ie.dijitRtl .oneui .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabContent.dijitTabHover{
+    padding: 0px 15px 0px 10px;
+}
+.dj_ie.dijitRtl .oneui idxHeaderSecondaryGray .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabChecked.dijitTabHover.dijitTabContent,
+.dj_ie.dijitRtl .oneui .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabChecked.dijitTabHover.dijitTabContent {
+	padding-left: 11px;
+	padding-right: 16px;
 }
 
 .dijitRtl .oneui .oneuiContentContainer .dijitTabContainerTop-tabs .dijitTabHover.dijitTabContent {
@@ -222,4 +265,27 @@
 
 .dijitRtl .oneui .oneuiContentContainer .idxTabSeparator {
     right: 13px;
+}
+
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderSecondaryLeading {
+	left: auto;
+	right: 0px;
+}
+
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderSecondaryTrailing {
+	right: auto;
+	left: 0px;
+}
+
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary ul.idxHeaderPrimaryActionsLeading {
+	left: auto;
+	right: 0px;
+}
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary ul.idxHeaderPrimaryActionsTrailing {
+	right: auto;
+	left: 0px;
+}
+.dijitRtl .oneui .idxHeaderContainer .idxHeaderPrimary span.idxHeaderUserIcon {
+    margin-left: 10px;
+	margin-right: 0;
 }

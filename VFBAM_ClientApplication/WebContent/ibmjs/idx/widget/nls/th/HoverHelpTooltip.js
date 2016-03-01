@@ -10,3 +10,4 @@ define({
 	learnMoreLabel: "ศึกษาเพิ่มเติม"
 //end v1.x content
 });
+

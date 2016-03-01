@@ -1,0 +1,97 @@
+@import "../../dijit/variables";
+.@{theme-name} .idxOneuiTriStateCheckBox, .@{theme-name} .idxOneuiTriStateCheckBoxIcon {
+    background-image: url('../../dijit/@{image-form-checkbox-and-radios}');
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 16px;
+    margin: 0 5px 0 0;
+    padding: 0;
+}
+.dj_ie6 .@{theme-name} .idxOneuiTriStateCheckBox, .dj_ie6 .@{theme-name} .idxOneuiTriStateCheckBoxIcon {
+    background-image: url('../../dijit/@{image-form-checkbox-and-radios-ie6}');
+}
+
+.@{theme-name} {
+	.idxOneuiTriStateCheckBoxWrapDisabled .idxLabel{
+		color: @disabled-text-color;
+	}
+    .idxComposite.idxOneuiTriStateCheckBoxWrap {
+        .idxLabel {
+            padding: 0 4px 0 0;
+            margin-top: 2px;
+        }
+        .dijitValidationContainer {
+            margin: 2px 5px 0 0;
+            .dijitValidationIcon {
+                margin: 0;
+            }
+        }
+    }
+    .idxOneuiTriStateCheckBox, .idxOneuiTriStateCheckBoxActive {
+        background-position: -15px;
+    }
+    .idxOneuiTriStateCheckBoxChecked, .idxOneuiTriStateCheckBoxCheckedActive {
+        background-position: 0px;
+    }
+    .idxOneuiTriStateCheckBoxMixed, .idxOneuiTriStateCheckBoxMixedActive {
+        background-position: -90px;
+    }
+    .idxOneuiTriStateCheckBoxDisabled {
+        background-position: -75px;
+    }
+    .idxOneuiTriStateCheckBoxCheckedDisabled {
+        background-position: -60px;
+    }
+    .idxOneuiTriStateCheckBoxMixedDisabled {
+        background-position: -150px;
+    }
+    .idxOneuiTriStateCheckBoxHover {
+        background-position: -45px;
+    }
+    .idxOneuiTriStateCheckBoxCheckedHover {
+        background-position: -30px;
+    }
+    .idxOneuiTriStateCheckBoxMixedHover {
+        background-position: -120px;
+    }
+    .idxOneuiTriStateCheckBoxFocused {
+        outline: 1px dotted #666666;
+    }
+    .idxOneuiTriStateCheckBoxInner {
+        visibility: hidden;
+        display: none;
+        position: absolute;
+        text-align: center;
+    }
+    .idxOneuiTriStateCheckBoxInput {
+        opacity: 0.01;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        width: 16px;
+        height: 16px;
+        background-position:center center;
+        background-repeat:no-repeat;
+    }
+}
+.dijit_a11y .idxOneuiTriStateCheckBoxHover .idxOneuiTriStateCheckBoxInner,.dijit_a11y .idxOneuiTriStateCheckBoxFocused .idxOneuiTriStateCheckBoxInner {
+    border: thin dotted;
+}
+.dijit_a11y {
+    .idxOneuiTriStateCheckBoxDisabled {
+        .idxOneuiTriStateCheckBoxInner {
+            opacity: 0.5;
+        }
+    }
+    .idxOneuiTriStateCheckBoxInner {
+        visibility: visible;
+        display: block;
+    }
+}
+.dj_ie {
+    .@{theme-name} {
+        .idxOneuiTriStateCheckBoxInput {
+            filter: alpha(opacity=0);
+        }
+    }
+}

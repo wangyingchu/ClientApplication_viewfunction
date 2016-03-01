@@ -1,12 +1,31 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
  * US Government Users Restricted Rights - Use, duplication or
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
 
 /* dojox.mobile.SpinWheel */
-.mblSpinWheel {
+
+/* Reset common styles. */
+.oneui .mblSpinWheel,
+.oneui .mblSpinWheel * {
+	margin: 0;
+	border: none;
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	text-shadow: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	box-shadow: none;
+}
+
+.oneui .mblSpinWheel {
 	position:relative;
 	overflow:hidden;
 	height:200px;
@@ -17,7 +36,7 @@
 	color:#000;
 }
 
-.mblSpinWheelBar {
+.oneui .mblSpinWheelBar {
 	position:absolute;
 	top:79px;
 	clear:both;
@@ -28,15 +47,15 @@
 	opacity:.6;
 }
 
-.mblSpinWheelDatePicker {
+.oneui .mblSpinWheelDatePicker {
 	width:312px;
 }
 
-.mblSpinWheelTimePicker {
+.oneui .mblSpinWheelTimePicker {
 	width:98px;
 }
 
-.mblSpinWheelSlot {
+.oneui .mblSpinWheelSlot {
 	position:relative;
 	top:0;
 	float:left;
@@ -47,7 +66,7 @@
 	-webkit-tap-highlight-color:rgba(255,255,255,0);
 }
 
-.mblSpinWheelSlotLabel {
+.oneui .mblSpinWheelSlotLabel {
 	overflow:hidden;
 	padding:0 8px;
 	height:44px;
@@ -56,30 +75,30 @@
 	line-height: 47px;
 }
 
-.mblSpinWheelSlotLabel img {
+.oneui .mblSpinWheelSlotLabel img {
 	vertical-align:middle;
 	opacity:.7;
 }
 
-.mblSpinWheelSlotLabelGray {
+.oneui .mblSpinWheelSlotLabelGray {
 	color:#ccc;
 }
 
-.mblSpinWheelSlotLabelBlue {
+.oneui .mblSpinWheelSlotLabelBlue {
 	color:#0959d2;
 }
 
-.mblSpinWheelSlotContainer {
+.oneui .mblSpinWheelSlotContainer {
 	position:relative;
 }
 
-.mblSpinWheelSlotPanel {
+.oneui .mblSpinWheelSlotPanel {
 	position:absolute;
 	top:0;
 	width:100%;
 }
 
-.mblSpinWheelSlotTouch {
+.oneui .mblSpinWheelSlotTouch {
 	position:absolute;
 	top:0;
 	z-index:1;

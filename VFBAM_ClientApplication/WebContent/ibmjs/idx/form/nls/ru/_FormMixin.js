@@ -10,3 +10,4 @@ define({
 	legendText: "Обязательное поле"
 //end v1.x content
 });
+

@@ -140,7 +140,10 @@ define([
 		content: null,
 		
 		forceFocus: true,
-		
+		/**
+		 * List of positions to try to position HoverCard, ex: ["after-centered", "before-centered", "below", "above"];
+		 * @type array
+		 */
 		position: null,
 		
 		/**
@@ -154,9 +157,9 @@ define([
 			this.moreActionsLabel = hoverCardNls.moreActionsLabel;
 			this.buttonClose = dialogNls.closeButtonLabel;
 		},
-		
 		/**
 		 * destroy connection of "_targetConnections"
+		 * and wrapper node associated with the widget
 		 */
 		destroy: function() {
 			if (this._targetConnections) {
@@ -165,7 +168,10 @@ define([
 				}
 				delete this._targetConnections;
 			}			
-			this.inherited(arguments);			
+			if (this._popupWrapper) {    
+				domConstruct.destroy(this._popupWrapper);  
+			}
+			this.inherited(arguments);		
 		},
 		
 		_setTargetAttr: function(/*String*/ target){
@@ -212,6 +218,9 @@ define([
 			array.forEach(actions, function(action){
 				var button = new Button({
 					iconClass:action.iconClass, 
+					title: action.text,
+					label: action.text,
+					showLabel: false,
 					onClick: action.content ? lang.hitch(this, function(){
 						//add content to footer expand
 					}) : action.onClick,
@@ -329,7 +338,13 @@ define([
 			// tags:
 			//		private
 			focus._onTouchNode(this.target, "mouse");
-			wai.setWaiRole(this.domNode, "alert");
+			wai.setWaiRole(this.domNode, "alertdialog");
+			
+			var id = target.id;
+			if(id && typeof(id) === "string"){
+				wai.setWaiState(this.domNode, "labelledby", id);
+			}
+			
 			if(this._showTimer){
 				clearTimeout(this._showTimer);
 				delete this._showTimer;
@@ -626,7 +641,13 @@ define([
 			//		Called at end of fade-out operation
 			// tags:
 			//		protected
-			domClass.add(this.domNode, "dijitHidden");
+			
+			//
+			// hideResult is not safe for destroy when the popup is showing
+			// which caused by the time interval parameter
+			//
+			if (this.domNode)
+				domClass.add(this.domNode, "dijitHidden");
 			domStyle.set(this._popupWrapper, "display", "none");
 			this.target.focus && this.target.focus();
 			

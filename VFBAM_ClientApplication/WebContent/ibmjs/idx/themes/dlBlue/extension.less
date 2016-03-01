@@ -1,0 +1,139 @@
+dlBlue {
+	font-family: @base-font-family;
+}
+
+/** Buttons **/
+.dlBlue .dijitButton .dijitButtonNode,
+.dlBlue .dijitDropDownButton .dijitButtonNode,
+.dlBlue .dijitComboButton .dijitButtonNode,
+.dlBlue .dijitToggleButton .dijitButtonNode {
+	padding: 5px;
+	.dijitButtonText {
+		padding: .4em 1em;
+	}
+}
+.dlBlue{
+	.dijitComboButton {
+		border: none;
+		.dijitButtonNode {
+			border: none;
+		}
+		.dijitArrowButton{
+			border-left: 1px solid @combo-button-arrow-border;
+		}
+	}
+	.dijitComboButtonActive {
+		.dijitButtonNode{
+			background-color: @button-background-color;
+		}
+		.dijitButtonNodeActive, .dijitDownArrowButtonActive{
+			background-color: @button-pressed-background-color;
+		}
+	}
+	.idxTextareaWrap .dijitTextArea {
+		font-family: @base-font-family;
+	}
+}
+.dijitRtl .dlBlue .idxSecondaryButton.dijitComboButton .dijitArrowButton{
+	border-left: none;
+	border-right: 1px solid @button-border-color;
+}
+.dijitRtl .dlBlue .dijitComboButton .dijitArrowButton,
+.dijitRtl .dlBlue .idxSecondaryButton.dijitComboButtonHover .dijitArrowButton
+{
+	border-left: none;
+	border-right: 1px solid @combo-button-arrow-border;
+}
+
+.dlBlue .idxComposite .dijitValidationContainer{
+	width: 16px;
+	height: 16px;
+	margin: 6px 5px 0 5px;
+	background: url("dijit/form/images/error.png") no-repeat center center;
+}
+.dijitRtl .dlBlue .idxComposite .dijitValidationContainer{
+  left: 2px;
+  right: auto;
+}
+
+.dlBlue .idxTextareaWrapError .dijitValidationContainer{
+	margin: 4px 5px 0 5px;
+}
+
+.dlBlue .idxOneuiHoverHelpTooltipContainer {
+	padding-right: 30px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipConnector{
+	width: 16px;
+    height: 14px;
+}
+.dlBlue .idxOneuiHoverHelpTooltipCloseIcon {
+    width: 14px;
+    height: 14px;
+    right: 12px;
+    top: 12px;
+    .idxHoverHelpCloseText {
+        display: none;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+}
+.dlBlue{
+	.idxOneuiHoverHelpTooltipRight {
+	    .idxOneuiHoverHelpTooltipConnector {
+	        left: -5px;
+	        background-position: -48px 0;
+	    }
+	    .idxOneuiHoverHelpTooltipCloseIcon {
+            right: 12px;
+            top: 12px;
+        }
+	}
+	.idxOneuiHoverHelpTooltipLeft {
+	    .idxOneuiHoverHelpTooltipConnector {
+	        right: -4px;
+	        background-position: 0 0;
+	    }
+	    .idxOneuiHoverHelpTooltipCloseIcon {
+            right: 16px;
+            left: auto;
+            top: 12px;
+        }
+	}
+	.idxOneuiHoverHelpTooltipAbove {
+	    .idxOneuiHoverHelpTooltipConnector {
+	        bottom: -2px;
+	        left: 10px;
+	        background-position: -15px 0;
+	    }
+	    .idxOneuiHoverHelpTooltipCloseIcon {
+            right: 12px;
+            top: 12px;
+        }
+	}
+	.idxOneuiHoverHelpTooltipBelow {
+	    .idxOneuiHoverHelpTooltipConnector {
+	        top: -4px;
+	        left: 13px;
+	        background-position: -31px 0;
+	    }
+	    .idxOneuiHoverHelpTooltipCloseIcon {
+            right: 12px;
+            top: 16px;
+        }
+	}
+}
+
+.dlBlue .dijitTabContainerTop-tabs .dijitTab{
+	top: -1px;
+}
+.dlBlue .dijitTabContainerLeft-tabs .dijitTab{
+	left: -1px;
+}
+.dlBlue .dijitTabContainerBottom-tabs .dijitTab{
+	bottom: -1px;
+}
+.dlBlue .dijitTabContainerRight-tabs .dijitTab{
+	right: -1px;
+}

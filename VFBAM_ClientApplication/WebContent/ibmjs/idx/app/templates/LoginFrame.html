@@ -7,7 +7,7 @@
           <h1 data-dojo-attach-point="loginTitleNode" class="${baseClass}Title">${loginTitle}</h1>
           
           <iframe data-dojo-attach-point="_hiddenFrame"
-          		  style="visibility: hidden; display: none, width: 0px; height: 0px" name="SubmitFrame${id}"></iframe>
+          		  style="visibility: hidden; border: 0px none transparent; display: none, width: 0px; height: 0px" name="SubmitFrame${id}"></iframe>
           
           <form data-dojo-type="dijit/form/Form"
           		data-dojo-attach-point="_form" 
@@ -18,13 +18,13 @@
 
             <input data-dojo-attach-point="loginUserName" type="text" data-dojo-type="idx/form/TextBox" 
             	   data-dojo-props="name:'${userFieldName}', required: true, value:'', intermediateChanges: false, autocomplete: '${_userAutoComplete}',
-            	   					label: '_', labelAlignment: 'vertical', instantValidate: false, regExp:'${regExp}'"
+            	   					label: '_', labelAlignment: 'vertical', instantValidate: false, class: '${baseClass}UserBox ${baseClass}Field'"
             	   	></input><br>
             
             <input type="password" data-dojo-type="idx/form/TextBox" data-dojo-attach-point="loginPassword" 
             	   data-dojo-props="id:'${id}Password', name:'${passwordFieldName}', required:'true', intermediateChanges: false, autocomplete: '${_pwdAutoComplete}',
             	   					label: '_', labelAlignment: 'vertical', instantValidate: false,
-            	   					value:'', 'class': '${baseClass}Field', regExp:'${regExp}'"
+            	   					value:'', 'class': '${baseClass}PasswordBox ${baseClass}Field'"
             	   	></input>
 			<div data-dojo-attach-point="containerNode"></div>
 
@@ -33,9 +33,9 @@
 
             <div class="${baseClass}ButtonBar">
               <button data-dojo-type="dijit.form.Button" data-dojo-attach-point="loginButton" data-dojo-attach-event="onClick:_onSubmitClick"
-              		  data-dojo-props="name:'login'">${labelSubmitButton}</button>
+              		  data-dojo-props="name:'login', class: '${baseClass}LoginButton'">${labelSubmitButton}</button>
               <button data-dojo-type="dijit.form.Button" data-dojo-attach-point="cancelButton" data-dojo-attach-event="onClick:_onCancelClick"
-              		  data-dojo-props="name:'cancel', 'style':'visibility:hidden;display:none;'">${labelCancelButton}</button>
+              		  data-dojo-props="name:'cancel', class: '${baseClass}CancelButton', 'style':'visibility:hidden;display:none;', placement: 'secondary'">${labelCancelButton}</button>
             </div>
           </form>
             
@@ -49,7 +49,7 @@
       <div class="${baseClass}ShadowBottom"><div class="${baseClass}ShadowInner"></div></div>
     </div>
     
-	<div data-dojo-attach-point="invalidLoginDialog" data-dojo-type="dijit/Dialog" data-dojo-props="title:'${invalidMessageTitle}', 'style':'display:none;'">
+	<div data-dojo-attach-point="invalidLoginDialog" data-dojo-type="dijit/Dialog" data-dojo-props="'style':'display:none;'">
 		<div class="dijitDialogPaneContentArea" style="width: 350px; height: 90px; overflow: auto;">
 			<table role="presentation">
 				<tr>
@@ -59,7 +59,7 @@
 			</table>		
 		</div>			
 		<div class="dijitDialogPaneActionBar">
-			<button data-dojo-attach-point="dialogOKButton" data-dojo-type="dijit/form/Button" data-dojo-props="type: 'submit', label: '${labelOkButton}'" ></button>	
+			<button data-dojo-attach-point="dialogOKButton" data-dojo-type="dijit/form/Button" data-dojo-props="type: 'submit'" ></button>	
 		</div>
 	</div>
 	

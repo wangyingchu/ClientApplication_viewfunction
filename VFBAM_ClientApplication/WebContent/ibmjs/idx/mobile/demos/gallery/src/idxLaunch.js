@@ -10,9 +10,9 @@ define(["idx/mobile/Launch",
 	
 	return {
 		init: function(){
-			
-			var relaunch = new idx.mobile.Launch();		
+			var relaunch = new idx.mobile.Launch();
 			show_launch = function(timeout, keepavailable){
+				if(relaunch._destroyed){return;}
 				relaunch.show();
 				setTimeout(function(){
 					relaunch.hide(keepavailable);

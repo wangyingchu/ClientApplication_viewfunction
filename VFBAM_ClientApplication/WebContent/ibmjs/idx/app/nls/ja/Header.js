@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "共有",
+	actionSettings: "設定",
 	actionHelp: "ヘルプ",
 	searchEntry: "検索",
-	searchSubmit: "検索"
+	searchSubmit: "検索",
+	primarySearchLabelSuffix: "1 次検索",
+	secondarySearchLabelSuffix: "2 次検索",
+	homeButton: "ホーム"
 //end v1.x content
 });
+

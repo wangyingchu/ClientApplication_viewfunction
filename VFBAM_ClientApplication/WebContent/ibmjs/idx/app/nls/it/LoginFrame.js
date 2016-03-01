@@ -4,7 +4,7 @@ define({
 	labelUserName: "Nome utente",
 	labelPassword: "Password",
 	invalidMessageTitle: "Tentativo di accesso non valido",
-	invalidMessage: "Nei campi obbligatori è stato immesso un valore non valido."
+	invalidMessage: "Non sono stati immessi valori validi in entrambi i campi obbligatori. "
 //end v1.x content
 });
 

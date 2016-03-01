@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+	Licensed Materials - Property of IBM
+	(C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>idx.widget.SingleMessage Test</title>
+
+	<script type="text/javascript" src="../../tests/dojoVersion.js"></script>
+	<script type="text/javascript">
+		dojoCSSImport("../../../../@dojopath@/dojo/resources/dojo.css", "idxStyles");
+		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
+		dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit_rtl.css", "idxStyles");
+	</script>
+	
+	<style id="idxStyles" type="text/css">
+		@import "../../tests/_pagefooter/_PageFooter.css";
+	</style>
+    <script>
+        less = {
+            env: "development",
+            async: false,
+            fileAsync: false,
+            poll: 1000,
+            functions: {},
+            dumpLineNumbers: "comments",
+            relativeUrls: true
+        };
+    </script>
+    <link href="../../themes/dlBlue/dlBlue.less" rel="stylesheet/less" type="text/css" media="all"/>
+    <script type="text/javascript" src="../../themes/oneuiLess/less-1.4.2.js"></script>
+
+	<script type="text/javascript">
+		var dojoConfig = currentDojoVersion.dojoConfig;
+	</script>
+	
+	<script type="text/javascript">
+		dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
+	</script>
+	
+	<script type="text/javascript" id="postDojo">
+		var modules = [
+			"dojo/_base/lang",
+			"idx.widget.SingleMessage",
+			"idx.tests._pagefooter._PageFooter"]; 
+
+		function preParse(modules){
+
+		}
+		function postParse(modules){
+
+		}
+		dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
+	</script>
+	<script type="text/javascript" src="../../tests/commonTest.js"></script>
+</head>
+<body class="dlBlue" style="padding:20px;">
+	<a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
+	<a name="maincontent"></a>
+	<div class="testMain" role="main">
+		<h1 class="testTitle">idx.widget.SingleMessage Test</h1>
+        <h2>Message Type - error</h2>
+		<div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="
+			type: 'error', 
+			title: 'Error message with short timestamp long long long long long long long long long long long long long long long long long long long long long long long',
+			dateFormat:{datePattern: 'dd MMMM y &nbsp', timePattern: 'hh:mm a'}, 
+			messageId: 'CAT123456', 
+			messageNumber: 7, 
+			style: 'width: 970px;', 
+			description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'
+		">
+		</div>
+        <h2>Message Type - Warning</h2>
+        <div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="
+            type: 'warning',
+            title: 'Warning message with short timestamp',
+			dateFormat:{selector: 'time', timePattern: 'hh:mm a'},
+			messageId: 'CAT123456',
+			messageNumber: 7,
+			style: 'width: 970px;',
+			description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'">
+
+		</div>
+        <h2>Message Type - Success</h2>
+        <div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="
+            type: 'success',
+            title: 'Success message without ID',
+			dateFormat:{selector: 'time', timePattern: 'hh:mm a'},
+			messageId: 'CAT123456',
+			showId: false,
+			messageNumber: 7,
+			style: 'width: 970px;',
+			description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'">
+
+		</div>
+
+        <h2>Message Type - Information</h2>
+        <div data-dojo-type="idx.widget.SingleMessage" data-dojo-props="
+            forceAlertRole: true,
+            type: 'information',
+            title: 'Information message without ID',
+			dateFormat:{selector: 'time', timePattern: 'hh:mm a'},
+			messageId: 'CAT123456',
+			showId: false,
+			messageNumber: 7,
+			style: 'width: 970px;',
+			description: 'Here is the detail message description, it can be configured via setting the \'description\' parameter of a SingleMessage widget. By default the message description is the same as the message title.'">
+		</div>
+	</div>
+</body>
+</html>

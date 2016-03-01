@@ -1,0 +1,36 @@
+.gridxDnDAnchor {
+  background-color: @fwContrast;
+}
+.gridxDndAvatar {
+  background: none;
+  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  z-index: 999;
+}
+.gridxDndAvatar .gridxDnDItemCount {
+  position: relative;
+  top: -7px;
+  left: 4px;
+  padding: 10px;
+  background-color: darken(@fwContrast, 10%);
+  background-color: rgba(red(@fwContrast), green(@fwContrast), blue(@fwContrast), .8);
+  .BorderRadius(3px);
+  font-style: @sans;
+  font-weight: bold;
+  color: @fwLightest;
+}
+.gridxDnDIcon {
+  top: -7px;
+  left: -11px;
+}
+.dojoDndMove .gridxDnDIcon {
+  background: transparent no-repeat -65px -17px;
+  .image(@imageRoot, "gridx_sprite.png");
+}
+.dojoDndCopy .gridxDnDIcon,
+.dojoDndMove .dojoDndAvatarCanDrop .gridxDnDIcon,
+.dojoDndCopy .dojoDndAvatarCanDrop .gridxDnDIcon {
+  background: none;
+}

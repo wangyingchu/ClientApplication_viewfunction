@@ -1,4 +1,4 @@
-<div class="dijitDialog" role="alertdialog" aria-labelledby="${id}_title" aria-describedby="${id}_desc" style="width:416px;"
+<div class="dijitDialog" role="alertdialog" aria-labelledby="${id}_desc" aria-describedby="${id}_containerNode" style="width:416px;"
 	><div dojoAttachPoint="titleBar" class="dijitDialogTitleBar"
 		><span dojoAttachPoint="titleNode" class="dijitDialogTitle" id="${id}_title"></span
 		><span dojoAttachPoint="closeButtonNode" class="dijitDialogCloseIcon" dojoAttachEvent="ondijitclick: onCancel" title="${buttonCancel}" role="button" tabIndex="-1"
@@ -6,18 +6,21 @@
 		></span
 	></div
 	><div class="messageSummary"
-		><span class="imgSpan"><img dojoAttachPoint="icon" class="message${type}Icon" src="${_blankGif}" alt="${type}" /></span
-		><span id="${id}_desc" role="alert" dojoAttachPoint="description" class="messageDescription" tabindex="0">${text}</span
+		><span class="imgSpan">
+			<img dojoAttachPoint="icon" class="message${type}Icon messageIcon" src="${_blankGif}" alt="${type}" />
+			<span dojoAttachPoint="iconText" class="messageIconText"></span>
+		</span
+		><span id="${id}_desc" dojoAttachPoint="description" class="messageDescription" tabindex="0">${text}</span
 	></div
 	><div dojoAttachPoint="messageWrapper" class="messageWrapper compact"
-		><div dojoAttachPoint="containerNode" class="dijitDialogPaneContent" tabindex="0"
+		><div id="${id}_containerNode" dojoAttachPoint="containerNode" class="dijitDialogPaneContent" tabindex="0"
 		></div
 	></div
 	><div class="messageDialogFooter" dojoAttachPoint="actionBar"
 		><span class="messageRef"
-			><a dojoAttachPoint="reference">${messageId}</a
+			><a dojoAttachPoint="reference" dojoAttachEvent="ondijitclick: onReference">${messageId}</a
 		></span
-		><span class="messageTimeStamp" dojoAttachPoint="timestamp">${messageTimeStamp}</span
+		><span class="messageTimeStamp" dojoAttachPoint="timestamp"></span
 		><span class="messageAction"
 			><input dojoAttachPoint="confirmAction"/
 			><input dojoAttachPoint="closeAction"/

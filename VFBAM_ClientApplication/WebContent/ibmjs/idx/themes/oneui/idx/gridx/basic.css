@@ -59,7 +59,7 @@
 	border-right: 1px solid #ccc;
 	padding: 13px 7px;
 	font-weight: bold;
-	font-size: 12px;
+/*    font-size: 12px;*/
 	color: #444;
 	vertical-align: top;
 	text-shadow: 1px 1px 1px #fff;
@@ -82,7 +82,7 @@
 /*    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); |+ IE6-9 +|*/
 }
 
-.oneui .gridxHeaderRow .gridxHeaderCellOver {
+.oneui .gridxDesktop .gridxHeaderRow .gridxCell:hover {
 	background: #fafafa; /* Old browsers */
 	background: -moz-linear-gradient(top,  #fafafa 0%, #dbdbdb 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#dbdbdb)); /* Chrome,Safari4+ */
@@ -93,7 +93,7 @@
 /*    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#dbdbdb',GradientType=0 ); |+ IE6-9 +|*/
 }
 
-.oneui .gridx .gridxHeader .gridxHeaderRow .gridxHeaderCellFocus {
+.oneui .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxHeaderCellFocus {
 	border-top: none;
 	border-bottom: none;
 	border-left: 1px solid transparent;
@@ -171,30 +171,26 @@
 /*    border-right: 1px solid #d9d9d9;*/
 }
 
+.oneui .gridxMain .gridxBodyEmpty{
+	background-color: white;
+}
+
 .oneui .gridxRow .gridxRowTable {
 	background-color: #ffffff;
 	border-left: none;
 }
-/*
+
 .oneui .gridxRow .gridxCell {
 	padding: 10px 7px;
 	border-width: 1px;
 	border-color: #d9d9d9 #d9d9d9 transparent transparent;
 	font-style: Arial;
-	font-size: 12px;
+/*    font-size: 12px;*/
 	color: #333;
-	background: none;
+/*    background: none;*/
 	vertical-align: top;
 }
-*/
-.oneui .gridxRow .gridxCell {
-    padding: 10px 7px;
-    border-width: 1px;
-    border-color: #d9d9d9 #d9d9d9 transparent transparent;
-    font-size: 0.9em;
-    background: none;
-    vertical-align: top;
-}
+
 .oneui .gridxRow:first-child .gridxCell {
 	border-top-color: transparent;
 }
@@ -225,7 +221,10 @@
 	border-top-color: transparent;
 }
 
-.oneui .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable {
+/*
+ * Set the RowHover style to each of the gridxCells not the whole gridRowTable
+ * .oneui .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable*/ 
+.oneui .gridx .gridxBodyRowHoverEffect .gridxRowOver .gridxRowTable .gridxCell{
 	background-color: #cce8f2;
 }
 
@@ -292,4 +291,27 @@
 
 .dj_ie .oneui .gridxLastRow .gridxCell {
 	border-bottom-color: #d9d9d9;
+}
+
+.oneui .gridxBodyLastRow .gridxCell {
+	border-bottom-color: #d9d9d9;
+}
+
+/* mobile tree grid */
+.oneui .gridxLayerContext {
+	border-left: 1px solid #d9d9d9;
+	border-right: 1px solid #d9d9d9;
+}
+.oneui .gridxFullPage .gridxLayerContext {
+	border: none;
+}
+.oneui .gridxLayerWrapper .gridxRow .gridxCell {
+	background-color: #f7f7f7;
+}
+.oneui .gridxWholeRow .gridxLayerWrapper .gridxRow .gridxCell {
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+.oneui .gridxLayerVSlide {
+	border-top: 1px solid #d9d9d9;
 }

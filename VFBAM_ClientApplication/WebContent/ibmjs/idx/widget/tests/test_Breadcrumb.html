@@ -16,8 +16,10 @@ dojoCSSImport("../../../../@dojopath@/dijit/themes/dijit.css", "idxStyles");
 </script>
 
 <style type="text/css" id="idxStyles">
-@import "../../themes/oneui/oneui.css";
-@import "../../tests/test.css";
+	@import "../../themes/oneui/oneui.css";
+	@import "../../tests/test.css";
+	@import "../../tests/_pagefooter/_PageFooter.css";
+
 </style>
 <script type="text/javascript">
 	var dojoConfig = currentDojoVersion.dojoConfig;
@@ -28,17 +30,27 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 </script>
  
 <script type="text/javascript" id="postDojo">
-var modules = ["idx.widget.Breadcrumb", "dijit/_base/manager"];
+var modules = [
+				"idx.widget.Breadcrumb", 
+				"dijit/_base/manager",
+				"idx.tests._pagefooter._PageFooter"
+];
 
 var Breadcrumb = null;
 var manager = null;
+var _PageFooter = null;
 
 function preParse(modules) {
 	Breadcrumb = modules["idx/widget/Breadcrumb"];
 	manager = modules["dijit/_base/manager"] ? modules["dijit/_base/manager"] : dijit;
+	_PageFooter = modules["idx/tests/_pagefooter/_PageFooter"];
 }
 
-function add() {
+function postParse(modules){
+	new _PageFooter();
+}
+
+function addBC() {
 	var tsString = new Date().toLocaleString();
 	var sb = new Breadcrumb.Crumb({
 		title: "title",
@@ -47,12 +59,12 @@ function add() {
 	var bc = manager.byId("breadcrumb");
 	bc.push(sb);
 }
-function remove() {
+function removeBC() {
 	var bc = manager.byId("breadcrumb");
 	bc.pop();
 }
 
-dojoRequireModules(modules, null, currentDojoVersion.async, preParse);
+dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 </script>
 <script type="text/javascript" src="../../tests/commonTest.js"></script>
 </head>
@@ -60,8 +72,8 @@ dojoRequireModules(modules, null, currentDojoVersion.async, preParse);
 <a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 <script type="text/javascript">applyThemeToBody()</script>
 <a name="maincontent"></a>
-	<input type="button" onclick="add();" value="add"/>
-	<input type="button" onclick="remove();" value="remove"/>
+	<input type="button" onclick="addBC();" value="add"/>
+	<input type="button" onclick="removeBC();" value="remove"/>
 	
 	<div dojoType="idx.widget.Breadcrumb"
 		id="breadcrumb" style="width: 500px;">

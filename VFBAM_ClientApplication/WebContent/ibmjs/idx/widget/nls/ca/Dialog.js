@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Tanca"
 //end v1.x content
 });
+

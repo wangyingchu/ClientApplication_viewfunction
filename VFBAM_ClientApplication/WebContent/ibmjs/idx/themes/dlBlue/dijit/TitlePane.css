@@ -1,0 +1,92 @@
+/* TitlePane and Fieldset
+ * 
+ * Styling TitlePane means styling the TitlePane title and its content container  (dijitTitlePane)
+ * 
+ * TitlePane title:
+ * 1. TitlePane title (default styling): 
+ * 		.dijitTitlePaneTitle - TitlePane's title div style: background-color, border
+ *
+ * 2. hovered TitlePane title (ie, mouse hover on a title bar)
+ * 		.dijitTitlePaneTitleHover - styles when mouse hover on the title div
+ * 
+ * 3. active TitlePane title (ie, mouse down on a title bar)
+ * 		.dijitTitlePaneTitleActive - styles when mouse down on the title div
+ * 
+ * 
+ * TitlePane Content Container:
+ * 1. outer/inner container: 
+ * 		.dijitTitlePaneContentOuter / dijitTitlePaneContentInner - styles for the content outer div
+ */
+.dlBlue .dijitTitlePaneTitle {
+  border: 1px solid #a4a6ab;
+  border-bottom: none;
+  padding: 12px 12px;
+  color: #ffffff;
+}
+.dlBlue .dijitTitlePaneTitle a:link {
+  text-decoration: underline;
+}
+.dlBlue .dijitTitlePaneTitle.dijitTitlePaneTitleClosed {
+  border-bottom: 1px solid #a4a6ab;
+}
+.dlBlue .dijitFieldset {
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.dlBlue .dijitTitlePaneTitleOpen,
+.dlBlue .dijitTitlePaneTitleClosed,
+.dlBlue .dijitTitlePaneTitleFixedOpen {
+  background-color: #efeff1;
+  color: #000000;
+}
+.dlBlue .dijitTitlePaneTitleHover {
+  background-color: #d9e2e9;
+  color: #000000;
+}
+.dlBlue .dijitTitlePaneTitleActive {
+  background-color: #003f69;
+  color: #ffffff;
+}
+.dlBlue .dijitTitlePaneTitleActive .dijitTitlePaneTitleOpen .dijitArrowNode {
+  background-position: -240px 53%;
+}
+.dlBlue .dijitTitlePaneTitleActive .dijitTitlePaneTitleOpen .dijitArrowNode,
+.dlBlue .dijitTitlePaneTitleActive .dijitFieldsetTitleOpen .dijitArrowNode {
+  background-position: -240px 53%;
+}
+.dlBlue .dijitTitlePaneTitleActive .dijitTitlePaneTitleClosed .dijitArrowNode,
+.dlBlue .dijitTitlePaneTitleActive .dijitFieldsetTitleClosed .dijitArrowNode {
+  background-position: -213px 53%;
+}
+.dlBlue .dijitTitlePane .dijitArrowNode,
+.dlBlue .dijitFieldset .dijitArrowNode {
+  background-image: url("form/images/buttonArrows.png");
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+}
+.dlBlue .dijitTitlePaneTitleOpen .dijitArrowNode,
+.dlBlue .dijitFieldsetTitleOpen .dijitArrowNode {
+  background-position: -51px 53%;
+}
+.dlBlue .dijitTitlePaneTitleClosed .dijitArrowNode,
+.dlBlue .dijitFieldsetTitleClosed .dijitArrowNode {
+  background-position: -26px 53%;
+}
+.dlBlue .dijitTitlePaneContentOuter {
+  background: #ffffff;
+  border: 1px solid #a4a6ab;
+  border-top: none;
+}
+.dlBlue .dijitTitlePaneContentInner {
+  padding: 20px;
+}
+.dlBlue .dijitFieldsetContentInner {
+  padding: 4px;
+}
+.dlBlue .dijitTitlePaneTextNode,
+.dlBlue .dijitFieldsetLegendNode {
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: text-top;
+}

@@ -25,7 +25,7 @@ define({root:
 "nb": true,
 "ko": true,
 "kk": true,
-"ja": true,
+"ja": true, "id": true,
 "it": true,
 "hu": true,
 "fr": true,
@@ -36,5 +36,12 @@ define({root:
 "da": true,
 "cs": true,
 "ca": true,
-"ar": true
+"ar": true,
+"bg": true,
+"he": true,
+"hr": true,
+"uk": true,"vi":true,
+"bs": true,
+"mk": true,
+"sr": true
 });

@@ -6,7 +6,9 @@ define({
 	confirmation: "Bekreftelse",
 	progress: "Fremdrift",
 	loading: "Laster inn",
-	close: "Lukk"
+	close: "Lukk",
+	idxErrorDialog_detailTabLabel: "Løs dette problemet",
+	idxErrorDialog_moreTabLabel: "Få mer hjelp"
 //end v1.x content
 });
 

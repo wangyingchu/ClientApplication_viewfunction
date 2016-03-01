@@ -37,7 +37,7 @@
 // parent of the 'dojo' directory. It should not begin with '/' but should end
 // with '/' (unless it is '' because the two parents are the same directory),
 // and it may contain '/'s and '..'s as needed.
-var dojoPath = '../dojo_1.8.4/',
+var dojoPath = '../dojo_idt/',
 
 // dojoConfig contains the default dojo-config settings that should be used.
 // Any settings supplied by data-dojo-config (or djConfig) on the <script> tag
@@ -101,6 +101,11 @@ var dojoPath = '../dojo_1.8.4/',
 	  	    {name: "internal/dojox/robot", location: "../dojox/robot"}
 	  	]
 	};
+
+var locale = (navigator.language || navigator.userLanguage).toLowerCase();
+if(locale == "pt"){
+	dojoConfig.locale = "pt-pt";
+}
 
 // now load dojo.js...
 (function(){

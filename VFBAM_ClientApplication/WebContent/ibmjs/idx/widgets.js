@@ -7,6 +7,7 @@
 
 define(["dojo/_base/lang",
         "idx/main",
+        "dojo/dom",	
         "dojo/dom-class",			
         "dijit/_WidgetBase",
         "dijit/_base/manager",
@@ -14,6 +15,7 @@ define(["dojo/_base/lang",
         "./util"],
         function(dLang,			// (dojo/_base/lang)
 				 iMain,			// (idx)
+		 		 dDom, 			// (dojo/dom) for (dDom.byId)
 				 dDomClass, 	// (dojo/dom-class) for (dDomClass.add/remove)
 				 dWidget,		// (dijit/_WidgetBase)
 				 dijitMgr,		// (dijit/_base/manager)
@@ -57,6 +59,15 @@ define(["dojo/_base/lang",
 	 * @default ""
 	 */
 	idxDefaultsClass: "",
+	
+	/**
+	 * The CSS defaults to use of high-contrast mode is detected (i.e.: no background image found).
+	 * This can be an Object containing the properties or a String containing a query string.
+	 * @field
+	 * @type Object|String
+	 * @default null
+	 */
+	idxHCDefaults: null,
 	
 	/**
 	 * The child class to be applied to children.  This
@@ -534,7 +545,7 @@ define(["dojo/_base/lang",
 			// check if we need a suffix
 			if (needsSuffix) defaultsBase = defaultsBase + "_idxDefaults";
 			// get the CSS defaults - make sure to pass in a DOM node and not just an id
-			var cssDefaults = iUtil.getCSSOptions(defaultsBase, dojo.byId(srcNodeRef), this);
+			var cssDefaults = iUtil.getCSSOptions(defaultsBase, dDom.byId(srcNodeRef), this, this.idxHCDefaults);
 			if (cssDefaults != null) {
 				for (var field in cssDefaults) {
 					if (! (field in params)) {

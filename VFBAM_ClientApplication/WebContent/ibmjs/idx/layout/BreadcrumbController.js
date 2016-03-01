@@ -87,7 +87,7 @@ var BreadcrumbController = dojo_declare("idx.layout.BreadcrumbController", dijit
                 },
 
                 /**
-                 * String used to separate the breadcrumb links
+                 * String used to separate the breadcrumb links, only actived in high contract mode.
                  * 
                  * @type String
                  * @default >
@@ -99,15 +99,17 @@ var BreadcrumbController = dojo_declare("idx.layout.BreadcrumbController", dijit
                    dojo_class.add(this.domNode, this.idxBaseClass);
                 },
 
-                /**
-                 * Override - Called after StackContainer has finished initializing
-                 * 
-                 * @private
-                 */
-                onStartup: function(/*Object*/ info)
-                {
-                	dojo_array.forEach(info.children, this.onAddChild, this);
-                },
+				// COMMENT OUT -- it looks like the implementation in StackController 
+				// handles things for us just fine (as well has handling other needed initialization)
+                ///**
+                // * Override - Called after StackContainer has finished initializing
+                // * 
+                // * @private
+                // */
+                //onStartup: function(/*Object*/ info)
+                //{
+                //	dojo_array.forEach(info.children, this.onAddChild, this);
+                //},
                 
                 resize: function(changeSize, resultSize) {
                    this.inherited(arguments);
@@ -141,8 +143,11 @@ var BreadcrumbController = dojo_declare("idx.layout.BreadcrumbController", dijit
                 	if( !firstChild )
                 	{
                 		var refNode = this.containerNode;
-
-                		dojo_construct.place("<span class='idxBreadcrumbSeparator'>"+this.breadcrumbSeparator+"</span>",refNode,separatorIndex);
+						
+						dojo_construct.place(
+							"<span class='idxBreadcrumbSeparator'><span class='idxBreadcrumbSeparatorInner'>"
+							+this.breadcrumbSeparator
+							+"</span></span>",refNode,separatorIndex);
                 	}
                 	
                 	//if adding a breadcrumb to the end, automatically select it
@@ -151,7 +156,7 @@ var BreadcrumbController = dojo_declare("idx.layout.BreadcrumbController", dijit
                 	if( this.containerNode.children.length >= (children.length*2-1) &&
                 			separatorIndex >= this.containerNode.children.length-2 )
                 	{
-                		var newBreadcrumb=this.pane2button[page.id];
+                		var newBreadcrumb=this.pane2button(page.id);
                 		newBreadcrumb.set('checked', true);
                 		
                 		try
@@ -177,7 +182,7 @@ var BreadcrumbController = dojo_declare("idx.layout.BreadcrumbController", dijit
                 	var refNode = this.containerNode;
                 	
                 	var container = dijit_registry.byId(this.containerId);
-                	var breadcrumb = this.pane2button[page.id];
+                	var breadcrumb = this.pane2button(page.id);
                 	
                 	if( breadcrumb && breadcrumb.domNode)
                 	{
@@ -230,31 +235,7 @@ var BreadcrumbController = dojo_declare("idx.layout.BreadcrumbController", dijit
     			selectionConfirmed: function(/*dijit._Widget*/ page)
     			{
     				return true;
-    			},
-
-    			resize: function(changeSize, resultSize)
-    			{
-    				var cn = this.domNode;
-    				var mb = resultSize || {};
-    				dojo_lang.mixin(mb, changeSize || {}); // changeSize overrides resultSize
-    				if(!("h" in mb) || !("w" in mb))
-    				{
-    					mb = dojo_lang.mixin(dojo_geo.getMarginBox(cn), mb); // just use dojo.marginBox() to fill in missing values
-    				}
-
-    				var childWidth = 0;
-    				for(var pane in this.pane2button)
-    				{
-    					var dm = this.pane2button[pane].domNode;
-    					
-    					if(dm)
-    					{
-    						childWidth += dojo_geo.getMarginBox(dm).w;
-    					}
-    					
-    				}
-    			}
-    			 
+    			}    			 
 
 	});
 

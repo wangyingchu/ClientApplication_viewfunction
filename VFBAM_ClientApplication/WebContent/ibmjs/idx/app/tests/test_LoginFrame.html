@@ -5,7 +5,7 @@
   US Government Users Restricted Rights - Use, duplication or 
   disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<html style="height: 100%; width: 100%; margin: 0px; padding: 0px;" lang="en">
+<html style="height: 100%; width: 100%; margin: 0px; padding: 0px;" lang="en-us">
 <head>
 <title>Test LoginFrame</title>
 
@@ -62,10 +62,21 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
     For example, this regular expression is valid only if the input is a 
     letter,number, or underscore:   regExp="[\w]+"     
     -->
-	<div jsid="loginFrame" dojoType="idx.app.LoginFrame" onSubmit="doSubmission" onCancel="doCancellation" formName="testLogin"
-		loginSubTitle="Please enter your information"
-		inactivityMessage="Please note, after some time of inactivity, the system will sign you out automatically and ask you to sign in again."
-		loginCopyright="Licensed Materials - Property of [Company], YYYY. [Company] is a registered trademark of [Company] Corporation, in the United States, other countries, or both."></div>
+	<div id="loginFrame" data-dojo-id="loginFrame" 
+	     data-dojo-type="idx.app.LoginFrame" 
+		 data-dojo-props="
+			onSubmit: doSubmission, 
+			onCancel: doCancellation, 
+			userAutoComplete: true,
+			formAction: '',
+			passwordAutoComplete: false,
+			showCancelButton: true,
+			formName: 'testLogin',
+			loginSubTitle: 'Please enter your information',
+			inactivityMessage: 'Please note, after some time of inactivity, the system will sign you out automatically and ask you to sign in again.',
+			loginCopyright: 'Licensed Materials - Property of [Company], YYYY. [Company] is a registered trademark of [Company] Corporation, in the United States, other countries, or both.'
+			">
+	</div>
 </div>
 <div dojoType="dijit.layout.ContentPane" region="bottom">
 	<table>
@@ -247,6 +258,49 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 
 	     	<tr>
 	     	
+	     	<th><b>User Pattern:</b></th><td><div dojoType="dijit.form.TextBox" style="width: 20em;" 
+	     	intermediateChanges="true">
+	     	<script type="dojo/connect" event="startup">
+				this.set("value", loginFrame.get("userPattern"));
+			</script>
+	     	<script type="dojo/connect" event="onChange">
+	     		var val = loginFrame.get("userPattern");
+	     		if (val != this.get("value")) {
+					loginFrame.set("userPattern", this.get("value"));
+				}
+			</script></div>
+	     	</td>
+
+	     	<th><b>Password Pattern:</b></th><td><div dojoType="dijit.form.TextBox" style="width: 20em;" 
+	     	intermediateChanges="true">
+	     	<script type="dojo/connect" event="startup">
+				this.set("value", loginFrame.get("passwordPattern"));
+			</script>
+	     	<script type="dojo/connect" event="onChange">
+	     		var val = loginFrame.get("passwordPattern");
+	     		if (val != this.get("value")) {
+					loginFrame.set("passwordPattern", this.get("value"));
+				}
+			</script></div>
+	     	</td>
+	     	
+	     	<th><b>RegExp (Deprecated):</b></th><td><div dojoType="dijit.form.TextBox" style="width: 20em;" 
+	     	intermediateChanges="true">
+	     	<script type="dojo/connect" event="startup">
+				this.set("value", loginFrame.get("regExp"));
+			</script>
+	     	<script type="dojo/connect" event="onChange">
+	     		var val = loginFrame.get("regExp");
+	     		if (val != this.get("value")) {
+					loginFrame.set("regExp", this.get("value"));
+				}
+			</script></div>
+	     	</td>
+	     	
+	     	</tr>
+
+	     	<tr>
+	     	
 	     	<th><b>User Field Name:</b></th><td><div dojoType="dijit.form.TextBox" style="width: 20em;" 
 	     	intermediateChanges="true">
 	     	<script type="dojo/connect" event="startup">
@@ -267,7 +321,11 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 			</script></div>
 	     	</td>
 	     	
-	     	<th></th><td></td>
+	     	<td colspan="2" style="text-align: center;"><div data-dojo-type="dijit/form/Button" data-dojo-props="label: 'Focus LoginFrame'">
+	     		<script type="dojo/aspect" data-dojo-method="onClick" data-dojo-advice="after">
+	     			loginFrame.focus();
+	     		</script>
+	     	</div></td>
 	     	
 	     	</tr>
 

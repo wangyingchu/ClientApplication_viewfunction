@@ -152,8 +152,6 @@ var UI=(function(){
                 }else{
                     dojo.byId(workSpaceTabId).innerHTML="<span class='appDynamicPageTabText'>"+pageTitle+"</span>";
                 }
-
-
                 /*
                 var workspaceTabContainerId="idx_app_WorkspaceTab_"+ currentWorkspaceUIID;
                 require(["dojo/dom-class"],

@@ -83,5 +83,6 @@
 .oneui .dijitRadioCheckedDisabled {
   /* selected but disabled */
 
-  background-position: -225px;
+  background-position: -193px;
+  opacity: 0.3;
 }

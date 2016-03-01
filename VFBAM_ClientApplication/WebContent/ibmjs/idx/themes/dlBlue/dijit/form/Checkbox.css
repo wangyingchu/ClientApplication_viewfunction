@@ -1,0 +1,61 @@
+/* CheckBox
+ * 
+ * Styling CheckBox mainly includes:
+ * 
+ * 1. Containers
+ * 		.dijitCheckBox|.dijitCheckBoxIcon - for border, padding, width|height and background image
+ * 
+ * 2. CheckBox within ToggleButton
+ * 		.dijitToggleButton|.dijitToggleButtonChecked .* - for background image
+ * 
+ * 3. Checked state
+ * 		.dijitCheckBoxChecked - for checked background-color|image
+ * 		.dijitToggleButtonChecked - for border, background-color|image, display and width|height
+ * 
+ * 4. Hover state
+ * 		.dijitCheckBoxHover|.dijitCheckBoxCheckedHover - for background image
+ * 
+ * 5. Disabled state
+ * 		.dijitCheckBoxDisabled|.dijitCheckBoxCheckedDisabled - for background image
+ */
+.dlBlue .dijitToggleButton .dijitCheckBoxIcon {
+  background-image: url("../images/checkmarkNoBorder.png");
+}
+.dlBlue .dijitCheckBox,
+.dlBlue .dijitCheckBoxIcon {
+  background-image: url("../form/images/checkboxRadioButtonStates.png");
+  /* checkbox sprite image */
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 16px;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.dlBlue .dijitCheckBox,
+.dlBlue .dijitToggleButton .dijitCheckBoxIcon {
+  /* unchecked */
+  background-position: -15px;
+}
+.dlBlue .dijitCheckBoxChecked,
+.dlBlue .dijitToggleButtonChecked .dijitCheckBoxIcon {
+  /* checked */
+  background-position: 0;
+}
+.dlBlue .dijitCheckBoxDisabled,
+.dlBlue .dijitToggleButtonDisabled .dijitCheckBoxIcon {
+  /* disabled */
+  background-position: -75px;
+}
+.dlBlue .dijitCheckBoxCheckedDisabled,
+.dlBlue .dijitToggleButtonCheckedDisabled .dijitCheckBoxIcon {
+  /* disabled but checked */
+  background-position: -60px;
+}
+.dlBlue .dijitCheckBoxHover {
+  /* hovering over an unchecked enabled checkbox */
+  background-position: -45px;
+}
+.dlBlue .dijitCheckBoxCheckedHover {
+  /* hovering over an checked enabled checkbox */
+  background-position: -30px;
+}

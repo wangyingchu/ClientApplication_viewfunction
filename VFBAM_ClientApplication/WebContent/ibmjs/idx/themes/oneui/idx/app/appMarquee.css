@@ -13,6 +13,10 @@
   background-image: url(../images/blank.gif?preferAppLogo=false);
 }
 
+.oneui .idxAppMarqueeDefaultVendorLogo {
+  background-image: url(../images/blank.gif?relativePath=oneui/idx/app/images/ibmMarqueeLogo.png);
+}
+
 .oneui div.idxAppMarquee {
   width: 100%;
   height: 38px;
@@ -108,9 +112,9 @@
 }
 
 .oneui div.idxAppMarqueeBody > span {
-	color: rgba(255,255,255,.15);
+	color: #DDDDDD;
 	font-weight: normal;
-	}
+}
 
 .oneui .idxAppMarquee .idxAppMarqueeAppLogo  {
 	display: none;

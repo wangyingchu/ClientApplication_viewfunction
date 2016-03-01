@@ -1,0 +1,36 @@
+/*
+ * Licensed Materials - Property of IBM
+ * 5724-Q36
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or 
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+.claro .appFrameStatusBar {
+	height: 28px;
+	padding: 5px 10px 0px 10px;
+	background-color: #4871a7;
+}
+
+.claro .appFrameStatusBar .appFrameStatusBarContainer {
+	position: absolute;
+	left: 5px;
+	right: 5px;
+	background-color: #345075;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px; 
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	padding: 4px 4px 0px 4px;
+}
+
+.claro .appFrameStatusBar .appFrameStatusBarStatePanel {
+	width: 280px;
+}
+
+.claro .appFrameStatusBar .appFrameStatusBarAlertPanel {
+	position: absolute;
+	right: 4px;
+	left: 290px;
+	top: 4px;
+}

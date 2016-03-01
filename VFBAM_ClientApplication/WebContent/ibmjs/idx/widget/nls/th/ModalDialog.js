@@ -13,9 +13,11 @@ define({
 	Success: "สำเร็จ",
 	Confirmation: "การยืนยัน",
 	Question: "คำถาม",
+	Progress: "ความคืบหน้า",
 	closeButtonLabel: "ปิด",
 	cancelButtonLabel: "ยกเลิก",
 	executeButtonLabel: "ตกลง",
 	checked: "ไม่ต้องถามอีก"
 //end v1.x content
 });
+

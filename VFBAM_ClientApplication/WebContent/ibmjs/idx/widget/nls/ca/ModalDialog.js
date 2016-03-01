@@ -10,12 +10,14 @@ define({
 	Error: "Error",
 	Warning: "Advertiment",
 	Information: "Informació",
-	Success: "Èxit",
+	Success: "Correcte",
 	Confirmation: "Confirmació",
 	Question: "Pregunta",
+	Progress: "Progrés",
 	closeButtonLabel: "Tanca",
 	cancelButtonLabel: "Cancel·la",
 	executeButtonLabel: "D'acord",
 	checked: "No ho tornis a preguntar"
 //end v1.x content
 });
+

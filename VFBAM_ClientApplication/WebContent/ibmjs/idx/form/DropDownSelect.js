@@ -2,6 +2,7 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/array",
+	"dojo/dom-class",
 	"dijit/popup",
 	"dijit/_HasDropDown",
 	"dijit/_Container",
@@ -10,7 +11,7 @@ define([
 	"dijit/MenuItem",
 	"idx/ext",
 	"dojo/text!./templates/DropDownSelect.html"
-], function(dojo_declare, dojo_lang, dojo_array, dijit_popup, dijit_HasDropDown, dijit_Container, dijit_Widget, dijit_TemplatedMixin, dijit_MenuItem, idx_ext, templateString){
+], function(dojo_declare, dojo_lang, dojo_array, dojo_domclass, dijit_popup, dijit_HasDropDown, dijit_Container, dijit_Widget, dijit_TemplatedMixin, dijit_MenuItem, idx_ext, templateString){
 
 /**
  * @name idx.form.DropDownSelect
@@ -24,6 +25,11 @@ var DropDownSelect = dojo_declare("idx.form.DropDownSelect",
 	[dijit_Widget, dijit_TemplatedMixin, dijit_Container, dijit_HasDropDown],
 /**@lends idx.form.DropDownSelect#*/
 {
+	/**
+	 * The base CSS class for this widget. 
+	 */
+	baseClass: "idxDropDownSelect",
+	
 	/**
 	 * Template string.
 	 * @type String
@@ -51,6 +57,13 @@ var DropDownSelect = dojo_declare("idx.form.DropDownSelect",
 	 * @default null
 	 */
 	dropDown: null,
+
+	/**
+	 * Disabled flag.
+	 * @type Boolean
+	 * @default false
+	 */
+	disabled: false,
 	
 	/**
 	 * Attribute map.
@@ -63,6 +76,18 @@ var DropDownSelect = dojo_declare("idx.form.DropDownSelect",
 	}),
 
 	/**
+	 * Override to set "disabled" CSS class.
+	 */
+	_setDisabledAttr: function(value) {
+		this.disabled = value;
+		if (this.disabled) {
+			dojo_domclass.add(this.domNode, ["dijitDisabled", this.baseClass + "Disabled"]);
+		} else {
+			dojo_domclass.remove(this.domNode, ["dijitDisabled", this.baseClass + "Disabled"]);
+		}
+	},
+	
+	/**
 	 * Sets up the drop down menu.
 	 * @private as part of widget life cycle
 	 */
@@ -73,7 +98,7 @@ var DropDownSelect = dojo_declare("idx.form.DropDownSelect",
 		
 		this.dropDown = this.dropDown || this.getChildren()[0];
 		if (this.dropDown) {
-			dijit_popup.moveOffScreen(this.dropDown.domNode);
+			dijit_popup.moveOffScreen(this.dropDown);
 			var findMenu = dojo_lang.hitch(this, function(item) {
 				if (item.onItemClick) {
 					this.connect(item, "onItemClick", "_onItemClick");

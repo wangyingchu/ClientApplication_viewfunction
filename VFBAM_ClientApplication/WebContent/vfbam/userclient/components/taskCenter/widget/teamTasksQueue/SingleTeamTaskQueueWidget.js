@@ -2,9 +2,9 @@ require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
     "dojo/text!vfbam/userclient/components/taskCenter/widget/teamTasksQueue/template/SingleTeamTaskQueueWidget.html",
     "gridx/Grid","gridx/core/model/cache/Async",
-    "gridx/modules/VirtualVScroller","gridx/modules/pagination/Pagination",
+    "gridx/modules/VirtualVScroller","gridx/modules/Pagination",
     "gridx/modules/pagination/PaginationBar",'gridx/modules/CellWidget','gridx/modules/Edit',
-    'idx/gridx/modules/Sort','gridx/modules/Focus','gridx/modules/ColumnResizer',"gridx/modules/Menu","dojo/dom-geometry"
+    'gridx/modules/Sort','gridx/modules/Focus','gridx/modules/ColumnResizer',"gridx/modules/Menu","dojo/dom-geometry"
 ],function(lang,declare, _Widget, _Templated, template,Grid,Cache,VirtualVScroller,Pagination,PaginationBar,CellWidget,Edit,Sort,Focus,ColumnResizer,Menu,domGeom){
     declare("vfbam.userclient.components.taskCenter.widget.teamTasksQueue.SingleTeamTaskQueueWidget", [_Widget, _Templated], {
         templateString: template,
@@ -153,14 +153,15 @@ require([
             var that=this;
             var timer = new dojox.timing.Timer(1500);
             timer.onTick = function(){
-                var resizeObj={};
+            	var resizeObj={};
                 var marginBox = dojo.getMarginBox(that.domNode);
                 resizeObj.w=marginBox.w;
                 that.teamTasksQueueGrid.resize(resizeObj);
+                that.handleReloadTaskQueueTab();
                 timer.stop();
-            }
+            };
             timer.start();
-        },
+         },
         handleSizeChange:function(){
             var resizeObj={};
             var marginBox = dojo.getMarginBox(this.domNode);
@@ -168,17 +169,17 @@ require([
             this.teamTasksQueueGrid.resize(resizeObj);
         },
         handleReloadTaskQueueTab:function(){
-             var that=this;
-             var timer = new dojox.timing.Timer(100);
-             timer.onTick = function(){
+            var that=this;
+            var timer = new dojox.timing.Timer(100);
+            timer.onTick = function(){
                 var resizeObj={};
                 var marginBox = dojo.getMarginBox(that.domNode);
                 resizeObj.w=marginBox.w;
                 that.teamTasksQueueGrid.resize(resizeObj);
                 that.teamTasksQueueGrid.setStore(that.teamTaskListStore);
                 timer.stop();
-             }
-             timer.start();
+            };
+            timer.start();
         },
         buildTaskDisplayFieldsStructure:function(buinessParamsArray){
             //"STRING" "BINARY" "LONG" "DOUBLE" "BOOLEAN" "DATE" "DECIMAL"

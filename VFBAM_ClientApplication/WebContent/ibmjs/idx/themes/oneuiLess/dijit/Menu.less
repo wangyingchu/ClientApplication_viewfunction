@@ -1,0 +1,371 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+// Menu 
+//
+//There are three areas of styling for the Menu:  
+// 
+// 1. The menu 
+// 	There are three types of menus:
+// 	i)Context Menu
+// 	ii)Drop down Menu
+// 	iii) Navigation Menu
+// 	All three types of menus are affected by the .dijitMenu class in which you can set the background-color, padding and border
+// 	.dijitMenu affects the drop down menu in TimeTextBox, Calendar, ComboBox and FilteringSelect
+//  .dijitMenuTable - for padding - also affects Select widget 	
+//  	
+// 2. The menu bar
+// 	.dijitMenuBar - for border, margins, padding, background-color of the menu bar
+// 	.dijitMenuBar .dijitMenuItem - for padding, text color of menu items in the menu bar (overrides .dijitMenuItem) 
+// 	
+// 3. Menu items - items in the menu.  
+// 	.dijitMenuItem - for color
+// 	.dijitMenuItemHover, 
+//.dijitMenuItemSelected - for background-color, border, text color, padding of a menu item or menubar item that has been hovered over or selected	
+// 	.dijitMenuItemActive - for bacgkround-color of an active (mousedown) menu item
+//	td.dijitMenuItemIconCell - for padding around a  menu item's icon
+//	td.dijitMenuItemLabel - for padding around a menu item's label	
+//	.dijitMenuSeparatorTop - for border, top border, of the separator
+//	.dijitMenuSeparatorBottom - for bottom margin of the separator
+//	
+//	Styles specific to ComboBox and FilteringSelect widgets: 
+//	.dijitComboBoxMenu .dijitMenuItem - for padding and border of a menu item in a ComboBox or FilteringSelect widget's menu
+//	.dijitComboBoxMenu .dijitMenuItemSelected- for text color, background-color and border of a menu item in a ComboBox or FilteringSelect widget's menu
+//
+.dijitMenuBar {
+  border: 1px solid @fwBase;
+  margin: 0;
+  padding: 0 5px 0 5px;
+  .gradient(@fwBackground, @fwLightest);
+  .textColors(mix(@fwBackground, @fwLightest));
+  
+  .dijitMenuItem {
+	  padding: 6px 10px 7px 10px;
+	  margin: 0 3px 0 2px;
+	  color: @textDefault;
+	  margin-left: -1px;
+	}
+}
+
+.dj_ie6 & .dijitMenuBar,
+.dj_ie7 & .dijitMenuBar{
+	height: 26px;
+}
+
+.dijitMenu {
+  background-color: @fwBackground;
+  /* so adjoining borders of MenuBar/ComboBox and Menu overlap, avoiding double border */
+
+  margin: -1px 0;
+  padding: 0 1px 0 1px;
+  border: 1px solid @fwDarker;
+  .BoxShadow (0 0 1px 1px @shadowBox);
+}
+
+.dj_ie6 & .dijitMenu {
+  margin: 0;
+  /* above -1px makes top/bottom borders disappear on IE6 */
+
+}
+
+.dj_ie6 & .dijitMenuBar .dijitMenuItem{
+	margin-top: -1px;
+}
+
+/* this prevents jiggling upon hover of a menu item */
+.dijitMenuTable {
+  border-spacing: 0 0;
+  padding: 0;
+  border-collapse: separate;
+}
+.dijitMenuItem td {
+  padding: 1px;
+  border-bottom: 1px solid @fwBackground;
+}
+
+.dijit_a11y & .dijitMenuItem td {
+  border-bottom: none;
+}
+
+.dijitMenuBar .dijitMenuItemDisabled{
+	opacity: 1;
+	color: @textDisabled;
+	.TextShadow(@shadowSolid);
+}
+
+/* hover over a MenuBarItem */
+.dijitMenuBar .dijitMenuItemHover,
+.dijitMenuBar .dijitMenuItemActive,
+.dijitMenuBar .dijitMenuItemSelected{
+	border-left: 1px solid @fwLight; 
+	border-right: 1px solid @fwLight;
+	padding: 6px 9px 7px 9px;
+}
+
+.dijitMenuBar .dijitMenuItemHover,
+.dijitMenuBar .dijitMenuItemFocused{
+	.gradient(@fwBackground, @fwLighter);
+}
+
+.dijitMenuBar .dijitMenuItemActiveFocused,
+.dijitMenuActive .dijitMenuItemSelected{
+	.gradient (@fwLighter, @fwBackground);
+}
+
+.dijitMenuTable .dijitMenuItemSelected,
+.dijitMenuTable .dijitMenuItemChecked {
+  .textColors(@selected);
+  color: @textStrong;
+  background: @selected;
+}
+
+/* hover over or select a MenuItem */
+.dijitMenuTable .dijitMenuItemHover,
+.dijitMenuTable .dijitMenuItemActive,
+.dijitMenuTable .dijitMenuItemFocused{
+  .textColors(@hover);
+  color: @textStrong;
+  background: @hover;
+}
+
+/* MenuBarItem that has been selected and menu drops down from it */
+.dijitMenuActive .dijitMenuItemHover,
+.dijitMenuActive .dijitMenuItemSelected {
+  color: @textStrong;
+}
+
+
+.dijitMenuTable .dijitMenuItemIcon{
+	margin-right: 5px;
+} 
+
+.dijitMenuItem .dijitMenuArrowCell{
+	padding-right: 10px;
+	border-right: 1px solid @fwBackground;
+}
+
+.dijitEditorIcon{
+  height: 16px;
+  width: 16px;
+}
+
+td.dijitMenuItemIconCell {
+  padding: 0 0 0 10px;
+  border-left: 1px solid @fwBackground;
+}
+
+div.dijitMenu td.dijitMenuItemIconCell{
+  border-left: none;
+}
+
+/* the icon image in the menu item is embedded in text.
+   ensure that the font descender doesn't distort the
+   centering/alignment of the icon */
+td.dijitMenuItemIconCell img {
+  vertical-align: bottom;
+}
+
+td.dijitMenuItemLabel {
+  padding-top: 4px;
+  padding-bottom: 3px;
+}
+
+.dijitMenuItemDisabled .dijitMenuItemLabel{
+  color: #aaaaaa;
+  text-shadow: 1px 0 0 @fwBackground;
+}
+
+.dijitMenuExpand {
+  width: 7px;
+  height: 7px;
+  background-image: url('images/dijit/spriteArrows.png');
+  background-position: -14px 0;
+}
+
+.dijitMenuItemDisabled .dijitMenuExpand{
+  background-position: -42px 0;
+}
+
+.dijitMenuItemDisabled .dijitMenuItemIconCell {
+  opacity: 1;
+}
+.dijitMenuSeparatorTop {
+  height: auto;
+  margin-top: 0;
+  /* prevents spacing above/below separator */
+
+  border-bottom: 1px solid @fwDarker;
+}
+.dijitMenuSeparatorBottom {
+  height: auto;
+  margin-bottom: 1px;
+}
+/* the checked menu item */
+.dijitCheckedMenuItemIconChar {
+  display: none;
+}
+.dijitCheckedMenuItemIcon {
+  margin-right: 4px;
+  padding:1px 0 0 1px;
+  background-image: url('images/dijit/form/checkboxRadioButtonStates.png');
+  background-repeat: no-repeat;
+  background-position: -17px 50%;
+  width: 14px;
+  height: 14px;
+  margin: 1px 0 0 1px;
+}
+
+.dj_ie6 & .dijitCheckedMenuItemIcon {
+  background-image: url('images/dijit/form/checkboxRadioButtonStates8bit.png');
+}
+.dijitCheckedMenuItemChecked .dijitCheckedMenuItemIcon {
+  background-position: -1px 50%;
+}
+
+.dijitMenuItemHover .dijitCheckedMenuItemIcon {
+  background-position: -113px;
+}
+
+.dijitMenuItemActive .dijitCheckedMenuItemIcon {
+  background-position: -161px;
+}
+
+.dijitMenuItemCheckedHover .dijitCheckedMenuItemIcon {
+  background-position: -97px;
+}
+
+.dijitMenuItemCheckedActive .dijitCheckedMenuItemIcon {
+  background-position: -145px;
+}
+
+.dijitMenuItemReadOnly .dijitCheckedMenuItemIcon{
+  background-position: -65px;
+}
+
+.dijitMenuItemCheckedReadOnly .dijitCheckedMenuItemIcon{
+  background-position: -49px;
+}
+
+.dijitMenuItemDisabled .dijitCheckedMenuItemIcon{
+  background-position: -65px;
+}
+
+.dijitMenuItemCheckedDisabled .dijitCheckedMenuItemIcon{
+  background-position: -49px;
+}
+
+/*ComboBox Menu*/
+.dijitComboBoxMenu {
+  margin-left: 0;
+  background-image: none;
+  padding: 0 1px 0 1px;
+  border: 1px solid @fwDarker;
+  .BoxShadow(0 0 1px 1px @shadowBox);
+}
+.dijitComboBoxMenu .dijitMenuItem {
+  margin: 1px 0 1px 0;
+  padding: 3px 10px 4px 10px;
+}
+.dijitComboBoxMenu .dijitMenuItemSelected {
+  color: @textStrong;
+  background-color: @selected;
+}
+.dijitComboBoxMenu .dijitMenuItemHover,
+.dijitComboBoxMenu .dijitMenuItemActive {
+  color: @textStrong;
+  background-color: @hover;
+}
+.dijitMenuPreviousButton, 
+.dijitMenuNextButton {
+  font-style: italic;
+}
+
+.dijitMenuTable .dijitMenuItem{
+  border: 1px solid @fwBackground;
+}
+
+.dijitMenuItemReadOnly{
+  color: @textSecondary;
+  background: @fwBackground;
+}
+
+/* Styles for oneui multi-column menu widget */
+
+.oneuiMenuColumn {
+	vertical-align: top;
+	padding: 0;
+}
+
+/* Styles for menu heading */
+
+.oneuiMenuHeading .oneuiMenuHeadingLabel {
+	padding-right: 10px;
+}
+
+/* Overwrite dijit.css*/
+.dijitMenuItemDisabled * {
+	opacity: 1;
+}
+
+.dj_ie & .dijitMenuItemDisabled *,
+.dj_ie & .dijitMenuItemDisabled td {
+	filter: ~"none";
+}
+
+.dijitMenuItemLabel {
+	position: static;
+}
+
+.dijitMenuItem:focus { 
+	outline: none 
+} 
+
+.dj_a11y & .dijitMenuItemSelected { 
+	border: 1px dotted @focusOutline !important;    /* for 2.0 use outline instead, to prevent jitter */ 
+}
+
+/*** The following is for adding a dotted border to use more than color to show selection *****/
+.dijitMenuTable tr.dijitMenuItem:first-child .dijitMenuArrowCell, 
+.dijitMenuTable tr.dijitMenuItem:first-child .dijitMenuItemIconCell, 
+.dijitMenuTable tr.dijitMenuItem:first-child .dijitMenuItemLabel, 
+.dijitMenuTable tr.dijitMenuItem:first-child .oneuiMenuHeadingLabel{
+	border-top: 1px solid @fwBackground;
+}
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemLabel {
+	border-top: 1px dotted @focusOutline;
+	border-bottom: 1px dotted @focusOutline;
+	padding-bottom: 3px;
+	padding-top: 3px;
+}
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemAccelKey {
+	border-top: 1px dotted @focusOutline;
+	border-bottom: 1px dotted @focusOutline;
+	padding-bottom: 1px;
+	padding-top: 0px;
+}
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>.dijitMenuItemLabel {
+	padding-top: 4px;
+	padding-bottom: 3px;
+}
+
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>.dijitMenuItemAccelKey {
+	padding-top: 1px;
+}
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuItemIconCell {
+	border: 1px dotted @focusOutline;
+	border-right: 0px none transparent;
+	padding-bottom: 1px;
+}
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused:first-child>td.dijitMenuItemIconCell{
+	padding-bottom: 0px;
+}
+
+.dijitMenuTable tr.dijitMenuItem.dijitMenuItemFocused>td.dijitMenuArrowCell {
+	border: 1px dotted @focusOutline;
+	border-left: 0px none transparent;
+	padding-right: 9px;
+}

@@ -18,18 +18,23 @@ define([
 
 		module: null,
 
-		show: function(){
+		show: function() {
 			this.module._filterDialog.show();
-			if(!this._ruleContainer.childNodes.length){
+			if (this.module.arg('experimental')) {
+				this.matchCaseCheckbox.set('checked', this.module.grid.filter.arg('caseSensitive'));
+			} else {
+				this.matchCaseCheckbox.domNode.style.display = 'none';
+			}
+			if (!this._ruleContainer.childNodes.length) {
 				this.addRule();
 			}
 		},
 
-		clear: function(){
+		clear: function() {
 			this.module.confirmToClear();
 		},
 
-		getData: function(){
+		getData: function() {
 			// summary:
 			//	Get filter data.
 			return {
@@ -40,7 +45,7 @@ define([
 			};
 		},
 
-		setData: function(data){
+		setData: function(data) {
 			// summary:
 			//	Set filter data.
 			var t = this;
@@ -56,7 +61,7 @@ define([
 			}
 		},
 
-		addRule: function(refNode){
+		addRule: function(refNode) {
 			var ac = this._ruleContainer,
 				fp = new FilterPane({
 					module: this.module
@@ -78,13 +83,43 @@ define([
 			return fp;
 		},
 
-		_onSubmit: function(){
-			this.module._filterDialog.hide();
-			this.module.applyFilter(this.getData());
+		isValid: function(){
+			return array.every(array.map(this._ruleContainer.childNodes, registry.byNode), function(p){
+				var type = p._getType(),
+					valueBox = p._getValueBox(),
+					cond = p.sltCondition.get('value');
+
+				if (/Range/.test(type)) {
+					if(type === 'DatetimeRange'){
+						// return valueBox.dateStart.isValid() && valueBox.dateEnd.isValid() &&
+						// 		valueBox.timeStart.isValid() && valueBox.dateEnd.isValid();
+						return valueBox.isValid && valueBox.isValid();
+					}
+					return valueBox.start.isValid() && valueBox.end.isValid();
+				} else if (type === 'Datetime') {
+					return cond === 'isEmpty' || cond === 'isNotEmpty' || (valueBox.date.isValid() && valueBox.time.isValid());
+				} else if (type === 'DatetimePast' || type === 'DatePast' || type === 'TimePast') {
+					return valueBox.value.isValid() && valueBox.interval.isValid();
+				} else {
+					return cond === 'isEmpty' || cond === 'isNotEmpty' || (valueBox.isValid && valueBox.isValid()) || valueBox.value;
+				} 
+			});
+		},
+
+		_onSubmit: function() {
+			if(this.isValid()){
+				this.module._filterDialog.hide();
+				this.module.applyFilter(this.getData());
+			}
 			return false;
 		},
 
-		_updateButtons: function(){
+		_onCheckboxClick: function() {
+			var cs = this.matchCaseCheckbox.get('checked'); 
+			this.module.grid.filter.caseSensitive = cs;
+		},
+
+		_updateButtons: function() {
 			var t = this,
 				children = t._ruleContainer.childNodes,
 				c = t.module.arg('maxRuleCount'),

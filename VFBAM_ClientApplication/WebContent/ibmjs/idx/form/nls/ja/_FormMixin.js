@@ -10,3 +10,4 @@ define({
 	legendText: "必須"
 //end v1.x content
 });
+

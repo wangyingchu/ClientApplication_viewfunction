@@ -13,9 +13,11 @@ define({
 	Success: "Úspech",
 	Confirmation: "Potvrdenie",
 	Question: "Otázka",
+	Progress: "Priebeh",
 	closeButtonLabel: "Zatvoriť",
 	cancelButtonLabel: "Zrušiť",
 	executeButtonLabel: "OK",
 	checked: "Už sa nepýtať"
 //end v1.x content
 });
+

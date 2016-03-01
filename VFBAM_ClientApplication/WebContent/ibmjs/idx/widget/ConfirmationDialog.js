@@ -52,18 +52,22 @@ define([
 			}, this.confirmAction);
 			this.closeAction.set("label", this.cancelButtonLabel || this._nlsResources.cancelButtonLabel || "Cancel");
 			this.closeAction.focusNode && domStyle.set(this.closeAction.focusNode, "fontWeight", "normal");
-			this.checkbox = new CheckBox({
-				label: this._nlsResources.checked || "Do not ask again",
-				onChange: lang.hitch(this, function(evt){
-					if(this.checkbox.get("value") == "on"){
-						this.check();
-					}else{
-						this.uncheck();
-					}
-				})
-			}, this.checkbox);
+			
 			this.set("type", this.type || "Confirmation");
-			(this.checkboxNode && this.dupCheck) && domStyle.set(this.checkboxNode, "display", "");
+			
+			if(this.checkboxNode && this.dupCheck){
+                this.checkbox = new CheckBox({
+                    label: this._nlsResources.checked || "Do not ask again",
+                    onChange: lang.hitch(this, function(evt){
+                        if(this.checkbox.get("value") == "on"){
+                            this.check();
+                        }else{
+                            this.uncheck();
+                        }
+                    })
+                }, this.checkbox);
+			    domStyle.set(this.checkboxNode, "display", "");
+			}
 		},
 		_confirmed: function(){
 			return cookie(this.id + "_confirmed") == "true";
@@ -87,7 +91,9 @@ define([
 		confirm: function(action, context){
 			if(!this._confirmed()){
 				this.show();
-				this.checkbox.set("value", false);
+				if(this.checkbox && this.checkbox.set){
+					this.checkbox.set("value", false);
+				}
 				this._actionListener && this.disconnect(this._actionListener);
 				this._actionListener = this.connect(this, "onExecute", lang.hitch(context, action));
 			}else{

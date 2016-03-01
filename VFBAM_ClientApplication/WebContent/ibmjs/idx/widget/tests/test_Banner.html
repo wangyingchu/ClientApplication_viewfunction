@@ -28,7 +28,7 @@ dojoScriptImport("../../../../@dojopath@/dojo/dojo.js", "postDojo");
 </script>
  
 <script type="text/javascript" id="postDojo">
-var modules = ["idx.widget.Banner"];
+var modules = ["idx.widget.Banner","idx/form/TextBox","idx/form/Select"];
 
 dojoRequireModules(modules, null, currentDojoVersion.async);
 
@@ -39,11 +39,72 @@ dojoRequireModules(modules, null, currentDojoVersion.async);
 <a class="dijitOffScreen" href="#maincontent">Skip to main content</a>
 <script type="text/javascript">applyThemeToBody()</script>
 <a name="maincontent"></a>
-	<div dojoType="idx.widget.Banner" username="Username" usernameLabel="Username" 
-			helpFunc="function() { alert('Help'); }" 
-			aboutFunc="function() { alert('About'); }"
-			logoutFunc="function() { alert('Log out'); }">
-		<span>Product Name</span>
+	<div data-dojo-type="idx.widget.Banner"
+		 data-dojo-id="banner" 
+		 data-dojo-props="
+		 	username: 'joeschmoe',
+		 	usernameLabel: 'Joe Schmoe', 
+			helpFunc: function() { alert('Help'); }, 
+			aboutFunc: function() { alert('About'); },
+			logoutFunc: function() { alert('Log out'); }">
+		<span class="bannerTitle">Product Name</span>
 	</div>
+	
+	<br />
+	<div data-dojo-type="idx/form/TextBox"
+		 data-dojo-props="label: 'username', value: 'joeschmoe', labelAlignment: 'vertical'">
+		<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+			banner.set('username', this.get("value"));
+		</script>
+	</div>
+	<br />
+	<div data-dojo-type="idx/form/TextBox"
+		 data-dojo-props="label: 'usernameLabel', value: 'Joe Schmoe', labelAlignment: 'vertical'">
+		<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+			banner.set('usernameLabel', this.get("value"));
+		</script>
+	</div>
+	<br />
+	<select data-dojo-type="idx/form/Select"
+		 data-dojo-props="label: 'logoutFunc', labelAlignment: 'vertical'">
+		<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+			var value = this.get("value");
+			var func = null;
+			if (value == "dummy") {
+				func = function() { alert('Logout');};	
+			}
+			banner.set('logoutFunc', func);
+		</script>
+		<option value="dummy" selected>Dummy Function</option>
+		<option value="none">None</option>
+	</select>
+	<br />
+	<select data-dojo-type="idx/form/Select"
+		 data-dojo-props="label: 'aboutFunc', labelAlignment: 'vertical'">
+		<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+			var value = this.get("value");
+			var func = null;
+			if (value == "dummy") {
+				func = function() { alert('About');};	
+			}
+			banner.set('aboutFunc', func);
+		</script>
+		<option value="dummy" selected>Dummy Function</option>
+		<option value="none">None</option>
+	</select>
+	<br />
+	<select data-dojo-type="idx/form/Select"
+		 data-dojo-props="label: 'helpFunc', labelAlignment: 'vertical'">
+		<script type="dojo/aspect" data-dojo-method="onChange" data-dojo-advice="after">
+			var value = this.get("value");
+			var func = null;
+			if (value == "dummy") {
+				func = function() { alert('Help');};	
+			}
+			banner.set('helpFunc', func);
+		</script>
+		<option value="dummy" selected>Dummy Function</option>
+		<option value="none">None</option>
+	</select>
 </body>
 </html>

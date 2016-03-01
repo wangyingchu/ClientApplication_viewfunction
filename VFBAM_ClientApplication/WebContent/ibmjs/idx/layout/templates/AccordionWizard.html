@@ -1,0 +1,31 @@
+<div class="${baseClass}" tabindex="0" role="region" aria-labelledby="${id}_a11yLabelNode">
+   <div class="dijitOffScreen" data-dojo-attach-point="_a11yLabelNode" id="${id}_a11yLabelNode"></div>
+   <div class="dijitOffScreen" role="log" data-dojo-attach-point="_announceNode" aria-live="assertive"
+		aria-labelledby="${id}_a11yLabelNode"></div>
+   <div class="dijitHidden" data-dojo-attach-point="containerNode"></div>
+   <div data-dojo-type="idx/layout/BorderContainer" data-dojo-attach-point="_borderContainer" data-dojo-props="gutters: false, 'class': '${baseClass}BorderContainer'">
+	  <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', 'class': '${baseClass}AccordionPane'">
+		<div style="visibility: hidden; display: none;" class="${baseClass}LeadingOverflow" data-dojo-attach-point="_leadingOverflowNode">
+			<div class="${baseClass}LeadingOverflowLabel" data-dojo-attach-point="_leadingOverflowLabelNode"></div>
+		</div>
+		<div class="${baseClass}Accordion" data-dojo-attach-point="_accordionNode"></div>
+		<div style="visibility: hidden; display: none;" class="${baseClass}TrailingOverflow" data-dojo-attach-point="_trailingOverflowNode">
+			<div class="${baseClass}TrailingOverflowLabel" data-dojo-attach-point="_trailingOverflowLabelNode"></div>
+		</div>
+	  </div>
+	  <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'bottom', 'class': '${baseClass}ButtonPane'">
+		<div data-dojo-type="idx/layout/ButtonBar" data-dojo-attach-point="_buttonBar">
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_previousButton" data-dojo-attach-event="onClick: _onPrevious" data-dojo-props="disabled: true, profile: 'compact'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_nextButton" data-dojo-attach-event="onClick: _onNext" data-dojo-props="profile: 'compact'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_saveButton" data-dojo-attach-event="onClick: _onSave" data-dojo-props="'class': 'dijitHidden', profile: 'compact'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_finishButton" data-dojo-attach-event="onClick: _onFinish" data-dojo-props="disabled: true, profile: 'compact'">
+	      </div>
+		  <div data-dojo-type="dijit/form/Button" data-dojo-attach-point="_cancelButton" data-dojo-attach-event="onClick: _onCancel" data-dojo-props="profile: 'compact'">
+	      </div>
+		</div>
+	  </div>
+  </div>
+</div>

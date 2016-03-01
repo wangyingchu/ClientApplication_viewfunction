@@ -21,6 +21,22 @@
 		@import "../../themes/oneui/oneui.css";
 		@import "../../tests/test.css";
 		@import "../../tests/_pagefooter/_PageFooter.css";
+		.stateMessageBox{
+			margin: 10px 0;
+			width: 100px;
+			text-align: center;
+			background: green;
+			padding: 2px 0;
+			font-weight: bold;
+			font-size: 14px;
+		}
+		.stateMessageBox.Incomplete{
+			background:yellow;
+		}
+		.stateMessageBox.Error{
+			background:red;
+		}
+		
 	</style>
 
 	<script type="text/javascript">
@@ -58,6 +74,24 @@
 		}
 		function postParse(modules){
 			new _PageFooter();
+			dojo.query(".idxComposite").forEach(function(domNode){
+				var stateIndicator = dojo.byId(domNode.id + "_stateIndicator");
+				if(!stateIndicator){
+					var widget = dijit.byNode(domNode);
+					if(widget.get("disabled")){return;}
+					stateIndicator = dojo.create("div",{
+						className: "stateMessageBox", 
+						id: domNode.id + "_stateIndicator",
+						innerHTML : dijit.byNode(domNode).get("state") || "Normal"
+					});
+					dojo.place(stateIndicator, domNode, "after")
+				}
+				dijit.byNode(domNode).watch("state", function(name, oldValue, newValue){
+					stateIndicator.innerHTML = newValue || "Normal";
+					dojo.removeClass(stateIndicator, oldValue || "");
+					dojo.addClass(stateIndicator, newValue);
+				});
+			})
 		}
 		dojoRequireModules(modules, null, currentDojoVersion.async, preParse, postParse);
 	</script>
@@ -105,7 +139,7 @@
 	<input data-dojo-type="idx.form.DateTextBox" id="datetextbox" data-dojo-props='
 		label: "Validation on Blur:",
 		labelWidth: 150,
-		constraints:{datePattern:"MMMM dd"},
+		constraints:{datePattern:"MM/dd/yy"},
 		value:new Date(2011,10,25),
 		invalidMessage:"The value must be formatted as month dd"'
 	></input>
@@ -114,7 +148,7 @@
 		instantValidate: true,
 		label: "Instant Validation:",
 		labelWidth: 150,
-		constraints:{datePattern:"MMMM dd"},
+		constraints:{datePattern:"MM/dd/yy"},
 		value:new Date(2011,10,25),
 		invalidMessage:"The value must be formatted as month dd"'
 	></input>

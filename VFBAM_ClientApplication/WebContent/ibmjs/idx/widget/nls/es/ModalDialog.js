@@ -13,9 +13,11 @@ define({
 	Success: "Satisfactorio",
 	Confirmation: "Confirmación",
 	Question: "Pregunta",
+	Progress: "Progreso",
 	closeButtonLabel: "Cerrar",
 	cancelButtonLabel: "Cancelar",
 	executeButtonLabel: "Aceptar",
 	checked: "No volver a preguntar"
 //end v1.x content
 });
+

@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Tümünü Görüntüle ({num})",
+	viewAll: "Tümünü Görüntüle ({num})&lrm;",
 	viewDetails: "Diğer Ayrıntılar",
 	refresh: "Yenile",
 	showDetails: "Ayrıntıları Göster",
 	hideDetails: "Ayrıntıları Gizle"
 //end v1.x content
 });
+

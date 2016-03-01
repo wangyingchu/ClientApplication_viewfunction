@@ -1,0 +1,775 @@
+/* Toolbar 
+ * 
+ * Styling Toolbar means styling the toolbar container and the widget inside toolbar  (dijitToolbar)
+ * 
+ * 1. toolbar (default styling): 
+ * 		.dijitToolbar - styles for outer container
+ *
+ * 2. widget inside toolbar
+ * 		.dijitToolbar .dijitButtonNode   - Button widget
+ * 					  .dijitComboButton  - ComboButton widget
+ * 					  .dijitDropDownButton  - DropDownButton widget
+ * 					  .dijitToggleButton  - ToggleButton widget
+ * 		
+ * 3. hovered widget inside toolbar (ie, mouse hover on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeHover  - styles for hovered Button widget
+ * 
+ * 4. actived widget inside toolbar (ie, mouse down on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeActive  - mouse down on Button widget
+ */
+
+@import "variables";
+
+.@{theme-name} .dijitToolbar {
+	border: 1px solid @toolbar-border-color;
+	background-color: @toolbar-background-color;
+	padding: 5px 0 5px 4px;
+	zoom: 1;
+}
+
+.@{theme-name} .dijitToolbar label {
+	padding: 0 3px 0 6px;
+}
+.@{theme-name} .dijitToolbar .dijitButton .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitComboButton .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitToggleButton .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitComboBox .dijitButtonNode {
+	min-width: 0px;
+}
+
+.@{theme-name} .dijitToolbar .dijitComboButton .dijitButtonNode .dijitButtonText{
+	color: white;
+}
+
+/** override claro/form/Button.css, and also ComboBox down arrow **/
+.@{theme-name} .dijitToolbar .dijitButton .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitToggleButton .dijitButtonNode{
+	.dijitButtonText{
+		color: @toolbar-button-text-color;
+		padding: 0;
+	}
+	.dijitArrowButtonInner{
+		background-image: url("form/images/arrows_blue.png");
+	}
+	border-width: 0;	/* on hover/active, border-->1px, padding-->1px */
+	padding: 5px;
+	/*.border-radius(@toolbar-button-border-radius);*/
+	.box-shadow(none);
+	.transition-property(background-color);
+	.transition-duration(.3s);
+
+	background-color: rgba(171,214,255,0);
+	/*background-image: none;	 cancel gradient for normal buttons, we don't want any gradient besides toolbar's on non-hovered buttons */
+}
+
+.@{theme-name} .dijitToolbar .dijitComboButton .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitComboBox .dijitButtonNode {
+	/*background-color: ;*/
+}
+
+.dj_ie .@{theme-name} .dijitToolbar .dijitButton .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitToggleButton .dijitButtonNode{
+	background-color: transparent;	/* for IE, which doesn't understand rgba(...) */
+}
+
+.dj_ie .@{theme-name} .dijitToolbar .dijitComboButton .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitToggleButton .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitComboBox .dijitButtonNode {
+}
+
+/* hover status */
+.dj_ie .@{theme-name} .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitComboButton .dijitButtonNodeHover,
+.dj_ie .@{theme-name} .dijitToolbar .dijitComboButton .dijitDownArrowButtonHover,
+.dj_ie .@{theme-name} .dijitToolbar .dijitToggleButtonHover .dijitButtonNode {
+	/* button should still turn blue on hover, so need to override .dj_ie rules above */
+	/*background-color: @toolbar-button-hover-text-color;*/
+	color: @toolbar-button-hover-text-color;
+}
+
+/* active status */
+.dj_ie .@{theme-name} .dijitToolbar .dijitButtonActive .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitComboButtonActive .dijitButtonNode,
+.dj_ie .@{theme-name} .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+	/* button should still turn blue on press, so need to override .dj_ie rules above */
+	/*background-color: @button-pressed-background-color;*/
+}
+
+.@{theme-name} .dijitToolbar .dijitComboButton .dijitStretch {
+	/* no rounded border on side adjacent to arrow */
+	/*.border-radius(@toolbar-button-border-radius 0 0 @toolbar-button-border-radius);*/
+}
+.@{theme-name} .dijitToolbar .dijitComboButton .dijitArrowButton {
+	/*padding: 1px;*/
+	/* no rounded border on side adjacent to button */
+	/*.border-radius(0 @toolbar-button-border-radius @toolbar-button-border-radius 0);*/
+}
+.@{theme-name} .dijitToolbar .dijitComboButton .dijitButtonNode .dijitButtonText {
+	/*padding: 1px 5px;*/
+	padding: 0;
+}
+
+.@{theme-name} .dijitToolbar .dijitComboBox .dijitButtonNode {
+	padding: 0;
+}
+
+/* hover status */
+.@{theme-name} .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitComboButtonHover .dijitButtonNode {
+	border-width: 0;
+	.dijitButtonText{
+		
+	}
+
+}
+.@{theme-name} .dijitToolbar .dijitComboButtonHover .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+	/*background-color: @toolbar-combobutton-hovered-unhoveredsection-background-color;*/
+}
+.@{theme-name} .dijitToolbar .dijitComboButtonHover .dijitButtonNodeHover,
+.@{theme-name} .dijitToolbar .dijitComboButtonHover .dijitDownArrowButtonHover {
+	/*background-color: @hovered-background-color;*/
+}
+
+/* active status */
+.@{theme-name} .dijitToolbar .dijitButtonActive .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+	/*border-width: 1px;*/
+	/*background-color:@pressed-background-color;*/
+	/*padding: 1px;*/
+	.dijitButtonText{
+		color: @toolbar-button-active-text-color;
+	}
+}
+.@{theme-name} .dijitToolbar .dijitComboButtonActive {
+	.transition-duration(.2s);
+	/*border-width: 1px;*/
+	/*padding: 0;*/
+}
+.@{theme-name} .dijitToolbar .dijitComboButtonActive .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitComboButtonActive .dijitDownArrowButton {
+	/*background-color: @toolbar-combobutton-hovered-unhoveredsection-background-color;*/
+	/*padding: 5px;*/
+}
+.@{theme-name} .dijitToolbar .dijitComboButtonActive .dijitButtonNodeActive {
+	/*background-color: @pressed-background-color;*/
+}
+.@{theme-name} .dijitToolbar .dijitComboButtonActive .dijitDownArrowButtonActive {
+	/*background-color: @pressed-background-color;*/
+}
+
+/* Avoid double border between button and arrow */
+.@{theme-name} .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton,
+.@{theme-name} .dijitToolbar .dijitComboButtonActive .dijitDownArrowButton {
+	border-left-width: 1px;
+}
+.@{theme-name} .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+	padding-left: 5px;		/* since there's no left border, don't reduce from 2px --> 1px */
+}
+
+/* toggle button checked status */
+.dj_ie .@{theme-name} .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode,
+.@{theme-name} .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode {
+/*	margin: 0;	 remove margin and add a border 
+	border-width: 1px;
+	border-style: solid;
+	background-image: none;
+	border-color: @selected-border-color;
+	background-color: @toolbar-button-checked-background-color;
+	padding: 1px;*/
+	background-color: @primary-color;
+
+	.dijitButtonText{
+		color: #FFFFFF;
+	}
+
+}
+
+.@{theme-name} .dijitToolbarSeparator {
+	/* separator icon in the editor sprite */
+	/*background: url(@image-editor-icons-enabled);*/
+	height: 26px;
+	width: 1px;
+	margin: 0 20px;
+	padding: 0;
+	background-color: @toolbar-border-color;
+}
+
+/* Toolbar inside of disabled Editor */
+.@{theme-name} .dijitDisabled .dijitToolbar {
+	background:none;
+	background-color:@disabled-background-color;
+	border-bottom: 1px solid @disabled-border-color;
+}
+
+.@{theme-name} .dijitToolbar .dijitComboBoxDisabled .dijitArrowButtonInner {
+	background-position:0 50%;
+}
+
+.@{theme-name} .dijitEditorIcon {
+	height: 16px;
+	width: 16px;
+	background-size: 16px 16px;
+	background-position: 0 !important;
+}
+
+.@{theme-name} .dijitEditorIconCopy{
+	background-image: url('../idx/layout/svg/copy.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconCopy,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconCopy{
+	background-image: url('../idx/layout/svg/copy-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconCopy,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconCopy{
+	background-image: url('../idx/layout/svg/copy-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconCut{
+	background-image: url('../idx/layout/svg/cut.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconCut,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconCut{
+	background-image: url('../idx/layout/svg/cut-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconCut,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconCut{
+	background-image: url('../idx/layout/svg/cut-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconPaste{
+	background-image: url('../idx/layout/svg/paste.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconPaste,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconPaste{
+	background-image: url('../idx/layout/svg/paste-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconPaste,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconPaste{
+	background-image: url('../idx/layout/svg/paste-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconUndo{
+	background-image: url('../idx/layout/svg/revert.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconUndo,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconUndo{
+	background-image: url('../idx/layout/svg/revert-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconUndo,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconUndo{
+	background-image: url('../idx/layout/svg/revert-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconRedo{
+	background-image: url('../idx/layout/svg/redo.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconRedo,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconRedo{
+	background-image: url('../idx/layout/svg/redo-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconRedo,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconRedo{
+	background-image: url('../idx/layout/svg/redo-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconBold{
+	background-image: url('../idx/layout/svg/bold.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconBold,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconBold{
+	background-image: url('../idx/layout/svg/bold-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconBold,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconBold{
+	background-image: url('../idx/layout/svg/bold-active.svg');
+}
+.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconBold{
+	background-image: url('../idx/layout/svg/bold-white.svg');
+}
+
+.@{theme-name} .dijitEditorIconItalic{
+	background-image: url('../idx/layout/svg/italic.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconItalic,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconItalic{
+	background-image: url('../idx/layout/svg/italic-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconItalic,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconItalic{
+	background-image: url('../idx/layout/svg/italic-active.svg');
+}
+.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconItalic{
+	background-image: url('../idx/layout/svg/italic-white.svg');
+}
+
+.@{theme-name} .dijitEditorIconUnderline{
+	background-image: url('../idx/layout/svg/underline.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconUnderline,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconUnderline{
+	background-image: url('../idx/layout/svg/underline-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconUnderline,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconUnderline{
+	background-image: url('../idx/layout/svg/underline-active.svg');
+}
+.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconUnderline{
+	background-image: url('../idx/layout/svg/underline-white.svg');
+}
+
+.@{theme-name} .dijitEditorIconInsertOrderedList{
+	background-image: url('../idx/layout/svg/numberlist.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconInsertOrderedList,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconInsertOrderedList{
+	background-image: url('../idx/layout/svg/numberlist-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconInsertOrderedList,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconInsertOrderedList{
+	background-image: url('../idx/layout/svg/numberlist-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconInsertUnorderedList{
+	background-image: url('../idx/layout/svg/bulletlist.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconInsertUnorderedList,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconInsertUnorderedList{
+	background-image: url('../idx/layout/svg/bulletlist-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconInsertUnorderedList,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconInsertUnorderedList{
+	background-image: url('../idx/layout/svg/bulletlist-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconIndent{
+	background-image: url('../idx/layout/svg/indent.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconIndent,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconIndent{
+	background-image: url('../idx/layout/svg/indent-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconIndent,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconIndent{
+	background-image: url('../idx/layout/svg/indent-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconOutdent{
+	background-image: url('../idx/layout/svg/outdent.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconOutdent,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconOutdent{
+	background-image: url('../idx/layout/svg/outdent-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconOutdent,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconOutdent{
+	background-image: url('../idx/layout/svg/outdent-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconJustifyLeft{
+	background-image: url('../idx/layout/svg/alignleft.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyLeft,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyLeft{
+	background-image: url('../idx/layout/svg/alignleft-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyLeft,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyLeft{
+	background-image: url('../idx/layout/svg/alignleft-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconJustifyRight{
+	background-image: url('../idx/layout/svg/alignright.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyRight,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyRight{
+	background-image: url('../idx/layout/svg/alignright-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyRight,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyRight{
+	background-image: url('../idx/layout/svg/alignright-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconJustifyCenter{
+	background-image: url('../idx/layout/svg/aligncenter.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyCenter,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyCenter{
+	background-image: url('../idx/layout/svg/aligncenter-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyCenter,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyCenter{
+	background-image: url('../idx/layout/svg/aligncenter-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconJustifyFull{
+	background-image: url('../idx/layout/svg/justify.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyFull,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyFull{
+	background-image: url('../idx/layout/svg/justify-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyFull,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyFull{
+	background-image: url('../idx/layout/svg/justify-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconCreateLink{
+	background-image: url('../idx/layout/svg/externallink.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconCreateLink,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconCreateLink,
+.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconCreateLink{
+	background-image: url('../idx/layout/svg/externallink-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconCreateLink,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconCreateLink,
+.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconCreateLink{
+	background-image: url('../idx/layout/svg/externallink-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconForeColor{
+	background-image: url('../idx/layout/svg/textcolor.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconForeColor,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconForeColor,
+.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconForeColor{
+	background-image: url('../idx/layout/svg/textcolor-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconForeColor,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconForeColor,
+.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconForeColor{
+	background-image: url('../idx/layout/svg/textcolor-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconInsertImage{
+	background-image: url('../idx/layout/svg/picturefile.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconInsertImage,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconInsertImage,
+.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconInsertImage{
+	background-image: url('../idx/layout/svg/picturefile-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconInsertImage,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconInsertImage,
+.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconInsertImage{
+	background-image: url('../idx/layout/svg/picturefile-active.svg');
+}
+
+.@{theme-name} .dijitEditorIconStrikethrough{
+	background-image: url('../idx/layout/svg/strikethrough.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconStrikethrough,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconStrikethrough,
+.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconStrikethrough{
+	background-image: url('../idx/layout/svg/strikethrough-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconStrikethrough,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconStrikethrough,
+.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconStrikethrough{
+	background-image: url('../idx/layout/svg/strikethrough-active.svg');
+}
+.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconStrikethrough{
+	background-image: url('../idx/layout/svg/strikethrough-white.svg');
+}
+
+.@{theme-name} .dijitEditorIconHiliteColor{
+	background-image: url('../idx/layout/svg/textbackground.svg');
+}
+.@{theme-name} .dijitButtonHover .dijitEditorIconHiliteColor,
+.@{theme-name} .dijitToggleButtonHover .dijitEditorIconHiliteColor,
+.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconHiliteColor{
+	background-image: url('../idx/layout/svg/textbackground-hover.svg');
+}
+.@{theme-name} .dijitButtonActive .dijitEditorIconHiliteColor,
+.@{theme-name} .dijitToggleButtonActive .dijitEditorIconHiliteColor,
+.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconHiliteColor{
+	background-image: url('../idx/layout/svg/textbackground-active.svg');
+}
+/*.@{theme-name} .dijitToolbar .dijitButtonText{
+	color: #FFFFFF;
+}*/
+
+.dj_ie8{
+	.@{theme-name} .dijitEditorIconCopy{
+		background-image: url('../idx/widget/images/copy.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconCopy,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconCopy{
+		background-image: url('../idx/widget/images/copy-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconCopy,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconCopy{
+		background-image: url('../idx/widget/images/copy-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconCut{
+		background-image: url('../idx/widget/images/cut.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconCut,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconCut{
+		background-image: url('../idx/widget/images/cut-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconCut,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconCut{
+		background-image: url('../idx/widget/images/cut-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconPaste{
+		background-image: url('../idx/widget/images/paste.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconPaste,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconPaste{
+		background-image: url('../idx/widget/images/paste-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconPaste,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconPaste{
+		background-image: url('../idx/widget/images/paste-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconUndo{
+		background-image: url('../idx/widget/images/revert.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconUndo,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconUndo{
+		background-image: url('../idx/widget/images/revert-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconUndo,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconUndo{
+		background-image: url('../idx/widget/images/revert-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconRedo{
+		background-image: url('../idx/widget/images/redo.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconRedo,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconRedo{
+		background-image: url('../idx/widget/images/redo-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconRedo,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconRedo{
+		background-image: url('../idx/widget/images/redo-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconBold{
+		background-image: url('../idx/widget/images/bold.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconBold,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconBold{
+		background-image: url('../idx/widget/images/bold-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconBold,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconBold{
+		background-image: url('../idx/widget/images/bold-active.png');
+	}
+	.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconBold{
+		background-image: url('../idx/widget/images/bold-white.png');
+	}
+
+	.@{theme-name} .dijitEditorIconItalic{
+		background-image: url('../idx/widget/images/italic.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconItalic,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconItalic{
+		background-image: url('../idx/widget/images/italic-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconItalic,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconItalic{
+		background-image: url('../idx/widget/images/italic-active.png');
+	}
+	.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconItalic{
+		background-image: url('../idx/widget/images/italic-white.png');
+	}
+
+	.@{theme-name} .dijitEditorIconUnderline{
+		background-image: url('../idx/widget/images/underline.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconUnderline,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconUnderline{
+		background-image: url('../idx/widget/images/underline-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconUnderline,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconUnderline{
+		background-image: url('../idx/widget/images/underline-active.png');
+	}
+	.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconUnderline{
+		background-image: url('../idx/widget/images/underline-white.png');
+	}
+
+	.@{theme-name} .dijitEditorIconInsertOrderedList{
+		background-image: url('../idx/widget/images/numberlist.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconInsertOrderedList,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconInsertOrderedList{
+		background-image: url('../idx/widget/images/numberlist-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconInsertOrderedList,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconInsertOrderedList{
+		background-image: url('../idx/widget/images/numberlist-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconInsertUnorderedList{
+		background-image: url('../idx/widget/images/bulletlist.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconInsertUnorderedList,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconInsertUnorderedList{
+		background-image: url('../idx/widget/images/bulletlist-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconInsertUnorderedList,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconInsertUnorderedList{
+		background-image: url('../idx/widget/images/bulletlist-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconIndent{
+		background-image: url('../idx/widget/images/indent.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconIndent,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconIndent{
+		background-image: url('../idx/widget/images/indent-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconIndent,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconIndent{
+		background-image: url('../idx/widget/images/indent-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconOutdent{
+		background-image: url('../idx/widget/images/outdent.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconOutdent,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconOutdent{
+		background-image: url('../idx/widget/images/outdent-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconOutdent,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconOutdent{
+		background-image: url('../idx/widget/images/outdent-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconJustifyLeft{
+		background-image: url('../idx/widget/images/alignleft.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyLeft,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyLeft{
+		background-image: url('../idx/widget/images/alignleft-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyLeft,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyLeft{
+		background-image: url('../idx/widget/images/alignleft-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconJustifyRight{
+		background-image: url('../idx/widget/images/alignright.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyRight,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyRight{
+		background-image: url('../idx/widget/images/alignright-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyRight,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyRight{
+		background-image: url('../idx/widget/images/alignright-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconJustifyCenter{
+		background-image: url('../idx/widget/images/aligncenter.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyCenter,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyCenter{
+		background-image: url('../idx/widget/images/aligncenter-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyCenter,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyCenter{
+		background-image: url('../idx/widget/images/aligncenter-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconJustifyFull{
+		background-image: url('../idx/widget/images/justify.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconJustifyFull,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconJustifyFull{
+		background-image: url('../idx/widget/images/justify-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconJustifyFull,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconJustifyFull{
+		background-image: url('../idx/widget/images/justify-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconCreateLink{
+		background-image: url('../idx/widget/images/externallink.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconCreateLink,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconCreateLink,
+	.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconCreateLink{
+		background-image: url('../idx/widget/images/externallink-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconCreateLink,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconCreateLink,
+	.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconCreateLink{
+		background-image: url('../idx/widget/images/externallink-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconForeColor{
+		background-image: url('../idx/widget/images/textcolor.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconForeColor,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconForeColor,
+	.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconForeColor{
+		background-image: url('../idx/widget/images/textcolor-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconForeColor,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconForeColor,
+	.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconForeColor{
+		background-image: url('../idx/widget/images/textcolor-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconInsertImage{
+		background-image: url('../idx/widget/images/picturefile.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconInsertImage,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconInsertImage,
+	.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconInsertImage{
+		background-image: url('../idx/widget/images/picturefile-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconInsertImage,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconInsertImage,
+	.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconInsertImage{
+		background-image: url('../idx/widget/images/picturefile-active.png');
+	}
+
+	.@{theme-name} .dijitEditorIconStrikethrough{
+		background-image: url('../idx/widget/images/strikethrough.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconStrikethrough,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconStrikethrough,
+	.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconStrikethrough{
+		background-image: url('../idx/widget/images/strikethrough-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconStrikethrough,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconStrikethrough,
+	.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconStrikethrough{
+		background-image: url('../idx/widget/images/strikethrough-active.png');
+	}
+	.@{theme-name} .dijitToggleButtonChecked .dijitEditorIconStrikethrough{
+		background-image: url('../idx/widget/images/strikethrough-white.png');
+	}
+
+	.@{theme-name} .dijitEditorIconHiliteColor{
+		background-image: url('../idx/widget/images/textbackground.png');
+	}
+	.@{theme-name} .dijitButtonHover .dijitEditorIconHiliteColor,
+	.@{theme-name} .dijitToggleButtonHover .dijitEditorIconHiliteColor,
+	.@{theme-name} .dijitDropDownButtonHover .dijitEditorIconHiliteColor{
+		background-image: url('../idx/widget/images/textbackground-hover.png');
+	}
+	.@{theme-name} .dijitButtonActive .dijitEditorIconHiliteColor,
+	.@{theme-name} .dijitToggleButtonActive .dijitEditorIconHiliteColor,
+	.@{theme-name} .dijitDropDownButtonActive .dijitEditorIconHiliteColor{
+		background-image: url('../idx/widget/images/textbackground-active.png');
+	}
+}

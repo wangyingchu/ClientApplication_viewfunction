@@ -30,7 +30,7 @@
 }
 .oneui .dijitTitlePaneTitle {
   border: 1px solid #ddd;
-  padding:5px 6px 6px 7px;
+  padding:5px 6px 1px 7px;
 }
 .oneui .dijitTitlePaneTitleHover {
   background: #ffffff; /* Old browsers */

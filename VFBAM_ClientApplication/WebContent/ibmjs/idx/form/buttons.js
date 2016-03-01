@@ -8,6 +8,7 @@
 define(["dojo/_base/lang",
         "idx/main",
         "dojo/string",
+        "dojo/dom-construct",
         "dojo/dom-class",
         "dojo/dom-attr",
         "dojo/aspect",
@@ -16,6 +17,7 @@ define(["dojo/_base/lang",
         "dojo/data/ItemFileReadStore",
         "../string",
         "../resources",
+        "../html",
         "dojo/i18n!../nls/base",
         "dojo/i18n!./nls/base",
         "dojo/i18n!./nls/buttons",
@@ -23,6 +25,7 @@ define(["dojo/_base/lang",
 		function(dLang, 				// (dojo/_base/lang)					
 				 iMain,					// (idx)
 				 dString,				// (dojo/string)
+				 dDomConstruct,			// (dojo/dom-construct)
 				 dDomClass,				// (dojo/dom-class) for (dDomClass.add/remove/contains)
 				 dDomAttr,				// (dojo/dom-attr) for (dDomAttr.get/set)
 				 dAspect,				// (dojo/aspect)
@@ -30,7 +33,8 @@ define(["dojo/_base/lang",
 				 dButton,				// (dijit/form/Button)
 				 dItemFileReadStore,	// (dojo/date/ItemFileReadStore)
 				 iString,				// (../string)
-				 iResources) 			// (../resources)
+				 iResources, 			// (../resources)
+				 iHTML)					// (../html)
 {
 	/**
 	 * @name idx.form.buttons
@@ -82,7 +86,7 @@ define(["dojo/_base/lang",
      */
 	iButtons._buttonPlacements = {
 			primary: { cssClass: null, defaultDisplayMode: "iconAndLabel", defaultProfile: "standard"},
-			secondary: { cssClass: "idxButtonSecondary", defaultDisplayMode: "labelOnly", defaultProfile: "standard"},
+			secondary: { cssClass: "idxSecondaryButton", defaultDisplayMode: "labelOnly", defaultProfile: "standard"},
 			toolbar: { cssClass: "idxButtonToolbar", defaultDisplayMode: "iconOnly", defaultProfile: "standard"},
 			special: { cssClass: "idxButtonSpecial", defaultDisplayMode: "iconAndLabel", defaultProfile: "standard"}
 	};
@@ -181,24 +185,24 @@ define(["dojo/_base/lang",
      * @private
      */
 	iButtons._stdButtonTypes = {
-			close: { iconClass: "idxCloseIcon", labelKey: "closeLabel", titleKey: "closeTip" },
-			configure: { iconClass: "idxConfigureIcon", labelKey: "configureLabel", titleKey: "configureTip" },
-			edit: { iconClass: "idxEditIcon", labelKey: "editLabel", titleKey: "editTip" },
-			filter: { iconClass: "idxFilterIcon", labelKey: "filterLabel", titleKey: "filterTip" },
-			clearFilter: { iconClass: "idxClearFilterIcon", labelKey: "clearFilterLabel", titleKey: "clearFilterTip"},
+			close: { iconClass: "idxCloseIcon", iconSymbol: ['X','X'], labelKey: "closeLabel", titleKey: "closeTip" },
+			configure: { iconClass: "idxConfigureIcon", iconSymbol: ['\u2699','\u2699'], labelKey: "configureLabel", titleKey: "configureTip" },
+			edit: { iconClass: "idxEditIcon", iconSymbol: ['\u270E','\u270E'], labelKey: "editLabel", titleKey: "editTip" },
+			filter: { iconClass: "idxFilterIcon", iconSymbol: ['\u2A52','\u2A52'], labelKey: "filterLabel", titleKey: "filterTip" },
+			clearFilter: { iconClass: "idxClearFilterIcon", iconSymbol: ['\u2A5D','\u2A5D'], labelKey: "clearFilterLabel", titleKey: "clearFilterTip"},
 			toggleFilter: { toggleButtonTypes: [ "filter", "clearFilter" ] },
-			help: { iconClass: "idxHelpIcon", labelKey: "helpLabel", titleKey: "helpTip" },
-			info: { iconClass: "idxInfoIcon", labelKey: "infoLabel", titleKey: "infoTip" },
-			minimize: { iconClass: "idxMinimizeIcon", labelKey: "minimizeLabel", titleKey: "minimizeTip" },
-			maximize: { iconClass: "idxMaximizeIcon", labelKey: "maximizeLabel", titleKey: "maximizeTip" },
-			print: { iconClass: "idxPrintIcon", labelKey: "printLabel", titleKey: "printTip" },
-			refresh: { iconClass: "idxRefreshIcon", labelKey: "refreshLabel", titleKey: "refreshTip" },
-			restore: { iconClass: "idxRestoreIcon", labelKey: "restoreLabel", titleKey: "restoreTip" },
+			help: { iconClass: "idxHelpIcon", iconSymbol: ['?','\u061F'], labelKey: "helpLabel", titleKey: "helpTip" },
+			info: { iconClass: "idxInfoIcon", iconSymbol: ['\u24D8','\u24D8'], labelKey: "infoLabel", titleKey: "infoTip" },
+			minimize: { iconClass: "idxMinimizeIcon", iconSymbol: ['\u2193','\u2193'], labelKey: "minimizeLabel", titleKey: "minimizeTip" },
+			maximize: { iconClass: "idxMaximizeIcon", iconSymbol: ['\u2197','\u2196'], labelKey: "maximizeLabel", titleKey: "maximizeTip" },
+			print: { iconClass: "idxPrintIcon", iconSymbol: ['\uD83D\uDCF0','\uD83D\uDCF0'], labelKey: "printLabel", titleKey: "printTip" },
+			refresh: { iconClass: "idxRefreshIcon", iconSymbol: ['\u21BA','\u21BB'], labelKey: "refreshLabel", titleKey: "refreshTip" },
+			restore: { iconClass: "idxRestoreIcon", iconSymbol: ['\u2199','\u2198'], labelKey: "restoreLabel", titleKey: "restoreTip" },
 			maxRestore: { toggleButtonTypes: [ "maximize", "restore" ] },
-			nextPage: { iconClass: "idxNextPageIcon", labelKey: "nextPageLabel", titleKey: "nextPageTip" },
-			previousPage: { iconClass: "idxPreviousPageIcon", labelKey: "previousPageLabel", titleKey: "previousPageTip" },
-			lastPage: { iconClass: "idxLastPageIcon", labelKey: "lastPageLabel", titleKey: "lastPageTip" },
-			firstPage: { iconClass: "idxFirstPageIcon", labelKey: "firstPageLabel", titleKey: "firstPageTip" }
+			nextPage: { iconClass: "idxNextPageIcon", iconSymbol: ['\u21D2','\u21D0'], labelKey: "nextPageLabel", titleKey: "nextPageTip" },
+			previousPage: { iconClass: "idxPreviousPageIcon", iconSymbol: ['\u21D0','\u21D2'], labelKey: "previousPageLabel", titleKey: "previousPageTip" },
+			lastPage: { iconClass: "idxLastPageIcon", iconSymbol: ['\u21DB','\u21DA'], labelKey: "lastPageLabel", titleKey: "lastPageTip" },
+			firstPage: { iconClass: "idxFirstPageIcon", iconSymbol: ['\u21DA','\u21DB'], labelKey: "firstPageLabel", titleKey: "firstPageTip" }
 	};
 
 	/**
@@ -385,7 +389,9 @@ define(["dojo/_base/lang",
 				&& (!iString.nullTrim(dDomAttr.get(this.valueNode, "role")))
 				&& (!iString.nullTrim(dDomAttr.get(this.valueNode, "wairole")))) {
 			// get the screen readers to ignore the value node
-			dDomAttr.set(this.valueNode, {role: "presentation", wairole: "presentation"});
+			
+			//Defect14041 incorrect usage of the presentation role
+			//dDomAttr.set(this.valueNode, {role: "presentation", wairole: "presentation"});
 		}
 	};
 	
@@ -486,6 +492,98 @@ define(["dojo/_base/lang",
 	profile: "",
 	
 	/**
+	 * The character symbol to show for an icon in high-contrast mode.  This
+	 * symbol will be hidden (in favor of the actual icon) if not in high-contrast
+	 * mode.
+	 * @public
+	 * @field
+	 * @default ""
+	 */
+	iconSymbol: "",
+	
+	/**
+	 * Setter function for the iconSymbol attribute.
+	 * 
+	 * @private
+	 */
+	_setIconSymbolAttr: function(symbol) {
+		// setup the explicit iconClass if starting up
+		if ((!this._started) && (! ("_explicitIconSymbol" in this)) && (this.params) 
+				&& ("iconSymbol" in this.params)) {
+			this._explicitIconSymbol = this.params.iconSymbol;
+		}
+				
+		// determine the explicit value so we can revert if button type removed
+		var abt = this._applyingButtonType;
+		this._applyingButtonType = false; // clear the flag
+		if (! abt) {
+			this._explicitIconSymbol = symbol;			  
+		} else {
+			var eis = this._explicitIconSymbol;
+			if (iString.nullTrim(eis)) {
+				// we have an explicit symbol -- ignore button type symbol
+				this.iconSymbol = eis;
+				symbol = eis;
+			}
+		}
+
+		// set the symbol		
+		this.iconSymbol = symbol;
+		this._applyIconSymbol(symbol);
+		
+		if ((!abt) && (! iString.nullTrim(this.iconSymbol))
+			&& (this._buttonTypes)) {
+			var bt = this._buttonTypes[this._toggleIndex];
+			this._applyButtonTypeIconSymbol(bt);
+		}
+
+	},
+	
+	/**
+	 * Internal method to apply the icon symbol.
+	 *
+	 * @private
+	 */
+	_applyIconSymbol: function(symbol) {
+		if (iString.nullTrim(symbol)) {
+			if (!this._iconSymbolNode) {
+				this._iconSymbolNode = dDomConstruct.create("div", {"class":"idxButtonIconSymbol"}, this.iconNode);
+				dDomClass.add(this.domNode, "idxButtonHasIconSymbol");
+			}
+			this._iconSymbolNode.innerHTML = iHTML.escapeHTML(symbol);
+			
+		} else {
+			if (this._iconSymbolNode) {
+				dDomConstruct.destroy(this._iconSymbolNode);
+				dDomClass.remove(this.DomNode, "idxButtonHasIconSymbol");
+				delete this._iconSymbolNode;
+			} 
+		}
+	},
+	
+	/**
+	 * Applies the icon symbol for the button type.
+	 * @private
+	 */
+	_applyButtonTypeIconSymbol: function(buttonType) {
+		var symbols = buttonType.iconSymbol;
+		var symbol  = "";
+		if (symbols) {
+			if (dLang.isString(symbols)) {
+				symbol = symbols;
+			} else {
+				var ltr = this.isLeftToRight();
+				symbol = symbols[(ltr ? 0 : 1)];	
+			}
+		}		
+		if (!symbol) symbol = "";
+		this._applyingButtonType = true;
+		this.set("iconSymbol", symbol);
+		this._applyingButtonType = false;		
+			
+	},
+	
+	/**
 	 * @private
 	 */
 	_getIDXResources: function() {
@@ -549,7 +647,8 @@ define(["dojo/_base/lang",
 	 */
 	_applyButtonType: function(buttonType) {
 		this._applyButtonTypeLabel(buttonType);
-		this._applyButtonTypeIconClass(buttonType);		
+		this._applyButtonTypeIconClass(buttonType);
+		this._applyButtonTypeIconSymbol(buttonType);		
 		this._applyButtonTypeTitle(buttonType);
 	},
 	
@@ -793,6 +892,7 @@ define(["dojo/_base/lang",
 	    } else{
 	    	this._buttonTypes = null;
 	    }
+	    
 	},
 	
 	/**

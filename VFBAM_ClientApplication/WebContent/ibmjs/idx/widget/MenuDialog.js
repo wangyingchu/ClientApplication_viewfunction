@@ -193,7 +193,7 @@ define(["dojo/_base/declare",
 		 * @memberOf idx.widget.MenuDialog.prototype
 		 * @type DOMNode[]
 		 */
-		targetNodeIds: [],
+		targetNodeIds: [], // need to override this class-static value in postMixInProperties
 		
 		/**
 	 	 * The template HTML for the widget.
@@ -214,6 +214,11 @@ define(["dojo/_base/declare",
 		 */
 		useConnector: false,
 
+		postMixInProperties: function() {
+			this.targetNodeIds = this.targetNodeIds || [];
+			this.inherited(arguments);
+		},
+		
 		/**
 		 * Standard Widget lifecycle method.
 		 * @private
@@ -453,7 +458,11 @@ define(["dojo/_base/declare",
 			// use coords if supplied, otherwise use the around node if supplied,
 			// or use current focus node, or (0,0) as a last resort
 			var around = (args && (args.coords ? { x: args.coords.x, y: args.coords.y, w: 0, h: 0 } : args.around)) || refocusNode || this._focusManager.get("curNode") || { x: 0, y: 0, w: 0, h: 0 };
-				
+			//work around for popup.open(call "around.getBoundingClientRect" inside)
+			if(!around.getBoundingClientRect){
+				around.getBoundingClientRect = function(){return around};
+			}
+			
 			var closeFunction = lang.hitch(this, function(){
 				if(refocusNode){
 					refocusNode.focus();
@@ -588,7 +597,11 @@ define(["dojo/_base/declare",
 						useConnector && (newparentcss = "connectorNearTopEdge");
 						if(aroundNodeSize.h > 0){
 							displacementProperty = "top";
+							if(this.isLeftToRight()){
 							displacementValue = Math.max(4, 4 + Math.min(getContentBox(this.domNode.parentNode).h - 24, aroundNodeSize.h / 2)) + "px"; 
+							}else{
+								displacementValue = (4 + Math.min(getContentBox(this.domNode.parentNode).h - 24, aroundNodeSize.h / 2)) + "px";
+							}
 						}
 						break;
 					case 'B':
@@ -596,7 +609,11 @@ define(["dojo/_base/declare",
 						useConnector && (newparentcss = "connectorNearBottomEdge");
 						if(aroundNodeSize.h > 0){
 							displacementProperty = "bottom";
+							if(this.isLeftToRight()){
 							displacementValue = (4 + Math.min(getContentBox(this.domNode.parentNode).h - 24, aroundNodeSize.h / 2)) + "px"; 
+							}else{
+								displacementValue = Math.max(4, 4 + Math.min(getContentBox(this.domNode.parentNode).h - 24, aroundNodeSize.h / 2)) + "px";
+							}
 						}
 						break;
 				}
@@ -613,7 +630,11 @@ define(["dojo/_base/declare",
 						useConnector && (newparentcss = "connectorNearLeftEdge");
 						if(aroundNodeSize.w > 0){
 							displacementProperty = "left";
+							if(this.isLeftToRight()){
 							displacementValue = Math.max(4, 4 + Math.min(getContentBox(this.domNode.parentNode).w - 16, aroundNodeSize.w / 2)) + "px"; 
+							}else{
+								displacementValue = (4 + Math.min(getContentBox(this.domNode.parentNode).w - 24, aroundNodeSize.w / 2)) + "px";
+							}
 						}
 						break;
 					case 'R':
@@ -621,7 +642,11 @@ define(["dojo/_base/declare",
 						useConnector && (newparentcss = "connectorNearRightEdge");
 						if(aroundNodeSize.h > 0){
 							displacementProperty = "right";
+							if(this.isLeftToRight()){
 							displacementValue = (4 + Math.min(getContentBox(this.domNode.parentNode).w - 24, aroundNodeSize.w / 2)) + "px"; 
+							}else{
+								displacementValue = Math.max(4, 4 + Math.min(getContentBox(this.domNode.parentNode).w - 16, aroundNodeSize.w / 2)) + "px";
+							}
 						}
 						break;
 				}

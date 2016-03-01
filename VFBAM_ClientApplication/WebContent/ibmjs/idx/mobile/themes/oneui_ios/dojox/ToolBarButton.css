@@ -8,13 +8,13 @@
 @import url(../../common/dojox/ToolBarButton.css);
 
 /* Tablet (iPad) variations. */
-.dj_tablet .mblToolBarButton {
+.oneui.dj_tablet .mblToolBarButton {
 	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
 }
 
 
 /* Adjustments for ToolBarButtons when used in a Heading. */
-.mblHeading .mblToolBarButton {
+.oneui .mblHeading .mblToolBarButton {
 	height: 27px;
 	margin: 8px 0 6px 7px;
 	line-height: 27px;
@@ -24,12 +24,12 @@
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
-.mblHeading .mblToolBarButtonBody {
+.oneui .mblHeading .mblToolBarButtonBody {
 	border-color: #000000;
 	box-shadow: inset 0 1px 0 rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.33);
 }
 
-.mblHeading .mblToolBarButtonArrow {
+.oneui .mblHeading .mblToolBarButtonArrow {
 	width: 19px;
 	height: 19px;
 	top: 5px;

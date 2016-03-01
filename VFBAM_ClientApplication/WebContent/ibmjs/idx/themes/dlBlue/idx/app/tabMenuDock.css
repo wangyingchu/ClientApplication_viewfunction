@@ -1,0 +1,22 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*/
+.dlBlue .idxTabMenuDockOptions {
+  background-image: url(../images/blank.gif?tabWidget=idx.app.WorkspaceTab&autoHeight=false);
+}
+.dlBlue div.idxTabMenuDock {
+  height: 40px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background: #efeff1;
+}
+.dlBlue div.idxTabMenuDockTabs {
+  position: absolute;
+  left: 15px;
+  right: 25px;
+  top: 0px;
+  bottom: 0px;
+}
+.dlBlue.dijit_a11y div.idxTabMenuDock {
+  border-bottom: 1px solid black;
+}

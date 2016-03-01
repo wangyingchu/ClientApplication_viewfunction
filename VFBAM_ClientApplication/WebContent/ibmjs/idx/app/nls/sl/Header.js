@@ -9,8 +9,13 @@ define({
 //begin v1.x content
 	ibmlogo: "IBM&reg;",
 	actionShare: "Skupna raba",
+	actionSettings: "Nastavitve",
 	actionHelp: "Pomoč",
 	searchEntry: "Iskanje",
-	searchSubmit: "Iskanje"
+	searchSubmit: "Iskanje",
+	primarySearchLabelSuffix: "primarno iskanje",
+	secondarySearchLabelSuffix: "sekundarno iskanje",
+	homeButton: "Začetna stran"
 //end v1.x content
 });
+

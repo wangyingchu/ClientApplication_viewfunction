@@ -48,6 +48,29 @@
 						doh.t(dijit.byId("select1"));
 					});
 					
+					doh.register("placeHolder", function(){
+					    var widget = dijit.byId("select1");
+					    doh.t(widget.get("placeHolder") === "some hint");
+					});
+					
+					doh.register("validation", function(){
+					    var widget = dijit.byId("select1");
+					    doh.t(widget.get("value") === "");
+					    widget.set("required", true);
+					    doh.f(widget.validate());
+					});
+					
+					doh.register("setValue", function(){
+					    var widget = dijit.byId("select1");
+					    widget.set("value", "CA");
+					    doh.t(widget.get("value") === "CA");
+					    doh.t(widget.validate());
+					    widget.set("value", "WA");
+					    doh.t(widget.validate());
+					    widget.set("value", "SS");
+					    doh.t(widget.get('value') === "");
+					});
+					
 					doh.register("setLabelAlignment", function(){
 						var widget = dijit.byId("select1");
 						doh.t(widget.get("labelAlignment") === "horizontal");
@@ -85,7 +108,7 @@
 										label: "Alaska"
 									}, {
 										value: "AZ",
-										label: "Arizona",
+										label: "Arizona"
 									}, {
 										value: "AR",
 										label: "Arkansas"
@@ -123,14 +146,11 @@
 					id: "select1",
 					label: "Test composite Select: ",
 					labelAlignment: "horizontal",
-					hint: "some hint",
-					isValid: function(){
-						return this.get("value") != "WA";
-					},
+					placeHolder: "some hint",
 					invalidMessage: "Washington is an invalid option!"
 			'>
-					<option value="TN" selected="selected">Tennessee</option>
-					<option value="VA" >Virginia</option>
+					<option value="TN">Tennessee</option>
+					<option value="VA">Virginia</option>
 					<option value="WA">Washington</option>
 					<option value="FL">Florida</option>
 					<option value="CA">California</option>

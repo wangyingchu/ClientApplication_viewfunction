@@ -1,0 +1,158 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+.idxWorkspaceTabOptions {
+}
+
+div.idxWorkspaceTab {
+	.textColors(@brand);
+	color:@textStrong;
+	height:48px;
+	position:absolute;
+	top:0;
+	margin:0;
+	.gradient(@brand; @brandDarker);
+	border-left:1px solid transparent;
+	border-right:1px solid transparent;
+}
+
+div.idxWorkspaceTabTitle {
+	.textColors(@brand);
+	white-space:nowrap;
+	border-color:transparent;
+	position:relative;
+	height:1em;
+	top:50%;
+	margin-top:-.5em;
+	line-height:1em;
+	font-family: @sans;
+	font-weight:700;
+	font-size:11px;
+	color:@textStrong;
+	padding-left:15px;
+	padding-right:15px;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:rgba(0,0,0,.25);
+}
+
+div.idxWorkspaceTabPreHovered {
+}
+
+div.idxWorkspaceTabTitlePreHovered {
+}
+
+button.idxWorkspaceTabTitlePreHovered {
+}
+
+div.idxWorkspaceTabPostHovered {
+}
+
+div.idxWorkspaceTabTitlePostHovered {
+	border-left-color:transparent;
+	border-left-style:solid;
+	border-left-width:1px;
+}
+
+button.idxWorkspaceTabTitlePostHovered {
+}
+
+div.idxWorkspaceTabPreSelected {
+}
+
+div.idxWorkspaceTabPreTitleSelected {
+}
+
+div.idxWorkspaceTabPostSelected {
+}
+
+div.idxWorkspaceTabTitlePostSelected {
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:transparent;
+}
+
+button.idxWorkspaceTabTitlePostSelected {
+}
+
+div.idxWorkspaceTabHovered {
+	background-image: none;
+	background-color: @brandDarker;
+	cursor:pointer;
+	border-left:1px solid rgba(0,0,0,.25);
+	border-right:1px solid rgba(0,0,0,.25);
+}
+
+div.idxWorkspaceTabTitleHovered {
+	font-family: @sans;
+	font-weight:700;
+	font-size:11px;
+	.textColors(@brandDarker);
+	color: @textStrong;
+	cursor:pointer;
+	border-left-color:transparent;
+	border-left-style:solid;
+	border-left-width:1px;
+}
+
+button.idxWorkspaceTabTitleHovered {
+	font-family:@sans;
+	font-weight:700;
+	font-size:11px;
+	color:@brandDarkest;
+	cursor:pointer;
+}
+
+div.idxWorkspaceTabSelected,
+div.idxWorkspaceTabSelected:hover {
+	background-image:none;
+	filter: ~"none";
+	bottom:0;
+	background-color: @fwBackground;
+	cursor:default;
+}
+
+div.idxWorkspaceTabTitleSelected {
+	font-family: @sans;
+	font-weight:700;
+	font-size:11px;
+	.textColors(@fwBackground);
+	color: @textStrong;
+	cursor:default;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:transparent;
+}
+
+button.idxWorkspaceTabTitleSelected {
+	font-family: @sans;
+	font-size:11px;
+	font-weight:700;
+	color:@brandDarkest;
+	cursor:default;
+}
+
+div.idxWorkspaceTabFirst {
+}
+
+div.idxWorkspaceTabTitleFirst {
+	border-left-color:transparent;
+	border-left-style:solid;
+	border-left-width:1px;
+}
+
+button.idxWorkspaceTabTitleFirst {
+}
+
+div.idxWorkspaceTabLast {
+}
+
+div.idxWorkspaceTabTitleLast {
+}
+
+button.idxWorkspaceTabTitleLast {
+}

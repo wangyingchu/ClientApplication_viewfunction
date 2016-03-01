@@ -10,9 +10,9 @@ define([
 	"dojo/dom-style", 
 	"dojo/i18n", 
 	"dijit/_base/wai", 
-	"idx/widget/HoverHelpTooltip", 
+	"idx/widget/HoverHelpTooltip",
 	"dojo/i18n!dijit/form/nls/validate"
-], function(declare, domStyle, i18n, wai, HoverHelpTooltip, nls){
+], function(declare, domStyle, i18n, wai, HoverHelpTooltip){
 	/**
 	 * @public
 	 * @name idx.form._ValidationMixin
@@ -55,14 +55,17 @@ define([
 		 * The position of the hoverhelpTooltip
 		 * @type String[]
 		 */
-		tooltipPosition: [],
+		tooltipPosition: [], // need to override this class-static value in postMixInProperties
 		
 		postMixInProperties: function(){
+			this.tooltipPosition = ["after-centered", "above"]; // set this to a instance-local value
 			this.inherited(arguments);
-			this.missingMessage || (this.missingMessage = nls.missingMessage);
-			this.invalidMessage = (this.invalidMessage == "$_unset_$") ? nls.invalidMessage : this.invalidMessage;
+			var messages = i18n.getLocalization("dijit.form", "validate", this.lang);
+			this.missingMessage || (this.missingMessage = messages.missingMessage);
+			// check the nls message === null
+			this.invalidMessage = (this.invalidMessage == "$_unset_$") ? ( (messages && messages.invalidMessage)? messages.invalidMessage :this.invalidMessage ) : this.invalidMessage;
 		},
-		buildRendering: function(){
+		/*buildRendering: function(){
 			this.inherited(arguments);
 			this.messageTooltip = new HoverHelpTooltip({
 				connectId: [this.iconNode],
@@ -70,7 +73,7 @@ define([
 				position: this.tooltipPosition,
 				forceFocus: false
 			});
-		},
+		},*/
 		postCreate: function(){
 			this.inherited(arguments);
 			if(this.instantValidate){
@@ -145,7 +148,9 @@ define([
 			var message, isValid = this.disabled || this._isValid(isFocused);
 			
 			this.set("state", isValid ? "" : "Error");
-			wai.setWaiState(this.focusNode, "invalid", !isValid);
+			if(this._hasBeenBlurred){
+				wai.setWaiState(this.focusNode, "invalid", !isValid);
+			}
 			if(this.state == "Error"){
 				message = this.getErrorMessage(isFocused);
 			}

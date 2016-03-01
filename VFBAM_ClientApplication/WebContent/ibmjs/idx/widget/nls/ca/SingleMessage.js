@@ -7,10 +7,11 @@
 
 define({      
 //begin v1.x content
-	viewAll: "Veure-ho tot ({num})",
-	viewDetails: "Més informació detallada",
+	viewAll: "Visualitza-ho tot ({num})&lrm;",
+	viewDetails: "Més detalls",
 	refresh: "Renova",
-	showDetails: "Mostra la informació detallada",
-	hideDetails: "Oculta la informació detallada"
+	showDetails: "Visualitza els detalls",
+	hideDetails: "Amaga els detalls"
 //end v1.x content
 });
+

@@ -1,0 +1,64 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxPropertyFormatter {
+    display: inline-block;
+    vertical-align: middle;
+}
+.@{theme-name} {
+    .idxPropertyFormatterFormat {
+        display: inline-block;
+		vertical-align: middle;
+    }
+    .idxPropertyFormatterEdit {
+        display: none;
+        visibility: hidden;
+        vertical-align: middle;
+    }
+    .idxPropertyFormatter {
+        .idxEditController {
+            margin-left: 8px;
+            display: inline-block;
+            visibility: visible;
+            vertical-align: middle;
+        }
+    }
+    .idxPropertyFormatterNoEditors {
+        .idxEditController {
+            margin: 0px 0px 0px 0px;
+            display: none;
+            visibility: hidden;
+        }
+    }
+    .idxPropertyFormatter.idxPropertyFormatterEditMode {
+        white-space: nowrap;
+    }
+    .idxPropertyFormatterEditMode {
+        .idxPropertyFormatterEdit {
+            display: inline;
+            visibility: visible;
+            white-space: nowrap;
+        }
+        .idxPropertyFormatterFormat {
+            display: none;
+            visibility: hidden;
+            white-space: nowrap;
+        }
+    }
+}
+.dj_ie7 {
+    .@{theme-name} {
+        .idxPropertyFormatter {
+            .idxEditController {
+                display: inline;
+            }
+        }
+    }
+}
+.dijitRtl {
+    .@{theme-name} {
+        .idxPropertyFormatter {
+            .idxEditController {
+                margin-left: 0px;
+                margin-right: 8px;
+            }
+        }
+    }
+}

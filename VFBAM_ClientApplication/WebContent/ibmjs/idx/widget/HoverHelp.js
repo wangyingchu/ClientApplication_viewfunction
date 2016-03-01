@@ -11,7 +11,9 @@ define(["dojo/_base/declare",
         "dijit/_TemplatedMixin",
         "dijit/_WidgetsInTemplateMixin",
         "dojo/_base/lang",
+        "dojo/query",
         "dojo/dom-class",
+        "dojo/dom-style",
         "dojo/dom-attr",
         "dojo/_base/event",
         "../string",
@@ -31,7 +33,9 @@ define(["dojo/_base/declare",
 		         dTemplatedMixin,			// (dijit/_TemplatedMixin)
 		         dWidgetsInTemplateMixin, 	// (dijit/_WidgetsInTemplateMixin)
 		         dLang,						// (dojo/_base/lang)
+		         dQuery,					// (dojo/query)
 		         dDomClass,					// (dojo/dom-class) for (dDomClass.add/remove)
+		         dDomStyle,         		//(dojo/dom-style) for (dDomStyle.set)
 		         dDomAttr,					// (dojo/dom-attr) for (dDomAttr.set/remove)  
 		         dEvent,					// (dojo/event)          
 		         iString,					// (../string)
@@ -202,6 +206,16 @@ define(["dojo/_base/declare",
    * rather than when hovered.
    */
   clickToOpen: false,
+
+  /**
+   * Set this to true if you want to show the close icon.
+   */
+  showCloseIcon: true,
+
+  /**
+   * Set this to true if you want to set a limit on the size of tooltip container.
+   */
+  allowLimitedSize: true,
   
   /**
    * The flag indicating if this widget is disabled.
@@ -235,6 +249,11 @@ define(["dojo/_base/declare",
  	 */
   baseClass: "idxHoverHelp",
 
+  /**
+   * Defaults for high-contrast mode (when they cannot be discerned from the theme). 
+   */
+  idxHCDefaults: "clickToOpen=false&showDelay=600",
+  
 	/**
 	 * The path to the widget template for the dijit._TemplatedMixin base class.
 	 * @constant
@@ -313,6 +332,26 @@ define(["dojo/_base/declare",
     this._resetResources();
   },
 
+ /**
+   * Private method.  Sets the showCloseIcon flag.
+   * @param {Boolean} value
+   * @private
+   */
+  _setShowCloseIconAttr: function(/*Boolean*/ value) {
+    this.showCloseIcon=value;
+    dDomStyle.set(this._dialog.closeButtonNode,{visibility:value?"":"hidden"});  
+  },
+
+   /**
+   * Private method.  Sets the allowLimitedSize flag.
+   * @param {Boolean} value
+   * @private
+   */
+  _setAllowLimitedSizeAttr: function(/*Boolean*/ value) {
+    this.allowLimitedSize=value;
+    dDomClass.toggle(dQuery(".dijitTooltipContainer",this._dialog.domNode)[0],"limitedSize",value);
+  },
+
   /**
    * Private method.  Sets the disabled flag.
    * @param {Boolean} value
@@ -367,12 +406,15 @@ define(["dojo/_base/declare",
    */
   startup: function() {
     this.inherited(arguments);
-    var buttonOpts = iUtil.getCSSOptions(this.baseClass + "ButtonOptions", this.domNode, this._button);
+    var buttonOpts = iUtil.getCSSOptions(this.baseClass + "ButtonOptions", this.domNode, this._button,
+    									 {placement: 'toolbar', buttonType: 'help', displayMode: 'iconOnly'});
     if (buttonOpts) {
     	for (field in buttonOpts) {
-    		this._button.set(field, buttonOpts[field]);
+    		this._button.set(field, buttonOpts[field]);		
     	}
+		this._updateTitle();
     }
+    
     this._started = true;
     this._updateMessage();
     this._updateHref();

@@ -20,6 +20,7 @@
 	position:relative;
 	height:38px;
 	background-color: #dbdbdb;
+	background-image:-webkit-gradient(linear,center top,center bottom,from(#f4f4f4),to(#dbdbdb));
 	background-image:-webkit-linear-gradient(top,#f4f4f4 0%,#dbdbdb 100%);
 }
 
@@ -75,6 +76,7 @@
 	top:45px;
 	border-color:silver;
 	background-color: #dbdbdb;
+	background-image:-webkit-gradient(linear,center top,center bottom,from(#f4f4f4),to(#dbdbdb));
 	background-image:-webkit-linear-gradient(top,#f4f4f4 0%,#dbdbdb 100%);
 	text-shadow:0 1px 0 #fff;
 }

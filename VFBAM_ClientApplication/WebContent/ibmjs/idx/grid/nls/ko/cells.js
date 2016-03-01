@@ -4,3 +4,4 @@ define({
 	headerCheckBoxLabel: "모든 행의 선택사항 토글"		
 //end v1.x content
 });
+

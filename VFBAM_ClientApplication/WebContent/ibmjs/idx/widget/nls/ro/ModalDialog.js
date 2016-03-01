@@ -13,9 +13,11 @@ define({
 	Success: "Succes",
 	Confirmation: "Confirmare",
 	Question: "Întrebare",
+	Progress: "Progres",
 	closeButtonLabel: "Închidere",
 	cancelButtonLabel: "Anulare",
 	executeButtonLabel: "OK",
 	checked: "Nu se întreabă din nou"
 //end v1.x content
 });
+

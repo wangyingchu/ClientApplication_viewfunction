@@ -1,0 +1,32 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipAbove,
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipBelow {
+  margin-left: 10px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipABRight .idxOneuiHoverHelpTooltipConnector {
+  right: 9px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipContainer {
+  padding-left: 30px;
+  padding-right: 10px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipLearnLink span {
+  padding-right: 0;
+  padding-top: 1px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipRight .idxOneuiHoverHelpTooltipCloseIcon {
+  right: auto;
+  left: 14px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipLeft .idxOneuiHoverHelpTooltipCloseIcon {
+  right: auto;
+  left: 12px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipAbove .idxOneuiHoverHelpTooltipCloseIcon {
+  right: auto;
+  left: 12px;
+}
+.dijitRtl .dlBlue .idxOneuiHoverHelpTooltipBelow .idxOneuiHoverHelpTooltipCloseIcon {
+  right: auto;
+  left: 12px;
+}

@@ -1,0 +1,521 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+/************ Main Container ************/
+@import "../../dijit/variables";
+.@{theme-name} {
+    .idxFlipCardNavBase {
+    	padding-top: 56px;
+    	
+        .idxFlipCardNavBar {
+            background: #fafbfb;
+            border-right: 1px solid #CCCCCC;
+		    -webkit-transition: all 0.3s ease-in-out; 
+			-moz-transition: all 0.3s ease-in-out; 
+			-o-transition: all 0.3s ease-in-out; 
+			-ms-transition: all 0.3s ease-in-out; 
+			transition: all 0.3s ease-in-out;
+		
+		    /* replece with less begin */
+		    width: 55px;
+		    /* replece with less end */
+		    z-index: 1;/* for expanding process, not be overlapped by the center content pane*/
+		    position: relative;
+		    float: left;
+		    &.standardScroller .mblScrollBarWrapper {
+               right: -5px !important;
+               background: #fafbfb;
+               width: 7px !important;
+               top: 0 !important;
+               height: 100% !important;
+               -webkit-mask-image: inherit !important;
+            }		                
+            .idxFlipCardNavBarActions {
+                list-style: 0;
+                margin: 0;
+                padding: 0;
+            }
+            .idxFlipCardNavBarTop {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			    width: 100%;
+            }
+            .idxFlipCardNavBarBottom {
+				list-style: none;
+				margin: 0;
+				padding: 5px 0px;
+				/*background-color: rgba(0, 0, 0, 0.4);
+			    border-top: 1px solid #484848;*/
+			    position: absolute;
+			    bottom: 0;
+			    left: 0;
+			    width: 100%;
+            }
+            .navItem {
+                overflow: hidden;
+                position: relative;
+                display: block;
+                cursor: pointer;
+                border-top: 1px solid transparent;
+                border-bottom: 1px solid transparent;
+                line-height: 1.5em;
+                padding: 10px;
+                
+                .navItemIcon {
+                    width: 32px;
+                    height: 32px;
+                    display: block;
+                    background: url("images/flipCardIconSprite.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                }
+                
+                .welcomeIcon{
+                	background-position: 0 -289px;
+                }
+                
+                .analyzeIcon{
+                	background-position: 0 -32px;
+                }
+                
+                .monitorIcon{
+                	background-position: 0 -480px;
+                }
+                
+                .customIcon{
+                	background-position: 0 -160px;
+                }
+                
+                .expanderIcon{
+                	background-position: 0 -544px;
+                }
+                
+                .expanderIcon{
+                	background-position: 0 -544px;
+                }
+                
+                .helpIcon{
+                	background-position: 0 -128px;
+                }
+                
+
+                .settingsIcon{
+                	background-position: 0 -352px;
+                }
+                
+                .defaultNavItemIcon {
+                    background: url("images/flipCardIconSprite.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                    background-position: 0 0;
+                }
+                .navItemDesc {
+                    position:absolute;
+                    left: 65px;
+                    top: 15px;
+                    color: #00649d;
+                    font-weight: bold;
+                }
+            }
+            .navAction {
+                width:100%;
+                height:30px;
+                position: relative;
+                text-align: center;
+                display: block;
+                cursor: pointer;
+                .navActionIconContainer {
+                    position:absolute;
+                    right: 0px;
+                    top: 0px;
+                    -webkit-transition: all 0.3s ease-in-out;
+                    -moz-transition: all 0.3s ease-in-out;
+                    -o-transition: all 0.3s ease-in-out;
+                    -ms-transition: all 0.3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
+                }
+                .navActionIcon {
+                    width: 32px;
+                    height: 32px;
+                    opacity: .7;
+                }
+                .navActionIcon_a11y {
+                    display: none;
+                }
+                .defaultNavActionIcon {
+                    background: url("images/navSprite_24.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                    background-position: -384px 0;
+                }
+                .toggleNavBarActionIcon {
+                    background: url("images/flipCardIconSprite.png") no-repeat scroll -32px -96px rgba(0, 0, 0, 0);
+                }
+                .navActionDesc {
+                    position:absolute;
+                    left: 5px;
+                    top: 5px;
+                    height: 20px;
+                    color: white;
+                    font-weight: bold;
+                    opacity: 0;
+                    -webkit-transition: all 0.3s ease;
+                    -moz-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                    -ms-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
+                }
+            }
+            .navItemHover {
+                background-color: #0A7AA9;
+                border-top: 1px solid rgba( 255, 255, 255, .20);
+                border-bottom: 1px solid rgba( 255, 255, 255, .20);
+                .navItemIcon {
+                    opacity: .9;
+                }
+                
+                .navItemIcon{
+                	background-position: -32px 0px;
+                }
+                
+                .welcomeIcon {
+                	background-position: -32px -289px;
+                }
+                
+                .analyzeIcon {
+                	background-position: -32px -32px;
+                }
+                
+                .monitorIcon{
+                	background-position: -32px -480px;
+                }
+                
+                .customIcon{
+                	background-position: -32px -160px;
+                }
+                
+                .expanderIcon{
+                	background-position: -32px -544px;
+                }
+                
+                .helpIcon{
+                	background-position: -32px -128px;
+                }
+                
+                .settingsIcon {
+                	background-position: -32px -352px;
+                }
+                
+                .navItemDesc {
+                	color: #FFFFFF;
+                }
+            }
+            
+            .navItemViewed {
+            	background-color: #D9F4FD;
+            }
+
+            .navItemSelected {
+                background-color: #0A7AA9;
+                
+                td.dijitMenuItemLabel{
+                	color: #FFFFFF;
+                }
+                .navItemDesc {
+                	color: #FFFFFF;
+                }
+                
+                .navItemIcon{
+                	background-position: -32px 0px;
+                }
+                
+                .welcomeIcon{
+                	background-position: -32px -289px;
+                }
+                
+                .analyzeIcon{
+                	background-position: -32px -32px;
+                }
+                
+                .monitorIcon{
+                	background-position: -32px -480px;
+                }
+                
+                .customIcon{
+                	background-position: -32px -160px;
+                }
+                
+                .expanderIcon{
+                	background-position: -32px -544px;
+                }
+                
+                .helpIcon{
+                	background-position: -32px -128px;
+                }
+                
+                .settingsIcon{
+                	background-position: -32px -352px;
+                }
+            }
+        }
+        .idxFlipCardNavBar.navExpandoSelected {
+            width: 40px;
+            background: rgb(70,70,70);
+            background: -moz-linear-gradient(left, #71706F 0%, #939290 90%, #FFB400 95%, #FFB400 100%);
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%, #71706F), color-stop(90%, #939290), color-stop(95%, #FFB400), color-stop(100%, #FFB400));
+            background: -webkit-linear-gradient(left, #71706F 0%, #939290 90%, #FFB400 95%, #FFB400 100%);
+            background: -ms-linear-gradient(left, #71706F 0%, #939290 90%, #FFB400 95%, #FFB400 100%);
+            background: linear-gradient(left, #71706F 0%, #939290 90%, #FFB400 95%, #FFB400 100%);
+        }
+        
+
+        /************ navigation Container ************/
+        .idxFlipCardContent {
+		    /* replace with less begin*/
+		    padding: 10px 10px 10px 65px;
+		    /* replace with less end*/
+		
+		    -webkit-transition: all 1s ease-in-out;
+		    -moz-transition: all 1s ease-in-out;
+		    -o-transition: all 1s ease-in-out;
+		    -ms-transition: all 1s ease-in-out;
+		    transition: all 1s ease-in-out;
+        }
+        .contentBorder {
+            padding:0;
+            margin:0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .dojoxExpandoPane.noBorder{
+        	border:none;
+        }
+        
+        .dojoxExpandoPane {
+		    margin-left: 100%;
+		    position: absolute;
+		    z-index: 1000;
+			border-left: 1px solid #A4A6AB;
+			border-right: 1px solid #A4A6AB;
+            .dojoxExpandoTitle {
+				background-color: #F5F6F6;
+			    color: #444444;
+			    height: 50px;
+			    padding: 10px;
+			    position: absolute;
+			    font-weight: bold;
+			    font-size: 24px;
+	            padding:10px;
+	            color:#4a4a4a;
+	            border-bottom: 1px solid #A4A6AB;
+            }
+            
+            .dojoxExpandoContent {
+	        	padding-top: 50px;
+	            .expandoContentPane {
+	                padding: 0;
+	                margin: 0;
+	            }
+	        }
+
+            .dojoxExpandoTitleNode {
+                padding-right:6px;
+                padding-left:6px;
+            }
+            .dojoxExpandoIcon {
+                width:14px;
+                cursor:pointer;
+                background-position:-60px 0px;
+                background-repeat: no-repeat;
+                height:14px;
+                .a11yNode {
+                    display:none;
+                    visibility:hidden;
+                }
+            }
+            .dojoxExpandoPersistenceIcon {
+                background-image: url("../../dijit/form/images/checkboxRadioButtonStates.png");
+                background-position: -196px center;
+                display: block;
+            }
+            .dojoxExpandoPersistenceIcon.persistence {
+                background-position: -211px center;
+            }
+        }
+        .dojoxExpandoClosed {
+            background: none;
+            background-color: #E6E6E7;
+            .dojoxExpandoTitleNode {
+                display:none;
+            }
+            .dojoxExpandoIcon {
+                background-position: 0px 0px;
+                margin:0 auto;
+                margin-right:4px;
+            }
+            .dojoxExpandoTitle {
+                background: none;
+                background-color: #E6E6E7;
+                border: none;
+                padding:3px;
+                background-position:0 0;
+            }
+            .dojoxExpandoIconLeft {
+                background-position: -30px 0;
+                margin-right: 4px;
+            }
+            .dojoxExpandoIconRight {
+                background-position: 0 0;
+                margin-left: 4px;
+            }
+            .dojoxExpandoIconBottom {
+                background-position: -45px 0;
+                margin-top:1px;
+            }
+            .dojoxExpandoIconTop {
+                background-position: -15px 0;
+            }
+        }
+        .dojoxExpandoRight {
+            .dojoxExpandoIcon {
+                float:left;
+                margin-left:2px;
+            }
+        }
+        .dijitBorderContainer-dijitExpandoPane {
+            border: none !important;
+        }
+
+        .dojoxExpandoIcon {
+            background-image: url("images/spriteRoundedIconsSmall.gif");
+        }
+        .dojoxExpandoIconLeft {
+            background-position: 0 0;
+        }
+        .dojoxExpandoIconRight {
+            background-position: -30px 0;
+        }
+        .dojoxExpandoIconBottom {
+            background-position: -15px 0;
+        }
+        .dojoxExpandoIconTop {
+            background-position: -45px 0;
+        }
+
+        .centerContainer {
+		    /*
+		        Center Container is a dijit/ContentPane, dynamically replace content
+		        by url, parent is a fixed div container
+		    */
+		    height: 100%;/* in the full size of idxFlipCardContent with top 0 and bottom 0 */
+		    overflow: hidden; /* the center container should be hidden other content out of it*/
+		    padding: 0;
+		    margin:0;
+		    position: relative;
+        }
+        .centerContainer.css3Animations {
+            -webkit-perspective: 800px;
+            -moz-perspective: 800px;
+            -ms-perspective: 800px;
+            perspective: 800px;
+        }
+        
+    }
+
+    
+    .idxFlipCardNavBase.idxFlipCardNavBarExtended{
+    	.idxFlipCardNavBar{
+        	width: 300px;
+            .navAction {
+                .toggleNavBarActionIcon {
+                    background: url("images/flipCardIconSprite.png") no-repeat scroll 0 -96px rgba(0, 0, 0, 0);
+                }
+                .navActionDesc {
+                    opacity: 1;
+                }
+            }
+            .navItem {
+                .navItemDesc {
+                    opacity: 1;
+                }
+            }
+    	}
+    	
+    	.idxFlipCardContent{
+    		padding-left: 310px;
+    	}
+    
+    }
+
+    .idxFlipCardNavBase.navBarHidden {
+        .idxFlipCardNavBar {
+            width: 0px;
+            visibility: hidden;
+        }
+        .idxFlipCardContent {
+            padding-left: 10px;
+        }
+    }
+
+
+    .fcNavTooltip {
+        width: 200px;
+        height: 35px;
+        .dijitTooltipConnector {
+            display: none;
+        }
+    }
+}
+.dojoxExpandoClosed {
+    .dojoxExpandoWrapper {
+        * {
+            overflow:hidden !important;
+        }
+    }
+}
+.@{theme-name} .idxFlipCardNavBase .dojoxExpandoBottom .dojoxExpandoIcon,.@{theme-name} .idxFlipCardNavBase .dojoxExpandoTop .dojoxExpandoIcon,.@{theme-name} .idxFlipCardNavBase .dojoxExpandoLeft .dojoxExpandoIcon {
+    float:right;
+    margin-right:2px;
+}
+
+.@{theme-name} .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconLeft,.@{theme-name} .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconRight,.@{theme-name} .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconTop,.@{theme-name} .idxFlipCardNavBase .dojoxExpandoClosed .dojoxExpandoIconBottom {
+    margin-top: 3px;
+}
+.@{theme-name} .idxFlipCardNavBase.css3AnimationsDisabled,.@{theme-name} .idxFlipCardNavBase.css3AnimationsDisabled .idxFlipCardNavBar,.@{theme-name} .idxFlipCardNavBase.css3AnimationsDisabled .idxFlipCardNavBar *,.@{theme-name} .idxFlipCardNavBase.css3AnimationsDisabled .idxFlipCardContent {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+}
+.dj_a11y.@{theme-name} {
+    .idxFlipCardNavBase {
+        .centerExpando {
+            border: 1px solid #A9A7A5;
+        }
+        .idxFlipCardNavBar {
+            .navAction {
+                .navActionIcon_a11y {
+                    display: inline;
+                }
+            }
+            .navItem {
+                .navItemDesc {
+                    left: 0;
+                    opacity: 1;
+                }
+                &.navItemFocused {
+                    border: 1px dashed #ccc;
+                }
+            }
+        }
+    }
+}
+[lang|="ar"] .@{theme-name} .idxFlipCardNavBaseRtl .idxFlipCardNavBar .navItem .helpIcon {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}

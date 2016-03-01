@@ -10,3 +10,4 @@ define({
 	learnMoreLabel: "より詳しく調べる"
 //end v1.x content
 });
+

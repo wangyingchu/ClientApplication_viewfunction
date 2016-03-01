@@ -1,0 +1,53 @@
+/*
+ * Licensed Materials - Property of IBM
+ * 5724-Q36
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or 
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+.claro .alertStatusPanel .alertStatusPanelContainer {
+	height: 24px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px; 
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	padding-top: 5px;
+	padding-left: 10px;
+	background: #f9fbfd url("claro/statuspanel_background.png") repeat-x;
+}
+
+.claro .alertStatusPanel .alertStatusPanelText {
+	display: inline;
+	font-weight: bold;
+	position: relative;
+	top: 1px;
+}
+
+.dj_ie7 .claro .alertStatusPanel .alertStatusPanelText {
+    margin-left: 4px;
+}
+
+.claro .alertStatusPanelContainer .linkWithPopup {
+    top: 1px;
+    vertical-align: top;
+}
+
+.claro .alertStatusPanel .alertStatusPanelText .linkWithPopupDropDownButton {
+	font-weight: normal;
+}
+
+.claro .alertStatusPanelPopup {
+	width: 700px; 
+	height: 400px;
+}
+
+.claro .alertStatusPanelPopup .dojoxGrid {
+	border: 1px solid #b5c2d2;
+}
+
+.claro .alertStatusPanelPopup .dojoxGridTreeModel .dojoxGridExpando {
+	position:relative;
+	top:4px;
+}
+

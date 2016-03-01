@@ -48,6 +48,7 @@
 					dojo.parser.parse();
 					var d = new doh.Deferred();
 					setTimeout(d.getTestCallback(function(){
+						
 						// Give the checkboxtree time to load, and the do checks that it
 						// loaded correctly
 						checkboxtree1 = dijit.byId("mytree1");
@@ -57,6 +58,7 @@
 						doh.t(checkboxtree2);
 						doh.t(checkboxtree1.rootNode, "root node exists");
 						doh.t(checkboxtree2.rootNode, "root node exists");
+						
 						doh.t(checkboxtree1.rootNode.isExpanded, "root node is expanded");
 						doh.t(checkboxtree2.rootNode.isExpanded, "root node is expanded");
 
@@ -64,7 +66,7 @@
 						var children2 = checkboxtree2.rootNode.getChildren();
 						doh.is(4, children1.length, "four children");
 						doh.is(2, children2.length, "two children");
-					}), 750);
+					}), 1000);
 					return d;
 				});
 				
@@ -117,27 +119,27 @@
 							var childrenNodes = node.getChildren();
 							doh.t(node);
 							doh.t(node.label === "Europe");
-							doh.t(node.checkboxNode.checked === false);
+							doh.t(node.checked === false);
 							checkboxtree1.toggleNode("EU");
-							doh.t(node.checkboxNode.checked === true);
+							doh.t(node.checked === true);
 							for(var i = 0; i < childrenNodes.length; i++){
-								doh.t(childrenNodes[i].checkboxNode.checked === true, childrenNodes[i].label + " checked");
+								doh.t(childrenNodes[i].checked === true, childrenNodes[i].label + " checked");
 							}
 							checkboxtree1.toggleNode(childrenNodes[1]);
-							doh.t(childrenNodes[1].checkboxNode.checked === false);
-							doh.t(node.checkboxNode.checked === "mixed");
+							doh.t(childrenNodes[1].checked === false);
+							doh.t(node.checked === "mixed");
 							checkboxtree1.toggleNode(node, false);
-							doh.t(node.checkboxNode.checked === false);
+							doh.t(node.checked === false);
 							for(var i = 0; i < childrenNodes.length; i++){
-								doh.t(childrenNodes[i].checkboxNode.checked === false, childrenNodes[i].label + " unchecked");
+								doh.t(childrenNodes[i].checked === false, childrenNodes[i].label + " unchecked");
 							}
 							checkboxtree1.toggleNode(node, "mixed");
-							doh.t(node.checkboxNode.checked === "mixed");
+							doh.t(node.checked === "mixed");
 							for(var i = 0; i < childrenNodes.length; i++){
 								if(i != 1){
-									doh.t(childrenNodes[i].checkboxNode.checked === true, childrenNodes[i].label + " checked");
+									doh.t(childrenNodes[i].checked === true, childrenNodes[i].label + " checked");
 								}else{
-									doh.t(childrenNodes[i].checkboxNode.checked === false, childrenNodes[i].label + " unchecked");
+									doh.t(childrenNodes[i].checked === false, childrenNodes[i].label + " unchecked");
 								}
 							}
 						}

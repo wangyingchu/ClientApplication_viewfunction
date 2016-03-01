@@ -10,3 +10,4 @@ define({
 	legendText: "需要"
 //end v1.x content
 });
+

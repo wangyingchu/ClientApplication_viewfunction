@@ -1,0 +1,283 @@
+/*
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+.dlBlue .idxHeaderPaneA11y {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  display: inline;
+  left: 50%;
+  top: -10000px;
+  visibility: visible;
+}
+.dlBlue .idxHeaderPane {
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid #ddd;
+}
+.dlBlue .idxHeaderFrame {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  border-style: none;
+  border-width: 0px;
+  width: 100%;
+  height: 100%;
+}
+.dlBlue .idxHeaderPaneHeader {
+  position: absolute;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  padding: 12px 20px;
+  border-style: none;
+  border-width: 0px;
+  background-color: #efeff1;
+  font-weight: bold;
+}
+.dlBlue .idxHeaderPaneHeaderHover {
+  background-color: #d9e2e9;
+}
+.dlBlue .idxHeaderPaneHeaderActive,
+.dlBlue .dijitTitlePaneTitleActive {
+  background-color: #003f69;
+  color: white;
+}
+.dlBlue .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .dijitButtonNode .dijitButtonText,
+.dlBlue .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .dijitButtonNode .dijitButtonText,
+.dlBlue .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .dijitButtonNode .dijitButtonText,
+.dlBlue .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .dijitButtonNode .dijitButtonText {
+  color: #ffffff;
+  padding: 0.4em;
+}
+.dlBlue .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxCloseIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxCloseIcon,
+.dlBlue .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxCloseIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxCloseIcon {
+  background: url("svg/headerpane_close_active.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRefreshIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRefreshIcon,
+.dlBlue .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxRefreshIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxRefreshIcon {
+  background: url("svg/headerpane_refresh_active.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxHelpIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxHelpIcon,
+.dlBlue .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxHelpIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxHelpIcon {
+  background: url("svg/headerpane_help_active.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxMaximizeIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxMaximizeIcon,
+.dlBlue .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxMaximizeIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxMaximizeIcon {
+  background: url("svg/headerpane_maximize_active.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRestoreIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRestoreIcon,
+.dlBlue .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxRestoreIcon,
+.dlBlue .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxRestoreIcon {
+  background: url("svg/headerpane_restore_active.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneTitleBar {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+.dlBlue .idxHeaderPaneTitleLeft {
+  float: left;
+  position: static;
+  vertical-align: middle;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.dlBlue .idxHeaderPaneTitleText {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 32px;
+}
+.dlBlue .idxHeaderPaneTitleText a {
+  text-decoration: underline;
+}
+.dlBlue .idxHeaderPaneTitleActions,
+.dlBlue .idxTitlePaneActions {
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  vertical-align: middle;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxLinkDerived,
+.dlBlue .idxTitlePaneActions .idxLinkDerived {
+  text-decoration: underline;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon,
+.dlBlue .idxTitlePaneActions .idxButtonIcon {
+  margin: 0 20px;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon .dijitIcon,
+.dlBlue .idxTitlePaneActions .idxButtonIcon .dijitIcon {
+  width: 32px;
+  height: 32px;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon .dijitButtonNode .dijitButtonText,
+.dlBlue .idxTitlePaneActions .idxButtonIcon .dijitButtonNode .dijitButtonText {
+  color: #075e97;
+  padding: 0.4em;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon .idxCloseIcon,
+.dlBlue .idxTitlePaneActions .idxButtonIcon .idxCloseIcon {
+  background: url("svg/headerpane_close.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon .idxRefreshIcon,
+.dlBlue .idxTitlePaneActions .idxButtonIcon .idxRefreshIcon {
+  background: url("svg/headerpane_refresh.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon .idxHelpIcon,
+.dlBlue .idxTitlePaneActions .idxButtonIcon .idxHelpIcon {
+  background: url("svg/headerpane_help.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon .idxMaximizeIcon,
+.dlBlue .idxTitlePaneActions .idxButtonIcon .idxMaximizeIcon {
+  background: url("svg/headerpane_maximize.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneTitleActions .idxButtonIcon .idxRestoreIcon,
+.dlBlue .idxTitlePaneActions .idxButtonIcon .idxRestoreIcon {
+  background: url("svg/headerpane_restore.svg") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneSpacer {
+  height: 6px;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+}
+.dlBlue .idxHeaderPaneSpacerHidden {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxHeaderPaneActions {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
+.dlBlue .idxHeaderPaneActionsHidden {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxHeaderPaneActionsLeft {
+  float: left;
+  position: static;
+  vertical-align: middle;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.dlBlue .idxHeaderPaneActionsRight {
+  position: static;
+  float: right;
+  text-align: right;
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+.dlBlue .idxHeaderPaneClear {
+  position: static;
+  visibility: hidden;
+  clear: both;
+  height: 0px;
+  width: 0px;
+  line-height: 0px;
+}
+
+.dlBlue .idxHeaderPaneTitleActions .dijitButtonContents:focus {
+    outline: thin dotted #000000;
+}
+
+.dlBlue .idxHeaderPaneAutoHide .idxHeaderPaneTitleActions {
+  visibility: hidden;
+}
+.dlBlue .idxHeaderPaneContent {
+  background-color: #ffffff;
+  position: absolute;
+  display: block;
+  margin: 0px;
+  padding: 12px 20px;
+  overflow: auto;
+}
+.dlBlue .idxHeaderPaneContent.idxHeaderPaneSingleChild {
+  padding: 0px 0px 0px 0px;
+  overflow: hidden;
+}
+.dlBlue .idxHeaderPaneContent.idxHeaderPaneSingleChild .idxHeaderPane-child {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dj_ie8 .idxHeaderPaneTitleActions .idxButtonIcon .idxCloseIcon,
+.dj_ie8 .idxTitlePaneActions .idxButtonIcon .idxCloseIcon {
+  background: url("images/headerpane_close.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneTitleActions .idxButtonIcon .idxRefreshIcon,
+.dj_ie8 .idxTitlePaneActions .idxButtonIcon .idxRefreshIcon {
+  background: url("images/headerpane_refresh.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneTitleActions .idxButtonIcon .idxHelpIcon,
+.dj_ie8 .idxTitlePaneActions .idxButtonIcon .idxHelpIcon {
+  background: url("images/headerpane_help.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneTitleActions .idxButtonIcon .idxMaximizeIcon,
+.dj_ie8 .idxTitlePaneActions .idxButtonIcon .idxMaximizeIcon {
+  background: url("images/headerpane_maximize.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneTitleActions .idxButtonIcon .idxRestoreIcon,
+.dj_ie8 .idxTitlePaneActions .idxButtonIcon .idxRestoreIcon {
+  background: url("images/headerpane_restore.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxCloseIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxCloseIcon,
+.dj_ie8 .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxCloseIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxCloseIcon {
+  background: url("images/headerpane_close_active.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRefreshIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRefreshIcon,
+.dj_ie8 .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxRefreshIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxRefreshIcon {
+  background: url("images/headerpane_refresh_active.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxHelpIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxHelpIcon,
+.dj_ie8 .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxHelpIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxHelpIcon {
+  background: url("images/headerpane_help_active.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxMaximizeIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxMaximizeIcon,
+.dj_ie8 .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxMaximizeIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxMaximizeIcon {
+  background: url("images/headerpane_maximize_active.png") no-repeat 0 0;
+}
+.dj_ie8 .idxHeaderPaneHeaderActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRestoreIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxHeaderPaneTitleActions .idxButtonIcon .idxRestoreIcon,
+.dj_ie8 .idxHeaderPaneHeaderActive .idxTitlePaneActions .idxButtonIcon .idxRestoreIcon,
+.dj_ie8 .dijitTitlePaneTitleActive .idxTitlePaneActions .idxButtonIcon .idxRestoreIcon {
+  background: url("images/headerpane_restore_active.png") no-repeat 0 0;
+}
+.dlBlue .idxHeaderPaneAutoHide.idxHeaderPaneFocused .idxHeaderPaneTitleActions,
+.dlBlue .idxHeaderPaneAutoHide .idxHeaderPaneHeaderHover .idxHeaderPaneTitleActions {
+  visibility: visible;
+}
+.dj_safari .dlBlue idxHeaderPaneContent {
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-bottom: 7px;
+  padding-right: 7px;
+}

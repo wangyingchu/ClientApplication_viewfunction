@@ -10,3 +10,4 @@ define({
 	closeButtonLabel: "Lukk"
 //end v1.x content
 });
+

@@ -1,0 +1,513 @@
+//	
+//	IBM One UI .less variables file
+//	This file defines global fonts and color variables.
+//	© IBM 2013. All rights reserved
+//	
+//	This file defines variables and mixins for the IDX theme using the .less CSS extensions.
+//	
+//	Information and education on how to use .less can be found at lesscss.org.
+//	The IDX toolkit does not include the less.js file required to compile the .less files
+//	to .css so you will need to download that file at lesscss.org.
+//	
+//	.less files are not required to use the IDX toolkit.
+//	The .less files contained in the theme use these variables to output their .css counterparts
+//	which are then used by the IDX toolkit.
+//	
+
+@import "variables";
+
+//	Create base colors from variables file.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Theme Fonts
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @oneuiSans: @sans;
+    @oneuiSerif: @serif;
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Common image files
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @messageIcons: "images/msgIcons_24bit.png";			//	Used for messages and states
+    @loadingLarge: "images/loadingAnimation38px.gif";	//	The large loading animation
+	
+	
+	    
+    //	Text shadow colors 
+        
+        .TextShadow(@c) when (iscolor(@c)) {
+            text-shadow: 0 1px 0 @c;
+        }
+        .TextShadow(@alpha: .3) when (isnumber(@alpha)) {
+            text-shadow: 0 1px 0 rgba(0,0,0, @alpha);
+        }
+        
+        @shadowWhite: #ffffff;
+        @shadowMedium: .3;
+        @shadowDark: .85;
+
+        // Do a search and replace for these
+        .ShadowDark {
+            text-shadow: 0 1px 0 rgba(0,0,0,.3);
+        }
+        .ShadowWhite {
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+        }
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Grid colors
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @tableHeader: #444444;
+    @tableBody: #333333;
+    @tableSummary: #666666;
+    
+    @hover: #cce8f2;	//	The background hover state for a grid row.
+    @selected: #ebf6fa;	//	The background selected state for a grid row.
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Header colors
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // 	Edit these colors to change the color of the black header at the top of the screen. 
+    // 	If you want a solid color, make both top and bottom colors the same value.
+    //	These colors are also used on the Console header and layout styles.
+    
+    //	Primary banner
+    
+        @bannerTop: #3e3e3e;
+        @bannerBottom: #131313;
+    
+    //	Logo area on the trailing edge of a fluid width header. Does not affect fixed width layouts.
+    
+        @logoBackgroundTop: #282828;
+        @logoBackgroundBottom: #0c0c0c;
+    
+    //	Primary header menu and button colors
+    
+        @primaryMenuHoverTop: #000000;
+        @primaryMenuHoverBottom: #212121;
+        @primarySelectedTop: #585858;
+        @primarySelectedBottom: #161616;
+        @primaryHeaderButtonBorder: #000000;
+        @primaryHeaderButtonText: #ffffff;
+    
+    //	Secondary blue banner and blue lip 
+    
+        @secondaryBlueTop: #008abf;
+        @secondaryBlueBottom: #047bb0;
+        @secondaryHeaderButtonHoverTop: #525252;
+        @secondaryHeaderButtonHoverBottom: #2b2b2b;
+        @secondaryHeaderButtonDisabledTop: #3b3b3b;
+        @secondaryHeaderButtonDisabledBottom: #171718;
+    
+    //	The gray variation of the secondary header.
+    
+        @secondaryGrayTop: #f8f8f8;
+        @secondaryGrayBottom: #e9e9e9;
+    
+    //	The white variation of the secondary header. Since this variation uses a custom border
+    //	on the bottom, that style is included as a mixin here.
+    
+        @secondaryWhite: #ffffff;
+        .SecondaryWhiteBorderBottom {
+            border-bottom: 1px dotted #c4c4c4;
+        }
+    
+    // 	Primary header text colors
+    
+        @headerStrong: #ffffff;
+        @headerMenu: #dddddd;
+        @headerMenuHover: #ffffff;
+        @headerPlaceholder: #dddddd;
+    
+    //	Secondary header text colors
+    
+        @headerBlueText: #ffffff;
+        @headerGrayText: #000000;
+        @headerGrayLightText: #666666;
+        @headerGrayTab: #444444;
+        @headerBlueTabSelected: #222222;
+        @headerGrayTabSelected: #222222;
+    
+    // 	Header separators
+    
+        @headerPrimarySeparator: #3d3d3d;
+        @headerBlueTabSeparator: #065B86;
+        @headerGrayTabSeparator: #dbdbdb;
+    
+    // 	Header messaging colors
+    
+        @headerBadgeError: #ff0000;
+        @headerBadgeWarn: #ffaa00;
+        @headerBadgeInfo: #008abf;
+        @headerBadgeSuccess: #0c7f00;
+    
+    //	Primary header search field
+    
+        @primarySearchTextBoxTop: #222222;
+        @primarySearchTextBoxBottom: #121212;
+        @primarySearchTextBoxBorder: #000000;
+        @primarySearchTextBoxShadow1: #3f3f40;
+        @primarySearchTextBoxShadow2: #1d1c1d;
+    
+    //	Secondary header search
+    
+        @secondarySearchTextBoxTop: #046897;
+        @secondarySearchTextBoxBottom: #075e8e;
+        @secondarySearchTextBoxBorder: #004e71;
+        @secondarySearchTextBoxShadow1: #2d92bf;
+        @secondarySearchTextBoxShadow2: #04628e;
+    
+    //	Secondary header search - gray and white variations
+    
+        @graySearchTextBoxBorder: #e3e3e3;
+        @graySearchTextBoxBackground: #f3f3f3;
+    
+    //	Header content container
+    
+        @headerContentTop: #047bb0;
+        @headerContentBottom: #096ba2;
+        .GrayContentContainer {
+            background-image: -moz-linear-gradient(top, #f8f8f8, #f8f8f8 80%, #e9e9e9);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.80, #f8f8f8), color-stop(1, #e9e9e9));
+            filter: ~"progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#f8f8f8', EndColorStr='#e9e9e9')";
+        }
+        @headerContentTabHoverTop: #078dc1;
+        @headerContentTabHoverBottom: #1673a6;
+        @headerContentTabBorder: #065b87;
+        @headerGrayContentTabBorder: #d2d2d2;
+        @headerTabCheckedBackground: #ffffff;
+        @headerTabCheckedBorder: #065b87;
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Form variables
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Buttons
+    
+	    // Normal Button
+	    
+	    	@buttonTop: #f4f4f4;
+	    	@buttonBottom: #dbdbdb;
+	    	@buttonBorder: #c3c3c3;
+	    	@buttonText: #000000;	 
+	    	
+	    	// Hover State
+	    	
+	    	@buttonHoverTop: #fefefe;
+	    	@buttonHoverBottom: #cccccc;
+	    	@buttonHoverBorder: #cccccc;   	
+	    	
+			// Disabled State 
+	    
+			@buttonDisabledText: #696969;
+	        
+	    // Special Button
+	    
+	        @specialButtonTop: #008abf;
+	        @specialButtonBottom: #085884;
+	        @specialButtonBorder: #0a5f8e;
+	        @specialButtonText: #ffffff;
+	        
+			// Hover States
+		
+			@specialButtonTopHover: #008abf;
+	        @specialButtonBottomHover: #085884;
+	
+			// Active States
+		
+			@specialButtonActiveText: #f2fafe;
+			
+			// Disabled States
+		
+			@specialButtonDisabledText: #cdecfa;
+			@specialButtonDisabledTextIE: #bbd9e8;
+			
+	// Text fields
+
+		// Normal State
+	
+			@fieldBorder: #aaaaaa;
+			@fieldBackground: #ffffff;
+			@fieldColor: #222222;
+		
+		// Hover State 
+		
+			@fieldHoverBorder: #66b9d9;
+			@fieldHoverBackground: #ffffff;
+			@fieldHoverColor: #222222;
+			
+		// Disabled State
+		
+			@fieldDisabledBorder: #cccccc;
+			@fieldDisabledBackground: #f3f3f3;
+			@fieldDisabledColor: #aaaaaa;
+			
+		// Read Only State
+		
+			@fieldROBorder: #bbbbbb;
+			@fieldROBackground: #ffffff;
+			@fieldROColor: #777777;
+	
+	// Field Arrow Buttons
+	
+		// Normal State
+		
+			@checkBoxSelectTop: #f4f4f4;
+			@checkBoxSelectBottom: #dbdbdb;
+			
+		// Hover State
+		
+			@checkBoxSelectHoverTop: #fefefe;
+			@checkBoxSelectHoverBottom: #cccccc;
+			
+	// CheckBoxSelect
+	
+		@checkBoxSelectReadOnlyText: #767676;
+		@checkBoxSelectReadOnlyBackground: #ffffff;
+		
+	// Field focus
+	
+		.focusOutline {
+			outline: 1px dotted #666666;
+		}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Messaging variables
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		@errorBackground: #fff3f3;
+		@errorBorder: #dd726c;
+	
+		#message {
+			.error () {
+				background: @errorBackground;
+				border: 2px solid @errorBorder;
+				.BorderRadius(2px);
+			}
+		}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Layout Variables
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@layoutHoverBorder: #999999;
+	@layoutLeadingBorder: #828282;
+	@layoutTrailingBorder: #ffffff;
+	
+	@layoutHoverLeading: #ffffff;
+	@layoutHoverTrailing: #cccccc;
+	
+	@layoutActiveLeading: #bbbaba;
+	@layoutActiveTrailing: #dddddd;
+	
+	@buttonBarSeparator: #b2bece;
+	
+	@dockableBorder: #7c7cfc;
+	
+	@titlePaneTop: #ffffff;
+	@titlePaneBottom: #ededed;
+	@titlePaneBorder: #dddddd;
+	@titlePaneBackground: #ffffff;
+	
+	@stackControllerBackground: #ffffff;
+	@listNavBackground: #ffffff;
+	
+	@sectionedNavigationMasterHeader: #c2bfb3;
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Grid variables
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Gridx
+	
+		// Header
+			
+			@gridxHeaderTop: #ffffff;
+			@gridxHeaderBottom: #ededed;
+			@gridxHeaderBorder: #cccccc;
+			@gridxHeaderText: #444444;
+			
+			@gridxHeaderHoverTop: #fafafa;
+			@gridxHeaderHoverBottom: #dbdbdb;
+			
+		// Body
+		
+			@gridxBodyBackground: #ffffff;
+			@gridxCellBorder: #d9d9d9;
+			@gridxText: #333333;
+			@gridxAlternatingRow: #f7f7f7;
+			
+			@gridxCellBorderHover: #bbbbbb;
+			@gridxCellAltBorderHover: #ffffff;
+			@gridxBodyHover: #cce8f2;
+			
+			@gridxColumnSelect: #ddf2f9;
+	
+		// Toolbar
+		
+			@gridxButtonHoverTop: #fefefe;
+			@gridxButtonHoverBottom: #cccccc;
+			
+		// Filter bar
+		
+			@gridFilterBarBackground: #f7f7f7;
+			@gridFilterBarBorder: #cccccc;
+			@gridFilterInputBorder: #cccccc;
+			
+			@gridFilterTooltipTitle: #222222;
+			@gridFilterTooltipTable: #cccccc;
+	
+	// Property Grid
+	
+		@propertyGridBorder: #cccccc;
+		@propertyGridLabel: #444444;
+		@propertyGridLabelBackground: #f4f5f6;
+		
+	// Drag and Drop
+	
+		@dndBackground: #333333;
+		.dndCountBackground {
+			background-color: #222222;
+			background-color: rgba(0,0,0,.8);
+		}
+		@dndText: #f3f3f3;
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Log in page variables
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @logInFrameBorder: #cccccc;
+    @logInFrameBackground: #ffffff;
+    @logInFrameInput: #9FABBB;
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	CSS3 Cross Browser Properties
+//	These styles standardize complex standards into a single mixin for use in
+//	the .less files. Since those styles will likely use other variables defined here,
+//	it should not be necessary to edit the .less files.
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    .gradient (@startColor: #ffffff, @endColor: #000000) {        
+        background: @endColor;
+		background: -moz-linear-gradient(top,  @startColor 0%, @endColor 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@startColor), color-stop(100%,@endColor));
+		background: -webkit-linear-gradient(top,  @startColor 0%,@endColor 100%);
+		background: -o-linear-gradient(top,  @startColor 0%,@endColor 100%);
+		background: -ms-linear-gradient(top,  @startColor 0%,@endColor 100%);
+		background: linear-gradient(to bottom,  @startColor 0%,@endColor 100%);
+		filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr='@startColor', endColorstr='@endColor',GradientType=0 )";
+    }
+    
+    .gradientV (@dir: left, @end: right, @filter: 1, @startColor: #ffffff, @endColor: #000000) {        
+        background: @endColor;
+		background: -moz-linear-gradient(@dir,  @startColor 0%, @endColor 100%);
+		background: -webkit-gradient(linear, @dir top, @end top, color-stop(0%,@startColor), color-stop(100%,@endColor));
+		background: -webkit-linear-gradient(@dir,  @startColor 0%,@endColor 100%);
+		background: -o-linear-gradient(@dir,  @startColor 0%,@endColor 100%);
+		background: -ms-linear-gradient(@dir,  @startColor 0%,@endColor 100%);
+		background: linear-gradient(to @end,  @startColor 0%,@endColor 100%);
+		filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr='@startColor', endColorstr='@endColor',GradientType="@filter~" )";
+    }
+    
+    .gradientClear {
+	    background: none;
+	    filter: ~"none";
+    }
+    
+    .icon(@url, @location) {
+        background-image: url(@url); 
+        background-repeat: no-repeat; 
+        background-position: @location;
+    }
+    
+    .BorderRadius (@radius: 0px) {
+        -webkit-border-radius: @radius;
+        border-radius: @radius;
+    }
+    
+    .Box-shadow(@style, @c) when (iscolor(@c)) {
+        box-shadow:         @style @c;
+        -webkit-box-shadow: @style @c;
+        -moz-box-shadow:    @style @c;
+    }
+    .Box-shadow(@style, @alpha: .13) when (isnumber(@alpha)) {
+        .Box-shadow(@style, rgba(0, 0, 0, @alpha));
+    }
+    
+    .Box-shadow-advanced(...) {
+        box-shadow: @arguments;
+        -moz-box-shadow: @arguments;
+        -webkit-box-shadow: @arguments;
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Hilight colors | IBM Core Marketing colors
+//	These colors may be used throughout the toolkit for accent.
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @yellowLight: #ffe14f;
+    @yellow: #ffcf01;
+    @yellowDark: #fdb813;
+    
+    @orangeLight: #f19027;
+    @orange: #dd731c;
+    @orangeDark: #b8471b;
+    
+    @redLight: #f04e37;
+    @red: #d9182d;
+    @redDark: #a91024;
+    
+    @magentaLight: #f389af;
+    @magenta: #ee3d96;
+    @magentaDark: #ba006e;
+    
+    @purpleLight: #ab1a86;
+    @purple: #7f1c7d;
+    @purpleDark: #3b0256;
+    
+    @blue1Light: #82d1f5;
+    @blue1: #00b2ef;
+    @blue1Dark: #00649d;
+    
+    @blue2Light: #00b0da;
+    @blue2: #008abf;
+    @blue2Dark: #003f69;
+    
+    @tealLight: #00a6a0;
+    @teal: #007670;
+    @tealDark: #006058;
+    
+    @greenLight: #8cc63f;
+    @green: #17af4b;
+    @greenDark: #008a52;
+    
+    @oliveLight: #a5a215;
+    @olive: #838329;
+    @oliveDark: #594f13;

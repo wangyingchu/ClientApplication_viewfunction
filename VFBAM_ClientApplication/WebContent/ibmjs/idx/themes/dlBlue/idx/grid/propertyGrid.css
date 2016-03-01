@@ -1,0 +1,59 @@
+.dlBlue .idxPropertyGridHidden {
+  display: none;
+  visibility: hidden;
+}
+.dlBlue .idxPropertyGridTable {
+  border-style: none;
+  border-width: 0px;
+  border-collapse: collapse;
+  border-top-style: solid;
+  border-top-color: #ccc;
+  border-top-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #ccc;
+  border-bottom-width: 1px;
+}
+.dlBlue th.idxPropertyRowLabel {
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background-color: #f4f5f6;
+  border-style: none;
+  border-width: 0px;
+  border-bottom-style: solid;
+  border-bottom-color: #ccc;
+  border-bottom-width: 1px;
+  white-space: nowrap;
+  color: #444;
+}
+.dlBlue td.idxPropertyRowValue {
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-style: none;
+  border-width: 0px;
+  border-bottom-style: solid;
+  border-bottom-color: #ccc;
+  border-bottom-width: 1px;
+}
+.dlBlue span.idxPropertyRowLabel {
+  white-space: nowrap;
+  padding: 0px;
+  margin: 0px;
+}
+.dlBlue span.idxPropertyRowSep {
+  white-space: nowrap;
+  padding: 0px;
+  margin: 0px;
+}
+.dijitRtl .dlBlue th.idxPropertyRowLabel {
+  text-align: right;
+}
+.dijitRtl .dlBlue td.idxPropertyRowValue {
+  text-align: right;
+}

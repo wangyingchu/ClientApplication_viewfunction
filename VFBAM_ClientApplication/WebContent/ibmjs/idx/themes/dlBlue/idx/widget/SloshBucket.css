@@ -1,0 +1,150 @@
+.dlBlue .idxSloshBucket {
+  padding: 0;
+}
+.dlBlue .idxSloshBucket .gridx {
+  border: 1px solid #a4a6ab;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+.dlBlue .idxSloshBucket .gridx .gridxHeader .gridxHeaderRow .gridxHeaderRowInner .gridxCell.gridxHeaderCellFocus {
+  background: #267bac;
+  border-color: transparent;
+}
+.dlBlue .idxSloshBucket .gridx .gridxHeaderRow {
+  background: #267bac;
+}
+.dlBlue .idxSloshBucket .gridx .gridxHeaderRow .gridxCell {
+  padding: 10px 15px;
+  color: #ffffff;
+  text-shadow: none;
+  font-size: 1.2em;
+}
+.dlBlue .idxSloshBucket .gridx .gridxHeaderRow .gridxCell:hover {
+  background: #267bac;
+}
+.dlBlue .idxSloshBucket .gridx .gridxFooter {
+  display: none;
+}
+.dlBlue .idxSloshBucket .gridx .gridxRow .gridxCell {
+  border: none;
+  padding: 8px 15px;
+  word-wrap: break-word;
+  min-width: auto !important;
+  max-width: none !important;
+}
+.dlBlue .idxSloshBucket .gridxRtl .gridxRowSelected .gridxCell {
+  background: #ecf8fd;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketMainBorder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketMainBorder .idxSloshBucketRightPane {
+  right: 0;
+  top: 0;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketValuesGridAndButtonsBorder .idxSloshBucketValuesContentPane.idxSloshBucketHideSortButtons {
+  right: 0;
+}
+.dlBlue .idxSloshBucket .dijitButton .dijitButtonNode {
+  padding: 0;
+  background: transparent;
+  border: none;
+  min-width: 16px !important;
+}
+.dlBlue .idxSloshBucket .dijitButton .idxSloshBucketMoveDownButton {
+  background-position: -157px -67px;
+}
+.dlBlue .idxSloshBucket .dijitButton .idxSloshBucketMoveUpButton {
+  background-position: -116px -67px;
+}
+.dlBlue .idxSloshBucket .dijitButtonDisabled .idxSloshBucketMoveDownButton {
+  background-position: -157px -22px;
+}
+.dlBlue .idxSloshBucket .dijitButtonDisabled .idxSloshBucketMoveUpButton {
+  background-position: -116px -22px;
+}
+.dlBlue .idxSloshBucket.dijitSloshBucketDisabled .gridx .gridxRow .gridxCell {
+  background: #cdced2;
+  color: #4c4d53;
+}
+.dlBlue .idxSloshBucket .gridx .gridxRow .gridxRowTable,
+.dlBlue .idxSloshBucket .gridx .gridxHeaderRowInner table {
+  width: 100%;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketMainBorder .idxSloshBucketLeftPane,
+.dlBlue .idxSloshBucket .idxSloshBucketMainBorder .idxSloshBucketRightPane {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketValuesGridAndButtonsBorder,
+.dlBlue .idxSloshBucket .idxSloshBucketAvailableGridAndButtonsBorder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketValuesGridAndButtonsBorder .idxSloshBucketValuesContentPane,
+.dlBlue .idxSloshBucket .idxSloshBucketAvailableGridAndButtonsBorder .idxSloshBucketAvailableContentPane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 60px;
+  bottom: 0;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketAvailableGridContainer,
+.dlBlue .idxSloshBucket .idxSloshBucketValuesGridContainer {
+  height: 100%;
+  width: 100%;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketAddRemoveButtonPane,
+.dlBlue .idxSloshBucket .idxSloshBucketMoveUpDownButtons {
+  width: 30px;
+  padding-left: 5px;
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  right: 15px;
+  margin-top: -31px;
+  min-width: 0 !important;
+}
+.dijitRtl .dlBlue .idxSloshBucket .idxSloshBucketMainBorder .idxSloshBucketRightPane {
+  left: 0;
+  right: inherit;
+}
+.dijitRtl .dlBlue .idxSloshBucket .idxSloshBucketValuesGridAndButtonsBorder .idxSloshBucketValuesContentPane,
+.dijitRtl .dlBlue .idxSloshBucket .idxSloshBucketAvailableGridAndButtonsBorder .idxSloshBucketAvailableContentPane {
+  right: 0;
+  left: 60px;
+}
+.dijitRtl .dlBlue .idxSloshBucket .idxSloshBucketAddRemoveButtonPane,
+.dijitRtl .dlBlue .idxSloshBucket .idxSloshBucketMoveUpDownButtons {
+  right: inherit;
+  left: 15px;
+  min-width: 0 !important;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketMoveDownButton,
+.dlBlue .idxSloshBucket .idxSloshBucketMoveUpButton,
+.dlBlue .idxSloshBucket .idxSloshBucketAddButton,
+.dlBlue .idxSloshBucket .idxSloshBucketRemoveButton {
+  width: 30px;
+  height: 30px;
+  background: url("../../dijit/images/arrow-forward.svg") no-repeat;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketAddButton,
+.dijitRtl .dlBlue .idxSloshBucket .idxSloshBucketRemoveButton {
+  background-position: -35px -67px;
+}
+.dlBlue .idxSloshBucket .dijitButtonDisabled .idxSloshBucketAddButton,
+.dijitRtl .dlBlue .idxSloshBucket .dijitButtonDisabled .idxSloshBucketRemoveButton {
+  background-position: -35px -22px;
+}
+.dlBlue .idxSloshBucket .idxSloshBucketRemoveButton,
+.dijitRtl .dlBlue .idxSloshBucket .idxSloshBucketAddButton {
+  background-position: -76px -67px;
+}
+.dlBlue .idxSloshBucket .dijitButtonDisabled .idxSloshBucketRemoveButton,
+.dijitRtl .dlBlue .idxSloshBucket .dijitButtonDisabled .idxSloshBucketAddButton {
+  background-position: -76px -22px;
+}

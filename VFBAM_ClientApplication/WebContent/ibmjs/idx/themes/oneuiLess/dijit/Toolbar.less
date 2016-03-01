@@ -1,0 +1,181 @@
+//
+// Licensed Materials - Property of IBM
+// (C) Copyright IBM Corp. 2010, 2013 All Rights Reserved
+// US Government Users Restricted Rights - Use, duplication or
+// disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+
+/* Toolbar 
+ * 
+ * Styling Toolbar means styling the toolbar container and the widget inside toolbar  (dijitToolbar)
+ * 
+ * 1. toolbar (default styling): 
+ * 		.dijitToolbar - styles for outer container
+ *
+ * 2. widget inside toolbar
+ * 		.dijitToolbar .dijitButtonNode   - Button widget
+ * 					  .dijitComboButton  - ComboButton widget
+ * 					  .dijitDropDownButton  - DropDownButton widget
+ * 					  .dijitToggleButton  - ToggleButton widget
+ * 		
+ * 3. hovered widget inside toolbar (ie, mouse hover on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeHover  - styles for hovered Button widget
+ * 
+ * 4. actived widget inside toolbar (ie, mouse down on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeActive  - mouse down on Button widget
+ */
+.dijitToolbar {
+	border-bottom: 1px solid @fwBase;
+	padding: 1px 5px;
+	zoom: 1;
+	.gradient(@fwLightest, @fwLighter);
+}
+.dijitToolbar label {
+	padding: 0 3px 0 6px;
+}
+/** override oneui/form/Button.css, and also ComboBox down arrow **/
+.dijitToolbar .dijitButton .dijitButtonNode, 
+.dijitToolbar .dijitDropDownButton .dijitButtonNode, 
+.dijitToolbar .dijitComboButton .dijitButtonNode, 
+.dijitToolbar .dijitToggleButton .dijitButtonNode, 
+.dijitToolbar .dijitComboBox .dijitButtonNode {
+	border-width: 0;
+	/* on hover/active, border-->1px, padding-->1px */
+  	padding: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	background-color: transparent;
+	background-image:none;
+	margin:0 !important;
+	font-weight:normal;
+	min-width: 0;
+}
+.dijitToolbar .dijitButtonNode .dijitButtonContents {
+	padding:2px;
+}
+.dijitToolbar .dijitButtonDisabled .dijitButtonNode, 
+.dijitToolbar .dijitDropDownButtonDisabled .dijitButtonNode, 
+.dijitToolbar .dijitComboButtonDisabled .dijitButtonNode, 
+.dijitToolbar .dijitToggleButtonDisabled .dijitButtonNode {
+	background-color: transparent;
+}
+.dj_ie & .dijitToolbar .dijitButton .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitDropDownButton .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitComboButton .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitToggleButton .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitComboBox .dijitButtonNode {
+	background-color: transparent;/* for IE, which doesn't understand rgba(...) */
+
+}
+.dj_ie6 & .dijitToolbar .dijitButton .dijitButtonNode, 
+.dj_ie6 & .dijitToolbar .dijitDropDownButton .dijitButtonNode, 
+.dj_ie6 & .dijitToolbar .dijitComboButton .dijitButtonNode, 
+.dj_ie6 & .dijitToolbar .dijitToggleButton .dijitButtonNode, 
+.dj_ie6 & .dijitToolbar .dijitComboBox .dijitButtonNode {
+	background: none;/* because background-color: transparent above doesn't work on IE*/
+}
+/* hover status */
+.dj_ie & .dijitToolbar .dijitButtonHover .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitComboButton .dijitButtonNodeHover, 
+.dj_ie & .dijitToolbar .dijitComboButton .dijitDownArrowButtonHover, 
+.dj_ie & .dijitToolbar .dijitToggleButtonHover .dijitButtonNode {
+	/* button should still turn blue on hover, so need to override .dj_ie rules above */
+  background-color: @fwLighter;
+}
+/* active status */
+.dj_ie & .dijitToolbar .dijitButtonActive .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitComboButtonActive .dijitButtonNode, 
+.dj_ie & .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+	/* button should still turn blue on press, so need to override .dj_ie rules above */
+  background-color: @fwBase;
+}
+.dijitToolbar .dijitComboButton .dijitStretch {
+	/* no rounded border on side adjacent to arrow */
+  .BorderRadius(2px 0 0 2px);
+}
+.dijitToolbar .dijitComboButton .dijitArrowButton {
+	/* no rounded border on side adjacent to button */
+ .BorderRadius(0 2px 2px 0);
+}
+.dijitToolbar .dijitComboBox .dijitButtonNode {
+	padding: 0;
+}
+/* hover status */
+.dijitToolbar .dijitButtonHover .dijitButtonNode, 
+.dijitToolbar .dijitDropDownButtonHover .dijitButtonNode, 
+.dijitToolbar .dijitToggleButtonHover .dijitButtonNode, 
+.dijitToolbar .dijitComboButtonHover .dijitButtonNode {
+	border-width: 1px;
+	border-color:@fwBase;
+	background-image:none;
+	.gradient(@fwLightest, @fwBase);
+	padding: 1px;
+}
+/* active status */
+.dijitToolbar .dijitButtonActive .dijitButtonNode, 
+.dijitToolbar .dijitDropDownButtonActive .dijitButtonNode, 
+.dijitToolbar .dijitToggleButtonActive .dijitButtonNode, 
+.dijitToolbar .dijitComboButtonActive .dijitButtonNode {
+	border-width: 1px;
+	border-color:@fwBase;
+	.gradient(@fwLighter, @fwLightest);
+	padding: 1px;
+	background-image:none;
+	.BoxShadow(inset 3px 0 8px @shadowBox);
+}
+.dijitToolbar .dijitComboButtonActive {
+	border-width: 1px;
+	padding: 0;
+	background-image:none;
+}
+
+/* Avoid double border between button and arrow */
+.dijitToolbar .dijitComboButtonHover .dijitDownArrowButton, 
+.dijitToolbar .dijitComboButtonActive .dijitDownArrowButton {
+	border-left-width: 0;
+	padding-left: 2px;
+}
+.dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+	padding-left: 2px;/* since there's no left border, don't reduce from 2px --> 1px */
+}
+/* Selected status */
+.dijitToolbar .dijitButtonSelected .dijitButtonNode, 
+.dijitToolbar .dijitDropDownButtonSelected .dijitButtonNode, 
+.dijitToolbar .dijitToggleButtonSelected .dijitButtonNode {
+	background-image:none;
+	background-color: @fwBackground;
+}
+/* toggle button checked status */
+.dijitToolbar .dijitToggleButtonChecked .dijitButtonNode {
+	margin: 0;
+	/* remove margin and add a border */
+  	border-width: 1px;
+	border-style: solid;
+	border-color: @fwBase;
+	padding: 1px;
+	background-color: @fwLightest;
+	.BoxShadow(inset 0 1px 3px @shadowAlpha);
+}
+.dijitToolbarSeparator {
+	/* separator icon in the editor sprite */
+  background: url('../../../idx/icons/images/editorIconsEnabled.png');
+}
+/* Toolbar inside of disabled Editor */
+.dijitDisabled .dijitToolbar {
+	background: none;
+	background-color: @fwLightest;
+	border-bottom: 1px solid @fwLighter;
+	.textColors(@fwLightest);
+	color:@textDisabled;
+}
+
+/* Combo and drop down button */
+.dijitToolbar .dijitComboButton .dijitButtonText,
+.dijitToolbar .dijitDropDownButton .dijitButtonText {
+	padding-right: 5px;
+}

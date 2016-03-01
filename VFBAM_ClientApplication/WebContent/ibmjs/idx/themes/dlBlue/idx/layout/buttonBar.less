@@ -1,0 +1,76 @@
+/** Licensed Materials - Property of IBM* (C) Copyright IBM Corp. 2010, 2012 All Rights Reserved* US Government Users Restricted Rights - Use, duplication or* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.\*/  @import "../../dijit/variables";  .@{theme-name} .idxButtonBar_idxDefaults {
+    background-image: url(../images/blank.gif?directionSensitive=false);
+}
+.@{theme-name} {
+    .idxButtonBar {
+        display: inline-block;
+        white-space: nowrap;
+        margin: 0px;
+        padding: 0px;
+        height: auto;
+    }
+    .idxButtonBarLeading {
+        height: auto;
+    }
+    .idxButtonBarTrailing {
+        height: auto;
+    }
+    .idxButtonBarHidden {
+        display: none;
+        visibility: hidden;
+    }
+    .idxButtonBarPrimary {
+        display: inline-block;
+        white-space: nowrap;
+        margin: 0px;
+        padding: 1px;
+    }
+    .idxButtonBarSecondary {
+        display: inline-block;
+        white-space: nowrap;
+        margin: 0px;
+        padding: 1px;
+    }
+    .idxButtonBarSpacer {
+        width: 5px;
+        display: inline-block;
+        margin: 0px;
+        padding: 0px;
+    }
+    .idxButtonBarSeparator {
+        filter: none;
+        background: none;
+        background-color: #b2bece;
+        display: inline-block;
+        width: 1px;
+        height: 14px;
+        vertical-align: middle;
+        margin-left: 9px;
+        margin-right: 9px;
+    }
+    .idxButtonBarSeparatorHidden {
+        visibility: hidden;
+        display: none;
+    }
+}
+.dj_ie7 {
+    .@{theme-name} {
+        .idxButtonBarSpacer {
+            display: inline;
+        }
+        .idxButtonBar {
+            table.dijitComboButton {
+                vertical-align: bottom;
+            }
+        }
+        .idxButtonBarSeparatorHidden {
+            display: none;
+        }
+    }
+}
+.dj_ie7 .@{theme-name} .idxButtonBarPrimary,.dj_ie7 .@{theme-name} .idxButtonBarSecondary,.dj_ie7 .@{theme-name} .idxButtonBar,.dj_ie7 .@{theme-name} .idxButtonBarSeparator {
+    display: inline;
+}
+.@{theme-name} .idxButtonBar .dijitToggleButton,.@{theme-name} .idxButtonBar .dijitButton,.@{theme-name} .idxButtonBar .dijitDropDownButton,.@{theme-name} .idxButtonBar .dijitComboButton {
+    margin: 0px;
+}
