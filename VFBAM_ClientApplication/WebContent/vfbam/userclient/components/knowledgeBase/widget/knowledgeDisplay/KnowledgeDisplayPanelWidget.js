@@ -158,11 +158,11 @@ require([
                             }
                         }else{
                             /*
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA={};
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGING=true;
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGE_SIZE=50;
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.CURRENT_PAGE_NUMBER=1;
-                            */
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA={};
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGING=true;
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGE_SIZE=50;
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.CURRENT_PAGE_NUMBER=1;
+                             */
                         }
                         var pagingQueryStr="&pageSize="+pageSize+"&currentPageNumber="+currentPageNumber;
                         var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
@@ -170,7 +170,7 @@ require([
                             UI.showProgressDialog("查询数据");
                             var timer = new dojox.timing.Timer(300);
                             timer.onTick = function(){
-                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getRecommendedDocumentsByUserId/"+userId+pagingQueryStr;
+                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getRecommendedDocumentsByUserId/"+userId+"?defaultSort=true"+pagingQueryStr;
                                 var syncFlag=true;
                                 var errorCallback= function(data){
                                     UI.showSystemErrorMessage(data);
@@ -190,8 +190,8 @@ require([
                             timer.start();
                         }
                         if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_POP||
-                           contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_LATEST||
-                           contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_ALL){
+                            contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_LATEST||
+                            contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_ALL){
                             UI.showProgressDialog("查询数据");
                             var timer = new dojox.timing.Timer(300);
                             timer.onTick = function(){
@@ -349,11 +349,11 @@ require([
                             }
                         } else {
                             /*
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA = {}
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGING=true;
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGE_SIZE=5;
-                            this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.CURRENT_PAGE_NUMBER=1;
-                            */
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA = {}
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGING=true;
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.PAGE_SIZE=5;
+                             this.currentKnowledgeViewInfo.KNOWLEDGE_VIEW_DATA.VIEW_PAGEDATA.CURRENT_PAGE_NUMBER=1;
+                             */
                         }
                         if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_RECOMMENDED){
                             UI.showProgressDialog("查询数据");
@@ -388,8 +388,8 @@ require([
                             timer.start();
                         }
                         if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_ALL||
-                           contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_LATEST||
-                           contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_POP){
+                            contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_LATEST||
+                            contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_POP){
                             UI.showProgressDialog("查询数据");
                             var timer = new dojox.timing.Timer(300);
                             timer.onTick = function(){
@@ -551,54 +551,54 @@ require([
                 }
                 var pagingQueryStr="&pageSize="+pageSize+"&currentPageNumber="+currentPageNumber;
                 if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_SAVEDSEARCH||
-                    contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_TAGSEARCH){  
-                        UI.showProgressDialog("查询数据");
-                        var timer = new dojox.timing.Timer(300);
-                        timer.onTick = function(){                        
-                            var selectedTags=contentData.KNOWLEDGE_VIEW_DATA.VIEW_METADATA.selectedCategories;
-                            var multiTagSearchObj={};    
-                            multiTagSearchObj.nodeType="Tag";
-                            multiTagSearchObj.filterPropName="categoryId";
-                            multiTagSearchObj.orderBy="contentDescription";
-                            multiTagSearchObj.sort="DESC";
-                            multiTagSearchObj.pageSize=pageSize;
-                            multiTagSearchObj.currentPageNumber=currentPageNumber;
-                            multiTagSearchObj.limitCount=1000;
-                            multiTagSearchObj.paging=true;
-                            var tagIdsWithDepthMap=[];
-                            dojo.forEach(selectedTags,function(currentTag){
-                                var currentCategoryId="";
-                                if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_SAVEDSEARCH){
-                                    currentCategoryId=currentTag;
-                                }
-                                if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_TAGSEARCH){
-                                    currentCategoryId=currentTag.categoryId;
-                                }
-                                var tagInfoObj={};
-                                tagInfoObj.propValue=currentCategoryId;
-                                tagInfoObj.startPathDepth=0;
-                                tagInfoObj.pathDepth=4;  
-                                tagIdsWithDepthMap.push(tagInfoObj);
-                            });
-                            multiTagSearchObj.tagIdsWithDepthMap=tagIdsWithDepthMap;
-                            var multiTagSearchObjContent=dojo.toJson(multiTagSearchObj);
-                            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/";
-                            var errorCallback= function(data){
-                                UI.showSystemErrorMessage(data);
-                            };
-                            var loadCallback=function(data){
-                                var documentList=data.docs;
-                                var currentKnowledgeItem=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemsWallWidget(
-                                  {resultDisplayZoneWidth:that.resultDisplayZoneWidth,knowledgeMetaInfo:documentList,knowledgeDisplayPanelWidget:that});
-                                that.app_knowledgeBase_contentDisplayContainer.appendChild(currentKnowledgeItem.domNode);
-                                that.knowledgeContentDisplayItemList.push(currentKnowledgeItem);
-                                that._setUpPagingElementInfo(data);
-                                UI.hideProgressDialog();
-                            };
-                            Application.WebServiceUtil.postJSONData(resturl,multiTagSearchObjContent,loadCallback,errorCallback);
-                            timer.stop();
+                    contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_TAGSEARCH){
+                    UI.showProgressDialog("查询数据");
+                    var timer = new dojox.timing.Timer(300);
+                    timer.onTick = function(){
+                        var selectedTags=contentData.KNOWLEDGE_VIEW_DATA.VIEW_METADATA.selectedCategories;
+                        var multiTagSearchObj={};
+                        multiTagSearchObj.nodeType="Tag";
+                        multiTagSearchObj.filterPropName="categoryId";
+                        multiTagSearchObj.orderBy="contentDescription";
+                        multiTagSearchObj.sort="DESC";
+                        multiTagSearchObj.pageSize=pageSize;
+                        multiTagSearchObj.currentPageNumber=currentPageNumber;
+                        multiTagSearchObj.limitCount=1000;
+                        multiTagSearchObj.paging=true;
+                        var tagIdsWithDepthMap=[];
+                        dojo.forEach(selectedTags,function(currentTag){
+                            var currentCategoryId="";
+                            if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_SAVEDSEARCH){
+                                currentCategoryId=currentTag;
+                            }
+                            if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_TAGSEARCH){
+                                currentCategoryId=currentTag.categoryId;
+                            }
+                            var tagInfoObj={};
+                            tagInfoObj.propValue=currentCategoryId;
+                            tagInfoObj.startPathDepth=0;
+                            tagInfoObj.pathDepth=4;
+                            tagIdsWithDepthMap.push(tagInfoObj);
+                        });
+                        multiTagSearchObj.tagIdsWithDepthMap=tagIdsWithDepthMap;
+                        var multiTagSearchObjContent=dojo.toJson(multiTagSearchObj);
+                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/";
+                        var errorCallback= function(data){
+                            UI.showSystemErrorMessage(data);
                         };
-                        timer.start();
+                        var loadCallback=function(data){
+                            var documentList=data.docs;
+                            var currentKnowledgeItem=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemsWallWidget(
+                                {resultDisplayZoneWidth:that.resultDisplayZoneWidth,knowledgeMetaInfo:documentList,knowledgeDisplayPanelWidget:that});
+                            that.app_knowledgeBase_contentDisplayContainer.appendChild(currentKnowledgeItem.domNode);
+                            that.knowledgeContentDisplayItemList.push(currentKnowledgeItem);
+                            that._setUpPagingElementInfo(data);
+                            UI.hideProgressDialog();
+                        };
+                        Application.WebServiceUtil.postJSONData(resturl,multiTagSearchObjContent,loadCallback,errorCallback);
+                        timer.stop();
+                    };
+                    timer.start();
                 }
 
                 if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_KEYWORDSEARCH){
