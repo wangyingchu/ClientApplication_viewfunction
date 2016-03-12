@@ -8,16 +8,17 @@ require([
         widgetsInTemplate: true,
         postCreate: function(){
             if(this.viewerWidth){
+                var iFrameContentWidth=this.viewerWidth;
                 this.realDocumentViewerContainer.width=this.viewerWidth+"px";
             }else{
-                var iFrameContentWidth=this.resultDisplayZoneWidth-428;
+                var iFrameContentWidth=this.resultDisplayZoneWidth-430;
                 this.realDocumentViewerContainer.width=iFrameContentWidth+"px";
             }
             if(this.viewerHeight){
                 this.iFrameContentHeight=this.viewerHeight;
                 this.realDocumentViewerContainer.height=this.viewerHeight+"px";
             }else{
-                this.iFrameContentHeight=win.getBox().h-260;
+                this.iFrameContentHeight=win.getBox().h-265;
                 this.realDocumentViewerContainer.height=this.iFrameContentHeight+"px";
             }
             var that=this;

@@ -48,9 +48,9 @@ require([
             //init knowledge display zone Center container height
             var App_KnowledgeBase_UI_Header_Height=0;
             if(dojo.isChrome){
-                App_KnowledgeBase_UI_Header_Height=220;
+                App_KnowledgeBase_UI_Header_Height=230;
             }else{
-                App_KnowledgeBase_UI_Header_Height=214;
+                App_KnowledgeBase_UI_Header_Height=224;
             }
             var vs =win.getBox();
             var App_KnowledgeBase_UI_Dynamic_Real_Height=  vs.h-App_KnowledgeBase_UI_Header_Height;

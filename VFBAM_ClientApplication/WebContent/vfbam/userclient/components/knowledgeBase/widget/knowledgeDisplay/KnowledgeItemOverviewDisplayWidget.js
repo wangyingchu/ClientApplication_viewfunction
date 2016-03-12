@@ -27,21 +27,21 @@ require([
             },this.previewContainer);
         },
         fullScreenPreview:function(){
-            var documentViewerWidth=win.getBox().w-10;
+            var documentViewerWidth=win.getBox().w;
             if(win.getBox().w>200){
                 documentViewerWidth=win.getBox().w-50;
             }
-            var documentViewerHeight=win.getBox().h-40;
+            var documentViewerHeight=win.getBox().h;
             var viewerWidthStyle="width:"+documentViewerWidth+"px;height:"+documentViewerHeight+"px;";
 
-            var viewerWidth=documentViewerWidth-50;
-            var viewerHeight=documentViewerHeight-150;
+            var viewerWidth=documentViewerWidth-210;
+            var viewerHeight=documentViewerHeight-260;
             if(dojo.isChrome){
-                viewerWidth=documentViewerWidth-65;
-                viewerHeight=documentViewerHeight-160;
+                viewerWidth=documentViewerWidth-245;
+                viewerHeight=documentViewerHeight-270;
             }
             this.fullSizeGeneralKnowledgeViewerWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.GeneralKnowledgeViewerWidget({
-                knowledgeContentInfo:this.knowledgeContentInfo,viewerWidth:viewerWidth,viewerHeight:viewerHeight
+                "knowledgeContentInfo":this.knowledgeContentInfo,"viewerWidth":viewerWidth,"viewerHeight":viewerHeight
             });
             var	dialog = new Dialog({
                 style:viewerWidthStyle,
@@ -51,8 +51,6 @@ require([
                 closeButtonLabel: "<i class='icon-remove'></i> 关闭"
             });
             dialog.show();
-            dojo.style(dialog.containerNode,"width",documentViewerWidth-40+"px");
-            dojo.style(dialog.containerNode,"height",documentViewerHeight-140+"px");
         },
         showKnowledgeItemDetail:function(){
             Application.MessageUtil.publishMessage(APP_KNOWLEDGEBASE_SHOWKNOWLEDGECONTENT_EVENT,{

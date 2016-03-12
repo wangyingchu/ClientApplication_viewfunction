@@ -1,7 +1,7 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
     "dojo/text!vfbam/userclient/components/knowledgeBase/widget/knowledgeDisplay/template/KnowledgeItemDetailDisplayWidget.html"
-     ,"dojo/io/iframe","dojo/window","idx/oneui/Dialog"
+    ,"dojo/io/iframe","dojo/window","idx/oneui/Dialog"
 ],function(lang,declare, _Widget, _Templated, template,Iframe,win,Dialog){
     declare("vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemDetailDisplayWidget", [_Widget, _Templated], {
         templateString: template,
@@ -23,7 +23,7 @@ require([
             },this.generalKnowledgeViewerContainer);
 
             this.knowledgeItemMetaInfoWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemMetaInfoWidget({
-                    knowledgeContentInfo:knowledgeContentInfo},this.knowledgeItemMetaInfoContainer);
+                knowledgeContentInfo:knowledgeContentInfo},this.knowledgeItemMetaInfoContainer);
 
             this.itemRelatedMainCategoriesWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemRelatedMainCategoriesWidget({
                 knowledgeContentInfo:knowledgeContentInfo,mainCategoriesContainer:this.mainCategoriesContainer},this.itemRelatedMainCategoriesWidgetContainer);
@@ -40,7 +40,7 @@ require([
             var showTagDialogLinklabel="分类标签 <i class='icon-caret-down'></i>";
             new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:showTagDialogLinklabel,dropDown: this.knowledgeTagInfoMenuDialog},this.knowledgeTagSwitcherContainer);
             this.knowledgeItemBelongedCollectionListMenuDialog=new idx.widget.MenuDialog({});
-                    this.knowledgeItemBelongedCollectionListWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionListWidget({
+            this.knowledgeItemBelongedCollectionListWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemBelongedCollectionListWidget({
                 knowledgeContentInfo:knowledgeContentInfo,popupDialog:this.knowledgeItemBelongedCollectionListMenuDialog});
             dojo.place(this.knowledgeItemBelongedCollectionListWidget.domNode, this.knowledgeItemBelongedCollectionListMenuDialog.containerNode);
             var showProjectDialogLinklabel="所属专辑 <i class='icon-caret-down'></i>";
@@ -69,22 +69,21 @@ require([
             Iframe.setSrc(iframe, fullLocation, false);
         },
         showFullScreenPreview:function(){
-            var documentViewerWidth=win.getBox().w-10;
+            var documentViewerWidth=win.getBox().w;
             if(win.getBox().w>200){
                 documentViewerWidth=win.getBox().w-50;
             }
-            var documentViewerHeight=win.getBox().h-40;
+            var documentViewerHeight=win.getBox().h;
             var viewerWidthStyle="width:"+documentViewerWidth+"px;height:"+documentViewerHeight+"px;";
             var knowledgeContentInfo=this.knowledgeMetaInfo.KNOWLEDGE_VIEW_DATA.VIEW_METADATA;
-
-            var viewerWidth=documentViewerWidth-50;
-            var viewerHeight=documentViewerHeight-150;
+            var viewerWidth=documentViewerWidth-210;
+            var viewerHeight=documentViewerHeight-260;
             if(dojo.isChrome){
-                viewerWidth=documentViewerWidth-65;
-                viewerHeight=documentViewerHeight-160;
+                viewerWidth=documentViewerWidth-245;
+                viewerHeight=documentViewerHeight-270;
             }
             this.fullSizeGeneralKnowledgeViewerWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.GeneralKnowledgeViewerWidget({
-                knowledgeContentInfo:knowledgeContentInfo,viewerWidth:viewerWidth,viewerHeight:viewerHeight
+                "knowledgeContentInfo":knowledgeContentInfo,"viewerWidth":viewerWidth,"viewerHeight":viewerHeight
             });
             var	dialog = new Dialog({
                 style:viewerWidthStyle,
@@ -94,8 +93,6 @@ require([
                 closeButtonLabel: "<i class='icon-remove'></i> 关闭"
             });
             dialog.show();
-            dojo.style(dialog.containerNode,"width",documentViewerWidth-40+"px");
-            dojo.style(dialog.containerNode,"height",documentViewerHeight-140+"px");
         },
         collectKnowledgeItem:function(){
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
