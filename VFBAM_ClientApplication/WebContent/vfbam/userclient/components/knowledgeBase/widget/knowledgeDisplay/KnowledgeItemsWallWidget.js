@@ -24,6 +24,10 @@ require([
                     newSecondaryItemWidget = new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemWallDisplayWidget({knowledgeContentInfo: currentKnowledgeItem});
                 }
                 this.knowledgeItemContainer.appendChild(newSecondaryItemWidget.domNode);
+                if(this.wallHeight){
+                    this.knowledgeItemContainer.style.height=this.wallHeight;
+                    this.knowledgeItemContainer.style.overflow="auto";
+                }
                 this.knowledgeItemWallDisplayWidgetArray.push(newSecondaryItemWidget);
             },this);
         },

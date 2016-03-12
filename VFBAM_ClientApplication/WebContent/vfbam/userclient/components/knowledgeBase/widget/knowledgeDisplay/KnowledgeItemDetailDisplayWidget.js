@@ -128,13 +128,13 @@ require([
         },
         showSameSearchResult:function(){
             var knowledgeContentInfo=this.knowledgeMetaInfo.KNOWLEDGE_VIEW_DATA.VIEW_METADATA;
-            var viewerWidthStyle="width:1100px;";
+            var viewerWidthStyle="width:1095px;height:780px;";
             this.sameSearchResultWallDisplayWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemsWallWidget(
-                {knowledgeMetaInfo:KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT,highLightKnowledgeContent:knowledgeContentInfo});
+                {knowledgeMetaInfo:KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT,highLightKnowledgeContent:knowledgeContentInfo,wallHeight:"600px"});
             this.sameSearchResultWallDisplayWidgetDialog = new Dialog({
                 style:viewerWidthStyle,
                 title: "<i class='icon-th'></i> 当前素材搜索结果:",
-                content:this.sameSearchResultWallDisplayWidget,
+                content:this.sameSearchResultWallDisplayWidget.domNode,
                 //class:'nonModal',// for noe modal window
                 closeButtonLabel: "<i class='icon-remove'></i> 关闭"
             });
