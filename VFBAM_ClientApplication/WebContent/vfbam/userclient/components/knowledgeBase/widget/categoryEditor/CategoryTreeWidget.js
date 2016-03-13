@@ -86,14 +86,14 @@ require([
                     that.categoryDataTree.startup();
                 }
                 /*
-                var timer = new dojox.timing.Timer(300);
-                timer.onTick = function(){
+                 var timer = new dojox.timing.Timer(300);
+                 timer.onTick = function(){
 
-                    UI.hideProgressDialog();
-                    timer.stop();
-                };
-                timer.start();
-                */
+                 UI.hideProgressDialog();
+                 timer.stop();
+                 };
+                 timer.start();
+                 */
             };
             //UI.showProgressDialog("查询数据");
             Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
@@ -175,7 +175,9 @@ require([
                 parentNodeId:parentCategoryInfo.id,
                 showCloseButton:true
             });
+            var dialogWidthStyle="width:660px;height:325px;";
             this.addNewCategoryDialog = new idx.oneui.Dialog({
+                style:dialogWidthStyle,
                 title: "<i class='icon-cog'></i> 添加知识分类",
                 content: "",
                 closeButtonLabel: "<i class='icon-remove'></i> 关闭"
