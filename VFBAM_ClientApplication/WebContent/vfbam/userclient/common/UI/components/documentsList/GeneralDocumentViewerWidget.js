@@ -13,11 +13,11 @@ require([
                 documentViewerWidth=win.getBox().w-200;
             }
             var iFrameContentWidth=documentViewerWidth-50;
-            this.iFrameContentHeight=win.getBox().h-250;
+            this.iFrameContentHeight=win.getBox().h-260;
 
             if(this.documentMetaInfo.documentVersionNumber){
                 //fix history version preview sizing issue
-                this.iFrameContentHeight=win.getBox().h-260;
+                this.iFrameContentHeight=win.getBox().h-270;
             }
 
             this.realDocumentViewerContainer.width=iFrameContentWidth+"px";
