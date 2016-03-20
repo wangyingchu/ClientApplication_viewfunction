@@ -63,14 +63,18 @@ require([
                     var stringCompare=a[1].localeCompare(b[1]);
                     return stringCompare;
                 }else{
-                   return null;
+                    return null;
                 }
             }
             finalTagDisplayNamesArray.sort(level1Sort);
             function level2Sort(a,b){
                 if(a[0]==b[0]&&a[1]==b[1]){
-                    var stringCompare=a[2].localeCompare(b[2]);
-                    return stringCompare;
+                    if(a[2] && b[2]){
+                        var stringCompare=a[2].localeCompare(b[2]);
+                        return stringCompare;
+                    }else{
+                        return null;
+                    }
                 }else{
                     return null;
                 }
