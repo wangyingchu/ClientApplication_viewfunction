@@ -14,9 +14,10 @@ require([
         unlock_menuItem:null,
         setTag_menuItem:null,
         addComment_menuItem:null,
-        detalInfo_menuItem_return:null,
+        detailInfo_menuItem:null,
         documentLockerDropDown:null,
         lockerNamecardWidget:null,
+        knowledgeBaseRecommend_menuItem:null,
         postCreate: function(){
             this.documentName.innerHTML=this.documentInfo.documentName;
             this.documentNamePrompt.innerHTML=this.documentInfo.documentName;
@@ -133,13 +134,23 @@ require([
                     this.menu_operationCollection.addChild(this.addComment_menuItem);
                 }
             }
-            this.detalInfo_menuItem_return = new dijit.MenuItem({
+            this.detailInfo_menuItem = new dijit.MenuItem({
                 label: "&nbsp;<i class='icon-info'></i>&nbsp;&nbsp;&nbsp;&nbsp;详细信息",
                 onClick: function(){
                     that.showDocumentElementDetail();
                 }
             });
-            this.menu_operationCollection.addChild(this.detalInfo_menuItem_return);
+            this.menu_operationCollection.addChild(this.detailInfo_menuItem);
+            if(!this.documentInfo.isFolder){
+                //need check if integrated with knowledgeBase
+                this.knowledgeBaseRecommend_menuItem = new dijit.MenuItem({
+                    label: "<i class='fa fa-clone'></i>&nbsp;&nbsp;知识推荐",
+                    onClick: function(){
+                        that.showKnowledgeBaseRecommendInfoPanel();
+                    }
+                });
+                this.menu_operationCollection.addChild(this.knowledgeBaseRecommend_menuItem);
+            }
             this.setupPermissionControl();
         },
         doDeleteDocument:function(){
@@ -247,6 +258,14 @@ require([
                 currentDocumentPermissions:currentDocumentPermissionsObj
             });
         },
+        showKnowledgeBaseRecommendInfoPanel:function(){
+            var currentDocumentPermissions=this.documentInfo.documentPermissions;
+            var currentDocumentPermissionsObj=this.documentListWidget.getPermissionControlProperties(currentDocumentPermissions,this.documentInfo.documentCreator);
+            Application.MessageUtil.publishMessage(APP_GLOBAL_DOCUMENTOPERATION_SHOWKNOWLEDGEBASERECOMMEND_EVENT,{documentInfo:this.documentInfo,
+                taskItemData:this.documentListWidget.taskData.taskItemData,documentsOwnerType:this.documentListWidget.documentsOwnerType,
+                currentDocumentPermissions:currentDocumentPermissionsObj
+            });
+        },
         setupPermissionControl:function(){
             var currentParentFolderFolderPermissions=this.documentListWidget.currentFolderPermissions;
             var currentDocumentPermissions=this.documentInfo.documentPermissions;
@@ -312,8 +331,11 @@ require([
             if(this.addComment_menuItem){
                 this.addComment_menuItem.destroy();
             }
-            if(this.detalInfo_menuItem_return){
-                this.detalInfo_menuItem_return.destroy();
+            if(this.detailInfo_menuItem){
+                this.detailInfo_menuItem.destroy();
+            }
+            if(this.knowledgeBaseRecommend_menuItem){
+                this.knowledgeBaseRecommend_menuItem.destroy();
             }
             if(this.documentLockerDropDown){
                 this.documentLockerDropDown.destroy();

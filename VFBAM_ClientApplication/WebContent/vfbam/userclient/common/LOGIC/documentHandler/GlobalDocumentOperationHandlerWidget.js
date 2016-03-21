@@ -15,6 +15,7 @@ require([
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_ADDTAG_EVENT,dojo.hitch(this,this.addDocumentTag));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_REMOVETAG_EVENT,dojo.hitch(this,this.removeDocumentTag));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_SHOWDOCUMENTDETAIL_EVENT,dojo.hitch(this,this.showDocumentDetail));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_DOCUMENTOPERATION_SHOWKNOWLEDGEBASERECOMMEND_EVENT,dojo.hitch(this,this.showKnowledgeBaseRecommends));
         },
         deleteDocument:function(data){
             var confirmationLabel;
@@ -546,6 +547,26 @@ require([
             };
             dojo.connect(dialog,"hide",closeDialogCallBack);
             dojo.place(updateDocumentWidget.containerNode, dialog.containerNode);
+            dialog.show();
+        },
+        showKnowledgeBaseRecommends:function(data){
+            var documentViewerWidth=win.getBox().w-10;
+            if(win.getBox().w>200){
+                documentViewerWidth=win.getBox().w-200;
+            }
+            var viewerWidthStyle="width:"+documentViewerWidth+"px;";
+            var recommendDocumentsWidget=new vfbam.userclient.common.UI.components.documentsList.KnowledgeBaseRecommendsWidget({documentMetaInfo:data});
+            var	dialog = new Dialog({
+                style:viewerWidthStyle,
+                title: "<i class='fa fa-clone'></i>&nbsp;&nbsp;知识库相关信息推荐",
+                content: "",
+                closeButtonLabel: "<i class='icon-remove'></i> 关闭"
+            });
+            var closeDialogCallBack=function(){
+                recommendDocumentsWidget.destroy();
+            };
+            dojo.connect(dialog,"hide",closeDialogCallBack);
+            dojo.place(recommendDocumentsWidget.containerNode, dialog.containerNode);
             dialog.show();
         },
         _endOfCode: function(){}
