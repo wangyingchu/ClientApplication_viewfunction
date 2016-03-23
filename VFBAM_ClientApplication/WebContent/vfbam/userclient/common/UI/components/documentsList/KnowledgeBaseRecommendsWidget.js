@@ -1,25 +1,92 @@
 require([
     "dojo/_base/lang","dojo/_base/declare", "dijit/_Widget", "dijit/_Templated",
-    "dojo/text!vfbam/userclient/common/UI/components/documentsList/template/KnowledgeBaseRecommendsWidget.html","dijit/popup"
-],function(lang,declare, _Widget, _Templated, template,popup){
+    "dojo/text!vfbam/userclient/common/UI/components/documentsList/template/KnowledgeBaseRecommendsWidget.html","dijit/popup","dojo/window"
+],function(lang,declare, _Widget, _Templated, template,popup,win){
     declare("vfbam.userclient.common.UI.components.documentsList.KnowledgeBaseRecommendsWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
-        creatorNamecardWidget:null,
-        lastUpdatePersonNamecardWidget:null,
         documentTagsInfoList:null,
         addNewTagMenuDialog:null,
         addNewTagDropDown:null,
-        versionHistoryListMenuDialog:null,
-        versionHistoryListDropDown:null,
         documentDetailInfo:null,
         documentInfo:null,
-        permissionControlPanel:null,
+        knowledgeCategoryInheritDataStore:null,
+        knowledgeItemAttachedTagEditorWidget:null,
+        knowledgeTagInfoMenuDialog:null,
+        knowledgeItemsRecommendsWallWidget:null,
         postCreate: function(){
             this.documentTagsInfoList=[];
             var documentInfo=this.documentMetaInfo.documentInfo;
             var documentsOwnerType=this.documentMetaInfo.documentsOwnerType;
             this.renderDocumentPreview(documentInfo,documentsOwnerType);
+            this.loadKnowledgeCategories();
+            this.loadRecommendedDocuments();
+        },
+        loadKnowledgeCategories:function(){
+            var documentAttachedTags=this.documentMetaInfo.documentInfo.documentTags;
+            var that=this;
+            var callBack=function(storeData){
+                that.knowledgeCategoryInheritDataStore=storeData;
+                var knowledgeContentInfo={};
+                knowledgeContentInfo.contentTags=documentAttachedTags;
+                that.knowledgeItemAttachedTagEditorWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagEditorWidget({
+                    knowledgeContentInfo:knowledgeContentInfo,attachedTags:knowledgeContentInfo.contentTags,knowledgeCategoryInheritDataStore:that.knowledgeCategoryInheritDataStore});
+                that.knowledgeTagInfoMenuDialog=new idx.widget.MenuDialog({});
+                dojo.connect( that.knowledgeTagInfoMenuDialog,"onOpen",that.knowledgeItemAttachedTagEditorWidget,"renderTagItems");
+                dojo.place(that.knowledgeItemAttachedTagEditorWidget.domNode, that.knowledgeTagInfoMenuDialog.containerNode);
+                var showTagDialogLinklabel="分类标签 <i class='icon-caret-down'></i>";
+                new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:showTagDialogLinklabel,dropDown: that.knowledgeTagInfoMenuDialog},that.knowledgeTagSwitcherContainer);
+            };
+            KnowledgeBaseDataHandleUtil.generateKnowledgeCategoryInheritDataStore(callBack);
+        },
+        loadRecommendedDocuments:function(){
+            var that=this;
+            var documentAttachedTags=this.documentMetaInfo.documentInfo.documentTags;
+            var timer = new dojox.timing.Timer(300);
+            timer.onTick = function(){
+                var selectedTags=documentAttachedTags;
+                var multiTagSearchObj={};
+                multiTagSearchObj.nodeType="Tag";
+                multiTagSearchObj.filterPropName="categoryId";
+                multiTagSearchObj.orderBy="contentDescription";
+                multiTagSearchObj.sort="DESC";
+
+                multiTagSearchObj.pageSize=50;
+                multiTagSearchObj.currentPageNumber=1;
+
+                multiTagSearchObj.limitCount=1000;
+                multiTagSearchObj.paging=true;
+                var tagIdsWithDepthMap=[];
+                dojo.forEach(selectedTags,function(currentTagValue){
+                    var tagInfoObj={};
+                    tagInfoObj.propValue=currentTagValue;
+                    tagInfoObj.startPathDepth=0;
+                    tagInfoObj.pathDepth=4;
+                    tagIdsWithDepthMap.push(tagInfoObj);
+                });
+                multiTagSearchObj.tagIdsWithDepthMap=tagIdsWithDepthMap;
+                var multiTagSearchObjContent=dojo.toJson(multiTagSearchObj);
+                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/";
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback=function(data){
+                    dojo.style(that.recommendedKnowledgeIconContainer,"display","none");
+                    if(data){
+                        if(data.docs&&data.docs.length!=0){
+                            dojo.style(that.recommendsResultContainer,"display","");
+                        }else{
+                            dojo.style(that.noResultContainer,"display","");
+                        }
+                    }
+                    var documentList=data.docs;
+                    that.knowledgeItemsRecommendsWallWidget=new vfbam.userclient.common.UI.components.documentsList.KnowledgeItemsRecommendsWallWidget({knowledgeMetaInfo:documentList});
+                    that.recommendsResultContainer.appendChild(that.knowledgeItemsRecommendsWallWidget.domNode);
+                };
+                Application.WebServiceUtil.postJSONData(resturl,multiTagSearchObjContent,loadCallback,errorCallback);
+                timer.stop();
+            };
+            timer.start();
         },
         renderDocumentPreview:function(documentInfo,documentsOwnerType,documentExtalInfo){
             this.documentInfo=documentInfo;
@@ -31,6 +98,8 @@ require([
             }else{
                 this.documentPreviewPicture.src=DocumentHandleUtil.getPreviewPicURL(documentInfo.documentType,documentInfo.isFolder);
             }
+            var recommendsFileViewerHeight=win.getBox().h-345;
+            this.recommendedKnowledgeFileDisplayZone.style.height=""+recommendsFileViewerHeight+"px";
         },
         showPreviousItems:function(){},
         showNextItems:function(){},
@@ -89,32 +158,20 @@ require([
             this.documentDetailInfo=previewTempFileGenerateObj;
         },
         destroy:function(){
-            if(this.permissionControlPanel){
-                this.permissionControlPanel.persistPermissionConfigChange();
-            }
-            if(this.creatorNamecardWidget){
-                this.creatorNamecardWidget.destroy();
-            }
-            if(this.lastUpdatePersonNamecardWidget){
-                this.lastUpdatePersonNamecardWidget.destroy();
-            }
             if(this.addNewTagMenuDialog){
                 this.addNewTagMenuDialog.destroy();
             }
             if(this.addNewTagDropDown){
                 this.addNewTagDropDown.destroy();
             }
-            if(this.versionHistoryListMenuDialog){
-                this.versionHistoryListMenuDialog.destroy();
+            if(this.knowledgeItemAttachedTagEditorWidget){
+                this.knowledgeItemAttachedTagEditorWidget.destroy();
             }
-            if(this.versionHistoryListDropDown){
-                this.versionHistoryListDropDown.destroy();
+            if(this.knowledgeTagInfoMenuDialog){
+                this.knowledgeTagInfoMenuDialog.destroy();
             }
-            if(this.permissionControlPanel){
-                this.permissionControlPanel.destroy();
-            }
-            if(this.permissionControlPanel){
-                this.permissionControlPanel.destroy();
+            if(this.knowledgeItemsRecommendsWallWidget){
+                this.knowledgeItemsRecommendsWallWidget.destroy();
             }
             this.inherited("destroy",arguments);
         },

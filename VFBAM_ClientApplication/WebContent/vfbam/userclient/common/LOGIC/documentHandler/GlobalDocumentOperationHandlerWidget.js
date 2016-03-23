@@ -554,10 +554,11 @@ require([
             if(win.getBox().w>200){
                 documentViewerWidth=win.getBox().w-200;
             }
-            var viewerWidthStyle="width:"+documentViewerWidth+"px;";
+            var documentViewerHeight=win.getBox().h;
+            var viewerSizeStyle="width:"+documentViewerWidth+"px;height:"+documentViewerHeight+"px;";
             var recommendDocumentsWidget=new vfbam.userclient.common.UI.components.documentsList.KnowledgeBaseRecommendsWidget({documentMetaInfo:data});
             var	dialog = new Dialog({
-                style:viewerWidthStyle,
+                style:viewerSizeStyle,
                 title: "<i class='fa fa-clone'></i>&nbsp;&nbsp;知识库相关信息推荐",
                 content: "",
                 closeButtonLabel: "<i class='icon-remove'></i> 关闭"

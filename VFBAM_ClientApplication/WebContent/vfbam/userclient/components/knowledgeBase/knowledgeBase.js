@@ -47,16 +47,14 @@ var KNOWLEDGESEARCH_INPUTTYPE_MATERIAL_NAME="MATERIAL_NAME";
 var KNOWLEDGESEARCH_INPUTTYPE_MATERIAL_SEQUENCE="MATERIAL_SEQUENCE";
 var KNOWLEDGESEARCH_INPUTTYPE_TAG_VALUE="TAG_VALUE";
 
-//knowledge modification logic
-var KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM={};
-
 //multi item search result logic
 var KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT=null;
+//knowledge modification logic
+var KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM={};
 
 var resultDisplayZoneWidth = document.getElementById("app_knowledgeBase_resultDisplayZone").offsetWidth;
 var knowledgeDisplayPanelWidget=
     new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget({resultDisplayZoneWidth:resultDisplayZoneWidth},"app_knowledgeBase_resultDisplayZone");
-
 var searchInputTypeSelect_MenuCollection=new dijit.DropDownMenu({ style: "display: none;"});
 var menuItem_materialDescription = new dijit.MenuItem({
     label: "<i class='icon-comment'></i>&nbsp;&nbsp;素材描述",

@@ -50,6 +50,7 @@ var KNOWLEDGE_OPERATION_SERVICE_ROOT=QINHE_KNOWLEDGEBASE_SERVICE_ROOT+"knowledge
 var KNOWLEDGE_DISPLAY_PREVIEW_BASELOCATION="/KnowledgeBaseService/knowledge_fileStorage/STORAGES_BASE_NODE/";
 var KNOWLEDGE_DISPLAY_PREVIEW_THUMBNAIL_FOLDER="/thumbnail/";
 var KNOWLEDGE_DISPLAY_PREVIEW_CONVERTED_FOLDER="/converted/";
+
 //Addon model service definition end
 var KNOWLEDGE_CONTENTSEARCH_ROOT="/KCSearch/rest/KCSEARCHREST/";
 
@@ -272,6 +273,8 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.documentsList.DocumentCommentsWidget",
     "vfbam.userclient.common.UI.components.documentsList.DocumentPermissionControlWidget",
     "vfbam.userclient.common.UI.components.documentsList.KnowledgeBaseRecommendsWidget",
+    "vfbam.userclient.common.UI.components.documentsList.KnowledgeItemsRecommendsWallWidget",
+    "vfbam.userclient.common.UI.components.documentsList.KnowledgeItemRecommendsWallDisplayWidget",
 
     "vfbam.userclient.common.UI.components.documentsList.PermissionControlItemWidget",
     "vfbam.userclient.common.UI.components.documentsList.PermissionGroupSelectionItemWidget",
