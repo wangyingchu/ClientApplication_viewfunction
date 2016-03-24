@@ -63,7 +63,7 @@ require([
                     var stringCompare=a[1].localeCompare(b[1]);
                     return stringCompare;
                 }else{
-                    return null;
+                   return null;
                 }
             }
             finalTagDisplayNamesArray.sort(level1Sort);
@@ -180,6 +180,10 @@ require([
             var that=this;
             var messageTxt="请确认是否更新知识分类标签 ?";
             var confirmButtonAction=function(){
+                if(that.updateSelectedTagOverWriteFunc){
+                    that.updateSelectedTagOverWriteFunc(selectedTags);
+                    return;
+                }
                 UI.showProgressDialog("更新知识分类标签");
                 if(that.isCollectionTags){
                     var projectInfoObj={};

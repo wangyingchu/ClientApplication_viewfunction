@@ -14,13 +14,53 @@ require([
         knowledgeItemAttachedTagEditorWidget:null,
         knowledgeTagInfoMenuDialog:null,
         knowledgeItemsRecommendsWallWidget:null,
+        currentPageNumber:null,
         postCreate: function(){
+            this.currentPageNumber=1;
             this.documentTagsInfoList=[];
             var documentInfo=this.documentMetaInfo.documentInfo;
             var documentsOwnerType=this.documentMetaInfo.documentsOwnerType;
             this.renderDocumentPreview(documentInfo,documentsOwnerType);
             this.loadKnowledgeCategories();
             this.loadRecommendedDocuments();
+        },
+        updateDocumentTagFunc:function(tags){
+            var fileTagOperationObj = {};
+            fileTagOperationObj.documentsOwnerType = this.documentMetaInfo.documentsOwnerType;
+            fileTagOperationObj.activitySpaceName = APPLICATION_ID;
+            fileTagOperationObj.tagValues = tags;
+            if (this.documentMetaInfo.documentsOwnerType == "PARTICIPANT") {
+                //fileTagOperationObj.participantFileInfo = this.documentMetaInfo.participantFileInfo;
+            }
+            if (this.documentMetaInfo.documentsOwnerType == "ACTIVITY") {
+                var activityTypeFileInfo={};
+                activityTypeFileInfo.activityId=this.documentMetaInfo.taskItemData.activityId;
+                activityTypeFileInfo.activityName=this.documentMetaInfo.taskItemData.activityName;
+                activityTypeFileInfo.activitySpaceName=APPLICATION_ID;
+                activityTypeFileInfo.fileName=this.documentMetaInfo.documentInfo.documentName;
+                activityTypeFileInfo.parentFolderPath=this.documentMetaInfo.documentInfo.documentFolderPath;
+                fileTagOperationObj.activityTypeFileInfo=activityTypeFileInfo;
+            }
+            if (this.documentMetaInfo.documentsOwnerType == "APPLICATIONSPACE") {
+                //fileTagOperationObj.applicationSpaceFileInfo = this.documentMetaInfo.applicationSpaceFileInfo;
+            }
+            if (this.documentMetaInfo.documentsOwnerType == "ROLE") {
+                //fileTagOperationObj.roleFileInfo = this.documentMetaInfo.roleFileInfo;
+            }
+            var errorCallback = function (data) {
+                UI.showSystemErrorMessage(data);
+            };
+            var that=this;
+            var loadCallback = function (resultData) {
+                that.documentMetaInfo.documentInfo.documentTags=tags;
+                that.currentPageNumber=1;
+                that.loadRecommendedDocuments();
+                that.knowledgeItemAttachedTagEditorWidget.attachedTags=tags;
+                that.knowledgeItemAttachedTagEditorWidget.knowledgeContentInfo.contentTags=tags;
+            };
+            var fileTagOperationObjContent = dojo.toJson(fileTagOperationObj);
+            var resturl = CONTENT_SERVICE_ROOT + "resetFileTags/";
+            Application.WebServiceUtil.postJSONData(resturl, fileTagOperationObjContent, loadCallback, errorCallback);
         },
         loadKnowledgeCategories:function(){
             var documentAttachedTags=this.documentMetaInfo.documentInfo.documentTags;
@@ -30,18 +70,27 @@ require([
                 var knowledgeContentInfo={};
                 knowledgeContentInfo.contentTags=documentAttachedTags;
                 that.knowledgeItemAttachedTagEditorWidget=new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeItemAttachedTagEditorWidget({
-                    knowledgeContentInfo:knowledgeContentInfo,attachedTags:knowledgeContentInfo.contentTags,knowledgeCategoryInheritDataStore:that.knowledgeCategoryInheritDataStore});
+                    knowledgeContentInfo:knowledgeContentInfo,attachedTags:that.documentMetaInfo.documentInfo.documentTags,knowledgeCategoryInheritDataStore:that.knowledgeCategoryInheritDataStore,updateSelectedTagOverWriteFunc:dojo.hitch(that,that.updateDocumentTagFunc)});
                 that.knowledgeTagInfoMenuDialog=new idx.widget.MenuDialog({});
                 dojo.connect( that.knowledgeTagInfoMenuDialog,"onOpen",that.knowledgeItemAttachedTagEditorWidget,"renderTagItems");
                 dojo.place(that.knowledgeItemAttachedTagEditorWidget.domNode, that.knowledgeTagInfoMenuDialog.containerNode);
-                var showTagDialogLinklabel="分类标签 <i class='icon-caret-down'></i>";
+                var showTagDialogLinklabel="知识属性分类 <i class='icon-caret-down'></i>";
                 new vfbam.userclient.common.UI.widgets.TextDropdownButton({label:showTagDialogLinklabel,dropDown: that.knowledgeTagInfoMenuDialog},that.knowledgeTagSwitcherContainer);
             };
             KnowledgeBaseDataHandleUtil.generateKnowledgeCategoryInheritDataStore(callBack);
         },
         loadRecommendedDocuments:function(){
             var that=this;
+            this.previousPageButton.set("disabled","disabled");
+            this.nextPageButton.set("disabled","disabled");
+            this.currentRecommendsPageNumber.innerHTML="-";
+            this.totalPageNumber.innerHTML="-";
+            this.totalItemNumber.innerHTML="-";
             var documentAttachedTags=this.documentMetaInfo.documentInfo.documentTags;
+            if(this.knowledgeItemsRecommendsWallWidget){
+                this.knowledgeItemsRecommendsWallWidget.destroy();
+            }
+            dojo.style(that.recommendedKnowledgeIconContainer,"display","");
             var timer = new dojox.timing.Timer(300);
             timer.onTick = function(){
                 var selectedTags=documentAttachedTags;
@@ -50,11 +99,8 @@ require([
                 multiTagSearchObj.filterPropName="categoryId";
                 multiTagSearchObj.orderBy="contentDescription";
                 multiTagSearchObj.sort="DESC";
-
                 multiTagSearchObj.pageSize=50;
-                multiTagSearchObj.currentPageNumber=1;
-
-                multiTagSearchObj.limitCount=1000;
+                multiTagSearchObj.currentPageNumber=that.currentPageNumber;
                 multiTagSearchObj.paging=true;
                 var tagIdsWithDepthMap=[];
                 dojo.forEach(selectedTags,function(currentTagValue){
@@ -75,6 +121,7 @@ require([
                     if(data){
                         if(data.docs&&data.docs.length!=0){
                             dojo.style(that.recommendsResultContainer,"display","");
+                            that._setUpPagingElementInfo(data);
                         }else{
                             dojo.style(that.noResultContainer,"display","");
                         }
@@ -101,8 +148,43 @@ require([
             var recommendsFileViewerHeight=win.getBox().h-345;
             this.recommendedKnowledgeFileDisplayZone.style.height=""+recommendsFileViewerHeight+"px";
         },
-        showPreviousItems:function(){},
-        showNextItems:function(){},
+        showPreviousItems:function(){
+            this.currentPageNumber--;
+            this.loadRecommendedDocuments();
+        },
+        showNextItems:function(){
+            this.currentPageNumber++;
+            this.loadRecommendedDocuments();
+        },
+        _setUpPagingElementInfo:function(pagingMetaData){
+            if(pagingMetaData.isFirstPage){
+                this.previousPageButton.set("disabled","disabled");
+            }else{
+                this.previousPageButton.set("disabled",false);
+            }
+            if(pagingMetaData.isLastPage){
+                this.nextPageButton.set("disabled","disabled");
+            }else{
+                this.nextPageButton.set("disabled",false);
+            }
+            if(pagingMetaData.currentPageNumber===undefined){
+                this.currentRecommendsPageNumber.innerHTML="-";
+                this.previousPageButton.set("disabled","disabled");
+                this.nextPageButton.set("disabled","disabled");
+            }else{
+                this.currentRecommendsPageNumber.innerHTML=pagingMetaData.currentPageNumber;
+            }
+            if(pagingMetaData.pageCount===undefined){
+                this.totalPageNumber.innerHTML="-";
+            }else{
+                this.totalPageNumber.innerHTML=pagingMetaData.pageCount;
+            }
+            if(pagingMetaData.totalCount===undefined){
+                this.totalItemNumber.innerHTML="-";
+            }else{
+                this.totalItemNumber.innerHTML=pagingMetaData.totalCount;
+            }
+        },
         renderPreviewPicture:function(documentInfo,documentsOwnerType,documentExtalInfo){
             this.documentPreviewPicture.src="vfbam/userclient/css/image/loading.gif";
             var errorCallback= function(data){

@@ -18,10 +18,21 @@
                 <td align="right">
                     <span><i style="color:#26A251;" class="icon-pushpin"></i> <span style="color: #05386b;"><span data-dojo-attach-point="knowledgeTagSwitcherContainer"></span></span></span>
                     <span style="color:#CCCCCC;font-size:0.8em;padding-left: 5px;padding-right: 5px;">|</span>
-                        <span style="font-size: 1.2em;">
-                            <span data-dojo-type="idx.form.Link" data-dojo-attach-point="previousPageButton" data-dojo-attach-event="onClick:showPreviousItems"> <i class="icon-chevron-sign-left"></i></span>
-                            <span data-dojo-type="idx.form.Link" data-dojo-attach-point="nextPageButton" data-dojo-attach-event="onClick:showNextItems"> <i style="padding-left: 5px;padding-right: 5px;" class="icon-chevron-sign-right"></i></span>
+                    <span style="font-size: 1.2em;">
+                        <span data-dojo-type="idx.form.Link" data-dojo-attach-point="previousPageButton" data-dojo-attach-event="onClick:showPreviousItems"> <i class="icon-chevron-sign-left"></i>
+                        <span style="font-style: italic; font-size: 0.7em; padding-left: 1px;color: #888888;"> 前一页</span>
                         </span>
+                        <span style="width: 10px;">&nbsp;</span>
+                        <span data-dojo-type="idx.form.Link" data-dojo-attach-point="nextPageButton" data-dojo-attach-event="onClick:showNextItems"> <i style="padding-left: 5px;padding-right: 5px;" class="icon-chevron-sign-right"></i>
+                        <span style="font-style: italic; font-size: 0.7em; padding-left: 1px;color: #888888;"> 后一页</span>
+                        </span>
+                    </span>
+                    <span data-dojo-attach-point="pagingElementContainer" style="padding-right: 20px;">
+                        <span style="width: 10px;">&nbsp;</span>
+                        <span style="font-style: italic; font-size: 0.9em; padding-left: 5px;">
+                            <span ><span data-dojo-attach-point="currentRecommendsPageNumber">0</span>/<span data-dojo-attach-point="totalPageNumber">0</span></span> 总计: <span data-dojo-attach-point="totalItemNumber">0</span>
+                        </span>
+                    </span>
                 </td>
             </tr>
         </table>
