@@ -9,7 +9,26 @@ require([
         postCreate: function(){
             var taskRelatedRole=this.parentTaskItemData.taskRoleID;
             var participantsListURL=VFBAM_CORE_SERVICE_ROOT+"userManagementService/participantsOfRole/"+APPLICATION_ID+"/"+taskRelatedRole+"/";
-            this.participantSelector=vfbam.userclient.common.UI.widgets.ParticipantSelector({participantDataSourceURL:participantsListURL,hideParticipantIds:[],customStyle:"width:350px;"},this.assigneeSelector);
+            this.participantSelector=vfbam.userclient.common.UI.widgets.ParticipantSelector({participantDataSourceURL:participantsListURL,hideParticipantIds:[],customStyle:"width:310px;"},this.assigneeSelector);
+
+
+
+
+
+            this.globalParticipantsSearchMenuDialog=new idx.widget.MenuDialog({});
+            this.globalParticipantsSearchWidget=new vfbam.userclient.common.UI.components.participantsList.GlobalParticipantsSearchWidget({
+                popupDialog:this.globalParticipantsSearchMenuDialog});
+            dojo.place(this.globalParticipantsSearchWidget.domNode, this.globalParticipantsSearchMenuDialog.containerNode);
+            this.participantSearchLabel.set("label","  <span><i class='fa fa-tags fa-lg'></i></span>");
+            this.participantSearchLabel.set("dropDown",this.globalParticipantsSearchMenuDialog);
+
+
+
+
+
+
+
+
         },
         launchChildTask:function(){
             var that=this;

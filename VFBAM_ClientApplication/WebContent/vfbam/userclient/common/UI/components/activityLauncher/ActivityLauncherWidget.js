@@ -18,10 +18,11 @@ require([
             var that=this;
             var loadCallback=function(data){
                 that.renderActivityTypesInfo(data);
-            }
+            };
             Application.WebServiceUtil.postJSONData(resturl,activityOperatorObjectContent,loadCallback,errorCallback);
         },
-        renderActivityTypesInfo:function(activityTypeDefineArray){
+        renderActivityTypesInfo:function(allActivityTypeDefineArray){
+            var activityTypeDefineArray= this._buildCurrentUserAllowedStartActivitiesList(allActivityTypeDefineArray);
             var isOdd=true;
             if(activityTypeDefineArray.length<=3){
                 var currentField=new vfbam.userclient.common.UI.components.activityLauncher.ActivityTypeDefinitionWidget({activityTypeDefinitionData:activityTypeDefineArray,isOdd:isOdd});
@@ -57,6 +58,58 @@ require([
                     this.activityTypeDefinitionsContainer.appendChild(currentField.domNode);
                 }
             }
+        },
+        _buildCurrentUserAllowedStartActivitiesList:function(activityTypeDefineArray){
+            var currentUserProfile=Application.AttributeContext.getAttribute(USER_PROFILE);
+            var userId=currentUserProfile.userId;
+            var userBelongedRoles=currentUserProfile.userApplicationRoles;
+            var that=this;
+            var allowedActivityTypeList=[];
+            dojo.forEach(activityTypeDefineArray,function(currentActivityType){
+                var hasParticipantsLimitation=false;
+                var hasRolesLimitation=false;
+                if(currentActivityType.activityLaunchParticipants&&currentActivityType.activityLaunchParticipants.length>0){
+                    hasParticipantsLimitation=true;
+                }
+                if(currentActivityType.activityLaunchRoles&&currentActivityType.activityLaunchRoles.length>0){
+                    hasRolesLimitation=true;
+                }
+                var isCheckedAllowActivityType=false;
+                var isAllowedActivityTypeForParticipants=false;
+                var isAllowedActivityTypeForRoles=false;
+                if(hasParticipantsLimitation){
+                    isCheckedAllowActivityType=true;
+                    //check if current use is in Allowed Start Activity Participants list.
+                    isAllowedActivityTypeForParticipants=that._checkIfContainedInArrayList(currentActivityType.activityLaunchParticipants,userId);
+                }
+                if(hasRolesLimitation){
+                    isCheckedAllowActivityType=true;
+                    if(!isAllowedActivityTypeForParticipants){
+                        dojo.forEach(userBelongedRoles,function(currentUserRole){
+                            var currentRoleName=currentUserRole.roleName;
+                            isAllowedActivityTypeForRoles=isAllowedActivityTypeForRoles|that._checkIfContainedInArrayList(currentActivityType.activityLaunchRoles,currentRoleName);
+                        });
+                    }
+                }
+                if(!isCheckedAllowActivityType){
+                    //has no RolesLimitation or participantsLimitation
+                    allowedActivityTypeList.push(currentActivityType);
+                }else{
+                    if(isAllowedActivityTypeForRoles||isAllowedActivityTypeForParticipants){
+                        allowedActivityTypeList.push(currentActivityType);
+                    }
+                }
+            });
+            return allowedActivityTypeList;
+        },
+        _checkIfContainedInArrayList:function(valueArray,targetValue){
+            var isContained=false;
+            dojo.forEach(valueArray,function(currentValue){
+                if(currentValue==targetValue){
+                    isContained=true;
+                }
+            });
+            return isContained;
         },
         _endOfCode: function(){}
     });

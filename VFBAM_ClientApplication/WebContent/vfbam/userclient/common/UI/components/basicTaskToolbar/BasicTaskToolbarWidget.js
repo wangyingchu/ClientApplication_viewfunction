@@ -428,6 +428,8 @@ require([
             });
             dojo.place(this.childTaskLauncher.containerNode, dialog.containerNode);
             dialog.show();
+            //set top position for show full size Role Participants Selector
+            dojo.style(dialog.domNode,'top','100px');
             var that=this;
             var closeDialogCallBack=function(){
                 that.childTaskLauncher.destroy();

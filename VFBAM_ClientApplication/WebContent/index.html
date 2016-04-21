@@ -120,6 +120,16 @@
                 if(data!=null){
                     Application.AttributeContext.setAttribute(USER_PROFILE,data);
                     Application.MessageUtil.listenToMessageTopic(APP_USERLOGIN_PARTICIPANTINFO_REFRESH_EVENT,refreshUserLoginUIData);
+                    //set current user's roles information for following component's usage
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var resturl=ACTIVITY_SERVICE_ROOT+"participantRelatedRolesDetail/"+APPLICATION_ID+"/"+userId+"/";
+                    var errorCallback= function(data){
+                        UI.showSystemErrorMessage(data);
+                    };
+                    var loadCallback=function(data){
+                        Application.AttributeContext.getAttribute(USER_PROFILE).userApplicationRoles=data;
+                    };
+                    Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
                 }
             };
             Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
