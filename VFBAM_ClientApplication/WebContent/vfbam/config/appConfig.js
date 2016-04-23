@@ -1,5 +1,5 @@
 //business configuration data
-var APPLICATION_ID="viewfunction_inc";
+var APPLICATION_ID="arcDesign_inc";
 
 var APPLICATION_ROLEBASE_ACCESS_MATRIX={};
 APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[{
@@ -256,6 +256,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.participantsList.RoleSelectItemWidget",
     "vfbam.userclient.common.UI.components.participantsList.ParticipantInfoWidget",
     "vfbam.userclient.common.UI.components.participantsList.ParticipantNamecardWidget",
+    "vfbam.userclient.common.UI.components.participantsList.SingleRoleParticipantListWidget",
     "vfbam.userclient.common.UI.components.historyList.HistoryListWidget",
     "vfbam.userclient.common.UI.components.historyList.HistoryInfoWidget",
     "vfbam.userclient.common.UI.components.documentsList.DocumentsListWidget",

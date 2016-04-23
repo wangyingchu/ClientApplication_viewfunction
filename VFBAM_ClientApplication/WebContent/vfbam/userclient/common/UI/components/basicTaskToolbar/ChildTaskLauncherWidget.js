@@ -5,30 +5,36 @@ require([
     declare("vfbam.userclient.common.UI.components.basicTaskToolbar.ChildTaskLauncherWidget", [_Widget, _Templated], {
         templateString: template,
         widgetsInTemplate: true,
+
         participantSelector:null,
+
+        globalParticipantsSearchMenuDialog:null,
+        globalParticipantsSearchWidget:null,
+        roleParticipantsSearchMenuDialog:null,
+        roleParticipantsSearchWidget:null,
         postCreate: function(){
             var taskRelatedRole=this.parentTaskItemData.taskRoleID;
+            var taskRelatedRoleName=this.parentTaskItemData.taskRole;
+
+
+
             var participantsListURL=VFBAM_CORE_SERVICE_ROOT+"userManagementService/participantsOfRole/"+APPLICATION_ID+"/"+taskRelatedRole+"/";
-            this.participantSelector=vfbam.userclient.common.UI.widgets.ParticipantSelector({participantDataSourceURL:participantsListURL,hideParticipantIds:[],customStyle:"width:310px;"},this.assigneeSelector);
+            this.participantSelector=vfbam.userclient.common.UI.widgets.ParticipantSelector({participantDataSourceURL:participantsListURL,hideParticipantIds:[],customStyle:"width:300px;"},this.assigneeSelector);
 
 
 
-
-
+            this.roleParticipantsSearchMenuDialog=new idx.widget.MenuDialog({});
+            this.roleParticipantsSearchWidget=new vfbam.userclient.common.UI.components.participantsList.SingleRoleParticipantListWidget({
+                popupDialog:this.roleParticipantsSearchMenuDialog,roleName:taskRelatedRole,roleDisplayName:taskRelatedRoleName});
+            dojo.place(this.roleParticipantsSearchWidget.domNode, this.roleParticipantsSearchMenuDialog.containerNode);
+            this.roleParticipantSearchLabel.set("label","  <span><i class='fa fa-group'></i></span>");
+            this.roleParticipantSearchLabel.set("dropDown",this.roleParticipantsSearchMenuDialog);
             this.globalParticipantsSearchMenuDialog=new idx.widget.MenuDialog({});
             this.globalParticipantsSearchWidget=new vfbam.userclient.common.UI.components.participantsList.GlobalParticipantsSearchWidget({
                 popupDialog:this.globalParticipantsSearchMenuDialog});
             dojo.place(this.globalParticipantsSearchWidget.domNode, this.globalParticipantsSearchMenuDialog.containerNode);
-            this.participantSearchLabel.set("label","  <span><i class='fa fa-tags fa-lg'></i></span>");
-            this.participantSearchLabel.set("dropDown",this.globalParticipantsSearchMenuDialog);
-
-
-
-
-
-
-
-
+            this.globalParticipantSearchLabel.set("label","  <span><i class='fa fa-building'></i></span>");
+            this.globalParticipantSearchLabel.set("dropDown",this.globalParticipantsSearchMenuDialog);
         },
         launchChildTask:function(){
             var that=this;
@@ -110,6 +116,29 @@ require([
             Application.WebServiceUtil.postJSONData(resturl,createChildTaskInfoContent,loadCallback,errorCallback);
         },
         doCloseContainerDialog:function(){},
+        destroy:function(){
+            if(this.globalParticipantSearchLabel){
+                this.globalParticipantSearchLabel.destroy();
+            }
+            if(this.roleParticipantSearchLabel){
+                this.roleParticipantSearchLabel.destroy();
+            }
+            if(this.participantSelector){
+                this.participantSelector.destroy();
+            }
+            if(this.globalParticipantsSearchMenuDialog){
+                this.globalParticipantsSearchMenuDialog.destroy();
+            }
+            if(this.globalParticipantsSearchWidget){
+                this.globalParticipantsSearchWidget.destroy();
+            }
+            if(this.roleParticipantsSearchMenuDialog){
+                this.roleParticipantsSearchMenuDialog.destroy();
+            }
+            if(this.roleParticipantsSearchWidget){
+                this.roleParticipantsSearchWidget.destroy();
+            }
+        },
         _endOfCode: function(){}
     });
 });
