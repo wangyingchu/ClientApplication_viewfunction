@@ -14,9 +14,20 @@
             <div><i class="icon-phone-sign"></i> <span style="font-size: 0.9em;color: #333333;" data-dojo-attach-point="participantPhoneLabel"></span></div>
             <div style="padding-left: 5px;"><a href="" data-dojo-attach-point="participantEmailLink"><i class="icon-envelope-alt"></i> E-mail</a></div>
         </td>
+        <td align="right" style="padding-right: 25px;display: none;" data-dojo-attach-point="selectCurrentParticipantButton">
+            <span class="fa-stack" style="cursor: pointer;color: #26A251;" data-dojo-attach-event="onClick:doSelectCurrentParticipant">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+            </span>
+        </td>
     </tr>
-    <tr>
+    <tr data-dojo-attach-point="headerDivLineContainer_3x">
         <td colspan="3">
+            <div class="app_headerDivLine_thin"></div>
+        </td>
+    </tr>
+    <tr data-dojo-attach-point="headerDivLineContainer_4x" style="display: none;">
+        <td colspan="4">
             <div class="app_headerDivLine_thin"></div>
         </td>
     </tr>

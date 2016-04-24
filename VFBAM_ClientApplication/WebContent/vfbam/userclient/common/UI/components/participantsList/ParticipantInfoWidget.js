@@ -8,6 +8,11 @@ require([
         //participantNamecardWidget:null,
         nameCardShowHideTimer:null,
         postCreate: function(){
+            if(this.selectParticipantCallBack){
+                dojo.style(this.selectCurrentParticipantButton,"display","");
+                dojo.style(this.headerDivLineContainer_3x,"display","none");
+                dojo.style(this.headerDivLineContainer_4x,"display","");
+            }
             this.participantPhoto.src=this.participantInfo.participantPhotoPath;
             //this.participantNameLabel.innerHTML=this.participantInfo.participantName;
             this.participantTitleLabel.innerHTML =this.participantInfo.participantTitle;
@@ -17,7 +22,6 @@ require([
                 new vfbam.userclient.common.UI.components.participantsList.ParticipantNamecardWidget({participantInfoWidget:this,participantInfo:this.participantInfo});
             this.participantNameLabel.set("label",this.participantInfo.participantName);
             this.participantNameLabel.set("dropDown",this.participantNamecardWidget);
-
         },
         /*
         showNameCard:function(){
@@ -38,6 +42,11 @@ require([
             this.nameCardShowHideTimer=null;
         },
         */
+        doSelectCurrentParticipant:function(){
+            if(this.selectParticipantCallBack){
+                this.selectParticipantCallBack(this.participantInfo);
+            }
+        },
         destroy:function(){
             this.participantNamecardWidget.destroy();
             this.inherited("destroy",arguments);

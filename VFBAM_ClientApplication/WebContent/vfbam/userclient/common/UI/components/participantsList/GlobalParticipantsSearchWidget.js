@@ -130,7 +130,7 @@ require([
                     },this);
                     for(i=0;i<participantsListArray.length;i++){
                         var currentParticipant= participantsListArray[i];
-                        var currentParticipantInfoWidget=new vfbam.userclient.common.UI.components.participantsList.ParticipantInfoWidget({participantInfo:currentParticipant});
+                        var currentParticipantInfoWidget=new vfbam.userclient.common.UI.components.participantsList.ParticipantInfoWidget({participantInfo:currentParticipant,selectParticipantCallBack:that.selectParticipantCallBack});
                         currentRoleParticipantsContainer.addChildItem(currentParticipantInfoWidget);
                     }
                 }
