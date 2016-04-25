@@ -110,11 +110,12 @@ require([
         reAssignTask:function(){
             var taskReassignInfo={};
             taskReassignInfo.taskRoleID=this.taskItemInfo.relatedRole.roleName;
+            taskReassignInfo.taskRoleDisplayName=this.taskItemInfo.relatedRole.displayName;
             taskReassignInfo.taskName=this.taskItemInfo.activityStepName;
             taskReassignInfo.activityName=this.taskItemInfo.activityType;
             taskReassignInfo.activityId=this.taskItemInfo.activityId;
             taskReassignInfo.currentTaskAssignee=this.taskItemInfo.stepAssigneeParticipant.userId;
-            Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_REASSIGNTASK_EVENT,{taskData:taskReassignInfo,callback:dojo.hitch(this,this.resetTaskAssignee)});
+            Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_REASSIGNSUBTASK_EVENT,{taskData:taskReassignInfo,callback:dojo.hitch(this,this.resetTaskAssignee)});
         },
         resetTaskAssignee:function(newAssigneeParticipantInfo){
             this.participantNamecardWidget.destroy();

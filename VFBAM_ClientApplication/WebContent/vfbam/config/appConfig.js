@@ -77,6 +77,7 @@ var APP_GLOBAL_TASKCENTER_HANDLETASK_EVENT="APP_GLOBAL_TASKCENTER_HANDLETASK_EVE
 var APP_GLOBAL_TASKCENTER_ACCEPTTASK_EVENT="APP_GLOBAL_TASKCENTER_ACCEPTTASK_EVENT";
 var APP_GLOBAL_TASKCENTER_ASSIGNTASK_EVENT="APP_GLOBAL_TASKCENTER_ASSIGNTASK_EVENT";
 var APP_GLOBAL_TASKCENTER_REASSIGNTASK_EVENT="APP_GLOBAL_TASKCENTER_REASSIGNTASK_EVENT";
+var APP_GLOBAL_TASKCENTER_REASSIGNSUBTASK_EVENT="APP_GLOBAL_TASKCENTER_REASSIGNSUBTASK_EVENT";
 var APP_GLOBAL_TASKCENTER_RETURNTASK_EVENT="APP_GLOBAL_TASKCENTER_RETURNTASK_EVENT";
 var APP_GLOBAL_TASKCENTER_TASKDATAUPDATED_EVENT="APP_GLOBAL_TASKCENTER_TASKDATAUPDATED_EVENT";
 var APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT="APP_GLOBAL_TASKCENTER_RELOADTASKLIST_EVENT";
@@ -248,6 +249,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.widgets.NonActionBarDialog",
     "vfbam.userclient.common.UI.widgets.NestedContentContainer",
     "vfbam.userclient.common.UI.widgets.DateTimeOptionalSelector",
+    "vfbam.userclient.common.UI.widgets.RoleAndGlobalParticipantSelector",
     "vfbam.userclient.common.UI.components.participantsList.ActivityInvolvedParticipantListWidget",
     "vfbam.userclient.common.UI.components.participantsList.ActivityInvolveInfoWidget",
     "vfbam.userclient.common.UI.components.participantsList.RoleGroupParticipantListWidget",

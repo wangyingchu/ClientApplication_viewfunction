@@ -7,6 +7,7 @@ require([
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_HANDLETASK_EVENT,dojo.hitch(this,this.handleTask));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_RETURNTASK_EVENT,dojo.hitch(this,this.returnTask));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_REASSIGNTASK_EVENT,dojo.hitch(this,this.reassignTask));
+            Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_REASSIGNSUBTASK_EVENT,dojo.hitch(this,this.reassignSubTask));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_DISPLAYTASK_EVENT,dojo.hitch(this,this.displayTask));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_ASSIGNTASK_EVENT,dojo.hitch(this,this.assignTask));
             Application.MessageUtil.listenToMessageTopic(APP_GLOBAL_TASKCENTER_ACCEPTTASK_EVENT,dojo.hitch(this,this.acceptTask));
@@ -163,6 +164,91 @@ require([
             });
             dojo.place(participantSelector.containerNode, dialog.containerNode);
             dialog.show();
+        },
+        reassignSubTask:function(messageData){
+            var taskRelatedRole=messageData.taskData.taskRoleID;
+            var taskRelatedRoleDisplayName=messageData.taskData.taskRoleDisplayName;
+            var taskDesc=messageData.taskData.taskName+"-"+messageData.taskData.activityName +"("+messageData.taskData.activityId+")";
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            var currentTaskAssignee=null;
+            if(messageData.taskData.currentTaskAssignee){
+                currentTaskAssignee=messageData.taskData.currentTaskAssignee;
+            }else{
+                currentTaskAssignee=userId;
+            }
+            var mustInputMark= "<span style='font-size: 1.3em; color: #CE0000; font-weight: bold;'>*</span>";
+            var participantSelector=vfbam.userclient.common.UI.widgets.RoleAndGlobalParticipantSelector({selectorDescription:"<i class='icon-ok'></i>  请选择新的子任务负责人："+mustInputMark,relatedRoleName:taskRelatedRole,relatedRoleDisplayName:taskRelatedRoleDisplayName});
+            var _doAssignTask=function(){
+                var participantInfo=participantSelector.getSelectedParticipant();
+                if(!participantInfo){
+                    UI.showToasterMessage({type:"error",message:"请选择子任务处理人"});
+                    return;
+                }
+                var confirmButtonAction=function(){
+                    dialog.hide();
+                    participantSelector.destroy();
+                    var activityStepOperationObject={};
+                    activityStepOperationObject.activitySpaceName = APPLICATION_ID;
+                    activityStepOperationObject.activityType = messageData.taskData.activityName;
+                    activityStepOperationObject.activityStepName = messageData.taskData.taskName;
+                    activityStepOperationObject.activityId = messageData.taskData.activityId;
+                    activityStepOperationObject.currentStepOwner = currentTaskAssignee;
+                    activityStepOperationObject.newStepOwner = participantInfo.participantId;
+                    var activityStepOperationContent=dojo.toJson(activityStepOperationObject);
+                    var resturl=ACTIVITY_SERVICE_ROOT+"reassignParticipantTask/";
+                    var errorCallback= function(data){
+                        UI.showSystemErrorMessage(data);
+                    };
+                    var loadCallback=function(data){
+                        var timer = new dojox.timing.Timer(300);
+                        timer.onTick = function(){
+                            UI.hideProgressDialog();
+                            timer.stop();
+                        };
+                        timer.start();
+                        if(data.operationResult){
+                            UI.showToasterMessage({type:"success",message:"重新分配子任务成功"});
+                            if(messageData.callback){
+                                messageData.callback(participantInfo);
+                            }
+                        }else{
+                            var errorDialogDataObj={};
+                            var okButtonAction=function(){};
+                            errorDialogDataObj.message="重新分配子任务失败";
+                            errorDialogDataObj.oKButtonAction=okButtonAction;
+                            errorDialogDataObj.oKButtonLabel="确定";
+                            UI.showErrorDialog(errorDialogDataObj);
+                        }
+                    };
+                    UI.showProgressDialog("重新分配子任务");
+                    Application.WebServiceUtil.postJSONData(resturl,activityStepOperationContent,loadCallback,errorCallback);
+                };
+                if(participantInfo){
+                    UI.showConfirmDialog({
+                        message:"请确认是否将子任务 '<b>"+taskDesc+"</b>' 重新分配给 <b>"+participantInfo.participantLabel+"</b> 处理?" ,
+                        confirmButtonLabel:"<i class='icon-ok'></i> 确认",
+                        cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+                        confirmButtonAction:confirmButtonAction
+                    });
+                }
+            };
+            var sendMessageButton=new dijit.form.Button({
+                label: "<i class='icon-male'></i> 分配",
+                onClick: _doAssignTask
+            });
+            var actionButtone=[];
+            actionButtone.push(sendMessageButton);
+            var	dialog = new Dialog({
+                style:"width:630px;",
+                title: "<span style='font-size: 0.7em;'><i class='icon-male'></i> 重新分配子任务</span>",
+                content: "",
+                buttons:actionButtone,
+                closeButtonLabel: "<i class='icon-remove'></i> 取消"
+            });
+            dojo.place(participantSelector.containerNode, dialog.containerNode);
+            dialog.show();
+            //set top position for show full size Role Participants Selector
+            dojo.style(dialog.domNode,'top','100px');
         },
         assignTask:function(messageData){
             var taskRelatedRole=messageData.taskData.taskRoleID;
