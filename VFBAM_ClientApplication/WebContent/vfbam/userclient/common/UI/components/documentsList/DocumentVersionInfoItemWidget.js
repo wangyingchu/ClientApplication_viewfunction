@@ -10,19 +10,22 @@ require([
             this.versionNumber.innerHTML="v "+this.documentVersionInfo.versionNumber;
             this.versionUpdateDate.innerHTML= dojo.date.locale.format(new Date(this.documentVersionInfo.versionCreatedDate));
             var versionUpdatePersion=this.documentVersionInfo.documentContent.documentLastUpdatePerson;
-            var documentLastModifiedParticipantInfo={};
-            documentLastModifiedParticipantInfo.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+ versionUpdatePersion.userId;
-            documentLastModifiedParticipantInfo.participantId=versionUpdatePersion.userId;
-            documentLastModifiedParticipantInfo.participantName=versionUpdatePersion.displayName;
-            documentLastModifiedParticipantInfo.participantTitle=versionUpdatePersion.title;
-            documentLastModifiedParticipantInfo.participantPhone=versionUpdatePersion.fixedPhone;
-            documentLastModifiedParticipantInfo.participantEmail=versionUpdatePersion.emailAddress;
-            documentLastModifiedParticipantInfo.participantDesc=versionUpdatePersion.description;
-            documentLastModifiedParticipantInfo.participantAddress=versionUpdatePersion.address;
-            this.versionUpdatePersonNameCardWidget=
-                new vfbam.userclient.common.UI.components.participantsList.ParticipantNamecardWidget({participantInfo:documentLastModifiedParticipantInfo});
-            this.versionUpdatePersonText.set("label",documentLastModifiedParticipantInfo.participantName);
-            this.versionUpdatePersonText.set("dropDown",this.versionUpdatePersonNameCardWidget);
+            if(versionUpdatePersion){
+                var documentLastModifiedParticipantInfo={};
+                documentLastModifiedParticipantInfo.participantPhotoPath=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+ versionUpdatePersion.userId;
+                documentLastModifiedParticipantInfo.participantId=versionUpdatePersion.userId;
+                documentLastModifiedParticipantInfo.participantName=versionUpdatePersion.displayName;
+                documentLastModifiedParticipantInfo.participantTitle=versionUpdatePersion.title;
+                documentLastModifiedParticipantInfo.participantPhone=versionUpdatePersion.fixedPhone;
+                documentLastModifiedParticipantInfo.participantEmail=versionUpdatePersion.emailAddress;
+                documentLastModifiedParticipantInfo.participantDesc=versionUpdatePersion.description;
+                documentLastModifiedParticipantInfo.participantAddress=versionUpdatePersion.address;
+                this.versionUpdatePersonNameCardWidget=
+                    new vfbam.userclient.common.UI.components.participantsList.ParticipantNamecardWidget({participantInfo:documentLastModifiedParticipantInfo});
+                this.versionUpdatePersonText.set("label",documentLastModifiedParticipantInfo.participantName);
+                this.versionUpdatePersonText.set("dropDown",this.versionUpdatePersonNameCardWidget);
+            }
+
         },
         previewVersionDocument:function(){
             if(this.documentMetaInfo.documentsOwnerType=="ACTIVITY"){
@@ -62,7 +65,9 @@ require([
             }
         },
         destroy:function(){
-            this.versionUpdatePersonNameCardWidget.destroy();
+            if(this.versionUpdatePersonNameCardWidget){
+                this.versionUpdatePersonNameCardWidget.destroy();
+            }
             this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}

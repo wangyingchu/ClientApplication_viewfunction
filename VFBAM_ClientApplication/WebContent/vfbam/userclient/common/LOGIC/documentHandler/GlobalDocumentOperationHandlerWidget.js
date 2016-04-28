@@ -380,7 +380,7 @@ require([
         updateDocument:function(data){
             var updateDocumentWidget=new vfbam.userclient.common.UI.components.documentsList.UpdateDocumentWidget({documentMetaInfo:data});
             var	dialog = new vfbam.userclient.common.UI.widgets.NonActionBarDialog({
-                style:"width:220px;height:150px;",
+                style:"width:350px;height:160px;",
                 title: "<i class='icon-edit'></i>&nbsp;&nbsp;更新文件",
                 content: ""
             });
