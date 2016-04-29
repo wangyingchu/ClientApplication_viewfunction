@@ -30,7 +30,6 @@ require([
             timer.start();
         },
         _loadTaskItems:function(){
-            this._cleanDirtyItemData();
             var isOdd=true;
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             var resturl=ACTIVITY_SERVICE_ROOT+"participantTasksDetailInfo/"+APPLICATION_ID+"/"+userId+"/";
@@ -39,6 +38,7 @@ require([
             };
             var that=this;
             var loadCallback=function(data){
+                that._cleanDirtyItemData();
                 var totalNumber= data.participantTasksVOList.length;
                 that.taskTotalNumber.innerHTML= totalNumber;
                 var participantTasksDetailVOList=data.participantTasksVOList;
@@ -127,7 +127,7 @@ require([
         },
         menualRefreshTaskList:function(){
             UI.showProgressDialog("获取任务");
-            var timer = new dojox.timing.Timer(300);
+            var timer = new dojox.timing.Timer(200);
             timer.onTick = function(){
                 UI.hideProgressDialog();
                 timer.stop();

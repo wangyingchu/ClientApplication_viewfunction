@@ -151,7 +151,7 @@ require([
             this.teamTasksQueueGrid.connect(this.teamTasksQueueGrid,"onHeaderContextMenu",dojo.hitch(this,this.hideMenuOnHeader));
 
             var that=this;
-            var timer = new dojox.timing.Timer(1500);
+            var timer = new dojox.timing.Timer(300);
             timer.onTick = function(){
             	var resizeObj={};
                 var marginBox = dojo.getMarginBox(that.domNode);

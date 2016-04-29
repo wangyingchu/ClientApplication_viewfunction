@@ -20,10 +20,11 @@ function showDocumentList(){
     dojo.style(myDocumentList.domNode,{"display": ""});
 }
 UI.showProgressDialog("查询数据");
-var subComponentInitCounter=0;
-var initFinishCounter=function(){
-    subComponentInitCounter++;
-    if(subComponentInitCounter==4){
+var taskCenterSubComponentInitCounter=0;
+var initTaskCenterFinishCounter=function(){
+    taskCenterSubComponentInitCounter=taskCenterSubComponentInitCounter+1;
+    //when taskCenterSubComponentInitCounter is 5,all sub components finished init.
+    if(taskCenterSubComponentInitCounter==5){
         UI.hideProgressDialog();
     }
 };
@@ -37,12 +38,12 @@ var myTeamParticipantList=new vfbam.userclient.common.UI.components.participants
 */
 //Role Group Participant List
 var myTeamParticipantList=new vfbam.userclient.common.UI.components.participantsList.RoleGroupParticipantListWidget(
-    {containerElementId:"app_taskCenter_mainContainer",reservationHeight:45,containerInitFinishCounterFuc:initFinishCounter},"app_taskCenter_helpWidget_participantList");
+    {containerElementId:"app_taskCenter_mainContainer",reservationHeight:45,containerInitFinishCounterFuc:initTaskCenterFinishCounter},"app_taskCenter_helpWidget_participantList");
 
 var myDocumentList=new vfbam.userclient.common.UI.components.documentsList.DocumentsListWidget(
-    {containerElementId:"app_taskCenter_mainContainer",reservationHeight:45,containerInitFinishCounterFuc:initFinishCounter,documentsOwnerType:"PARTICIPANT"},"app_taskCenter_helpWidget_documentList");
-var myTaskListWidget=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskListWidget({region:"left",containerInitFinishCounterFuc:initFinishCounter},"app_taskCenter_myTasksContainer");
-var teamTasksQueueWidget=new vfbam.userclient.components.taskCenter.widget.teamTasksQueue.TeamTasksQueueWidget({region:"center",containerInitFinishCounterFuc:initFinishCounter},"app_taskCenter_teamTasksQueueContainer");
+    {containerElementId:"app_taskCenter_mainContainer",reservationHeight:45,containerInitFinishCounterFuc:initTaskCenterFinishCounter,documentsOwnerType:"PARTICIPANT"},"app_taskCenter_helpWidget_documentList");
+var myTaskListWidget=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskListWidget({region:"left",containerInitFinishCounterFuc:initTaskCenterFinishCounter},"app_taskCenter_myTasksContainer");
+var teamTasksQueueWidget=new vfbam.userclient.components.taskCenter.widget.teamTasksQueue.TeamTasksQueueWidget({region:"center",containerInitFinishCounterFuc:initTaskCenterFinishCounter},"app_taskCenter_teamTasksQueueContainer");
 dojo.style(myDocumentList.domNode,{"display": "none"});
 
 var isTaskCenterFirstLoad=true;

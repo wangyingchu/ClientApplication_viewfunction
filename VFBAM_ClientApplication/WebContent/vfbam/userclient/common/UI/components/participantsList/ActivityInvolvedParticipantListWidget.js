@@ -92,9 +92,6 @@ require([
                 that.currentParticipantsArray.push(currentParticipantInfoWidget);
                 that.participantsListContainer.appendChild(currentParticipantInfoWidget.domNode);
             });
-            if(this.containerInitFinishCounterFuc){
-                this.containerInitFinishCounterFuc();
-            }
         },
         destroy:function(){
             dojo.forEach(this.currentParticipantsArray,function(currentWidget){
