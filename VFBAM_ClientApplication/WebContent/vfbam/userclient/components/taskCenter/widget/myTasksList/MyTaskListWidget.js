@@ -30,7 +30,6 @@ require([
             timer.start();
         },
         _loadTaskItems:function(){
-            var isOdd=true;
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             var resturl=ACTIVITY_SERVICE_ROOT+"participantTasksDetailInfo/"+APPLICATION_ID+"/"+userId+"/";
             var errorCallback= function(data){
@@ -38,65 +37,8 @@ require([
             };
             var that=this;
             var loadCallback=function(data){
-                that._cleanDirtyItemData();
+                that._renderTaskListItems(data,that);
                 var totalNumber= data.participantTasksVOList.length;
-                that.taskTotalNumber.innerHTML= totalNumber;
-                var participantTasksDetailVOList=data.participantTasksVOList;
-                if(participantTasksDetailVOList){
-                    dojo.forEach(participantTasksDetailVOList,function(participantDetailTask){
-                        if(participantDetailTask.activityStep){
-                            var taskDetailItemData={};
-                            taskDetailItemData["taskName"]= participantDetailTask.activityStepName;
-                            taskDetailItemData["activityName"]= participantDetailTask.activityType;
-                            taskDetailItemData["activityId"]= participantDetailTask.activityStep.activityId;
-                            taskDetailItemData["taskDescription"]= participantDetailTask.stepDescription;
-                            taskDetailItemData["taskDueDate"]=new Date(participantDetailTask.dueDate);
-                            if(participantDetailTask.activityStep.relatedRole){
-                                taskDetailItemData["taskRole"]= participantDetailTask.activityStep.relatedRole.displayName;
-                                taskDetailItemData["taskRoleID"]=participantDetailTask.activityStep.relatedRole.roleName;
-                            }
-                            taskDetailItemData["taskDueStatus"]=participantDetailTask.dueStatus;
-                            taskDetailItemData["taskResponse"]=participantDetailTask.activityStep.stepResponse;
-                            var taskDataFields=[];
-                            var taskDataDetailInfo=participantDetailTask.activityStep.activityDataFieldValueList.activityDataFieldValueList;
-                            if(taskDataDetailInfo){
-                                dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
-                                    var fieldDefinition=taskDataDetail.activityDataDefinition;
-                                    var propertyValue={};
-                                    propertyValue["name"]=fieldDefinition.displayName;
-                                    propertyValue["fieldName"]=fieldDefinition.fieldName;
-                                    propertyValue["type"]=fieldDefinition.fieldType;
-                                    propertyValue["multipleValue"]=fieldDefinition.arrayField;
-                                    propertyValue["required"]=fieldDefinition.mandatoryField;
-                                    if(fieldDefinition.arrayField){
-                                        propertyValue["value"]=taskDataDetail.arrayDataFieldValue;
-                                    }else{
-                                        propertyValue["value"]=taskDataDetail.singleDataFieldValue;
-                                    }
-                                    propertyValue["writable"]=true;
-                                    propertyValue["readable"]=true;
-                                    taskDataFields.push(propertyValue);
-                                });
-                            }
-                            taskDetailItemData["taskDataFields"] = taskDataFields;
-                            taskDetailItemData["stepAssignee"] = participantDetailTask.stepAssignee;
-                            taskDetailItemData["stepOwner"] = participantDetailTask.stepOwner;
-                            taskDetailItemData["hasChildActivityStep"] = participantDetailTask.activityStep.hasChildActivityStep;
-                            taskDetailItemData["hasParentActivityStep"] = participantDetailTask.activityStep.hasParentActivityStep;
-                            taskDetailItemData["parentActivityStepName"] = participantDetailTask.activityStep.parentActivityStepName;
-                            var currentTaskItem=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskMagazineViewItemWidget(
-                                {taskStatus:true,taskItemData:taskDetailItemData});
-                            if(isOdd){
-                                domClass.add(currentTaskItem.domNode, "app_magazineView_item_odd");
-                            }else{
-                                domClass.add(currentTaskItem.domNode, "app_magazineView_item_even");
-                            }
-                            isOdd=!isOdd;
-                            that.myTaskMagazineViewItemListContainer.appendChild(currentTaskItem.domNode);
-                            that.taskItemsArray.push(currentTaskItem);
-                        }
-                    });
-                }
                 if(that.containerInitFinishCounterFuc){
                     that.containerInitFinishCounterFuc();
                 }
@@ -134,6 +76,80 @@ require([
             };
             timer.start();
             this._loadTaskItems();
+        },
+        _renderTaskListItems:function(data,context){
+            context._cleanDirtyItemData();
+            var isOdd=true;
+            var totalNumber= data.participantTasksVOList.length;
+            context.taskTotalNumber.innerHTML= totalNumber;
+            var participantTasksDetailVOList=data.participantTasksVOList;
+            if(participantTasksDetailVOList){
+                dojo.forEach(participantTasksDetailVOList,function(participantDetailTask){
+                    if(participantDetailTask.activityStep){
+                        var taskDetailItemData={};
+                        taskDetailItemData["taskName"]= participantDetailTask.activityStepName;
+                        taskDetailItemData["activityName"]= participantDetailTask.activityType;
+                        taskDetailItemData["activityId"]= participantDetailTask.activityStep.activityId;
+                        taskDetailItemData["taskDescription"]= participantDetailTask.stepDescription;
+                        taskDetailItemData["taskDueDate"]=new Date(participantDetailTask.dueDate);
+                        if(participantDetailTask.activityStep.relatedRole){
+                            taskDetailItemData["taskRole"]= participantDetailTask.activityStep.relatedRole.displayName;
+                            taskDetailItemData["taskRoleID"]=participantDetailTask.activityStep.relatedRole.roleName;
+                        }
+                        taskDetailItemData["taskDueStatus"]=participantDetailTask.dueStatus;
+                        taskDetailItemData["taskResponse"]=participantDetailTask.activityStep.stepResponse;
+                        var taskDataFields=[];
+                        var taskDataDetailInfo=participantDetailTask.activityStep.activityDataFieldValueList.activityDataFieldValueList;
+                        if(taskDataDetailInfo){
+                            dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
+                                var fieldDefinition=taskDataDetail.activityDataDefinition;
+                                var propertyValue={};
+                                propertyValue["name"]=fieldDefinition.displayName;
+                                propertyValue["fieldName"]=fieldDefinition.fieldName;
+                                propertyValue["type"]=fieldDefinition.fieldType;
+                                propertyValue["multipleValue"]=fieldDefinition.arrayField;
+                                propertyValue["required"]=fieldDefinition.mandatoryField;
+                                if(fieldDefinition.arrayField){
+                                    propertyValue["value"]=taskDataDetail.arrayDataFieldValue;
+                                }else{
+                                    propertyValue["value"]=taskDataDetail.singleDataFieldValue;
+                                }
+                                propertyValue["writable"]=true;
+                                propertyValue["readable"]=true;
+                                taskDataFields.push(propertyValue);
+                            });
+                        }
+                        taskDetailItemData["taskDataFields"] = taskDataFields;
+                        taskDetailItemData["stepAssignee"] = participantDetailTask.stepAssignee;
+                        taskDetailItemData["stepOwner"] = participantDetailTask.stepOwner;
+                        taskDetailItemData["hasChildActivityStep"] = participantDetailTask.activityStep.hasChildActivityStep;
+                        taskDetailItemData["hasParentActivityStep"] = participantDetailTask.activityStep.hasParentActivityStep;
+                        taskDetailItemData["parentActivityStepName"] = participantDetailTask.activityStep.parentActivityStepName;
+                        var currentTaskItem=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskMagazineViewItemWidget(
+                            {taskStatus:true,taskItemData:taskDetailItemData});
+                        if(isOdd){
+                            domClass.add(currentTaskItem.domNode, "app_magazineView_item_odd");
+                        }else{
+                            domClass.add(currentTaskItem.domNode, "app_magazineView_item_even");
+                        }
+                        isOdd=!isOdd;
+                        context.myTaskMagazineViewItemListContainer.appendChild(currentTaskItem.domNode);
+                        context.taskItemsArray.push(currentTaskItem);
+                    }
+                });
+            }
+        },
+        autoRefreshTaskItems:function(){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            var resturl=ACTIVITY_SERVICE_ROOT+"participantTasksDetailInfo/"+APPLICATION_ID+"/"+userId+"/";
+            var errorCallback= function(data){
+                console.log("Error occurred during auto refresh my tasks list data");
+            };
+            var that=this;
+            var loadCallback=function(data){
+                that._renderTaskListItems(data,that);
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
         },
         _endOfCode: function(){}
     });

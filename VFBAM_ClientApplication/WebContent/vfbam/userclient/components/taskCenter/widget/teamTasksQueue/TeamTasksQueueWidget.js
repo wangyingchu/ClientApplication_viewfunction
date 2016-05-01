@@ -141,6 +141,23 @@ require([
                 this.reloadSingleRoleQueue(reloadSingleQueueDataObj);
             }
         },
+        autoRefreshQueuesTaskList:function(){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            var resturl=ACTIVITY_SERVICE_ROOT+"participantRelatedRoleQueuesDetail/"+APPLICATION_ID+"/"+userId+"/";
+            var errorCallback= function(data){
+                console.log("Error occurred during auto refresh team tasks queue data");
+            };
+            var that=this;
+            var loadCallback=function(data){
+                if(data){
+                    dojo.forEach(data,function(currentRoleQueueData){
+                        var currentQueueName=currentRoleQueueData.queueName;
+                        that.teamTaskQueueGridMap[currentQueueName].refreshQueueTaskData(currentRoleQueueData);
+                    });
+                }
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+        },
         _endOfCode: function(){}
     });
 });

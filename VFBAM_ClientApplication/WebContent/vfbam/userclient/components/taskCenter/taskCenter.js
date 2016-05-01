@@ -26,6 +26,7 @@ var initTaskCenterFinishCounter=function(){
     //when taskCenterSubComponentInitCounter is 5,all sub components finished init.
     if(taskCenterSubComponentInitCounter==5){
         UI.hideProgressDialog();
+        autoRefreshTaskCenterData();
     }
 };
 var activityLauncher=new vfbam.userclient.common.UI.components.activityLauncher.ActivityLauncherWidget({},"app_taskCenter_activityLauncherContainer");
@@ -45,6 +46,27 @@ var myDocumentList=new vfbam.userclient.common.UI.components.documentsList.Docum
 var myTaskListWidget=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskListWidget({region:"left",containerInitFinishCounterFuc:initTaskCenterFinishCounter},"app_taskCenter_myTasksContainer");
 var teamTasksQueueWidget=new vfbam.userclient.components.taskCenter.widget.teamTasksQueue.TeamTasksQueueWidget({region:"center",containerInitFinishCounterFuc:initTaskCenterFinishCounter},"app_taskCenter_teamTasksQueueContainer");
 dojo.style(myDocumentList.domNode,{"display": "none"});
+
+function autoRefreshTaskCenterData(){
+    //auto refresh my tasks list data every 15 minutes
+    var autoRefreshMyTaskListTimer = new dojox.timing.Timer(1000*60*15);
+    autoRefreshMyTaskListTimer.onTick = function(){
+        console.log("==================================");
+        console.log("auto refresh my tasks list data");
+        console.log("==================================");
+        myTaskListWidget.autoRefreshTaskItems()
+    };
+    autoRefreshMyTaskListTimer.start();
+    //auto refresh team tasks queue data every 10 minutes
+    var autoRefreshTeamTasksQueueTimer = new dojox.timing.Timer(1000*60*10);
+    autoRefreshTeamTasksQueueTimer.onTick = function(){
+        console.log("==================================");
+        console.log("auto refresh team tasks queue data");
+        console.log("==================================");
+        teamTasksQueueWidget.autoRefreshQueuesTaskList()
+    };
+    autoRefreshTeamTasksQueueTimer.start();
+}
 
 var isTaskCenterFirstLoad=true;
 UI.registerStaticPageLifeCycleHandler("TASK_CENTER","onShow",loadTaskCenterUI);
