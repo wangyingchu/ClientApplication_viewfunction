@@ -50,7 +50,7 @@ require([
                 that._switchTaskSupportDataWidget("showAttachment");
                 UI.hideProgressDialog();
                 timer.stop();
-            }
+            };
             timer.start();
         },
         showAttachment:function(){

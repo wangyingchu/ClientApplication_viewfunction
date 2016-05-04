@@ -114,8 +114,8 @@ require([
                                 }else{
                                     propertyValue["value"]=taskDataDetail.singleDataFieldValue;
                                 }
-                                propertyValue["writable"]=true;
-                                propertyValue["readable"]=true;
+                                propertyValue["writable"]=fieldDefinition.writeableField;
+                                propertyValue["readable"]=fieldDefinition.readableField;
                                 taskDataFields.push(propertyValue);
                             });
                         }

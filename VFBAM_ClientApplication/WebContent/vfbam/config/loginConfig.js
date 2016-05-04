@@ -1,5 +1,5 @@
 //business configuration data
-var APPLICATION_ID="viewfunction_inc";
+var APPLICATION_ID="arcDesign_inc";
 
 var idx_aliases = [
     ["idx/oneui/form/CheckBox", "idx/form/CheckBox"],
