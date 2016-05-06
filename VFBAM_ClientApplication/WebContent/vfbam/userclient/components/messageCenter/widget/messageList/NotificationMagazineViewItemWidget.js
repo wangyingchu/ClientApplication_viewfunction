@@ -136,6 +136,15 @@ require([
                                 confirmButtonAction:confirmButtonAction,
                                 cancelButtonAction:cancelButtonAction
                             });
+                            if(!that.notificationItemData.notificationReadStatus){
+                                //update read status
+                                var resturl=MESSAGE_SERVICE_ROOT+"messageExchangeService/readNotification/"+ that.notificationItemData.notificationObjectId;
+                                var errorCallback= function(data){
+                                    UI.showSystemErrorMessage(data);
+                                };
+                                var loadCallback=function(data){};
+                                Application.WebServiceUtil.putJSONData(resturl,null,loadCallback,errorCallback);
+                            }
                         }
                     };
                     Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);

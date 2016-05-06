@@ -60,6 +60,10 @@ function initMessageCenterUI(){
         isMessageCenterFirstLoad=false;
     }
 }
+
+autoRefreshMessageCenterData();
+messageListWidget.refreshUnreadMessageItems();
+
 //methods definition
 function createMessage(initObject){
     require(["idx/oneui/Dialog"], function(Dialog){
@@ -298,6 +302,17 @@ function showComponentConfigDialog(){
         //dojo.place(messageEditor.containerNode, dialog.containerNode);
         dialog.show();
     });
+}
+function autoRefreshMessageCenterData(){
+    //auto refresh my messages list data every 10 minutes
+    var autoRefreshMyMessageListTimer = new dojox.timing.Timer(1000*60*10);
+    autoRefreshMyMessageListTimer.onTick = function(){
+        console.log("==================================");
+        console.log("auto refresh my tasks list data");
+        console.log("==================================");
+        messageListWidget.autoRefreshMessageItems()
+    };
+    autoRefreshMyMessageListTimer.start();
 }
 //global resource definition
 //Message center is the default page and it will always load no matter display or not, so all global message events handlers should init here

@@ -175,9 +175,90 @@ require([
         },
         handleNotification :function(){
             if(this.messageItemData){
-                Application.MessageUtil.publishMessage(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,this.messageItemData.data);
-                if(!this.messageItemData.data.notificationReadStatus){
-                    Application.MessageUtil.publishMessage(APP_MESSAGECENTER_UPDATENOTIFICATIONEREADSTATUS_EVENT,this.messageItemData.data);
+                var notificationItemData=this.messageItemData.data;
+                var notificationType= notificationItemData.notificationType;
+                if(notificationType== MESSAGESERVICE_NotificationType_ACTIVITYTASK){
+                    var activityId=notificationItemData.notificationMetaData.activityTaskNotificationVO.activityId;
+                    var taskName=notificationItemData.notificationMetaData.activityTaskNotificationVO.taskName;
+                    var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+                    var resturl=ACTIVITY_SERVICE_ROOT+"participantTaskDetailInfo/"+APPLICATION_ID+"/"+userId+"/"+activityId+"/"+taskName+"/";
+                    var errorCallback= function(data){
+                        UI.showSystemErrorMessage(data);
+                    };
+                    var loadCallback=function(participantDetailTask){
+                        if(participantDetailTask.activityType){
+                            var taskDetailItemData={};
+                            taskDetailItemData["taskName"]= participantDetailTask.activityStepName;
+                            taskDetailItemData["activityName"]= participantDetailTask.activityType;
+                            taskDetailItemData["activityId"]= participantDetailTask.activityStep.activityId;
+                            taskDetailItemData["taskDescription"]= participantDetailTask.stepDescription;
+                            taskDetailItemData["taskDueDate"]=new Date(participantDetailTask.dueDate);
+                            if(participantDetailTask.activityStep.relatedRole){
+                                taskDetailItemData["taskRole"]= participantDetailTask.activityStep.relatedRole.displayName;
+                                taskDetailItemData["taskRoleID"]=participantDetailTask.activityStep.relatedRole.roleName;
+                            }
+                            taskDetailItemData["taskDueStatus"]=participantDetailTask.dueStatus;
+                            taskDetailItemData["taskResponse"]=participantDetailTask.activityStep.stepResponse;
+                            var taskDataFields=[];
+                            var taskDataDetailInfo=participantDetailTask.activityStep.activityDataFieldValueList.activityDataFieldValueList;
+                            if(taskDataDetailInfo){
+                                dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
+                                    var fieldDefinition=taskDataDetail.activityDataDefinition;
+                                    var propertyValue={};
+                                    propertyValue["name"]=fieldDefinition.displayName;
+                                    propertyValue["fieldName"]=fieldDefinition.fieldName;
+                                    propertyValue["type"]=fieldDefinition.fieldType;
+                                    propertyValue["multipleValue"]=fieldDefinition.arrayField;
+                                    propertyValue["required"]=fieldDefinition.mandatoryField;
+                                    if(fieldDefinition.arrayField){
+                                        propertyValue["value"]=taskDataDetail.arrayDataFieldValue;
+                                    }else{
+                                        propertyValue["value"]=taskDataDetail.singleDataFieldValue;
+                                    }
+                                    propertyValue["writable"]=true;
+                                    propertyValue["readable"]=true;
+                                    taskDataFields.push(propertyValue);
+                                });
+                            }
+                            taskDetailItemData["taskDataFields"] = taskDataFields;
+                            taskDetailItemData["stepAssignee"] = participantDetailTask.stepAssignee;
+                            taskDetailItemData["stepOwner"] = participantDetailTask.stepOwner;
+                            taskDetailItemData["hasChildActivityStep"] = participantDetailTask.activityStep.hasChildActivityStep;
+                            taskDetailItemData["hasParentActivityStep"] = participantDetailTask.activityStep.hasParentActivityStep;
+                            taskDetailItemData["parentActivityStepName"] = participantDetailTask.activityStep.parentActivityStepName;
+                            notificationItemData.notificationMetaData.activityTaskNotificationVO=taskDetailItemData;
+                            Application.MessageUtil.publishMessage(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,notificationItemData);
+
+                        }else{
+                            var messageTxt="业务任务 <b>"+taskName +"</b> 已处理完毕或已不在您的任务列表中。";
+                            var confirmButtonAction=function(){
+                                Application.MessageUtil.publishMessage(APP_MESSAGECENTER_DELETENOTIFICATIONDIRECTLY_EVENT,{type:"NOTIFICATION",data:notificationItemData});
+                            };
+                            var cancelButtonAction=function(){};
+                            UI.showConfirmDialog({
+                                message:messageTxt,
+                                confirmButtonLabel:"<i class='icon-trash'></i> 删除此项通知",
+                                cancelButtonLabel:"<i class='icon-remove'></i> 关闭",
+                                confirmButtonAction:confirmButtonAction,
+                                cancelButtonAction:cancelButtonAction
+                            });
+                            if(!notificationItemData.notificationReadStatus){
+                                //update read status
+                                var resturl=MESSAGE_SERVICE_ROOT+"messageExchangeService/readNotification/"+ notificationItemData.notificationObjectId;
+                                var errorCallback= function(data){
+                                    UI.showSystemErrorMessage(data);
+                                };
+                                var loadCallback=function(data){};
+                                Application.WebServiceUtil.putJSONData(resturl,null,loadCallback,errorCallback);
+                            }
+                        }
+                    };
+                    Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+                }else{
+                    Application.MessageUtil.publishMessage(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,notificationItemData);
+                }
+                if(!notificationItemData.notificationReadStatus){
+                    Application.MessageUtil.publishMessage(APP_MESSAGECENTER_UPDATENOTIFICATIONEREADSTATUS_EVENT,notificationItemData);
                 }
             }
         },

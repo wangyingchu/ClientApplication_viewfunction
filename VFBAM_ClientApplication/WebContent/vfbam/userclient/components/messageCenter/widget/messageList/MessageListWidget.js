@@ -221,7 +221,6 @@ require([
         	};        	
         	Application.WebServiceUtil.postJSONData(resturl,queryMessageDataContent,loadCallback,errorCallback);            
         },
-
         _loadNotificationItems:function(){
             this._showHideItemSearchElements("SHOW");
             var queryNotificationsDataObject={};
@@ -406,7 +405,7 @@ require([
                 }
             };
             Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
-
+            /*
             //mockdata start
             totalNumber=totalNumber+15;
             for(i=0;i<totalNumber;i++){
@@ -419,11 +418,11 @@ require([
                 mockTaskItemData["taskRole"]="制造部"+i;
                 //mockTaskItemData["taskDueStatus"]="NODEU";
                 mockTaskItemData["taskDueStatus"]="OVERDUE";
-                /*
-                if(i==15||i==20||i==21||i==17||i==19){
-                    mockTaskItemData["taskDueStatus"]="OVERDUE";
-                }
-                */
+
+                //if(i==15||i==20||i==21||i==17||i==19){
+                //    mockTaskItemData["taskDueStatus"]="OVERDUE";
+                //}
+
                 if(i==7||i==14||i==6||i==8||i==4||i==1){
                     mockTaskItemData["taskDueStatus"]="DUETODAY";
                 }
@@ -447,6 +446,7 @@ require([
             Application.MessageUtil.publishMessage(APP_MESSAGECENTER_MESSAGECOUNTREFRESH_EVENT,{newTaskCount:totalNumber,messageType:"TASK"});
             UI.showToasterMessage({type:"success",message:"获取到"+totalNumber+"项任务"});
             //mockdata end
+            */
         },
         _getMessageReceiversNameList:function(receiversListObj){        	
         	var receiversNameList=[];
@@ -573,6 +573,22 @@ require([
                 };
                 Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
             }
+        },
+        autoRefreshMessageItems:function(){
+            this.refreshUnreadMessageItems();
+            //other logic for refresh message list
+        },
+        refreshUnreadMessageItems:function(){
+            var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+            var resturl=MESSAGE_SERVICE_ROOT+"messageExchangeService/countUnReadInformationNumber/"+APPLICATION_ID+"/"+userId+"/";
+            var errorCallback= function(data){
+                console.log("Error occurred during auto refresh my messages list data");
+            };
+            var loadCallback=function(data){
+                Application.MessageUtil.publishMessage(APP_MESSAGECENTER_MESSAGECOUNTREFRESH_EVENT,{newMessageCount:data.messageNumber,messageType:"MESSAGE"});
+                Application.MessageUtil.publishMessage(APP_MESSAGECENTER_MESSAGECOUNTREFRESH_EVENT,{newNotificationCount:data.notificationNumber,messageType:"NOTIFICATION"});
+            };
+            Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
         },
         _endOfCode: function(){}
     });
