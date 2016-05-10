@@ -24,6 +24,8 @@ var APP_USERMANAGEMENT_DISABLEUSER_EVENT="APP_USERMANAGEMENT_DISABLEUSER_EVENT";
 var APP_USERMANAGEMENT_SHOWUSERDETAILINFO_EVENT="APP_USERMANAGEMENT_SHOWUSERDETAILINFO_EVENT";
 var APP_USERMANAGEMENT_SHOWUSERPROFILE_EVENT="APP_USERMANAGEMENT_SHOWUSERPROFILE_EVENT";
 var APP_USERMANAGEMENT_UPDATEUSERTOTALNUMBER_EVENT="APP_USERMANAGEMENT_UPDATEUSERTOTALNUMBER_EVENT";
+var APP_USERMANAGEMENT_SETNORMALUSER_EVENT="APP_USERMANAGEMENT_SETNORMALUSER_EVENT";
+var APP_USERMANAGEMENT_SETADMINUSER_EVENT="APP_USERMANAGEMENT_SETADMINUSER_EVENT";
 
 var userSelectedListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_USERINFOSELECTED_EVENT,dojo.hitch(this,this.updateModificationButtons));
 var showUserBasicInfoListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_SHOWUSERPROFILE_EVENT,showUserProfile);
@@ -31,6 +33,8 @@ var showUserDetailInfoListenerHandler= Application.MessageUtil.listenToMessageTo
 var enableUserListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_ENABLEUSER_EVENT,doEnableUser);
 var disableUserListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_DISABLEUSER_EVENT,doDisableUser);
 var updateUserNumberListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_UPDATEUSERTOTALNUMBER_EVENT,doUpdateUserNumber);
+var setNormalUserListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_SETNORMALUSER_EVENT,doSetNormalUser);
+var setAdminUserListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_SETADMINUSER_EVENT,doSetAdminUser);
 
 var currentSelectedUserProfile=null;
 var currentSelectedUserInfoWidget=null;
@@ -58,6 +62,30 @@ var disableUserButton=new dijit.form.Button({
         disableUser();
     }
 },"app_userManagement_disableUserButton");
+
+var setNormalUserButton=new dijit.form.Button({
+    label: "<i class='icon-male'></i> 设为普通用户",
+    placement:"secondary",
+    onClick: function(){
+        setNormalUser();
+    }
+},"app_userManagement_setNormalUserButton");
+
+var setAdminUserButton=new dijit.form.Button({
+    label: "<i class='icon-shield'></i> 设为系统管理员",
+    placement:"secondary",
+    onClick: function(){
+        setAdminUser();
+    }
+},"app_userManagement_setAdminUserButton");
+
+var allowedFeatureButton=new dijit.form.Button({
+    label: "<i class='icon-laptop'></i> 可访问的功能",
+    placement:"secondary",
+    onClick: function(){
+        loadUserBasicInfoDialog();
+    }
+},"app_userManagement_allowedFeatureButton");
 
 var userBasicProfileButton=new dijit.form.Button({
     label: "<i class='icon-list'></i> 用户基本信息",
@@ -111,12 +139,27 @@ function updateModificationButtons(eventPayload){
             enableUserButton.set("disabled",false);
             disableUserButton.set("disabled","disabled");
         }
+        if(currentSelectedUserProfile.roleType==APPLICATION_ROLE_NORMALUSER_ID){
+            setNormalUserButton.set("disabled","disabled");
+            setAdminUserButton.set("disabled",false);
+        }else{
+            setNormalUserButton.set("disabled",false);
+            setAdminUserButton.set("disabled","disabled");
+        }
+        if(currentSelectedUserProfile.userId==APPLICATION_ROLE_BUILDIN_SUPERVISER_ID){
+            enableUserButton.set("disabled","disabled");
+            disableUserButton.set("disabled","disabled");
+            setNormalUserButton.set("disabled","disabled");
+            setAdminUserButton.set("disabled","disabled");
+        }
     }else{
         currentSelectedUserProfile=null;
         enableUserButton.set("disabled","disabled");
         disableUserButton.set("disabled","disabled");
         userBasicProfileButton.set("disabled","disabled");
         userDetailInfoButton.set("disabled","disabled");
+        setNormalUserButton.set("disabled","disabled");
+        setAdminUserButton.set("disabled","disabled");
     }
     if(userInfoWidget){
         currentSelectedUserInfoWidget=userInfoWidget;
@@ -364,3 +407,82 @@ function doFilterUserList(){
     }
 }
 
+function doSetNormalUser(event){
+    currentSelectedUserProfile=event.userDetailInfo;
+    setNormalUser(event.callback);
+}
+
+function setNormalUser(callbackFunc){
+    var messageTxt="<b>请确认是否将用户:</b>' "+currentSelectedUserProfile.displayName +" - "+currentSelectedUserProfile.userId+" '设定为普通用户。";
+    var confirmButtonAction=function(){
+        var originalCurrentSelectedUserRoleType=currentSelectedUserProfile.roleType;
+        currentSelectedUserProfile.roleType=APPLICATION_ROLE_NORMALUSER_ID;
+        var userProfileDataContent=dojo.toJson(currentSelectedUserProfile);
+        var resturl=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/updateRoleType/";
+        var errorCallback= function(data){
+            currentSelectedUserProfile.roleType=originalCurrentSelectedUserRoleType;
+            UI.showSystemErrorMessage(data);
+        };
+        var loadCallback=function(data){
+            currentSelectedUserProfile=data;
+            userListWidget.recountUserNumber();
+            UI.showToasterMessage({type:"success",message:"设定<b>"+data.displayName+"</b>为普通用户成功"});
+            if(callbackFunc){
+                callbackFunc(data);
+            }else{
+                if(currentSelectedUserInfoWidget){
+                    currentSelectedUserInfoWidget.setupUserInfo(data);
+                }
+            }
+        };
+        Application.WebServiceUtil.postJSONData(resturl,userProfileDataContent,loadCallback,errorCallback);
+    };
+    var cancelButtonAction=function(){};
+    UI.showConfirmDialog({
+        message:messageTxt,
+        confirmButtonLabel:"<i class='icon-ok-sign'></i> 确定",
+        cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+        confirmButtonAction:confirmButtonAction,
+        cancelButtonAction:cancelButtonAction
+    });
+}
+
+function doSetAdminUser(event){
+    currentSelectedUserProfile=event.userDetailInfo;
+    setAdminUser(event.callback);
+}
+
+function setAdminUser(callbackFunc){
+    var messageTxt="<b>请确认是否将用户:</b>' "+currentSelectedUserProfile.displayName +" - "+currentSelectedUserProfile.userId+" '设定为系统管理员。";
+    var confirmButtonAction=function(){
+        var originalCurrentSelectedUserRoleType=currentSelectedUserProfile.roleType;
+        currentSelectedUserProfile.roleType=APPLICATION_ROLE_SUPERVISER_ID;
+        var userProfileDataContent=dojo.toJson(currentSelectedUserProfile);
+        var resturl=PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/updateRoleType/";
+        var errorCallback= function(data){
+            currentSelectedUserProfile.roleType=originalCurrentSelectedUserRoleType;
+            UI.showSystemErrorMessage(data);
+        };
+        var loadCallback=function(data){
+            currentSelectedUserProfile=data;
+            userListWidget.recountUserNumber();
+            UI.showToasterMessage({type:"success",message:"设定<b>"+data.displayName+"</b>为系统管理员成功"});
+            if(callbackFunc){
+                callbackFunc(data);
+            }else{
+                if(currentSelectedUserInfoWidget){
+                    currentSelectedUserInfoWidget.setupUserInfo(data);
+                }
+            }
+        };
+        Application.WebServiceUtil.postJSONData(resturl,userProfileDataContent,loadCallback,errorCallback);
+    };
+    var cancelButtonAction=function(){};
+    UI.showConfirmDialog({
+        message:messageTxt,
+        confirmButtonLabel:"<i class='icon-ok-sign'></i> 确定",
+        cancelButtonLabel:"<i class='icon-remove'></i> 取消",
+        confirmButtonAction:confirmButtonAction,
+        cancelButtonAction:cancelButtonAction
+    });
+}

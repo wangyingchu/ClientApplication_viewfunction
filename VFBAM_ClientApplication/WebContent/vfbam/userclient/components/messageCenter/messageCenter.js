@@ -308,7 +308,7 @@ function autoRefreshMessageCenterData(){
     var autoRefreshMyMessageListTimer = new dojox.timing.Timer(1000*60*10);
     autoRefreshMyMessageListTimer.onTick = function(){
         console.log("==================================");
-        console.log("auto refresh my tasks list data");
+        console.log("auto refresh my messages list data");
         console.log("==================================");
         messageListWidget.autoRefreshMessageItems()
     };

@@ -75,7 +75,12 @@ require([
             };
             var that=this;
             var loadCallback=function(data){
-                UI.hideProgressDialog();
+                var timer = new dojox.timing.Timer(500);
+                timer.onTick = function(){
+                    UI.hideProgressDialog();
+                    timer.stop();
+                };
+                timer.start();
                 if(data){
                     UI.showToasterMessage({type:"success",message:"添加用户成功"});
                     if(that.callback){

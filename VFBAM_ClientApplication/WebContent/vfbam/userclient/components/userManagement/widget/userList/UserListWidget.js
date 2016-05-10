@@ -50,6 +50,38 @@ require([
             };
             Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
         },
+        recountUserNumber:function(){
+            var that=this;
+            var resturl=PARTICIPANT_SERVICE_ROOT+"participantOperationService/usersInfo/detailInfo/"+APPLICATION_ID;
+            var syncFlag=true;
+            var errorCallback= function(data){
+                UI.showSystemErrorMessage(data);
+            };
+            var loadCallback=function(restData){
+                if(restData){
+                    that.applicationSpaceUserMetaDataArray=restData;
+                    that.normalUserNumber=0;
+                    that.superviserNumber=0;
+                    dojo.forEach(that.applicationSpaceUserMetaDataArray,function(userMetaData){
+                        if(userMetaData.roleType=="APPLICATION_SUPERVISER"){
+                            that.superviserNumber++;
+                        }
+                        if(userMetaData.roleType=="APPLICATION_NORMALUSER"){
+                            that.normalUserNumber++;
+                        }
+                    });
+                    Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_UPDATEUSERTOTALNUMBER_EVENT,{
+                        normalUserNumber:that.normalUserNumber,superviserNumber: that.superviserNumber,allUserNumber:that.applicationSpaceUserMetaDataArray.length});
+                    that.applicationSpaceUserMetaDataArray.sort(function(a,b) {
+                            var stringCompare=a["displayName"].localeCompare(b["displayName"]);
+                            return stringCompare;
+                        }
+                    );
+                }
+
+            };
+            Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
+        },
         renderUserList:function(userRole,selectedUserId){
             this._cleanDirtyItemData();
             var isOdd=true;

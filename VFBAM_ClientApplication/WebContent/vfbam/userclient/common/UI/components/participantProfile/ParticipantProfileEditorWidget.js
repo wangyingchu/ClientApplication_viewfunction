@@ -92,8 +92,13 @@ require([
         	};
             var that=this;
         	var loadCallback=function(data){
-        	    UI.hideProgressDialog(); 
-        	    if(data){
+				var timer = new dojox.timing.Timer(500);
+				timer.onTick = function(){
+					UI.hideProgressDialog();
+					timer.stop();
+				};
+				timer.start();
+				if(data){
         	    	UI.showToasterMessage({type:"success",message:"用户信息更新成功"});
                     if(that.callback){
                         that.callback(data);

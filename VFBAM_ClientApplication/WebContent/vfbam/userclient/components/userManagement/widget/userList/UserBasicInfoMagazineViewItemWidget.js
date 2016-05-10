@@ -11,6 +11,8 @@ require([
         enableUserConnectionHandler:null,
         userBasicInfoConnectionHandler:null,
         userProfileConnectionHandler:null,
+        setNormalUserConnectionHandler:null,
+        setAdminUserConnectionHandler:null,
         postCreate: function(){
             var dateTimeStamp=""+new Date().getTime();
             this.userFacePhoto.src=
@@ -40,11 +42,31 @@ require([
                 dojo.style(this.disableUserButton,"display","none");
                 dojo.style(this.enableUserButton,"display","");
             }
+            if(this.userDetailInfo.roleType==APPLICATION_ROLE_NORMALUSER_ID){
+                dojo.style(this.setNormalUserButton,"display","none");
+                dojo.style(this.setAdminUserButton,"display","");
+            }
+            if(this.userDetailInfo.roleType==APPLICATION_ROLE_SUPERVISER_ID){
+                dojo.style(this.setNormalUserButton,"display","");
+                dojo.style(this.setAdminUserButton,"display","none");
+            }
+
             this.clickEventConnectionHandler=dojo.connect(this.domNode,"onclick",dojo.hitch(this,this.selectMessageItem));
             this.disableUserConnectionHandler=dojo.connect(this.disableUserButton,"onclick",dojo.hitch(this,this.disableUser));
             this.enableUserConnectionHandler=dojo.connect(this.enableUserButton,"onclick",dojo.hitch(this,this.enableUser));
             this.userBasicInfoConnectionHandler=dojo.connect(this.userProfileButton,"onclick",dojo.hitch(this,this.renderUserProfile));
             this.userProfileConnectionHandler=dojo.connect(this.userDetailButton,"onclick",dojo.hitch(this,this.renderUserDetailInfo));
+            this.setNormalUserConnectionHandler=dojo.connect(this.setNormalUserButton,"onclick",dojo.hitch(this,this.setNormalUser));
+            this.setAdminUserConnectionHandler=dojo.connect(this.setAdminUserButton,"onclick",dojo.hitch(this,this.setAdminUser));
+
+            if(this.userDetailInfo.userId==APPLICATION_ROLE_BUILDIN_SUPERVISER_ID){
+                dojo.style(this.disabledUserIcon,"display","none");
+                dojo.style(this.activeUserIcon,"display","");
+                dojo.style(this.enableUserButton,"display","none");
+                dojo.style(this.disableUserButton,"display","none");
+                dojo.style(this.setNormalUserButton,"display","none");
+                dojo.style(this.setAdminUserButton,"display","none");
+            }
         },
         selectMessageItem:function(eventObj){
             if(this.currentSelectedUserInfoItemArray&&this.currentSelectedUserInfoItemArray.length>0){
@@ -60,6 +82,12 @@ require([
         },
         enableUser:function(){
             Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_ENABLEUSER_EVENT,{userDetailInfo:this.userDetailInfo,callback:dojo.hitch(this,this.setupUserInfo)});
+        },
+        setNormalUser:function(){
+            Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_SETNORMALUSER_EVENT,{userDetailInfo:this.userDetailInfo,callback:dojo.hitch(this,this.setupUserInfo)});
+        },
+        setAdminUser:function(){
+            Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_SETADMINUSER_EVENT,{userDetailInfo:this.userDetailInfo,callback:dojo.hitch(this,this.setupUserInfo)});
         },
         renderUserProfile:function(){
             Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_SHOWUSERPROFILE_EVENT,this.userDetailInfo);
@@ -78,6 +106,12 @@ require([
             var dateTimeStamp=""+new Date().getTime();
             this.userFacePhoto.src=
                 PARTICIPANT_SERVICE_ROOT+"participantOperationService/userInfo/facePhoto/"+APPLICATION_ID+"/"+this.userDetailInfo.userId+"?timestamp="+dateTimeStamp;
+            var roleTypeDisplayName=APPLICATION_ROLE_DISPLAYNAME_MAP[this.userDetailInfo.roleType];
+            if(roleTypeDisplayName){
+                this.userRole.innerHTML=roleTypeDisplayName;
+            }else{
+                this.userRole.innerHTML="";
+            }
             if(userInfo.activeUser){
                 this.userDetailInfo.activeUser=true;
                 dojo.style(this.disabledUserIcon,"display","none");
@@ -90,6 +124,22 @@ require([
                 dojo.style(this.activeUserIcon,"display","none");
                 dojo.style(this.disableUserButton,"display","none");
                 dojo.style(this.enableUserButton,"display","");
+            }
+            if(this.userDetailInfo.roleType==APPLICATION_ROLE_NORMALUSER_ID){
+                dojo.style(this.setNormalUserButton,"display","none");
+                dojo.style(this.setAdminUserButton,"display","");
+            }
+            if(this.userDetailInfo.roleType==APPLICATION_ROLE_SUPERVISER_ID){
+                dojo.style(this.setNormalUserButton,"display","");
+                dojo.style(this.setAdminUserButton,"display","none");
+            }
+            if(this.userDetailInfo.userId==APPLICATION_ROLE_BUILDIN_SUPERVISER_ID){
+                dojo.style(this.disabledUserIcon,"display","none");
+                dojo.style(this.activeUserIcon,"display","");
+                dojo.style(this.enableUserButton,"display","none");
+                dojo.style(this.disableUserButton,"display","none");
+                dojo.style(this.setNormalUserButton,"display","none");
+                dojo.style(this.setAdminUserButton,"display","none");
             }
             Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_USERINFOSELECTED_EVENT,{userDetailInfo:this.userDetailInfo,selectedUserInfoWidget:this});
         },
@@ -105,6 +155,8 @@ require([
             dojo.disconnect(this.enableUserConnectionHandler);
             dojo.disconnect(this.userBasicInfoConnectionHandler);
             dojo.disconnect(this.userProfileConnectionHandler);
+            dojo.disconnect(this.setNormalUserConnectionHandler);
+            dojo.disconnect(this.setAdminUserConnectionHandler);
             this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}
