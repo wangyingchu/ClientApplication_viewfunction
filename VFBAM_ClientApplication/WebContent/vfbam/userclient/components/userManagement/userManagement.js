@@ -80,7 +80,7 @@ var setAdminUserButton=new dijit.form.Button({
 },"app_userManagement_setAdminUserButton");
 
 var allowedFeatureButton=new dijit.form.Button({
-    label: "<i class='icon-laptop'></i> 可访问的功能",
+    label: "<i class='icon-laptop'></i> 可用系统功能",
     placement:"secondary",
     onClick: function(){
         loadUserBasicInfoDialog();
@@ -160,6 +160,7 @@ function updateModificationButtons(eventPayload){
         userDetailInfoButton.set("disabled","disabled");
         setNormalUserButton.set("disabled","disabled");
         setAdminUserButton.set("disabled","disabled");
+        allowedFeatureButton.set("disabled","disabled");
     }
     if(userInfoWidget){
         currentSelectedUserInfoWidget=userInfoWidget;
