@@ -13,6 +13,7 @@ require([
         userProfileConnectionHandler:null,
         setNormalUserConnectionHandler:null,
         setAdminUserConnectionHandler:null,
+        userAllowedFeatureConnectionHandler:null,
         postCreate: function(){
             var dateTimeStamp=""+new Date().getTime();
             this.userFacePhoto.src=
@@ -58,6 +59,7 @@ require([
             this.userProfileConnectionHandler=dojo.connect(this.userDetailButton,"onclick",dojo.hitch(this,this.renderUserDetailInfo));
             this.setNormalUserConnectionHandler=dojo.connect(this.setNormalUserButton,"onclick",dojo.hitch(this,this.setNormalUser));
             this.setAdminUserConnectionHandler=dojo.connect(this.setAdminUserButton,"onclick",dojo.hitch(this,this.setAdminUser));
+            this.userAllowedFeatureConnectionHandler=dojo.connect(this.allowedFeatureButton,"onclick",dojo.hitch(this,this.renderUserAllowedFeatureInfo));
 
             if(this.userDetailInfo.userId==APPLICATION_ROLE_BUILDIN_SUPERVISER_ID){
                 dojo.style(this.disabledUserIcon,"display","none");
@@ -66,6 +68,7 @@ require([
                 dojo.style(this.disableUserButton,"display","none");
                 dojo.style(this.setNormalUserButton,"display","none");
                 dojo.style(this.setAdminUserButton,"display","none");
+                dojo.style(this.allowedFeatureButton,"display","none");
             }
         },
         selectMessageItem:function(eventObj){
@@ -94,6 +97,9 @@ require([
         },
         renderUserDetailInfo:function(){
             Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_SHOWUSERDETAILINFO_EVENT,this.userDetailInfo);
+        },
+        renderUserAllowedFeatureInfo:function(){
+            Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_SHOWUSERALLOWEDFEATUREINFO_EVENT,this.userDetailInfo);
         },
         setupUserInfo:function(userInfo){
             this.userDetailInfo=userInfo;
@@ -140,6 +146,7 @@ require([
                 dojo.style(this.disableUserButton,"display","none");
                 dojo.style(this.setNormalUserButton,"display","none");
                 dojo.style(this.setAdminUserButton,"display","none");
+                dojo.style(this.allowedFeatureButton,"display","none");
             }
             Application.MessageUtil.publishMessage(APP_USERMANAGEMENT_USERINFOSELECTED_EVENT,{userDetailInfo:this.userDetailInfo,selectedUserInfoWidget:this});
         },
@@ -157,6 +164,7 @@ require([
             dojo.disconnect(this.userProfileConnectionHandler);
             dojo.disconnect(this.setNormalUserConnectionHandler);
             dojo.disconnect(this.setAdminUserConnectionHandler);
+            dojo.disconnect(this.userAllowedFeatureConnectionHandler);
             this.inherited("destroy",arguments);
         },
         _endOfCode: function(){}

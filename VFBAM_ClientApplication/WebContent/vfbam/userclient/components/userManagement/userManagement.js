@@ -26,6 +26,9 @@ var APP_USERMANAGEMENT_SHOWUSERPROFILE_EVENT="APP_USERMANAGEMENT_SHOWUSERPROFILE
 var APP_USERMANAGEMENT_UPDATEUSERTOTALNUMBER_EVENT="APP_USERMANAGEMENT_UPDATEUSERTOTALNUMBER_EVENT";
 var APP_USERMANAGEMENT_SETNORMALUSER_EVENT="APP_USERMANAGEMENT_SETNORMALUSER_EVENT";
 var APP_USERMANAGEMENT_SETADMINUSER_EVENT="APP_USERMANAGEMENT_SETADMINUSER_EVENT";
+var APP_USERMANAGEMENT_SHOWUSERALLOWEDFEATUREINFO_EVENT="APP_USERMANAGEMENT_SHOWUSERALLOWEDFEATUREINFO_EVENT";
+
+var APP_USERMANAGEMENT_APPLICATION_AVAILABLEFEATURES=[];
 
 var userSelectedListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_USERINFOSELECTED_EVENT,dojo.hitch(this,this.updateModificationButtons));
 var showUserBasicInfoListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_SHOWUSERPROFILE_EVENT,showUserProfile);
@@ -35,6 +38,7 @@ var disableUserListenerHandler= Application.MessageUtil.listenToMessageTopic(APP
 var updateUserNumberListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_UPDATEUSERTOTALNUMBER_EVENT,doUpdateUserNumber);
 var setNormalUserListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_SETNORMALUSER_EVENT,doSetNormalUser);
 var setAdminUserListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_SETADMINUSER_EVENT,doSetAdminUser);
+var showUserAllowedFeatureListenerHandler= Application.MessageUtil.listenToMessageTopic(APP_USERMANAGEMENT_SHOWUSERALLOWEDFEATUREINFO_EVENT,showUserAllowedFeature);
 
 var currentSelectedUserProfile=null;
 var currentSelectedUserInfoWidget=null;
@@ -80,10 +84,10 @@ var setAdminUserButton=new dijit.form.Button({
 },"app_userManagement_setAdminUserButton");
 
 var allowedFeatureButton=new dijit.form.Button({
-    label: "<i class='icon-laptop'></i> 可用系统功能",
+    label: "<i class='fa fa-cubes' aria-hidden='true'></i> 可用系统功能",
     placement:"secondary",
     onClick: function(){
-        loadUserBasicInfoDialog();
+        loadUseAccessFeaturesDialog();
     }
 },"app_userManagement_allowedFeatureButton");
 
@@ -113,6 +117,7 @@ var userFilterPropertyValueTextInput=new dijit.form.TextBox({
 },"app_userManagement_userFilterPropertyValueTextInput");
 
 userListWidget.loadUserList();
+loadApplicationSpaceAvilableApplicationFunctions();
 
 function refreshUserList(){
     userListWidget.loadUserList();
@@ -151,6 +156,7 @@ function updateModificationButtons(eventPayload){
             disableUserButton.set("disabled","disabled");
             setNormalUserButton.set("disabled","disabled");
             setAdminUserButton.set("disabled","disabled");
+            allowedFeatureButton.set("disabled","disabled");
         }
     }else{
         currentSelectedUserProfile=null;
@@ -486,4 +492,49 @@ function setAdminUser(callbackFunc){
         confirmButtonAction:confirmButtonAction,
         cancelButtonAction:cancelButtonAction
     });
+}
+
+function loadApplicationSpaceAvilableApplicationFunctions(){
+    var resturl=USERMANAGEMENTSERVICE_ROOT+"availableApplicationFeatures/"+APPLICATION_ID;
+    var errorCallback= function(data){
+        UI.showSystemErrorMessage(data);
+    };
+    var loadCallback=function(data){
+        if(data){
+            dojo.forEach(data,function(currentFeature){
+                APP_USERMANAGEMENT_APPLICATION_AVAILABLEFEATURES.push(currentFeature);
+            });
+        }
+    };
+    Application.WebServiceUtil.getJSONData(resturl,true,null,loadCallback,errorCallback);
+}
+
+function loadUseAccessFeaturesDialog(){
+    require(["idx/oneui/Dialog"], function(Dialog){
+        var participantAccessFeaturesEditor=new vfbam.userclient.common.UI.components.participantProfile.ParticipantAllowedApplicationFeaturesEditor(
+            {availableApplicationFeatures:APP_USERMANAGEMENT_APPLICATION_AVAILABLEFEATURES,participantProfile:currentSelectedUserProfile});
+        var editParticipantProfileButton=new dijit.form.Button({
+            label: "<i class='icon-save'></i> 更新可用系统功能",
+            onClick: function(){
+                participantAccessFeaturesEditor.updateAllowedApplicationFeatures();
+            }
+        });
+        var actionButtone=[];
+        actionButtone.push(editParticipantProfileButton);
+        var	dialog = new Dialog({
+            style:"width:480px;",
+            title:  "<i class='fa fa-cubes' aria-hidden='true'></i> 用户可使用的系统功能",
+            content: "",
+            buttons:actionButtone,
+            closeButtonLabel: "<i class='icon-remove'></i> 取消"
+        });
+        dojo.place(participantAccessFeaturesEditor.containerNode, dialog.containerNode);
+        dialog.connect(participantAccessFeaturesEditor, "doCloseContainerDialog", "hide");
+        dialog.show();
+    });
+}
+
+function showUserAllowedFeature(event){
+    currentSelectedUserProfile=event;
+    loadUseAccessFeaturesDialog();
 }

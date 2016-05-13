@@ -2,18 +2,29 @@
 var APPLICATION_ID="arcDesign_inc";
 
 var APPLICATION_ROLEBASE_ACCESS_MATRIX={};
-APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[{
-    workspaceType:"ACTIVITIES_STATISTIC",
-    workspaceTitle:"工作进度统计",
-    dynamicPageTitle:"<i class='icon-bar-chart'></i> 工作进度统计",
-    pageUniqueId:"ACTIVITIES_STATISTIC_UID"
-    },{
+APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[
+    {
         workspaceType:"USER_MANAGEMENT",
         workspaceTitle:"用户管理",
         dynamicPageTitle:"<i class='icon-user'></i> 用户管理",
         pageUniqueId:"ACTIVITIES_STATISTIC_UID"
     }
 ];
+
+var APPLICATION_COMMON_FEATURE_CONFIG_MATRIX={};
+APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["ACTIVITIES_STATISTIC"]={
+    workspaceType:"ACTIVITIES_STATISTIC",
+    workspaceTitle:"工作进度统计",
+    dynamicPageTitle:"<i class='icon-bar-chart'></i> 工作进度统计",
+    pageUniqueId:"ACTIVITIES_STATISTIC_UID"
+};
+APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["KNOWLEDGE_BASE"]={
+    workspaceType:"KNOWLEDGE_BASE",
+    workspaceTitle:"知识中心",
+    dynamicPageTitle:"<i class='icon-book'></i> 知识中心",
+    pageUniqueId:"KNOWLEDGE_BASE_UID"
+};
+
 var APPLICATION_ROLE_DISPLAYNAME_MAP={};
 APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_SUPERVISER"]="系统管理员";
 APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_NORMALUSER"]="普通用户";
@@ -319,8 +330,10 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantProfileEditorWidget",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantFacePhotoUploaderWidget",
     "vfbam.userclient.common.UI.components.participantProfile.ParticipantPasswordResetWidget",
+    "vfbam.userclient.common.UI.components.participantProfile.ParticipantAllowedApplicationFeaturesEditor",
     "vfbam.userclient.common.UI.components.participantDetailInfo.ParticipantDetailInfoWidget",
     "vfbam.userclient.common.UI.components.participantProfile.NewParticipantEditorWidget",
+    "vfbam.userclient.common.UI.components.participantProfile.AvailableApplicationFeatureOption",
 
     "vfbam.userclient.common.LOGIC.notificationHandler.NotificationHandlerWidget",
     "vfbam.userclient.common.LOGIC.taskHandler.GlobalTaskOperationHandlerWidget",

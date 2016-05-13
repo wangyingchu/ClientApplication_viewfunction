@@ -6,19 +6,25 @@ require([
             console.log("GlobalAuthorityOperationHandlerWidget created");
             var userProfile=Application.AttributeContext.getAttribute(USER_PROFILE);
             var currentUserRoleType=userProfile.roleType;
-            var addtionalWorkspaceTypesForCurrentUser=APPLICATION_ROLEBASE_ACCESS_MATRIX[currentUserRoleType];
-            if(addtionalWorkspaceTypesForCurrentUser){
-                dojo.forEach(addtionalWorkspaceTypesForCurrentUser,function(workspaceType){
-                    var dynamicPageId=UI.openDynamicPage(workspaceType.workspaceType, workspaceType.workspaceTitle,  workspaceType.pageUniqueId,workspaceType.dynamicPageTitle,{},true);
-                    /*
-                    if(dynamicPageId){
-                        UI.showDynamicPage(dynamicPageId);
-                    }
-                    */
+            var roleBaseAdditionalWorkspaceTypesForCurrentUser=APPLICATION_ROLEBASE_ACCESS_MATRIX[currentUserRoleType];
+            if(roleBaseAdditionalWorkspaceTypesForCurrentUser){
+                dojo.forEach(roleBaseAdditionalWorkspaceTypesForCurrentUser,function(workspaceType){
+                    //var dynamicPageId=
+                        UI.openDynamicPage(workspaceType.workspaceType, workspaceType.workspaceTitle,  workspaceType.pageUniqueId,workspaceType.dynamicPageTitle,{},true);
                 });
             }
-            //add knowledge page for all kinds of user
-            //UI.openDynamicPage("KNOWLEDGE_BASE","知识中心", "KNOWLEDGE_BASE_UID", "<i class='icon-book'></i> 知识中心",{},true);
+            var userBaseAdditionalWorkspaceTypes=userProfile.allowedFeatureCategories;
+            if(userBaseAdditionalWorkspaceTypes){
+                dojo.forEach(userBaseAdditionalWorkspaceTypes,function(currentWorkspaceType){
+                    var currentWorkspaceConfig=APPLICATION_COMMON_FEATURE_CONFIG_MATRIX[currentWorkspaceType];
+                    if(currentWorkspaceConfig){
+                        UI.openDynamicPage(currentWorkspaceConfig.workspaceType,
+                            currentWorkspaceConfig.workspaceTitle,
+                            currentWorkspaceConfig.pageUniqueId,
+                            currentWorkspaceConfig.dynamicPageTitle,{},true);
+                    }
+                });
+            }
         },
         _endOfCode: function(){}
     });

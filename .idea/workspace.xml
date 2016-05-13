@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="79f09c0b-aea5-4ba9-8a74-34805af2dd91" name="Default" comment="support font awesome 4.5.0">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/myTasksList/MyTaskListWidget.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/myTasksList/MyTaskListWidget.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/teamTasksQueue/SingleTeamTaskQueueWidget.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/teamTasksQueue/SingleTeamTaskQueueWidget.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskDetails/widget/TaskDetailsDynamicPageWidget.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskDetails/widget/TaskDetailsDynamicPageWidget.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/loginConfig.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/loginConfig.js" />
+    <list default="true" id="79f09c0b-aea5-4ba9-8a74-34805af2dd91" name="Default" comment="fix activity data readonly render logic problem">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/template/AvailableApplicationFeatureOption.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/AvailableApplicationFeatureOption.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/template/ParticipantAllowedApplicationFeaturesEditor.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/ParticipantAllowedApplicationFeaturesEditor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/authorityHandler/GlobalAuthorityOperationHandlerWidget.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/authorityHandler/GlobalAuthorityOperationHandlerWidget.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/UserBasicInfoMagazineViewItemWidget.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/UserBasicInfoMagazineViewItemWidget.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/appConfig.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/appConfig.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/index.html" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/userManagement.js" afterPath="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/userManagement.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VFBAM_ClientApplication.iws" />
@@ -27,95 +32,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MyTaskListWidget.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/myTasksList/MyTaskListWidget.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2906351">
-              <caret line="116" column="88" selection-start-line="116" selection-start-column="88" selection-end-line="116" selection-end-column="88" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicTaskDataEditorWidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskDataEditor/BasicTaskDataEditorWidget.js">
+      <file leaf-file-name="userManagement.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/userManagement.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="23" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="23" />
+              <caret line="158" column="60" selection-start-line="158" selection-start-column="60" selection-end-line="158" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskDetailsDynamicPageWidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskDetails/widget/TaskDetailsDynamicPageWidget.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-59.166668">
-              <caret line="118" column="25" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GlobalTaskOperationHandlerWidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/taskHandler/GlobalTaskOperationHandlerWidget.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="95" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="95" />
+            <state vertical-scroll-proportion="-18.74074">
+              <caret line="275" column="8" selection-start-line="275" selection-start-column="8" selection-end-line="275" selection-end-column="8" />
               <folding>
-                <marker date="1461567412475" expanded="true" signature="9941:9958" placeholder="..." />
-                <marker date="1461567412475" expanded="true" signature="10991:11043" placeholder="..." />
-                <marker date="1461567412475" expanded="true" signature="14807:14824" placeholder="..." />
-                <marker date="1461567412475" expanded="true" signature="19329:19346" placeholder="..." />
-                <marker date="1461567412475" expanded="true" signature="32056:32073" placeholder="..." />
+                <marker date="1463128438830" expanded="true" signature="4079:4096" placeholder="..." />
+                <marker date="1463128438830" expanded="true" signature="4134:4149" placeholder="..." />
+                <marker date="1463128438830" expanded="true" signature="4238:4272" placeholder="..." />
+                <marker date="1463128438830" expanded="true" signature="4304:4323" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskMagazineViewItemWidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/TaskMagazineViewItemWidget.js">
+      <file leaf-file-name="GlobalAuthorityOperationHandlerWidget.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/authorityHandler/GlobalAuthorityOperationHandlerWidget.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="158" selection-start-line="88" selection-start-column="141" selection-end-line="88" selection-end-column="158" />
+              <caret line="7" column="35" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicTaskDataFieldWidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskDataEditor/BasicTaskDataFieldWidget.js">
+      <file leaf-file-name="ParticipantAllowedApplicationFeaturesEditor.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/ParticipantAllowedApplicationFeaturesEditor.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="46" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="46" />
-              <folding>
-                <marker date="1456905229915" expanded="true" signature="21902:21936" placeholder="..." />
-                <marker date="1456905229915" expanded="true" signature="21993:22026" placeholder="..." />
-                <marker date="1456905229915" expanded="true" signature="22078:22130" placeholder="..." />
-              </folding>
+              <caret line="2" column="130" selection-start-line="2" selection-start-column="130" selection-end-line="2" selection-end-column="130" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SingleTeamTaskQueueWidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/teamTasksQueue/SingleTeamTaskQueueWidget.js">
+      <file leaf-file-name="UserBasicInfoMagazineViewItemWidget.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/UserBasicInfoMagazineViewItemWidget.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="491" column="87" selection-start-line="491" selection-start-column="87" selection-end-line="491" selection-end-column="87" />
-              <folding>
-                <marker date="1462348378866" expanded="true" signature="10551:10586" placeholder="..." />
-                <marker date="1462348378866" expanded="true" signature="10898:10933" placeholder="..." />
-                <marker date="1462348378866" expanded="true" signature="16319:16338" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="0.55435956">
+              <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivityStartDataEditorWidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/activityLauncher/ActivityStartDataEditorWidget.js">
+      <file leaf-file-name="appConfig.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/appConfig.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="99" selection-start-line="18" selection-start-column="99" selection-end-line="18" selection-end-column="99" />
+              <caret line="20" column="56" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserBasicInfoMagazineViewItemWidget.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/template/UserBasicInfoMagazineViewItemWidget.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.333334">
+              <caret line="35" column="120" selection-start-line="35" selection-start-column="100" selection-end-line="35" selection-end-column="120" />
               <folding />
             </state>
           </provider>
@@ -129,18 +115,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/template/MessageListWidget.html" />
-        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/activitiesQueryer/UserStartedActivitiesWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/activitiesQueryer/UserWorkedStepsWidget.js" />
-        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/authorityHandler/GlobalAuthorityOperationHandlerWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/app/UIOperationBaseCore.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/ibmjs/idx/app/_Launcher.js" />
-        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/messageCenter.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/dojo_idt/gridx/modules/ColumnWidth.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/documentsList/AdvancedDocumentInfoWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/documentsList/template/KnowledgeBaseRecommendsWidget.html" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/documentsList/KnowledgeBaseRecommendsWidget.js" />
-        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/index.html" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/activityLauncher/ActivityLauncherWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/template/GlobalParticipantsSearchWidget.html" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/BasicTaskToolbarWidget.js" />
@@ -152,7 +133,6 @@
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/template/ChildTaskLauncherWidget.html" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/ChildTaskLauncherWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/template/ChildTaskItemDetailInfoWidget.html" />
-        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/appConfig.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/ChildTaskItemDetailInfoWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/widgets/template/RoleAndGlobalParticipantSelector.html" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/widgets/RoleAndGlobalParticipantSelector.js" />
@@ -166,6 +146,26 @@
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskDetails/widget/TaskDetailsDynamicPageWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/teamTasksQueue/SingleTeamTaskQueueWidget.js" />
         <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/myTasksList/MyTaskListWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/taskCenter.html" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/NotificationMagazineViewItemWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messagePreview/MessagePreviewWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/messageCenter.html" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/MessageListWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/ParticipantProfileEditorWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/UserListWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/NewParticipantEditorWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/messageCenter.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/template/UserBasicInfoMagazineViewItemWidget.html" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/userManagement.html" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/template/ParticipantAllowedApplicationFeaturesEditor.html" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/template/AvailableApplicationFeatureOption.html" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/AvailableApplicationFeatureOption.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/ParticipantAllowedApplicationFeaturesEditor.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/index.html" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/appConfig.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/userManagement.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/authorityHandler/GlobalAuthorityOperationHandlerWidget.js" />
+        <option value="$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/UserBasicInfoMagazineViewItemWidget.js" />
       </list>
     </option>
   </component>
@@ -204,7 +204,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -300,38 +299,8 @@
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vfbam" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="userclient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="taskCenter" />
+              <option name="myItemId" value="userManagement" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -365,7 +334,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="taskCenter" />
+              <option name="myItemId" value="userManagement" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vfbam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userclient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userManagement" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -373,7 +380,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="teamTasksQueue" />
+              <option name="myItemId" value="userList" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -407,7 +414,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="taskCenter" />
+              <option name="myItemId" value="userManagement" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -415,7 +422,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="myTasksList" />
+              <option name="myItemId" value="userList" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vfbam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userclient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -483,53 +524,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="messageCenter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vfbam" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="userclient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="messageCenter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="messageList" />
+              <option name="myItemId" value="calendarCenter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -560,6 +555,170 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vfbam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userclient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vfbam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userclient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="participantProfile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vfbam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userclient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="participantProfile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VFBAM_ClientApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vfbam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userclient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LOGIC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,41 +756,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="taskHandler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VFBAM_ClientApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vfbam" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="userclient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LOGIC" />
+              <option name="myItemId" value="authorityHandler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -663,6 +788,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -785,7 +911,31 @@
       <option name="project" value="LOCAL" />
       <updated>1462119629197</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix activity data readonly render logic problem">
+      <created>1462350222808</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1462350222808</updated>
+    </task>
+    <task id="LOCAL-00012" summary="message center function enhancement">
+      <created>1462547598377</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1462547598377</updated>
+    </task>
+    <task id="LOCAL-00013" summary="user management function enhancement">
+      <created>1462883988874</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1462883988874</updated>
+    </task>
+    <task id="LOCAL-00014" summary="user management function enhancement">
+      <created>1462974808994</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1462974808994</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -794,10 +944,9 @@
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46137786" sideWeight="0.49707174" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25572917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23697917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -806,6 +955,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46137786" sideWeight="0.49707174" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -826,6 +976,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
     <MESSAGE value="support font awesome 4.5.0" />
     <MESSAGE value="knowledgebase recommends feature" />
     <MESSAGE value="support launch activity permission control" />
@@ -835,7 +986,10 @@
     <MESSAGE value="fix UI defects" />
     <MESSAGE value="fix task center loading defect" />
     <MESSAGE value="task center data auto refresh feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="task center data auto refresh feature" />
+    <MESSAGE value="fix activity data readonly render logic problem" />
+    <MESSAGE value="message center function enhancement" />
+    <MESSAGE value="user management function enhancement" />
+    <option name="LAST_COMMIT_MESSAGE" value="user management function enhancement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -844,181 +998,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userLogin/userLogin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskDetails/taskDetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskDetails/widget/template/TaskDetailsDynamicPageWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/activityLauncher/ActivityLauncherWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="97" selection-start-line="86" selection-start-column="65" selection-end-line="86" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/ibmjs/idx/widget/Dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/template/RoleGroupParticipantListWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2594235">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/RoleGroupParticipantListWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75565124">
-          <caret line="66" column="56" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/template/GlobalParticipantsSearchWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.518847">
-          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/template/SingleRoleParticipantListWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="83" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/activitiesQueryer/template/ActivitiesQueryerWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="94" selection-start-line="20" selection-start-column="94" selection-end-line="20" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/loginConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/template/ParticipantInfoWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31929046">
-          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/ParticipantInfoWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8331539">
-          <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/SingleRoleParticipantListWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7168999">
-          <caret line="37" column="195" selection-start-line="37" selection-start-column="170" selection-end-line="37" selection-end-column="195" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/GlobalParticipantsSearchWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9300323">
-          <caret line="153" column="48" selection-start-line="153" selection-start-column="11" selection-end-line="153" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/template/BasicTaskToolbarWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2195122">
-          <caret line="14" column="84" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/widgets/template/TextDropdownButton.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/widgets/TextDropdownButton.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/template/ChildTaskItemDetailInfoWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11973392">
-          <caret line="6" column="57" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/appConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41227126">
-          <caret line="248" column="60" selection-start-line="248" selection-start-column="60" selection-end-line="248" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/template/ChildTaskLauncherWidget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35920176">
-          <caret line="18" column="17" selection-start-line="12" selection-start-column="11" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/ChildTaskItemDetailInfoWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1700754">
-          <caret line="112" column="48" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/widgets/template/ParticipantSelector.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27937916">
-          <caret line="14" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/widgets/ParticipantSelector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25188375">
-          <caret line="13" column="13" selection-start-line="9" selection-start-column="12" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/widgets/template/RoleAndGlobalParticipantSelector.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2594235">
@@ -1037,20 +1016,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/BasicTaskToolbarWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="431" column="53" selection-start-line="430" selection-start-column="12" selection-end-line="431" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/taskCenter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6984479">
-          <caret line="35" column="85" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="85" />
         </state>
       </provider>
     </entry>
@@ -1103,27 +1068,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/MessageListWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/taskCenter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20559742">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/teamTasksQueue/TeamTasksQueueWidget.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5156082">
           <caret line="143" column="33" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1131,7 +1079,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44353184">
           <caret line="111" column="107" selection-start-line="111" selection-start-column="107" selection-end-line="111" selection-end-column="107" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1139,7 +1086,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="99" selection-start-line="18" selection-start-column="99" selection-end-line="18" selection-end-column="99" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1147,19 +1093,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="46" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="46" />
-          <folding>
-            <marker date="1456905229915" expanded="true" signature="21902:21936" placeholder="..." />
-            <marker date="1456905229915" expanded="true" signature="21993:22026" placeholder="..." />
-            <marker date="1456905229915" expanded="true" signature="22078:22130" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskDetails/widget/TaskDetailsDynamicPageWidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-59.166668">
+        <state vertical-scroll-proportion="0.0">
           <caret line="118" column="25" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1167,37 +1107,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="95" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="95" />
-          <folding>
-            <marker date="1461567412475" expanded="true" signature="9941:9958" placeholder="..." />
-            <marker date="1461567412475" expanded="true" signature="10991:11043" placeholder="..." />
-            <marker date="1461567412475" expanded="true" signature="14807:14824" placeholder="..." />
-            <marker date="1461567412475" expanded="true" signature="19329:19346" placeholder="..." />
-            <marker date="1461567412475" expanded="true" signature="32056:32073" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messagePreview/MessagePreviewWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.14579055">
-          <caret line="190" column="55" selection-start-line="190" selection-start-column="55" selection-end-line="190" selection-end-column="55" />
-          <folding>
-            <marker date="1456905212155" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905212155" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905212155" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905212155" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905212155" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905212155" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905212155" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/TaskMagazineViewItemWidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.7093649">
           <caret line="88" column="158" selection-start-line="88" selection-start-column="141" selection-end-line="88" selection-end-column="158" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,12 +1121,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.6960986">
           <caret line="100" column="51" selection-start-line="100" selection-start-column="51" selection-end-line="100" selection-end-column="51" />
-          <folding>
-            <marker date="1456905228423" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905228423" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905228423" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1456905228423" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1218,26 +1128,267 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="23" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/teamTasksQueue/SingleTeamTaskQueueWidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.08934338">
           <caret line="491" column="87" selection-start-line="491" selection-start-column="87" selection-end-line="491" selection-end-column="87" />
-          <folding>
-            <marker date="1462348378866" expanded="true" signature="10551:10586" placeholder="..." />
-            <marker date="1462348378866" expanded="true" signature="10898:10933" placeholder="..." />
-            <marker date="1462348378866" expanded="true" signature="16319:16338" placeholder="..." />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/taskCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45898005">
+          <caret line="26" column="91" selection-start-line="26" selection-start-column="91" selection-end-line="26" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/MessageMagazineViewItemWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="90" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messagePreview/MessagePreviewWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="187" column="20" selection-start-line="187" selection-start-column="20" selection-end-line="187" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/notificationHandler/NotificationHandlerWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22497308">
+          <caret line="102" column="98" selection-start-line="102" selection-start-column="63" selection-end-line="102" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/taskCenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61248654">
+          <caret line="58" column="39" selection-start-line="50" selection-start-column="3" selection-end-line="58" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/NotificationMagazineViewItemWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="29" selection-start-line="138" selection-start-column="27" selection-end-line="146" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/widget/messageList/MessageListWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="578" column="50" selection-start-line="578" selection-start-column="50" selection-end-line="578" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskToolbar/BasicTaskToolbarWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="338" column="77" selection-start-line="338" selection-start-column="77" selection-end-line="338" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/taskCenter/widget/myTasksList/MyTaskListWidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2906351">
-          <caret line="116" column="88" selection-start-line="116" selection-start-column="88" selection-end-line="116" selection-end-column="88" />
+        <state vertical-scroll-proportion="0.22497308">
+          <caret line="76" column="26" selection-start-line="71" selection-start-column="11" selection-end-line="76" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/template/UserListWidget.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/messageCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2616408">
+          <caret line="23" column="76" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/messageCenter/messageCenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5425189">
+          <caret line="310" column="45" selection-start-line="310" selection-start-column="45" selection-end-line="310" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/ParticipantProfileEditorWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="99" column="30" selection-start-line="94" selection-start-column="16" selection-end-line="99" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantsList/SingleRoleParticipantListWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="116" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/UserListWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="22" selection-start-line="74" selection-start-column="20" selection-end-line="78" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/userManagement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22172949">
+          <caret line="51" column="69" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#span#4;n#div#0;n#div#0;n#td#1;n#tr#0;n#table#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/knowledgeBase/knowledgeBase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/NewParticipantEditorWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="100" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/basicTaskDataEditor/SingleValuePropertyEditorWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/calendarCenter/calendarCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.042128604">
+          <caret line="41" column="18" selection-start-line="31" selection-start-column="12" selection-end-line="41" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#8;n#td#0;n#tr#0;n#table#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#8;n#td#0;n#tr#0;n#table#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#8;n#td#0;n#tr#0;n#table#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/template/ParticipantProfileEditorWidget.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019955654">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/template/ParticipantAllowedApplicationFeaturesEditor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09977827">
+          <caret line="5" column="19" selection-start-line="3" selection-start-column="7" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/template/AvailableApplicationFeatureOption.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.039911307">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/AvailableApplicationFeatureOption.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46501616">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/template/UserBasicInfoMagazineViewItemWidget.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.333334">
+          <caret line="35" column="120" selection-start-line="35" selection-start-column="100" selection-end-line="35" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/UI/components/participantProfile/ParticipantAllowedApplicationFeaturesEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="130" selection-start-line="2" selection-start-column="130" selection-end-line="2" selection-end-column="130" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.74074">
+          <caret line="275" column="8" selection-start-line="275" selection-start-column="8" selection-end-line="275" selection-end-column="8" />
+          <folding>
+            <marker date="1463128438830" expanded="true" signature="4079:4096" placeholder="..." />
+            <marker date="1463128438830" expanded="true" signature="4134:4149" placeholder="..." />
+            <marker date="1463128438830" expanded="true" signature="4238:4272" placeholder="..." />
+            <marker date="1463128438830" expanded="true" signature="4304:4323" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/config/appConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="56" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/userManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="158" column="60" selection-start-line="158" selection-start-column="60" selection-end-line="158" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/common/LOGIC/authorityHandler/GlobalAuthorityOperationHandlerWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VFBAM_ClientApplication/WebContent/vfbam/userclient/components/userManagement/widget/userList/UserBasicInfoMagazineViewItemWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55435956">
+          <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
           <folding />
         </state>
       </provider>
