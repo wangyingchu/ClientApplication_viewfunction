@@ -107,9 +107,6 @@ require([
                             that._renderDocumentsList(documentsArray);
                         }else{
                             that._renderDocumentsList([]);
-                            if(that.containerInitFinishCounterFuc){
-                                that.containerInitFinishCounterFuc();
-                            }
                         }
                     }
                 }else{

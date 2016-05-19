@@ -23,8 +23,8 @@ UI.showProgressDialog("查询数据");
 var taskCenterSubComponentInitCounter=0;
 var initTaskCenterFinishCounter=function(){
     taskCenterSubComponentInitCounter=taskCenterSubComponentInitCounter+1;
-    //when taskCenterSubComponentInitCounter is 5,all sub components finished init.
-    if(taskCenterSubComponentInitCounter==5){
+    //when taskCenterSubComponentInitCounter is 4,all sub components finished init.
+    if(taskCenterSubComponentInitCounter==4){
         UI.hideProgressDialog();
         autoRefreshTaskCenterData();
     }

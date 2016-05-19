@@ -147,6 +147,7 @@ function updateModificationButtons(eventPayload){
         if(currentSelectedUserProfile.roleType==APPLICATION_ROLE_NORMALUSER_ID){
             setNormalUserButton.set("disabled","disabled");
             setAdminUserButton.set("disabled",false);
+
         }else{
             setNormalUserButton.set("disabled",false);
             setAdminUserButton.set("disabled","disabled");
@@ -157,6 +158,8 @@ function updateModificationButtons(eventPayload){
             setNormalUserButton.set("disabled","disabled");
             setAdminUserButton.set("disabled","disabled");
             allowedFeatureButton.set("disabled","disabled");
+        }else{
+            allowedFeatureButton.set("disabled",false);
         }
     }else{
         currentSelectedUserProfile=null;

@@ -167,14 +167,7 @@ require([
                         }else{
                             that._renderDocumentsList([]);
                             that.currentFolderDocumentsList=[];
-                            if(that.containerInitFinishCounterFuc){
-                                that.containerInitFinishCounterFuc();
-                            }
                         }
-                    }
-                }else{
-                    if(that.containerInitFinishCounterFuc){
-                        that.containerInitFinishCounterFuc();
                     }
                 }
             };
@@ -229,9 +222,6 @@ require([
                 this.documentsListContainer.appendChild(currentDocumentInfoWidget.domNode);
             },this);
             this.resizeDocumentListSize();
-            if(this.containerInitFinishCounterFuc){
-                this.containerInitFinishCounterFuc();
-            }
         },
         renderRootFolder:function(){
             this.documentsFolderPathArray.splice(0,this.documentsFolderPathArray.length);
