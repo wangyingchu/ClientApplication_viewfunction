@@ -74,7 +74,7 @@ require([
             ];
             collectionQueryObj.defaultSort=true;
             var collectionQueryObjContent=dojo.toJson(collectionQueryObj);
-            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getCollectionsByKeyWords/";
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getCollectionsByKeyWords/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };

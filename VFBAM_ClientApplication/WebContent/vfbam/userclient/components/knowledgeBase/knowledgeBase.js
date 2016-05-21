@@ -52,6 +52,9 @@ var KNOWLEDGESEARCH_CURRENT_MULTIITEMS_SEARCH_RESULT=null;
 //knowledge modification logic
 var KNOWLEDGEMODIFICATION_PREVIEW_UPDATED_ITEM={};
 
+// permission management
+var KNOWLEDGEBASE_ORGANIZATION_ID="0";
+
 var resultDisplayZoneWidth = document.getElementById("app_knowledgeBase_resultDisplayZone").offsetWidth;
 var knowledgeDisplayPanelWidget=
     new vfbam.userclient.components.knowledgeBase.widget.knowledgeDisplay.KnowledgeDisplayPanelWidget({resultDisplayZoneWidth:resultDisplayZoneWidth},"app_knowledgeBase_resultDisplayZone");

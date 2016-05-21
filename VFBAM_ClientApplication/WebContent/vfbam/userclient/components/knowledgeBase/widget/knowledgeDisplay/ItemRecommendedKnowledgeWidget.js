@@ -25,9 +25,9 @@ require([
             timer.onTick = function(){
                 var resturl="";
                 if(contentTagsArray.length>0){
-                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarDocuments/"+that.knowledgeContentInfo.sequenceNumber+"/"+contentTagsQueryStr+"/";
+                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarDocuments/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+that.knowledgeContentInfo.sequenceNumber+"/"+contentTagsQueryStr+"/";
                 }else{
-                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarDocuments/"+that.knowledgeContentInfo.sequenceNumber+"/NA/";
+                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarDocuments/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+that.knowledgeContentInfo.sequenceNumber+"/NA/";
                 }
                 var syncFlag=true;
                 var errorCallback= function(data){

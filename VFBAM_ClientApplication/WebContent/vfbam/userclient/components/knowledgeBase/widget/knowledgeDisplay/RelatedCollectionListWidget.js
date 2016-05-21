@@ -31,9 +31,9 @@ require([
             });
             var resturl="";
             if(contentTagsArray.length>0){
-                resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarCollections/"+this.knowledgeCollectionInfo.projectId+"/"+contentTagsQueryStr+"/";
+                resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarCollections/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+this.knowledgeCollectionInfo.projectId+"/"+contentTagsQueryStr+"/";
             }else{
-                resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarCollections/"+this.knowledgeCollectionInfo.projectId+"/NA/";
+                resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getSimilarCollections/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+this.knowledgeCollectionInfo.projectId+"/NA/";
             }
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             resturl=resturl+"?userId="+userId+"&limitCount=50";

@@ -280,6 +280,7 @@ var KnowledgeBaseDataHandleUtil=(function(){
             Application.WebServiceUtil.postJSONData(resturl,changedObjContent,loadCallback,errorCallback);
         },
         addNewKnowledgeItemInSearchEngine:function(newDocument){
+            newDocument["orgId"]=KNOWLEDGEBASE_ORGANIZATION_ID;
             var changedObjContent=dojo.toJson(newDocument);
             var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"createDocument/";
             var errorCallback= function(data){

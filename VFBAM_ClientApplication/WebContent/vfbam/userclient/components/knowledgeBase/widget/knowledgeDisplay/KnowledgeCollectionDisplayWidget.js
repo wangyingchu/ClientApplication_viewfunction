@@ -70,7 +70,7 @@ require([
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             var collectionDocumentObj={};
             var collectionDocumentObjContent=dojo.toJson(collectionDocumentObj);
-            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"collectCollection/"+userId+"/"+this.collectionItemInfo.projectId;
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"collectCollection/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+this.collectionItemInfo.projectId;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };

@@ -170,7 +170,7 @@ require([
                             UI.showProgressDialog("查询数据");
                             var timer = new dojox.timing.Timer(300);
                             timer.onTick = function(){
-                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getRecommendedDocumentsByUserId/"+userId+"?defaultSort=true"+pagingQueryStr;
+                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getRecommendedDocumentsByUserId/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"?defaultSort=true"+pagingQueryStr;
                                 var syncFlag=true;
                                 var errorCallback= function(data){
                                     UI.showSystemErrorMessage(data);
@@ -197,13 +197,13 @@ require([
                             timer.onTick = function(){
                                 var resturl="";
                                 if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_POP){
-                                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords?defaultSort=true"+pagingQueryStr;
+                                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords/"+KNOWLEDGEBASE_ORGANIZATION_ID+"?defaultSort=true"+pagingQueryStr;
                                 }
                                 if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_LATEST){
-                                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords?defaultSort=false&orderBy=contentCreatedTime&sort=DESC"+pagingQueryStr;
+                                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords/"+KNOWLEDGEBASE_ORGANIZATION_ID+"?defaultSort=false&orderBy=contentCreatedTime&sort=DESC"+pagingQueryStr;
                                 }
                                 if(contentData.KNOWLEDGE_VIEW_CLASSIFY==KNOWLEDGE_VIEW_CLASSIFY_ALL){
-                                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords?defaultSort=false&orderBy=contentName&sort=DESC"+pagingQueryStr;
+                                    resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords/"+KNOWLEDGEBASE_ORGANIZATION_ID+"?defaultSort=false&orderBy=contentName&sort=DESC"+pagingQueryStr;
                                 }
                                 var syncFlag=true;
                                 var errorCallback= function(data){
@@ -228,7 +228,7 @@ require([
                             UI.showProgressDialog("查询数据");
                             var timer = new dojox.timing.Timer(300);
                             timer.onTick = function(){
-                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getMyFavoriteDocuments/"+userId+"?type=Query"+pagingQueryStr;
+                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getMyFavoriteDocuments/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"?type=Query"+pagingQueryStr;
                                 var syncFlag=true;
                                 var errorCallback= function(data){
                                     UI.showSystemErrorMessage(data);
@@ -255,7 +255,7 @@ require([
                                     UI.showProgressDialog("查询数据");
                                     var timer = new dojox.timing.Timer(300);
                                     timer.onTick = function(){
-                                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords?propName=contentDescription&propValue="+searchValue+pagingQueryStr;
+                                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords/"+KNOWLEDGEBASE_ORGANIZATION_ID+"?propName=contentDescription&propValue="+searchValue+pagingQueryStr;
                                         var syncFlag=true;
                                         var errorCallback= function(data){
                                             UI.showSystemErrorMessage(data);
@@ -287,7 +287,7 @@ require([
                                     UI.showProgressDialog("查询数据");
                                     var timer = new dojox.timing.Timer(300);
                                     timer.onTick = function(){
-                                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords?propName=contentName&propValue="+searchValue+pagingQueryStr;
+                                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByKeyWords/"+KNOWLEDGEBASE_ORGANIZATION_ID+"?propName=contentName&propValue="+searchValue+pagingQueryStr;
                                         var syncFlag=true;
                                         var errorCallback= function(data){
                                             UI.showSystemErrorMessage(data);
@@ -364,7 +364,7 @@ require([
                                 collectionQueryObj.projectCurrentPageNumber=currentPageNumber;
                                 collectionQueryObj.docsNumberPerProject=20;
                                 var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
-                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getRecommendedCollectionsByUserId/"+userId+"/";
+                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getRecommendedCollectionsByUserId/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
                                 resturl=resturl+"?projectPageSize="+collectionQueryObj.projectPageSize+"&docsNumberPerProject="+collectionQueryObj.docsNumberPerProject+
                                     "&projectCurrentPageNumber="+collectionQueryObj.projectCurrentPageNumber;
                                 var syncFlag=true;
@@ -417,7 +417,7 @@ require([
                                     collectionQueryObj.defaultSort=true;
                                 }
                                 var collectionQueryObjContent=dojo.toJson(collectionQueryObj);
-                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getCollections/";
+                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getCollections/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
                                 var errorCallback= function(data){
                                     UI.showSystemErrorMessage(data);
                                 };
@@ -447,7 +447,7 @@ require([
                                 collectionQueryObj.projectCurrentPageNumber=currentPageNumber;
                                 collectionQueryObj.docsNumberPerProject=20;
                                 var collectionQueryObjContent=dojo.toJson(collectionQueryObj);
-                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getMyFavoriteCollections/"+userId;
+                                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getMyFavoriteCollections/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
                                 var errorCallback= function(data){
                                     UI.showSystemErrorMessage(data);
                                 };
@@ -490,7 +490,7 @@ require([
                                 var timer = new dojox.timing.Timer(300);
                                 timer.onTick = function(){
                                     var collectionQueryObjContent=dojo.toJson(collectionQueryObj);
-                                    var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getCollectionsByKeyWords/";
+                                    var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getCollectionsByKeyWords/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
                                     var errorCallback= function(data){
                                         UI.showSystemErrorMessage(data);
                                     };
@@ -582,7 +582,7 @@ require([
                         });
                         multiTagSearchObj.tagIdsWithDepthMap=tagIdsWithDepthMap;
                         var multiTagSearchObjContent=dojo.toJson(multiTagSearchObj);
-                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/";
+                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
                         var errorCallback= function(data){
                             UI.showSystemErrorMessage(data);
                         };
@@ -627,7 +627,7 @@ require([
                         });
                         multiTagSearchObj.tagIdsWithDepthMap=tagIdsWithDepthMap;
                         var multiTagSearchObjContent=dojo.toJson(multiTagSearchObj);
-                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/";
+                        var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
                         var errorCallback= function(data){
                             UI.showSystemErrorMessage(data);
                         };

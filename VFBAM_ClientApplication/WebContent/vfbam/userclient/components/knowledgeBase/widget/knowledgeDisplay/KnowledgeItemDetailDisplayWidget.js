@@ -101,7 +101,7 @@ require([
             var documentDesc=knowledgeContentInfo.contentDescription;
             var collectionDocumentObj={};
             var collectionDocumentObjContent=dojo.toJson(collectionDocumentObj);
-            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"collectDocument/"+userId+"/"+documentId;
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"collectDocument/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+documentId;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };
@@ -118,7 +118,7 @@ require([
             var documentId=knowledgeContentInfo.sequenceNumber;
             var collectionDocumentObj={};
             var collectionDocumentObjContent=dojo.toJson(collectionDocumentObj);
-            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"viewDocument/"+userId+"/"+documentId;
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"viewDocument/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+documentId;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };

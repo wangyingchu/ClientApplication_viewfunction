@@ -29,7 +29,7 @@ require([
         },
         loadCollectionListInfo:function(){
             var that=this;
-            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getProjectList/?pageSize=20&currentPageNumber="+this.currentPageNumber;
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getProjectList/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/?pageSize=20&currentPageNumber="+this.currentPageNumber;
             if(this.collectionNameFilter!=""){
                 resturl=resturl+"&projectName="+this.collectionNameFilter;
             }

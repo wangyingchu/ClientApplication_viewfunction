@@ -133,6 +133,7 @@ require([
             newProjectInfoObject["projectLastModifiedTime"]=currentTimeStamp;
             newProjectInfoObject["projectComment"]="";
             newProjectInfoObject["projectTags"]=[];
+            newProjectInfoObject["orgId"]=KNOWLEDGEBASE_ORGANIZATION_ID;
             var newProjectObjContent=dojo.toJson(newProjectInfoObject);
             var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"createProject/";
             var errorCallback= function(data){

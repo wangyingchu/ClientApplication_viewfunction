@@ -65,7 +65,7 @@ require([
             var projectId=projectContentInfo.projectId;
             var collectionDocumentObj={};
             var collectionDocumentObjContent=dojo.toJson(collectionDocumentObj);
-            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"viewCollection/"+userId+"/"+projectId;
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"viewCollection/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+projectId;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };
@@ -138,7 +138,7 @@ require([
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             var collectionDocumentObj={};
             var collectionDocumentObjContent=dojo.toJson(collectionDocumentObj);
-            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"collectCollection/"+userId+"/"+collectionDataObject.projectId;
+            var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"collectCollection/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/"+collectionDataObject.projectId;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
             };
