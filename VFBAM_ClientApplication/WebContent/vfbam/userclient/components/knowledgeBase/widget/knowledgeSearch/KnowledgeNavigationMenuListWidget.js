@@ -78,7 +78,7 @@ require([
             Application.MessageUtil.publishMessage(APP_KNOWLEDGEBASE_CLOSE_GLOBALKNOWLEDGE_NAVIGATION_PANEL_EVENT,{});
         },
         _loadSavedGlobalSearchItems:function(){
-            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getGlobalSavedCategoryTagsSelections/";
+            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getGlobalSavedCategoryTagsSelections/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
             var syncFlag=true;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);

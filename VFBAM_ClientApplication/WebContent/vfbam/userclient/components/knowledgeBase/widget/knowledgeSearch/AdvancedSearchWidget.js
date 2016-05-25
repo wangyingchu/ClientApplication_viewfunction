@@ -216,7 +216,7 @@ require([
         renderSavedCategorySearchItems:function(){
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             var that=this;
-            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getUserSavedCategoryTagsSelections/"+userId;
+            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getUserSavedCategoryTagsSelections/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
             var syncFlag=true;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
@@ -255,6 +255,7 @@ require([
             userCategorySelectionObj.searchTitle=searchItemMetaData.searchName;
             userCategorySelectionObj.searchDescription=searchItemMetaData.searchDesc;
             userCategorySelectionObj.selectedTags=selectedTags;
+            userCategorySelectionObj.organizationId=KNOWLEDGEBASE_ORGANIZATION_ID;
             var savedCategorySearchItemMeteData={};
             savedCategorySearchItemMeteData.searchName=searchItemMetaData.searchName;
             savedCategorySearchItemMeteData.searchDesc=searchItemMetaData.searchDesc;
@@ -299,6 +300,7 @@ require([
             var userCategorySelectionObj={};
             userCategorySelectionObj.userId=userId;
             userCategorySelectionObj.searchTitle=searchItemName;
+            userCategorySelectionObj.organizationId=KNOWLEDGEBASE_ORGANIZATION_ID;
             var that=this;
             var userCategorySelectionObjContent=dojo.toJson(userCategorySelectionObj);
             var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"deleteUserSavedCategoryTagsSelection/";

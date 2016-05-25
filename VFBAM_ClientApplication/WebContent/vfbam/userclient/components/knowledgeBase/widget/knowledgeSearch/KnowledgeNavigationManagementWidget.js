@@ -26,7 +26,7 @@ require([
                  navigationItem.destroy();
             });
             this.knowledgeNavigationItemsList.splice(0, this.knowledgeNavigationItemsList.length);
-            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getGlobalSavedCategoryTagsSelections/";
+            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getGlobalSavedCategoryTagsSelections/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
             var syncFlag=true;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
@@ -78,8 +78,8 @@ require([
                 var categorySelectionObj={};
                 categorySelectionObj.userId=userId;
                 categorySelectionObj.searchTitle=itemData.searchTitle;
+                categorySelectionObj.organizationId=KNOWLEDGEBASE_ORGANIZATION_ID;
                 var categorySelectionObjContent=dojo.toJson(categorySelectionObj);
-
                 var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"deleteGlobalSavedCategoryTagsSelection/";
                 var errorCallback= function(data){
                     UI.showSystemErrorMessage(data);

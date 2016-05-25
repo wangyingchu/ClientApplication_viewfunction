@@ -42,6 +42,7 @@ require([
                 userCategorySelectionObj.searchTitle=that.globalSearchNameField.get("value");
                 userCategorySelectionObj.searchDescription=that.globalSearchDescField.get("value");
                 userCategorySelectionObj.selectedTags=selectedTagArray;
+                userCategorySelectionObj.organizationId=KNOWLEDGEBASE_ORGANIZATION_ID;
                 var userCategorySelectionObjContent=dojo.toJson(userCategorySelectionObj);
                 var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"saveGlobalSavedCategoryTagsSelection/";
                 var errorCallback= function(data){
@@ -94,6 +95,7 @@ require([
                 userCategorySelectionObj.searchTitle=that.globalSearchNameField.get("value");
                 userCategorySelectionObj.searchDescription=that.globalSearchDescField.get("value");
                 userCategorySelectionObj.selectedTags=selectedTagArray;
+                userCategorySelectionObj.organizationId=KNOWLEDGEBASE_ORGANIZATION_ID;
                 var userCategorySelectionObjContent=dojo.toJson(userCategorySelectionObj);
                 var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"updateGlobalSavedCategoryTagsSelection/";
                 var errorCallback= function(data){

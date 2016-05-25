@@ -10,7 +10,7 @@ require([
             this.savedSearchLinkMap={};
             var userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
             var that=this;
-            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getUserSavedCategoryTagsSelections/"+userId;
+            var resturl=KNOWLEDGE_CATEGORY_SERVICE_ROOT+"getUserSavedCategoryTagsSelections/"+userId+"/"+KNOWLEDGEBASE_ORGANIZATION_ID+"/";
             var syncFlag=true;
             var errorCallback= function(data){
                 UI.showSystemErrorMessage(data);
