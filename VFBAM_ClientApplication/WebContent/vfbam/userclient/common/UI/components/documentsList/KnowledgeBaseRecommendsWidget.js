@@ -112,7 +112,7 @@ require([
                 });
                 multiTagSearchObj.tagIdsWithDepthMap=tagIdsWithDepthMap;
                 var multiTagSearchObjContent=dojo.toJson(multiTagSearchObj);
-                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/";
+                var resturl=KNOWLEDGE_CONTENTSEARCH_ROOT+"getDocumentsByTagIds/"+APPLICATION_ID+"/";
                 var errorCallback= function(data){
                     UI.showSystemErrorMessage(data);
                 };

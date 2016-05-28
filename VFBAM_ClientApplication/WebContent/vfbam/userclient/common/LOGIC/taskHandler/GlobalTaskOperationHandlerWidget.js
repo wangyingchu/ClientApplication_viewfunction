@@ -427,7 +427,11 @@ require([
                                 currentTaskDataObj.singleDataFieldValue="";
                             }
                         }else{
-                            currentTaskDataObj.singleDataFieldValue=""+currentTaskData.value;
+                            if(currentTaskData.value){
+                                currentTaskDataObj.singleDataFieldValue=""+currentTaskData.value;
+                            }else{
+                                currentTaskDataObj.singleDataFieldValue="";
+                            }
                         }
                     }
                     var dataFieldDefination={};
