@@ -367,6 +367,7 @@ var modules = [	"dojo.parser",
     "vfbam.userclient.components.documentCenter.widget.documentManager.DocumentTagInfoWidget",
 
     "vfbam.userclient.components.externalResource.widget.ExternalResourceDynamicPageWidget",
+    "vfbam.userclient.components.staticWebsite.widget.StaticWebsiteDynamicPageWidget",
 
     "vfbam.userclient.components.userManagement.widget.userPreview.UserPreviewWidget",
     "vfbam.userclient.components.userManagement.widget.userList.UserListWidget",
