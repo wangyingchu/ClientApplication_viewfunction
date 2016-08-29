@@ -18,10 +18,14 @@ require([
                 dojo.forEach(userBaseAdditionalWorkspaceTypes,function(currentWorkspaceType){
                     var currentWorkspaceConfig=APPLICATION_COMMON_FEATURE_CONFIG_MATRIX[currentWorkspaceType];
                     if(currentWorkspaceConfig){
+                        var currentWorkspacePagePayload={};
+                        if(currentWorkspaceConfig["pagePayloadCallback"]){
+                            currentWorkspacePagePayload=currentWorkspaceConfig["pagePayloadCallback"]();
+                        }
                         UI.openDynamicPage(currentWorkspaceConfig.workspaceType,
                             currentWorkspaceConfig.workspaceTitle,
                             currentWorkspaceConfig.pageUniqueId,
-                            currentWorkspaceConfig.dynamicPageTitle,{},true);
+                            currentWorkspaceConfig.dynamicPageTitle,currentWorkspacePagePayload,true);
                     }
                 });
             }

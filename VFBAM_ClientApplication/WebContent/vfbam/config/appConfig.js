@@ -1,30 +1,6 @@
 //business configuration data
 var APPLICATION_ID="arcDesign_inc";
 
-var APPLICATION_ROLEBASE_ACCESS_MATRIX={};
-APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[
-    {
-        workspaceType:"USER_MANAGEMENT",
-        workspaceTitle:"用户管理",
-        dynamicPageTitle:"<i class='icon-user'></i> 用户管理",
-        pageUniqueId:"ACTIVITIES_STATISTIC_UID"
-    }
-];
-
-var APPLICATION_COMMON_FEATURE_CONFIG_MATRIX={};
-APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["ACTIVITIES_STATISTIC"]={
-    workspaceType:"ACTIVITIES_STATISTIC",
-    workspaceTitle:"工作进度统计",
-    dynamicPageTitle:"<i class='icon-bar-chart'></i> 工作进度统计",
-    pageUniqueId:"ACTIVITIES_STATISTIC_UID"
-};
-APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["KNOWLEDGE_BASE"]={
-    workspaceType:"KNOWLEDGE_BASE",
-    workspaceTitle:"知识中心",
-    dynamicPageTitle:"<i class='icon-book'></i> 知识中心",
-    pageUniqueId:"KNOWLEDGE_BASE_UID"
-};
-
 var APPLICATION_ROLE_DISPLAYNAME_MAP={};
 APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_SUPERVISER"]="系统管理员";
 APPLICATION_ROLE_DISPLAYNAME_MAP["APPLICATION_NORMALUSER"]="普通用户";
@@ -101,6 +77,48 @@ var APP_GLOBAL_TASKCENTER_COMPLETETASK_EVENT="APP_GLOBAL_TASKCENTER_COMPLETETASK
 var APP_GLOBAL_TASKCENTER_SETTASKDUEDATE_EVENT="APP_GLOBAL_TASKCENTER_SETTASKDUEDATE_EVENT";
 var APP_GLOBAL_TASKCENTER_REMOVETASKDUEDATE_EVENT="APP_GLOBAL_TASKCENTER_REMOVETASKDUEDATE_EVENT";
 
+//User Interface access control configuration
+var APPLICATION_ROLEBASE_ACCESS_MATRIX={};
+APPLICATION_ROLEBASE_ACCESS_MATRIX["APPLICATION_SUPERVISER"]=[
+    {
+        workspaceType:"USER_MANAGEMENT",
+        workspaceTitle:"用户管理",
+        dynamicPageTitle:"<i class='icon-user'></i> 用户管理",
+        pageUniqueId:"ACTIVITIES_STATISTIC_UID"
+    }
+];
+
+var APPLICATION_COMMON_FEATURE_CONFIG_MATRIX={};
+APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["ACTIVITIES_STATISTIC"]={
+    workspaceType:"ACTIVITIES_STATISTIC",
+    workspaceTitle:"工作进度统计",
+    dynamicPageTitle:"<i class='icon-bar-chart'></i> 工作进度统计",
+    pageUniqueId:"ACTIVITIES_STATISTIC_UID"
+};
+APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["KNOWLEDGE_BASE"]={
+    workspaceType:"KNOWLEDGE_BASE",
+    workspaceTitle:"知识中心",
+    dynamicPageTitle:"<i class='icon-book'></i> 知识中心",
+    pageUniqueId:"KNOWLEDGE_BASE_UID"
+};
+
+var loadPagePayloadCallback=function(){
+    var pagePayLoad={};
+    pagePayLoad.WEBSITEADDRESS="http://www.viewfunction.com";
+    pagePayLoad.ADDRESS_QUERY_PARAMS={};
+    pagePayLoad.ADDRESS_QUERY_PARAMS.userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
+    pagePayLoad.ADDRESS_QUERY_PARAMS.anotherParam="anotherParamValue";
+    return pagePayLoad;
+};
+APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["EXTERNAL_DYNAMIC_WEBSITE"]={
+    workspaceType:"EXTERNAL_DYNAMIC_WEBSITE",
+    workspaceTitle:"外部动态资源",
+    dynamicPageTitle:"<i class='icon-link'></i> 外部动态资源",
+    pageUniqueId:"EXTERNAL_DYNAMIC_WEBSITE_UID",
+    pagePayloadCallback:loadPagePayloadCallback
+};
+
+//Application resource definition
 var idx_aliases = [
     ["idx/oneui/form/CheckBox", "idx/form/CheckBox"],
     ["idx/oneui/form/CheckBoxList", "idx/form/CheckBoxList"],
@@ -368,6 +386,7 @@ var modules = [	"dojo.parser",
 
     "vfbam.userclient.components.externalResource.widget.ExternalResourceDynamicPageWidget",
     "vfbam.userclient.components.staticWebsite.widget.StaticWebsiteDynamicPageWidget",
+    "vfbam.userclient.components.dynamicWebsite.widget.DynamicWebsiteDynamicPageWidget",
 
     "vfbam.userclient.components.userManagement.widget.userPreview.UserPreviewWidget",
     "vfbam.userclient.components.userManagement.widget.userList.UserListWidget",
