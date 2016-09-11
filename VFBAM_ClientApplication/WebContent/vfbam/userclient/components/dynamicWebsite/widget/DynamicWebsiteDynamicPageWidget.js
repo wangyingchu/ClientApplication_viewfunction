@@ -31,7 +31,9 @@ require([
                 dynamicWebsiteAddress=dynamicWebsiteAddress+"?"+queryParamsContent;
                 dynamicWebsiteAddress=dynamicWebsiteAddress.substr(0, dynamicWebsiteAddress.length-1);
             }
-            this.websiteAddress.innerHTML= dynamicWebsiteAddress;
+            if(this.dynamicPagePayload.SHOW_WEBSITEADDRESS){
+                this.websiteAddress.innerHTML= dynamicWebsiteAddress;
+            }
             this.dynamicWebsiteContainer.set("content", dojo.create("iframe", {
                 "src": dynamicWebsiteAddress,
                 "style": "border: 0; width: 100%; height:"+currentHeightStyle

@@ -106,6 +106,7 @@ var loadPagePayloadCallback=function(){
     var pagePayLoad={};
     pagePayLoad.WEBSITEADDRESS="http://www.viewfunction.com";
     pagePayLoad.ADDRESS_QUERY_PARAMS={};
+    pagePayLoad.SHOW_WEBSITEADDRESS=true;
     pagePayLoad.ADDRESS_QUERY_PARAMS.userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;
     pagePayLoad.ADDRESS_QUERY_PARAMS.anotherParam="anotherParamValue";
     return pagePayLoad;
