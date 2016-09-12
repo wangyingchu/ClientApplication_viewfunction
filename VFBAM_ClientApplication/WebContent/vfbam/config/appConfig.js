@@ -105,6 +105,7 @@ APPLICATION_COMMON_FEATURE_CONFIG_MATRIX["KNOWLEDGE_BASE"]={
 var loadPagePayloadCallback=function(){
     var pagePayLoad={};
     pagePayLoad.WEBSITEADDRESS="http://www.viewfunction.com";
+    pagePayLoad.WEBSITEDESCRIPTION="VFBAM website:";
     pagePayLoad.ADDRESS_QUERY_PARAMS={};
     pagePayLoad.SHOW_WEBSITEADDRESS=true;
     pagePayLoad.ADDRESS_QUERY_PARAMS.userId=Application.AttributeContext.getAttribute(USER_PROFILE).userId;

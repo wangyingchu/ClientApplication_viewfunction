@@ -31,6 +31,9 @@ require([
                 dynamicWebsiteAddress=dynamicWebsiteAddress+"?"+queryParamsContent;
                 dynamicWebsiteAddress=dynamicWebsiteAddress.substr(0, dynamicWebsiteAddress.length-1);
             }
+            if(this.dynamicPagePayload.WEBSITEDESCRIPTION){
+                this.websiteDescription.innerHTML= this.dynamicPagePayload.WEBSITEDESCRIPTION;
+            }
             if(this.dynamicPagePayload.SHOW_WEBSITEADDRESS){
                 this.websiteAddress.innerHTML= dynamicWebsiteAddress;
             }
