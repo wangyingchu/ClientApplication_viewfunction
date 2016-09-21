@@ -44,11 +44,51 @@ require([
 
             UI.showProgressDialog("查询数据");
             var that=this;
-            var timer = new dojox.timing.Timer(600);
+            var timer = new dojox.timing.Timer(300);
             timer.onTick = function(){
-                that._renderTaskDetail(that.dynamicPageData.taskItemData);
-                that._switchTaskSupportDataWidget("showAttachment");
-                UI.hideProgressDialog();
+                //After modify the business activity definition, the data for each version maybe changed.
+                //But in current code logic service side only return the first version's data,
+                //So need refresh each activity step's data before open detail page.
+                var taskName=that.dynamicPageData.taskItemData.taskName;
+                //child task uses parent task's data
+                if(that.dynamicPageData.taskItemData.hasParentActivityStep){
+                    var taskName=that.dynamicPageData.taskItemData.parentActivityStepName;
+                }
+                var resturl=ACTIVITY_SERVICE_ROOT+"activityStepDetail/"+APPLICATION_ID+"/"+that.dynamicPageData.taskItemData.activityId+"/"+taskName;
+                var syncFlag=true;
+                var errorCallback= function(data){
+                    UI.showSystemErrorMessage(data);
+                };
+                var loadCallback=function(returnData){
+                    if(returnData){
+                        var taskDataDetailInfo=returnData.activityDataFieldValueList.activityDataFieldValueList;
+                        var taskDataFields=[];
+                        if(taskDataDetailInfo){
+                            dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
+                                var fieldDefinition=taskDataDetail.activityDataDefinition;
+                                var propertyValue={};
+                                propertyValue["name"]=fieldDefinition.displayName;
+                                propertyValue["fieldName"]=fieldDefinition.fieldName;
+                                propertyValue["type"]=fieldDefinition.fieldType;
+                                propertyValue["multipleValue"]=fieldDefinition.arrayField;
+                                propertyValue["required"]=fieldDefinition.mandatoryField;
+                                if(fieldDefinition.arrayField){
+                                    propertyValue["value"]=taskDataDetail.arrayDataFieldValue;
+                                }else{
+                                    propertyValue["value"]=taskDataDetail.singleDataFieldValue;
+                                }
+                                propertyValue["writable"]=fieldDefinition.writeableField;
+                                propertyValue["readable"]=fieldDefinition.readableField;
+                                taskDataFields.push(propertyValue);
+                            });
+                            that.dynamicPageData.taskItemData.taskDataFields=taskDataFields;
+                        }
+                    }
+                    that._renderTaskDetail(that.dynamicPageData.taskItemData);
+                    that._switchTaskSupportDataWidget("showAttachment");
+                    UI.hideProgressDialog();
+                };
+                Application.WebServiceUtil.getJSONData(resturl,syncFlag,null,loadCallback,errorCallback);
                 timer.stop();
             };
             timer.start();
