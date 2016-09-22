@@ -82,6 +82,16 @@ require([
                                 taskDataFields.push(propertyValue);
                             });
                             that.dynamicPageData.taskItemData.taskDataFields=taskDataFields;
+
+                            if(returnData.relatedRole){
+                                that.dynamicPageData.taskItemData.taskRoleID=returnData.relatedRole.roleName;
+                                that.dynamicPageData.taskItemData["taskRole"] = returnData.relatedRole.displayName;
+                            }
+                            that.dynamicPageData.taskItemData["dueDate"] = new Date(returnData.dueDate);
+                            that.dynamicPageData.taskItemData["stepAssignee"] = returnData.stepAssignee;
+                            that.dynamicPageData.taskItemData["stepOwner"] = returnData.stepOwner;
+                            that.dynamicPageData.taskItemData["taskDueStatus"] = returnData["dueStatus"];
+                            that.dynamicPageData.taskItemData["taskResponse"]=returnData["stepResponse"];
                         }
                     }
                     that._renderTaskDetail(that.dynamicPageData.taskItemData);
