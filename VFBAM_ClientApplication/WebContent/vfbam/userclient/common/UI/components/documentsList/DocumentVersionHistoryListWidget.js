@@ -79,7 +79,9 @@ require([
                     domClass.add(currentDocumentVersionItem.domNode, "app_magazineView_item_even");
                 }
                 isOdd=!isOdd;
-                that.documentVersionItemListContainer.appendChild(currentDocumentVersionItem.domNode);
+                if(that.documentVersionItemListContainer){
+                    that.documentVersionItemListContainer.appendChild(currentDocumentVersionItem.domNode);
+                }
             })
         },
         destroy:function(){
