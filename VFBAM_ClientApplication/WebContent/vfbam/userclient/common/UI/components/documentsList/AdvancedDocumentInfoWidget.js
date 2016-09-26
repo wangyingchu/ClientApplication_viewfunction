@@ -283,17 +283,18 @@ require([
                     dojo.style(this.disabledDeleteDocumentButton,{"display": ""});
                 }
             }else{
-                if(currentParentFolderPermissionsObj.deleteContentPermission){
-                    //can delete current document
-                    dojo.style(this.deleteDocumentButton,{"display": ""});
-                    dojo.style(this.disabledDeleteDocumentButton,{"display": "none"});
-                }else{
-                    //can't delete current document
-                    dojo.style(this.deleteDocumentButton,{"display": "none"});
-                    dojo.style(this.disabledDeleteDocumentButton,{"display": ""});
+                if(!this.documentInfo.isLocked){
+                    if(currentParentFolderPermissionsObj.deleteContentPermission){
+                        //can delete current document
+                        dojo.style(this.deleteDocumentButton,{"display": ""});
+                        dojo.style(this.disabledDeleteDocumentButton,{"display": "none"});
+                    }else{
+                        //can't delete current document
+                        dojo.style(this.deleteDocumentButton,{"display": "none"});
+                        dojo.style(this.disabledDeleteDocumentButton,{"display": ""});
+                    }
                 }
             }
-
             if(this.documentInfo.isFolder){
                 if(currentDocumentPermissionsObj.displayContentPermission){
                     dojo.style(this.documentName,{"display": ""});
