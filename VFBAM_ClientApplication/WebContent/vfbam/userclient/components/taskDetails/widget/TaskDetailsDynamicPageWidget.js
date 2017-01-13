@@ -61,7 +61,10 @@ require([
                 };
                 var loadCallback=function(returnData){
                     if(returnData){
-                        var taskDataDetailInfo=returnData.activityDataFieldValueList.activityDataFieldValueList;
+                        var taskDataDetailInfo=null;
+                        if(returnData.activityDataFieldValueList){
+                            taskDataDetailInfo=returnData.activityDataFieldValueList.activityDataFieldValueList;
+                        }
                         var taskDataFields=[];
                         if(taskDataDetailInfo){
                             dojo.forEach(taskDataDetailInfo,function(taskDataDetail){
