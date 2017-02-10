@@ -120,6 +120,9 @@ require([
                             taskDetailItemData["hasChildActivityStep"] = participantDetailTask.activityStep.hasChildActivityStep;
                             taskDetailItemData["hasParentActivityStep"] = participantDetailTask.activityStep.hasParentActivityStep;
                             taskDetailItemData["parentActivityStepName"] = participantDetailTask.activityStep.parentActivityStepName;
+                            if(participantDetailTask.activityStep.stepProcessEditor){
+                                taskDetailItemData["stepProcessEditor"] = participantDetailTask.activityStep.stepProcessEditor;
+                            }
                             that.notificationItemData.notificationMetaData.activityTaskNotificationVO=taskDetailItemData;
                             Application.MessageUtil.publishMessage(APP_MESSAGECENTER_HANDLENOTIFICATION_EVENT,that.notificationItemData);
 

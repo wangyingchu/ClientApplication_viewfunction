@@ -125,6 +125,9 @@ require([
                         taskDetailItemData["hasChildActivityStep"] = participantDetailTask.activityStep.hasChildActivityStep;
                         taskDetailItemData["hasParentActivityStep"] = participantDetailTask.activityStep.hasParentActivityStep;
                         taskDetailItemData["parentActivityStepName"] = participantDetailTask.activityStep.parentActivityStepName;
+                        if(participantDetailTask.activityStep.stepProcessEditor){
+                            taskDetailItemData["stepProcessEditor"] = participantDetailTask.activityStep.stepProcessEditor;
+                        }
                         var currentTaskItem=new vfbam.userclient.components.taskCenter.widget.myTasksList.MyTaskMagazineViewItemWidget(
                             {taskStatus:true,taskItemData:taskDetailItemData});
                         if(isOdd){

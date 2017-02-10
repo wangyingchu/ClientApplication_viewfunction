@@ -582,20 +582,26 @@ require([
             });
         },
         getTaskDataEditor:function(taskItemData){
-            if(taskItemData.taskDataEditorType){
-
-            }else{
+            if(taskItemData.stepProcessEditor&&taskItemData.stepProcessEditor!="") {
+                console.log("=======================================");
+                console.log("Find step process Editor: " + taskItemData.stepProcessEditor);
+                console.log("=======================================");
+            }
+            //else{
                 var currentTaskDateEditor=new vfbam.userclient.common.UI.components.basicTaskDataEditor.BasicTaskDataEditorWidget();
                 return currentTaskDateEditor;
-            }
+            //}
         },
         getTaskToolbar:function(taskItemData){
-            if(taskItemData.taskToolbarType){
-
-            }else{
+            if(taskItemData.stepProcessEditor&&taskItemData.stepProcessEditor!=""){
+                console.log("=======================================");
+                console.log("Find step process Editor: "+taskItemData.stepProcessEditor);
+                console.log("=======================================");
+            }
+            //else{
                 var currentTaskToolbar=new vfbam.userclient.common.UI.components.basicTaskToolbar.BasicTaskToolbarWidget();
                 return currentTaskToolbar;
-            }
+            //}
         },
         _endOfCode: function(){}
     });

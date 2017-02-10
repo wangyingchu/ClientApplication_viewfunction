@@ -106,6 +106,9 @@ require([
                     taskData["stepOwner"] = singleTaskData.stepOwner;
                     taskData["taskDueStatus"] = singleTaskData["dueStatus"];
                     taskData["taskResponse"]=singleTaskData["stepResponse"];
+                    if(singleTaskData.stepProcessEditor){
+                        taskData["stepProcessEditor"] = singleTaskData.stepProcessEditor;
+                    }
                     var currentTaskDataFieldsArray=singleTaskData.activityDataFieldValueList.activityDataFieldValueList;
                     dojo.forEach(teamTaskQueueDataFieldsDefine,function(dataFieldDefination){
                         var currentDataFieldDefinationName=dataFieldDefination.fieldName;
@@ -341,6 +344,7 @@ require([
             taskItemData["taskRoleID"]= taskData.taskRoleID ;
             taskItemData["roleQueueName"]=this.taskQueueData.queueName;
             taskItemData["taskResponse"]=taskData.taskResponse;
+            taskItemData["stepProcessEditor"]=taskData.stepProcessEditor;
             Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_HANDLETASK_EVENT,{taskData:taskItemData,switchPagePayload:this.switchPagePayload});
         },
         doOpenTaskFromGrid:function(data){
@@ -353,7 +357,6 @@ require([
             taskItemData["taskId"]= taskData.taskId ;
             taskItemData["taskDataFields"] = taskData.taskDataFields;
             taskItemData["taskRole"] = taskData.taskRole;
-            taskItemData["taskRole"] = taskData.taskRole;
             taskItemData["dueDate"] = taskData.dueDate;
             taskItemData["stepAssignee"] = taskData.stepAssignee;
             taskItemData["stepOwner"] = taskData.stepOwner;
@@ -361,6 +364,7 @@ require([
             taskItemData["taskRoleID"]= taskData.taskRoleID ;
             taskItemData["roleQueueName"]=this.taskQueueData.queueName;
             taskItemData["taskResponse"]=taskData.taskResponse;
+            taskItemData["stepProcessEditor"]=taskData.stepProcessEditor;
             Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_HANDLETASK_EVENT,{taskData:taskItemData,switchPagePayload:this.switchPagePayload});
         },
         doOpenTaskByContext:function(data){
@@ -380,6 +384,7 @@ require([
             taskItemData["taskRoleID"]= taskData.taskRoleID ;
             taskItemData["roleQueueName"]=this.taskQueueData.queueName;
             taskItemData["taskResponse"]=taskData.taskResponse;
+            taskItemData["stepProcessEditor"]=taskData.stepProcessEditor;
             Application.MessageUtil.publishMessage(APP_GLOBAL_TASKCENTER_HANDLETASK_EVENT,{taskData:taskItemData,switchPagePayload:this.switchPagePayload});
         },
         hideMenuOnHeader:function(){
@@ -502,7 +507,9 @@ require([
                         taskData["stepOwner"] = singleTaskData.stepOwner;
                         taskData["taskDueStatus"] = singleTaskData["dueStatus"];
                         taskData["taskResponse"]=singleTaskData["stepResponse"];
-
+                        if(singleTaskData.stepProcessEditor){
+                            taskData["stepProcessEditor"] = singleTaskData.stepProcessEditor;
+                        }
                         var currentTaskDataFieldsArray=singleTaskData.activityDataFieldValueList.activityDataFieldValueList;
                         dojo.forEach(teamTaskQueueDataFieldsDefine,function(dataFieldDefination){
                             var currentDataFieldDefinationName=dataFieldDefination.fieldName;
