@@ -623,6 +623,8 @@ require([
                         }else{
                             return true;
                         }
+                    }else{
+                        return true;
                     }
                 }
             }else{
